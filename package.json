@@ -13,6 +13,7 @@
     "copy": "shx cp webpack.config.js dist/ && shx cp .eslintrc.json dist/ && shx cp .stylelintrc.json dist/ && shx cp commitlint.config.js dist/ && shx  cp changelog.config.js dist/ && shx  cp .lintstagedrc.json dist/ && shx cp src/styles/mixins.scss dist/styles/ && shx cp src/styles/common.scss dist/styles/ && shx cp src/styles/variables.scss dist/styles/ && shx cp src/styles/fonts.scss dist/styles",
     "deploy": "yarn build-storybook && firebase deploy",
     "release": "release-it"
+
   },
   "repository": {
     "type": "git",
