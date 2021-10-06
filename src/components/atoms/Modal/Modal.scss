@@ -1,0 +1,61 @@
+@import "src/styles/mixins";
+
+.rf-modal {
+  background: rgba(2, 2, 3, 0.8);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+
+  z-index: 1000;
+}
+
+.rf-modal__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 90vw;
+  min-height: 72px;
+  max-height: 95vh;
+  background: var(--background-primary);
+  overflow-y: hidden;
+}
+
+.rf-modal__content {
+  padding: 0 32px 32px 32px;
+  flex-grow: 1;
+}
+
+.rf-modal__header {
+  padding: 32px 48px 12px 32px;
+  @include h2;
+  flex-shrink: 0;
+}
+
+.rf-modal__close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  z-index: 2;
+  color: var(--basic-tertiary);
+}
+
+.rf-modal__footer {
+  border-top: 1px solid var(--background-tertiary);
+  padding: 16px 32px 32px 32px;
+  flex-shrink: 0;
+}

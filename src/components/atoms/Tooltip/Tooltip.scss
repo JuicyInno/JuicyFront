@@ -1,0 +1,79 @@
+@import "../../../styles/mixins";
+
+.rf-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+$radius: 8px;
+
+.rf-tooltip__content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2200;
+  padding-left: 8px;
+}
+
+.rf-tooltip__content {
+  border-radius: $radius;
+}
+
+.rf-tooltip__inner {
+  position: relative;
+  padding: 16px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: $radius;
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+}
+
+.rf-tooltip__inner::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.rf-tooltip__inner--right::after {
+  top: 50%;
+  left: 0;
+}
+
+.rf-tooltip__inner--left::after {
+  top: 50%;
+  left: 100%;
+}
+
+.rf-tooltip__inner--bottom::after {
+  top: 0;
+  left: 50%;
+}
+
+.rf-tooltip__inner--top::after {
+  top: 100%;
+  left: 50%;
+}
+
+.rf-tooltip--default .rf-tooltip__inner {
+  background: var(--basic-tertiary);
+  color: var(--text-static-white);
+}
+
+.rf-tooltip--default .rf-tooltip__inner::after {
+  background: var(--basic-tertiary);
+}
+
+.rf-tooltip--white .rf-tooltip__inner {
+  background: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.rf-tooltip--white .rf-tooltip__inner::after {
+  background: var(--background-primary);
+}

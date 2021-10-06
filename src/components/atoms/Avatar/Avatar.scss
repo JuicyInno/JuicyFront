@@ -1,0 +1,40 @@
+@import "src/styles/mixins";
+
+.rf-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: var(--basic-tertiary);
+  color: var(--text-inversion);
+  cursor: default;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.rf-avatar.rf--xs {
+  @include round(24px)
+}
+
+.rf-avatar.rf--s {
+  @include round(32px)
+}
+
+.rf-avatar.rf--m {
+  @include round(40px)
+}
+
+.rf-avatar.rf--l {
+  @include round(48px)
+}
+
+.rf-avatar.rf--xl {
+  @include round(56px)
+}
+
+.rf-avatar.rf--xxl {
+  @include round(80px)
+}

@@ -1,0 +1,22 @@
+@import "../../../styles/mixins";
+
+.story {
+  padding: 24px;
+  height: 100%;
+}
+
+.story__name {
+  @include h2;
+  margin-bottom: 8px;
+}
+
+.story__wrapper {
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
+}
+
+.story__description {
+  @include text-l-16;
+  max-width: 600px;
+}

@@ -1,0 +1,25 @@
+.rf-control-group {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > *:not(:last-child) {
+      margin-bottom: 16px
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    align-items: center;
+
+    & > *:not(:last-child) {
+      margin-right: 16px
+    }
+  }
+
+  &--inset {
+    padding-left: 32px;
+  }
+}

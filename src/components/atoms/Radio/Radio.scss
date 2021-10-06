@@ -1,0 +1,114 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+$radius: 20px;
+
+.rf-radio {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.rf-radio--fullwidth {
+  width: 100%;
+}
+
+.rf-radio__input {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.rf-radio__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $radius;
+  height: $radius;
+  min-width: $radius;
+  min-height: $radius;
+  margin-right: 10px;
+  border-radius: 50%;
+
+  background-color: var(--background-primary);
+  border: 1px solid var(--basic-tertiary);
+
+  transition: 0.15s ease-in;
+}
+
+.rf-radio__circle {
+  background-color: var(--background-primary);
+}
+
+.rf-radio__mark {
+  display: none;
+  @include round(8px);
+  opacity: 0;
+  transition: 0.15s ease-in opacity;
+  color: var(--background-primary);
+}
+
+.rf-radio__label {
+  width: 100%;
+  @include text-m-16;
+  transition: 0.15s ease-in;
+}
+
+// Hover
+.rf-radio:hover .rf-radio__input:not(:disabled) + .rf-radio__circle {
+  background-color: var(--background-secondary);
+  border-color: var(--basic-hover);
+}
+
+.rf-radio:hover .rf-radio__input:checked:not(:disabled) + .rf-radio__circle {
+  border-color: var(--basic-hover);
+}
+
+// Focus
+
+.rf-radio__input:checked:focus ~ .rf-radio__circle {
+  outline: none;
+}
+
+.rf-radio__input:checked:focus-visible ~ .rf-radio__circle {
+  background-color: var(--background-secondary);
+  border-color: var(--basic-hover);
+}
+
+// Checked
+.rf-radio__input:checked + .rf-radio__circle {
+  border-color: var(--basic-primary);
+  border-width: 6px;
+
+  //.rf-radio__mark {
+  //  display: block;
+  //  opacity: 1;
+  //}
+}
+
+.rf-radio__input:checked ~ .rf-radio__label {
+  color: var(--text-primary);
+}
+
+// Disabled
+.rf-radio.disabled {
+  cursor: default;
+}
+
+.rf-radio.disabled + .rf-radio__circle,
+.rf-radio__input:disabled + .rf-radio__circle {
+  @include disabled();
+  border-color: var(--basic-disable);
+}
+
+.rf-radio.disabled ~ .rf-radio__label,
+.rf-radio__input:disabled ~ .rf-radio__label {
+  @include disabled();
+  color: var(--text-tertiary);
+}
+
+.rf-radio.disabled:hover ~ .rf-radio__label,
+.rf-radio__input:disabled:hover ~ .rf-radio__label {
+  color: var(--text-tertiary);
+}

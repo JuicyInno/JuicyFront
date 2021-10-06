@@ -1,0 +1,8 @@
+@import "src/styles/mixins";
+
+.story-docs-label {
+  @include text-l-16;
+  color: var(--text-secondary);
+  align-self: center;
+  justify-self: flex-start;
+}

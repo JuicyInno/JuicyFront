@@ -1,0 +1,124 @@
+@import "../../../styles/mixins";
+
+.signification__wrapper {
+  max-width: 880px;
+}
+
+.signification__title-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.signification__title-text{
+  padding-left: 16px;
+  @include h6;
+  color:var(--text-static-black)
+}
+
+.buttons__wrapper {
+  display: flex;
+
+}
+
+.button__item {
+  padding-right: 12px;
+}
+.button__item:last-child {
+  padding-right: 0;
+}
+
+.info-block__wrapper {
+
+  width:100%;
+  border-radius: 12px;
+  display: flex;
+  padding: 12px 12px 12px 16px;
+  min-height:64px;
+  margin-bottom: 16px;
+}
+.info-block__wrapper--success{
+  background:var( --special-softGreen) ;
+}
+.info-block__wrapper--danger{
+  background:var( --special-softRed) ;
+}
+
+.info-block__text-wrapper {
+  padding-left: 16px;
+}
+.info-block__main-text{
+  @include text-l-16-bold();
+  padding-bottom: 4px;
+}
+
+.info-block__main-text--success{
+  color:var(--status-success);
+}
+.info-block__main-text--danger {
+  color:var(--status-danger);
+}
+.info-block__text{
+  @include text-s-14;
+  color:var(  --text-primary);
+}
+.info-block__button{
+margin-left: auto;
+  margin-right:4px;
+
+}
+.info-block__comment{
+  padding-top: 8px;
+  @include text-s-14;
+  color:var(  --text-primary);
+  text-align: justify;
+  max-width: 584px;
+}
+.info-block__button-inner{
+  color:var(  --text-secondary);
+}
+.manual__wrapper{
+  padding-top: 26px;
+  min-width: 700px;
+}
+.manual__header {
+   display: flex;
+  @include h5;
+  padding-bottom: 26px;
+}
+.manual__chip-wrapper,
+.manual__hint-wrapper,
+.cert-error__wrapper{
+  padding-bottom: 26px;
+}
+
+.manual__chip-text {
+  @include text-s-14;
+  color: var(--basic-primary);
+  display: flex;
+  align-items: center;
+
+}
+
+.manual__chip-button {
+  padding-left: 8px;
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+.manual__close {
+  cursor: pointer;
+  margin-left: auto;
+  color: var(--basic-tertiary);
+}
+
+.modal_buttons {
+
+  display: flex;
+  justify-content: flex-end;
+}
+.modal_button{
+  padding-left: 16px;
+}
+.modal_button:first-child{
+  padding-left: 0;
+ }

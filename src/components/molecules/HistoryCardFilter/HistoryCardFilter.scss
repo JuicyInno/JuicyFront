@@ -1,0 +1,19 @@
+@import "../../../styles/mixins";
+.filter__wrapper {
+  width: 880px;
+}
+.card-filter__wrapper {
+  display: flex;
+
+}
+
+.card-filter__datepicker {
+  width: 250px;
+  padding-right: 12px;
+}
+
+
+.card-filter__search{
+  margin-left: auto;
+  left:20px
+}

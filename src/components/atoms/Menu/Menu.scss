@@ -1,0 +1,31 @@
+@import "src/styles/mixins";
+
+.rf-menu {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+}
+
+.rf-menu__toggle {
+  width: 100%;
+}
+
+.rf-menu__content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  background-color: var(--background-primary);
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  display: none;
+}
+
+.rf-menu__content--show {
+  display: block;
+}
+
+.rf-menu__content--portal {
+  position: absolute;
+}

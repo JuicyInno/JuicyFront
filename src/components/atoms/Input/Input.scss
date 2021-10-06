@@ -1,0 +1,150 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.rf-input {
+  align-items: center;
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  display: inline-flex;
+  padding: 0 16px;
+  position: relative;
+  transition: 0.15s ease-in;
+  vertical-align: top;
+  width: 100%;
+  height: 40px;
+  box-shadow: 0 0 0 1px var(--basic-tertiary);
+
+  &--invalid {
+    box-shadow: 0 0 0 2px var(--status-danger);
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--basic-press);
+  }
+
+  &--focused {
+    box-shadow: 0 0 0 1px var(--basic-press);
+  }
+  
+
+  &--inline {
+    box-shadow: none;
+
+    &.rf-input--invalid {
+      box-shadow: 0 0 0 2px var(--status-danger);
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1px var(--basic-press);
+    }
+  
+
+    &.rf-input--focused {
+      box-shadow: 0 0 0 1px var(--basic-press);
+    }
+  }
+
+  &--disabled {
+    background-color: var(--background-tertiary);
+
+    &, &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &__adornment {
+    display: flex;
+    align-items: center;
+    color: var(--basic-tertiary);
+
+    & svg {
+      display: block;
+    }
+
+    &--start {
+      margin-right: 8px;
+    }
+  
+    &--end {
+      margin-left: 8px;
+    }
+  }
+}
+
+.rf-input__field {
+  @include text-l-16;
+  width: 100%;
+  transition: 0.15s ease-in;
+  background: transparent;
+  color: var(--text-primary);
+  border: 0;
+  height: 100%;
+
+  &::placeholder {
+    @include text-l-16;
+    color: var(--text-secondary);
+  }
+
+  &.disabled, &:disabled {
+    cursor: default;
+    color: var(--text-primary);
+
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+  }
+
+  &.rf-input__field--file {
+    cursor: pointer;
+  }
+}
+
+.rf-input__field:disabled::placeholder {
+  color: var(--text-secondary);
+}
+
+/** [START] file-input */
+
+.rf-input__file-hidden {
+  @include hidden;
+}
+
+.rf-input__file-placeholder {
+  line-height: 20px;
+  @include text-l-16;
+  color: var(--text-secondary);
+}
+
+.rf-input__file-value {
+  @include text-l-16;
+}
+
+input[type='file']:disabled + .rf-input__field.rf-input__field--file {
+  @include disabled();
+}
+
+/** [END] file-input */
+
+.rf-input__action {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: var(--text-tertiary);
+  }
+}
+
+.rf-input__action:hover,
+.rf-input__action:focus {
+  color: var(--basic-press);
+}

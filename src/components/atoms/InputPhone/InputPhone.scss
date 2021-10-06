@@ -1,0 +1,49 @@
+.rf-phone-input {
+  &__country {
+    align-items: center;
+    display: flex;
+  }
+  
+  &__flag {
+    color: var(--text-tertiary);
+  }
+
+  &__button {
+    transition: transform 0.3s;
+    margin-left: 4px;
+
+    &:disabled {
+      color: var(--text-tertiary)
+    }
+
+    &--rotate {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__option {
+    display: flex;
+    width: 100%;
+  }
+
+  &__option-flag {
+    margin-right: 8px;;
+  }
+
+  &__option-text {
+    color: var(--text-primary);
+    margin-right: 4px;
+
+    &--selected {
+      color: var(--basic-primary);
+    }
+  }
+
+  &__option-code {
+    color: var(--text-secondary);
+
+    &--selected {
+      color: var(--basic-primary);
+    }
+  }
+}

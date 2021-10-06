@@ -1,0 +1,32 @@
+@import "../../../styles/mixins";
+
+.rf-form-group {
+  width: 100%;
+}
+
+.rf-form-group__inner:focus-within .rf-form-group__label {
+  color: var(--basic-press);
+}
+
+.rf-form-group__label {
+  @include caption;
+  @include clearfix;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  transition: 0.15s ease-in;
+}
+
+.rf-form-group__label-secondary {
+  float: right;
+  margin-left: 8px;
+}
+
+.rf-form-group__message {
+  margin-top: 8px;
+  @include caption;
+  color: var(--status-danger);
+}
+
+.rf-form-group__required {
+  color: var(--status-danger);
+}

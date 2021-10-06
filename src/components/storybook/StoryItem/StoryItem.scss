@@ -1,0 +1,20 @@
+@import "../../../styles/mixins";
+
+.story__subtitle {
+  @include h6;
+  margin-bottom: 8px;
+}
+
+.story__description {
+  @include text-l-16;
+  max-width: 600px;
+}
+
+.story__content {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-top: 1px solid var(--background-secondary);
+  border-bottom: 1px solid var(--background-secondary);
+}

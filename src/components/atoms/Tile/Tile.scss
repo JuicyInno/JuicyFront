@@ -1,0 +1,19 @@
+.rf-tile {
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.rf-tile__background{
+  background: var(--background-card);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+}
+
+
+.rf-tile--stretch {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.rf-tile:last-of-type {
+  margin-bottom: 0;
+}

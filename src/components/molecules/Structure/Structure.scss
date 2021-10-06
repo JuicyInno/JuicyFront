@@ -1,0 +1,19 @@
+@import "src/styles/mixins";
+
+.structure {
+  min-width: 300px;
+}
+
+.structure__item:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+
+.structure__unit {
+  @include caption;
+  color: var(--text-static-white);
+}
+
+.structure__name {
+  @include text-m-16;
+  color: var(--text-static-white);
+}

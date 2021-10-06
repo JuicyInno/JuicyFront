@@ -1,0 +1,39 @@
+@import "src/styles/mixins";
+
+.rf-employee {
+  display: flex;
+  align-items: flex-start;
+  cursor: default;
+}
+
+.rf-employee__details {
+  margin-left: 16px;
+}
+
+.rf-employee__name-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rf-employee__name {
+  @include h5;
+  color: var(--basic-secondary);
+}
+
+.rf-employee__info {
+  @include text-m-16;
+  color: var(--basic-tertiary);
+  margin-bottom: 4px;
+}
+
+.rf-employee__info-department {
+  display: inline-flex;
+  align-items: center;
+}
+
+.rf-employee__department-icon {
+  margin-left: 10px;
+  color: var(--basic-tertiary);
+  cursor: pointer;
+}

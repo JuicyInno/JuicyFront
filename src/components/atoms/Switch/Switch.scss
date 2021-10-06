@@ -1,0 +1,106 @@
+@import "../../../styles/mixins";
+
+.rf-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rf-switch__toggle {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.rf-switch--s .rf-switch__toggle {
+  width: 28px;
+  height: 16px;
+}
+
+.rf-switch__toggle.on {
+  background-color: var(--basic-primary);
+  border-color: var(--basic-primary);
+}
+
+.rf-switch__toggle.off {
+  background-color: var(--basic-tertiary);
+  border-color: var(--basic-tertiary);
+}
+
+.rf-switch__circle {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  @include round(16px);
+  background-color: var(--background-primary);
+  transition: 0.15s ease-in-out;
+}
+
+.rf-switch--s .rf-switch__circle {
+  @include round(12px);
+}
+
+.rf-switch__toggle.off .rf-switch__circle {
+  transform: translateX(0);
+}
+
+.rf-switch__toggle.on .rf-switch__circle {
+  transform: translateX(14px);
+}
+
+.rf-switch--s .rf-switch__toggle.on .rf-switch__circle {
+  transform: translateX(10px);
+}
+
+.rf-switch__label {
+  margin-left: 8px;
+  @include text-m-16;
+  user-select: none;
+}
+
+.rf-switch__helper-text {
+  margin-left: 44px;
+  @include text-s-14;
+  user-select: none;
+  color: var(--text-secondary);
+  flex: 1 1 100%;
+
+  .rf-switch--s & {
+    margin-left: 36px;
+    @include caption;
+    color: var(--text-secondary);
+  }
+}
+
+.rf-switch:not(.rf-switch--disable):hover {
+  .rf-switch__toggle.on {
+    background-color: var(--basic-hover);
+    border-color: var(--basic-hover);
+  }
+
+  .rf-switch__toggle.off {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+  }
+}
+
+.rf-switch--disable {
+  @include disabled;
+
+  .rf-switch__toggle {
+    cursor: default;
+  }
+
+  .rf-switch__toggle.on {
+    background-color: var(--basic-disable);
+    border-color: var(--basic-disable);
+  }
+
+  .rf-switch__toggle.off {
+    background-color: var(--basic-disable);
+    border-color: var(--basic-disable);
+  }
+}

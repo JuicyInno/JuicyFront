@@ -1,0 +1,101 @@
+@import "../../../styles/mixins";
+
+.rf-badge__wrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.rf-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  border-radius: 10px;
+  transform: translate(50%, -50%);
+
+  @include caption;
+  cursor: inherit;
+}
+
+.rf-badge--text {
+  transform: translate(100%, -50%);
+}
+
+.rf-badge--near {
+  align-items: center;
+
+  .rf-badge {
+    transform: translate(0, 0);
+    position: static;
+    margin-left: 8px;
+    height: 16px;
+    min-width: 16px;
+    padding: 0 5px;
+    border-radius: 8px;
+  }
+}
+
+.rf-badge--default {
+  background-color: var(--background-tertiary);
+}
+
+.rf-badge--blue {
+  background-color: var(--special-blue);
+  color: var(--text-static-white);
+}
+
+.rf-badge--lightBlue {
+  background-color: var(--special-lightBlue);
+  color: var(--text-static-white);
+}
+
+.rf-badge--turquoise {
+  background-color: var(--special-turquoise);
+  color: var(--text-static-white);
+}
+
+.rf-badge--green {
+  background-color: var(--special-green);
+  color: var(--text-static-white);
+}
+
+.rf-badge--yellow {
+  background-color: var(--special-yellow);
+  color: var(--text-static-white);
+}
+
+.rf-badge--red {
+  background-color: var(--special-red);
+  color: var(--text-static-white);
+}
+
+.rf-badge--magenta {
+  background-color: var(--special-magenta);
+  color: var(--text-static-white);
+}
+
+.rf-badge--purple {
+  background-color: var(--special-purple);
+  color: var(--text-static-white);
+}
+
+.rf-badge--violet {
+  background-color: var(--special-violet);
+  color: var(--text-static-white);
+}
+
+.rf-badge--dot {
+  @include round(8px);
+  padding: 0;
+  border: 2px solid var(--base-000);
+  box-sizing: content-box;
+}

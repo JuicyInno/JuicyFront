@@ -1,0 +1,8 @@
+@import "../../../styles/mixins";
+.doc__wrapper{
+  padding-bottom: 16px;
+}
+.doc__title{
+  @include text-m-16;
+  color:var(--text-secondary)
+}

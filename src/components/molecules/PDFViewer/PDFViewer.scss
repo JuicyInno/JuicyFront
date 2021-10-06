@@ -1,0 +1,55 @@
+@import "../../../styles/mixins";
+
+.pdf-document {
+  display: flex;
+  justify-content: center;
+  background: var(--background-tertiary);
+  padding: 8px 0;
+  border-radius: 8px;
+  margin-top: 24px;
+  position: relative;
+}
+
+.pdf-document__download {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: var(--16);
+  bottom: var(--16);
+}
+
+.pdf-document__open {
+  margin-right: 10px;
+}
+
+.pdf-document__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--basic-primary);
+}
+.pdf-document__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-document__pager {
+  position: absolute;
+  right: var(--16);
+  bottom: var(--16);
+}
+
+.pdf-document__pager-text {
+  @include button-m-16;
+
+}
+
+.pdf-document__pager-button--active {
+  color: var(--basic-primary);
+  padding-top: var(--4);
+}
+
+.pdf-document__pager-button {
+  color: var( --basic-tertiary);
+  padding-top: var(--4);
+}

@@ -1,0 +1,90 @@
+body {
+  font-family: 'VTB Group UI', Arial, sans-serif;
+  background-color: transparent;
+
+  &.fixed {
+    overflow: hidden;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p,
+input,
+button,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+// запрет на ресайз textarea
+
+textarea {
+  resize: none;
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+a:focus {
+  outline: none;
+}
+
+button,
+textarea,
+input {
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input::-ms-clear {
+  display: none !important;
+}
+
+pre {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: pre-wrap;
+}
+
+// отключаем голубую подсветку при нажатии на элементы с мобильника
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+// кастомный скролл
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(85, 85, 85, 0.3);
+}
+
+.list-style-reset {
+  list-style: none;
+}

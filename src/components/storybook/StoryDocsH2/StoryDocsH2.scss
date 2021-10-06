@@ -1,0 +1,8 @@
+@import "src/styles/mixins";
+
+.story-docs-h2 {
+  @include h1;
+  margin-top: 72px;
+  margin-bottom: 24px;
+  color: var(--basic-secondary);
+}

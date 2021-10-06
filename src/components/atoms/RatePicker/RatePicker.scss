@@ -1,0 +1,53 @@
+.rate-picker{
+  border-bottom: 1px solid var(--background-secondary);
+}
+
+.rate-picker__content{
+  display: inline-block;
+  margin-bottom: 16px;
+  width:648px;
+  box-sizing: border-box;
+}
+
+.rate-picker__container{
+  display: flex;
+  padding-left: 4px;
+  margin-bottom: 16px;
+  flex-direction: row;
+  input{
+    display: none;
+  }
+  label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 40px;
+    border:1px solid var(--background-secondary);
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+}
+.rate-picker__item--left{
+  label{
+    border-top-left-radius:7px;
+    border-bottom-left-radius: 7px;
+  }
+}
+
+
+.rate-picker__item--right{
+  label{
+    border-top-right-radius:7px;
+    border-bottom-right-radius: 7px;
+  }
+}
+
+.rate-picker__label_picked_primary{
+  background-color: var(--basic-primary);
+  color: var( --text-inversion);
+}
+
+.rate-picker__label_picked_tertiary{
+  background-color: var(--background-tertiary);
+}

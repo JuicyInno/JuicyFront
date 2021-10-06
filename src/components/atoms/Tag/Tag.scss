@@ -1,0 +1,104 @@
+@import "../../../styles/mixins";
+
+.rf-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 16px;
+  cursor: default;
+  height: 24px;
+  @include text-xs-14;
+}
+
+.rf-tag--clickable {
+  cursor: pointer;
+}
+
+.rf-tag--default {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+
+  & .rf-tag__icon, & .rf-tag__remove {
+    color: var(--text-secondary);
+  }
+}
+
+.rf-tag--grey {
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+}
+
+.rf-tag--blue {
+  background-color: var(--special-softBlue);
+  color: var(--special-blue);
+}
+
+.rf-tag--lightBlue {
+  background-color: var(--special-softLightBlue);
+  color: var(--special-lightBlue);
+}
+
+.rf-tag--turquoise {
+  background-color: var(--special-softTurquoise);
+  color: var(--special-turquoise);
+}
+
+.rf-tag--green {
+  background-color: var(--special-softGreen);
+  color: var(--special-green);
+}
+
+.rf-tag--yellow {
+  background-color: var(--special-softYellow);
+  color: var(--special-yellow);
+}
+
+.rf-tag--red {
+  background-color: var(--special-softRed);
+  color: var(--special-red);
+}
+
+.rf-tag--magenta {
+  background-color: var(--special-softMagenta);
+  color: var(--special-magenta);
+}
+
+.rf-tag--purple {
+  background-color: var(--special-softPurple);
+  color: var(--special-purple);
+}
+
+.rf-tag--violet {
+  background-color: var(--special-softViolet);
+  color: var(--special-violet);
+}
+
+.rf-tag--outlined {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+.rf-tag__icon {
+  margin-right: 6px;
+  margin-left: -4px;
+
+  svg {
+    display: block;
+  }
+}
+
+.rf-tag__remove {
+  margin-left: 6px;
+  margin-right: -4px;
+  color: inherit;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
