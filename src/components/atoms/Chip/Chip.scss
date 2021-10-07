@@ -8,16 +8,16 @@
   cursor: default;
 }
 
-.rf--s,
-.rf--xs {
+.rf-chip.rf--s,
+.rf-chip.rf--xs {
   @include text-s-14;
   height: 32px;
   padding: 6px 12px;
 }
 
-.rf--m,
-.rf--l,
-.rf--xl {
+.rf-chip.rf--m,
+.rf-chip.rf--l,
+.rf-chip.rf--xl {
   @include text-l-16;
   height: 40px;
   padding: 8px 12px;
@@ -71,8 +71,8 @@
   flex-shrink: 0;
 }
 
-.rf--s,
-.rf--xs {
+.rf-chip.rf--s,
+.rf-chip.rf--xs {
   .rf-chip__right-icon,
   svg {
     width: 20px;
