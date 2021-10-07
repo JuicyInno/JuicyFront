@@ -1,4 +1,5 @@
 import React, {
+  useCallback,
   useEffect, useRef, useState
 } from 'react';
 import { ITreeOption } from '../../../types';
@@ -92,9 +93,44 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     }
   };
 
+  const resizeLastV = useCallback(() => {
+    if (depth !== 1 || !itemRef.current) {
+      return;
+    }
+
+    const root = document.getElementById(id);
+
+    if (!root) {
+      return;
+    }
+
+    const lastDash: HTMLDivElement | null = root.querySelector('.rf-tree__item--1:last-of-type > .rf-tree__item--v');
+
+    if (!lastDash) {
+      return;
+    }
+
+    if (itemRef.current.classList.contains('rf-tree__item--close')) {
+      lastDash.style.height = '0px';
+      return;
+    }
+
+    const lastCircle: SVGSVGElement | null =
+      root.querySelector('.rf-tree__item--1:last-of-type .rf-tree__item-folder  .rf-tree__item-label-icon');
+
+    if (!lastCircle) {
+      return;
+    }
+
+    const ICON_GAP = 2;
+    const height = lastCircle.getBoundingClientRect().y - lastDash.getBoundingClientRect().y + ICON_GAP;
+    lastDash.style.height = `${height}px`;
+  }, [depth, open]);
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
       calculateHeight();
+      resizeLastV();
     });
 
     const container = document.getElementById(id);
@@ -102,7 +138,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     if (container) {
       resizeObserver.observe(container);
     }
-  }, []);
+  }, [resizeLastV]);
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 

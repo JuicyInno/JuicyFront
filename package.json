@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "axios": "^0.21.1",
+    "chromatic": "^5.10.2",
     "babel-loader": "^8.2.2",
     "babel-plugin-react-scoped-css": "^1.1.1",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
