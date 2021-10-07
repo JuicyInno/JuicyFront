@@ -43,7 +43,7 @@ const DEFAULT_COUNTRIES: IInputPhoneCountry[] = [
 const InputPhone: React.FC<IInputPhoneProps> =
 ({ defaultValue, countries = DEFAULT_COUNTRIES, defaultCountry, name, disabled, onChange, ...props }: IInputPhoneProps) => {
 
-  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
+  const [inputValue, setInputValue] = useState<string>( '');
   const [displayValue, setDisplayValue] = useState<string>(defaultValue || '');
   const [country, setCountry] = useState(defaultCountry || countries[0]);
 
@@ -56,7 +56,11 @@ const InputPhone: React.FC<IInputPhoneProps> =
   const onCountryChange = (c: IInputPhoneCountry) => () => {
     setCountry(c);
   };
+  useEffect(() => {
 
+    setDisplayValue(defaultValue || '');
+    setInputValue(defaultValue || '');
+  }, [defaultValue]);
   useEffect(() => {
     const v = displayValue.replace(/(\s|-|_|\(|\))/g, '');
     setInputValue(v);
