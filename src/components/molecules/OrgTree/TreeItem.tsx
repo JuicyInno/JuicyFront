@@ -115,15 +115,15 @@ const FolderItem: React.FC<IFolderItemProps> = ({
       return;
     }
 
-    const circles =
-      root.querySelectorAll<SVGSVGElement>('.rf-tree__item--1:last-of-type .rf-tree__item-folder  .rf-tree__item-label-icon');
+    const s = '.rf-tree__item--1:last-of-type > .rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > .rf-tree__item-label .rf-tree__item-label-icon';
+    const lastChildItem = root.querySelector<HTMLDivElement>(s);
 
-    if (circles.length === 0) {
+    if (!lastChildItem) {
       return;
     }
 
     const ICON_GAP = 2;
-    const height = circles[circles.length - 1].getBoundingClientRect().y - lastDash.getBoundingClientRect().y + ICON_GAP;
+    const height = lastChildItem.getBoundingClientRect().y - lastDash.getBoundingClientRect().y + ICON_GAP;
     lastDash.style.height = `${height}px`;
   }, [depth, open]);
 
