@@ -62,7 +62,6 @@ const InputFile: React.FC<IFileInputProps> = ({
 
   /** Получаем картинку */
   const onChange = () => {
-
     if (ref.current && ref.current.files) {
       const promises: Promise<IFileData>[] = [];
 
@@ -86,8 +85,9 @@ const InputFile: React.FC<IFileInputProps> = ({
 
             if (multiple) {
               const keysMap: Record<string, boolean> = {};
+              const next = [...file, ...data].slice(0, count);
 
-              [...file, ...data].forEach((f: IFileData) => {
+              next.forEach((f: IFileData) => {
                 if (!keysMap[f.file.name + f.file.lastModified]) {
                   keysMap[f.file.name + f.file.lastModified] = true;
                   newFiles.push(f);
