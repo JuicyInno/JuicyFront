@@ -54,8 +54,14 @@ import Timepicker from './components/atoms/Timepicker';
 import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
+import GhostScreen from './components/atoms/GhostScreen';
+// --------------------------Переменные---------------------------------------------------------------------------------
+import variables from './styles/variables.json';
+import { download } from './utils/download';
+
 
 export {
+  GhostScreen,
   HistoryCardFilter,
   Avatar,
   Badge,
@@ -170,10 +176,5 @@ export {
   Cross,
   Redo
 };
-
-// --------------------------Переменные---------------------------------------------------------------------------------
-import variables from './styles/variables.json';
-import { download } from './utils/download';
-
 
 export { variables, download };
