@@ -6,11 +6,11 @@ import {
 } from '../../storybook';
 import StoryRow from '../../storybook/StoryRow';
 import { MobileView } from './previews/mobile-view';
-import { States } from './previews/states';
+
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'atoms/Toggle',
+  title: 'atoms/withTest/Toggle',
   decorators: [withDesign],
   component: Switch,
   argTypes: {
@@ -55,17 +55,33 @@ export const Demo = () => {
           flexDirection: 'column',
           marginRight: 100
         }}>
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+
         </div>
         <div style={{
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
+
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+
+
         </div>
       </div>
 
@@ -75,32 +91,32 @@ export const Demo = () => {
       </StoryDocsDescription>
 
       <div style={{ display: 'flex' }}>
-        <div style={{ marginRight: 100 }}>
+        <div style={{
+          marginRight: 100,
+          marginBottom: 20
+        }}>
           <Switch
             onChange={onChange}
             label='Text'
             size='m'
-            style={{ marginBottom: 20 }}
             helperText='Add text'
           />
         </div>
-        <div>
+        <div style={{ marginBottom: 20 }}>
           <Switch
             onChange={onChange}
             label='Text'
             size='s'
-            style={{ marginBottom: 20 }}
             helperText='Add text'
           />
         </div>
       </div>
 
-      <StoryDocsH2>Состояния</StoryDocsH2>
-      <States />
 
       <StoryDocsH2>Адаптив (Mobile)</StoryDocsH2>
       <StoryDocsDescription>
-        При создании отдельных макетов для мобильных устройств, рекомендуется использовать вариацию комопнента размера M с текстом слева, который можно
+        При создании отдельных макетов для мобильных устройств, рекомендуется использовать вариацию комопнента размера
+          M с текстом слева, который можно
         вытянуть на всю ширину экрана.
       </StoryDocsDescription>
       <MobileView />
@@ -121,6 +137,16 @@ export const Playground = (props: ISwitchProps) => (
   <Story>
     <StoryRow>
       <Switch {...props} />
+    </StoryRow>
+  </Story>
+);
+
+export const test = (props: ISwitchProps) => (
+  <Story>
+    <StoryRow>
+      <Switch label='Text'
+        size={'s'}
+        helperText='Add text' />
     </StoryRow>
   </Story>
 );

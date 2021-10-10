@@ -12,7 +12,7 @@
   height: 20px;
   border-radius: 10px;
   position: relative;
-  border: 1px solid transparent;
+  //border: 1px solid transparent;
 }
 
 .rf-switch--s .rf-switch__toggle {
@@ -32,7 +32,7 @@
 
 .rf-switch__circle {
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 2px;
   @include round(16px);
   background-color: var(--background-primary);
@@ -48,11 +48,11 @@
 }
 
 .rf-switch__toggle.on .rf-switch__circle {
-  transform: translateX(14px);
+  transform: translateX(16px);
 }
 
 .rf-switch--s .rf-switch__toggle.on .rf-switch__circle {
-  transform: translateX(10px);
+  transform: translateX(12px);
 }
 
 .rf-switch__label {

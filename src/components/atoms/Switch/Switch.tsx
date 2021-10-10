@@ -2,35 +2,40 @@ import React, {
   FC, ReactNode, useState, useEffect
 } from 'react';
 import './Switch.scss';
-import { Size } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 
+
 export interface ISwitchProps {
+  /** Функция вызываемая при изменении значения*/
   onChange?: (f: boolean) => void;
+  /** Основной текст*/
   label?: ReactNode;
+  /** Второстепенный текст*/
   helperText?: ReactNode;
-  className?: string;
+  /** Значение по умолчанию*/
   value?: boolean;
+  /** залочен или нет*/
   disabled?: boolean;
-  size?: Size;
-  style?: React.CSSProperties
+  /** размер*/
+  size?: 's' | 'm';
+
 }
 
 const Switch: FC<ISwitchProps> = ({
   label,
   helperText,
-  className = '',
   value = false,
   disabled = false,
   onChange,
   size = 'm',
-  style
+
 }: ISwitchProps) => {
   const [s, toggle] = useState<boolean>(value);
 
   useEffect(() => {
     toggle(value);
   }, [value]);
+
 
   const changeState = () => {
     if (!disabled) {
@@ -41,9 +46,8 @@ const Switch: FC<ISwitchProps> = ({
 
   return (
     <div
-      className={classnames('rf-switch', disabled && 'rf-switch--disable', `rf-switch--${size}`, className)}
+      className={classnames('rf-switch', disabled && 'rf-switch--disable', `rf-switch--${size}`)}
       onClick={changeState}
-      style={style}
     >
       <div className={`rf-switch__toggle ${s ? 'on' : 'off'}`}>
         <div className='rf-switch__circle' />
