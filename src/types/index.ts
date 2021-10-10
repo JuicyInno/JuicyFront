@@ -140,3 +140,17 @@ export interface ILogRecord {
   action?: any;
   pathname?: string;
 }
+
+/** Список кнопок */
+export interface IButtonGroup {
+  /** Кнопка */
+  component?: ReactNode;
+  /** Подпись в меню */
+  label?: ReactNode;
+  /** Описание в меню */
+  description?: ReactNode;
+  /** Ссылка в меню */
+  url?: string;
+  /** Клик по кнопке в меню */
+  onClick?: () => void;
+}
