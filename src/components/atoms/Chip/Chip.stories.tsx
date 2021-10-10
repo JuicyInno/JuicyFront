@@ -43,6 +43,7 @@ export const chip = () => {
   return (
     <Story
       name='Chip'>
+
       <StoryItem subtitle='Chips 40'>
         <div style={{ display: 'flex' }}>
           <div style={frameStyle}>

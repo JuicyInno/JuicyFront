@@ -1,59 +1,57 @@
-import { shallow } from 'enzyme';
+
 import React from 'react';
 import ContentExpander from './ContentExpander';
+import {fireEvent, getByText, render, screen} from '@testing-library/react'
+import RatePicker from "../../atoms/RatePicker";
+
 
 describe('Test <ContentExpander/> component', () => {
   it('should have title "Title"', () => {
-    const wrapper = shallow(<ContentExpander title='Title'>Message</ContentExpander>);
-    expect(wrapper.find('.expander__title-text').text()).toBe('Title');
+    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
+    expect(getByText(container,'Title')).toBeTruthy();
   });
 
   it('should have content "Message"', () => {
-    const wrapper = shallow(<ContentExpander title='Title'>Message</ContentExpander>);
-    expect(wrapper.find('.expander__content').text()).toBe('Message');
+    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
+    expect(getByText(container,'Message')).toBeTruthy();
+
   });
 
   it('should be expanded', () => {
-    const wrapper = shallow(<ContentExpander title='Title' defaultValue={true}>
+    const { container } = render(<ContentExpander title='Title' defaultValue={true}>
         Message
     </ContentExpander>);
-    const icon = wrapper.find('.expander__icon');
-    const content = wrapper.find('.expander__content');
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
 
-    expect(icon.hasClass('expander__icon--rotate')).toBeTruthy();
-    expect(content.hasClass('expander__content--active')).toBeTruthy();
   });
 
   it('should not be expanded', () => {
-    const wrapper = shallow(<ContentExpander title='Title'>Message</ContentExpander>);
-    const icon = wrapper.find('.expander__icon');
-    const content = wrapper.find('.expander__content');
-
-    expect(icon.hasClass('expander__icon--rotate')).toBeFalsy();
-    expect(content.hasClass('expander__content--active')).toBeFalsy();
+    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
   });
 
   it('should expand on click', () => {
-    const wrapper = shallow(<ContentExpander title='Title'>Message</ContentExpander>);
-    const title = wrapper.find('.expander__title');
+    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
+    fireEvent.click(screen.getByText('Title'));
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
 
-    expect(wrapper.find('.expander__icon').hasClass('expander__icon--rotate')).toBeFalsy();
-    expect(wrapper.find('.expander__content').hasClass('expander__content--active')).toBeFalsy();
-    title.simulate('click');
-    expect(wrapper.find('.expander__icon').hasClass('expander__icon--rotate')).toBeTruthy();
-    expect(wrapper.find('.expander__content').hasClass('expander__content--active')).toBeTruthy();
   });
 
   it('should shrink on click', () => {
-    const wrapper = shallow(<ContentExpander title='Title' defaultValue={true}>
+    const { container } = render(<ContentExpander title='Title' defaultValue={true}>
         Message
     </ContentExpander>);
-    const title = wrapper.find('.expander__title');
 
-    expect(wrapper.find('.expander__icon').hasClass('expander__icon--rotate')).toBeTruthy();
-    expect(wrapper.find('.expander__content').hasClass('expander__content--active')).toBeTruthy();
-    title.simulate('click');
-    expect(wrapper.find('.expander__icon').hasClass('expander__icon--rotate')).toBeFalsy();
-    expect(wrapper.find('.expander__content').hasClass('expander__content--active')).toBeFalsy();
+
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
+    fireEvent.click(screen.getByText('Title'));
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
   });
 });
