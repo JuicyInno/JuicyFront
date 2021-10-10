@@ -52,6 +52,6 @@ describe('Test <ContentExpander/> component', () => {
     expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
     fireEvent.click(screen.getByText('Title'));
     expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
-    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
   });
 });
