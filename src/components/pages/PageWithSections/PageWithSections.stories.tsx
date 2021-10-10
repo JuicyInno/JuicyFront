@@ -9,7 +9,7 @@ import { Button } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
-  title: 'Pages/Page With Sections',
+  title: 'не проверено/Page With Sections',
   component: PageWithSections
 };
 

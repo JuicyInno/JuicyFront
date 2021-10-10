@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'Form Controls/InputNumber',
+  title: 'не проверено/InputNumber',
   component: InputNumber
 };
 

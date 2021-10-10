@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'Экран заглушки с приведением',
+  title: 'не проверено/Экран заглушки с приведением',
   component: GhostScreen,
 };
 

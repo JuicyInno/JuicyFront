@@ -3,10 +3,12 @@ import Badge, { IBadgeProps } from './Badge';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import { variants } from '../../../types';
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Badge',
+  title: 'не проверено/Badge',
   component: Badge,
+  decorators: [withDesign],
   typeArgs: {
     variant: {
       options: variants,
@@ -64,4 +66,12 @@ export const badge = (args: IBadgeProps) => {
       </StoryItem>
     </Story>
   );
+};
+
+
+badge.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/LKQ4FJ4bTnCSjedbRpk931/Sample-File',
+  },
 };

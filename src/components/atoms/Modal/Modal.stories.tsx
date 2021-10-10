@@ -7,7 +7,7 @@ import StoryRow from '../../storybook/StoryRow';
 import StoryCol from '../../storybook/StoryCol';
 
 export default {
-  title: 'Modal',
+  title: 'не проверено/Modal',
   component: Modal
 };
 

@@ -9,7 +9,7 @@ import {
 } from '../../storybook';
 
 export default {
-  title: 'Form Controls/ControlGroup',
+  title: 'не проверено/ControlGroup',
   argTypes: {
     label: { control: { type: 'text' } },
     disabled: { type: 'boolean' },

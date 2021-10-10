@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'Tile',
+  title: 'не проверено/Tile',
   component: Tile
 };
 

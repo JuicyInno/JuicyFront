@@ -12,10 +12,12 @@ import StoryRow from '../../storybook/StoryRow';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsH3, StoryDocsDescription
 } from '../../storybook';
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Form Controls/Radio',
+  title: 'atoms/Radio',
   component: Radio,
+  decorators: [withDesign],
   argTypes: {
     disabled: { type: 'boolean' },
     label: { control: null },
@@ -160,4 +162,16 @@ export const Playground: Story = (args) => {
       </StoryRow>
     </StoryContainer>
   );
+};
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231294'
+  },
+};
+Playground.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231294'
+  },
 };

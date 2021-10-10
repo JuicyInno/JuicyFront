@@ -7,7 +7,7 @@ import { variantsClassic } from '../../../types';
 
 
 export default {
-  title: 'Hint',
+  title: 'не проверено/Hint',
   component: Hint,
   argTypes: {
     icon: {

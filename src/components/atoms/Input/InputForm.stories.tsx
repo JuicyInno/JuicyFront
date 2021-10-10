@@ -6,7 +6,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import Button from '../Button';
 
 export default {
-  title: 'Form Controls/InputHook',
+  title: 'не проверено/InputHook',
   component: Input
 };
 
