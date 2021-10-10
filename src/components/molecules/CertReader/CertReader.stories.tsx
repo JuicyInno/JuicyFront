@@ -6,7 +6,7 @@ import CertReader, { ICertResult } from './CertReader';
 import { pdfFile } from '../PDFViewer/pdf';
 import './CertReader.scss';
 export default {
-  title: 'CertReader',
+  title: 'не проверено/CertReader',
   component: CertReader
 };
 

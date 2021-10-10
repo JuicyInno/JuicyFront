@@ -6,7 +6,7 @@ import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'Notifications/Item',
+  title: 'не проверено/Item',
   component: Notification
 };
 

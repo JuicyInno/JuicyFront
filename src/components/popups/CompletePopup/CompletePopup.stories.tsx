@@ -6,7 +6,7 @@ import CompletePopup from './CompletePopup';
 import StoryCol from '../../storybook/StoryCol';
 
 export default {
-  title: 'CompletePopup',
+  title: 'не проверено/CompletePopup',
   component: CompletePopup
 };
 

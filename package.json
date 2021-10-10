@@ -38,7 +38,7 @@
     "@storybook/addon-links": "^6.3.4",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/preset-typescript": "^3.0.0",
-    "@storybook/react": "^6.3.4",
+    "@storybook/react": "^6.3.10",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -85,6 +85,7 @@
     "url-loader": "^4.1.1",
     "webpack-cli": "^4.7.2",
     "shx": "^0.3.3",
+    "storybook-addon-designs": "^6.2.0",
     "x----x----x": "*"
   },
   "dependencies": {

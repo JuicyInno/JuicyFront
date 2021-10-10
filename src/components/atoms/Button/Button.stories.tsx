@@ -12,6 +12,7 @@ import { variantsClassic } from '../../../types';
 
 import Placeholder20 from '../../../assets/icons/Placeholder20';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
+import { withDesign } from 'storybook-addon-designs';
 
 const buttonTypes: ButtonType[] = [
   'primary',
@@ -26,8 +27,9 @@ const buttonTypes: ButtonType[] = [
 ];
 
 export default {
-  title: 'Button',
+  title: 'не проверено/Button',
   component: Button,
+  decorators: [withDesign],
   argTypes: {
     buttonType: {
       options: buttonTypes,
@@ -249,6 +251,10 @@ export const Demo: Story = () => {
 };
 
 Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=13613%3A74510',
+  },
   actions: { disabled: true },
   controls: { disabled: true }
 };

@@ -4,16 +4,13 @@ import Radio from './Radio';
 
 describe('Test <Radio/> component', () => {
   it('should be rendered with text "Label" and value "1"', () => {
-    const element = <Radio value='1' label='Label' />;
-    const { container } = render(element);
-  
+    const { container } = render(<Radio value='1' label='Label' />);
     const item = container.getElementsByClassName('rf-radio__input').item(0);
-  
-    if (!item) {
-      fail('Нет чекбокса');
-    }
-  
-    expect(item.getAttribute('value')).toBe('1');
+    expect(item && item.getAttribute('value')).toBe('1');
     expect(getByText(container, 'Label')).toBeInTheDocument();
   });
+
+
+
+
 });

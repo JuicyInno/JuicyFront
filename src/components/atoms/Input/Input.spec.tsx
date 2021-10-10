@@ -8,9 +8,9 @@ describe('Test <Input/> component', () => {
     const onClear = jest.fn();
     render(<Input onClear={onClear} defaultValue='Test' />);
 
-    expect(screen.queryByText('Сбросить')).toBeInTheDocument();
+    expect(screen.getByLabelText('Сбросить')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Сбросить'));
+    fireEvent.click(screen.getByLabelText('Сбросить'));
     expect(onClear).toHaveBeenCalled();
   });
 
