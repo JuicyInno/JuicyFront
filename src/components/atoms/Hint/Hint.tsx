@@ -4,17 +4,21 @@ import { VariantClassic } from '../../../types';
 import { Info } from '../../../index';
 
 export interface IHintProps {
-  /** основное сообщение*/
-
+  /** Основное сообщение*/
   children?: ReactNode | string;
+  /** Заголовок*/
   title?: ReactNode | string;
+  /** Текст кнопки*/
   button?: ReactNode;
+  /** Дополнительный класс */
   className?: string;
+  /** Цвет сообщения */
   variant?: VariantClassic;
+  /** Иконка */
   icon?: 'info';
+  /** Максимальная ширина */
   maxWidth?: string;
 }
-
 
 const Hint: React.FC<IHintProps> = ({
   children,

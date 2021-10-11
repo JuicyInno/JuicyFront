@@ -47,4 +47,12 @@ describe('Test <Hint/> component', () => {
     const { container } = render(<Hint button='Test'> Button </Hint>);
     expect(container.getElementsByClassName('rf-hint__button')[0]).toHaveTextContent('Test')
   });
+  it('should have className === test-hint', () => {
+    const { container } = render(<Hint className='test-hint'> Button </Hint>);
+    expect(container.getElementsByClassName('test-hint')).toHaveLength(1)
+  });
+  it('should have maxWidth === 645px', () => {
+    const { container } = render(<Hint maxWidth="645px"> Button </Hint>);
+    expect(container.getElementsByClassName('rf-hint__wrapper')[0]).toHaveStyle(`maxWidth: 645px`)
+  });
 });

@@ -7,7 +7,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
 export default {
-  title: 'controls/не проверено/Hint',
+  title: 'controls/withTest/Hint',
   component: Hint,
   argTypes: {
     icon: {
