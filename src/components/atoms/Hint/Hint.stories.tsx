@@ -48,8 +48,7 @@ export const Demo: Story = (args: IHintProps) => {
     width: 680,
     border: '1px dashed #7B61FF',
     borderRadius: 5,
-    padding: 8,
-    marginRight: 16
+    padding: 16,
   };
 
   return (
@@ -110,7 +109,7 @@ export const Demo: Story = (args: IHintProps) => {
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <Hint variant={args.variant}
+            <Hint variant='blue'
               maxWidth={args.maxWidth}
               title={args.title}
               button='Text Button'>
@@ -157,6 +156,7 @@ export const Demo: Story = (args: IHintProps) => {
 
           <div>
             <Hint
+              variant='blue'
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
