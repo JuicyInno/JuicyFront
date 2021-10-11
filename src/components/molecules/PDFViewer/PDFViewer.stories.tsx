@@ -6,7 +6,7 @@ import { pdfFile } from './pdf';
 import { IRequestAttachment } from '../../../types/projects.types';
 
 export default {
-  title: 'PDFViewer',
+  title: 'не проверено/PDFViewer',
   component: PDFViewer
 };
 

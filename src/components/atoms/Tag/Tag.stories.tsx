@@ -9,7 +9,7 @@ import Placeholder16 from '../../../assets/icons/Placeholder16';
 
 
 export default {
-  title: 'Tag',
+  title: 'не проверено/Tag',
   component: Tag,
   argTypes: { icon: { control: null } }
 };

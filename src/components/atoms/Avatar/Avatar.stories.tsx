@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'Avatar',
+  title: 'не проверено/Avatar',
   component: Avatar,
 };
 

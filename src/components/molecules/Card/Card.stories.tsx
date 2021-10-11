@@ -18,7 +18,7 @@ const data: ICard = {
 };
 
 export default {
-  title: 'Card',
+  title: 'не проверено/Card',
   component: Card,
   typeArgs: {
     statusColor: {

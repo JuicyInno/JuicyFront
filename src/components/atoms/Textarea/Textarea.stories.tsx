@@ -8,7 +8,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
 export default {
-  title: 'Form Controls/Textarea',
+  title: 'не проверено/Textarea',
   component: Textarea,
   argTypes: {
     disabled: { type: 'boolean' },

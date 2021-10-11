@@ -4,7 +4,7 @@ import Row from '../Row/Row';
 import Story from '../../storybook/Story';
 
 export default {
-  title: 'Column',
+  title: 'не проверено/Column',
   component: Column
 };
 

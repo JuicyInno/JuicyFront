@@ -2,9 +2,8 @@ import React from 'react';
 import ButtonGroup from './ButtonGroup';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
-import { IButtonGroup } from '../../../types';
-import { Button } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
+import { buttonGroupMock } from './mock';
 
 export default {
   title: 'Группа кнопок',
@@ -12,29 +11,11 @@ export default {
 };
 
 export const buttonGroup = () => {
-
-  const list: IButtonGroup[] = [
-    { component: <Button> Отправить </Button> },
-    { component: <Button buttonType='light'> Отменить </Button> },
-    {
-      label: 'Подбор',
-      description: 'Начать подбор сотрудника на позицию',
-      onClick: () => {
-        console.log('Подбор');
-      }
-    },
-    {
-      label: 'Перевод',
-      description: 'Оформить перевод сотрудника',
-      url: '/transfer'
-    }
-  ];
-
   return (
     <BrowserRouter>
       <Story name='Группировка кнопок'>
         <StoryItem>
-          <ButtonGroup list={list} max={2}/>
+          <ButtonGroup list={buttonGroupMock} max={2}/>
         </StoryItem>
       </Story>
     </BrowserRouter>

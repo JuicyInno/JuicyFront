@@ -6,7 +6,7 @@ import Download from '../../../assets/icons/Download';
 import { variants } from '../../../types';
 
 export default {
-  title: 'Chip',
+  title: 'не проверено/Chip',
   component: Chip,
   typeArgs: {
     variant: {
@@ -43,6 +43,7 @@ export const chip = () => {
   return (
     <Story
       name='Chip'>
+
       <StoryItem subtitle='Chips 40'>
         <div style={{ display: 'flex' }}>
           <div style={frameStyle}>
