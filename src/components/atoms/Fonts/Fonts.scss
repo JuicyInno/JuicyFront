@@ -1,0 +1,111 @@
+@import "src/styles/mixins";
+
+.font {
+  max-width: 1100px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--basic-disable);
+}
+
+.font__main {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.font__group {
+  margin-top: 4px;
+  @include text-s-14;
+  color: var(--text-secondary);
+}
+
+.font__details {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.font__details-item {
+  display: flex;
+  align-items: center;
+}
+
+.font__label {
+  width: 120px;
+  @include text-s-14;
+  color: var(--text-secondary);
+}
+
+.font__value {
+  width: 60px;
+  @include text-s-14;
+  color: var(--text-primary);
+}
+
+.font__description {
+  @include text-s-14;
+  color: var(--text-primary);
+}
+
+.XXL-H1 {
+  @include h1;
+}
+
+.XL-H2 {
+  @include h2;
+}
+
+.L-H3 {
+  @include h3;
+}
+
+.M-H4 {
+  @include h4;
+}
+
+.S-H5 {
+  @include h5;
+}
+
+.XS-H6 {
+  @include h6;
+}
+
+.XS-18pt-Normal {
+  @include text-xs-18;
+}
+
+.L-16pt-Bold {
+  @include text-l-16-bold;
+}
+
+.L-16pt-Normal {
+  @include text-l-16;
+}
+
+.M-16pt-Normal {
+  @include text-m-16;
+}
+
+.S-14pt-Bold {
+  @include text-s-14-bold;
+}
+
+.S-14pt-Normal {
+  @include text-s-14;
+}
+
+.XS-14pt-Normal {
+  @include text-xs-14;
+}
+
+.M-16pt {
+  @include button-m-16;
+}
+
+.S-14pt {
+  @include button-s-14;
+}
+
+.XS-12pt {
+  @include caption;
+}
