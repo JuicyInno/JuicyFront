@@ -48,6 +48,7 @@ import Card from './components/molecules/Card';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
+import ButtonGroup from './components/atoms/ButtonGroup';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -114,7 +115,8 @@ export {
   Card,
   Toast,
   History,
-  Status
+  Status,
+  ButtonGroup
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
