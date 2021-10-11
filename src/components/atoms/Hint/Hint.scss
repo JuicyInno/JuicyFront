@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-hint__wrapper {
   background: var(--background-secondary);
@@ -19,11 +19,11 @@
 }
 
 .rf-hint__title-text {
-  @include text-l-16-bold()
+  @include text-l-16-bold();
 }
 
 .rf-hint__message {
-  @include text-m-16()
+  @include text-m-16();
 }
 
 .rf-hint__body {
@@ -40,7 +40,40 @@
   background-color: var(--background-secondary);
 
   .rf-hint__icon {
-    color: var(--basic-primary)
+    color: var(--basic-primary);
+  }
+
+  .rf-hint__button {
+    color: var(--basic-primary);
+    cursor: pointer;
+  }
+
+  &:before {
+    background-color: var(--basic-primary);
+  }
+}
+
+.rf-hint__default {
+  .rf-hint__icon {
+    color: var(--text-secondary);
+  }
+
+  .rf-hint__button {
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+}
+
+.rf-hint__blue {
+  background-color: var(--background-secondary);
+
+  .rf-hint__icon {
+    color: var(--basic-primary);
+  }
+
+  .rf-hint__button {
+    color: var(--basic-primary);
+    cursor: pointer;
   }
 
   &:before {
@@ -52,7 +85,12 @@
   background-color: var(--background-success);
 
   .rf-hint__icon {
-    color: var(--status-success)
+    color: var(--status-success);
+  }
+
+  .rf-hint__button {
+    color: var(--status-success);
+    cursor: pointer;
   }
 
   &:before {
@@ -64,7 +102,12 @@
   background-color: var(--background-warn);
 
   .rf-hint__icon {
-    color: var(--status-warn)
+    color: var(--status-warn);
+  }
+
+  .rf-hint__button {
+    color: var(--status-warn);
+    cursor: pointer;
   }
 
   &:before {
@@ -76,7 +119,12 @@
   background-color: var(--background-danger);
 
   .rf-hint__icon {
-    color: var(--status-danger)
+    color: var(--status-danger);
+  }
+
+  .rf-hint__button {
+    color: var(--status-danger);
+    cursor: pointer;
   }
 
   &:before {

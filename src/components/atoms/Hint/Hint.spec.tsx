@@ -3,13 +3,17 @@ import { render } from '@testing-library/react';
 import Hint from './Hint';
 
 describe('Test <Hint/> component', () => {
-  
+
   it('should render Hint component', () => {
     render(<Hint> Button </Hint>)
   });
   it('should be default', () => {
     const { container } = render(<Hint variant="default"> Button </Hint>);
     expect(container.getElementsByClassName('rf-hint__default')).toHaveLength(1);
+  });
+  it('should be default blue', () => {
+    const { container } = render(<Hint variant="blue"> Button </Hint>);
+    expect(container.getElementsByClassName('rf-hint__blue')).toHaveLength(1);
   });
   it('should be success', () => {
     const { container } = render(<Hint variant="green"> Button </Hint>);
@@ -38,5 +42,9 @@ describe('Test <Hint/> component', () => {
   it('should have body === Test', () => {
     const { container } = render(<Hint> Test </Hint>);
     expect(container.getElementsByClassName('rf-hint__body')[0]).toHaveTextContent('Test')
+  });
+  it('should have button === Test', () => {
+    const { container } = render(<Hint button='Test'> Button </Hint>);
+    expect(container.getElementsByClassName('rf-hint__button')[0]).toHaveTextContent('Test')
   });
 });

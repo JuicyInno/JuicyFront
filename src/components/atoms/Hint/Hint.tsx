@@ -13,8 +13,6 @@ export interface IHintProps {
   variant?: VariantClassic;
   icon?: 'info';
   maxWidth?: string;
-  /** Полоска с боку */
-  showLine?: boolean;
 }
 
 
@@ -26,23 +24,19 @@ const Hint: React.FC<IHintProps> = ({
   icon,
   title,
   maxWidth = '648px',
-  showLine = false,
-
 }: IHintProps) => {
 
-  const lineClass = showLine ? 'line' : '';
-
   return (
-    <div style={ { maxWidth } } className={ `rf-hint__wrapper rf-hint__${variant} ${lineClass} ${className} ` }>
-      { icon === 'info' &&
-      <div className='rf-hint__icon'>
-        <Info/>
-      </div>
+    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant} ${className} `}>
+      {icon === 'info' &&
+        <div className='rf-hint__icon'>
+          <Info />
+        </div>
       }
       <div className='rf-hint__body'>
-        { title && <div className='rf-hint__title-text'> { title }</div> }
-        { children && <div className='rf-hint__message'> { children } </div> }
-        { button && <div className='rf-hint__button'> { button } </div> }
+        {title && <div className='rf-hint__title-text'> {title}</div>}
+        {children && <div className='rf-hint__message'> {children} </div>}
+        {button && <div className='rf-hint__button'> {button} </div>}
       </div>
     </div>
   );
