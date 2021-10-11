@@ -1,0 +1,49 @@
+@import "src/styles/mixins";
+
+.rf-schedule {
+  &__calendars {
+    display: flex;
+  }
+
+  &__calendar {
+    padding-top: 16px;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    &_start {
+      justify-content: flex-start;
+    }
+
+    &_end {
+      justify-content: flex-end;
+    }
+  }
+
+  &__date {
+    @include text-l-16-bold;
+    margin: 0 auto;
+
+    &:first-child {
+      padding-left: 32px;
+    }
+
+    &:last-child {
+      padding-right: 32px;
+    }
+  }
+
+  &__separator {
+    margin: 0 30px;
+    width: 1px;
+    flex-shrink: 0;
+    background-color: var(--background-tertiary);
+  }
+
+  &__chevron {
+    color: var(--basic-tertiary)
+  }
+}

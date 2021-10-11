@@ -5,6 +5,7 @@ import Avatar from './components/atoms/Avatar';
 import Badge from './components/atoms/Badge';
 import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
+import CalendarPage from './components/atoms/CalendarPage';
 import Checkbox from './components/atoms/Checkbox';
 import Chip from './components/atoms/Chip';
 import ControlGroup from './components/atoms/ControlGroup';
@@ -56,6 +57,8 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
+import Schedule, { ScheduleLegend, ScheduleLegendItem } from './components/molecules/Schedule';
+
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
@@ -116,7 +119,11 @@ export {
   Toast,
   History,
   Status,
-  ButtonGroup
+  ButtonGroup,
+  CalendarPage,
+  Schedule,
+  ScheduleLegend,
+  ScheduleLegendItem
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
