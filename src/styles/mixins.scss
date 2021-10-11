@@ -116,6 +116,12 @@
   line-height: 16px;
 }
 
+@mixin text-xs-18 {
+  @include text;
+  font-size: 18px;
+  line-height: 24px;
+}
+
 @mixin text-l-16-bold {
   @include text-l-16;
   font-weight: 500;
