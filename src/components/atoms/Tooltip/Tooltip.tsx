@@ -12,9 +12,11 @@ interface ITooltipContentProps {
   /** Дополнительный класс */
   className?: string;
   portal: boolean;
+  /** Цвет тултипа */
+  background: 'default' | 'white';
 }
 
-const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, className, portal }: ITooltipContentProps) => {
+const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, className, portal, background }: ITooltipContentProps) => {
   const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
 
   /** При маунте добавляем модалку. При дестрое - удаляем. */
@@ -95,7 +97,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
         ...styles[position],
         [padding[position]]: '8px'
       }}>
-      <div className={`rf-tooltip__content ${className}`}>
+      <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
         <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>{children}</div>
       </div>
     </div>
@@ -172,7 +174,7 @@ const Tooltip: FC<ITooltipProps> = ({
       onMouseUp={stopPropagation}>
       {children[0]}
       {tooltipRect && isVisible && (
-        <TooltipContent className={className} position={position} rect={tooltipRect} portal={portal}>
+        <TooltipContent className={className} position={position} rect={tooltipRect} portal={portal} background={background}>
           {children[1]}
         </TooltipContent>
       )}
