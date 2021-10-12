@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .rf-button {
   position: relative;
@@ -9,7 +9,6 @@
   justify-content: center;
   margin: 0;
   width: auto;
-  border: 2px solid transparent;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -53,14 +52,16 @@
   height: 40px;
   min-width: 40px;
   @include button-m-16;
+  font-size: 14px;
+  line-height: 16px;
 
   & .rf-button__text {
     &:first-child {
-      margin-left: 20px;
+      margin-left: 16px;
     }
 
     &:last-child {
-      margin-right: 20px;
+      margin-right: 16px;
     }
   }
 
@@ -261,7 +262,6 @@
 
 .rf-button--iconFill,
 .rf-button--icon {
-
   &.rf-button--s {
     padding: 0;
     width: 32px;
@@ -315,7 +315,6 @@
 // Text
 
 .rf-button--text {
-
   &.rf-button--s,
   &.rf-button--m,
   &.rf-button--l,
@@ -328,15 +327,16 @@
       &:not(:last-child) {
         margin-left: 0;
       }
-  
+
       &:not(:first-child) {
         margin-right: 0;
       }
     }
 
     & .rf-button__text {
-      &:first-child, &:last-child {
-        margin: 0
+      &:first-child,
+      &:last-child {
+        margin: 0;
       }
     }
   }

@@ -1,9 +1,10 @@
 import React, {
-  FC, ReactNode, useCallback, useEffect, useMemo, useState
+  FC, ReactNode, useCallback, useEffect, useMemo, useState, useRef, useLayoutEffect
 } from 'react';
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
+import { Close } from '../../../index';
 
 interface ITooltipContentProps {
   rect: DOMRect;
@@ -12,13 +13,22 @@ interface ITooltipContentProps {
   /** Дополнительный класс */
   className?: string;
   portal: boolean;
-  /** Цвет тултипа */
-  background: 'default' | 'white';
+  disposable: boolean;
+  withClosing: boolean;
+  onClose: () => void;
 }
 
-const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, className, portal, background }: ITooltipContentProps) => {
+const TooltipContent: FC<ITooltipContentProps> = ({
+  rect,
+  children,
+  position,
+  className,
+  portal,
+  onClose,
+  disposable,
+  withClosing
+}: ITooltipContentProps) => {
   const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
-
   /** При маунте добавляем модалку. При дестрое - удаляем. */
   useEffect(() => {
     /** Контейнер для модалки */
@@ -89,6 +99,8 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
     e.stopPropagation();
   };
 
+  const closingClass = withClosing ? 'rf-tooltip__inner--closing' : '';
+
   const tooltip = (
     <div
       className='rf-tooltip__content-wrapper'
@@ -97,10 +109,15 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
         ...styles[position],
         [padding[position]]: '8px'
       }}>
-      <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
-        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>{children}</div>
+      <div className={`rf-tooltip__content ${className}`}>
+        <div className={`rf-tooltip__inner rf-tooltip__inner--${position} ${closingClass}`}>
+          {children}
+
+          {withClosing && <Close onClick={onClose} className={'rf-tooltip__close'} />}
+        </div>
+
       </div>
-    </div>
+    </div >
   );
 
   return portal ? createPortal(tooltip, div) : tooltip;
@@ -122,7 +139,11 @@ export interface ITooltipProps {
   /** Портал в элемент - по умолчанию body */
   portal?: boolean;
   /** Цвет тултипа */
-  background?: 'default' | 'white';
+  background?: 'default' | 'white' | 'primary';
+  /** Изначально открытый тултип*/
+  disposable?: boolean,
+  /** Показывать иконку закрытия*/
+  withClosing?: boolean,
 }
 
 const Tooltip: FC<ITooltipProps> = ({
@@ -131,13 +152,25 @@ const Tooltip: FC<ITooltipProps> = ({
   isVisible = true,
   className = '',
   portal = false,
-  background = 'default'
+  background = 'default',
+  disposable = false,
+  withClosing = false
 }: ITooltipProps) => {
   const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
+  const tooltipRef = useRef<HTMLHeadingElement>(null);
 
   const onScrollElementScroll = useCallback(() => {
-    setTooltipRect(null);
+    if (!disposable) {
+      setTooltipRect(null);
+    }
   }, []);
+
+  useLayoutEffect(() => {
+    if (disposable && !!tooltipRef.current) {
+      setTooltipRect(tooltipRef.current.getBoundingClientRect());
+    }
+
+  }, [tooltipRef]);
 
   const addListener = (add: boolean) => {
     if (add) {
@@ -154,9 +187,21 @@ const Tooltip: FC<ITooltipProps> = ({
       addListener(true);
       setTooltipRect(child.getBoundingClientRect());
     }
+
+    if (tooltipRef.current) {
+      addListener(true);
+      setTooltipRect(tooltipRef.current.getBoundingClientRect());
+    }
   };
 
   const onMouseLeave = () => {
+    if (!disposable) {
+      addListener(false);
+      setTooltipRect(null);
+    }
+  };
+
+  const onClose = () => {
     addListener(false);
     setTooltipRect(null);
   };
@@ -167,18 +212,27 @@ const Tooltip: FC<ITooltipProps> = ({
 
   return (
     <div
+      ref={tooltipRef}
       className={`rf-tooltip rf-tooltip--${background}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={stopPropagation}
       onMouseUp={stopPropagation}>
       {children[0]}
-      {tooltipRect && isVisible && (
-        <TooltipContent className={className} position={position} rect={tooltipRect} portal={portal} background={background}>
+      {((tooltipRect && isVisible && !disposable) || (tooltipRect && disposable)) && (
+        <TooltipContent
+          className={className}
+          disposable={disposable}
+          position={position}
+          rect={tooltipRect}
+          portal={portal}
+          withClosing={withClosing}
+          onClose={onClose}>
           {children[1]}
         </TooltipContent>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

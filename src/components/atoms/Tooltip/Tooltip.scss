@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-tooltip {
   position: relative;
@@ -16,17 +16,27 @@ $radius: 8px;
 }
 
 .rf-tooltip__content {
+  display: inline-flex;
   border-radius: $radius;
 }
 
 .rf-tooltip__inner {
   position: relative;
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
   font-weight: normal;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 16px;
   border-radius: $radius;
   box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+}
+
+.rf-tooltip__close {
+  opacity: 0.5;
+  cursor: pointer;
+  width: 21px;
+  overflow: initial;
 }
 
 .rf-tooltip__inner::after {
@@ -36,8 +46,29 @@ $radius: 8px;
   display: block;
   width: 10px;
   height: 10px;
+  z-index: 2201;
   box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
   transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.rf-tooltip__inner--left::after {
+  box-shadow: 3px -4px 6px rgba(25, 59, 104, 0.1);
+}
+
+.rf-tooltip__inner--right::after {
+  box-shadow: -3px 4px 6px -2px rgba(25, 59, 104, 0.1);
+}
+
+.rf-tooltip__inner--top::after {
+  box-shadow: 4px 4px 6px 0px rgba(25, 59, 104, 0.1);
+}
+
+.rf-tooltip__inner--bottom::after {
+  box-shadow: -2px -3px 6px 0px rgba(25, 59, 104, 0.1);
+}
+
+.rf-tooltip__inner--closing {
+  padding: 8px 1px 8px 12px;
 }
 
 .rf-tooltip__inner--right::after {
@@ -80,4 +111,18 @@ $radius: 8px;
 .rf-tooltip__content--white .rf-tooltip__inner::after,
 .rf-tooltip--white .rf-tooltip__inner::after {
   background: var(--background-primary);
+}
+
+.rf-tooltip--primary .rf-tooltip__inner {
+  background: var(--basic-primary);
+  color: var(--text-static-white);
+}
+
+.rf-tooltip--primary .rf-tooltip__inner::after {
+  background: var(--basic-primary);
+}
+
+.customClass {
+  width: 216px;
+  margin-top: 16px;
 }

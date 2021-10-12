@@ -1,10 +1,12 @@
 import React from 'react';
 import Tooltip from './Tooltip';
 import Button from '../Button';
-import Story from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryCol from '../../storybook/StoryCol';
-import StoryItem from '../../storybook/StoryItem';
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
+} from '../../storybook';
+import './Tooltip.scss';
 
 export default {
   title: 'popovers/не проверено/Tooltip',
@@ -12,48 +14,169 @@ export default {
 };
 
 export const tooltip = () => {
+
+  const frameStyle: React.CSSProperties = {
+    border: '1px dashed #7B61FF',
+    borderRadius: 5,
+    marginLeft: '72px',
+    padding: '40px 55px 55px 40px',
+    maxWidth: '558px',
+    height: '219px',
+    justifyContent: 'space-between',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'relative'
+  };
+
+
   return (
-    <Story name='Tooltip (Подсказка)'>
-      <StoryItem description='Подсказка при наведении на элемент.'>
-        <StoryRow>
-          <StoryCol>
-            <Tooltip background='white'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
+    <StoryDocs>
+      <StoryDocsH1>Tooltip</StoryDocsH1>
 
-          <StoryCol>
-            <Tooltip position='left'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
-        </StoryRow>
+      <StoryDocsH2>Подсказка нового функционала</StoryDocsH2>
 
-        <StoryRow>
-          <StoryCol>
-            <Tooltip position='bottom'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
+      <StoryDocsDescription>
+        Когда мы хотим подсветить какой-то функционал, мы автоматически выводим синюю подсказку.
+        Она выводится один раз, и мы ее можем закрыть по крестику.
+      </StoryDocsDescription>
 
-          <StoryCol>
-            <Tooltip position='top'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
+      <StoryRow>
+        <StoryCol>
+          <div style={{
+            marginLeft: '254px',
+            height: '48px'
+          }} >
+            <Tooltip disposable withClosing background='primary' position='left' className='customClass'>
+              <div style={{ width: '10px' }}></div>
+              <div>Здесь добавляются ваши действия</div>
             </Tooltip>
-          </StoryCol>
-        </StoryRow>
-      </StoryItem>
+          </div>
+        </StoryCol>
+      </StoryRow>
 
-      <StoryItem description='В некоторых случаях подсказку нужно отображать на уровне body. Для этого существует свойство portal.'>
-        <Tooltip portal>
-          <Button>Hover me</Button>
-          <div>Эта подсказка лежит в body </div>
-        </Tooltip>
-      </StoryItem>
-    </Story>
+      <StoryDocsH2>Основная подсказка</StoryDocsH2>
+      <StoryDocsDescription>Выводится при наведении на элемент</StoryDocsDescription>
+
+
+      <div style={frameStyle}>
+        <div style={{
+          position: 'absolute',
+          top: '73px',
+          left: '80px',
+        }}>
+          <Tooltip disposable position='top'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '17px',
+          left: '205px',
+
+        }}>
+          <Tooltip disposable position='bottom'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '45px',
+          left: '375px',
+        }}>
+          <Tooltip disposable position='left'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '45px',
+          left: '420px',
+        }}>
+          <Tooltip disposable position='right'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+
+        <div style={{
+          position: 'absolute',
+          top: '155px',
+          left: '80px',
+        }}>
+          <Tooltip disposable background='white' position='top'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '100px',
+          left: '205px',
+
+        }}>
+          <Tooltip disposable background='white' position='bottom'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '127px',
+          left: '375px',
+        }}>
+          <Tooltip disposable background='white' position='left'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+        <div style={{
+          position: 'absolute',
+          top: '127px',
+          left: '420px',
+        }}>
+          <Tooltip disposable background='white' position='right'>
+            <div />
+            <div>Tooltip</div>
+          </Tooltip>
+        </div>
+      </div>
+
+
+
+
+      <StoryRow >
+        <div style={{
+          marginTop: '56px',
+          marginBottom: '200px'
+        }}>
+          <Tooltip disposable withClosing background='white'>
+            <Button>Hover me</Button>
+            <div style={{ width: '414px' }}>
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>ГБЛ</p>
+              <p style={{ marginBottom: '16px' }}>ППиК ГО</p>
+
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>Департамент</p>
+              <p style={{ marginBottom: '16px' }}>Департамент технологического развития общебанковских систем</p>
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>Управление</p>
+              <p style={{ marginBottom: '16px' }}>Управление автоматизации рабочего пространства и документооборота</p>
+            </div>
+          </Tooltip>
+        </div>
+
+      </StoryRow >
+    </StoryDocs >
   );
 };
