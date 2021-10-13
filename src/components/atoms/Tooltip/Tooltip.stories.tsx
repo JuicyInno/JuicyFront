@@ -1,8 +1,10 @@
 import React from 'react';
-import Tooltip from './Tooltip';
-import Button from '../Button';
+import Tooltip, { ITooltipProps } from './Tooltip';
+import { Story } from '@storybook/react';
+import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import StoryCol from '../../storybook/StoryCol';
+import Button from '../Button';
+import { variantsTooltip } from '../../../types';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
@@ -10,15 +12,49 @@ import './Tooltip.scss';
 
 export default {
   title: 'popovers/не проверено/Tooltip',
-  component: Tooltip
+  component: Tooltip,
+  argTypes: {
+    size: {
+      options: ['m', 'l'],
+      control: { type: 'select' },
+      defaultValue: 'm'
+    },
+    position: {
+      options: variantsTooltip,
+      control: { type: 'select' },
+      defaultValue: 'right'
+    },
+    withClosing: {
+      type: 'boolean',
+      defaultValue: false
+    },
+    isVisible: {
+      type: 'boolean',
+      defaultValue: true
+    },
+    portal: {
+      type: 'boolean',
+      defaultValue: false
+    },
+    disposable: {
+      type: 'boolean',
+      defaultValue: false
+    },
+    background: {
+      options: ['default', 'white', 'primary'],
+      control: { type: 'select' },
+      defaultValue: 'default'
+    },
+    children: { control: null }
+  }
 };
 
-export const tooltip = () => {
-
+export const Demo: Story = () => {
   const frameStyle: React.CSSProperties = {
     border: '1px dashed #7B61FF',
     borderRadius: 5,
     marginLeft: '72px',
+    marginBottom: '40px',
     padding: '40px 55px 55px 40px',
     maxWidth: '558px',
     height: '219px',
@@ -26,15 +62,30 @@ export const tooltip = () => {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    position: 'relative'
+    position: 'relative',
   };
 
+  const largeFrameStyle: React.CSSProperties = {
+    border: '1px dashed #7B61FF',
+    borderRadius: 5,
+    marginLeft: '72px',
+    marginBottom: '40px',
+    padding: '40px 55px 55px 40px',
+    maxWidth: '792px',
+    height: '284px',
+    justifyContent: 'space-between',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    position: 'relative',
+
+  };
 
   return (
     <StoryDocs>
       <StoryDocsH1>Tooltip</StoryDocsH1>
 
-      <StoryDocsH2>Подсказка нового функционала</StoryDocsH2>
+      {/* <StoryDocsH2>Подсказка нового функционала</StoryDocsH2>
 
       <StoryDocsDescription>
         Когда мы хотим подсветить какой-то функционал, мы автоматически выводим синюю подсказку.
@@ -53,7 +104,7 @@ export const tooltip = () => {
             </Tooltip>
           </div>
         </StoryCol>
-      </StoryRow>
+      </StoryRow> */}
 
       <StoryDocsH2>Основная подсказка</StoryDocsH2>
       <StoryDocsDescription>Выводится при наведении на элемент</StoryDocsDescription>
@@ -145,17 +196,15 @@ export const tooltip = () => {
         </div>
       </div>
 
-
-
-
-      <StoryRow >
+      <div style={largeFrameStyle} >
         <div style={{
-          marginTop: '56px',
-          marginBottom: '200px'
+          position: 'absolute',
+          top: '15px',
+          left: '10px'
         }}>
-          <Tooltip disposable withClosing background='white'>
-            <Button>Hover me</Button>
-            <div style={{ width: '414px' }}>
+          <Tooltip disposable withClosing background='white' size='l' position='right-start'>
+            <div></div>
+            <div style={{ width: '280px' }}>
               <p style={{
                 color: '#626F84',
                 marginBottom: '8px'
@@ -176,7 +225,65 @@ export const tooltip = () => {
           </Tooltip>
         </div>
 
-      </StoryRow >
+        <div style={{
+          position: 'absolute',
+          right: '200px',
+          bottom: '8px'
+        }}>
+          <Tooltip disposable withClosing background='white' size='l' position='top'>
+            <div></div>
+            <div style={{ width: '280px' }}>
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>ГБЛ</p>
+              <p style={{ marginBottom: '16px' }}>ППиК ГО</p>
+
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>Департамент</p>
+              <p style={{ marginBottom: '16px' }}>Департамент технологического развития общебанковских систем</p>
+              <p style={{
+                color: '#626F84',
+                marginBottom: '8px'
+              }}>Управление</p>
+              <p style={{ marginBottom: '16px' }}>Управление автоматизации рабочего пространства и документооборота</p>
+            </div>
+          </Tooltip>
+        </div>
+      </div>
+
     </StoryDocs >
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=13613%3A76090',
+  },
+  actions: { disabled: true },
+  controls: { disabled: true }
+};
+
+export const Playground: Story = (args: ITooltipProps) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <div style={{
+          marginLeft: '100px',
+          marginTop: '50px'
+        }}>
+          <Tooltip {...args}>
+            <Button>Button</Button>
+            <div style={{ width: '100px' }}>
+              <p> Tooltip Tooltip Tooltip</p>
+              <p>Tooltip Tooltip Tooltip Tooltip</p>
+            </div>
+          </Tooltip>
+        </div>
+      </StoryRow>
+    </StoryContainer>
   );
 };

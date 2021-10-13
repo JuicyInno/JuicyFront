@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-
+import { TooltipPosition } from './projects.types';
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
   label: string;
@@ -19,7 +19,9 @@ export interface ICustomOption extends IOption {
   __isNew__: boolean;
 }
 
-export function isCustomOption(option: IOption | ICustomOption): option is ICustomOption {
+export function isCustomOption(
+  option: IOption | ICustomOption
+): option is ICustomOption {
   return (option as ICustomOption).__isNew__;
 }
 
@@ -101,16 +103,38 @@ export interface IBreadcrumb {
 
 /** Тип цветового оформления */
 export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
-export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+export type Variant =
+  | VariantClassic
+  | 'blue'
+  | 'lightBlue'
+  | 'turquoise'
+  | 'magenta'
+  | 'purple'
+  | 'violet';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
 
   'green',
   'yellow',
-  'red'
-
+  'red',
 ];
+
+export const variantsTooltip: TooltipPosition[] = [
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end',
+];
+
 export const variants: Variant[] = [
   'default',
   'blue',
@@ -121,7 +145,7 @@ export const variants: Variant[] = [
   'red',
   'magenta',
   'purple',
-  'violet'
+  'violet',
 ];
 
 /** Размер */

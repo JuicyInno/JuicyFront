@@ -26,13 +26,13 @@ export interface IUser {
   /** Почта */
   email?: string;
   /** Телефон */
-  phone?: string
+  phone?: string;
   /** Мобильный телефон */
-  mobilePhone?: string
+  mobilePhone?: string;
   /** Внутренний телефон */
-  internalPhone?: string
+  internalPhone?: string;
   /** Руководитель или нет*/
-  manager?: boolean
+  manager?: boolean;
   /** Оклад */
   salary?: number;
   /** Валюта */
@@ -104,8 +104,7 @@ export interface IPageSection {
   title?: ReactNode;
   component: ReactNode;
   /** отключение бекграунда*/
-  hideBackground?: boolean
-  withoutTileWrapper?: boolean
+  hideBackground?: boolean;
 }
 
 /** Возвращаемое значение календаря */
@@ -119,7 +118,7 @@ export interface IDateVariants {
     from: number;
     to: number;
     value: number;
-  }
+  };
   value: string;
 }
 
@@ -154,29 +153,27 @@ export interface IRequestAttachment {
   /** id вложения */
   id?: string;
   /** Тип вложения */
-  attType?: string,
+  attType?: string;
   /** Тип вложения (описание) */
-  attTypeText?: string,
+  attTypeText?: string;
   /** Имя файла*/
-  fileName: string,
+  fileName: string;
   /** Данные файла в Base64*/
-  base64: string,
+  base64: string;
   /** Данные подписанного файла в Base64 (Для ЭЦП) */
-  singBase64?: string,
+  singBase64?: string;
   /** thumbprint сертификата (Для ЭЦП) */
-  cert?: string,
+  cert?: string;
   /** Операция над вложением (I - создать / U - обновить / D - удалить)*/
-  action?: string,
+  action?: string;
   /** Подписанты */
   signer?: IUser[];
-
 }
-
 
 /** тип для инпута с эффектом debounce*/
 export interface IDebounceResult {
   event?: Event;
-  debounceString: string
+  debounceString: string;
 }
 
 /** тип для инпута комментария с эффектом debounce*/
@@ -188,4 +185,16 @@ export interface IDebounceCommentResult {
   attachedFiles: IRequestAttachment[] | undefined
 }
 
-export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
+export type TooltipPosition =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end';
