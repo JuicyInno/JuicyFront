@@ -4,19 +4,20 @@ import React, {
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
-import { Close } from '../../../index';
 import { sizeClass } from '../../../utils/helpers';
 import { Size } from '../../../types';
 
 interface ITooltipContentProps {
   rect: DOMRect;
+  /** Тело тултипа */
   children: ReactNode | ReactNode[];
+  /** Позиция тултипа */
   position: TooltipPosition;
   /** Дополнительный класс */
   className?: string;
+  /** Портал в элемент - по умолчанию body */
   portal: boolean;
-  withClosing: boolean;
-  onClose: () => void;
+  /** Размер тултипа */
   size?: Size
 }
 
@@ -26,8 +27,6 @@ const TooltipContent: FC<ITooltipContentProps> = ({
   position,
   className,
   portal,
-  onClose,
-  withClosing,
   size = 'm'
 }: ITooltipContentProps) => {
   const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
@@ -192,7 +191,6 @@ const TooltipContent: FC<ITooltipContentProps> = ({
     e.stopPropagation();
   };
 
-  const closingClass = withClosing ? 'rf-tooltip__inner--closing' : '';
   const isPortal = portal ? 'rf-tooltip__inner--portal' : '';
 
   const tooltip = (
@@ -208,11 +206,9 @@ const TooltipContent: FC<ITooltipContentProps> = ({
           data-testid={portal ? 'portal' : ''}
           className={
             `rf-tooltip__inner rf-tooltip__inner--${position}
-            ${isPortal} ${closingClass} ${sizeClass[size]}`
+            ${isPortal} ${sizeClass[size]}`
           }>
           {children}
-
-          {withClosing && <Close onClick={onClose} className={'rf-tooltip__close'} />}
         </div>
 
       </div>
@@ -241,8 +237,6 @@ export interface ITooltipProps {
   background?: 'default' | 'white' | 'primary';
   /** Изначально открытый тултип */
   disposable?: boolean,
-  /** Показывать иконку закрытия */
-  withClosing?: boolean,
   /** Размер тултипа */
   size?: 'm' | 'l'
 }
@@ -255,7 +249,6 @@ const Tooltip: FC<ITooltipProps> = ({
   portal = false,
   background = 'default',
   disposable = false,
-  withClosing = false,
   size = 'm'
 }: ITooltipProps) => {
   const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
@@ -303,11 +296,6 @@ const Tooltip: FC<ITooltipProps> = ({
     }
   };
 
-  const onClose = () => {
-    addListener(false);
-    setTooltipRect(null);
-  };
-
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -328,8 +316,7 @@ const Tooltip: FC<ITooltipProps> = ({
           rect={tooltipRect}
           portal={portal}
           size={size}
-          withClosing={withClosing}
-          onClose={onClose}>
+        >
           {children[1]}
         </TooltipContent>
       )

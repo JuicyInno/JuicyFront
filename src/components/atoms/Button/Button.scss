@@ -9,6 +9,7 @@
   justify-content: center;
   margin: 0;
   width: auto;
+  border: 2px solid transparent;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -52,16 +53,14 @@
   height: 40px;
   min-width: 40px;
   @include button-m-16;
-  font-size: 14px;
-  line-height: 16px;
 
   & .rf-button__text {
     &:first-child {
-      margin-left: 16px;
+      margin-left: 20px;
     }
 
     &:last-child {
-      margin-right: 16px;
+      margin-right: 20px;
     }
   }
 

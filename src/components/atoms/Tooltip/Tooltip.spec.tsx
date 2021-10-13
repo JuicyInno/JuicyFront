@@ -30,18 +30,8 @@ describe('Test <Tooltip/> component', () => {
     expect(screen.getByText('Tooltip')).toBeInTheDocument()
   });
 
-  it('should render Tooltip component withClosing', () => {
-    const { container } = render(<Tooltip disposable withClosing>
-      <div>Button</div>
-      <div >
-        <p>Tooltip</p>
-      </div>
-    </Tooltip>)
-    expect(container.getElementsByClassName('rf-tooltip__inner--closing')).toHaveLength(1);
-  });
-
   it('should render Tooltip component with default size m', () => {
-    const { container } = render(<Tooltip disposable withClosing>
+    const { container } = render(<Tooltip disposable >
       <div>Button</div>
       <div >
         <p>Tooltip</p>

@@ -24,10 +24,6 @@ export default {
       control: { type: 'select' },
       defaultValue: 'right'
     },
-    withClosing: {
-      type: 'boolean',
-      defaultValue: false
-    },
     isVisible: {
       type: 'boolean',
       defaultValue: true
@@ -180,7 +176,7 @@ export const Demo: Story = () => {
           top: '15px',
           left: '10px'
         }}>
-          <Tooltip disposable withClosing background='white' size='l' position='right-start'>
+          <Tooltip disposable background='white' size='l' position='right-start'>
             <div></div>
             <div style={{ width: '280px' }}>
               <p style={{
@@ -208,7 +204,7 @@ export const Demo: Story = () => {
           right: '200px',
           bottom: '8px'
         }}>
-          <Tooltip disposable withClosing background='white' size='l' position='top'>
+          <Tooltip disposable background='white' size='l' position='top'>
             <div></div>
             <div style={{ width: '280px' }}>
               <p style={{
