@@ -11,7 +11,7 @@ import {
 import './Tooltip.scss';
 
 export default {
-  title: 'popovers/не проверено/Tooltip',
+  title: 'popovers/withTest/Tooltip',
   component: Tooltip,
   argTypes: {
     size: {
@@ -84,28 +84,6 @@ export const Demo: Story = () => {
   return (
     <StoryDocs>
       <StoryDocsH1>Tooltip</StoryDocsH1>
-
-      {/* <StoryDocsH2>Подсказка нового функционала</StoryDocsH2>
-
-      <StoryDocsDescription>
-        Когда мы хотим подсветить какой-то функционал, мы автоматически выводим синюю подсказку.
-        Она выводится один раз, и мы ее можем закрыть по крестику.
-      </StoryDocsDescription>
-
-      <StoryRow>
-        <StoryCol>
-          <div style={{
-            marginLeft: '254px',
-            height: '48px'
-          }} >
-            <Tooltip disposable withClosing background='primary' position='left' className='customClass'>
-              <div style={{ width: '10px' }}></div>
-              <div>Здесь добавляются ваши действия</div>
-            </Tooltip>
-          </div>
-        </StoryCol>
-      </StoryRow> */}
-
       <StoryDocsH2>Основная подсказка</StoryDocsH2>
       <StoryDocsDescription>Выводится при наведении на элемент</StoryDocsDescription>
 
@@ -278,8 +256,8 @@ export const Playground: Story = (args: ITooltipProps) => {
           <Tooltip {...args}>
             <Button>Button</Button>
             <div style={{ width: '100px' }}>
-              <p> Tooltip Tooltip Tooltip</p>
-              <p>Tooltip Tooltip Tooltip Tooltip</p>
+              <p> Tooltip </p>
+
             </div>
           </Tooltip>
         </div>
