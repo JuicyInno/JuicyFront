@@ -49,6 +49,7 @@ import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
 import ButtonGroup from './components/atoms/ButtonGroup';
+import PageWithList from './components/pages/PageWithList';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -116,7 +117,8 @@ export {
   Toast,
   History,
   Status,
-  ButtonGroup
+  ButtonGroup,
+  PageWithList
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
