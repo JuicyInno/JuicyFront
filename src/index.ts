@@ -49,6 +49,7 @@ import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
 import ButtonGroup from './components/atoms/ButtonGroup';
+import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
 
 import { InputHook } from './components/atoms/Input/InputHook';
@@ -118,7 +119,8 @@ export {
   History,
   Status,
   ButtonGroup,
-  PageWithList
+  PageWithList,
+  ActionMenu
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
