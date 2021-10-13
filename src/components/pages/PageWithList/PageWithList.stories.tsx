@@ -11,7 +11,7 @@ import { IActionMenuListConfig } from '../../../types/projects.types';
 import { Tile } from '../../../index';
 
 export default {
-  title: 'Projects/Page With List',
+  title: 'не проверено/Page With List',
   component: PageWithList
 };
 

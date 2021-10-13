@@ -1,0 +1,21 @@
+.jf-backdrop-loader {
+  background: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+
+  z-index: 1000;
+}
+
+.jf-backdrop-loader .preloader__circle {
+  border-color: transparent;
+}

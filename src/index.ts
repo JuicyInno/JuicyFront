@@ -51,6 +51,9 @@ import Status from './components/atoms/Status';
 import ButtonGroup from './components/atoms/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
+import UsersStack from './components/molecules/UsersStack';
+import ContentExpander from './components/molecules/ContentExpander';
+import BackdropLoader from './components/atoms/BackdropLoader';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -120,7 +123,10 @@ export {
   Status,
   ButtonGroup,
   PageWithList,
-  ActionMenu
+  ActionMenu,
+  UsersStack,
+  ContentExpander,
+  BackdropLoader
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -184,3 +190,16 @@ export {
 };
 
 export { variables, download };
+
+// --------------------------Функции------------------------------------------------------------------------------------
+
+import useClickOutside from './hooks/useClickOutside';
+import { useLocation } from './hooks/useLocation';
+import { useUndo } from './hooks/useUndo';
+import useTableOfContents from './hooks/useTableOfContents';
+import useUpdateEffect from './hooks/useUpdateEffect';
+import { numberWithSpaces } from './utils/helpers';
+
+export {
+  useClickOutside, useLocation, useUndo, useTableOfContents, useUpdateEffect, numberWithSpaces
+};
