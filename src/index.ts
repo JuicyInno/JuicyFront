@@ -54,7 +54,7 @@ import PageWithList from './components/pages/PageWithList';
 import UsersStack from './components/molecules/UsersStack';
 import ContentExpander from './components/molecules/ContentExpander';
 import BackdropLoader from './components/atoms/BackdropLoader';
-import PopupMaker from './components/organisms/PopupMaker';
+import { PopupMaker, openPopup } from './components/organisms/PopupMaker';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -203,5 +203,5 @@ import useUpdateEffect from './hooks/useUpdateEffect';
 import { numberWithSpaces } from './utils/helpers';
 
 export {
-  useClickOutside, useLocation, useUndo, useTableOfContents, useUpdateEffect, numberWithSpaces
+  useClickOutside, useLocation, useUndo, useTableOfContents, useUpdateEffect, numberWithSpaces, openPopup
 };
