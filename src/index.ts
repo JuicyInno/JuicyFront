@@ -200,8 +200,15 @@ import { useLocation } from './hooks/useLocation';
 import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
-import { numberWithSpaces } from './utils/helpers';
+import { numberWithSpaces, addLeadingZeros } from './utils/helpers';
 
 export {
-  useClickOutside, useLocation, useUndo, useTableOfContents, useUpdateEffect, numberWithSpaces, openPopup
+  useClickOutside,
+  useLocation,
+  useUndo,
+  useTableOfContents,
+  useUpdateEffect,
+  numberWithSpaces,
+  openPopup,
+  addLeadingZeros
 };
