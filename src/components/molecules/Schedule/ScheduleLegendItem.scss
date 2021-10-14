@@ -1,0 +1,43 @@
+@import "src/styles/mixins";
+
+.rf-schedule-legend-item {
+  @include text-s-14;
+  margin-right: 24px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  color: var(--basic-tertiary);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  &_default {
+    &::before {
+      background-color: var(--basic-primary-light);
+    }
+  }
+
+  &_red {
+    &::before {
+      background-color: var(--special-red);
+    }
+  }
+
+  &_yellow {
+    &::before {
+      background-color: var(--special-yellow);
+    }
+  }
+
+  &_magenta {
+    &::before {
+      background-color: var(--special-magenta);
+    }
+  }
+}

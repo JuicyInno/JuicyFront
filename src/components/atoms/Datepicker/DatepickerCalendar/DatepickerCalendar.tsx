@@ -438,20 +438,20 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   return (
     <div className='rf-datepicker__calendar' ref={ contentRef } style={ coordinates }>
       <header className='rf-datepicker__calendar-header'>
-        <div className='rf-calendar__control'>
-          <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-prev'
+        <div className='rf-datepicker-calendar__control'>
+          <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-prev'
             disabled={ prevArrowDisabled } onClick={ () => onPeriodChange(-1) }>
             <span className='rf-datepicker__calendar-left'>
               <ChevronLeft/>
             </span>
           </button>
-          <button type='button' className='rf-calendar__button rf-calendar__label-button'
+          <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
             onClick={ onPeriodTypeChange }>
             <span className='rf-datepicker__calendar-label'>
               { periodTypeLabel[periodType] }
             </span>
           </button>
-          <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-next'
+          <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-next'
             disabled={ nextArrowDisabled } onClick={ () => onPeriodChange(1) }>
             <span className='rf-datepicker__calendar-right'>
               <ChevronLeft/>
