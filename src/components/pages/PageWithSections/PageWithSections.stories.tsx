@@ -21,16 +21,16 @@ export const pageWithSections = () => {
     //   title: 'Позиция',
     //   component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
     // },
-    {
-      id: 'noname',
-      component: <div style={{ height: '100px' }}> Без названия </div>
-    },
-    {
-      id: 'org',
-      title: 'Организационные данные',
-      component: <div style={{ height: '300px' }}> Организационные данные </div>,
-      hideBackground: true
-    },
+    // {
+    //   id: 'noname',
+    //   component: <div style={{ height: '100px' }}> Без названия </div>
+    // },
+    // {
+    //   id: 'org',
+    //   title: 'Организационные данные',
+    //   component: <div style={{ height: '300px' }}> Организационные данные </div>,
+    //   hideBackground: true
+    // },
     {
       id: 'test1',
       title: 'Раздел 1',
