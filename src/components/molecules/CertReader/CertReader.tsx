@@ -22,6 +22,8 @@ export interface IProps {
   filter?: (cert: Certificate) => Promise<boolean>;
   /** пропсы для кнопки */
   btnProps?: IButtonProps;
+  /** позиция для меню сертификатов */
+  menuPos?: 'left' | 'right' | 'top-left' | 'top-right';
 }
 export interface IBrowserCert{
   /** имя пользователя*/
@@ -45,6 +47,7 @@ const CertReader: React.FC<IProps> = ({ file,
   onError,
   buttonTitle = 'Подписать ЭЦП (цифровая подпись)',
   btnProps = {},
+  menuPos = 'left',
   filter = async (cert: Certificate) => true }: IProps) => {
   /** все доступные сертификаты*/
   const [ certs, setCerts ] = useState<null|Certificate[]>(null);
@@ -97,7 +100,7 @@ const CertReader: React.FC<IProps> = ({ file,
 
   // ===================================================================================================================
   return <>
-    <Menu position='left' list={certs ? menuBuilder(certs) : undefined} >
+    <Menu position={menuPos} list={certs ? menuBuilder(certs) : undefined} >
       <Button {...btnProps} disabled={!certs}>{buttonTitle}</Button>
     </Menu>
   </>;

@@ -1,0 +1,19 @@
+@import "src/styles/mixins";
+
+.users-stack {
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.users-stack__item {
+  position: relative;
+  border: 2px solid var(--background-primary);
+  border-radius: 50%;
+}
+
+.users-stack__value {
+  @include text-m-16;
+  color: var(--text-secondary);
+  transform: translateX(-24px);
+}

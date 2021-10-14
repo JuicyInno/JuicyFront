@@ -26,13 +26,13 @@ export interface IUser {
   /** Почта */
   email?: string;
   /** Телефон */
-  phone?:string
+  phone?: string
   /** Мобильный телефон */
-  mobilePhone?:string
+  mobilePhone?: string
   /** Внутренний телефон */
-  internalPhone?:string
+  internalPhone?: string
   /** Руководитель или нет*/
-  manager?:boolean
+  manager?: boolean
   /** Оклад */
   salary?: number;
   /** Валюта */
@@ -84,7 +84,7 @@ export interface IFeedback {
 /** Интерфейс шаблона страницы - Список действий */
 export interface IActionMenuListConfig {
   sortList: IOption[];
-  defaultSortValue?: string;
+  defaultSortValue?: IOption;
   actionList: IListElement[];
   onSort: (sortParam: string) => void;
   onSearch: (searchStr: string) => void;
@@ -100,7 +100,7 @@ export interface IPageSection {
   title?: ReactNode;
   component: ReactNode;
   /** отключение бекграунда*/
-  hideBackground?:boolean
+  hideBackground?: boolean
 }
 
 /** Возвращаемое значение календаря */
@@ -144,23 +144,24 @@ export interface IRequestPath {
   date?: number;
   comment?: string;
 }
-export interface IRequestAttachment{
+
+export interface IRequestAttachment {
   /** id вложения */
-  id?:string;
+  id?: string;
   /** Тип вложения */
-  attType?:string,
+  attType?: string,
   /** Тип вложения (описание) */
-  attTypeText?:string,
+  attTypeText?: string,
   /** Имя файла*/
-  fileName:string,
+  fileName: string,
   /** Данные файла в Base64*/
-  base64:string,
+  base64: string,
   /** Данные подписанного файла в Base64 (Для ЭЦП) */
-  singBase64?:string,
+  singBase64?: string,
   /** thumbprint сертификата (Для ЭЦП) */
-  cert?:string,
+  cert?: string,
   /** Операция над вложением (I - создать / U - обновить / D - удалить)*/
-  action?:string,
+  action?: string,
   /** Подписанты */
   signer?: IUser[];
 
@@ -168,8 +169,9 @@ export interface IRequestAttachment{
 
 
 /** тип для инпута с эффектом debounce*/
-export interface IDebounceResult{
-  event?:Event;
-  debounceString:string
+export interface IDebounceResult {
+  event?: Event;
+  debounceString: string
 }
+
 export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
