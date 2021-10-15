@@ -1,0 +1,33 @@
+@import '../../../styles/mixins';
+
+.comment {
+  display: flex;
+  margin-bottom: 20px;
+  .comment__section {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    .comment__section-info {
+      display: flex;
+      .section__fullname {
+        font-size: 18px;
+        margin-right: 8px;
+      }
+      .comment-info__datetime {
+        align-self: flex-end;
+        font-size: 16px;
+        color: var(--basic-tertiary);
+        font-weight: 400; 
+      }
+    }
+    .comment__section-comment-item {
+      margin-top: 12px;
+      background-color: var(--background-secondary);
+      border-radius: 4px 22px 22px 22px;
+      p {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  }
+}

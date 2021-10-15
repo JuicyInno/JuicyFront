@@ -1,0 +1,26 @@
+@import "../../../styles/mixins";
+
+.comment-form{
+
+  .header-block__header{
+    font-size: 18px;
+  }
+  .comment__employee-comment{
+    margin-top: 20px;
+  }
+  .comment__form-input{
+    .comment-label--secondary {
+      display: flex;
+      align-self: flex-end;
+      color: var(--text-tertiary);
+    }
+    .comment-label--label {
+      font-size: 16px;
+    }
+  }
+
+
+}
+.rf-form-group__label-secondary {
+  margin-top: 2px;
+}

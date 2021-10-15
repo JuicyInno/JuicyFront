@@ -21,6 +21,8 @@ import Preloader from './components/atoms/Preloader';
 import Radio from './components/atoms/Radio';
 import RatePicker from './components/atoms/RatePicker';
 import StatusPicker from './components/atoms/StatusPicker';
+import Comment from './components/molecules/Comment';
+import CommentForm from './components/molecules/CommentForm';
 import Search from './components/atoms/Search';
 import Segment from './components/atoms/Segment';
 import Select from './components/atoms/Select';
@@ -92,6 +94,8 @@ export {
   Radio,
   RatePicker,
   StatusPicker,
+  CommentForm,
+  Comment,
   Search,
   Segment,
   Select,
