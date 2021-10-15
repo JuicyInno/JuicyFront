@@ -100,12 +100,11 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
+export type VariantClassic = 'default' | 'green' | 'yellow' | 'red' | 'none';
 export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
-
   'green',
   'yellow',
   'red'
@@ -125,7 +124,7 @@ export const variants: Variant[] = [
 ];
 
 /** Размер */
-export type Size = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type Size = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';

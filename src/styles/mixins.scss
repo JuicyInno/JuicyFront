@@ -163,3 +163,8 @@
     clear: both;
   }
 }
+
+@mixin elemSize($r) {
+  width: $r;
+  height: $r;
+}

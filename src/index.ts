@@ -2,6 +2,7 @@ import './styles/index.scss';
 
 // ------------------------ Компоненты ---------------------------------------------------------------------------
 import Avatar from './components/atoms/Avatar';
+import AvatarStatus from './components/atoms/AvatarStatus';
 import Badge from './components/atoms/Badge';
 import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
@@ -58,6 +59,7 @@ import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 export {
   HistoryCardFilter,
   Avatar,
+  AvatarStatus,
   Badge,
   Button,
   Checkbox,

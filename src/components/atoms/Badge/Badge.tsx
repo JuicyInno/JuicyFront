@@ -37,7 +37,7 @@ const Badge: React.FC<IBadgeProps> = ({
   });
 
   useLayoutEffect(() => {
-    if (badgeContent || placeNear) {
+    if (!badgeContent || placeNear) {
       return;
     }
 
@@ -68,7 +68,6 @@ const Badge: React.FC<IBadgeProps> = ({
           right: w / 2 * (1 - kX) - badgeR
         }
       };
-
       setCoordinates(coordinates[position]);
     }
   }, [children, badgeContent]);
@@ -80,10 +79,15 @@ const Badge: React.FC<IBadgeProps> = ({
   return (
     <div className={`rf-badge__wrapper ${className} ${placeNearClass}`} ref={wrapper}>
       {children}
-      {display &&
-        <div className={`rf-badge rf-badge--${variant} ${isDot} ${textClass}`} style={coordinates}>
-          {badgeContent ? !isNaN(+badgeContent) && +badgeContent > max ? `${max}+` : badgeContent : null}
-        </div>
+      {display && (
+        badgeContent?.type === 'div' ?
+          <div className={'rf-badge'} style={coordinates}>{badgeContent}</div> :
+          (
+            <div className={`rf-badge rf-badge--${variant} ${isDot} ${textClass}`} style={coordinates}>
+              {badgeContent ? !isNaN(+badgeContent) && +badgeContent > max ? `${max}+` : badgeContent : null}
+            </div>
+          )
+      )
       }
     </div>
   );

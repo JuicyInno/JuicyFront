@@ -158,7 +158,9 @@ export const sizeClass: Record<Size, string> = {
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
-  'xxl': 'rf--xxl'
+  'xxl': 'rf--xxl',
+  'xxxl': 'rf--xxxl',
+  'xxxxl': 'rf--xxxxl'
 };
 
 function oDataServ(data:any) {
