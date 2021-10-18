@@ -80,7 +80,8 @@ const Badge: React.FC<IBadgeProps> = ({
     <div className={`rf-badge__wrapper ${className} ${placeNearClass}`} ref={wrapper}>
       {children}
       {display && (
-        badgeContent?.type === 'div' ?
+      // Проверка на содержимое - отлавливаем когда в контент передали div элемент
+        typeof badgeContent === 'object' ?
           <div className={'rf-badge'} style={coordinates}>{badgeContent}</div> :
           (
             <div className={`rf-badge rf-badge--${variant} ${isDot} ${textClass}`} style={coordinates}>
