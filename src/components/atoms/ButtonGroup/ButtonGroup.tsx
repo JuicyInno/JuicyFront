@@ -8,7 +8,9 @@ import Menu from '../Menu';
 import { Link } from 'react-router-dom';
 
 export interface IButtonGroupProps {
+  /** Список кнопок */
   list: IButtonGroup[];
+  /** Максимальное количество показываемых кнопок */
   max?: number;
 }
 
@@ -63,21 +65,23 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   // -------------------------------------------------------------------------------------------------------------------
 
+
+  if (list.length === 0) {
+    return null;
+  }
+
   return (
-    list.length > 0 ? (
-      <div className='button-group'>
-        { buttonsJSX }
-        {
-          menuJSX.length > 0 && (
-            <Menu content={ <div className='button-group__menu'>{ menuJSX }</div> } position='top-left'>
-              <Button buttonType='iconFill'>
-                <KebabMenu/>
-              </Button>
-            </Menu>
-          )
-        }
-      </div>
-    ) : null
+    <div className='button-group'>
+      { buttonsJSX }
+      {
+        menuJSX.length > 0 && (
+          <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
+            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+          </Menu>
+        )
+      }
+    </div>
   );
 };
+
 export default ButtonGroup;

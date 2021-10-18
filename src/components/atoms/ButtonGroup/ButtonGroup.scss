@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .button-group {
   display: inline-flex;
@@ -59,6 +59,7 @@
 }
 
 .button-group__menu-button-icon {
+  flex-shrink: 0;
   margin-left: auto;
   transform: rotate(180deg);
   color: var(--text-tertiary);
