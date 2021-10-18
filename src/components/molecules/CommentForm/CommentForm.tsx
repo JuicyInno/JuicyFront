@@ -16,13 +16,13 @@ const CommentForm: React.FC<IContentExpanderProps> = ({ user, title, children }:
   const [userCommnet, setUserComment] = useState<ReactNode | null>(null);
 
   const commentHandler = (value: string) => {
-    setComment(value);
+    setComment(value)
   };
 
   const keyPressHandler = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter') {
-      setUserComment(<Comment user={user} commentText={comment} />);
+    if (event.key === 'Enter' && comment.trim().length) {
       const textarea = document.getElementsByTagName('textarea')[0];
+      setUserComment(<Comment user={user} commentText={comment} />);
       textarea.value = '';
     }
   };
