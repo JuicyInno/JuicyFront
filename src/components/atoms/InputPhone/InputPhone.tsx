@@ -29,6 +29,12 @@ export interface IInputPhoneProps extends IInputProps {
   countries?: IInputPhoneCountry[]
   /** Выбранная страна по умолчанию */
   defaultCountry?: IInputPhoneCountry;
+  /** Индификатор инпута */
+  name: string;
+  /** Залочен или нет */
+  disabled?: boolean;
+  /** Измениние значения */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /** Список стран для выбора по умолчанию */
@@ -41,139 +47,139 @@ const DEFAULT_COUNTRIES: IInputPhoneCountry[] = [
 ];
 
 const InputPhone: React.FC<IInputPhoneProps> =
-({ defaultValue, countries = DEFAULT_COUNTRIES, defaultCountry, name, disabled, onChange, ...props }: IInputPhoneProps) => {
+  ({ defaultValue, countries = DEFAULT_COUNTRIES, defaultCountry, name, disabled, onChange, ...props }: IInputPhoneProps) => {
+    const [inputValue, setInputValue] = useState<string>('');
+    const [displayValue, setDisplayValue] = useState<string>(defaultValue || '');
+    const [country, setCountry] = useState(defaultCountry || countries[0]);
 
-  const [inputValue, setInputValue] = useState<string>( '');
-  const [displayValue, setDisplayValue] = useState<string>(defaultValue || '');
-  const [country, setCountry] = useState(defaultCountry || countries[0]);
+    const [inputElement, setInputElement] = useState<HTMLLabelElement | null>(null);
 
-  const [inputElement, setInputElement] = useState<HTMLLabelElement | null>(null);
+    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setDisplayValue(event.target.value);
+    };
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDisplayValue(event.target.value);
-  };
+    const onCountryChange = (c: IInputPhoneCountry) => () => {
+      setCountry(c);
+    };
 
-  const onCountryChange = (c: IInputPhoneCountry) => () => {
-    setCountry(c);
-  };
-  useEffect(() => {
+    useEffect(() => {
+      setDisplayValue(defaultValue || '');
+      setInputValue(defaultValue || '');
+    }, [defaultValue]);
 
-    setDisplayValue(defaultValue || '');
-    setInputValue(defaultValue || '');
-  }, [defaultValue]);
-  useEffect(() => {
-    const v = displayValue.replace(/(\s|-|_|\(|\))/g, '');
-    setInputValue(v);
+    useEffect(() => {
+      const v = displayValue.replace(/(\s|-|_|\(|\))/g, '');
+      setInputValue(v);
 
-    if (onChange) {
-      onChange({
-        target: {
-          value: v,
-          name
-        }
-      } as React.ChangeEvent<HTMLInputElement>);
-    }
-  }, [displayValue, name, onChange]);
+      if (onChange) {
+        onChange({
+          target: {
+            value: v,
+            name
+          }
+        } as React.ChangeEvent<HTMLInputElement>);
+      }
+    }, [displayValue, name, onChange]);
 
-  useUpdateEffect(() => {
-    setDisplayValue('');
-  }, [country]);
+    useUpdateEffect(() => {
+      setDisplayValue('');
+    }, [country]);
 
-  const mask = useMemo(() => {
-    return [
-      '+',
-      ...country.code.toString().split(''),
-      ' ',
-      '(',
-      /[0-9]/,
-      /[0-9]/,
-      /[0-9]/,
-      ')',
-      ' ',
-      /[0-9]/,
-      /[0-9]/,
-      /[0-9]/,
-      ' ',
-      '-',
-      ' ',
-      /[0-9]/,
-      /[0-9]/,
-      ' ',
-      '-',
-      ' ',
-      /[0-9]/,
-      /[0-9]/
-    ];
-  }, [country]);
+    const mask = useMemo(() => {
+      return [
+        '+',
+        ...country.code.toString().split(''),
+        ' ',
+        '(',
+        /[0-9]/,
+        /[0-9]/,
+        /[0-9]/,
+        ')',
+        ' ',
+        /[0-9]/,
+        /[0-9]/,
+        /[0-9]/,
+        ' ',
+        '-',
+        ' ',
+        /[0-9]/,
+        /[0-9]/,
+        ' ',
+        '-',
+        ' ',
+        /[0-9]/,
+        /[0-9]/
+      ];
+    }, [country]);
 
-  return (
-    <>
-      <InputMask mask={mask} value={displayValue} disabled={disabled} onChange={onInputChange}>
-        <Input
-          {...props}
-          name={`${name}-display`}
-          ref={setInputElement}
-          data-testid='input-display'
-          startAdornment={
-            <Menu
-              portal
-              anchorElement={inputElement}
-              content={
-                countries.length > 1 && <MenuContext.Consumer>
-                  {({ onClose }: IMenuContext) => (
-                    <ul className='rf-list' onClick={onClose}>
-                      {countries.map(c => (
-                        <li key={c.code} className='rf-li' >
-                          <button type='button' className='rf-list__element rf-phone-input__option' onClick={onCountryChange(c)}>
-                            <c.flag className='rf-phone-input__option-flag' />
-                            <span
-                              className={`
+    return (
+      <>
+        <InputMask mask={mask} value={displayValue} disabled={disabled} onChange={onInputChange}>
+          <Input
+            {...props}
+            name={`${name}-display`}
+            ref={setInputElement}
+            data-testid='input-display'
+            startAdornment={
+              <Menu
+                portal
+                anchorElement={inputElement}
+                content={
+                  countries.length > 1 && <MenuContext.Consumer>
+                    {({ onClose }: IMenuContext) => (
+                      <ul className='rf-list' onClick={onClose}>
+                        {countries.map(c => (
+                          <li key={c.code} className='rf-li' >
+                            <button type='button' className='rf-list__element rf-phone-input__option' onClick={onCountryChange(c)}>
+                              <c.flag className='rf-phone-input__option-flag' />
+                              <span
+                                className={`
                                 rf-phone-input__option-text 
                                 ${country.code === c.code ? 'rf-phone-input__option-text--selected' : ''}
                               `}
-                            >
-                              {c.text}
-                            </span>
-                            <span
-                              className={`
+                              >
+                                {c.text}
+                              </span>
+                              <span
+                                className={`
                                 rf-phone-input__option-code 
                                 ${country.code === c.code ? 'rf-phone-input__option-code--selected' : ''}
                               `}
-                            >
-                              +{c.code}
-                            </span>
-                          </button>
-                        </li>
+                              >
+                                +{c.code}
+                              </span>
+                            </button>
+                          </li>
 
-                      ))}
-                    </ul>
-                  )}
-                </MenuContext.Consumer>
-              }
-            >
-              <div className='rf-phone-input__country'>
-                {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
-                {countries.length > 1 && (
-                  <MenuContext.Consumer>
-                    {({ show }: IMenuContext) => (
-                      <button
-                        className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
-                        type='button'
-                        disabled={disabled}
-                        aria-label='Выбрать страну'
-                      >
-                        <ChevronDown />
-                      </button>
+                        ))}
+                      </ul>
                     )}
                   </MenuContext.Consumer>
-                )}
-              </div>
-            </Menu>
-          }/>
-      </InputMask>
-      <input data-testid='input' type='hidden' name={ name } value={inputValue} />
-    </>
-  );
-};
+                }
+              >
+                <div className='rf-phone-input__country'>
+                  {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
+                  {countries.length > 1 && (
+                    <MenuContext.Consumer>
+                      {({ show }: IMenuContext) => (
+                        <button
+                          className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
+                          type='button'
+                          disabled={disabled}
+                          aria-label='Выбрать страну'
+                        >
+                          <ChevronDown />
+                        </button>
+                      )}
+                    </MenuContext.Consumer>
+                  )}
+                </div>
+              </Menu>
+            } />
+        </InputMask>
+        <input data-testid='input' type='hidden' name={name} value={inputValue} />
+      </>
+    );
+  };
 
 export default InputPhone;

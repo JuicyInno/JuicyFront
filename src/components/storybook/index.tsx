@@ -3,4 +3,5 @@ export { StoryDocsDescription } from './StoryDocsDescription';
 export { StoryDocsH1 } from './StoryDocsH1';
 export { StoryDocsH2 } from './StoryDocsH2';
 export { StoryDocsH3 } from './StoryDocsH3';
+export { StoryDocsH4 } from './StoryDocsH4';
 export { StoryDocsLabel } from './StoryDocsLabel';
