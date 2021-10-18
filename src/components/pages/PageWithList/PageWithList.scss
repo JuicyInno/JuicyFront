@@ -1,0 +1,57 @@
+.jf-page__with-list {
+  display: flex;
+}
+
+.jf-page__aside-filters {
+  position: relative;
+  min-width: 280px;
+  width: 280px;
+  margin-right: 32px;
+}
+
+.jf-page__aside-filters-inner {
+  background: var(--background-primary);
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  border-radius: 20px;
+  padding: 24px 16px;
+}
+
+.jf-page__main {
+  width: 100%;
+}
+
+.jf-page__main-action-menu {
+  box-sizing: content-box;
+  padding-bottom: 24px;
+  height: 40px;
+}
+
+.jf-page__main-action-menu--no-filters {
+  width: calc(100% - 48px);
+  left: 24px;
+}
+
+.jf-page__main-action-menu--hidden {
+  height: 0;
+  padding-bottom: 0;
+}
+
+.jf-page__main-action-menu-inner {
+  position: relative;
+}
+
+.jf-page__action-menu-divider--list {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--background-tertiary);
+  position: absolute;
+  bottom: -24px;
+  opacity: 0;
+}
+
+.jf-page__main-action-menu--hidden .jf-page__action-menu-divider--list {
+  width: calc(100% - 32px);
+  bottom: 0;
+}

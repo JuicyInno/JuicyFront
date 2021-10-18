@@ -9,7 +9,7 @@ import FlagRU from '../../../assets/icons/FlagRU';
 
 
 export default {
-  title: 'Form Controls/InputPhone',
+  title: 'не проверено/InputPhone',
   component: InputPhone
 };
 
@@ -27,11 +27,13 @@ const COUNTRIES: IInputPhoneCountry[] = [
 ];
 
 export const inputPhone = () => {
+
+
   return (
     <Story name='InputPhone' description='Поле для ввода номера телефона. Доступен ввод только чисел.' width={600}>
       <StoryItem >
         <FormGroup label='Номер телефона'>
-          <InputPhone name='phone' defaultValue='+79999999999' countries={COUNTRIES}/>
+          <InputPhone name='phone' defaultValue={'79999999999'} countries={COUNTRIES}/>
         </FormGroup>
       </StoryItem>
       <StoryItem >

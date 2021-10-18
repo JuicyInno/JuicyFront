@@ -28,7 +28,7 @@ import Download from '../../../assets/icons/Download';
 import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
 export default {
-  title: 'Icons',
+  title: 'не проверено/Icons',
   // component: Hint,
 
 };

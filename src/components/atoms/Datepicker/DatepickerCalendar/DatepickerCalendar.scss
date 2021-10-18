@@ -20,12 +20,12 @@
   margin-bottom: 8px;
 }
 
-.rf-calendar__control {
+.rf-datepicker-calendar__control {
   display: flex;
   align-items: center;
 }
 
-.rf-calendar__button {
+.rf-datepicker-calendar__button {
   width: 24px;
   min-width: 24px;
   height: 24px;
@@ -38,12 +38,12 @@
   justify-content: center;
 }
 
-.rf-calendar__button[disabled] {
+.rf-datepicker-calendar__button[disabled] {
   color: var(--text-tertiary);
   cursor: default;
 }
 
-.rf-calendar__button--arrow {
+.rf-datepicker-calendar__button--arrow {
   border-radius: 50%;
 
   svg {
@@ -51,14 +51,14 @@
   }
 }
 
-.rf-calendar__button--arrow:not([disabled]) {
+.rf-datepicker-calendar__button--arrow:not([disabled]) {
   &:focus,
   &:hover {
     background-color: var(--special-softBlue);
   }
 }
 
-.rf-calendar__label-button {
+.rf-datepicker-calendar__label-button {
   width: auto;
   height: auto;
   padding: 0 8px;
@@ -71,7 +71,7 @@
   border-radius: 4px;
 }
 
-.rf-calendar__label-button:not([disabled]) {
+.rf-datepicker-calendar__label-button:not([disabled]) {
   &:hover,
   &:focus {
     .rf-datepicker__calendar-label {

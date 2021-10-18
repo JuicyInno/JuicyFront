@@ -6,10 +6,12 @@ import {
 } from '../../storybook';
 import StoryRow from '../../storybook/StoryRow';
 import { MobileView } from './previews/mobile-view';
-import { States } from './previews/states';
+
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Toggle',
+  title: 'atoms/withTest/Toggle',
+  decorators: [withDesign],
   component: Switch,
   argTypes: {
     label: {
@@ -53,17 +55,33 @@ export const Demo = () => {
           flexDirection: 'column',
           marginRight: 100
         }}>
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='m' style={{ marginBottom: 20 }} />
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='m' />
+          </div>
+
         </div>
         <div style={{
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
-          <Switch onChange={onChange} label='Text' size='s' style={{ marginBottom: 20 }} />
+
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' />
+          </div>
+
+
         </div>
       </div>
 
@@ -73,32 +91,32 @@ export const Demo = () => {
       </StoryDocsDescription>
 
       <div style={{ display: 'flex' }}>
-        <div style={{ marginRight: 100 }}>
+        <div style={{
+          marginRight: 100,
+          marginBottom: 20
+        }}>
           <Switch
             onChange={onChange}
             label='Text'
             size='m'
-            style={{ marginBottom: 20 }}
             helperText='Add text'
           />
         </div>
-        <div>
+        <div style={{ marginBottom: 20 }}>
           <Switch
             onChange={onChange}
             label='Text'
             size='s'
-            style={{ marginBottom: 20 }}
             helperText='Add text'
           />
         </div>
       </div>
 
-      <StoryDocsH2>Состояния</StoryDocsH2>
-      <States />
 
       <StoryDocsH2>Адаптив (Mobile)</StoryDocsH2>
       <StoryDocsDescription>
-        При создании отдельных макетов для мобильных устройств, рекомендуется использовать вариацию комопнента размера M с текстом слева, который можно
+        При создании отдельных макетов для мобильных устройств, рекомендуется использовать вариацию комопнента размера
+          M с текстом слева, который можно
         вытянуть на всю ширину экрана.
       </StoryDocsDescription>
       <MobileView />
@@ -108,6 +126,10 @@ export const Demo = () => {
 
 Demo.parameters = {
   actions: { disabled: true },
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231295'
+  },
   controls: { disabled: true }
 };
 
@@ -118,3 +140,21 @@ export const Playground = (props: ISwitchProps) => (
     </StoryRow>
   </Story>
 );
+
+export const test = (props: ISwitchProps) => (
+  <Story>
+    <StoryRow>
+      <Switch label='Text'
+        size={'s'}
+        helperText='Add text' />
+    </StoryRow>
+  </Story>
+);
+Playground.parameters = {
+
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231295'
+  },
+
+};

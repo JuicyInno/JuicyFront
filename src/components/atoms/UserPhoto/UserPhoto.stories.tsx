@@ -3,7 +3,7 @@ import UserPhoto from './UserPhoto';
 import Story from '../../storybook/Story';
 
 export default {
-  title: 'Projects/UserPhoto',
+  title: 'не проверено/UserPhoto',
   component: UserPhoto
 };
 

@@ -1,26 +1,74 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Chip from './Chip';
+import Download from '../../../assets/icons/Download';
 
 describe('Test <Chip/> component', () => {
-  
   it('should be primary', () => {
     const { container } = render(<Chip type='primary'> Button </Chip>);
     expect(container.getElementsByClassName('rf-chip--primary')).toHaveLength(1);
   });
-  
+
   it('should be secondary', () => {
     const { container } = render(<Chip type='secondary'> Button </Chip>);
     expect(container.getElementsByClassName('rf-chip--secondary')).toHaveLength(1);
   });
-  
+
   it('should be outline', () => {
     const { container } = render(<Chip type='outline'> Button </Chip>);
     expect(container.getElementsByClassName('rf-chip--outline')).toHaveLength(1);
   });
-  
+
+  it('should be s size', () => {
+    const { container } = render(<Chip size='s'> Button </Chip>);
+    expect(container.getElementsByClassName('rf--s')).toHaveLength(1);
+  });
+
   it('should have close button', () => {
     const { container } = render(<Chip onRemove={jest.fn}> Button </Chip>);
-    expect(container.getElementsByClassName('rf-chip__remove')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-chip__right-icon ')).toHaveLength(1);
+  });
+
+  it('should have icon left', () => {
+    const { container } = render(
+      <Chip icon={<Download />} iconPosition='left'>
+        Button
+      </Chip>
+    );
+    expect(container.getElementsByClassName('rf-chip__left-icon ')).toHaveLength(1);
+  });
+
+  it('should have icon right', () => {
+    const { container } = render(
+      <Chip icon={<Download />} iconPosition='right'>
+        Button
+      </Chip>
+    );
+    expect(container.getElementsByClassName('rf-chip__right-icon ')).toHaveLength(1);
+  });
+
+  it('should not have icon', () => {
+    const { container } = render(<Chip icon={<Download />}>Button</Chip>);
+    expect(container.getElementsByClassName('rf-chip__right-icon ')).toHaveLength(0);
+    expect(container.getElementsByClassName('rf-chip__left-icon ')).toHaveLength(0);
+  });
+
+  it('should be disabled', () => {
+    const { container } = render(<Chip disabled> Button </Chip>);
+    expect(container.getElementsByClassName('rf-chip--secondary ')).toHaveLength(1);
+  });
+
+  it('should be clickableClass', () => {
+    const { container } = render(<Chip onClick={jest.fn}> Button </Chip>);
+    expect(container.getElementsByClassName('rf-chip--clickable ')).toHaveLength(1);
+  });
+
+  it('should be not clickableClass', () => {
+    const { container } = render(
+      <Chip onClick={jest.fn} disabled>
+        Button
+      </Chip>
+    );
+    expect(container.getElementsByClassName('rf-chip--clickable ')).toHaveLength(0);
   });
 });

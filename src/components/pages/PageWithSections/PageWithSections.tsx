@@ -19,8 +19,12 @@ export interface IPageWithSectionsProps {
   sections?: IPageSection[];
   /** Fixed action menu */
   actionMenu?: ReactNode;
+  /** Всегда отображает панель с кнопками внизу страницы*/
+  actionMenuAlwaysBottom?:boolean;
   preloader?: boolean;
   showNavigation?: boolean;
+  /** Отключает  не корректно работающий слайдер навигации*/
+  showNavigationPosition?: boolean;
   /** Navigation tabs */
   navigation?: ITab[];
   showHeader?: boolean;
@@ -35,7 +39,9 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   preloader = false,
   showNavigation = true,
   navigation,
-  showHeader = true
+  showHeader = true,
+  actionMenuAlwaysBottom = false,
+  showNavigationPosition = false
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
@@ -127,6 +133,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   /** Передвигаем слайдер к активной секции */
   useEffect(() => {
+    showNavigationPosition &&
     setTimeout(() => {
       if (sliderRef.current) {
         const navLinks = document.querySelectorAll('.rf-page__aside-link');
@@ -147,10 +154,11 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const asideBlock = showNavigation && showAside && (
     <aside className='rf-page__content-aside' ref={ asideRef }>
       <div className='rf-page__aside-inner'>
-        <div className='rf-page__aside-bar' ref={ lineRef }>
-          <div className='rf-page__aside-slider' ref={ sliderRef }/>
+        {showNavigationPosition &&
+        <div className='rf-page__aside-bar' ref={lineRef}>
+          <div className='rf-page__aside-slider' ref={sliderRef}/>
         </div>
-
+        }
         <nav className='rf-page__aside-nav'>
           { asideJSX }
         </nav>
@@ -174,7 +182,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
       return;
     }
 
-    if (pageRef.current.offsetHeight > document.documentElement.clientHeight) {
+    if ((pageRef.current.offsetHeight > document.documentElement.clientHeight ) || actionMenuAlwaysBottom) {
       actionMenuRef.current.style.bottom = '20px';
       actionMenuRef.current.style.top = 'auto';
     } else {

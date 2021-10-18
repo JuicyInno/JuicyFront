@@ -5,7 +5,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
 
 export default {
-  title: 'Preloader',
+  title: 'не проверено/Preloader',
   component: Preloader
 };
 

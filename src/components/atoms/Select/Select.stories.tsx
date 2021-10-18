@@ -9,7 +9,7 @@ import Button from '../Button';
 import InputNumber from '../InputNumber';
 
 export default {
-  title: 'Form Controls/Select',
+  title: 'не проверено/Select',
   component: Select
 };
 

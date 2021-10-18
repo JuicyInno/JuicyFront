@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 export default {
-  title: 'Projects/Employee',
+  title: 'не проверено/Employee',
   component: Employee
 };
 

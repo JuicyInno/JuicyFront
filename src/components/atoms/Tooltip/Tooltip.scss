@@ -60,20 +60,24 @@ $radius: 8px;
   left: 50%;
 }
 
+.rf-tooltip__content--default .rf-tooltip__inner,
 .rf-tooltip--default .rf-tooltip__inner {
   background: var(--basic-tertiary);
   color: var(--text-static-white);
 }
 
+.rf-tooltip__content--default .rf-tooltip__inner::after,
 .rf-tooltip--default .rf-tooltip__inner::after {
   background: var(--basic-tertiary);
 }
 
+.rf-tooltip__content--white .rf-tooltip__inner,
 .rf-tooltip--white .rf-tooltip__inner {
   background: var(--background-primary);
   color: var(--text-primary);
 }
 
+.rf-tooltip__content--white .rf-tooltip__inner::after,
 .rf-tooltip--white .rf-tooltip__inner::after {
   background: var(--background-primary);
 }

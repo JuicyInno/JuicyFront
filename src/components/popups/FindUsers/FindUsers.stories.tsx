@@ -8,7 +8,7 @@ import { Button, Modal } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
-  title: 'Projects/FindUsers',
+  title: 'не проверено/FindUsers',
   component: FindUsers
 };
 

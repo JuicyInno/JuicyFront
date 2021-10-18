@@ -32,8 +32,15 @@ export const list: ITreeOption[] = [
           {
             value: '1_2_1',
             label: 'Шапка',
-            children: [],
-            checked: false
+            children: [
+              {
+                value: '1_2_1_1',
+                label: 'Шапка_1',
+                children: [],
+                checked: false,
+              }
+            ],
+            checked: false,
           },
           {
             value: '1_2_2',
@@ -119,6 +126,25 @@ export const list: ITreeOption[] = [
         label: 'Департамент нетехнологического развития системы водоснабжения_1',
         checked: false,
         children: []
+      },
+      {
+        value: '2_2',
+        label: 'Департамент нетехнологического развития системы водоснабжения_1',
+        checked: false,
+        children: [
+          {
+            value: '2_2_1',
+            label: 'Департамент нетехнологического развития системы водоснабжения_1',
+            checked: false,
+            children: []
+          },
+          {
+            value: '2_2_2',
+            label: 'Департамент нетехнологического развития системы водоснабжения_1',
+            checked: false,
+            children: []
+          }
+        ]
       }
     ]
   }
