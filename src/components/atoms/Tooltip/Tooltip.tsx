@@ -1,11 +1,12 @@
 import React, {
-  FC, ReactNode, useCallback, useEffect, useMemo, useState, useRef, useLayoutEffect
+  FC, ReactNode, useEffect, useMemo, useState, useRef, useLayoutEffect
 } from 'react';
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
 import { sizeClass } from '../../../utils/helpers';
 import { Size } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 interface ITooltipContentProps {
   rect: DOMRect;
@@ -18,7 +19,11 @@ interface ITooltipContentProps {
   /** Портал в элемент - по умолчанию body */
   portal: boolean;
   /** Размер тултипа */
-  size?: Size
+  size?: Size;
+  /** Цвет тултипа */
+  color?: 'default' | 'white' | 'primary';
+  /** Кастомный контейнер для тултипа */
+  getPopupContainer: () => HTMLElement;
 }
 
 const TooltipContent: FC<ITooltipContentProps> = ({
@@ -27,16 +32,20 @@ const TooltipContent: FC<ITooltipContentProps> = ({
   position,
   className,
   portal,
-  size = 'm'
+  size = 'm',
+  color,
+  getPopupContainer
 }: ITooltipContentProps) => {
   const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
+
   /** При маунте добавляем модалку. При дестрое - удаляем. */
   useEffect(() => {
-    /** Контейнер для модалки */
-    document.body.appendChild(div);
+    const container = getPopupContainer();
+
+    container.appendChild(div);
 
     return () => {
-      document.body.removeChild(div);
+      container.removeChild(div);
     };
   }, [div]);
 
@@ -195,7 +204,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
 
   const tooltip = (
     <div
-      className='rf-tooltip__content-wrapper'
+      className={classnames('rf-tooltip__content-wrapper', `rf-tooltip--${color}`)}
       onWheel={stopPropagationWheel}
       style={{
         ...styles[position],
@@ -223,104 +232,140 @@ const TooltipContent: FC<ITooltipContentProps> = ({
 // ---------------------------------------------------------------------------------------------------------------------
 
 export interface ITooltipProps {
+  /** Состояние тултипа (открыт/закрыт) */
+  open?: boolean;
+  /** Вызывается при закрытии тултипа */
+  onClose?: (e: React.MouseEvent) => void;
+  /** Вызывается при открытии тултипа */
+  onOpen?: (e: React.MouseEvent) => void;
+  /** Кастомный контейнер для тултипа */
+  getPopupContainer?: () => HTMLElement;
   /** [1] Элемент, на который наводим, [2] Элемент с подсказкой */
   children: [ReactNode, ReactNode];
   /** Позиция тултипа */
   position?: TooltipPosition;
-  /** Отключить показ самого тултипа */
-  isVisible?: boolean;
   /** Дополнительный класс */
   className?: string;
   /** Портал в элемент - по умолчанию body */
   portal?: boolean;
   /** Цвет тултипа */
-  background?: 'default' | 'white' | 'primary';
-  /** Изначально открытый тултип */
-  disposable?: boolean,
+  color?: 'default' | 'white' | 'primary';
   /** Размер тултипа */
   size?: 'm' | 'l'
 }
 
+function setRef<Instance = null>(ref: React.MutableRefObject<Instance> | React.RefCallback<Instance> | null, instance: Instance) {
+  if (typeof ref === 'function') {
+    ref(instance);
+  } else if (ref) {
+    ref.current = instance;
+  }
+}
+
 const Tooltip: FC<ITooltipProps> = ({
+  open: openProp,
+  onOpen,
+  onClose,
   children,
   position = 'right',
-  isVisible = true,
   className = '',
   portal = false,
-  background = 'default',
-  disposable = false,
-  size = 'm'
+  color = 'default',
+  size = 'm',
+  getPopupContainer = () => document.body
 }: ITooltipProps) => {
-  const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
-  const tooltipRef = useRef<HTMLHeadingElement>(null);
+  const isControlled = typeof openProp !== 'undefined';
+  const isPortal = portal && React.isValidElement(children[0]);
 
-  const onScrollElementScroll = useCallback(() => {
-    if (!disposable) {
-      setTooltipRect(null);
-    }
-  }, []);
+  const [open, setOpen] = useState(isControlled ? openProp : false);
+  const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
+  const anchorRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    if (disposable && !!tooltipRef.current) {
-      setTooltipRect(tooltipRef.current.getBoundingClientRect());
+    if (!!anchorRef.current) {
+      setTooltipRect(anchorRef.current.getBoundingClientRect());
     }
 
-  }, [tooltipRef]);
-
-  const addListener = (add: boolean) => {
-    if (add) {
-      window.addEventListener('mousewheel', onScrollElementScroll);
-    } else {
-      window.removeEventListener('mousewheel', onScrollElementScroll);
-    }
-  };
+  }, [anchorRef.current]);
 
   const onMouseEnter = (e: React.MouseEvent) => {
-    const child = e.currentTarget.firstElementChild;
+    const child = isPortal ? e.currentTarget : e.currentTarget.firstElementChild;
 
     if (child) {
-      addListener(true);
       setTooltipRect(child.getBoundingClientRect());
     }
 
-    if (tooltipRef.current) {
-      addListener(true);
-      setTooltipRect(tooltipRef.current.getBoundingClientRect());
+    if (onOpen) {
+      onOpen(e);
     }
+
+    setOpen(true);
   };
 
-  const onMouseLeave = () => {
-    if (!disposable) {
-      addListener(false);
-      setTooltipRect(null);
+  const onMouseLeave = (e: React.MouseEvent) => {
+    if (onClose) {
+      onClose(e);
     }
+
+    setOpen(false);
   };
 
-  const stopPropagation = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
+  const isOpen = !!tooltipRect && (isControlled ? openProp : open);
+
+  const tooltipContent = isOpen && (
+    <TooltipContent
+      className={className}
+      position={position}
+      rect={tooltipRect}
+      portal={portal}
+      size={size}
+      color={color}
+      getPopupContainer={getPopupContainer}
+    >
+      {children[1]}
+    </TooltipContent>
+  );
+
+  if (isPortal) {
+    const child = children[0] as React.ReactElement;
+
+    const childProps = {
+      ...child.props,
+      onMouseEnter: (event: React.MouseEvent) => {
+        child.props?.onMouseEnter?.(event);
+        onMouseEnter(event);
+      },
+      onMouseLeave: (event: React.MouseEvent) => {
+        child.props?.onMouseLeave?.(event);
+        onMouseLeave(event);
+      },
+      ref: (ref: HTMLElement) => {
+        setRef(child.props.ref, ref);
+        setRef(anchorRef, ref);
+      }
+    };
+
+    return (
+      <>
+        {React.cloneElement(
+          child,
+          childProps
+        )}
+        {tooltipContent}
+      </>
+    );
+  }
 
   return (
     <div
-      ref={tooltipRef}
-      className={`rf-tooltip rf-tooltip--${background}`}
+      // @ts-ignore
+      ref={anchorRef}
+      className='rf-tooltip'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={stopPropagation}
-      onMouseUp={stopPropagation}>
+    >
       {children[0]}
-      {((tooltipRect && isVisible && !disposable) || (tooltipRect && disposable)) && (
-        <TooltipContent
-          className={className}
-          position={position}
-          rect={tooltipRect}
-          portal={portal}
-          size={size}
-        >
-          {children[1]}
-        </TooltipContent>
-      )
-      }
+      {tooltipContent}
     </div >
   );
 };

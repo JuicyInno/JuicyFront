@@ -3,7 +3,6 @@ import Tooltip, { ITooltipProps } from './Tooltip';
 import { Story } from '@storybook/react';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import Button from '../Button';
 import { variantsTooltip } from '../../../types';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
@@ -24,19 +23,12 @@ export default {
       control: { type: 'select' },
       defaultValue: 'right'
     },
-    isVisible: {
-      type: 'boolean',
-      defaultValue: true
-    },
+    open: { type: 'boolean', },
     portal: {
       type: 'boolean',
       defaultValue: false
     },
-    disposable: {
-      type: 'boolean',
-      defaultValue: false
-    },
-    background: {
+    color: {
       options: ['default', 'white', 'primary'],
       control: { type: 'select' },
       defaultValue: 'default'
@@ -90,7 +82,7 @@ export const Demo: Story = () => {
           top: '73px',
           left: '80px',
         }}>
-          <Tooltip disposable position='top'>
+          <Tooltip open position='top'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -101,7 +93,7 @@ export const Demo: Story = () => {
           left: '205px',
 
         }}>
-          <Tooltip disposable position='bottom'>
+          <Tooltip open position='bottom'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -111,7 +103,7 @@ export const Demo: Story = () => {
           top: '45px',
           left: '375px',
         }}>
-          <Tooltip disposable position='left'>
+          <Tooltip open position='left'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -121,7 +113,7 @@ export const Demo: Story = () => {
           top: '45px',
           left: '420px',
         }}>
-          <Tooltip disposable position='right'>
+          <Tooltip open position='right'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -132,7 +124,7 @@ export const Demo: Story = () => {
           top: '155px',
           left: '80px',
         }}>
-          <Tooltip disposable background='white' position='top'>
+          <Tooltip open color='white' position='top'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -143,7 +135,7 @@ export const Demo: Story = () => {
           left: '205px',
 
         }}>
-          <Tooltip disposable background='white' position='bottom'>
+          <Tooltip open color='white' position='bottom'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -153,7 +145,7 @@ export const Demo: Story = () => {
           top: '127px',
           left: '375px',
         }}>
-          <Tooltip disposable background='white' position='left'>
+          <Tooltip open color='white' position='left'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -163,7 +155,7 @@ export const Demo: Story = () => {
           top: '127px',
           left: '420px',
         }}>
-          <Tooltip disposable background='white' position='right'>
+          <Tooltip open color='white' position='right'>
             <div />
             <div>Tooltip</div>
           </Tooltip>
@@ -176,7 +168,7 @@ export const Demo: Story = () => {
           top: '15px',
           left: '10px'
         }}>
-          <Tooltip disposable background='white' size='l' position='right-start'>
+          <Tooltip open color='white' size='l' position='right-start'>
             <div></div>
             <div style={{ width: '280px' }}>
               <p style={{
@@ -204,7 +196,7 @@ export const Demo: Story = () => {
           right: '200px',
           bottom: '8px'
         }}>
-          <Tooltip disposable background='white' size='l' position='top'>
+          <Tooltip open color='white' size='l' position='top'>
             <div></div>
             <div style={{ width: '280px' }}>
               <p style={{
@@ -241,7 +233,7 @@ Demo.parameters = {
   controls: { disabled: true }
 };
 
-export const Playground: Story = (args: ITooltipProps) => {
+export const Playground = (args: ITooltipProps) => {
   return (
     <StoryContainer>
       <StoryRow>
@@ -250,10 +242,19 @@ export const Playground: Story = (args: ITooltipProps) => {
           marginTop: '50px'
         }}>
           <Tooltip {...args}>
-            <Button>Button</Button>
-            <div style={{ width: '100px' }}>
-              <p> Tooltip </p>
+            <button
+              style={{
+                padding: '12px 16px',
+                background: 'var(--basic-primary)',
+                color: 'var(--text-static-white)',
+                borderRadius: 8
+              }}
+            >
+              Button
+            </button>
 
+            <div>
+              <p> Tooltip </p>
             </div>
           </Tooltip>
         </div>

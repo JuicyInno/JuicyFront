@@ -47,11 +47,6 @@ $radius: 8px;
   box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
   transform: translate(-50%, -50%) rotate(45deg);
 }
-.rf-tooltip__inner--portal {
-  &::after {
-    content: none;
-  }
-}
 
 .rf-tooltip__inner--right::after {
   top: 50%;
@@ -159,9 +154,4 @@ $radius: 8px;
 
 .rf-tooltip--primary .rf-tooltip__inner::after {
   background: var(--basic-primary);
-}
-
-.customClass {
-  width: 216px;
-  margin-top: 16px;
 }
