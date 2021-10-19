@@ -39,6 +39,10 @@ export interface IUser {
   currency?: string;
   /** Орг структура */
   departmentsPath?: IStructure[];
+  /** Период для заявки */
+  period?: string;
+  /** Роль пользователя */
+  role?: string;
 }
 
 export interface IStructure {

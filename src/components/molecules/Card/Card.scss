@@ -5,6 +5,11 @@
   width: 880px;
 }
 
+.rf-card__tile {
+  box-shadow: 0px 2px 6px 0px #193B6826;
+  border-radius: 20px;
+}
+
 .rf-card__row {
   display: flex;
   align-items: center;
@@ -64,6 +69,11 @@
   font-weight: bold;
 }
 
+.rf-card__user-role {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
 .rf-card__user-additional {
   @include text-m-16();
   color: var(--text-secondary);
@@ -72,6 +82,7 @@
 
 .rf-card__user-accent {
   margin-right: 12px;
+  color: var(--text-primary);
 }
 
 .rf-card__user-accent_number {
@@ -82,9 +93,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--basic-tertiary);
   margin-right: 16px;
-
   cursor: pointer;
 }
 
@@ -96,4 +106,9 @@
 .rf-card__toast-text {
   @include text-xs-14();
   color: var(--text-secondary);
+}
+
+.rf-card__button-wrapper {
+  display: flex;
+  justify-content: end;
 }
