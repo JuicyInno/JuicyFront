@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { VariantClassic } from '../../../types';
+import { Size, Variant } from '../../../types';
 import AvatarBorder from '../../../assets/icons/AvatarBorder';
 import Avatar from '../Avatar';
 
@@ -8,34 +8,34 @@ import Badge from '../Badge';
 import Check from '../../../assets/icons/Check';
 import Redo from '../../../assets/icons/Redo';
 import Cross from '../../../assets/icons/Cross';
-import AvatarPlainBorder from '../../../assets/icons/AvatarPlainBorder';
 
 export interface IAvatarProps {
     /** Ссылка на фото */
     photo?: string;
     /** Фамилия и Имя */
     fullName?: string;
-    variant?: VariantClassic;
+    variant?: Variant;
     hasBadge?: boolean;
+    size?: Size;
 }
 
-const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', hasBadge }) => {
+const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', size = 'l', hasBadge }) => {
 
-  const borderStyle = `rf-avatar-status__border rf-avatar-status__border-color_${variant}`;
-  const plainBorderStyle = `rf-avatar-status__plain-border rf-avatar-status__border-color_${variant}`;
-  const badgeColor = `rf-avatar-status__badge-color_${variant}`;
+  const borderStyle = `rf-avatar-status__border-size_${size} rf-avatar-status__border-color_${variant}`;
+  // по дизайну бадж с галочкой всегда зелёный
+  const badgeColor = `rf-avatar-status__badge-color_${variant === 'default' || variant === 'blue' ? 'green' : variant}`;
 
   const getBadgeContent = () => {
     let icon;
     switch (variant) {
     case 'yellow': icon = <Redo className='rf-avatar-status__icon-style' />;
       break;
-    case 'red': icon = <Cross className='rf-avatar-status__icon-style' />;
+    case 'red': icon = <Cross className='rf-avatar-status__icon-style_cross' />;
       break;
     default: icon = <Check className='rf-avatar-status__icon-style' />;
     }
 
-    return <div className={`rf-avatar-status__badge ${badgeColor}`}>
+    return <div className={`rf-avatar-status__badge rf-avatar-status__badge-border-size_${size} ${badgeColor}`}>
       {icon}
     </div>;
   };
@@ -44,17 +44,12 @@ const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', has
     <div className='rf-avatar-status__avatar-wrapper'>
       <Avatar
         fullName={fullName}
-        size='l'
+        size={size}
         photo={photo}
       />
-      { (variant !== 'none' && hasBadge) ?
-        <div className='rf-avatar-status__border-wrapper'>
-          <AvatarBorder className={borderStyle}/>
-        </div> :
-        <div className='rf-avatar-status__plain-border-wrapper'>
-          <AvatarPlainBorder className={plainBorderStyle} />
-        </div>
-      }
+      <div className='rf-avatar-status__border-wrapper'>
+        <AvatarBorder className={borderStyle} />
+      </div>
     </div>
   </Badge>;
 };
