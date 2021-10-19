@@ -31,7 +31,7 @@ export const Demo = () => {
     console.log('on click');
   };
 
-  const frameStyle:React.CSSProperties = {
+  const frameStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     width: 'auto',
