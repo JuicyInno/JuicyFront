@@ -29,11 +29,11 @@ export interface IInputPhoneProps extends IInputProps {
   countries?: IInputPhoneCountry[]
   /** Выбранная страна по умолчанию */
   defaultCountry?: IInputPhoneCountry;
-  /** Индификатор инпута */
-  name: string;
-  /** Залочен или нет */
+  /** Идентификатор инпута */
+  name?: string;
+  /** Отключен или нет */
   disabled?: boolean;
-  /** Измениние значения */
+  /** Вызывается при изменении значения */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
