@@ -31,7 +31,16 @@ const docInfo = <div className='doc__wrapper'>
   <div className='doc__title'>Тип документа</div>
   <div>Счет на оплату</div>
 </div>;
+export const test = () => {
+  return <>
+    <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>
+      <StoryItem>
+        <Signification title={'Text'} buttonCustomTexts={{ reject: 'test' }} data={file} isSpoiler={false}/>
+      </StoryItem>
+    </Story>
 
+  </>;
+};
 export const Demo = () => {
   return <>
     <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>

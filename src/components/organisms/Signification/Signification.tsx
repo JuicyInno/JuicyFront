@@ -322,7 +322,7 @@ const Signification:FC<IProps> = ({
   </Modal>;
   // =======================================================================================================================================
   const certErrorTSX = certError &&
-   <div className='cert-error__wrapper'>
+   <div data-testid='error' className='cert-error__wrapper'>
      <Hint button={<Button
        onClick={() => download(value, value.fileName)}
        buttonType='text'
