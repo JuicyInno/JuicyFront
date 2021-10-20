@@ -1,5 +1,5 @@
 import React, {
-  FC, HTMLProps, ReactNode
+  FC, HTMLProps, ReactNode, useCallback
 } from 'react';
 import { Size, VariantClassic } from '../../../types';
 
@@ -59,6 +59,14 @@ const Button: FC<IButtonProps> = ({
   endAdornment,
   ...props
 }: IButtonProps) => {
+  const getPreloaderSize = useCallback(() => {
+    if (size === 'xs' || size === 's') {
+      return 's';
+    }
+
+    return 'm';
+  }, [size]);
+
   return (
     <button
       {...props}
@@ -89,7 +97,7 @@ const Button: FC<IButtonProps> = ({
           </div>
         )}
       </div>
-      {!!preloader && <Preloader size='s' variant='inherit' />}
+      {!!preloader && <Preloader size={getPreloaderSize()} variant='inherit' />}
     </button>
   );
 };
