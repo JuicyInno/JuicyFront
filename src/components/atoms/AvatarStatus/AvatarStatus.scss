@@ -12,24 +12,23 @@
 
 .rf-avatar-status__border-wrapper {
   position: absolute;
-  top: -3px;
-  left: -3.4px;
+  top: 0;
 }
 
 .rf-avatar-status__border-size_xs {
-  @include elemSize(28px);
+  @include elemSize(24px);
 }
 
 .rf-avatar-status__border-size_s {
-  @include elemSize(36px);
+  @include elemSize(32px);
 }
 
 .rf-avatar-status__border-size_m {
-  @include elemSize(44px);
+  @include elemSize(40px);
 }
 
 .rf-avatar-status__border-size_l {
-  @include elemSize(52px);
+  @include elemSize(48px);
 }
 
 .rf-avatar-status__border-color_default,
@@ -54,18 +53,19 @@
 }
 
 .rf-avatar-status__badge {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  //width: 14px;
+  //height: 14px;
   border-radius: 50%;
-  padding-left: 1px;
+  //padding-left: 1px;
 }
 
 .rf-avatar-status__icon-style {
-  width: 9px;
-  height: 9px;
+  width: 14px;
+  height: 14px;
   color: var(--background-primary);
 }
 

@@ -30,31 +30,31 @@ export const avatar = () => {
 
   return (
     <Story name='Аватар статус'>
-      <StoryItem subtitle='Аватар статус с баджем'>
-        {sizes.map(size => <div style={{ display: 'flex' }}>
+      <StoryItem subtitle='Аватар статус со стикером'>
+        <div style={{ display: 'flex' }}>
           <div style={{
             display: 'flex',
             padding: '32px'
           }}>
             {variants.map((variant: any, i) => <div
               style={(i !== variants.length - 1) ? elemStyle : { marginRight: '0px' }}>
-              <AvatarStatus fullName='Александр Петров' variant={variant} size={size} hasBadge/>
+              <AvatarStatus fullName='Александр Петров' variant={variant} size='l' hasBadge/>
             </div>)}
           </div>
-        </div>)}
+        </div>
       </StoryItem>
-      <StoryItem subtitle='Аватар статус без бэйджа'>
-        {sizes.map(size => <div style={{ display: 'flex' }}>
+      <StoryItem subtitle='Аватар статус без стикера'>
+        <div style={{ display: 'flex' }}>
           <div style={{
             display: 'flex',
             padding: '32px'
           }}>
             {variants.map((variant: any, i) => <div
               style={(i !== variants.length - 1) ? elemStyle : { marginRight: '0px' }}>
-              <AvatarStatus fullName='Александр Петров' size={size} variant={variant}/>
+              <AvatarStatus fullName='Александр Петров' size='l' variant={variant}/>
             </div>)}
           </div>
-        </div>)}
+        </div>
       </StoryItem>
     </Story>
   );

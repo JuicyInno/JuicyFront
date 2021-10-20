@@ -53,7 +53,7 @@ const Badge: React.FC<IBadgeProps> = ({
       const coordinates: Record<string, Coordinates> = {
         bottomRight: {
           top: w / 2 * (kY + 1) - badgeR,
-          right: w / 2 * (1 - kX) - badgeR
+          right: w / 2 * (1 - kX) - badgeR - 1
         },
         bottomLeft: {
           top: w / 2 * (kY + 1) - badgeR,

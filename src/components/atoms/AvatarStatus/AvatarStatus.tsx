@@ -30,7 +30,7 @@ const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', siz
     switch (variant) {
     case 'yellow': icon = <Redo className='rf-avatar-status__icon-style' />;
       break;
-    case 'red': icon = <Cross className='rf-avatar-status__icon-style_cross' />;
+    case 'red': icon = <Cross className='rf-avatar-status__icon-style' />;
       break;
     default: icon = <Check className='rf-avatar-status__icon-style' />;
     }
