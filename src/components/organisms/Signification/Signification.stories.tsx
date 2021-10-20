@@ -42,6 +42,7 @@ export const Demo = () => {
           hideButtons={['reject']}
           buttonCustomTexts={{ sign: 'котик приложи лапку' }}
           data={file}
+          pdfUrl={'yandex.ru'}
           title='Приказ №384848483 от 30.08.2021'/>
       </StoryItem>
     </Story>

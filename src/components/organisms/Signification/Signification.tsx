@@ -39,33 +39,37 @@ const buttonNamesDefault:ICustomTexts = {
 
 export interface IProps{
   /** Изначальный файл*/
-  data:IRequestAttachment,
+  data:IRequestAttachment
   /** Дополнительные данные о документе*/
   documentInfo?:ReactNode
   /** заголовок*/
-  title?:string,
+  title?:string
   /** функция- результат подписания */
   onSignify?:(result:ISignifyCallback)=>void
   /** массив в котором название кнопок для скрытия */
-  hideButtons?:TButtons[],
+  hideButtons?:TButtons[]
   /** показывать ли спойлер для документа */
-  isSpoiler?:boolean,
+  isSpoiler?:boolean
   /** открыт или закрыт спойлер для документа */
   isOpenSpoiler?:boolean
   /** фильтр сертификатов */
-  filter?: (cert: Certificate) => Promise<boolean>;
+  filter?: (cert: Certificate) => Promise<boolean>
   /** кастомные названия кнопок */
   buttonCustomTexts?:ICustomTexts
+  /** ссылка на pdf если надо открыть в отдельном окне */
+  pdfUrl?:string
 }
 
 
 const Signification:FC<IProps> = ({
   data,
+  pdfUrl,
   onSignify = () => {},
   title = '',
   isSpoiler = true,
   isOpenSpoiler = false,
   documentInfo,
+
   hideButtons = [],
   buttonCustomTexts = {},
   filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
@@ -98,6 +102,8 @@ const Signification:FC<IProps> = ({
 
 
   const status = ['auto', 'manual'].includes(finalStage || '') ? 'success' : 'danger';
+
+  const onlyView = hideButtons?.includes('sign') && hideButtons?.includes('manual');
   // ===========
   useEffect(() => {
     data && setValue(data);
@@ -255,7 +261,7 @@ const Signification:FC<IProps> = ({
             </>
           }
         </div>
-        <div style={{ paddingTop: finalStage !== 'reject' ? 0 : '12px' }}className='info-block__button'>
+        <div style={{ paddingTop: finalStage !== 'reject' ? 0 : '12px' }} className='info-block__button'>
           <Button onClick={cancelSign} buttonType='text'>
             <div className='info-block__button-inner'>
             Отменить
@@ -332,12 +338,12 @@ const Signification:FC<IProps> = ({
   // =======================================================================================================================================
   const expanderContentTSX = <>
     { buttonsTSX}
-    {(!finalStage || isSpoiler) && <PDFViewer file={data}/>}
+    {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
 
   return <div className='signification__wrapper'>
     <Tile>
-      <div className='signification__title-row'>
+      <div className={`signification__title-row ${onlyView ? 'signification__title-row--onlyView' : ''}`}>
         <Document/>
         <div className='signification__title-text'>{title}</div>
       </div>
@@ -351,7 +357,7 @@ const Signification:FC<IProps> = ({
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' ? ' и подписать документ' : ''} `}>
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' && !onlyView ? ' и подписать документ' : ''} `}>
             { isOpenContent && expanderContentTSX}
           </ContentExpander>
         </>}
