@@ -1,0 +1,114 @@
+@import "../../../styles/mixins";
+
+.rf-comment-tile__wrapper {
+  display: flex;
+  width: 880px;
+}
+
+.rf-comment-tile__tile {
+  box-shadow: 0px 2px 6px 0px #193B6826;
+  border-radius: 20px;
+}
+
+.rf-card__row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.rf-card__row_first-row {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rf-card__title-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.rf-card__title {
+  @include text-l-16-bold();
+}
+
+.rf-card__subtitle {
+  @include text-m-16();
+  color: var(--text-secondary)
+}
+
+.rf-card__user-wrapper {
+  display: flex;
+  padding: 12px 16px 12px 12px;
+  width: 840px;
+  background: var(--background-secondary);
+  border-radius: 12px;
+}
+
+.rf-card__user-photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.rf-card__user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.rf-card__user-row {
+  display: flex;
+  align-items: center;
+}
+
+.rf-card__user-full-name {
+  @include text-m-16();
+  font-weight: bold;
+}
+
+.rf-card__user-role {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.rf-card__user-additional {
+  @include text-m-16();
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.rf-card__user-accent {
+  margin-right: 12px;
+  color: var(--text-primary);
+}
+
+.rf-card__user-accent_number {
+  margin-right: 8px;
+}
+
+.rf-card__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--basic-tertiary);
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.rf-card__tooltip-text {
+  display: block;
+  white-space:nowrap;
+}
+
+.rf-card__toast-text {
+  @include text-xs-14();
+  color: var(--text-secondary);
+}
+
+.rf-card__button-wrapper {
+  display: flex;
+  justify-content: end;
+}
