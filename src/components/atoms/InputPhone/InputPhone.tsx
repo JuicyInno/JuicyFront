@@ -6,10 +6,7 @@ import InputMask from 'react-input-mask';
 
 import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
-
 import { IMenuContext } from '../../../types';
-import useUpdateEffect from '../../../hooks/useUpdateEffect';
-
 import ChevronDown from '../../../assets/icons/ChevronDown';
 import FlagDisabled from '../../../assets/icons/FlagDisabled';
 import FlagRU from '../../../assets/icons/FlagRU';
@@ -190,7 +187,7 @@ const InputPhone: React.FC<IInputPhoneProps> =
                           >
                             <ChevronDown />
                           </button>
-                        )
+                        );
                       }}
                     </MenuContext.Consumer>
                   )}

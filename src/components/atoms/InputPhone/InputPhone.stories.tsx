@@ -46,7 +46,10 @@ export default {
       controle: { type: 'string' },
       defaultValue: '7 777 777 77 77'
     },
-    onClear: { table: { disable: true } },
+    onClear: {
+      table: { disable: true },
+      defaultValue: null
+    },
     debounce: { table: { disable: true } },
     icon: { table: { disable: true } },
     startAdornment: { table: { disable: true } },

@@ -52,7 +52,7 @@ describe('Test <InputPhone/> component', () => {
 
     fireEvent.click(screen.getByText('Великобритания'));
 
-    expect(inputDisplay).toHaveValue('');
+    expect(inputDisplay).toHaveValue('+44 (999) 999 - 99 - 99');
 
     fireEvent.change(inputDisplay, { target: { value: '+449999999999' } });
     expect(inputDisplay).toHaveValue('+44 (999) 999 - 99 - 99');
