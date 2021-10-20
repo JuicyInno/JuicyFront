@@ -52,8 +52,10 @@ export const sendNotification = (message: INotification, delay = 8000) => {
 // ----Компонент--------------------------------------------------------------------------------------------------------
 
 export interface INotification {
+  /** Заголовок сообщения */
+  title?: string;
   /** Текст сообщения */
-  message: string;
+  message?: string;
   /** ID сообщения */
   id?: number;
   /** Тип сообщения */
