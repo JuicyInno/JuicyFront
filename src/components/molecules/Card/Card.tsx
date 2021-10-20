@@ -31,8 +31,8 @@ export interface ICard {
   subTitle?: string;
   /** Название заявки */
   title: string;
-  /** Вкладка истории */
-  isHistoryTab?: boolean;
+  /** Кнопка обработки заявки */
+  showActionButton?: boolean;
   /** Пользователи */
   users: IUser[];
 }
@@ -45,7 +45,7 @@ const Card: FC<ICard> = ({
   statusText,
   statusColor = 'default',
   users,
-  isHistoryTab,
+  showActionButton,
   onClick
 }) => {
 
@@ -56,7 +56,54 @@ const Card: FC<ICard> = ({
     navigator.clipboard.writeText(user.id);
   };
 
-  return <div className='rf-card__wrapper' onClick={onClick}>
+  const getUsers = users.map((user: IUser) => (
+    <div className='rf-card__row'>
+      <div className='rf-card__user-wrapper'>
+        <div className='rf-card__user-photo-wrapper'>
+          <UserPhoto url={user.photo} radius='48' />
+        </div>
+        <div className='rf-card__user-info-wrapper'>
+          <div className='rf-card__user-row'>
+            <p className='rf-card__user-full-name'>{user.fullName}</p>
+            {!!user.role && <p className='rf-card__user-role'>{`  / ${user.role}`}</p>}
+          </div>
+          <div className='rf-card__user-row'>
+            <p className='rf-card__user-additional'>Табельный номер</p>
+            <div className='rf-card__user-row'>
+              <p className='rf-card__user-accent rf-card__user-accent_number'>{user.id}</p>
+              <div className='rf-card__icon-wrapper'>
+                <Tooltip position='bottom'>
+                  <Copy onClick={() => copyHandler(user)} id='copyIcon' />
+                  <div className='rf-card__tooltip-text'>Скопировать ТН</div>
+                </Tooltip>
+                <Toast isVisible={isCopied} setVisibility={setIsCopied}>
+                  <p className='rf-card__toast-text'>ТН скопирован</p>
+                </Toast>
+              </div>
+              {!!user.position &&
+                <>
+                  <p className='rf-card__user-additional'>Должность</p>
+                  <div className='rf-card__user-row'>
+                    <p className='rf-card__user-accent'>{user.position}</p>
+                  </div>
+                </>
+              }
+              {!!user.period &&
+                <>
+                  <p className='rf-card__user-additional'>Период</p>
+                  <div className='rf-card__user-row'>
+                    <p className='rf-card__user-accent'>{user.period}</p>
+                  </div>
+                </>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ));
+
+  return <div className='rf-card__wrapper'>
     <Tile className='rf-card__tile'>
       <div className='rf-card__row rf-card__row_first-row'>
         <div className='rf-card__title-wrapper'>
@@ -65,55 +112,10 @@ const Card: FC<ICard> = ({
         </div>
         <Tag variant={statusColor}>{statusText}</Tag>
       </div>
-      {users.map((user: IUser) => (
-        <div className='rf-card__row'>
-          <div className='rf-card__user-wrapper'>
-            <div className='rf-card__user-photo-wrapper'>
-              <UserPhoto url={user.photo} radius='48' />
-            </div>
-            <div className='rf-card__user-info-wrapper'>
-              <div className='rf-card__user-row'>
-                <p className='rf-card__user-full-name'>{user.fullName}</p>
-                {!!user.role && <p className='rf-card__user-role'>{`  / ${user.role}`}</p>}
-              </div>
-              <div className='rf-card__user-row'>
-                <p className='rf-card__user-additional'>Табельный номер</p>
-                <div className='rf-card__user-row'>
-                  <p className='rf-card__user-accent rf-card__user-accent_number'>{user.id}</p>
-                  <div className='rf-card__icon-wrapper'>
-                    <Tooltip position='bottom'>
-                      <Copy onClick={() => copyHandler(user)} id='copyIcon' />
-                      <div className='rf-card__tooltip-text'>Скопировать ТН</div>
-                    </Tooltip>
-                    <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                      <p className='rf-card__toast-text'>ТН скопирован</p>
-                    </Toast>
-                  </div>
-                  {!!user.position &&
-                    <>
-                      <p className='rf-card__user-additional'>Должность</p>
-                      <div className='rf-card__user-row'>
-                        <p className='rf-card__user-accent'>{user.position}</p>
-                      </div>
-                    </>
-                  }
-                  {!!user.period &&
-                    <>
-                      <p className='rf-card__user-additional'>Период</p>
-                      <div className='rf-card__user-row'>
-                        <p className='rf-card__user-accent'>{user.period}</p>
-                      </div>
-                    </>
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-      {!isHistoryTab && (
+      {getUsers}
+      {!showActionButton && (
         <div className='rf-card__button-wrapper'>
-          <Button onClick={onClick}> Обработать </Button>
+          <Button className='rf-card__button' onClick={onClick}> Обработать </Button>
         </div>
       )}
     </Tile>

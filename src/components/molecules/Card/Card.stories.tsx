@@ -1,15 +1,18 @@
 import React from 'react';
 import { Story } from '@storybook/react';
+import { withDesign } from 'storybook-addon-designs';
 
-import Card from './Card';
+import Card, { ICard } from './Card';
 import { data } from './cards.mocks';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
 import {
   StoryDocs, StoryDocsH2, StoryDocsDescription, StoryDocsLabel
 } from '../../storybook';
 import { variants } from '../../../types';
 
 export default {
-  title: 'не проверено/Card',
+  title: 'molecules/Card',
   component: Card,
   typeArgs: {
     statusColor: {
@@ -17,7 +20,10 @@ export default {
       control: { type: 'select' },
       defaultValue: 'default'
     }
-  }
+  },
+  args: {
+    ...data[0],
+  } as ICard,
 };
 
 export const Demo: Story = () => {
@@ -40,7 +46,7 @@ export const Demo: Story = () => {
           <div style={{
             height: 'fit-content',
           }}>
-            <Card {...card} isHistoryTab />
+            <Card {...card} showActionButton />
           </div>
         </div>
       )
@@ -49,10 +55,20 @@ export const Demo: Story = () => {
   );
 };
 
+export const Playground: Story<ICard> = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Card {...args} />
+      </StoryRow>
+    </StoryContainer>
+  );
+};
+
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18118%3A281361',
+    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A280017',
   },
   actions: { disabled: true },
   controls: { disabled: true }
