@@ -20,10 +20,10 @@ module.exports = {
     confirmCommit: 'Вы уверены?',
   },
   types: [
-    // {
-    //   name: 'feat: Добавление нового функционала',
-    //   value: 'feat: [' + branch + '] '
-    // },
+    {
+      name: 'feat: Добавление нового функционала',
+      value: 'feat: [' + branch + '] '
+    },
     {
       name: 'fix: Исправление ошибок',
       value: 'fix: [' + branch + '] ',
