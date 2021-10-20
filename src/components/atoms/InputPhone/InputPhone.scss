@@ -1,9 +1,11 @@
 .rf-phone-input {
+  width: 320px;
+
   &__country {
     align-items: center;
     display: flex;
   }
-  
+
   &__flag {
     color: var(--text-tertiary);
   }
@@ -13,7 +15,7 @@
     margin-left: 4px;
 
     &:disabled {
-      color: var(--text-tertiary)
+      color: var(--text-tertiary);
     }
 
     &--rotate {
@@ -27,7 +29,7 @@
   }
 
   &__option-flag {
-    margin-right: 8px;;
+    margin-right: 8px;
   }
 
   &__option-text {

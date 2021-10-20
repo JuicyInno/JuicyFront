@@ -59,7 +59,18 @@ const InputPhone: React.FC<IInputPhoneProps> =
     };
 
     const onCountryChange = (c: IInputPhoneCountry) => () => {
-      setCountry(c);
+      let oldCountry: any;
+      setCountry((value) => {
+        oldCountry = value;
+        return c;
+      });
+      setDisplayValue(old => {
+        return old.replace(oldCountry.code, c.code.toString());
+      });
+
+      setInputValue((old) => {
+        return old.replace(oldCountry.code, c.code.toString());
+      });
     };
 
     useEffect(() => {
@@ -81,9 +92,9 @@ const InputPhone: React.FC<IInputPhoneProps> =
       }
     }, [displayValue, name, onChange]);
 
-    useUpdateEffect(() => {
-      setDisplayValue('');
-    }, [country]);
+    // useUpdateEffect(() => {
+    //   setDisplayValue('');
+    // }, [country]);
 
     const mask = useMemo(() => {
       return [
@@ -114,18 +125,21 @@ const InputPhone: React.FC<IInputPhoneProps> =
 
     return (
       <>
-        <InputMask mask={mask} value={displayValue} disabled={disabled} onChange={onInputChange}>
+        <InputMask
+          mask={mask}
+          value={displayValue} disabled={disabled} onChange={onInputChange}>
           <Input
             {...props}
             name={`${name}-display`}
             ref={setInputElement}
+            className='rf-phone-input'
             data-testid='input-display'
             startAdornment={
               <Menu
                 portal
                 anchorElement={inputElement}
                 content={
-                  countries.length > 1 && <MenuContext.Consumer>
+                  countries.length > 1 && !disabled && <MenuContext.Consumer>
                     {({ onClose }: IMenuContext) => (
                       <ul className='rf-list' onClick={onClose}>
                         {countries.map(c => (
@@ -160,17 +174,24 @@ const InputPhone: React.FC<IInputPhoneProps> =
                 <div className='rf-phone-input__country'>
                   {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
                   {countries.length > 1 && (
-                    <MenuContext.Consumer>
-                      {({ show }: IMenuContext) => (
-                        <button
-                          className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
-                          type='button'
-                          disabled={disabled}
-                          aria-label='Выбрать страну'
-                        >
-                          <ChevronDown />
-                        </button>
-                      )}
+                    <MenuContext.Consumer >
+                      {({ show, ...res }: IMenuContext) => {
+
+                        if (disabled) {
+                          return null;
+                        }
+
+                        return (
+                          <button
+                            className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
+                            type='button'
+                            disabled={disabled}
+                            aria-label='Выбрать страну'
+                          >
+                            <ChevronDown />
+                          </button>
+                        )
+                      }}
                     </MenuContext.Consumer>
                   )}
                 </div>
