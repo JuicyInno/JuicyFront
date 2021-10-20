@@ -5,7 +5,6 @@ import Card, { ICard } from './Card';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 const data: ICard = {
-    id: '',
     title: 'Надбавка за увеличение объёма продаж',
     requestNumber: '347347347',
     date: '01.01.2021',

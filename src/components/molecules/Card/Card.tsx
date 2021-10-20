@@ -17,10 +17,8 @@ import './Card.scss';
 export interface ICard {
   /** Дата заявки */
   date: string;
-  /** */
-  id: string;
   /** Обработка заявки */
-  onClick: () => void;
+  onClick?: () => void;
   /** Номер заявки */
   requestNumber: string;
   /** Цвет статуса заявки */
@@ -38,15 +36,15 @@ export interface ICard {
 }
 
 const Card: FC<ICard> = ({
-  title = '',
-  subTitle = '',
+  title,
+  subTitle,
   requestNumber,
   date,
   statusText,
   statusColor = 'default',
   users,
-  showActionButton,
-  onClick
+  showActionButton = false,
+  onClick = () => { },
 }) => {
 
   const [isCopied, setIsCopied] = useState(false);

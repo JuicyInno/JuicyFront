@@ -3,7 +3,6 @@ import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 export const data: ICard[] = [
     {
-        id: '',
         title: 'Надбавка за увеличение объёма продаж',
         requestNumber: '347347347',
         date: '01.01.2021',
@@ -13,7 +12,6 @@ export const data: ICard[] = [
         onClick: () => { }
     },
     {
-        id: '',
         title: 'Изменение ОШС',
         requestNumber: '347347347',
         date: '01.01.2021',
@@ -23,7 +21,6 @@ export const data: ICard[] = [
         onClick: () => { }
     },
     {
-        id: '',
         title: 'Заявка на перевод',
         requestNumber: '347347347',
         date: '01.01.2021',
@@ -33,7 +30,6 @@ export const data: ICard[] = [
         onClick: () => { }
     },
     {
-        id: '',
         title: 'Заявка на изменение основной выплаты',
         requestNumber: '0349',
         date: '21.05.2021',
@@ -43,7 +39,6 @@ export const data: ICard[] = [
         onClick: () => { }
     },
     {
-        id: '',
         title: 'Заявка на увольнение по соглашению сторон',
         requestNumber: '0349',
         date: '21.10.2021',
@@ -53,7 +48,6 @@ export const data: ICard[] = [
         onClick: () => { }
     },
     {
-        id: '',
         title: 'Заявка на совмещение обязанностей',
         requestNumber: '0349',
         date: '21.10.2021',
