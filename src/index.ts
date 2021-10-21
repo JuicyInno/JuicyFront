@@ -164,6 +164,9 @@ import Copy from './assets/icons/Copy';
 import CircleAlt from './assets/icons/CircleAlt';
 import CircleConfirm from './assets/icons/CircleConfirm';
 import CircleReject from './assets/icons/CircleReject';
+import CircleRefresh from './assets/icons/CircleRefresh';
+import CircleReturn from './assets/icons/CircleReturn';
+import CircleTrash from './assets/icons/CircleTrash';
 import Circle from './assets/icons/Circle';
 import Time from './assets/icons/Time';
 import EmptyUser from './assets/icons/EmptyUser';
@@ -193,11 +196,14 @@ export {
   CircleAlt,
   CircleConfirm,
   CircleReject,
+  CircleRefresh,
+  CircleReturn,
+  CircleTrash,
   Circle,
   Time,
   EmptyUser,
   Cross,
-  Redo
+  Redo,
 };
 
 export { variables, download };

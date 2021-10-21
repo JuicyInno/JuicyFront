@@ -42,6 +42,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
       const onClick = (e: React.MouseEvent) => {
         if (list[i] && list[i].onClick) {
+          e.preventDefault();
           e.stopPropagation();
           // @ts-ignore
           list[i].onClick();
