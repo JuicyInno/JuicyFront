@@ -3,9 +3,10 @@ import { render, screen } from '@testing-library/react';
 import Button from './Button';
 
 describe('Test <Button/> component', () => {
-
   it('should render Button component', () => {
-    render(<Button> Button </Button>)
+    const { container } = render(<Button> Button </Button>);
+
+    expect(container.getElementsByClassName('rf-button__text')).toHaveLength(1);
   });
 
   it('should be primary', () => {
@@ -69,9 +70,25 @@ describe('Test <Button/> component', () => {
   });
 
   it('should render adornments', () => {
-    render(<Button startAdornment={<div>start</div>} endAdornment={<div>end</div>}/>);
+    render(<Button startAdornment={<div>start</div>} endAdornment={<div>end</div>} />);
     expect(screen.queryByText('start')).toBeInTheDocument();
     expect(screen.queryByText('end')).toBeInTheDocument();
+  });
+
+  it('should render fullWidth', () => {
+    const { container } = render(<Button fullWidth>fullWidth</Button>);
+
+    expect(container.getElementsByClassName('rf-button__full-width')).toHaveLength(1);
+  });
+
+  it('should be textColor = green and buttonType = text', () => {
+    const { container } = render(
+      <Button buttonType='text' textColor='green'>
+        fullWidth
+      </Button>
+    );
+
+    expect(container.getElementsByClassName('rf-button--text-green')).toHaveLength(1);
   });
 
   it('should hide content when preloader is visible', () => {

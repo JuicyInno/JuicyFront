@@ -1,26 +1,50 @@
-import React from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import './CompletePopup.scss';
 import {
-  Button, CircleConfirm, CircleReject
+  Button, CircleReject, CircleConfirm, CircleReturn, CircleRefresh, CircleTrash
 } from '../../../index';
+import { classnames } from '../../../utils/classnames';
+
+export type IconType = 'success' | 'close' | 'return' | 'refresh' | 'trash';
 
 export interface ICompletePopupProps {
+  /** Заголовок */
   label: string;
-  onClose: () => void;
-  confirm?: boolean;
+  /** Описание */
+  description: string;
+  /** Кнопки */
+  buttons?: ReactNode | ReactNode[];
+  /** Функция закрытия модалки */
+  onClose?: () => void;
+  /** Иконка */
+  icon?: IconType;
 }
 
-const CompletePopup: React.FC<ICompletePopupProps> = ({ label, onClose, confirm }: ICompletePopupProps) => {
+const getIcon = (icon: IconType) => {
 
+  const icons: Partial<Record<IconType, ReactElement>> = {
+    'success': <CircleConfirm />,
+    'close': <CircleReject />,
+    'trash': <CircleTrash />,
+    'return': <CircleReturn />,
+    'refresh': <CircleRefresh />
+  };
+
+  return icons[icon];
+};
+
+const CompletePopup: React.FC<ICompletePopupProps> = ({ label, description, onClose, buttons, icon = 'success' }: ICompletePopupProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
-
   return (
     <div className='rf-complete-popup'>
-      { confirm ? <CircleConfirm/> : <CircleReject/> }
-      <p className='rf-complete-popup__label'>{ label }</p>
-      <Button fullWidth onClick={ onClose }>Закрыть</Button>
+      <div className={classnames('rf-complete-popup__icon', `rf-complete-popup__icon--${icon}`)}>{getIcon(icon)}</div>
+
+      <h5 className='rf-complete-popup__label'>{ label }</h5>
+      <p className='rf-complete-popup__description'>{ description }</p>
+
+      {buttons ? buttons : <Button fullWidth onClick={ onClose }>Продолжить</Button>}
     </div>
   );
 };
