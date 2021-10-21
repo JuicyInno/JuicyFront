@@ -1,13 +1,12 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import Card, { ICard } from './Card';
 import { data } from './cards.mocks';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import {
-  StoryDocs, StoryDocsH2, StoryDocsDescription, StoryDocsLabel
+  StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
 import { variants } from '../../../types';
 
@@ -21,9 +20,7 @@ export default {
       defaultValue: 'default'
     }
   },
-  args: {
-    ...data[0],
-  } as ICard,
+  args: { ...data[0], } as ICard,
 };
 
 export const Demo: Story = () => {
@@ -38,19 +35,14 @@ export const Demo: Story = () => {
           display: 'flex',
           marginBottom: '40px',
         }}>
-          <div style={{
-            marginRight: '100px',
-          }}>
+          <div style={{ marginRight: '100px', }}>
             <Card {...card} />
           </div>
-          <div style={{
-            height: 'fit-content',
-          }}>
+          <div style={{ height: 'fit-content', }}>
             <Card {...card} showActionButton />
           </div>
         </div>
-      )
-      )}
+      ))}
     </StoryDocs >
   );
 };
