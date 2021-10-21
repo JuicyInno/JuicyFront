@@ -16,19 +16,19 @@
 }
 
 .rf-avatar-status__border-size_xs {
-  @include elemSize(24px);
+  @include square(24px);
 }
 
 .rf-avatar-status__border-size_s {
-  @include elemSize(32px);
+  @include square(32px);
 }
 
 .rf-avatar-status__border-size_m {
-  @include elemSize(40px);
+  @include square(40px);
 }
 
 .rf-avatar-status__border-size_l {
-  @include elemSize(48px);
+  @include square(48px);
 }
 
 .rf-avatar-status__border-color_default,

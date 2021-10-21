@@ -170,7 +170,7 @@
   }
 }
 
-@mixin elemSize($r) {
+@mixin square($r) {
   width: $r;
   height: $r;
 }
