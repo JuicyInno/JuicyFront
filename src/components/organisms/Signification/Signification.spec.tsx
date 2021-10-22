@@ -84,7 +84,7 @@ describe('Test <Signification/> component', () => {
       expect(byText('Отменить').query()).toBeTruthy()
       expect(container.querySelectorAll('.info-block__wrapper--danger')).toHaveLength(1)
       userEvent.click(byText('Отменить').get())
-      expect(container.querySelectorAll('.buttons__wrapper .button__item')).toHaveLength(2)
+      expect(container.querySelectorAll('.buttons__wrapper .button__item')).toHaveLength(4)
     })
 //======================================================================================================================
     it('should be correct manual signification',async () => {
