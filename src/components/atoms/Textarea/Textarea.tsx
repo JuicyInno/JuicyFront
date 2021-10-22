@@ -20,6 +20,7 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   getValue?: (value: string) => void;
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
+  onDebounce?: (e: any) => any;
   /**
    * Показывать счетчик символов под инпутом.
    * @default true
@@ -37,6 +38,7 @@ const Textarea: FC<ITextareaProps> = ({
   invalid,
   onFocus,
   onBlur,
+  onDebounce = () => {},
   showMaxLength = true,
   ...props
 }: ITextareaProps) => {
@@ -64,6 +66,8 @@ const Textarea: FC<ITextareaProps> = ({
         .pipe(
           map((e: Event) => e),
           debounceTime(debounce),
+          distinctUntilChanged(),
+          map(onDebounce),
           distinctUntilChanged()
         )
         .subscribe((e: any) => {

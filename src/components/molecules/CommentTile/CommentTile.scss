@@ -27,3 +27,25 @@
   margin-top: 20px;
   width: 180px;
 }
+
+.rf-comment-tile-chip {
+  padding: 20px 10px 0px 0px;
+}
+
+.rf-comment-tile-chip-wrapper {
+  display: flex;
+}
+
+.rf-comment-tile-chip-text {
+  @include text-s-14;
+  color: var(--basic-primary);
+  display: flex;
+  align-items: center;
+
+}
+
+.rf-comment-tile-chip-button {
+  padding-left: 8px;
+  padding-top: 4px;
+  cursor: pointer;
+}

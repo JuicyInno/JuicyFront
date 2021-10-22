@@ -111,7 +111,7 @@ const Card: FC<ICard> = ({
         <Tag variant={statusColor}>{statusText}</Tag>
       </div>
       {getUsers}
-      {!showActionButton && (
+      {showActionButton && (
         <div className='rf-card__button-wrapper'>
           <Button className='rf-card__button' onClick={onClick}> Обработать </Button>
         </div>

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import CommentTile, { ICommentTileProps } from './CommentTile';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import {
-  StoryDocs, StoryDocsH2, StoryDocsDescription, StoryDocsLabel
+  StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
 import { variants } from '../../../types';
 
@@ -29,7 +28,7 @@ export const Demo: Story = () => {
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
-
+      <CommentTile />
     </StoryDocs >
   );
 };
