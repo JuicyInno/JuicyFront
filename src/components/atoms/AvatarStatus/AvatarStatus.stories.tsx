@@ -2,9 +2,10 @@ import React from 'react';
 import AvatarStatus from './AvatarStatus';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
+import { Demo } from '../../molecules/Card/Card.stories';
 
 export default {
-  title: 'Avatar Status',
+  title: 'atoms/withTest/AvatarStatus',
   component: AvatarStatus,
 };
 
@@ -50,4 +51,13 @@ export const avatar = () => {
       </StoryItem>
     </Story>
   );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A85203',
+  },
+  actions: { disabled: true },
+  controls: { disabled: true }
 };

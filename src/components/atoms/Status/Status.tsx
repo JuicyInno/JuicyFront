@@ -12,41 +12,49 @@ interface IProps {
 
 const statusColors: any = {
   '0': {
-    background: 'defaultColorBackground',
-    symbol: 'defaultColorSymbol',
-    icon: <CircleConfirm />
+    background: 'rf-status__defaultColorBackground',
+    symbol: 'rf-status__defaultColorSymbol',
+    icon: <CircleConfirm className='rf-status__icon' />
   },
   '1': {
-    background: 'errorColorBackground',
-    symbol: 'errorColorSymbol',
-    icon: <Cross />
+    background: 'rf-status__errorColorBackground',
+    symbol: 'rf-status__errorColorSymbol',
+    icon: <Cross className='rf-status__icon' />
   },
   '2': {
-    background: 'warningColorBackground',
-    symbol: 'warningColorSymbol',
-    icon: <Redo />
+    background: 'rf-status__warningColorBackground',
+    symbol: 'rf-status__warningColorSymbol',
+    icon: <Redo className='rf-status__icon' />
   },
   '3': {
-    background: 'successColorBackground',
-    symbol: 'successColorSymbol',
-    icon: <CircleConfirm />
+    background: 'rf-status__successColorBackground',
+    symbol: 'rf-status__successColorSymbol',
+    icon: <CircleConfirm className='rf-status__icon' />
   },
   '4': {
-    background: 'noneColorBackground',
-    symbol: 'noneColorSymbol',
-    icon: <CircleConfirm />
+    background: 'rf-status__noneColorBackground',
+    symbol: 'rf-status__noneColorSymbol',
+    icon: <CircleConfirm className='rf-status__icon' />
   },
 };
 
-const Status: FC<IProps> = ({ statusText, criticality }) => {
-  return <div className='status__wrapper'>
-    <div className={`status__icon-wrapper ${statusColors[criticality].background || statusColors['4'].background}`}>
-      <div className={`status__icon ${statusColors[criticality].symbol || statusColors['4'].symbol}`}>
-        {statusColors[criticality].icon}
+const Status: FC<IProps> = ({ statusText = 'Статус неопределён', criticality = '4' }) => {
+  return (
+    <div className='rf-status__wrapper'>
+      <div
+        className={`rf-status__icon-wrapper ${statusColors[criticality].background || statusColors['4'].background}`}
+        data-testid='status-background'
+      >
+        <div
+          className={`${statusColors[criticality].symbol || statusColors['4'].symbol}`}
+          data-testid='status-symbol'
+        >
+          {statusColors[criticality].icon}
+        </div>
       </div>
+      <p className={`rf-status__text ${statusColors[criticality].symbol}`}>{statusText}</p>
     </div>
-    <p className={`status__text ${statusColors[criticality].symbol}`}>{statusText}</p>
-  </div>;
+  );
 };
 
 export default Status;

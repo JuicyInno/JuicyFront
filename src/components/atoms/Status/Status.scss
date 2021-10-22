@@ -1,61 +1,63 @@
 @import "src/styles/mixins";
 
-.status__wrapper {
+.rf-status__wrapper {
   display: flex;
   align-items: center;
 }
 
-.status__icon-wrapper {
+.rf-status__icon-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: 8px;
   width: 24px;
   height: 24px;
-  margin-right: 8px;
 
   border-radius: 50%;
 }
 
-.status__text {
+.rf-status__icon {
+  @include square(24px);
+}
+
+.rf-status__text {
   @include text-s-14();
 }
 
-.defaultColorBackground {
+.rf-status__defaultColorBackground {
   background-color: var(--special-softBlue);
 }
 
-.defaultColorSymbol {
+.rf-status__defaultColorSymbol {
   color: var(--basic-primary);
 }
 
-.warningColorBackground {
+.rf-status__warningColorBackground {
   background-color: var(--special-softYellow);
 }
 
-.warningColorSymbol {
+.rf-status__warningColorSymbol {
   color: var(--status-warn);
 }
 
-.errorColorBackground {
+.rf-status__errorColorBackground {
   background-color: var(--special-softRed);
 }
 
-.errorColorSymbol {
+.rf-status__errorColorSymbol {
   color: var(--status-danger);
 }
 
-.successColorBackground {
+.rf-status__successColorBackground {
   background-color: var(--special-softGreen);
 }
 
-.successColorSymbol {
+.rf-status__successColorSymbol {
   color: var(--status-success);
 }
 
-.noneColorBackground {
+.rf-status__noneColorBackground {
   background-color: var(--background-secondary);
 }
 
-.noneColorSymbol {
+.rf-status__noneColorSymbol {
   color: var(--text-secondary);
 }

@@ -54,8 +54,8 @@ const Card: FC<ICard> = ({
     navigator.clipboard.writeText(user.id);
   };
 
-  const getUsers = users.map((user: IUser) => (
-    <div className='rf-card__row'>
+  const getUsers = users.map((user: IUser, i) => (
+    <div className='rf-card__row' key={i}>
       <div className='rf-card__user-wrapper'>
         <div className='rf-card__user-photo-wrapper'>
           <UserPhoto url={user.photo} radius='48' />
