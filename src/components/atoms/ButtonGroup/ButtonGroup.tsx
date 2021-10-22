@@ -64,18 +64,20 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className='button-group'>
-      { buttonsJSX }
-      {
-        menuJSX.length > 0 && (
-          <Menu content={<div className='button-group__menu'>{menuJSX}</div>}>
-            <Button buttonType='iconFill'>
-              <KebabMenu/>
-            </Button>
-          </Menu>
-        )
-      }
-    </div>
+    list.length > 0 ? (
+      <div className='button-group'>
+        { buttonsJSX }
+        {
+          menuJSX.length > 0 && (
+            <Menu content={<div className='button-group__menu'>{menuJSX}</div>}>
+              <Button buttonType='iconFill'>
+                <KebabMenu/>
+              </Button>
+            </Menu>
+          )
+        }
+      </div>
+    ) : null
   );
 };
 export default ButtonGroup;
