@@ -1,8 +1,8 @@
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import React from 'react';
+
 import Signification, { ISignifyCallback } from './Signification';
-import { variants } from '../../../types';
 import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
 import './story.scss';
@@ -16,14 +16,35 @@ export default {
   title: 'organisms/Подписание документов',
   component: Signification,
   decorators: [withDesign],
-  typeArgs: {
-    statusColor: {
-      options: variants,
-      control: { type: 'select' },
-      defaultValue: 'default'
-    }
+  argTypes: {
+    data: { control: null },
+    documentInfo: { control: null },
+    title: { type: 'string' },
+    isSpoiler: { type: 'boolean' }
   }
 };
+
+
+// /** Изначальный файл*/
+// data:IRequestAttachment
+// /** Дополнительные данные о документе*/
+// documentInfo?:ReactNode
+// /** заголовок*/
+// title?:string
+// /** функция- результат подписания */
+// onSignify?:(result:ISignifyCallback)=>void
+//     /** массив в котором название кнопок для скрытия */
+//     hideButtons?:TButtons[]
+// /** показывать ли спойлер для документа */
+// isSpoiler?:boolean
+// /** открыт или закрыт спойлер для документа */
+// isOpenSpoiler?:boolean
+// /** фильтр сертификатов */
+// filter?: (cert: Certificate) => Promise<boolean>
+// /** кастомные названия кнопок */
+// buttonCustomTexts?:ICustomTexts
+// /** ссылка на pdf если надо открыть в отдельном окне */
+// pdfUrl?:string
 const response = (data:ISignifyCallback) => {
   console.warn('!!!response:', data);
 };
@@ -75,23 +96,6 @@ export const Demo = () => {
     </Story>
   </div>;
 };
-export const playground = () => {
-  return <div className='story-sign__wrapper'>
-    <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной
-     подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>
-      <StoryItem>
-        <Signification
-          onSignify={response}
-          isSpoiler={false}
-          hideButtons={['reject']}
-          buttonCustomTexts={{ sign: 'котик приложи лапку' }}
-          data={file}
-          title='Приказ №384848483 от 30.08.2021'/>
-      </StoryItem>
-    </Story>
-
-  </div>;
-};
 Demo.parameters = {
   design: {
     type: 'figma',
@@ -100,3 +104,19 @@ Demo.parameters = {
   actions: { disabled: true },
   controls: { disabled: true }
 };
+
+// export const playground = (args: IProps) => {
+//   console.log('!!!!');
+//   return <div className='story-sign__wrapper'>
+//     <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной
+//      подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>
+//       <StoryItem>
+//         <Signification
+//           {...args}
+//           data={file}
+//         />
+//       </StoryItem>
+//     </Story>
+//
+//   </div>;
+// };
