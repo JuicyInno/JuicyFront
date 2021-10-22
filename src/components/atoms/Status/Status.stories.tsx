@@ -3,35 +3,15 @@ import Status from './Status';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import { Demo } from '../../molecules/Card/Card.stories';
+import { withDesign } from 'storybook-addon-designs';
+
+import { statuses } from './Status.mock';
 
 export default {
   title: 'atoms/withTest/Status',
-  component: Status
+  component: Status,
+  decorators: [withDesign]
 };
-
-
-const statuses = [
-  {
-    statusText: 'Подписано ЭЦП',
-    criticality: '3'
-  },
-  {
-    statusText: 'Согласовано',
-    criticality: '0'
-  },
-  {
-    statusText: 'Отклонено ЭДО',
-    criticality: '1'
-  },
-  {
-    statusText: 'На доработке',
-    criticality: '2'
-  },
-  {
-    statusText: 'Несуществующий',
-    criticality: '4'
-  },
-];
 
 const style = { display: 'flex' };
 const margin = {
@@ -62,7 +42,7 @@ export const status = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A70627',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A70850',
   },
   actions: { disabled: true },
   controls: { disabled: true }

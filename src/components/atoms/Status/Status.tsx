@@ -4,7 +4,7 @@ import Cross from '../../../assets/icons/Cross';
 import Redo from '../../../assets/icons/Redo';
 import './Status.scss';
 
-interface IProps {
+export interface IProps {
     statusText: string;
     /** Критичность (0 - None (no color) / 1 - Error (red) / 2 - Warning (yellow) / 3 - Success (green))*/
     criticality: string;

@@ -2,13 +2,7 @@ import React from 'react';
 import {render, screen} from '@testing-library/react';
 import AvatarStatus from "./AvatarStatus";
 
-const variants: any = [
-    'green',
-    'default',
-    'none',
-    'yellow',
-    'red'
-];
+import { variants } from './AvatarStatus.mock';
 
 describe('Test <AvatarStatus /> component', () => {
     it('should render AvatarStatus component without any props', () => {

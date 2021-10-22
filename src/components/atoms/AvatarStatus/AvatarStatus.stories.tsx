@@ -3,22 +3,17 @@ import AvatarStatus from './AvatarStatus';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import { Demo } from '../../molecules/Card/Card.stories';
+import { withDesign } from 'storybook-addon-designs';
+
+import { variants } from './AvatarStatus.mock';
 
 export default {
   title: 'atoms/withTest/AvatarStatus',
   component: AvatarStatus,
+  decorators: [withDesign]
 };
 
-export const avatar = () => {
-
-  const variants = [
-    'green',
-    'default',
-    'none',
-    'yellow',
-    'red'
-  ];
-
+export const avatarStatus = () => {
   const elemStyle = { marginRight: '70px' };
 
   return (
@@ -56,7 +51,7 @@ export const avatar = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A85203',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A85357',
   },
   actions: { disabled: true },
   controls: { disabled: true }
