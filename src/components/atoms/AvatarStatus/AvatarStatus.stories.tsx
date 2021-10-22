@@ -24,7 +24,7 @@ export const avatarStatus = () => {
             display: 'flex',
             padding: '32px'
           }}>
-            {variants.map((variant: any, i) => <div
+            {variants.map((variant: any, i: number) => <div
               style={(i !== variants.length - 1) ? elemStyle : { marginRight: '0px' }}>
               <AvatarStatus fullName='Александр Петров' variant={variant} size='l' hasBadge/>
             </div>)}
@@ -37,7 +37,7 @@ export const avatarStatus = () => {
             display: 'flex',
             padding: '32px'
           }}>
-            {variants.map((variant: any, i) => <div
+            {variants.map((variant: any, i: number) => <div
               style={(i !== variants.length - 1) ? elemStyle : { marginRight: '0px' }}>
               <AvatarStatus fullName='Александр Петров' size='l' variant={variant}/>
             </div>)}
