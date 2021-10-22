@@ -11,6 +11,8 @@ import Button from '../../atoms/Button';
 import Status from '../../atoms/Status';
 import Tooltip from '../../atoms/Tooltip';
 import UserPhoto from '../../atoms/UserPhoto';
+import AvatarStatus from '../../atoms/AvatarStatus';
+import { download } from '../../../utils/download';
 import './History.scss';
 import Chip from '../../atoms/Chip';
 
@@ -19,6 +21,14 @@ interface IProps {
     attachments?: IRequestAttachment[];
     isUZADO?: boolean;
 }
+
+const criticalColors: any = {
+  '0': 'blue',
+  '1': 'red',
+  '2': 'yellow',
+  '3': 'green',
+  '4': 'none'
+};
 
 const History: React.FC<IProps> = ({ history, isUZADO, attachments }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
@@ -79,7 +89,12 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments }: IProps) =>
     return (
       <div className='rf-history__history-element' key={r.stepId}>
         <div className='rf-history__user-photo'>
-          {r.user && r.user.length === 1 ? <UserPhoto radius='48px' url={r.user[0].photo} /> : <EmptyUser />}
+          {r.user && r.user.length === 1 ?
+            <AvatarStatus
+              photo={r.user[0].photo}
+              variant={r.user[0].fullName === 'Вы' ? 'blue' : criticalColors[r.criticality]}
+            /> :
+            <EmptyUser />}
           {i !== path.length - 1 && (
             <div className='rf-history__user-line'>
               <div className='rf-history__user-line-inner' />
@@ -133,7 +148,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments }: IProps) =>
     <p className='rf-history__attachments-title'>Приложенные файлы</p>
     <div className='rf-history__attachments-container'>
       {attachments?.map(attachment => <div className='rf-history__attachment'>
-        <Chip type='secondary' size='s'>{attachment.fileName}</Chip>
+        <Chip type='secondary' size='s' onClick={() => download(attachment, attachment.fileName)}>{attachment.fileName}</Chip>
       </div>)}
     </div>
   </div>;
