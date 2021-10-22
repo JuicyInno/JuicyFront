@@ -4,5 +4,9 @@
 }
 .doc__title{
   @include text-m-16;
-  color:var(--text-secondary)
+  color:var(--text-secondary);
+  padding-bottom: 4px;
+}
+.story-sign__wrapper{
+  background-color: var(--background-secondary);
 }
