@@ -5,7 +5,6 @@ import React, {
 import PageWithSections from './PageWithSections';
 import { IPageSection } from '../../../types/projects.types';
 import { ITab } from '../../../types';
-import { Button } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
@@ -34,7 +33,7 @@ export const pageWithSections = () => {
     {
       id: 'test1',
       title: 'Раздел 1',
-      component: <div style={{ height: '300px' }}> Раздел 1 </div>
+      component: <div style={ { height: '300px' } }> Раздел 1 </div>
     },
     // {
     //   id: 'test22',
@@ -105,18 +104,13 @@ export const pageWithSections = () => {
     }, 2000);
   }, []);
 
-  const actionMenu = (
-    <>
-      <Button> Согласовать </Button>
-    </>
-  );
-
   return (
     <BrowserRouter>
 
-      <div style={shellAsideStyle}/>
-      <div style={{ marginLeft: '120px' }}>
-        <PageWithSections navigation={navigation} sections={sections} actionMenu={actionMenu} preloader={!loaded} title='Изменение графика рабочего времени' backUrl='/'/>
+      <div style={ shellAsideStyle }/>
+      <div style={ { marginLeft: '120px' } }>
+        <PageWithSections navigation={ navigation } sections={ sections } preloader={ !loaded }
+          title='Изменение графика рабочего времени' backUrl='/'/>
       </div>
     </BrowserRouter>
   );
