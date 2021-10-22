@@ -20,7 +20,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with default size m', () => {
-    const { container } = render(
+    render(
       <Tooltip open>
         <div>Button</div>
         <div >
@@ -28,11 +28,11 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-    expect(container.getElementsByClassName('rf--m')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--m');
   });
 
-  it('should render Tooltip component with size m', () => {
-    const { container } = render(
+  it('should render Tooltip component with  size m', () => {
+    render(
       <Tooltip open size='m'>
         <div>Button</div>
         <div >
@@ -40,11 +40,11 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-    expect(container.getElementsByClassName('rf--m')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--m');
   });
 
-  it('should render Tooltip component size l', () => {
-    const { container } = render(
+  it('should render Tooltip component with  size l', () => {
+    render(
       <Tooltip open size='l'>
         <div>Button</div>
         <div >
@@ -52,19 +52,22 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-    expect(container.getElementsByClassName('rf--l')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--l');
   });
 
-  it('should render Tooltip component with custom classname', () => {
-    const { container } = render(
-      <Tooltip open className='testClassName'>
-        <div>Button</div>
+  it('should render Tooltip component with custom classname', async () => {
+    render(
+      <Tooltip open className='testClassName' >
+        <div >Button</div>
         <div >
           <p>Tooltip</p>
         </div>
-      </Tooltip>
+      </Tooltip >
     )
-    expect(container.getElementsByClassName('testClassName')).toHaveLength(1);
+    fireEvent.mouseOver(screen.getByText('Button'));
+
+    await waitFor(() => screen.getByTestId('tooltip__content'));
+    expect(screen.queryByTestId('tooltip__content')).toHaveClass('testClassName')
   });
 
   it('should  not render Tooltip component with open == false', async () => {
@@ -109,7 +112,7 @@ describe('Test <Tooltip/> component', () => {
       </Tooltip>
     )
 
-    expect(container.getElementsByClassName('rf-tooltip__inner--top')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf-tooltip__inner--top')
   });
 
   it('should render Tooltip component with position = bottom-start', () => {
@@ -122,7 +125,7 @@ describe('Test <Tooltip/> component', () => {
       </Tooltip>
     )
 
-    expect(container.getElementsByClassName('rf-tooltip__inner--bottom-start')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf-tooltip__inner--bottom-start')
   });
 
   it('should render Tooltip component with color = white', () => {
@@ -134,8 +137,7 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-
-    expect(container.getElementsByClassName('rf-tooltip--white')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--white')
   });
 
   it('should render Tooltip component with color = primary', () => {
@@ -147,8 +149,7 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-
-    expect(container.getElementsByClassName('rf-tooltip--primary')).toHaveLength(1);
+    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--primary')
   });
 
   it('should render Tooltip component with default color ', () => {
@@ -160,20 +161,6 @@ describe('Test <Tooltip/> component', () => {
         </div>
       </Tooltip>
     )
-
-    expect(container.getElementsByClassName('rf-tooltip--default')).toHaveLength(1);
-  });
-
-  it('should render Tooltip component with portal ', () => {
-    render(
-      <Tooltip open portal>
-        <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-
-    expect(screen.getByTestId('portal')).toBeInTheDocument();
+    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--default')
   });
 });

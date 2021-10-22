@@ -24,10 +24,6 @@ export default {
       defaultValue: 'right'
     },
     open: { type: 'boolean', },
-    portal: {
-      type: 'boolean',
-      defaultValue: false
-    },
     color: {
       options: ['default', 'white', 'primary'],
       control: { type: 'select' },
@@ -254,7 +250,7 @@ export const Playground = (args: ITooltipProps) => {
             </button>
 
             <div>
-              <p> Tooltip </p>
+              <p> Tooltip  </p>
             </div>
           </Tooltip>
         </div>

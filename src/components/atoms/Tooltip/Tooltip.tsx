@@ -1,5 +1,5 @@
 import React, {
-  FC, ReactNode, useEffect, useMemo, useState, useRef, useLayoutEffect
+  FC, ReactNode, useMemo, useState, useRef, useLayoutEffect
 } from 'react';
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
@@ -16,8 +16,6 @@ interface ITooltipContentProps {
   position: TooltipPosition;
   /** Дополнительный класс */
   className?: string;
-  /** Портал в элемент - по умолчанию body */
-  portal: boolean;
   /** Размер тултипа */
   size?: Size;
   /** Цвет тултипа */
@@ -31,155 +29,74 @@ const TooltipContent: FC<ITooltipContentProps> = ({
   children,
   position,
   className,
-  portal,
   size = 'm',
   color,
-  getPopupContainer
+  getPopupContainer,
 }: ITooltipContentProps) => {
-  const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
+  const currentRectY = useMemo(() => (rect.y || rect.top), []);
+  const currentRectX = useMemo(() => (rect.x || rect.left), []);
 
-  /** При маунте добавляем модалку. При дестрое - удаляем. */
-  useEffect(() => {
-    const container = getPopupContainer();
-
-    container.appendChild(div);
-
-    return () => {
-      container.removeChild(div);
-    };
-  }, [div]);
-
-  rect.y = (rect.y || rect.top) + window.scrollY;
-  rect.x = (rect.x || rect.left) + window.scrollX;
-
-  const styles = portal ?
-    {
-      'top': {
-        top: `${rect.y}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, -100%)'
-      },
-      'top-start': {
-        top: `${rect.y}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, -100%)'
-      },
-      'top-end': {
-        top: `${rect.y}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, -100%)'
-      },
-      'right': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x + rect.width}px`,
-        transform: 'translate(0, -50%)'
-      },
-      'right-start': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x + rect.width}px`,
-        transform: 'translate(0, -50%)'
-      },
-      'right-end': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x + rect.width}px`,
-        transform: 'translate(0, -50%)'
-      },
-      'bottom': {
-        top: `${rect.y + rect.height}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, 0)'
-      },
-      'bottom-start': {
-        top: `${rect.y + rect.height}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, 0)'
-      },
-      'bottom-end': {
-        top: `${rect.y + rect.height}px`,
-        left: `${rect.x + rect.width / 2}px`,
-        transform: 'translate(-50%, 0)'
-      },
-      'left': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x}px`,
-        transform: 'translate(-100%, -50%)'
-      },
-      'left-start': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x}px`,
-        transform: 'translate(-100%, -50%)'
-      },
-      'left-end': {
-        top: `${rect.y + rect.height / 2}px`,
-        left: `${rect.x}px`,
-        transform: 'translate(-100%, -50%)'
-      }
-    } :
-    {
-      'top': {
-        top: '0',
-        left: '50%',
-        transform: 'translate(-50%, -100%)'
-      },
-      'top-start': {
-        bottom: '100%',
-        left: '0',
-        top: 'auto',
-        paddingLeft: '0'
-      },
-      'top-end': {
-        bottom: ' 100%',
-        right: '0',
-        top: 'auto',
-        left: 'auto',
-      },
-      'right': {
-        top: '50%',
-        left: '100%',
-        transform: 'translate(0, -50%)'
-      },
-      'right-start': {
-        top: '10%',
-        left: '100%',
-        transform: 'translate(0, -4%)'
-      },
-      'right-end': {
-        bottom: '0',
-        top: 'auto',
-        left: '100%'
-      },
-      'bottom': {
-        top: '100%',
-        left: '50%',
-        transform: 'translate(-50%, 0)'
-      },
-      'bottom-start': {
-        top: '100%',
-        left: '0%',
-        paddingLeft: '0'
-      },
-      'bottom-end': {
-        right: '0',
-        top: '100%',
-        left: 'auto',
-      },
-      'left': {
-        top: '50%',
-        left: '0',
-        transform: 'translate(-100%, -50%)'
-      },
-      'left-start': {
-        top: '0',
-        left: '0px',
-        transform: 'translate(-100%, 0)'
-      },
-      'left-end': {
-        bottom: '0px',
-        top: 'auto',
-        right: '100%',
-        left: 'auto',
-      }
-    };
+  const styles =
+  {
+    'top': {
+      top: `${currentRectY}px`,
+      left: `${currentRectX + rect.width / 2}px`,
+      transform: 'translate(-50%, -100%)'
+    },
+    'top-start': {
+      top: `${currentRectY - 10}px`,
+      left: `${currentRectX - 20}px`,
+      transform: 'translate(0, -100%)'
+    },
+    'top-end': {
+      top: `${currentRectY - 10}px`,
+      left: `${currentRectX + rect.width}px`,
+      transform: 'translate(-100%, -100%)'
+    },
+    'right': {
+      top: `${currentRectY + rect.height / 2}px`,
+      left: `${currentRectX + rect.width}px`,
+      transform: 'translate(0, -50%)'
+    },
+    'right-start': {
+      top: `${currentRectY - 10}px`,
+      left: `${currentRectX + rect.width}px`,
+    },
+    'right-end': {
+      top: `${currentRectY - rect.height + 20}px`,
+      left: `${currentRectX + rect.width}px`,
+      transform: 'translate(0, -50%)'
+    },
+    'bottom': {
+      top: `${currentRectY + rect.height}px`,
+      left: `${currentRectX + rect.width / 2}px`,
+      transform: 'translate(-50%, 0)'
+    },
+    'bottom-start': {
+      top: `${currentRectY + rect.height}px`,
+      left: `${currentRectX - 20}px`,
+    },
+    'bottom-end': {
+      top: `${currentRectY + rect.height}px`,
+      left: `${currentRectX + rect.width}px`,
+      transform: 'translate(-100%, 0)'
+    },
+    'left': {
+      top: `${currentRectY + rect.height / 2}px`,
+      left: `${currentRectX - 12}px`,
+      transform: 'translate(-100%, -50%)'
+    },
+    'left-start': {
+      top: `${currentRectY - 10}px`,
+      left: `${currentRectX - 12}px`,
+      transform: 'translate(-100%, 0%)'
+    },
+    'left-end': {
+      top: `${currentRectY}px`,
+      left: `${currentRectX - 12}px`,
+      transform: 'translate(-100%,-70%)'
+    }
+  };
 
   const padding = {
     'top': 'paddingBottom',
@@ -200,22 +117,21 @@ const TooltipContent: FC<ITooltipContentProps> = ({
     e.stopPropagation();
   };
 
-  const isPortal = portal ? 'rf-tooltip__inner--portal' : '';
-
   const tooltip = (
     <div
       className={classnames('rf-tooltip__content-wrapper', `rf-tooltip--${color}`)}
+      data-testid='tooltip__content-wrapper'
       onWheel={stopPropagationWheel}
       style={{
         ...styles[position],
         [padding[position]]: '8px'
-      }}>
-      <div className={`rf-tooltip__content ${className}`}>
+      }}
+    >
+      <div className={`rf-tooltip__content ${className}`} data-testid='tooltip__content'>
         <div
-          data-testid={portal ? 'portal' : ''}
+          data-testid='tooltip__inner'
           className={
-            `rf-tooltip__inner rf-tooltip__inner--${position}
-            ${isPortal} ${sizeClass[size]}`
+            `rf-tooltip__inner rf-tooltip__inner--${position} ${sizeClass[size]}`
           }>
           {children}
         </div>
@@ -224,7 +140,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
     </div >
   );
 
-  return portal ? createPortal(tooltip, div) : tooltip;
+  return createPortal(tooltip, getPopupContainer());
 };
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -246,21 +162,12 @@ export interface ITooltipProps {
   position?: TooltipPosition;
   /** Дополнительный класс */
   className?: string;
-  /** Портал в элемент - по умолчанию body */
-  portal?: boolean;
   /** Цвет тултипа */
   color?: 'default' | 'white' | 'primary';
   /** Размер тултипа */
   size?: 'm' | 'l'
 }
 
-function setRef<Instance = null>(ref: React.MutableRefObject<Instance> | React.RefCallback<Instance> | null, instance: Instance) {
-  if (typeof ref === 'function') {
-    ref(instance);
-  } else if (ref) {
-    ref.current = instance;
-  }
-}
 
 const Tooltip: FC<ITooltipProps> = ({
   open: openProp,
@@ -269,14 +176,11 @@ const Tooltip: FC<ITooltipProps> = ({
   children,
   position = 'right',
   className = '',
-  portal = false,
   color = 'default',
   size = 'm',
-  getPopupContainer = () => document.body
+  getPopupContainer = () => document.body,
 }: ITooltipProps) => {
   const isControlled = typeof openProp !== 'undefined';
-  const isPortal = portal && React.isValidElement(children[0]);
-
   const [open, setOpen] = useState(isControlled ? openProp : false);
   const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
   const anchorRef = useRef<HTMLElement>(null);
@@ -285,15 +189,10 @@ const Tooltip: FC<ITooltipProps> = ({
     if (!!anchorRef.current) {
       setTooltipRect(anchorRef.current.getBoundingClientRect());
     }
-
-  }, [anchorRef.current]);
+  }, []);
 
   const onMouseEnter = (e: React.MouseEvent) => {
-    const child = isPortal ? e.currentTarget : e.currentTarget.firstElementChild;
-
-    if (child) {
-      setTooltipRect(child.getBoundingClientRect());
-    }
+    const child = e.currentTarget.firstElementChild;
 
     if (onOpen) {
       onOpen(e);
@@ -317,7 +216,6 @@ const Tooltip: FC<ITooltipProps> = ({
       className={className}
       position={position}
       rect={tooltipRect}
-      portal={portal}
       size={size}
       color={color}
       getPopupContainer={getPopupContainer}
@@ -325,36 +223,6 @@ const Tooltip: FC<ITooltipProps> = ({
       {children[1]}
     </TooltipContent>
   );
-
-  if (isPortal) {
-    const child = children[0] as React.ReactElement;
-
-    const childProps = {
-      ...child.props,
-      onMouseEnter: (event: React.MouseEvent) => {
-        child.props?.onMouseEnter?.(event);
-        onMouseEnter(event);
-      },
-      onMouseLeave: (event: React.MouseEvent) => {
-        child.props?.onMouseLeave?.(event);
-        onMouseLeave(event);
-      },
-      ref: (ref: HTMLElement) => {
-        setRef(child.props.ref, ref);
-        setRef(anchorRef, ref);
-      }
-    };
-
-    return (
-      <>
-        {React.cloneElement(
-          child,
-          childProps
-        )}
-        {tooltipContent}
-      </>
-    );
-  }
 
   return (
     <div
