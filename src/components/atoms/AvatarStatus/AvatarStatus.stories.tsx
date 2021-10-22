@@ -2,7 +2,6 @@ import React from 'react';
 import AvatarStatus from './AvatarStatus';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
-import { Size } from '../../../types';
 
 export default {
   title: 'Avatar Status',
@@ -17,13 +16,6 @@ export const avatar = () => {
     'none',
     'yellow',
     'red'
-  ];
-
-  const sizes: Size[] = [
-    'xs',
-    's',
-    'm',
-    'l'
   ];
 
   const elemStyle = { marginRight: '70px' };

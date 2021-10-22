@@ -5,9 +5,9 @@ import Avatar from '../Avatar';
 
 import './AvatarStatus.scss';
 import Badge from '../Badge';
-import Check from '../../../assets/icons/Check';
 import Redo from '../../../assets/icons/Redo';
 import Cross from '../../../assets/icons/Cross';
+import Check from '../../../assets/icons/Check';
 
 export interface IAvatarProps {
     /** Ссылка на фото */
@@ -19,7 +19,11 @@ export interface IAvatarProps {
     size?: Size;
 }
 
-const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', size = 'l', hasBadge }) => {
+const AvatarStatus: FC<IAvatarProps> = ({ photo,
+  fullName,
+  variant = 'none',
+  size = 'l',
+  hasBadge }) => {
 
   const borderStyle = `rf-avatar-status__border-size_${size} rf-avatar-status__border-color_${variant}`;
   // по дизайну бадж с галочкой всегда зелёный
@@ -35,12 +39,18 @@ const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', siz
     default: icon = <Check className='rf-avatar-status__icon-style' />;
     }
 
-    return <div className={`rf-avatar-status__badge rf-avatar-status__badge-border-size_${size} ${badgeColor}`}>
-      {icon}
-    </div>;
+    return (
+      <div className={`rf-avatar-status__badge rf-avatar-status__badge-border-size_${size} ${badgeColor}`}>
+        {icon}
+      </div>
+    );
   };
 
-  return <Badge position='bottomRight' badgeContent={getBadgeContent()} display={variant !== 'none' && !!hasBadge} >
+  return <Badge
+    position='bottomRight'
+    badgeContent={getBadgeContent()}
+    display={variant !== 'none' && !!hasBadge}
+  >
     <div className='rf-avatar-status__avatar-wrapper'>
       <Avatar
         fullName={fullName}
@@ -48,7 +58,7 @@ const AvatarStatus: FC<IAvatarProps> = ({ photo, fullName, variant = 'none', siz
         photo={photo}
       />
       <div className='rf-avatar-status__border-wrapper'>
-        <AvatarBorder className={borderStyle} />
+        <AvatarBorder className={borderStyle} data-testid='avatar-status-border' />
       </div>
     </div>
   </Badge>;
