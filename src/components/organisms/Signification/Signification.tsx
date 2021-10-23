@@ -321,10 +321,10 @@ const Signification:FC<IProps> = ({
     </div>
   </Modal>;
   // =======================================================================================================================================
-  const certErrorTSX = certError &&
+  const certErrorTSX = certError && !finalStage &&
    <div data-testid='error' className='cert-error__wrapper'>
      <Hint button={<Button
-       onClick={() => download(value, value.fileName)}
+       onClick={() => window.open('https://intranet.vtb.com/podrazdeleniya/pik/dppsis/support/Pages/default.aspx')}
        buttonType='text'
        textColor='red'
        startAdornment={<Download/>} >Инструкция</Button>}
