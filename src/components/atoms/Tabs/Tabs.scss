@@ -1,10 +1,9 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 $lineWidth: 2px;
 
 .rf-tabs__navigation {
   position: relative;
-  padding-bottom: 10px;
   border-bottom: $lineWidth solid var(--background-tertiary);
 }
 
@@ -23,10 +22,6 @@ $lineWidth: 2px;
   transition: 0.3s;
 }
 
-.rf-tabs__link {
-  //margin-right: 32px;
-}
-
 .rf-tabs__link:last-of-type {
   margin-right: 0;
 }
@@ -40,7 +35,7 @@ $lineWidth: 2px;
   background-color: transparent;
   outline: none;
   border: 0;
-  padding: 0 16px;
+  padding: 12px 16px;
 
   &:not(.rf-tabs__button--active) {
     & .rf-badge {
@@ -70,34 +65,5 @@ $lineWidth: 2px;
 
   svg {
     display: block;
-  }
-}
-
-.rf-tabs--buttons {
-
-  .rf-tabs__navigation {
-    border-bottom: none;
-  }
-
-  .rf-tabs__button {
-    @include button-m-16;
-    color: var(--text-secondary);
-  }
-
-  .rf-tabs__button:disabled {
-    color: var(--text-tertiary);
-    pointer-events: none;
-  }
-
-  .rf-tabs__button--active {
-    color: var(--text-primary);
-  }
-
-  .rf-tabs__navigation-line {
-    height: 4px;
-  }
-
-  .rf-tabs__content {
-    margin-top: 24px;
   }
 }

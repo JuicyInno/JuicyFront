@@ -8,13 +8,11 @@ import { ITab } from '../../../types';
 export interface ITabsProps {
   /** Список вкладок */
   list: ITab[];
-  /** Вид табов */
-  type?: 'underline' | 'buttons';
   /** Если во вкладках есть url, то через children пробрасывается <Router/> */
   children?: ReactNode | ReactNode[];
 }
 
-const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps) => {
+const Tabs: FC<ITabsProps> = ({ list, children }: ITabsProps) => {
   const history = useHistory();
   const { pathname } = useLocation();
 
@@ -101,10 +99,8 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const typeClass = type === 'buttons' ? 'rf-tabs--buttons' : '';
-
   return (
-    <div className={ `rf-tabs ${typeClass}` }>
+    <div className={ 'rf-tabs rf-tabs--buttons' }>
       <nav className={ 'rf-tabs__navigation ' }>
         <div className='rf-tabs__navigation-list'>{ nav }</div>
         <div className='rf-tabs__navigation-line' ref={ lineRef }/>

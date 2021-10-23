@@ -1,4 +1,8 @@
 import React from 'react';
+import { Story } from '@storybook/react';
+
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -11,7 +15,7 @@ import Badge from '../Badge';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 
 export default {
-  title: 'navigations/не проверено/Tabs',
+  title: 'navigations/withTest/Tabs',
   component: Tabs,
   argTypes: {
     type: {
@@ -24,7 +28,7 @@ export default {
   }
 };
 
-export const tabs = (args: ITabsProps) => {
+export const Demo = (args: ITabsProps) => {
   const tab1 = (
     <div style={{ padding: '20px' }}>
       <ul>
@@ -108,9 +112,11 @@ export const tabs = (args: ITabsProps) => {
       <StoryDocsH1>
           Tabs
       </StoryDocsH1>
+
       <StoryDocsDescription>
         Переключение между вкладками. Внутри вкладки может быть как компонент, так и роутер.
       </StoryDocsDescription>
+
       <BrowserRouter>
         <div style={{
           display: 'grid',
@@ -123,4 +129,50 @@ export const tabs = (args: ITabsProps) => {
       </BrowserRouter>
     </StoryDocs>
   );
+};
+
+
+export const Playground: Story = (args) => {
+  const Tab = ({ children }) => (
+    <div style={{ padding: '20px' }}>
+      {children}
+    </div>
+  );
+
+  const list: ITab[] = [
+    {
+      label: 'Заявки',
+      tab: <Tab>Заявки</Tab>
+    },
+    {
+      label: 'Запросы',
+      tab: <Tab>Запросы</Tab>,
+      active: true
+    },
+    {
+      label: 'Вопросы и ответы',
+      tab: <Tab>Вопросы и ответы</Tab>
+    },
+    {
+      label: 'Ситуации',
+      disabled: true
+    }
+  ];
+
+  return (
+    <StoryContainer>
+      <BrowserRouter>
+        <StoryRow>
+          <Tabs list={list} {...args}/>
+        </StoryRow>
+      </BrowserRouter>
+    </StoryContainer>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A86694',
+  },
 };
