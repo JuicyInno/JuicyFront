@@ -69,7 +69,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
         { buttonsJSX }
         {
           menuJSX.length > 0 && (
-            <Menu content={<div className='button-group__menu'>{menuJSX}</div>} portal>
+            <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
               <Button buttonType='iconFill'>
                 <KebabMenu/>
               </Button>
