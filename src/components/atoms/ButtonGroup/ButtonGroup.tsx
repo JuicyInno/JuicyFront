@@ -64,7 +64,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    list.length > 0 && (
+    list.length > 0 ? (
       <div className='button-group'>
         { buttonsJSX }
         {
@@ -77,7 +77,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
           )
         }
       </div>
-    )
+    ) : null
   );
 };
 export default ButtonGroup;
