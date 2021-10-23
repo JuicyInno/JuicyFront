@@ -26,7 +26,7 @@ const onSuccess=jest.fn();
       expect(getByText(container, 'test')).toBeTruthy();
     });
       it('should success sign with mock ', async () => {
-        const {container} = render(<CertReader useMock buttonTitle='test' file={file} onError={onError}
+        render(<CertReader useMock buttonTitle='test' file={file} onError={onError}
                                                onSuccess={onSuccess}/>);
         userEvent.click(byText('test').get())
         expect(byText('Гомер Симпсон (CN=VTB Group CA 3, O=VTB, C=RU)').get()).toBeTruthy();
@@ -34,7 +34,6 @@ const onSuccess=jest.fn();
         userEvent.click(byText('Гомер Симпсон (CN=VTB Group CA 3, O=VTB, C=RU)').get())
         await waitFor(() => {
           expect(onSuccess).toBeCalled()
-          expect(onSuccess).lastCalledWith('arg1', 'arg2')
         })
       });
 })
