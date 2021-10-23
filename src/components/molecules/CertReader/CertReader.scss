@@ -6,9 +6,13 @@
 }
 
 .cert__success {
-  color: var(--success-800)
+  color: var(--status-success)
 }
 
 .cert__error {
-  color: var(--danger-500)
+  color: var(--status-danger)
+}
+
+.cert__wrapper .rf-menu{
+  padding-bottom: 24px ;
 }

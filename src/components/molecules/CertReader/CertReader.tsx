@@ -8,6 +8,7 @@ import {
   Certificate, createSignature, getUserCertificates
 } from 'crypto-pro';
 import { IButtonProps } from '../../atoms/Button/Button';
+import { mockCerts } from './CertReader.mock';
 
 export interface IProps {
   /** входящий файл на подпись*/
@@ -24,6 +25,9 @@ export interface IProps {
   btnProps?: IButtonProps;
   /** позиция для меню сертификатов */
   menuPos?: 'left' | 'right' | 'top-left' | 'top-right';
+  /** для тестов */
+  useMock?:boolean
+
 }
 export interface IBrowserCert{
   /** имя пользователя*/
@@ -40,15 +44,17 @@ export interface IBrowserCert{
 
 export interface ICertResult {
   data:IRequestAttachment
-  cert:IBrowserCert
+  cert:IBrowserCert,
+
 }
 const CertReader: React.FC<IProps> = ({ file,
   onSuccess,
+  useMock = false,
   onError,
-  buttonTitle = 'Подписать ЭЦП (цифровая подпись)',
+  buttonTitle = 'Подписать ЭП (электронная подпись)',
   btnProps = {},
   menuPos = 'left',
-  filter = async (cert: Certificate) => true }: IProps) => {
+  filter = async (_cert: Certificate) => true }: IProps) => {
   /** все доступные сертификаты*/
   const [ certs, setCerts ] = useState<null|Certificate[]>(null);
   // ===================================================================================================================
@@ -69,13 +75,19 @@ const CertReader: React.FC<IProps> = ({ file,
         onError(e);
       }
     }
-    getCertificates().then();
+
+    if (useMock) {
+      // @ts-ignore
+      setCerts(mockCerts);
+    } else {
+      getCertificates().then();
+    }
   }, []);
   // ===================================================================================================================
   /** формирование меню*/
   const menuBuilder = (certs:Certificate[]):IListElement[] => {
     return certs.map((item:Certificate) => {
-      const l = `${item.name}  ( ${item.issuerName})`;
+      const l = `${item.name} (${item.issuerName})`;
       return {
         label: l.length < 100 ? l : l.slice(0, 100) + '...',
         value: item.thumbprint,
@@ -90,7 +102,19 @@ const CertReader: React.FC<IProps> = ({ file,
               cert: item
             });
           } catch (e) {
-            onError(e);
+            if (useMock) {
+              onSuccess({
+                data: {
+                  ...file,
+                  singBase64: 'подписанный файл',
+                  cert: item.thumbprint
+                },
+                cert: item
+              });
+
+            } else {
+              onError(e);
+            }
           }
         }
       };

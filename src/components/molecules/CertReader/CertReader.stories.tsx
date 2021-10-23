@@ -5,12 +5,13 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import CertReader, { ICertResult } from './CertReader';
 import { pdfFile } from '../PDFViewer/pdf';
 import './CertReader.scss';
+import Story from '../../storybook/Story';
 export default {
-  title: 'не проверено/CertReader',
+  title: 'atoms/withTest/CertReader',
   component: CertReader
 };
 
-export const sCertReader = () => {
+export const Demo = () => {
   const [sign, setSign] = useState<ICertResult|undefined>(undefined);
   const file:IRequestAttachment = {
     fileName: 'test',
@@ -19,7 +20,7 @@ export const sCertReader = () => {
   const successHandle = (result:ICertResult) => {
 
     setSign(result);
-    console.log(result);
+    console.log('success:', result);
   };
   const errorHandle = (e:any) => {
     setSign(undefined);
@@ -27,10 +28,8 @@ export const sCertReader = () => {
   };
 
   return (
-
-
-    <StoryItem description='Проверка сертификата'>
-      <>
+    <Story name='Получение сертификатов' description='компонент считывает сертификаты с помощью плагина криптопро'>
+      <StoryItem >
         <a href='https://cryptopro.ru/sites/default/files/products/cades/demopage/cades_bes_sample.html'>
           Проверить работу плагина
         </a>
@@ -38,11 +37,19 @@ export const sCertReader = () => {
           <CertReader
             filter={async(cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')}
             file={file} onSuccess={successHandle} onError={errorHandle}/>
+          <CertReader
+            buttonTitle={'Mock подписание'}
+            filter={async(cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')}
+            file={file} onSuccess={successHandle} onError={errorHandle} useMock={true}/>
         </div>
-        <div className={sign ? 'cert__success' : 'cert__error'}>{sign ? `Подписано ${sign.cert}` : 'не подписано'}</div>
 
-      </>
-    </StoryItem>
+        <div className={sign ? 'cert__success' : 'cert__error'}>
+          {sign ? `Подписано ${sign.cert.name} ${sign.cert.issuerName}` : 'не подписано'}
+        </div>
+      </StoryItem>
+
+
+    </Story>
 
   );
 };
