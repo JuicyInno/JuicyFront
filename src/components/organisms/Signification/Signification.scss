@@ -7,8 +7,13 @@
 .signification__title-row {
   display: flex;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
+  color: var(--basic-primary);
 }
+.signification__title-row--onlyView{
+  color: var(--text-secondary);
+}
+
 .signification__title-text{
   padding-left: 16px;
   @include h6;
@@ -88,7 +93,7 @@ margin-left: auto;
 .manual__chip-wrapper,
 .manual__hint-wrapper,
 .cert-error__wrapper{
-  padding-bottom: 26px;
+  padding-bottom: 20px;
 }
 
 .manual__chip-text {
