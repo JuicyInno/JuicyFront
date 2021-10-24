@@ -24,6 +24,12 @@ const Avatar: React.FC<IAvatarProps> = ({ size = 'm', photo = '', fullName = '' 
 
   useEffect(() => {
     if (fullName) {
+
+      if (!isNaN(+fullName)) {
+        setInitials(fullName);
+        return;
+      }
+
       const [f, s]: string[] = fullName.split(' ');
       let text = '';
       f && (text = f.charAt(0).toUpperCase());
