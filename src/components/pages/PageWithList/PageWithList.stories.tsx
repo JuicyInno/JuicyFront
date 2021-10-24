@@ -82,7 +82,7 @@ export const pageWithList = () => {
     <BrowserRouter>
       <div style={{ paddingLeft: '70px' }}>
         <Page backUrl='/' title='Изменение графика рабочего времени' navigation={navigation}>
-          <PageWithList filters={filtersJSX} preloader={!loaded} actionMenu={<ActionMenu listConfig={config} type='list' />}>
+          <PageWithList overflowList filters={filtersJSX} actionMenu={<ActionMenu listConfig={config} type='list' />}>
             {listJSX}
           </PageWithList>
         </Page>
