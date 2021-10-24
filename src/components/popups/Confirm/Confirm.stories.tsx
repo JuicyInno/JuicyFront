@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import { Modal } from '../../../index';
 
 export default {
-  title: 'popups/не проверено/Confirm',
+  title: 'popovers/не проверено/Confirm',
   component: Confirm
 };
 

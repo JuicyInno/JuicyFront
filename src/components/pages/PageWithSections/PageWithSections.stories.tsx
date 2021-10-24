@@ -8,7 +8,7 @@ import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
-  title: 'Pages/не проверено/Page With Sections',
+  title: 'pages/не проверено/Page With Sections',
   component: PageWithSections
 };
 

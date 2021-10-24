@@ -14,6 +14,6 @@ export const toast = () => {
 };
 
 export default {
-  title: 'popups/не проверено/Toast',
+  title: 'popovers/не проверено/Toast',
   component: Toast
 };

@@ -37,6 +37,6 @@ export const status = () => {
 };
 
 export default {
-  title: 'control/не проверено/Status',
+  title: 'controls/не проверено/Status',
   component: Status
 };
