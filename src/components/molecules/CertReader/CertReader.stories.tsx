@@ -6,8 +6,9 @@ import CertReader, { ICertResult } from './CertReader';
 import { pdfFile } from '../PDFViewer/pdf';
 import './CertReader.scss';
 import Story from '../../storybook/Story';
+import { StoryDocsDescription, StoryDocsH1 } from '../../storybook';
 export default {
-  title: 'atoms/withTest/CertReader',
+  title: 'controls/withTest/Получение сертификатов',
   component: CertReader
 };
 
@@ -28,7 +29,11 @@ export const Demo = () => {
   };
 
   return (
-    <Story name='Получение сертификатов' description='компонент считывает сертификаты с помощью плагина криптопро'>
+    <Story >
+      <StoryDocsH1>CertReader </StoryDocsH1>
+      <StoryDocsDescription>
+        компонент считывает сертификаты с помощью плагина криптопро
+      </StoryDocsDescription>
       <StoryItem >
         <a href='https://cryptopro.ru/sites/default/files/products/cades/demopage/cades_bes_sample.html'>
           Проверить работу плагина

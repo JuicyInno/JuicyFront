@@ -10,7 +10,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 
 export default {
-  title: 'atoms/withTest/Modal',
+  title: 'popovers/withTest/Modal',
   component: Modal,
   decorators: [withDesign],
   argTypes: {
@@ -20,7 +20,7 @@ export default {
   }
 };
 
-const ModalFooter = ({ toggle }) => (
+const ModalFooter = ({ toggle }:any) => (
   <StoryRow>
     <StoryCol>
       <Button> Согласен </Button>

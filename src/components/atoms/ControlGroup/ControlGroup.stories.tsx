@@ -8,13 +8,13 @@ import {
   StoryDocs, StoryDocsH1, StoryDocsH3, StoryDocsDescription
 } from '../../storybook';
 
-export default {
-  title: 'не проверено/ControlGroup',
-  argTypes: {
-    label: { control: { type: 'text' } },
-    disabled: { type: 'boolean' },
-  }
-};
+// export default {
+//   title: 'depricated/ControlGroup',
+//   argTypes: {
+//     label: { control: { type: 'text' } },
+//     disabled: { type: 'boolean' },
+//   }
+// };
 
 export const controlGroup: Story = () => {
   return (

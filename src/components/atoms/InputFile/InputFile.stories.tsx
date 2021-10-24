@@ -6,7 +6,7 @@ import StoryItem from '../../storybook/StoryItem';
 import InputFile from './InputFile';
 
 export default {
-  title: 'не проверено/InputFile',
+  title: 'forms/не проверено/InputFile',
   component: InputFile
 };
 

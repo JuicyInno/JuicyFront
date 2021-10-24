@@ -10,7 +10,7 @@ import {
 } from '../../storybook';
 
 export default {
-  title: 'atoms/withTest/Preloader',
+  title: 'controls/withTest/Preloader',
   component: Preloader
 };
 

@@ -89,7 +89,7 @@ const CertReader: React.FC<IProps> = ({ file,
     return certs.map((item:Certificate) => {
       const l = `${item.name} (${item.issuerName})`;
       return {
-        label: l.length < 100 ? l : l.slice(0, 100) + '...',
+        label: l.length < 70 ? l : l.slice(0, 70) + '...',
         value: item.thumbprint,
         handler: async() => {
           try {

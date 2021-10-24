@@ -4,7 +4,7 @@ import { IUser } from '../../../types/projects.types';
 import Story from '../../storybook/Story';
 
 export default {
-  title: 'не проверено/UsersStack',
+  title: 'components/не проверено/UsersStack',
   component: UsersStack
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import Notification from './Notification';
-import { INotification } from '../../molecules/Notifications/Notifications';
+import { INotification } from '../Notifications/Notifications';
 import Story from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'не проверено/Item',
+  title: 'components/не проверено/Item',
   component: Notification
 };
 

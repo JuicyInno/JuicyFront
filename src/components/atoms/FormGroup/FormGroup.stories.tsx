@@ -6,7 +6,7 @@ import Input from '../../atoms/Input/Input';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 
 export default {
-  title: 'не проверено/FormGroup',
+  title: 'forms/не проверено/FormGroup',
   component: FormGroup
 };
 

@@ -6,7 +6,7 @@ import StatusPicker, { IPickerProps } from './StatusPicker';
 
 
 export default {
-  title: 'не проверено/Status Picker',
+  title: 'forms/не проверено/Status Picker',
   component: StatusPicker,
 };
 

@@ -9,7 +9,7 @@ import StoryItem from '../../storybook/StoryItem';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
-  title: 'не проверено/Menu',
+  title: 'controls/не проверено/Menu',
   component: Menu,
   argTypes: {
     children: { control: null },

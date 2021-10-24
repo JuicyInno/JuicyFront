@@ -2,10 +2,10 @@ import React from 'react';
 import UserPhoto from './UserPhoto';
 import Story from '../../storybook/Story';
 
-export default {
-  title: 'не проверено/UserPhoto',
-  component: UserPhoto
-};
+// export default {
+//   title: 'depricated/UserPhoto',
+//   component: UserPhoto
+// };
 
 export const userPhoto = () => {
   return (
