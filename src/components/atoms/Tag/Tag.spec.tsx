@@ -14,7 +14,7 @@ describe('Test <Tag/> component', () => {
     render(<Tag icon={<i>icon</i>}>Tag</Tag>);
     expect(screen.queryByText('icon')).toBeInTheDocument();
   });
-  
+
   it('should call onClick', () => {
     const onClick = jest.fn();
     render(<Tag onClick={onClick}>Tag</Tag>);
@@ -37,7 +37,7 @@ describe('Test <Tag/> component', () => {
     expect(screen.getByText('Tag')).toHaveClass('rf-tag--outlined');
   });
 
-  for(const variant of variants) {
+  for (const variant of variants) {
     it(`should be ${variant}`, () => {
       render(<Tag variant={variant}>Tag</Tag>);
       expect(screen.getByText('Tag')).toHaveClass(`rf-tag--${variant}`);
