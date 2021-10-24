@@ -11,7 +11,7 @@ import Badge from '../Badge';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 
 export default {
-  title: 'не проверено/Tabs',
+  title: 'navigations/не проверено/Tabs',
   component: Tabs,
   argTypes: {
     type: {

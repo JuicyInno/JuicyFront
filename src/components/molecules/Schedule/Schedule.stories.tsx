@@ -11,7 +11,7 @@ import ScheduleLegendItem from './ScheduleLegendItem';
 import { ICalendarPageMark } from '../../atoms/CalendarPage';
 
 export default {
-  title: 'Molecules/withTest/Расписание',
+  title: 'components/withTest/Расписание',
   component: Schedule
 };
 

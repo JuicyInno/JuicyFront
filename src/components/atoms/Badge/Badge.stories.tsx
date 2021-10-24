@@ -6,7 +6,7 @@ import { variants } from '../../../types';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'не проверено/Badge',
+  title: 'components/не проверено/Badge',
   component: Badge,
   decorators: [withDesign],
   typeArgs: {

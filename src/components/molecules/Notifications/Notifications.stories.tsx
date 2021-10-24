@@ -3,7 +3,7 @@ import Notifications, { sendNotification } from './Notifications';
 import Story from '../../storybook/Story';
 
 export default {
-  title: 'не проверено/Notifications/Menu',
+  title: 'components/не проверено/Notifications',
   component: Notifications
 };
 

@@ -13,7 +13,7 @@ const file:IRequestAttachment = {
 };
 
 export default {
-  title: 'organisms/Подписание документов',
+  title: 'components/withTest/Подписание документов',
   component: Signification,
   decorators: [withDesign],
   argTypes: {

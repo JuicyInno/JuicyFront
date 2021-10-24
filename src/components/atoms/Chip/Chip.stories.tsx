@@ -12,7 +12,7 @@ import ControlGroup from '../ControlGroup';
 
 
 export default {
-  title: 'atoms/withTest/Chip',
+  title: 'controls/withTest/Chip',
   decorators: [withDesign],
   component: Chip,
   argTypes: {

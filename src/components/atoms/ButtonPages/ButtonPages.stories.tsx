@@ -5,7 +5,7 @@ import StoryItem from '../../storybook/StoryItem';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'не проверено/ButtonPages',
+  title: 'controls/не проверено/ButtonPages',
   decorators: [withDesign],
   component: ButtonPages,
 };
