@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 import './Toast.scss';
 
-interface IProps {
+export interface IProps {
   children: ReactNode;
   isVisible: boolean;
   setVisibility: (mode: boolean) => void;

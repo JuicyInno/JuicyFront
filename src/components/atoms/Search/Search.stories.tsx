@@ -4,7 +4,7 @@ import StoryItem from '../../storybook/StoryItem';
 import Search from './Search';
 
 export default {
-  title: 'не проверено/Search',
+  title: 'forms/не проверено/Search',
   component: Search
 };
 

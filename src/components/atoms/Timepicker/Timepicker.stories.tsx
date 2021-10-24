@@ -4,7 +4,7 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'не проверено/Timepicker',
+  title: 'forms/не проверено/Timepicker',
   component: Timepicker
 };
 

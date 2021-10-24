@@ -11,7 +11,7 @@ import {
 import { variants } from '../../../types';
 
 export default {
-  title: 'molecules/Card',
+  title: 'components/withTest/Карточки задач-истории',
   component: Card,
   typeArgs: {
     statusColor: {

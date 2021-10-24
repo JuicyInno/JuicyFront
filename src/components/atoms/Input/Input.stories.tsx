@@ -17,7 +17,7 @@ import Success from '../../../assets/icons/Success';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'atoms/Input',
+  title: 'forms/Input',
   decorators: [withDesign],
   component: Input,
   argTypes: {

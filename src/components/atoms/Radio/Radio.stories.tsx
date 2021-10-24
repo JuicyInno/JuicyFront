@@ -15,7 +15,7 @@ import {
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'atoms/Radio',
+  title: 'forms/Radio',
   component: Radio,
   decorators: [withDesign],
   argTypes: {

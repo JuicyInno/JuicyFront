@@ -7,7 +7,7 @@ import {
 import CalendarPage, { ICalendarPageMark } from './CalendarPage';
 
 export default {
-  title: 'Atoms/withTest/Календарь',
+  title: 'components/withTest/Календарь',
   component: CalendarPage
 };
 
