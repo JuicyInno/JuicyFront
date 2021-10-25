@@ -1,19 +1,55 @@
 import React from 'react';
-import Story from '../../storybook/Story';
-import StoryItem from '../../storybook/StoryItem';
 import Search from './Search';
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
+import { Microphone } from '../../../index';
 
 export default {
-  title: 'forms/не проверено/Search',
+  title: 'forms/withTest/Search',
   component: Search
 };
 
-export const search = () => {
+export const Demo = () => {
+  const frameStyle: React.CSSProperties = {
+    display: 'flex',
+    gap: 16,
+    flexDirection: 'column',
+    maxWidth: '516px',
+    border: '1px dashed #7B61FF',
+    borderRadius: 5,
+    padding: 16,
+  };
+
   return (
-    <Story name='Search' description='Поиск' width={600}>
-      <StoryItem>
-        <Search/>
-      </StoryItem>
-    </Story>
+    <StoryDocs>
+      <StoryDocsH1>Search</StoryDocsH1>
+      <div style={frameStyle}>
+        <Search endAdornment={<Microphone />} />
+        <Search value='Приве' />
+        <Search />
+      </div>
+
+    </StoryDocs>
+
+  );
+};
+
+Demo.parameters = {
+  actions: { disabled: true },
+  controls: { disabled: true },
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A55341',
+  },
+};
+
+export const Playground = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Search {...args} />
+      </StoryRow>
+    </StoryContainer>
   );
 };

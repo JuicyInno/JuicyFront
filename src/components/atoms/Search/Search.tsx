@@ -1,5 +1,5 @@
 import React, {
-  HTMLProps, useEffect, useRef, useState
+  HTMLProps, useEffect, useRef, useState, ReactNode
 } from 'react';
 import './Search.scss';
 import { Close, SearchIcon } from '../../../index';
@@ -10,13 +10,19 @@ import { IDebounceResult } from '../../../types/projects.types';
 
 
 export interface ISearchProps extends HTMLProps<HTMLInputElement> {
+  /** Возможность очистки поля по клику */
   onClear?: () => void;
-  isShowClear?:boolean;
-  debounce?:number;
-  onDebounce?:(result:IDebounceResult)=>void
+  /** Показать иконку очистки */
+  isShowClear?: boolean;
+  /** Дебаунс */
+  debounce?: number;
+  /** Иконка в конце поля */
+  endAdornment?: ReactNode;
+  /** обработка нажатий с эффектом debounce */
+  onDebounce?: (result: IDebounceResult) => void
 }
 
-const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce = 500, onDebounce = () => {}, ...props }: ISearchProps) => {
+const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce = 500, endAdornment, onDebounce = () => { }, ...props }: ISearchProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +49,7 @@ const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce 
       }));
 
     return () => sub && sub.unsubscribe();
-  }, [ debounce, onDebounce]);
+  }, [debounce, onDebounce]);
 
 
   useEffect(() => {
@@ -62,19 +68,24 @@ const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce 
     onDebounce({ debounceString: '' });
   };
   // -------------------------------------------------------------------------------------------------------------------
+  const withEndAdornment = endAdornment ? 'rf-search__close-withEndAdornment' : '';
 
   return (
     <div className='rf-search'>
-      <input { ...props }
+      <input {...props}
         ref={ref}
         type='text'
         className='rf-search__input'
-        placeholder={ props.placeholder || 'Поиск' }
-        value={ value }
-        onChange={ onChangeHandler }
+        placeholder={props.placeholder || 'Поиск'}
+        value={value}
+        onChange={onChangeHandler}
       />
-      <SearchIcon className='rf-search__search-icon'/>
-      { value.length > 0 && isShowClear && <Close className='rf-search__close-icon' onClick={ onClearClickHandler }/> }
+      <SearchIcon className='rf-search__search-icon' />
+
+      {value.length > 0 && isShowClear && <Close className={`rf-search__close-icon ${withEndAdornment}`} onClick={onClearClickHandler} />}
+      {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
+
+
     </div>
   );
 };

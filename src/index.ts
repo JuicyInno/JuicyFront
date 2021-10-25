@@ -44,7 +44,9 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification } from './components/molecules/Notifications';
+import Notifications, {
+  sendNotification,
+} from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
@@ -63,12 +65,14 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
-import Schedule, { ScheduleLegend, ScheduleLegendItem } from './components/molecules/Schedule';
+import Schedule, {
+  ScheduleLegend,
+  ScheduleLegendItem,
+} from './components/molecules/Schedule';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
-
 
 export {
   Signification,
@@ -136,7 +140,7 @@ export {
   UsersStack,
   ContentExpander,
   BackdropLoader,
-  PopupMaker
+  PopupMaker,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -171,6 +175,7 @@ import Time from './assets/icons/Time';
 import EmptyUser from './assets/icons/EmptyUser';
 import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
+import Microphone from './assets/icons/Microphone';
 
 export {
   Refresh,
@@ -203,6 +208,7 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Microphone,
 };
 
 export { variables, download };
@@ -224,5 +230,5 @@ export {
   useUpdateEffect,
   numberWithSpaces,
   openPopup,
-  addLeadingZeros
+  addLeadingZeros,
 };
