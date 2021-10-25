@@ -11,7 +11,7 @@ import {
 import { Button } from '../../..';
 
 export default {
-  title: 'popups/withTest/CompletePopup',
+  title: 'popovers/withTest/CompletePopup',
   component: CompletePopup,
   argTypes: {
     onClose: { control: null },

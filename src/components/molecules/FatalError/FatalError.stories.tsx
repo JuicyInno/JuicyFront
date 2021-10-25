@@ -3,10 +3,10 @@ import FatalError from './FatalError';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 
-export default {
-  title: 'не проверено/FatalError',
-  component: FatalError
-};
+// export default {
+//   title: 'depricated/FatalError',
+//   component: FatalError
+// };
 
 
 export const fatalError = () => {

@@ -6,7 +6,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { StoryDocs, StoryDocsH2 } from '../../storybook';
 
 export default {
-  title: 'Шрифты',
+  title: 'icons,illustrations/Шрифты',
   decorators: [withDesign],
 };
 

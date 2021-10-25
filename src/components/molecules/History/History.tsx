@@ -14,7 +14,7 @@ import UserPhoto from '../../atoms/UserPhoto';
 import './History.scss';
 import Chip from '../../atoms/Chip';
 
-interface IProps {
+export interface IProps {
     history: IRequestPath[];
     attachments?: IRequestAttachment[];
     isUZADO?: boolean;

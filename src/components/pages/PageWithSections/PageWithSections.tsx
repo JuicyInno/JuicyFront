@@ -2,7 +2,6 @@ import React, {
   ReactNode, useEffect, useRef
 } from 'react';
 import './PageWithSections.scss';
-import ResizeObserver from 'resize-observer-polyfill';
 import { IPageSection } from '../../../types/projects.types';
 import { ITab } from '../../../types';
 import {
@@ -46,8 +45,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   /** Ссылка на навигацию */
   const asideRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на меню */
-  const actionMenuRef = useRef<HTMLDivElement>(null);
   /** Ссылка на секции */
   const sectionsRef = useRef<HTMLDivElement>(null);
   /** Ссылка на ползунок */
@@ -177,35 +174,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const calculateMenuPosition = () => {
-    if (!pageRef.current || !sectionsRef.current || !actionMenuRef.current || !pageHeaderRef.current || preloader) {
-      return;
-    }
-
-    if ((pageRef.current.offsetHeight > document.documentElement.clientHeight ) || actionMenuAlwaysBottom) {
-      actionMenuRef.current.style.bottom = '20px';
-      actionMenuRef.current.style.top = 'auto';
-    } else {
-      actionMenuRef.current.style.bottom = 'auto';
-      actionMenuRef.current.style.top = sectionsRef.current.offsetHeight + pageHeaderRef.current.offsetHeight + 'px';
-    }
-  };
-
-
-  useEffect(() => {
-    if (!sectionsRef.current) {
-      return;
-    }
-
-    const resizeObserver = new ResizeObserver(() => {
-      calculateMenuPosition();
-    });
-
-    resizeObserver.observe(sectionsRef.current);
-  }, [preloader]);
-
-  // -------------------------------------------------------------------------------------------------------------------
-
   return (
     <div className='rf-sections-page' ref={ pageRef }>
       <header className={`rf-page__sections-header ${showHeader ? '' : 'rf-page__sections-header--hidden'}`} ref={ pageHeaderRef }>
@@ -239,11 +207,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         }
       </div>
 
-      { !preloader && actionMenu && (
-        <div className='rf-sections__action-menu' ref={ actionMenuRef }>
-          { actionMenu }
-        </div>
-      ) }
+      { !preloader && actionMenu }
     </div>
   );
 };

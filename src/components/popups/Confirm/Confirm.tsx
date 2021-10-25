@@ -19,6 +19,8 @@ export interface IConfirmProps {
   showComment?: boolean;
   /** Язык */
   lang?: string;
+  /** Прелоудер */
+  preloader?: boolean;
 }
 
 const Confirm: React.FC<IConfirmProps> = ({
@@ -28,7 +30,8 @@ const Confirm: React.FC<IConfirmProps> = ({
   onAction,
   onClose,
   text,
-  lang = 'ru'
+  lang = 'ru',
+  preloader = false,
 }: IConfirmProps) => {
 
   const handleSubmit = () => {
@@ -67,7 +70,7 @@ const Confirm: React.FC<IConfirmProps> = ({
 
       <footer className='confirm-popup__footer'>
         <div className='confirm-popup__footer-button'>
-          <Button disabled={showComment && state === ''} onClick={handleSubmit}>{textAccept}</Button>
+          <Button disabled={showComment && state === ''} onClick={handleSubmit} preloader={preloader}>{textAccept}</Button>
         </div>
         <div className='confirm-popup__footer-button'>
           <Button onClick={onClose} buttonType='light'>{declineText}</Button>

@@ -6,7 +6,7 @@ import StoryItem from '../../storybook/StoryItem';
 import { IOption } from '../../../types';
 
 export default {
-  title: 'не проверено/Segment',
+  title: 'navigations/не проверено/Segment',
   component: Segment
 };
 

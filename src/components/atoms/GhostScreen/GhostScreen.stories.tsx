@@ -5,7 +5,7 @@ import StoryItem from '../../storybook/StoryItem';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'atoms/withTest/Экран заглушки с приведением',
+  title: 'icons,illustrations/withTest/Экран заглушки с приведением',
   decorators: [withDesign],
   component: GhostScreen,
 };

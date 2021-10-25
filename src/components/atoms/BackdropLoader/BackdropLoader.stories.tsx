@@ -5,7 +5,7 @@ import StoryItem from '../../storybook/StoryItem';
 import Button from '../Button';
 
 export default {
-  title: 'не проверено/BackdropLoader',
+  title: 'components/не проверено/BackdropLoader',
   component: BackdropLoader
 };
 

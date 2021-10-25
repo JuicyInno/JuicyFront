@@ -3,10 +3,10 @@ import Column from './Column';
 import Row from '../Row/Row';
 import Story from '../../storybook/Story';
 
-export default {
-  title: 'не проверено/Column',
-  component: Column
-};
+// export default {
+//   title: 'depricated/Column',
+//   component: Column
+// };
 
 const style: CSSProperties = {
   height: 30,
