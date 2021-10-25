@@ -1,9 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, {
+  FC, useEffect, useState
+} from 'react';
 import Tile from '../../atoms/Tile';
 import FormGroup from '../../atoms/FormGroup';
 import Textarea from '../../atoms/Textarea';
 
-import { IDebounceResult, IRequestAttachment } from '../../../types/projects.types';
+import { IDebounceCommentResult, IRequestAttachment } from '../../../types/projects.types';
 
 import './CommentTile.scss';
 import {
@@ -14,28 +16,45 @@ import { IFileData } from '../../../types';
 export interface ICommentTileProps {
     /** Начальный комментарий */
     comment?: string;
+  /** Максимальная длина комментария */
+  maxLength?: number;
+  /** Начальный комментарий */
+  showScroll?: boolean;
     /** Срабатывает при изменении значения*/
-    onDebounce?: (result: IDebounceResult) => void,
+    onDebounce?: (result: IDebounceCommentResult) => void,
 }
 
 const Attachments: FC<ICommentTileProps> = ({
   comment = '',
-  onDebounce = () => console.log('333'),
+  showScroll = false,
+  maxLength = 255,
+  onDebounce = (a) => console.log(a),
 }: ICommentTileProps) => {
   const [value, setValue] = useState(comment);
 
   /** хранит приложенные файлы*/
   const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(undefined);
-  const MAX_LENGTH = 255;
 
+  useEffect(() => {
+    onDebounce({
+      debounceString: value,
+      attachedFiles,
+    });
+  }, [attachedFiles]);
+
+  /** Изменение состояния комментария */
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
   };
 
-  const test = (e: any) => {
-    console.log(e.target.value);
-    console.log(value);
-    console.log(attachedFiles);
+  /** Получение результата после ввода комментария */
+  const getResultByComment = (e: Event) => {
+    console.log('value', value);
+    console.log('attachedFiles', attachedFiles);
+    onDebounce({
+      debounceString: value,
+      attachedFiles,
+    });
   };
 
   /** Прикрепление файла */
@@ -56,7 +75,11 @@ const Attachments: FC<ICommentTileProps> = ({
   /** Чип прикрепленного файла */
   const attachedFileChipsTSX = (name:string, index: number, onClick:(e:any)=>void) =>
     <div className='rf-comment-tile-chip'>
-      <Chip onClick={() => attachedFiles && download(attachedFiles[index], attachedFiles[index]?.fileName)} size='s' type='outline'>
+      <Chip
+        onClick={() => attachedFiles && download(attachedFiles[index], attachedFiles[index]?.fileName)}
+        size='s'
+        type='outline'
+      >
         <div className='rf-comment-tile-chip-text'>
           {name}
           <div className='rf-comment-tile-chip-button' onClick={onClick}>
@@ -67,7 +90,7 @@ const Attachments: FC<ICommentTileProps> = ({
     </div>;
 
   // =======================================================================================================================================
-  /** Отображение массива прикрепленных файлов */
+  /** Отображение чипов прикрепленных файлов */
   const getFileChips = attachedFiles?.length && attachedFiles
     .map((file: IRequestAttachment, index: number) => attachedFileChipsTSX(
       file.fileName,
@@ -90,10 +113,20 @@ const Attachments: FC<ICommentTileProps> = ({
   return <div className='rf-comment-tile__wrapper'>
     <Tile className='rf-comment-tile'>
       <h1 className='rf-comment-tile__title'>Комментарии и файлы</h1>
-      <FormGroup className='rf-comment-tile__input-wrapper' label={'Комментарий'} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
-        <Textarea onDebounce={test} onChange={onChange} value={value} placeholder='Оставить комментарий' />
+      <FormGroup
+        className='rf-comment-tile__input-wrapper'
+        label={'Комментарий'}
+        labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
+      >
+        <Textarea autoResize={true} onDebounce={getResultByComment} onChange={onChange} value={value} placeholder='Оставить комментарий' />
       </FormGroup>
-      <InputFile className='rf-comment-tile-button' showChips={false} setFile={setFileHandler} buttonType='light' placeholder='Прикрепить файл'/>
+      <InputFile
+        className='rf-comment-tile-button'
+        showChips={false}
+        setFile={setFileHandler}
+        buttonType='light'
+        placeholder='Прикрепить файл'
+      />
       <div className='rf-comment-tile-chip-wrapper'>
         {getFileChips}
       </div>

@@ -2,7 +2,7 @@ import React, {
   FC, HTMLProps, useEffect, useRef, useState
 } from 'react';
 import './Textarea.scss';
-import { fromEvent } from 'rxjs';
+import { fromEvent, tap } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
@@ -20,7 +20,8 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   getValue?: (value: string) => void;
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
-  onDebounce?: (e: any) => any;
+  /** обработка ввода комментария с эффектом debounce */
+  onDebounce?: (e: Event) => void;
   /**
    * Показывать счетчик символов под инпутом.
    * @default true
@@ -29,7 +30,7 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
 }
 
 const Textarea: FC<ITextareaProps> = ({
-  className,
+  className = '',
   autoResize = false,
   initialRowCount = 3,
   debounce = 300,
@@ -44,6 +45,7 @@ const Textarea: FC<ITextareaProps> = ({
 }: ITextareaProps) => {
   /** Ссылка на поле */
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   /** Количество рядов */
   const [rows, setRows] = useState(initialRowCount);
@@ -52,11 +54,33 @@ const Textarea: FC<ITextareaProps> = ({
   /** Находится ли инпут в состоянии фокуса */
   const [isFocused, setFocused] = useState(false);
 
+  const setRowsHandler = () => {
+    if (textarea.current && autoResize && canvasRef.current) {
+      // const canvas = document.createElement('canvas');
+      const ctx2d = canvasRef.current.getContext('2d') as CanvasRenderingContext2D;
+      // ctx2d.textAlign = 'left';
+      ctx2d.font = getComputedStyle(textarea.current).font;
+      const measurement = ctx2d.measureText(textarea.current.value);
+      console.log('width', measurement);
+      const rowsByEnter = textarea.current.value.split('\n');
+      let amountRows = rowsByEnter.length;
+      rowsByEnter.forEach((partOfText) => {
+        const measurement = ctx2d.measureText(partOfText);
+        const basicRowsValue = Math.ceil(Math.abs(measurement.actualBoundingBoxLeft) + Math.abs(measurement.actualBoundingBoxRight) / 616);
+        // console.log('width', measurement);
+
+        if (basicRowsValue > 1) {
+          amountRows += basicRowsValue;
+        }
+      });
+      setRows(amountRows - 1);
+    }
+  };
+
   useEffect(() => {
     /** При фокусе на поле раскрываем его */
-    if (textarea.current && autoResize) {
-      setRows(textarea.current.value.split('\n').length + 1);
-    }
+    setRowsHandler();
+
 
     /** Подписываемся на ввод текста */
     let sub: any;
@@ -66,15 +90,12 @@ const Textarea: FC<ITextareaProps> = ({
         .pipe(
           map((e: Event) => e),
           debounceTime(debounce),
-          distinctUntilChanged(),
-          map(onDebounce),
+          tap((e) => onDebounce(e)),
           distinctUntilChanged()
         )
         .subscribe((e: any) => {
           if (textarea.current) {
-            if (autoResize) {
-              setRows(textarea.current.value.split('\n').length + 1);
-            }
+            setRowsHandler();
 
             if (props.maxLength) {
               setValue(textarea.current.value);
@@ -96,7 +117,7 @@ const Textarea: FC<ITextareaProps> = ({
         console.log(e);
       }
     };
-  }, [props.maxLength, autoResize]);
+  }, [props.maxLength, autoResize, onDebounce]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -139,6 +160,7 @@ const Textarea: FC<ITextareaProps> = ({
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
+        <canvas ref={canvasRef} />
       </div>
       {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
         <p className='rf-textarea__max-length'>

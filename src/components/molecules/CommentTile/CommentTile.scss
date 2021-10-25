@@ -19,8 +19,8 @@
   color: var(--text-secondary);
   width: 648px;
   & .rf-textarea__wrapper{
-    height: 76px;
-  }  
+    min-height: 76px;
+  }
 }
 
 .rf-comment-tile-button {
