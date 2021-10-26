@@ -13,7 +13,8 @@
 }
 
 .rf-hint__message {
-  @include text-m-16();
+  @include text-m-16;
+  color: var(--text-secondary);
 }
 
 .rf-hint__body {
@@ -21,8 +22,8 @@
 }
 
 .rf-hint__icon {
-  width: var(--18);
-  height: var(--18);
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
   margin-right: 4px;
 }
@@ -50,6 +51,7 @@
   }
 
   .rf-hint__button {
+    @include button-m-16;
     color: var(--text-secondary);
     cursor: pointer;
   }
