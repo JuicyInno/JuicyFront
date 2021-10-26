@@ -11,7 +11,7 @@ import Placeholder16 from '../../../assets/icons/Placeholder16';
 
 
 export default {
-  title: 'controls/не проверено/Tag',
+  title: 'controls/withTest/Tag',
   component: Tag,
   argTypes: { icon: { control: null } }
 };
