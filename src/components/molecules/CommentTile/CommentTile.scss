@@ -23,6 +23,13 @@
   }
 }
 
+.rf-comment-tile__input-wrapper--auto-resize {
+  & .rf-textarea__wrapper,
+  .rf-textarea__field{
+    height: 76px;
+  }
+}
+
 .rf-comment-tile-button {
   margin-top: 20px;
   width: 180px;

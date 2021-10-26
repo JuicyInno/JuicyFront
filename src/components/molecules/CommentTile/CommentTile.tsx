@@ -16,35 +16,46 @@ import { IFileData } from '../../../types';
 export interface ICommentTileProps {
     /** Начальный комментарий */
     comment?: string;
-  /** Максимальная длина комментария */
-  maxLength?: number;
-  /** Начальный комментарий */
-  showScroll?: boolean;
+    /** Автоматическое изменение высоты */
+    autoResize?: boolean;
+    /** Прикрепленные файлы */
+    initialFiles?: IRequestAttachment[] | undefined;
+    /** Максимальная длина комментария */
+    maxLength?: number;
     /** Срабатывает при изменении значения*/
     onDebounce?: (result: IDebounceCommentResult) => void,
 }
 
 const Attachments: FC<ICommentTileProps> = ({
   comment = '',
-  showScroll = false,
   maxLength = 255,
+  initialFiles = undefined,
+  autoResize = false,
   onDebounce = (a) => console.log(a),
 }: ICommentTileProps) => {
   const [value, setValue] = useState(comment);
 
   /** хранит приложенные файлы*/
-  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(undefined);
+  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(initialFiles);
 
   useEffect(() => {
     onDebounce({
       debounceString: value,
       attachedFiles,
     });
+
+    if (attachedFiles) {
+      console.log('attachedFiles[0].base64', attachedFiles[0].base64);
+    }
   }, [attachedFiles]);
 
   /** Изменение состояния комментария */
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(event.target.value);
+    const value = event.target.value;
+
+    if (maxLength && value.length <= maxLength) {
+      setValue(event.target.value);
+    }
   };
 
   /** Получение результата после ввода комментария */
@@ -114,11 +125,14 @@ const Attachments: FC<ICommentTileProps> = ({
     <Tile className='rf-comment-tile'>
       <h1 className='rf-comment-tile__title'>Комментарии и файлы</h1>
       <FormGroup
-        className='rf-comment-tile__input-wrapper'
+        className={`
+          rf-comment-tile__input-wrapper
+          ${!autoResize ? 'rf-comment-tile__input-wrapper--auto-resize' : ''}
+        `}
         label={'Комментарий'}
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
-        <Textarea autoResize={true} onDebounce={getResultByComment} onChange={onChange} value={value} placeholder='Оставить комментарий' />
+        <Textarea autoResize={autoResize} onDebounce={getResultByComment} onChange={onChange} value={value} placeholder='Оставить комментарий' />
       </FormGroup>
       <InputFile
         className='rf-comment-tile-button'

@@ -45,7 +45,6 @@ const Textarea: FC<ITextareaProps> = ({
 }: ITextareaProps) => {
   /** Ссылка на поле */
   const textarea = useRef<HTMLTextAreaElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   /** Количество рядов */
   const [rows, setRows] = useState(initialRowCount);
@@ -54,34 +53,7 @@ const Textarea: FC<ITextareaProps> = ({
   /** Находится ли инпут в состоянии фокуса */
   const [isFocused, setFocused] = useState(false);
 
-  const setRowsHandler = () => {
-    if (textarea.current && autoResize && canvasRef.current) {
-      // const canvas = document.createElement('canvas');
-      const ctx2d = canvasRef.current.getContext('2d') as CanvasRenderingContext2D;
-      // ctx2d.textAlign = 'left';
-      ctx2d.font = getComputedStyle(textarea.current).font;
-      const measurement = ctx2d.measureText(textarea.current.value);
-      console.log('width', measurement);
-      const rowsByEnter = textarea.current.value.split('\n');
-      let amountRows = rowsByEnter.length;
-      rowsByEnter.forEach((partOfText) => {
-        const measurement = ctx2d.measureText(partOfText);
-        const basicRowsValue = Math.ceil(Math.abs(measurement.actualBoundingBoxLeft) + Math.abs(measurement.actualBoundingBoxRight) / 616);
-        // console.log('width', measurement);
-
-        if (basicRowsValue > 1) {
-          amountRows += basicRowsValue;
-        }
-      });
-      setRows(amountRows - 1);
-    }
-  };
-
   useEffect(() => {
-    /** При фокусе на поле раскрываем его */
-    setRowsHandler();
-
-
     /** Подписываемся на ввод текста */
     let sub: any;
 
@@ -95,8 +67,6 @@ const Textarea: FC<ITextareaProps> = ({
         )
         .subscribe((e: any) => {
           if (textarea.current) {
-            setRowsHandler();
-
             if (props.maxLength) {
               setValue(textarea.current.value);
             }
@@ -144,12 +114,16 @@ const Textarea: FC<ITextareaProps> = ({
 
   return (
     <div className={`rf-textarea ${className}`}>
-      <div className={`
-        rf-textarea__wrapper
-        ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
-        ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
-        ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
-      `}>
+      <div
+        className={`
+          rf-textarea__wrapper
+          ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
+          ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
+          ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
+          ${autoResize ? 'rf-textarea__wrapper--auto-resize' : ''}
+        `}
+        data-replicated-value={props.value}
+      >
         <textarea
           {...props}
           disabled={disabled}
@@ -160,7 +134,6 @@ const Textarea: FC<ITextareaProps> = ({
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
-        <canvas ref={canvasRef} />
       </div>
       {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
         <p className='rf-textarea__max-length'>
