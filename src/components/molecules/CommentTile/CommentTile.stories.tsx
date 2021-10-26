@@ -76,10 +76,3 @@ Demo.parameters = {
   actions: { disabled: true },
   controls: { disabled: true }
 };
-
-Playground.parameters = {
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A77566',
-  },
-};

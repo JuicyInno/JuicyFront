@@ -25,7 +25,8 @@
     @include text-xs-14();
     color: var(--text-secondary);
     & .rf-form-group__label-secondary {
-      font-size: 12px;
+      @include caption();
+      color: var(--text-secondary);
     }
   }
 }

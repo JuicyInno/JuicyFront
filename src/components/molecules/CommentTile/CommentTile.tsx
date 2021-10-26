@@ -26,12 +26,12 @@ export interface ICommentTileProps {
     onDebounce?: (result: IDebounceCommentResult) => void,
 }
 
-const Attachments: FC<ICommentTileProps> = ({
+const CommentTile: FC<ICommentTileProps> = ({
   comment = '',
   maxLength = 255,
   initialFiles = undefined,
   autoResize = false,
-  onDebounce = (a) => console.log(a),
+  onDebounce = () => {},
 }: ICommentTileProps) => {
   const [value, setValue] = useState(comment);
 
@@ -43,18 +43,16 @@ const Attachments: FC<ICommentTileProps> = ({
       debounceString: value,
       attachedFiles,
     });
-
-    if (attachedFiles) {
-      console.log('attachedFiles[0].base64', attachedFiles[0].base64);
-    }
   }, [attachedFiles]);
 
   /** Изменение состояния комментария */
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value;
 
-    if (maxLength && value.length <= maxLength) {
+    if (value.length <= maxLength) {
       setValue(event.target.value);
+    } else {
+      setValue(event.target.value.slice(0, maxLength));
     }
   };
 
@@ -148,4 +146,4 @@ const Attachments: FC<ICommentTileProps> = ({
   </div>;
 };
 
-export default Attachments;
+export default CommentTile;
