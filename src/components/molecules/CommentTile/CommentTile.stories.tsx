@@ -62,7 +62,7 @@ export const Playground: Story<ICommentTileProps> = (args) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <CommentTile />
+        <CommentTile {...args} />
       </StoryRow>
     </StoryContainer>
   );
