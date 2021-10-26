@@ -39,67 +39,132 @@ const TooltipContent: FC<ITooltipContentProps> = ({
   const currentRectY = useMemo(() => (rect.y || rect.top), []);
   const currentRectX = useMemo(() => (rect.x || rect.left), []);
 
-  const styles =
-  {
-    'top': {
-      top: `${currentRectY}px`,
-      left: `${currentRectX + rect.width / 2}px`,
-      transform: 'translate(-50%, -100%)'
-    },
-    'top-start': {
-      top: `${currentRectY - 10}px`,
-      left: `${currentRectX - 20}px`,
-      transform: 'translate(0, -100%)'
-    },
-    'top-end': {
-      top: `${currentRectY - 10}px`,
-      left: `${currentRectX + rect.width}px`,
-      transform: 'translate(-100%, -100%)'
-    },
-    'right': {
-      top: `${currentRectY + rect.height / 2}px`,
-      left: `${currentRectX + rect.width}px`,
-      transform: 'translate(0, -50%)'
-    },
-    'right-start': {
-      top: `${currentRectY - 10}px`,
-      left: `${currentRectX + rect.width}px`,
-    },
-    'right-end': {
-      top: `${currentRectY - rect.height + 20}px`,
-      left: `${currentRectX + rect.width}px`,
-      transform: 'translate(0, -50%)'
-    },
-    'bottom': {
-      top: `${currentRectY + rect.height}px`,
-      left: `${currentRectX + rect.width / 2}px`,
-      transform: 'translate(-50%, 0)'
-    },
-    'bottom-start': {
-      top: `${currentRectY + rect.height}px`,
-      left: `${currentRectX - 20}px`,
-    },
-    'bottom-end': {
-      top: `${currentRectY + rect.height}px`,
-      left: `${currentRectX + rect.width}px`,
-      transform: 'translate(-100%, 0)'
-    },
-    'left': {
-      top: `${currentRectY + rect.height / 2}px`,
-      left: `${currentRectX - 12}px`,
-      transform: 'translate(-100%, -50%)'
-    },
-    'left-start': {
-      top: `${currentRectY - 10}px`,
-      left: `${currentRectX - 12}px`,
-      transform: 'translate(-100%, 0%)'
-    },
-    'left-end': {
-      top: `${currentRectY}px`,
-      left: `${currentRectX - 12}px`,
-      transform: 'translate(-100%,-70%)'
-    }
-  };
+  const styles = portal ?
+    {
+      'top': {
+        top: `${currentRectY}px`,
+        left: `${currentRectX + rect.width / 2}px`,
+        transform: 'translate(-50%, -100%)'
+      },
+      'top-start': {
+        top: `${currentRectY - 10}px`,
+        left: `${currentRectX - 20}px`,
+        transform: 'translate(0, -100%)'
+      },
+      'top-end': {
+        top: `${currentRectY - 10}px`,
+        left: `${currentRectX + rect.width}px`,
+        transform: 'translate(-100%, -100%)'
+      },
+      'right': {
+        top: `${currentRectY + rect.height / 2}px`,
+        left: `${currentRectX + rect.width}px`,
+        transform: 'translate(0, -50%)'
+      },
+      'right-start': {
+        top: `${currentRectY - 10}px`,
+        left: `${currentRectX + rect.width}px`,
+      },
+      'right-end': {
+        top: `${currentRectY - rect.height + 20}px`,
+        left: `${currentRectX + rect.width}px`,
+        transform: 'translate(0, -50%)'
+      },
+      'bottom': {
+        top: `${currentRectY + rect.height}px`,
+        left: `${currentRectX + rect.width / 2}px`,
+        transform: 'translate(-50%, 0)'
+      },
+      'bottom-start': {
+        top: `${currentRectY + rect.height}px`,
+        left: `${currentRectX - 20}px`,
+      },
+      'bottom-end': {
+        top: `${currentRectY + rect.height}px`,
+        left: `${currentRectX + rect.width}px`,
+        transform: 'translate(-100%, 0)'
+      },
+      'left': {
+        top: `${currentRectY + rect.height / 2}px`,
+        left: `${currentRectX - 12}px`,
+        transform: 'translate(-100%, -50%)'
+      },
+      'left-start': {
+        top: `${currentRectY - 10}px`,
+        left: `${currentRectX - 12}px`,
+        transform: 'translate(-100%, 0%)'
+      },
+      'left-end': {
+        top: `${currentRectY}px`,
+        left: `${currentRectX - 12}px`,
+        transform: 'translate(-100%,-70%)'
+      }
+    } :
+    {
+      'top': {
+        top: '0',
+        left: '50%',
+        transform: 'translate(-50%, -100%)'
+      },
+      'top-start': {
+        bottom: '100%',
+        left: '0',
+        top: 'auto',
+        paddingLeft: '0'
+      },
+      'top-end': {
+        bottom: ' 100%',
+        right: '0',
+        top: 'auto',
+        left: 'auto',
+      },
+      'right': {
+        top: '50%',
+        left: '100%',
+        transform: 'translate(0, -50%)'
+      },
+      'right-start': {
+        top: '10%',
+        left: '100%',
+        transform: 'translate(0, -4%)'
+      },
+      'right-end': {
+        bottom: '0',
+        top: 'auto',
+        left: '100%'
+      },
+      'bottom': {
+        top: '100%',
+        left: '50%',
+        transform: 'translate(-50%, 0)'
+      },
+      'bottom-start': {
+        top: '100%',
+        left: '0%',
+        paddingLeft: '0'
+      },
+      'bottom-end': {
+        right: '0',
+        top: '100%',
+        left: 'auto',
+      },
+      'left': {
+        top: '50%',
+        left: '0',
+        transform: 'translate(-100%, -50%)'
+      },
+      'left-start': {
+        top: '0',
+        left: '0px',
+        transform: 'translate(-100%, 0)'
+      },
+      'left-end': {
+        bottom: '0px',
+        top: 'auto',
+        right: '100%',
+        left: 'auto',
+      }
+    };
 
   const padding = {
     'top': 'paddingBottom',

@@ -24,6 +24,10 @@ export default {
       defaultValue: 'right'
     },
     open: { type: 'boolean', },
+    portal: {
+      type: 'boolean',
+      defaultValue: false
+    },
     color: {
       options: ['default', 'white', 'primary'],
       control: { type: 'select' },
