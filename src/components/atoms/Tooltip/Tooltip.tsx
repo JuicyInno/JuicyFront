@@ -22,6 +22,8 @@ interface ITooltipContentProps {
   color?: 'default' | 'white' | 'primary';
   /** Кастомный контейнер для тултипа */
   getPopupContainer: () => HTMLElement;
+  /** Портал в элемент - по умолчанию body */
+  portal?: boolean;
 }
 
 const TooltipContent: FC<ITooltipContentProps> = ({
@@ -32,6 +34,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
   size = 'm',
   color,
   getPopupContainer,
+  portal
 }: ITooltipContentProps) => {
   const currentRectY = useMemo(() => (rect.y || rect.top), []);
   const currentRectX = useMemo(() => (rect.x || rect.left), []);
@@ -140,7 +143,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
     </div >
   );
 
-  return createPortal(tooltip, getPopupContainer());
+  return portal ? createPortal(tooltip, getPopupContainer()) : tooltip;
 };
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -165,7 +168,9 @@ export interface ITooltipProps {
   /** Цвет тултипа */
   color?: 'default' | 'white' | 'primary';
   /** Размер тултипа */
-  size?: 'm' | 'l'
+  size?: 'm' | 'l';
+  /** Портал в элемент - по умолчанию body */
+  portal?: boolean;
 }
 
 
@@ -179,6 +184,7 @@ const Tooltip: FC<ITooltipProps> = ({
   color = 'default',
   size = 'm',
   getPopupContainer = () => document.body,
+  portal,
 }: ITooltipProps) => {
   const isControlled = typeof openProp !== 'undefined';
   const [open, setOpen] = useState(isControlled ? openProp : false);
@@ -187,12 +193,16 @@ const Tooltip: FC<ITooltipProps> = ({
 
   useLayoutEffect(() => {
     if (!!anchorRef.current) {
-      setTooltipRect(anchorRef.current.getBoundingClientRect());
+      setTimeout(() => setTooltipRect(anchorRef.current!.getBoundingClientRect()));
     }
   }, []);
 
   const onMouseEnter = (e: React.MouseEvent) => {
     const child = e.currentTarget.firstElementChild;
+
+    if (child) {
+      setTooltipRect(child.getBoundingClientRect());
+    }
 
     if (onOpen) {
       onOpen(e);
@@ -231,6 +241,7 @@ const Tooltip: FC<ITooltipProps> = ({
       className='rf-tooltip'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      portal={portal}
     >
       {children[0]}
       {tooltipContent}
