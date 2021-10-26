@@ -11,7 +11,7 @@
 }
 
 .rf-comment-tile__title {
-  @include text-l-16-bold();
+  @include h6();
 }
 
 .rf-comment-tile__input-wrapper {
@@ -20,6 +20,13 @@
   width: 648px;
   & .rf-textarea__wrapper{
     min-height: 76px;
+  }
+  & .rf-form-group__label {
+    @include text-xs-14();
+    color: var(--text-secondary);
+    & .rf-form-group__label-secondary {
+      font-size: 12px;
+    }
   }
 }
 
