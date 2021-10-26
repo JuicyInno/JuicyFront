@@ -8,7 +8,6 @@ import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
 import { IMenuContext } from '../../../types';
 import ChevronDown from '../../../assets/icons/ChevronDown';
-import FlagDisabled from '../../../assets/icons/FlagDisabled';
 import FlagRU from '../../../assets/icons/FlagRU';
 
 export interface IInputPhoneCountry {
@@ -169,18 +168,13 @@ const InputPhone: React.FC<IInputPhoneProps> =
                 }
               >
                 <div className='rf-phone-input__country'>
-                  {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
+                  {<country.flag className={`rf-phone-input__flag' ${disabled ? 'rf-phone-input__flag-disabled' : ''}`} />}
                   {countries.length > 1 && (
                     <MenuContext.Consumer >
                       {({ show, ...res }: IMenuContext) => {
-
-                        if (disabled) {
-                          return null;
-                        }
-
                         return (
                           <button
-                            className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
+                            className={`rf-phone-input__button ${show && !disabled ? 'rf-phone-input__button--rotate' : ''}`}
                             type='button'
                             disabled={disabled}
                             aria-label='Выбрать страну'

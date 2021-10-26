@@ -8,6 +8,10 @@
 
   &__flag {
     color: var(--text-tertiary);
+
+    &-disabled {
+      opacity: 0.5;
+    }
   }
 
   &__button {
