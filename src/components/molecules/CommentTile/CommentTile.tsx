@@ -58,8 +58,6 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   /** Получение результата после ввода комментария */
   const getResultByComment = (e: Event) => {
-    console.log('value', value);
-    console.log('attachedFiles', attachedFiles);
     onDebounce({
       debounceString: value,
       attachedFiles,
