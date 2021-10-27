@@ -23,7 +23,7 @@ export interface IProps {
     host?: string;
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = 'https://sapd-fes-ap01.vtb24.ru:44310' }: IProps) => {
+const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Показать / Скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -136,6 +136,10 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = 'http
   const openDownloadLink = useCallback((id: string | undefined) => {
     if (id === undefined) {
       return;
+    }
+
+    if (host.includes('127.0.0')) {
+      host = 'https://sapd-fes-ap01.vtb24.ru:44310';
     }
 
     const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${id})/content`;
