@@ -22,11 +22,6 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   invalid?: boolean;
   /** обработка ввода комментария с эффектом debounce */
   onDebounce?: (e: Event) => void;
-  /**
-   * Показывать счетчик символов под инпутом.
-   * @default true
-   */
-  showMaxLength?: boolean;
 }
 
 const Textarea: FC<ITextareaProps> = ({
@@ -40,14 +35,10 @@ const Textarea: FC<ITextareaProps> = ({
   onFocus,
   onBlur,
   onDebounce = () => {},
-  showMaxLength = true,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
   const textarea = useRef<HTMLTextAreaElement>(null);
-
-  /** Количество рядов */
-  const [rows, setRows] = useState(initialRowCount);
 
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
   /** Находится ли инпут в состоянии фокуса */
@@ -120,7 +111,7 @@ const Textarea: FC<ITextareaProps> = ({
           ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
           ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
           ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
-          ${autoResize ? 'rf-textarea__wrapper--auto-resize' : ''}
+          ${autoResize ? 'rf-textarea__wrapper--auto-resize' : 'rf-textarea__scroll'}
         `}
         data-replicated-value={props.value}
       >
@@ -128,18 +119,16 @@ const Textarea: FC<ITextareaProps> = ({
           {...props}
           disabled={disabled}
           ref={textarea}
-          rows={rows}
-          className={'rf-textarea__field'}
+          rows={initialRowCount}
+          className={`
+          rf-textarea__field
+          ${!autoResize ? 'rf-textarea__scroll' : ''}
+        `}
           autoComplete='off'
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
       </div>
-      {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
-        <p className='rf-textarea__max-length'>
-          {value.length} / {props.maxLength}
-        </p>
-      )}
     </div>
   );
 };

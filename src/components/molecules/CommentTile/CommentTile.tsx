@@ -129,9 +129,10 @@ const CommentTile: FC<ICommentTileProps> = ({
       <FormGroup
         className={`
           rf-comment-tile__input-wrapper
-          ${!autoResize ? 'rf-comment-tile__input-wrapper--auto-resize' : ''}
+          ${!autoResize ? 'rf-comment-tile__input-wrapper--scroll' : ''}
         `}
         label={'Комментарий'}
+        showLargeSizeFirstLabel
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
         <Textarea autoResize={autoResize} onDebounce={getResultByComment} onChange={onChange} value={value} placeholder='Оставить комментарий' />

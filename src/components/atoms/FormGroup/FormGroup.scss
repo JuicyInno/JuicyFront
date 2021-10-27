@@ -5,7 +5,7 @@
 }
 
 .rf-form-group__inner:focus-within .rf-form-group__label {
-  color: var(--basic-press);
+  color: var(--basic-primary);
 }
 
 .rf-form-group__label {
@@ -16,14 +16,29 @@
   transition: 0.15s ease-in;
 }
 
+.rf-form-group__label-large {
+  @include text-xs-14();
+  color: var(--text-secondary);
+}
+
 .rf-form-group__label-secondary {
+  @include caption();
+  color: var(--text-secondary);
   float: right;
   margin-left: 8px;
 }
 
+.rf-form-group__label-secondary-invalid {
+  color: var(--status-danger);
+}
+
 .rf-form-group__message {
   margin-top: 8px;
-  @include caption;
+  @include text-xs-14();
+  color: var(--text-secondary);
+}
+
+.rf-form-group__message-invalid {
   color: var(--status-danger);
 }
 
