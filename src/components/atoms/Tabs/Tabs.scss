@@ -4,10 +4,15 @@ $lineWidth: 2px;
 
 .rf-tabs__navigation {
   position: relative;
-  border-bottom: $lineWidth solid var(--background-tertiary);
+  border-bottom: $lineWidth solid transparent;
+
+  &__line {
+    border-bottom: $lineWidth solid var(--background-tertiary);
+  }
 }
 
 .rf-tabs__navigation-list {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -20,6 +25,17 @@ $lineWidth: 2px;
   background-color: var(--basic-primary);
 
   transition: 0.3s;
+}
+
+.rf-tabs__link {
+  white-space: nowrap;
+
+  &--hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+  }
 }
 
 .rf-tabs__link:last-of-type {
@@ -65,5 +81,48 @@ $lineWidth: 2px;
 
   svg {
     display: block;
+  }
+}
+
+.button-group__menu {
+  max-width: 240px;
+}
+
+.rf-tabs__menu {
+  position: absolute;
+  right: 4px;
+  top: 0px;
+  width: auto;
+
+  .rf-tabs__menu__btn {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+      color: var(--basic-primary);
+    }
+  }
+
+  &--active {
+    .rf-tabs__menu__btn {
+      color: var(--basic-press);
+    }
+  }
+}
+
+.rf-tabs__menu-link {
+  .rf-tabs__menu-button {
+    width: 100%;
+    transition: 0.2s ease-in-out;
+
+    &--active {
+      background-color: var(--background-tertiary);
+    }
+  }
+
+  .rf-tabs__menu-button:hover {
+    background-color: var(--background-secondary);
   }
 }
