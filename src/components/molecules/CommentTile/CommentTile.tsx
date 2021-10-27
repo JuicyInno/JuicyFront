@@ -38,12 +38,18 @@ const CommentTile: FC<ICommentTileProps> = ({
   /** хранит приложенные файлы*/
   const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(initialFiles);
 
+  /** Отлов прикрепления файлов */
   useEffect(() => {
     onDebounce({
       debounceString: value,
       attachedFiles,
     });
   }, [attachedFiles]);
+
+  /** Изменение начального комментария*/
+  useEffect(() => {
+    setValue(comment);
+  }, [comment]);
 
   /** Изменение состояния комментария */
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

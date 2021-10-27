@@ -19,6 +19,7 @@ export default {
       defaultValue: 'default'
     }
   },
+  argTypes: { initialFiles: { control: null }, }
 };
 
 const initialFiles = [
