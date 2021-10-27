@@ -27,7 +27,7 @@ const buttonTypes: ButtonType[] = [
 ];
 
 export default {
-  title: 'atoms/withTest/Button',
+  title: 'controls/withTest/Button',
   component: Button,
   decorators: [withDesign],
   argTypes: {

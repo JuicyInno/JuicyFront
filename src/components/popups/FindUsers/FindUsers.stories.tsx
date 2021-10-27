@@ -8,7 +8,7 @@ import { Button, Modal } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
-  title: 'не проверено/FindUsers',
+  title: 'components/не проверено/FindUsers',
   component: FindUsers
 };
 
@@ -17,7 +17,8 @@ export const findUsers = () => {
   const subtitle = 'Поиск только по сотрудникам банка, которым вы можете делегировать свои полномочия (роль “Делегирование”).';
 
   const [selected, setSelected] = useState<IUser[]>([usersMocks[0]]);
-  const [show, toggle] = useState(true);
+  const [show, toggle] = useState(false);
+  const [show1, toggle1] = useState(false);
 
   const getUsers = (users: IUser[]) => {
     setSelected(users);
@@ -34,8 +35,26 @@ export const findUsers = () => {
                 getUsers={getUsers}
                 users={selected}
                 multiSelect={true}
+                showAll={true}
                 disableSelected
                 onClose={() => toggle(false)}
+                subtitle={subtitle}/>
+            </Modal>
+          )}
+        </StoryItem>
+      </Story>
+      <Story name='Поиск пользователей только в команде'>
+        <StoryItem description='Модальное окно'>
+          <Button onClick={() => toggle1(true)}>Найти сотрудника</Button>
+          {show1 && (
+            <Modal onClose={() => toggle1(false)}>
+              <FindUsers
+                getUsers={getUsers}
+                users={selected}
+                multiSelect={true}
+                showAll={false}
+                disableSelected
+                onClose={() => toggle1(false)}
                 subtitle={subtitle}/>
             </Modal>
           )}

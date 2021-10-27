@@ -8,7 +8,7 @@ import OrgTree from './OrgTree';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'molecules/OrgTree',
+  title: 'components/OrgTree',
   component: Tree,
   decorators: [withDesign],
 };

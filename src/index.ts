@@ -57,7 +57,7 @@ import UsersStack from './components/molecules/UsersStack';
 import ContentExpander from './components/molecules/ContentExpander';
 import BackdropLoader from './components/atoms/BackdropLoader';
 import { PopupMaker, openPopup } from './components/organisms/PopupMaker';
-
+import Signification from './components/organisms/Signification';
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
 import Confirm from './components/popups/Confirm';
@@ -72,6 +72,7 @@ import { download } from './utils/download';
 
 
 export {
+  Signification,
   GhostScreen,
   HistoryCardFilter,
   Avatar,

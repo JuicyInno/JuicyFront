@@ -11,7 +11,7 @@ import {
 import { variants } from '../../../types';
 
 export default {
-  title: 'molecules/Card',
+  title: 'components/withTest/Карточки задач-истории',
   component: Card,
   typeArgs: {
     statusColor: {
@@ -51,7 +51,9 @@ export const Playground: Story<ICard> = (args) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <Card {...args} />
+        <Card {...args} onClick={() => {
+          alert('click');
+        }} />
       </StoryRow>
     </StoryContainer>
   );

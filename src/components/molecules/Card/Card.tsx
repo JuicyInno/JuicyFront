@@ -16,33 +16,33 @@ import './Card.scss';
 
 export interface ICard {
   /** Дата заявки */
-  date: string;
+  date?: string;
   /** Обработка заявки */
   onClick?: () => void;
   /** Номер заявки */
-  requestNumber: string;
+  requestNumber?: string;
   /** Цвет статуса заявки */
-  statusColor: Variant;
+  statusColor?: Variant;
   /** Статус заявки */
-  statusText: string;
+  statusText?: string;
   /** Вид заявки */
   subTitle?: string;
   /** Название заявки */
-  title: string;
+  title?: string;
   /** Кнопка обработки заявки */
   showActionButton?: boolean;
   /** Пользователи */
-  users: IUser[];
+  users?: IUser[];
 }
 
 const Card: FC<ICard> = ({
-  title,
-  subTitle,
-  requestNumber,
-  date,
-  statusText,
+  title = '',
+  subTitle = '',
+  requestNumber = '',
+  date = '',
+  statusText = '',
   statusColor = 'default',
-  users,
+  users = [],
   showActionButton = false,
   onClick = () => { },
 }) => {
@@ -54,8 +54,8 @@ const Card: FC<ICard> = ({
     navigator.clipboard.writeText(user.id);
   };
 
-  const getUsers = users.map((user: IUser, i) => (
-    <div className='rf-card__row' key={i}>
+  const getUsers = users.map((user: IUser) => (
+    <div className='rf-card__row' key={user.id}>
       <div className='rf-card__user-wrapper'>
         <div className='rf-card__user-photo-wrapper'>
           <UserPhoto url={user.photo} radius='48' />
@@ -101,19 +101,19 @@ const Card: FC<ICard> = ({
     </div>
   ));
 
-  return <div className='rf-card__wrapper'>
+  return <div className='rf-card__wrapper' onClick={onClick}>
     <Tile className='rf-card__tile'>
       <div className='rf-card__row rf-card__row_first-row'>
         <div className='rf-card__title-wrapper'>
           <h1 className='rf-card__title'>{`${title} №${requestNumber} от ${date}`}</h1>
           {subTitle && <p className='rf-card__subtitle'>{subTitle}</p>}
         </div>
-        <Tag variant={statusColor}>{statusText}</Tag>
+        <Tag variant={statusColor} onClick={onClick}>{statusText}</Tag>
       </div>
       {getUsers}
-      {!showActionButton && (
+      {showActionButton && (
         <div className='rf-card__button-wrapper'>
-          <Button className='rf-card__button' onClick={onClick}> Обработать </Button>
+          <Button className='rf-card__button' > Обработать </Button>
         </div>
       )}
     </Tile>

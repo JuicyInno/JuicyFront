@@ -3,8 +3,9 @@ import React, {
 } from 'react';
 import './PageWithSections.scss';
 import { IPageSection } from '../../../types/projects.types';
-import { ITab } from '../../../types';
+import { IButtonGroup, ITab } from '../../../types';
 import {
+  ButtonGroup,
   ChevronLeft, Preloader, Tabs
 } from '../../../index';
 import { Link } from 'react-router-dom';
@@ -16,7 +17,7 @@ export interface IPageWithSectionsProps {
   backUrl?: string;
   onBackUrlClick?: () => void;
   sections?: IPageSection[];
-  /** Fixed action menu */
+  /** [DEPRECATED] Fixed action menu */
   actionMenu?: ReactNode;
   /** Всегда отображает панель с кнопками внизу страницы*/
   actionMenuAlwaysBottom?:boolean;
@@ -27,6 +28,8 @@ export interface IPageWithSectionsProps {
   /** Navigation tabs */
   navigation?: ITab[];
   showHeader?: boolean;
+  /** Кнопки действий внизу страницы */
+  buttonsGroup?: IButtonGroup[];
 }
 
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
@@ -40,7 +43,8 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   navigation,
   showHeader = true,
   actionMenuAlwaysBottom = false,
-  showNavigationPosition = false
+  showNavigationPosition = false,
+  buttonsGroup = []
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
@@ -207,7 +211,13 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         }
       </div>
 
-      { !preloader && actionMenu }
+      { !preloader && actionMenu ? actionMenu : (
+        buttonsGroup !== undefined && buttonsGroup.length > 0 && (
+          <div className='rf-page__buttons-group'>
+            <ButtonGroup list={buttonsGroup}/>
+          </div>
+        )
+      ) }
     </div>
   );
 };

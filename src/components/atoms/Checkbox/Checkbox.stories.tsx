@@ -13,7 +13,7 @@ import {
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Atoms/Checkbox',
+  title: 'forms/withTest/Checkbox',
   decorators: [withDesign],
   component: Checkbox,
   argTypes: {

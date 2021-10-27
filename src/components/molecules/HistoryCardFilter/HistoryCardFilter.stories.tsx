@@ -29,7 +29,7 @@ const data: IHistoryCardFilterProps = {
 };
 
 export default {
-  title: 'не проверено/HistoryCardFilter',
+  title: 'components/не проверено/HistoryCardFilter',
   component: HistoryCardFilter,
   typeArgs: {
     isShowDatePicker: { type: 'boolean' },
