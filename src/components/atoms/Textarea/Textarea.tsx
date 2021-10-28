@@ -7,6 +7,7 @@ import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
 import { classnames } from '../../../utils/classnames';
+import Close from '../../../assets/icons/Close';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
@@ -23,6 +24,8 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   invalid?: boolean;
   /** обработка ввода комментария с эффектом debounce */
   onDebounce?: (e: Event) => void;
+  /** Возможность очистки поля по клику */
+  onClear?: () => void;
 }
 
 const Textarea: FC<ITextareaProps> = ({
@@ -36,6 +39,7 @@ const Textarea: FC<ITextareaProps> = ({
   onFocus,
   onBlur,
   onDebounce = () => {},
+  onClear,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
@@ -101,6 +105,24 @@ const Textarea: FC<ITextareaProps> = ({
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  /** Очистка поля ввода */
+  const clearInput = () => {
+    if (textarea.current) {
+      textarea.current.value = '';
+      setValue('');
+      onClear && onClear();
+    }
+  };
+
+  /** Кнопка сброса */
+  const closeButton = onClear && value.length > 0 && (
+    <button type='button' className='rf-textarea__action' onClick={ clearInput } aria-label='Сбросить'>
+      <Close/>
+    </button>
+  );
+
+  // ------------------------------------------------------------------------------------------------------------------
+
   // Делаем проверку на className для обратной совместимости.
   const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
@@ -113,7 +135,8 @@ const Textarea: FC<ITextareaProps> = ({
           isFocused && 'rf-textarea__wrapper--focused',
           isInvalid && 'rf-textarea__wrapper--invalid',
           autoResize && 'rf-textarea__wrapper--auto-resize',
-          !autoResize && 'rf-textarea__scroll'
+          !autoResize && 'rf-textarea--scroll',
+          onClear && value.length > 0 && 'rf-textarea--clearable'
         )}
         data-replicated-value={props.value}
       >
@@ -124,12 +147,13 @@ const Textarea: FC<ITextareaProps> = ({
           rows={initialRowCount}
           className={`
           rf-textarea__field
-          ${!autoResize ? 'rf-textarea__scroll' : ''}
+          ${!autoResize ? 'rf-textarea--scroll' : ''}
         `}
           autoComplete='off'
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
+        {closeButton}
       </div>
     </div>
   );

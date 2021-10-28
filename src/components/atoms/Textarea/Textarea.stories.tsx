@@ -50,7 +50,13 @@ export const Demo = () => {
           <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} getValue={getValue} />
         </FormGroup>
         <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+          <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} getValue={getValue} onClear={() => {}} />
+        </FormGroup>
+        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} maxLength={MAX_LENGTH} />
+        </FormGroup>
+        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+          <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} maxLength={MAX_LENGTH} onClear={() => {}} />
         </FormGroup>
         <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea disabled maxLength={MAX_LENGTH} />

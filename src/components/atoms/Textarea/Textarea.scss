@@ -3,6 +3,10 @@
 .rf-textarea {
   width: 100%;
   position: relative;
+
+  &--clearable {
+    padding-right: 48px;
+  }
 }
 
 .rf-textarea__wrapper {
@@ -32,12 +36,36 @@
   }
 }
 
+.rf-textarea__action {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 22px;
+  right: 16px;
+  transform: translateY(-50%);
+  color: var(--basic-tertiary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: var(--basic-tertiary);
+  }
+}
+
+.rf-textarea__action:hover,
+.rf-textarea__action:focus {
+  color: var(--basic-primary);
+}
+
 .rf-textarea__wrapper--auto-resize {
   display: grid;
   min-height: 88px;
 }
 
-.rf-textarea__scroll {
+.rf-textarea--scroll {
   height: 88px;
 }
 
@@ -65,7 +93,7 @@
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  padding: 8px 16px;
+  padding: 14px 16px;
   border-radius: 8px;
   border: 0;
   box-sizing: border-box;
