@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState
+} from 'react';
 import ChevronDown from '../../../assets/icons/ChevronDown';
 import EmptyUser from '../../../assets/icons/EmptyUser';
 import Info from '../../../assets/icons/Info';
@@ -18,9 +20,10 @@ export interface IProps {
     history: IRequestPath[];
     attachments?: IRequestAttachment[];
     isUZADO?: boolean;
+    host?: string;
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments }: IProps) => {
+const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Показать / Скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -128,15 +131,33 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments }: IProps) =>
     );
   });
 
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const openDownloadLink = useCallback((id: string | undefined) => {
+    if (id === undefined) {
+      return;
+    }
+
+    if (host.includes('127.0.0')) {
+      host = 'https://sapd-fes-ap01.vtb24.ru:44310';
+    }
+
+    const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${id})/content`;
+    window.open(url, '_blank');
+  }, []);
+
   const attachmentsJSX = <div className='rf-history__attachments'>
     <div className='rf-history__attachments-line' />
     <p className='rf-history__attachments-title'>Приложенные файлы</p>
     <div className='rf-history__attachments-container'>
-      {attachments?.map(attachment => <div className='rf-history__attachment'>
-        <Chip type='secondary' size='s'>{attachment.fileName}</Chip>
-      </div>)}
+      {attachments?.map(attachment => (
+        <div className='rf-history__attachment' key={attachment.fileName + attachment.id}>
+          <Chip type='secondary' size='s' onClick={() => openDownloadLink(attachment.id)}>{attachment.fileName}</Chip>
+        </div>
+      ))}
     </div>
   </div>;
+
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
