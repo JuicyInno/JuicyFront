@@ -2,10 +2,11 @@ import React, {
   FC, HTMLProps, useEffect, useRef, useState
 } from 'react';
 import './Textarea.scss';
-import { fromEvent, tap } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
+import { classnames } from '../../../utils/classnames';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
@@ -62,7 +63,6 @@ const Textarea: FC<ITextareaProps> = ({
         .pipe(
           map((e: Event) => e),
           debounceTime(debounce),
-          tap((e) => onDebounce(e)),
           distinctUntilChanged()
         )
         .subscribe((e: any) => {
@@ -75,6 +75,7 @@ const Textarea: FC<ITextareaProps> = ({
           }
 
           props.onKeyUp && props.onKeyUp(e);
+          onDebounce(e);
         });
     }
 
@@ -115,13 +116,13 @@ const Textarea: FC<ITextareaProps> = ({
   return (
     <div className={`rf-textarea ${className}`}>
       <div
-        className={`
-          rf-textarea__wrapper
-          ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
-          ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
-          ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
-          ${autoResize ? 'rf-textarea__wrapper--auto-resize' : ''}
-        `}
+        className={classnames(
+          'rf-textarea__wrapper',
+          disabled && 'rf-textarea__wrapper--disabled',
+          isFocused && 'rf-textarea__wrapper--focused',
+          isInvalid && 'rf-textarea__wrapper--invalid',
+          autoResize && 'rf-textarea__wrapper--auto-resize'
+        )}
         data-replicated-value={props.value}
       >
         <textarea

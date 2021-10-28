@@ -12,6 +12,7 @@ import {
   Chip, Close, download, InputFile
 } from '../../../index';
 import { IFileData } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 export interface ICommentTileProps {
     /** Начальный комментарий */
@@ -33,7 +34,7 @@ const CommentTile: FC<ICommentTileProps> = ({
   autoResize = false,
   onDebounce = () => {},
 }: ICommentTileProps) => {
-  const [value, setValue] = useState(comment);
+  const [value, setValue] = useState<string>(comment);
 
   /** хранит приложенные файлы*/
   const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(initialFiles);
@@ -86,7 +87,7 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   // =======================================================================================================================================
   /** Чип прикрепленного файла */
-  const attachedFileChipsTSX = (name:string, index: number, onClick:(e:any)=>void) =>
+  const attachedFileChipsTSX = (name:string, index: number, onClick:(e: React.MouseEvent)=>void) =>
     <div className='rf-comment-tile-chip'>
       <Chip
         onClick={() => attachedFiles && download(attachedFiles[index], attachedFiles[index]?.fileName)}
@@ -108,7 +109,7 @@ const CommentTile: FC<ICommentTileProps> = ({
     .map((file: IRequestAttachment, index: number) => attachedFileChipsTSX(
       file.fileName,
       index,
-      (e:Event) => {
+      (e:React.MouseEvent) => {
         e.stopPropagation();
         const newListFile = attachedFiles;
         newListFile.splice(index, 1);
@@ -127,10 +128,10 @@ const CommentTile: FC<ICommentTileProps> = ({
     <Tile className='rf-comment-tile'>
       <h1 className='rf-comment-tile__title'>Комментарии и файлы</h1>
       <FormGroup
-        className={`
-          rf-comment-tile__input-wrapper
-          ${!autoResize ? 'rf-comment-tile__input-wrapper--auto-resize' : ''}
-        `}
+        className={classnames(
+          'rf-comment-tile__input-wrapper',
+          !autoResize && 'rf-comment-tile__input-wrapper--auto-resize'
+        )}
         label={'Комментарий'}
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
