@@ -10,7 +10,7 @@ import {
 import { variants } from '../../../types';
 
 export default {
-  title: 'components/не проверено/CommentTile',
+  title: 'components/withTest/CommentTile',
   component: CommentTile,
   typeArgs: {
     statusColor: {
