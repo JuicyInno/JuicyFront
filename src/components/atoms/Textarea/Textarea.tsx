@@ -14,8 +14,6 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   autoResize?: boolean;
   /** Количество строк */
   initialRowCount?: number;
-  /** Последовательность перехода при нажатии на Tab */
-  tabIndex?: number;
   /** Дебаунс */
   debounce?: number;
   /** Вернуть value */
@@ -83,7 +81,12 @@ const Textarea: FC<ITextareaProps> = ({
         console.log(e);
       }
     };
-  }, [props.maxLength, autoResize, onDebounce]);
+  }, [
+    props.maxLength,
+    autoResize,
+    onDebounce,
+    debounce
+  ]);
 
   // ------------------------------------------------------------------------------------------------------------------
 

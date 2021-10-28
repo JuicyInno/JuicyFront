@@ -19,7 +19,13 @@ export default {
       defaultValue: 'default'
     }
   },
-  argTypes: { initialFiles: { control: null }, }
+  argTypes: {
+    maxLength: {
+      type: 'number',
+      defaultValue: 255
+    },
+    initialFiles: { control: null },
+  }
 };
 
 const initialFiles = [
@@ -37,7 +43,7 @@ const comment = 'Давно выяснено, что при оценке диз�
 export const Demo: Story = () => {
   return (
     <StoryDocs>
-      <StoryDocsH2>Комментарии и файлы</StoryDocsH2>
+      <StoryDocsH2>CommentTile</StoryDocsH2>
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
