@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {byText} from "testing-library-selector";
 
 import CommentTile  from './CommentTile';
+import userEvent from "@testing-library/user-event";
 
 const maxLength = 355;
 const initialFiles = [
@@ -75,5 +76,15 @@ describe('Test <CommentTile/> component', () => {
         expect(textarea).toHaveValue('Hello World!');
         expect(onDebounce).toHaveBeenCalledTimes(1);
     });
+
+    it('should be upload file',async () => {
+        let file = new File(['(⌐□_□)'], 'sweetfile.png', { type: 'image/png' });
+        render(<CommentTile />);
+        userEvent.upload(screen.getByPlaceholderText('Прикрепить файл'),file)
+
+        await waitFor(() =>{
+            expect(byText('sweetfile.png').get()).toBeTruthy()
+        })
+    })
 
 });
