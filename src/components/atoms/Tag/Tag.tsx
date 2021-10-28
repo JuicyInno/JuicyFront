@@ -6,11 +6,9 @@ import { Close } from '../../../index';
 export interface ITagProps {
   /** Цвет тега. */
   variant?: 'grey' | Variant;
-  /** Использовать обводку вместо заливки фона. */
-  outlined?: boolean;
   /** Иконка в начале тега. */
   icon?: ReactNode;
-  /** Коллбек клика по теку. */
+  /** Коллбек клика по тегу. */
   onClick?: () => void;
   /** Коллбек клика по кнопке удаления. */
   onRemove?: () => void;
@@ -44,7 +42,7 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className={`rf-tag ${clickableClass} rf-tag--${variant} ${outlined ? 'rf-tag--outlined' : ''}`} onClick={handleClick}>
+    <div className={`rf-tag ${clickableClass} rf-tag--${variant}`} onClick={handleClick}>
       {!!icon && (
         <div className='rf-tag__icon'>
           {icon}
@@ -52,7 +50,7 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
       )}
       {overMaxLength ? children.slice(0, maxLength) + '...' : children}
       {!!onRemove && <button type='button' className='rf-tag__remove' onClick={handleRemove} disabled={disabled} aria-label='Удалить'>
-        <Close/>
+        <Close />
       </button>}
     </div>
   );

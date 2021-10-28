@@ -32,11 +32,6 @@ describe('Test <Tag/> component', () => {
     expect(onRemove).toBeCalled();
   });
 
-  it(`should be outlined`, () => {
-    render(<Tag outlined>Tag</Tag>);
-    expect(screen.getByText('Tag')).toHaveClass('rf-tag--outlined');
-  });
-
   for (const variant of variants) {
     it(`should be ${variant}`, () => {
       render(<Tag variant={variant}>Tag</Tag>);

@@ -9,7 +9,6 @@ import StoryRow from '../../storybook/StoryRow';
 
 import Placeholder16 from '../../../assets/icons/Placeholder16';
 
-
 export default {
   title: 'controls/withTest/Tag',
   component: Tag,
@@ -90,26 +89,6 @@ export const Demo = () => {
           </div>
         </div>
 
-        <div style={{
-          marginTop: 20,
-          display: 'flex',
-          marginLeft: 30,
-          flexDirection: 'column'
-        }}>
-          <div style={wrap}>
-            <Tag onRemove={() => { }}>Москва</Tag>
-          </div>
-          <div style={wrap}>
-            <Tag variant='blue' outlined onRemove={() => { }}>Москва</Tag>
-          </div>
-          <div style={wrap}>
-            <Tag icon={<Placeholder16 />}>Москва</Tag>
-          </div>
-          <div style={wrap}>
-            <Tag variant='blue' outlined icon={<Placeholder16 />}>Москва</Tag>
-          </div>
-        </div>
-
         <StoryDocsH2>Группа с тегами</StoryDocsH2>
         <StoryDocsDescription>
           Если у нас в карточке больше 1 тега, то стоит остальные прятать в селект. Отступ между тегами нужно делать 8px.
@@ -150,11 +129,11 @@ export const Demo = () => {
               }}>Штатная еденица</p>
               <div style={{
                 marginTop: 8,
-                display: 'grid',
-                gap: 8,
-                gridTemplateColumns: 'repeat(2, 1fr)'
+                display: 'flex',
               }}>
-                <Tag variant='violet'>Подбор</Tag>
+                <div style={{ marginRight: 8 }}>
+                  <Tag variant='violet'>Подбор</Tag>
+                </div>
                 <Tag variant='violet'>Увольнение</Tag>
               </div>
               <p style={{
@@ -165,11 +144,11 @@ export const Demo = () => {
               }}>Сотрудник</p>
               <div style={{
                 marginTop: 8,
-                display: 'grid',
-                gap: 8,
-                gridTemplateColumns: 'repeat(2, 1fr)'
+                display: 'flex',
               }}>
-                <Tag variant='yellow'>Отпуск</Tag>
+                <div style={{ marginRight: 8 }}>
+                  <Tag variant='yellow'>Отпуск</Tag>
+                </div>
                 <Tag variant='violet'>Увольнение</Tag>
               </div>
             </Tile>
