@@ -32,6 +32,29 @@
   }
 }
 
+.rf-textarea__wrapper--auto-resize {
+  display: grid;
+}
+
+.rf-textarea__wrapper--auto-resize::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+  overflow-wrap: anywhere;
+}
+
+.rf-textarea__wrapper--auto-resize > .rf-textarea__field {
+  resize: none;
+  overflow: hidden;
+}
+
+.rf-textarea__wrapper--auto-resize > .rf-textarea__field,
+.rf-textarea__wrapper--auto-resize::after {
+  padding: 0.5rem;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
 .rf-textarea__field {
   position: relative;
   display: inline-block;

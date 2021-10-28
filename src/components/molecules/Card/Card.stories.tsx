@@ -64,6 +64,4 @@ Demo.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A280017',
   },
-  actions: { disabled: true },
-  controls: { disabled: true }
 };
