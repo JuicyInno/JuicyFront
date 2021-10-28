@@ -103,7 +103,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with position = top', () => {
-    const { container } = render(
+    render(
       <Tooltip open position='top'>
         <div>Button</div>
         <div>
@@ -116,7 +116,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with position = bottom-start', () => {
-    const { container } = render(
+    render(
       <Tooltip open position='bottom-start'>
         <div>Button</div>
         <div>
@@ -129,7 +129,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with color = white', () => {
-    const { container } = render(
+    render(
       <Tooltip open color='white'>
         <div>Button</div>
         <div>
@@ -141,7 +141,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with color = primary', () => {
-    const { container } = render(
+    render(
       <Tooltip open color='primary' >
         <div>Button</div>
         <div>
@@ -153,7 +153,7 @@ describe('Test <Tooltip/> component', () => {
   });
 
   it('should render Tooltip component with default color ', () => {
-    const { container } = render(
+    render(
       <Tooltip open>
         <div>Button</div>
         <div>

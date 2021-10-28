@@ -258,7 +258,7 @@ const Tooltip: FC<ITooltipProps> = ({
 
   useLayoutEffect(() => {
     if (!!anchorRef.current) {
-      setTimeout(() => setTooltipRect(anchorRef.current!.getBoundingClientRect()));
+      setTooltipRect(anchorRef.current.getBoundingClientRect());
     }
   }, []);
 
