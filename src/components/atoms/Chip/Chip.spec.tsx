@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {render} from '@testing-library/react';
 import Chip from './Chip';
 import Download from '../../../assets/icons/Download';
 
@@ -70,5 +70,12 @@ describe('Test <Chip/> component', () => {
       </Chip>
     );
     expect(container.getElementsByClassName('rf-chip--clickable ')).toHaveLength(0);
+  });
+
+  it('should slice content if the content length is greater than maxLength prop', () => {
+    const { container } = render(<Chip maxLength={32}> The size of the line is The size of the line is greater than 32 </Chip>);
+    if (container.textContent && container.textContent.length > 32) {
+      expect(container.textContent?.length).toEqual(35);
+    }
   });
 });
