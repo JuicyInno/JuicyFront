@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Story } from '@storybook/react';
 
 import ControlGroup from '../ControlGroup';
@@ -11,6 +11,7 @@ import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsH3, StoryDocsDescription
 } from '../../storybook';
 import { withDesign } from 'storybook-addon-designs';
+import Button from '../Button';
 
 export default {
   title: 'forms/withTest/Checkbox',
@@ -95,6 +96,24 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <Checkbox {...args} />
+      </StoryRow>
+    </StoryContainer>
+  );
+};
+
+
+export const Test: Story = (args) => {
+  const [check, setCheck] = useState<boolean>(false);
+
+
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Checkbox defaultChecked={check} label='Default' />
+        <Button onClick={() => {
+          console.log(!check);
+          setCheck(!check);
+        }}> change</Button>
       </StoryRow>
     </StoryContainer>
   );
