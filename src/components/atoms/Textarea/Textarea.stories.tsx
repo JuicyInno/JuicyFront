@@ -109,3 +109,10 @@ export const Playground: Story = ({ MAX_LENGTH = 255, ...args }) => {
     </StoryContainer>
   );
 };
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A31587',
+  },
+};
