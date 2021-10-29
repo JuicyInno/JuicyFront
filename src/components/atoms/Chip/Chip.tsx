@@ -3,6 +3,7 @@ import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
 import { Close } from '../../../index';
 import { classnames } from '../../../utils/classnames';
+import Tooltip from '../Tooltip';
 
 export interface ITagProps {
   /** Текст */
@@ -21,6 +22,8 @@ export interface ITagProps {
   icon?: ReactNode;
   /** Позиция отображения иконки */
   iconPosition?: 'right' | 'left';
+  /** Максимальная длина строки */
+  maxLength?: number;
 }
 
 const Chip: React.FC<ITagProps> = ({
@@ -32,6 +35,7 @@ const Chip: React.FC<ITagProps> = ({
   icon,
   iconPosition,
   disabled,
+  maxLength = 32
 }: ITagProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,17 +53,25 @@ const Chip: React.FC<ITagProps> = ({
   const clickableClass = onClick && !disabled ? 'rf-chip--clickable' : '';
 
   // -------------------------------------------------------------------------------------------------------------------
+
+  const overMaxLength = typeof children === 'string' && children.length > maxLength;
+
+  // -------------------------------------------------------------------------------------------------------------------
+
   return (
-    <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)} onClick={handleClick}>
-      {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
+    <Tooltip position={'bottom'} isVisible={overMaxLength}>
+      <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)} onClick={handleClick}>
+        {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
+        {overMaxLength ? children.slice(0, maxLength) + '...' : children}
+        {onRemove && (
+          <div className={classnames('rf-chip__right-icon', disabled && 'rf-chip__not-clickable')} onClick={handleRemove}>
+            <Close />
+          </div>
+        )}
+        {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon'>{icon}</div>}
+      </div>
       {children}
-      {onRemove && (
-        <div className={classnames('rf-chip__right-icon', disabled && 'rf-chip__not-clickable')} onClick={handleRemove}>
-          <Close />
-        </div>
-      )}
-      {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon'>{icon}</div>}
-    </div>
+    </Tooltip>
   );
 };
 

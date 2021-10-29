@@ -51,7 +51,7 @@ const FindUsers: FC<IProps> = ({
   disableSelected,
   getUsers,
   multiSelect = true,
-  subtitle = 'Поиск осуществляется по выбранной компании и в рамках одного подразделения.',
+  subtitle,
   host = '',
   headers = {},
   AxiosInstance,
