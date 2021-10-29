@@ -37,6 +37,10 @@
       right: 3px;
       text-align: center;
     }
+
+    & .rf-select__list-element-single {
+      overflow: initial;
+    }
   }
 }
 
