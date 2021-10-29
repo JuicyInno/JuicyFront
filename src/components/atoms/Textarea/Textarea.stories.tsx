@@ -93,12 +93,16 @@ export const Playground: Story = ({ MAX_LENGTH = 255, ...args }) => {
     setValue(event.target.value);
   };
 
+  const onClear = () => {
+    setValue('');
+  };
+
   return (
     <StoryContainer>
       <StoryRow>
         <div style={{ width: 435 }}>
           <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
-            <Textarea {...args} placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} value={value} onChange={onChange} />
+            <Textarea {...args} placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} value={value} onClear={onClear} onChange={onChange} />
           </FormGroup>
         </div>
       </StoryRow>

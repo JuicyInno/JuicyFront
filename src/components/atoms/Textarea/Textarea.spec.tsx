@@ -1,8 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import Textarea from './Textarea';
-import {byText} from "testing-library-selector";
-import CommentTile from "../../molecules/CommentTile";
 
 const placeholder = 'Оставьте комментарий';
 

@@ -110,6 +110,7 @@ const Textarea: FC<ITextareaProps> = ({
 
   /** Очистка поля ввода */
   const clearInput = () => {
+
     if (textarea.current) {
       textarea.current.value = '';
       setValue('');

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import './FormGroup.scss';
+import { classnames } from '../../../utils/classnames';
 
 export interface IFormGroup {
   /** Дочерние элементы */
@@ -12,7 +13,7 @@ export interface IFormGroup {
   labelSecondary?: React.ReactNode;
   /** Сообщение об ошибке */
   errorMessage?: string;
-  /** Красная подсветка лейбла нижнего */
+  /** Красная подсветка нижнего лейбла*/
   invalid?: boolean;
   /** Красная подсветка labelSecondary */
   invalidLabelSecondary?: boolean;
@@ -38,23 +39,32 @@ const FormGroup: FC<IFormGroup> = ({
       <div className='rf-form-group__inner'>
         {label && (
           <p
-            className={`
-          rf-form-group__label
-          ${showLargeSizeFirstLabel ? 'rf-form-group__label-large' : ''}
-        `}
+            className={classnames(
+              'rf-form-group__label',
+              showLargeSizeFirstLabel && 'rf-form-group__label-large'
+            )}
           >
             {label}
             {required && <span className='rf-form-group__required'>*</span>}
-            {!!labelSecondary && <span className={`rf-form-group__label-secondary ${invalidLabelSecondary ? 'rf-form-group__label-secondary-invalid' : ''}`}>{labelSecondary}</span>}
+            {!!labelSecondary &&
+            <span
+              className={classnames(
+                'rf-form-group__label-secondary',
+                invalidLabelSecondary && 'rf-form-group__label-secondary-invalid'
+              )}
+            >
+              {labelSecondary}
+            </span>
+            }
           </p>
         )}
         {children}
       </div>
       {errorMessage && <p
-        className={`
-          rf-form-group__message
-          ${invalid ? 'rf-form-group__message-invalid' : ''}
-        `}
+        className={classnames(
+          'rf-form-group__message',
+          invalid && 'rf-form-group__message-invalid'
+        )}
       >
         {errorMessage}
       </p>}
