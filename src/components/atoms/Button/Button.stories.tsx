@@ -184,6 +184,36 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
+        <StoryDocsH3>Danger</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'danger' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'danger',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'danger',
+          preloader: true
+        })}
+
+        <StoryDocsH3>Success</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'success' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'success',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'success',
+          preloader: true
+        })}
+
         <StoryDocsH3>Secondary</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
@@ -215,7 +245,7 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
-        <StoryDocsH3>Icon Button</StoryDocsH3>
+        <StoryDocsH3>Icon Buttons</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
         {getIconButtons({ buttonType: 'icon' })}
@@ -230,11 +260,69 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
+        <StoryDocsH3>Buttons Round</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'round' })}
+        <StoryDocsLabel>Active</StoryDocsLabel>
+        {getButtons({ buttonType: 'round-active' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'round',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'round',
+          preloader: true
+        })}
+
+        <StoryDocsH3>Icon Buttons Round</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getIconButtons({ buttonType: 'icon-round' })}
+        <StoryDocsLabel>Active</StoryDocsLabel>
+        {getIconButtons({ buttonType: 'icon-round-active' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getIconButtons({
+          buttonType: 'icon-round',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getIconButtons({
+          buttonType: 'icon-round',
+          preloader: true
+        })}
+
+        <StoryDocsH3>White Button</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'white' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'white',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'white',
+          preloader: true
+        })}
 
         <StoryDocsH3>Text Button</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        {getButtons({ buttonType: 'text' })}
+        {/* {getButtons({ buttonType: 'text' })}*/}
+        {/* <div style={{*/}
+        {/*  display: 'grid',*/}
+        {/*  width: '100%',*/}
+        {/*  gap: '20px',*/}
+        {/*  gridTemplateColumns: 'repeat(2, auto)',*/}
+        {/*  justifyItems: 'flex-start',*/}
+        {/* }}>*/}
+        {/*  <Button buttonType={'text'} size='xl'>Button 56</Button>*/}
+        {/*  <Button buttonType={'text'} size='s'>Button 32</Button>*/}
+        {/* </div>*/}
         <StoryDocsLabel>Disabled</StoryDocsLabel>
         {getButtons({
           buttonType: 'text',
@@ -245,6 +333,11 @@ export const Demo: Story = () => {
           buttonType: 'text',
           preloader: true
         })}
+
+        <StoryDocsH3>Text Icon Button</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'text' })}
       </div>
     </StoryDocs>
   );
