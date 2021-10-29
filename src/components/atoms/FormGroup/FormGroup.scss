@@ -35,11 +35,11 @@
 .rf-form-group__message {
   margin-top: 8px;
   @include text-xs-14();
-  color: var(--text-secondary);
+  color: var(--status-danger);
 }
 
-.rf-form-group__message-invalid {
-  color: var(--status-danger);
+.rf-form-group__message-no-invalid {
+  color: var(--text-secondary);
 }
 
 .rf-form-group__required {

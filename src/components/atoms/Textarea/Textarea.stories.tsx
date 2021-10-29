@@ -66,10 +66,10 @@ export const Demo = () => {
         <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} disabled maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup showLargeSizeFirstLabel invalid={false} errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel invalid errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup showLargeSizeFirstLabel errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} invalid maxLength={MAX_LENGTH} value={value} onChange={onChange} />
         </FormGroup>
         <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${getCurrentLength(value || LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>

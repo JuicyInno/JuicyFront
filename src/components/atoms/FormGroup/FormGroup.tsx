@@ -30,7 +30,7 @@ const FormGroup: FC<IFormGroup> = ({
   errorMessage,
   className = '',
   required = false,
-  invalid,
+  invalid = true,
   invalidLabelSecondary,
   showLargeSizeFirstLabel = false
 }: IFormGroup) => {
@@ -63,7 +63,7 @@ const FormGroup: FC<IFormGroup> = ({
       {errorMessage && <p
         className={classnames(
           'rf-form-group__message',
-          invalid && 'rf-form-group__message-invalid'
+          !invalid && 'rf-form-group__message-no-invalid'
         )}
       >
         {errorMessage}
