@@ -75,7 +75,7 @@ export const select = () => {
 
   const currencies = [
     {
-      label: 'Р',
+      label: 'РOO',
       value: '1'
     }
   ];
