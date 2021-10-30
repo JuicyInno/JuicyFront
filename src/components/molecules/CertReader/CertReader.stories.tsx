@@ -8,7 +8,7 @@ import './CertReader.scss';
 import Story from '../../storybook/Story';
 import { StoryDocsDescription, StoryDocsH1 } from '../../storybook';
 export default {
-  title: 'controls/withTest/Получение сертификатов',
+  title: 'controls/withTest/CertReader',
   component: CertReader
 };
 
