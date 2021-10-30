@@ -42,6 +42,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
       const onClick = (e: React.MouseEvent) => {
         if (list[i] && list[i].onClick) {
+          e.preventDefault();
           e.stopPropagation();
           // @ts-ignore
           list[i].onClick();
@@ -49,7 +50,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
       };
 
       menuJSX.push((
-        <Link to={list[i].url || '/'} className='button-group__menu-button' key={ i } onClick={onClick}>
+        <Link to={ list[i].url || '/' } className='button-group__menu-button' key={ i } onClick={ onClick }>
           <div className='button-group__menu-button-details'>
             <h4 className='button-group__menu-button-name'>{ list[i].label }</h4>
             { list[i].description && <p className='button-group__menu-button-description'>{ list[i].description }</p> }
@@ -63,18 +64,20 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className='button-group'>
-      { buttonsJSX }
-      {
-        menuJSX.length > 0 && (
-          <Menu content={<div className='button-group__menu'>{menuJSX}</div>}>
-            <Button buttonType='iconFill'>
-              <KebabMenu/>
-            </Button>
-          </Menu>
-        )
-      }
-    </div>
+    list.length > 0 ? (
+      <div className='button-group'>
+        { buttonsJSX }
+        {
+          menuJSX.length > 0 && (
+            <Menu content={ <div className='button-group__menu'>{ menuJSX }</div> } position='top-left'>
+              <Button buttonType='iconFill'>
+                <KebabMenu/>
+              </Button>
+            </Menu>
+          )
+        }
+      </div>
+    ) : null
   );
 };
 export default ButtonGroup;

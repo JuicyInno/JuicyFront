@@ -146,6 +146,11 @@
 }
 
 .rf-button__adornment {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &--start {
     &:not(:last-child) {
       margin-right: 8px;

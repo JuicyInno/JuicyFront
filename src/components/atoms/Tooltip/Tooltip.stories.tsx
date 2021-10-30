@@ -7,7 +7,7 @@ import StoryCol from '../../storybook/StoryCol';
 import StoryItem from '../../storybook/StoryItem';
 
 export default {
-  title: 'не проверено/Tooltip',
+  title: 'popovers/не проверено/Tooltip',
   component: Tooltip
 };
 

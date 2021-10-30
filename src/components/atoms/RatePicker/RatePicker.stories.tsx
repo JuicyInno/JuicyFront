@@ -7,7 +7,7 @@ import { withDesign } from 'storybook-addon-designs';
 
 
 export default {
-  title: 'atoms/Rate Picker',
+  title: 'forms/withTest/Rate Picker',
   decorators: [withDesign],
   component: RatePicker,
 };

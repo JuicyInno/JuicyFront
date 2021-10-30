@@ -9,7 +9,7 @@ import FlagRU from '../../../assets/icons/FlagRU';
 
 
 export default {
-  title: 'не проверено/InputPhone',
+  title: 'forms/не проверено/InputPhone',
   component: InputPhone
 };
 

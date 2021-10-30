@@ -82,6 +82,6 @@ export const history = () => {
 };
 
 export default {
-  title: 'не проверено/History',
+  title: 'components/не проверено/History',
   component: History
 };

@@ -2,10 +2,10 @@ import React, {
   ReactNode, useEffect, useRef
 } from 'react';
 import './PageWithSections.scss';
-import ResizeObserver from 'resize-observer-polyfill';
 import { IPageSection } from '../../../types/projects.types';
-import { ITab } from '../../../types';
+import { IButtonGroup, ITab } from '../../../types';
 import {
+  ButtonGroup,
   ChevronLeft, Preloader, Tabs
 } from '../../../index';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ export interface IPageWithSectionsProps {
   backUrl?: string;
   onBackUrlClick?: () => void;
   sections?: IPageSection[];
-  /** Fixed action menu */
+  /** [DEPRECATED] Fixed action menu */
   actionMenu?: ReactNode;
   /** Всегда отображает панель с кнопками внизу страницы*/
   actionMenuAlwaysBottom?:boolean;
@@ -28,6 +28,8 @@ export interface IPageWithSectionsProps {
   /** Navigation tabs */
   navigation?: ITab[];
   showHeader?: boolean;
+  /** Кнопки действий внизу страницы */
+  buttonsGroup?: IButtonGroup[];
 }
 
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
@@ -41,13 +43,12 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   navigation,
   showHeader = true,
   actionMenuAlwaysBottom = false,
-  showNavigationPosition = false
+  showNavigationPosition = false,
+  buttonsGroup = []
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
   const asideRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на меню */
-  const actionMenuRef = useRef<HTMLDivElement>(null);
   /** Ссылка на секции */
   const sectionsRef = useRef<HTMLDivElement>(null);
   /** Ссылка на ползунок */
@@ -177,35 +178,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const calculateMenuPosition = () => {
-    if (!pageRef.current || !sectionsRef.current || !actionMenuRef.current || !pageHeaderRef.current || preloader) {
-      return;
-    }
-
-    if ((pageRef.current.offsetHeight > document.documentElement.clientHeight ) || actionMenuAlwaysBottom) {
-      actionMenuRef.current.style.bottom = '20px';
-      actionMenuRef.current.style.top = 'auto';
-    } else {
-      actionMenuRef.current.style.bottom = 'auto';
-      actionMenuRef.current.style.top = sectionsRef.current.offsetHeight + pageHeaderRef.current.offsetHeight + 'px';
-    }
-  };
-
-
-  useEffect(() => {
-    if (!sectionsRef.current) {
-      return;
-    }
-
-    const resizeObserver = new ResizeObserver(() => {
-      calculateMenuPosition();
-    });
-
-    resizeObserver.observe(sectionsRef.current);
-  }, [preloader]);
-
-  // -------------------------------------------------------------------------------------------------------------------
-
   return (
     <div className='rf-sections-page' ref={ pageRef }>
       <header className={`rf-page__sections-header ${showHeader ? '' : 'rf-page__sections-header--hidden'}`} ref={ pageHeaderRef }>
@@ -239,10 +211,12 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         }
       </div>
 
-      { !preloader && actionMenu && (
-        <div className='rf-sections__action-menu' ref={ actionMenuRef }>
-          { actionMenu }
-        </div>
+      { !preloader && actionMenu ? actionMenu : (
+        buttonsGroup !== undefined && buttonsGroup.length > 0 && (
+          <div className='rf-page__buttons-group'>
+            <ButtonGroup list={buttonsGroup}/>
+          </div>
+        )
       ) }
     </div>
   );

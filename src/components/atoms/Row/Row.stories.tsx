@@ -3,10 +3,10 @@ import Row from './Row';
 import Column from '../Column/Column';
 import Story from '../../storybook/Story';
 
-export default {
-  title: 'не проверено/Row',
-  component: Row
-};
+// export default {
+//   title: 'depricated/Row',
+//   component: Row
+// };
 
 const style = {
   height: 30,

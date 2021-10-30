@@ -1,18 +1,17 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-import { withDesign } from 'storybook-addon-designs';
 
 import Card, { ICard } from './Card';
 import { data } from './cards.mocks';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import {
-  StoryDocs, StoryDocsH2, StoryDocsDescription, StoryDocsLabel
+  StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
 import { variants } from '../../../types';
 
 export default {
-  title: 'molecules/Card',
+  title: 'components/withTest/Карточки задач-истории',
   component: Card,
   typeArgs: {
     statusColor: {
@@ -21,9 +20,7 @@ export default {
       defaultValue: 'default'
     }
   },
-  args: {
-    ...data[0],
-  } as ICard,
+  args: { ...data[0], } as ICard,
 };
 
 export const Demo: Story = () => {
@@ -38,19 +35,14 @@ export const Demo: Story = () => {
           display: 'flex',
           marginBottom: '40px',
         }}>
-          <div style={{
-            marginRight: '100px',
-          }}>
+          <div style={{ marginRight: '100px', }}>
             <Card {...card} />
           </div>
-          <div style={{
-            height: 'fit-content',
-          }}>
+          <div style={{ height: 'fit-content', }}>
             <Card {...card} showActionButton />
           </div>
         </div>
-      )
-      )}
+      ))}
     </StoryDocs >
   );
 };
@@ -59,7 +51,9 @@ export const Playground: Story<ICard> = (args) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <Card {...args} />
+        <Card {...args} onClick={() => {
+          alert('click');
+        }} />
       </StoryRow>
     </StoryContainer>
   );
@@ -70,6 +64,4 @@ Demo.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A280017',
   },
-  actions: { disabled: true },
-  controls: { disabled: true }
 };

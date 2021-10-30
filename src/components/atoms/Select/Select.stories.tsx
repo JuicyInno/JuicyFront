@@ -9,7 +9,7 @@ import Button from '../Button';
 import InputNumber from '../InputNumber';
 
 export default {
-  title: 'не проверено/Select',
+  title: 'forms/не проверено/Select',
   component: Select
 };
 
@@ -75,7 +75,7 @@ export const select = () => {
 
   const currencies = [
     {
-      label: 'Р',
+      label: 'РOO',
       value: '1'
     }
   ];

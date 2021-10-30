@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { buttonGroupMock } from './mock';
 
 export default {
-  title: 'Группа кнопок',
+  title: 'controls/Группа кнопок',
   component: ButtonGroup,
 };
 

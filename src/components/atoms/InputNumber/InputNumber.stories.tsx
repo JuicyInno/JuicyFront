@@ -7,7 +7,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 
 export default {
-  title: 'atoms/withTest/InputNumber',
+  title: 'forms/withTest/InputNumber',
   component: InputNumber,
   decorators: [withDesign],
 };

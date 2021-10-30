@@ -6,7 +6,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { Button } from '../../../index';
 
 export default {
-  title: 'не проверено/atepicker',
+  title: 'forms/не проверено/Datepicker',
   component: Datepicker
 };
 

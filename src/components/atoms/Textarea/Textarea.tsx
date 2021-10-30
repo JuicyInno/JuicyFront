@@ -6,6 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
+import { classnames } from '../../../utils/classnames';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
@@ -20,6 +21,8 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   getValue?: (value: string) => void;
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
+  /** обработка ввода комментария с эффектом debounce */
+  onDebounce?: (e: Event) => void;
   /**
    * Показывать счетчик символов под инпутом.
    * @default true
@@ -28,7 +31,7 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
 }
 
 const Textarea: FC<ITextareaProps> = ({
-  className,
+  className = '',
   autoResize = false,
   initialRowCount = 3,
   debounce = 300,
@@ -37,6 +40,7 @@ const Textarea: FC<ITextareaProps> = ({
   invalid,
   onFocus,
   onBlur,
+  onDebounce = () => {},
   showMaxLength = true,
   ...props
 }: ITextareaProps) => {
@@ -51,11 +55,6 @@ const Textarea: FC<ITextareaProps> = ({
   const [isFocused, setFocused] = useState(false);
 
   useEffect(() => {
-    /** При фокусе на поле раскрываем его */
-    if (textarea.current && autoResize) {
-      setRows(textarea.current.value.split('\n').length + 1);
-    }
-
     /** Подписываемся на ввод текста */
     let sub: any;
 
@@ -68,10 +67,6 @@ const Textarea: FC<ITextareaProps> = ({
         )
         .subscribe((e: any) => {
           if (textarea.current) {
-            if (autoResize) {
-              setRows(textarea.current.value.split('\n').length + 1);
-            }
-
             if (props.maxLength) {
               setValue(textarea.current.value);
             }
@@ -80,6 +75,7 @@ const Textarea: FC<ITextareaProps> = ({
           }
 
           props.onKeyUp && props.onKeyUp(e);
+          onDebounce(e);
         });
     }
 
@@ -92,7 +88,7 @@ const Textarea: FC<ITextareaProps> = ({
         console.log(e);
       }
     };
-  }, [props.maxLength, autoResize]);
+  }, [props.maxLength, autoResize, onDebounce]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -119,12 +115,16 @@ const Textarea: FC<ITextareaProps> = ({
 
   return (
     <div className={`rf-textarea ${className}`}>
-      <div className={`
-        rf-textarea__wrapper
-        ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
-        ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
-        ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
-      `}>
+      <div
+        className={classnames(
+          'rf-textarea__wrapper',
+          disabled && 'rf-textarea__wrapper--disabled',
+          isFocused && 'rf-textarea__wrapper--focused',
+          isInvalid && 'rf-textarea__wrapper--invalid',
+          autoResize && 'rf-textarea__wrapper--auto-resize'
+        )}
+        data-replicated-value={props.value}
+      >
         <textarea
           {...props}
           disabled={disabled}

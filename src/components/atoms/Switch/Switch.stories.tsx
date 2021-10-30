@@ -10,7 +10,7 @@ import { MobileView } from './previews/mobile-view';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'atoms/withTest/Toggle',
+  title: 'controls/withTest/Switch',
   decorators: [withDesign],
   component: Switch,
   argTypes: {
@@ -141,15 +141,7 @@ export const Playground = (props: ISwitchProps) => (
   </Story>
 );
 
-export const test = (props: ISwitchProps) => (
-  <Story>
-    <StoryRow>
-      <Switch label='Text'
-        size={'s'}
-        helperText='Add text' />
-    </StoryRow>
-  </Story>
-);
+
 Playground.parameters = {
 
   design: {

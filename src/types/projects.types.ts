@@ -178,4 +178,13 @@ export interface IDebounceResult {
   debounceString: string
 }
 
+/** тип для инпута комментария с эффектом debounce*/
+export interface IDebounceCommentResult {
+  event?: Event;
+  /** строка комментария */
+  debounceString: string;
+  /** список файлов пркирепленных к комментарию */
+  attachedFiles: IRequestAttachment[] | undefined
+}
+
 export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';

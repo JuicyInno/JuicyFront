@@ -9,7 +9,7 @@ import Placeholder16 from '../../../assets/icons/Placeholder16';
 
 
 export default {
-  title: 'не проверено/Tag',
+  title: 'controls/не проверено/Tag',
   component: Tag,
   argTypes: { icon: { control: null } }
 };
@@ -43,7 +43,7 @@ Demo.parameters = {
   controls: { disabled: true }
 };
 
-export const Playground = (args) => {
+export const Playground = (args:any) => {
   return (
     <StoryContainer>
       <StoryRow>
