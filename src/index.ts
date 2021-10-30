@@ -12,6 +12,7 @@ import ControlGroup from './components/atoms/ControlGroup';
 import Datepicker from './components/atoms/Datepicker';
 import FormGroup from './components/atoms/FormGroup';
 import Hint from './components/atoms/Hint';
+import CommentTile from './components/molecules/CommentTile';
 import Input from './components/atoms/Input';
 import InputFile from './components/atoms/InputFile';
 import InputNumber from './components/atoms/InputNumber';
@@ -71,6 +72,7 @@ import { download } from './utils/download';
 
 
 export {
+  CommentTile,
   Signification,
   GhostScreen,
   HistoryCardFilter,
