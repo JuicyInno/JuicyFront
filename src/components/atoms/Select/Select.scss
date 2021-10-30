@@ -52,6 +52,9 @@
   background-color: var(--background-primary);
   overflow: hidden;
 }
+.rf-select__wrapper--invalid{
+  border: 1px solid var(--status-danger);
+}
 
 .rf-select__wrapper:hover {
   border-color: var(--basic-hover);
