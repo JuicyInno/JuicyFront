@@ -18,7 +18,7 @@ export const tooltip = () => {
         <StoryRow>
           <StoryCol>
             <Tooltip background='white'>
-              <Button>Hover me</Button>
+              <Button onClick={() => console.log('awdawdw')}>Hover me 2</Button>
               <div>Tooltip text</div>
             </Tooltip>
           </StoryCol>

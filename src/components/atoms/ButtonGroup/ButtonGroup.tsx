@@ -6,6 +6,7 @@ import {
 } from '../../../index';
 import Menu from '../Menu';
 import { Link } from 'react-router-dom';
+import Tooltip from '../Tooltip';
 
 export interface IButtonGroupProps {
   /** Список кнопок */
@@ -76,7 +77,11 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
       {
         menuJSX.length > 0 && (
           <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
-            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+            {/* TODO: перестает работать onClick в Menu */}
+            <Tooltip portal position='bottom'>
+              <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+              <>Другие действия</>
+            </Tooltip>
           </Menu>
         )
       }
