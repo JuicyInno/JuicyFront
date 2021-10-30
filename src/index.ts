@@ -170,6 +170,8 @@ import Time from './assets/icons/Time';
 import EmptyUser from './assets/icons/EmptyUser';
 import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
+import Exit from './assets/icons/Exit';
+import External from './assets/icons/External';
 
 export {
   Refresh,
@@ -202,6 +204,8 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Exit,
+  External
 };
 
 export { variables, download };

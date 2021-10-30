@@ -1,0 +1,66 @@
+@import "../../../styles/mixins";
+
+.rf-comment-tile__wrapper {
+  display: flex;
+}
+
+.rf-comment-tile {
+  box-shadow: 0px 2px 6px 0px #193B6826;
+  border-radius: 20px;
+  width: 880px;
+}
+
+.rf-comment-tile__title {
+  @include h6();
+}
+
+.rf-comment-tile__input-wrapper {
+  margin-top: 20px;
+  color: var(--text-secondary);
+  width: 648px;
+  & .rf-textarea__wrapper{
+    min-height: 76px;
+  }
+  & .rf-form-group__label {
+    @include text-xs-14();
+    color: var(--text-secondary);
+    & .rf-form-group__label-secondary {
+      @include caption();
+      color: var(--text-secondary);
+    }
+  }
+}
+
+.rf-comment-tile__input-wrapper--auto-resize {
+  & .rf-textarea__wrapper,
+  .rf-textarea__field{
+    height: 76px;
+  }
+}
+
+.rf-comment-tile-button {
+  margin-top: 20px;
+  width: 180px;
+}
+
+.rf-comment-tile-chip {
+  padding: 20px 10px 0px 0px;
+}
+
+.rf-comment-tile-chip-wrapper {
+  display: flex;
+}
+
+.rf-comment-tile-chip-text {
+  @include text-s-14;
+  color: var(--basic-primary);
+  display: flex;
+  align-items: center;
+
+}
+
+.rf-comment-tile-chip-button {
+  padding-left: 8px;
+  padding-top: 4px;
+  cursor: pointer;
+}
