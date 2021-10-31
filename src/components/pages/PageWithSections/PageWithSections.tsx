@@ -99,10 +99,13 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const sectionsJSX = sections?.map((section: IPageSection) => {
     return (
       <section key={ section.id } className='rf-page__section-block'>
-        <Tile hideBackground={section.hideBackground}>
-          { section.title && <h2 className='rf-page__section-title' id={ section.id }>{ section.title }</h2> }
-          { section.component }
-        </Tile>
+        {section.withoutTileWrapper ?
+          <> { section.component }</> :
+          <Tile hideBackground={section.hideBackground}>
+            { section.title && <h2 className='rf-page__section-title' id={ section.id }>{ section.title }</h2> }
+            { section.component }
+          </Tile>}
+
       </section>
     );
   });
