@@ -344,7 +344,6 @@ const Signification:FC<IProps> = ({
     { buttonsTSX}
     {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
-
   return <div className='signification__wrapper'>
     <Tile>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
@@ -361,7 +360,7 @@ const Signification:FC<IProps> = ({
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' && !onlyView ? ' и подписать документ' : ''} `}>
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${!finalStage && !onlyView ? ' и подписать документ' : ''} `}>
             { isOpenContent && expanderContentTSX}
           </ContentExpander>
         </>}

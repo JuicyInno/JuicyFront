@@ -10,6 +10,8 @@ import {
   ChevronDown, Close, Preloader
 } from '../../../index';
 import Checkbox from '../Checkbox/Checkbox';
+import { classnames } from '../../../utils/classnames';
+
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -38,13 +40,17 @@ export interface ISelectProps {
   /** Любое изменяемое значение (зависимость). При изменении этого параметра очищается селект */
   clearHook?: any;
   variant?: 'base' | 'tag';
+  /** Переводит селект в невалидный статус */
+  invalid?: boolean;
   /** Скролл списка (для лези лоуда) */
   onListScroll?: (e: React.UIEvent) => void;
+
 }
 
 const Select: FC<ISelectProps> = ({
   options,
   onChange,
+  invalid = false,
   onSearch,
   values = [],
   multiselect = false,
@@ -286,7 +292,7 @@ const Select: FC<ISelectProps> = ({
 
   return (
     <div className={`rf-select ${multiselectClass} ${tagClass}`} ref={ componentNode }>
-      <div className={`rf-select__wrapper ${openClass}`}>
+      <div className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)}>
         <input
           className='rf-select__input'
           onMouseDown={ openDropdown }

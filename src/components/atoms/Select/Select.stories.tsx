@@ -62,6 +62,7 @@ export const select = () => {
 
   const [state, setState] = useState([list[0]]);
   const [state1, setState1] = useState([list[1]]);
+  const [state2, setState2] = useState(true);
 
   const onChange1 = (options: IOption[]) => {
     console.log(options);
@@ -87,6 +88,7 @@ export const select = () => {
           <Select placeholder='Выберите значение'
             options={ filteredOptions }
             values={values}
+            invalid={true}
             tagsPosition='outside'
             onChange={onChange}
             onSearch={onSearch}
@@ -95,11 +97,14 @@ export const select = () => {
         </StoryItem>
 
         <StoryItem description='Изменяемое значение извне'>
-          <Button onClick={() => setState([list[1]])}>Set State</Button>
+          <Button onClick={() => {
+            setState([list[1]]), setState2(!state2);
+          }}>Set State</Button>
           <div style={{ height: '20px' }}/>
           <Select placeholder='Выберите значение'
             options={ filteredOptions }
             values={state}
+            invalid={state2}
             tagsPosition='outside'
             onChange={onChange1}
             onSearch={onSearch}

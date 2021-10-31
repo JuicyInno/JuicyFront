@@ -25,6 +25,10 @@ export interface ICommentTileProps {
     maxLength?: number;
     /** Срабатывает при изменении значения*/
     onDebounce?: (result: IDebounceCommentResult) => void,
+    /** Ограничение по типам файлов*/
+    accept?:string
+    /** Максимальный размер файлов*/
+    maxSize?:number
 }
 
 const CommentTile: FC<ICommentTileProps> = ({
@@ -33,6 +37,8 @@ const CommentTile: FC<ICommentTileProps> = ({
   initialFiles = undefined,
   autoResize = false,
   onDebounce = () => {},
+  accept = '*',
+  maxSize = undefined
 }: ICommentTileProps) => {
   const [value, setValue] = useState<string>(comment);
 
@@ -88,7 +94,7 @@ const CommentTile: FC<ICommentTileProps> = ({
   // =======================================================================================================================================
   /** Чип прикрепленного файла */
   const attachedFileChipsTSX = (name:string, index: number, onClick:(e: React.MouseEvent)=>void) =>
-    <div className='rf-comment-tile-chip'>
+    <div className='rf-comment-tile-chip' key={name + index}>
       <Chip
         onClick={() => attachedFiles && download(attachedFiles[index], attachedFiles[index]?.fileName)}
         size='s'
@@ -135,7 +141,11 @@ const CommentTile: FC<ICommentTileProps> = ({
         label={'Комментарий'}
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
-        <Textarea autoResize={autoResize} onDebounce={getResultByComment} onChange={onChange} value={value} placeholder='Оставить комментарий' />
+        <Textarea autoResize={autoResize}
+          onDebounce={getResultByComment}
+          onChange={onChange}
+          value={value}
+          placeholder='Оставить комментарий' />
       </FormGroup>
       <InputFile
         className='rf-comment-tile-button'
@@ -143,6 +153,8 @@ const CommentTile: FC<ICommentTileProps> = ({
         setFile={setFileHandler}
         buttonType='light'
         placeholder='Прикрепить файл'
+        accept = {accept}
+        maxSize = {maxSize}
       />
       <div className='rf-comment-tile-chip-wrapper'>
         {getFileChips}
