@@ -42,6 +42,9 @@ export interface ISelectProps {
   variant?: 'base' | 'tag';
   /** Переводит селект в невалидный статус */
   invalid?: boolean;
+  /** Скролл списка (для лези лоуда) */
+  onListScroll?: (e: React.UIEvent) => void;
+
 }
 
 const Select: FC<ISelectProps> = ({
@@ -59,7 +62,8 @@ const Select: FC<ISelectProps> = ({
   tagsPosition = 'inside',
   clearOnSelect = false,
   clearHook,
-  variant = 'base'
+  variant = 'base',
+  onListScroll
 }: ISelectProps) => {
 
   const [showDropdown, toggleDropdown] = useState(false);
@@ -302,7 +306,7 @@ const Select: FC<ISelectProps> = ({
       </div>
       {
         showDropdown && filteredOptions.length > 0 && (
-          <div className='rf-select__list'>
+          <div className='rf-select__list' onScroll={onListScroll}>
             { preloader ? (
               <div className='rf-select__list-preloader'>
                 <Preloader size='m'/>
