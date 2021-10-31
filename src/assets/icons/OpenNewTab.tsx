@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react';
-
+/* eslint-disable max-len */
 export default (props: SVGProps<SVGSVGElement>) =>
   <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
     <path d='M12.9141 3.33301H16.6641V7.08301' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
