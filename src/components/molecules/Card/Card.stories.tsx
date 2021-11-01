@@ -36,10 +36,10 @@ export const Demo: Story = () => {
           marginBottom: '40px',
         }}>
           <div style={{ marginRight: '100px', }}>
-            <Card {...card} />
+            <Card {...card} showActionButton />
           </div>
           <div style={{ height: 'fit-content', }}>
-            <Card {...card} showActionButton />
+            <Card {...card} />
           </div>
         </div>
       ))}
