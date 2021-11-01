@@ -43,6 +43,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
   const showFolderClass = showFolder ? '' : 'rf-tree__item-folder--hidden';
   const rotateIconClass = showFolder ? '' : 'rf-tree__item-label-icon--rotate';
   const itemChildrenClass = item.children && item.children.length > 0 ? '' : 'rf-tree__item--no-children';
+  const itemWithChildrenClass = item.children && item.children.length ? 'rf-tree__item--with-children' : '';
   const activeClass = activeItem?.value === item.value ? 'rf-tree__item--active' : '';
   const firstLevelClass = depth === 1 ? 'rf-tree__item--1' : '';
 
@@ -115,16 +116,26 @@ const FolderItem: React.FC<IFolderItemProps> = ({
       return;
     }
 
-    const s = '.rf-tree__item--1:last-of-type > .rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > .rf-tree__item-label .rf-tree__item-label-icon';
-    const lastChildItem = root.querySelector<HTMLDivElement>(s);
+    const itemWithoutChild = '.rf-tree__item--1:last-of-type > .rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > .rf-tree__item-label .rf-tree__item-label-icon';
+    const itemWithChild = '.rf-tree__item--1:last-of-type > .rf-tree__item-folder .rf-tree > .rf-tree__item:last-child.rf-tree__item--with-children > .rf-tree__item-label .rf-tree__item-label-icon';
 
-    if (!lastChildItem) {
+    const lastWitoutChildItem = root.querySelector<HTMLDivElement>(itemWithoutChild);
+    const lastWithChildItem = root.querySelector<HTMLDivElement>(itemWithChild);
+    const ICON_GAP = 2;
+    let lastElement;
+
+    if (lastWitoutChildItem && !lastWithChildItem) {
+      lastElement = lastWitoutChildItem.getBoundingClientRect().y;
+    } else if (lastWithChildItem) {
+      lastElement = lastWithChildItem.getBoundingClientRect().y;
+    } else {
       return;
     }
 
-    const ICON_GAP = 2;
-    const height = lastChildItem.getBoundingClientRect().y - lastDash.getBoundingClientRect().y + ICON_GAP;
+    const height = lastElement - lastDash.getBoundingClientRect().y + ICON_GAP;
+
     lastDash.style.height = `${height}px`;
+
   }, [depth, open]);
 
   useEffect(() => {
@@ -143,22 +154,22 @@ const FolderItem: React.FC<IFolderItemProps> = ({
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className={`rf-tree__item ${openClass} ${itemChildrenClass} ${activeClass} ${firstLevelClass}`} ref={itemRef}>
+    <div className={`rf-tree__item ${openClass} ${itemChildrenClass} ${activeClass} ${firstLevelClass} ${itemWithChildrenClass}`} ref={itemRef}>
 
-      <div className='rf-tree__item--v'/>
+      <div className='rf-tree__item--v' />
 
       <div className='rf-tree__item-label' onClick={handleChange}>
-        <HLine className='rf-tree__item--h' data-id={`d-${depth}`}/>
+        <HLine className='rf-tree__item--h' data-id={`d-${depth}`} />
         {/* <div className='rf-tree__item--h' data-id={`d-${depth}`}/>*/}
         {
-          item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`} onClick={openFolder}/> :
-            <Circle className='rf-tree__item-label-icon'/>
+          item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`} onClick={openFolder} /> :
+            <Circle className='rf-tree__item-label-icon' />
         }
-        { item.label }
+        <div className={`${activeClass}-label`} data-testid={item.label}>{item.label}</div>
       </div>
       {item.children && item.children.length > 0 && (
         <div className={`rf-tree__item-folder ${showFolderClass}`}>
-          <Tree id={id} list={item.children} onChange={onChange} parent={item} depth={depth} open={open} activeItem={activeItem}/>
+          <Tree id={id} list={item.children} onChange={onChange} parent={item} depth={depth} open={open} activeItem={activeItem} />
         </div>
       )}
     </div>

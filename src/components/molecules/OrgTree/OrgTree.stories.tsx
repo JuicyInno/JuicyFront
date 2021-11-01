@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import StoryItem from '../../storybook/StoryItem';
-import Story from '../../storybook/Story';
 import { ITreeOption } from '../../../types';
 import Tree from './Tree';
-import { list } from './list';
+import { list, listSmall } from './list';
 import OrgTree from './OrgTree';
 import { withDesign } from 'storybook-addon-designs';
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
+
 
 export default {
-  title: 'components/OrgTree',
+  title: 'components/withTest/OrgTree',
   component: Tree,
   decorators: [withDesign],
+  argTypes: {
+    open: {
+      type: 'boolean',
+      defaultValue: true,
+    }
+  }
 };
 
-export const tree = () => {
+export const Demo = () => {
 
   const [data, setData] = useState<ITreeOption[]>([]);
-
+  const [dataSmall, setDataSmall] = useState<ITreeOption[]>([]);
   const [activeItem, setActiveItem] = useState<ITreeOption | undefined>(undefined);
+
 
   const onChange = (o: ITreeOption) => {
     setActiveItem(o);
@@ -26,21 +35,54 @@ export const tree = () => {
   useEffect(() => {
     setTimeout(() => {
       setData(list);
+      setActiveItem({
+        value: '1_2_2',
+        label: 'Служба развития внешних сайтов',
+        children: [],
+      });
+      setDataSmall(listSmall);
     }, 500);
   }, []);
 
 
   return (
-    <Story name='OrgTree' width={600}>
-      <StoryItem description='Древовидная структура с бесконечной вложенностью'>
-        <OrgTree list={data} onChange={onChange} activeOption={activeItem}/>
-      </StoryItem>
-    </Story>
+    <StoryDocs>
+      <StoryDocsH1>Tree structure</StoryDocsH1>
+
+      <StoryRow>
+        <div style={{
+          border: ' 1px dashed #7B61FF',
+          borderRadius: '5px',
+          padding: '16px',
+          display: 'flex',
+          gap: '16px'
+        }}>
+          <div style={{ maxWidth: '288px' }}>
+            <OrgTree id='first' list={data} onChange={onChange} activeOption={activeItem} />
+          </div>
+          <div style={{ maxWidth: '288px' }}>
+            <OrgTree open={false} id='second' list={dataSmall} />
+          </div>
+        </div>
+      </StoryRow>
+    </StoryDocs >
+
   );
 };
-tree.parameters = {
+
+Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231300',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A57488',
   },
+};
+
+export const Playground = (args: any) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <OrgTree list={listSmall} {...args} />
+      </StoryRow>
+    </StoryContainer>
+  );
 };
