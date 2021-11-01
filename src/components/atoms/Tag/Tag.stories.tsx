@@ -69,7 +69,7 @@ export const Demo = () => {
               <Tag variant='yellow'>На согласовании</Tag>
             </div>
             <div style={wrap}>
-              <Tag variant='purple'>Черновик</Tag>
+              <Tag variant='violet'>Черновик</Tag>
             </div>
             <div style={wrap}>
               <Tag variant='grey'>На согласовании</Tag>
