@@ -27,7 +27,7 @@ export interface ICommentTileProps {
     onDebounce?: (result: IDebounceCommentResult) => void,
     /** Ограничение по типам файлов*/
     accept?:string
-    /** Максимальный размер файлов в МБ */
+    /** Максимальный размер файлов*/
     maxSize?:number
 }
 
@@ -38,7 +38,7 @@ const CommentTile: FC<ICommentTileProps> = ({
   autoResize = false,
   onDebounce = () => {},
   accept = '*',
-  maxSize = 5,
+  maxSize = undefined
 }: ICommentTileProps) => {
   const [value, setValue] = useState<string>(comment);
 
