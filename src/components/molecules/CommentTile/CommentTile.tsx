@@ -20,30 +20,30 @@ export interface ICommentTileProps {
     /** Автоматическое изменение высоты */
     autoResize?: boolean;
     /** Прикрепленные файлы */
-    initialFiles?: IRequestAttachment[] | undefined;
+    initialFiles?: IRequestAttachment[];
     /** Максимальная длина комментария */
     maxLength?: number;
     /** Срабатывает при изменении значения*/
     onDebounce?: (result: IDebounceCommentResult) => void,
     /** Ограничение по типам файлов*/
     accept?:string
-    /** Максимальный размер файлов*/
+    /** Максимальный размер файлов в МБ */
     maxSize?:number
 }
 
 const CommentTile: FC<ICommentTileProps> = ({
   comment = '',
   maxLength = 255,
-  initialFiles = undefined,
+  initialFiles = [],
   autoResize = false,
   onDebounce = () => {},
   accept = '*',
-  maxSize = undefined
+  maxSize = 5,
 }: ICommentTileProps) => {
   const [value, setValue] = useState<string>(comment);
 
   /** хранит приложенные файлы*/
-  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(initialFiles);
+  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[]>(initialFiles);
 
   /** Отлов прикрепления файлов */
   useEffect(() => {
@@ -111,7 +111,7 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   // =======================================================================================================================================
   /** Отображение чипов прикрепленных файлов */
-  const getFileChips = attachedFiles?.length && attachedFiles
+  const getFileChips = !!attachedFiles?.length && attachedFiles
     .map((file: IRequestAttachment, index: number) => attachedFileChipsTSX(
       file.fileName,
       index,
@@ -121,7 +121,7 @@ const CommentTile: FC<ICommentTileProps> = ({
         newListFile.splice(index, 1);
 
         if (!newListFile.length) {
-          setAttachedFiles(undefined);
+          setAttachedFiles([]);
         } else {
           setAttachedFiles([...newListFile]);
         }
