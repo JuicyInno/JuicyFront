@@ -105,6 +105,7 @@ export interface IPageSection {
   component: ReactNode;
   /** отключение бекграунда*/
   hideBackground?: boolean
+  withoutTileWrapper?: boolean
 }
 
 /** Возвращаемое значение календаря */

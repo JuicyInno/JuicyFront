@@ -12,6 +12,7 @@ import ControlGroup from './components/atoms/ControlGroup';
 import Datepicker from './components/atoms/Datepicker';
 import FormGroup from './components/atoms/FormGroup';
 import Hint from './components/atoms/Hint';
+import CommentTile from './components/molecules/CommentTile';
 import Input from './components/atoms/Input';
 import InputFile from './components/atoms/InputFile';
 import InputNumber from './components/atoms/InputNumber';
@@ -71,6 +72,7 @@ import { download } from './utils/download';
 
 
 export {
+  CommentTile,
   Signification,
   GhostScreen,
   HistoryCardFilter,
@@ -171,6 +173,8 @@ import Time from './assets/icons/Time';
 import EmptyUser from './assets/icons/EmptyUser';
 import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
+import Exit from './assets/icons/Exit';
+import External from './assets/icons/External';
 
 export {
   Refresh,
@@ -203,6 +207,8 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Exit,
+  External
 };
 
 export { variables, download };

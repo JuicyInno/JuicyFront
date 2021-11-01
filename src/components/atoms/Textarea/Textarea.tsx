@@ -58,7 +58,7 @@ const Textarea: FC<ITextareaProps> = ({
           debounceTime(debounce),
           distinctUntilChanged()
         )
-        .subscribe((e: any) => {
+        .subscribe((e: Event) => {
           if (textarea.current) {
             if (props.maxLength) {
               setValue(textarea.current.value);
@@ -67,6 +67,7 @@ const Textarea: FC<ITextareaProps> = ({
             getValue && getValue(textarea.current.value);
           }
 
+          // @ts-ignore
           props.onKeyUp && props.onKeyUp(e);
           onDebounce(e);
         });
