@@ -7,7 +7,7 @@ import InputMask from 'react-input-mask';
 import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
 import { IMenuContext } from '../../../types';
-import ChevronDown from '../../../assets/icons/ChevronDown';
+import ChevronDown from '../../../assets/icons/ChevronDownMedium';
 import FlagRU from '../../../assets/icons/FlagRU';
 
 export interface IInputPhoneCountry {
@@ -128,7 +128,7 @@ const InputPhone: React.FC<IInputPhoneProps> =
             {...props}
             name={`${name}-display`}
             ref={setInputElement}
-            className='rf-phone-input'
+            className={`rf-phone-input  ${disabled ? 'rf-phone-input__text-disabled' : ''}`}
             data-testid='input-display'
             startAdornment={
               <Menu
@@ -137,7 +137,7 @@ const InputPhone: React.FC<IInputPhoneProps> =
                 content={
                   countries.length > 1 && !disabled && <MenuContext.Consumer>
                     {({ onClose }: IMenuContext) => (
-                      <ul className='rf-list' onClick={onClose}>
+                      <ul className='rf-list rf-phone-input__list' onClick={onClose}>
                         {countries.map(c => (
                           <li key={c.code} className='rf-li' >
                             <button type='button' className='rf-list__element rf-phone-input__option' onClick={onCountryChange(c)}>
