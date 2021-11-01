@@ -3,6 +3,7 @@ import {fireEvent, render, screen} from '@testing-library/react';
 import Textarea from './Textarea';
 
 const placeholder = 'Оставьте комментарий';
+const debounce = 300;
 
 describe('Test <Textarea/> component', () => {
 
@@ -76,5 +77,16 @@ describe('Test <Textarea/> component', () => {
     render(<Textarea onClear={onClear} value={'Hello'} />);
     fireEvent.click(screen.getByLabelText('Сбросить'));
     expect(onClear).toHaveBeenCalledTimes(1);
+  });
+
+  it('should be call onDebounce', () => {
+    const onDebounce = jest.fn();
+    render(<Textarea onDebounce={onDebounce} debounce={debounce} placeholder={placeholder} />);
+    const textarea = screen.getByPlaceholderText(placeholder);
+    fireEvent.change(textarea, { target: { value: 'Hello World!' } });
+    setTimeout(()=> {
+      expect(onDebounce).toHaveBeenCalledTimes(1);
+
+    }, debounce);
   });
 });
