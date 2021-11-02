@@ -12,6 +12,7 @@ import { variantsClassic } from '../../../types';
 
 import Placeholder20 from '../../../assets/icons/Placeholder20';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
+import Add from '../../../assets/icons/Add';
 import { withDesign } from 'storybook-addon-designs';
 
 const buttonTypes: ButtonType[] = [
@@ -311,7 +312,7 @@ export const Demo: Story = () => {
       </div>
       <div style={{
         display: 'grid',
-        gap: '20px',
+        gap: '40px',
         gridTemplateColumns: 'repeat(3, auto)',
         justifyItems: 'center',
         width: 'max-content'
@@ -331,8 +332,8 @@ export const Demo: Story = () => {
         <StoryDocsH3>Text Icon Button</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        <Button size='xl' buttonType='text' startAdornment={<Placeholder24 />}>Text button 56</Button>
-        <Button size='s' buttonType='text' startAdornment={<Placeholder20 />}>Text button 32</Button>
+        <Button size='xl' buttonType='text' startAdornment={<Add />}>Text button 56</Button>
+        <Button size='s' buttonType='text' startAdornment={<Add />}>Text button 32</Button>
       </div>
     </StoryDocs>
   );
