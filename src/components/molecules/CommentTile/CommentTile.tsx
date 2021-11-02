@@ -20,7 +20,7 @@ export interface ICommentTileProps {
     /** Автоматическое изменение высоты */
     autoResize?: boolean;
     /** Прикрепленные файлы */
-    initialFiles?: IRequestAttachment[] | undefined;
+    initialFiles?: IRequestAttachment[];
     /** Максимальная длина комментария */
     maxLength?: number;
     /** Срабатывает при изменении значения*/
@@ -34,7 +34,7 @@ export interface ICommentTileProps {
 const CommentTile: FC<ICommentTileProps> = ({
   comment = '',
   maxLength = 255,
-  initialFiles = undefined,
+  initialFiles = [],
   autoResize = false,
   onDebounce = () => {},
   accept = '*',
@@ -43,7 +43,7 @@ const CommentTile: FC<ICommentTileProps> = ({
   const [value, setValue] = useState<string>(comment);
 
   /** хранит приложенные файлы*/
-  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[] | undefined>(initialFiles);
+  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[]>(initialFiles);
 
   /** Отлов прикрепления файлов */
   useEffect(() => {
@@ -111,7 +111,7 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   // =======================================================================================================================================
   /** Отображение чипов прикрепленных файлов */
-  const getFileChips = attachedFiles?.length && attachedFiles
+  const getFileChips = !!attachedFiles?.length && attachedFiles
     .map((file: IRequestAttachment, index: number) => attachedFileChipsTSX(
       file.fileName,
       index,
@@ -121,7 +121,7 @@ const CommentTile: FC<ICommentTileProps> = ({
         newListFile.splice(index, 1);
 
         if (!newListFile.length) {
-          setAttachedFiles(undefined);
+          setAttachedFiles([]);
         } else {
           setAttachedFiles([...newListFile]);
         }
@@ -136,9 +136,10 @@ const CommentTile: FC<ICommentTileProps> = ({
       <FormGroup
         className={classnames(
           'rf-comment-tile__input-wrapper',
-          !autoResize && 'rf-comment-tile__input-wrapper--auto-resize'
+          !autoResize && 'rf-comment-tile__input-wrapper--scroll'
         )}
         label={'Комментарий'}
+        showLargeSizeFirstLabel
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
         <Textarea autoResize={autoResize}

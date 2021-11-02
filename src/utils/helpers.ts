@@ -2,6 +2,7 @@ import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IFormattedDate, Size } from '../types';
+import moment from 'moment';
 
 const months = [
   'январь',
@@ -196,4 +197,16 @@ export const numberWithSpaces = (x: number, n = 3, s = ' '): string => {
   const regex = new RegExp(`\\B(?=(\\d{${n}})+(?!\\d))`, 'g');
   parts[0] = parts[0].replace(regex, s);
   return parts.join('.');
+};
+
+export const UTCToLocal = (date: Date | number): Date => {
+  const offset = moment().utcOffset();
+  const withOffset = moment(date).toDate().getTime() + offset * 60000;
+  return moment(withOffset).toDate();
+};
+
+export const LocalToUTC = (date: Date | number): Date => {
+  const offset = moment().utcOffset();
+  const withOffset = moment(date).toDate().getTime() - offset * 60000;
+  return moment(withOffset).toDate();
 };

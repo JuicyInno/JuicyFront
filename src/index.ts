@@ -220,7 +220,9 @@ import { useLocation } from './hooks/useLocation';
 import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
-import { numberWithSpaces, addLeadingZeros } from './utils/helpers';
+import {
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal
+} from './utils/helpers';
 
 export {
   useClickOutside,
@@ -230,5 +232,7 @@ export {
   useUpdateEffect,
   numberWithSpaces,
   openPopup,
-  addLeadingZeros
+  addLeadingZeros,
+  LocalToUTC,
+  UTCToLocal
 };
