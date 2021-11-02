@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Confirm.scss';
-import {
-  Button, FormGroup, Textarea
-} from '../../../index';
-
+import { Button, FormGroup } from '../../../index';
+import Textarea from '../../atoms/Textarea';
 
 export interface IConfirmProps {
   /** Текст сабмита */
@@ -36,7 +34,7 @@ const Confirm: React.FC<IConfirmProps> = ({
 
   const handleSubmit = () => {
     onAction(state);
-    // onClose && onClose();
+
   };
 
   const [state, setState] = useState<string>('');
@@ -47,8 +45,9 @@ const Confirm: React.FC<IConfirmProps> = ({
     }
   }, [comment, showComment]);
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setState(e.target.value);
+  const onChange = (e: Event) => {
+
+    e.target && setState((e.target as HTMLTextAreaElement).value);
   };
 
   const isRussian = lang?.toLowerCase().includes('ru');
@@ -63,7 +62,7 @@ const Confirm: React.FC<IConfirmProps> = ({
       {
         showComment && (
           <FormGroup label={commentTitle}>
-            <Textarea value={state} onChange={onChange}/>
+            <Textarea defaultValue={state} onDebounce={onChange}/>
           </FormGroup>
         )
       }

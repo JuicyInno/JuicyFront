@@ -1,14 +1,18 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 $lineWidth: 2px;
 
 .rf-tabs__navigation {
   position: relative;
-  padding-bottom: 10px;
-  border-bottom: $lineWidth solid var(--background-tertiary);
+  border-bottom: $lineWidth solid transparent;
+
+  &__line {
+    border-bottom: $lineWidth solid var(--background-tertiary);
+  }
 }
 
 .rf-tabs__navigation-list {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -24,7 +28,14 @@ $lineWidth: 2px;
 }
 
 .rf-tabs__link {
-  //margin-right: 32px;
+  white-space: nowrap;
+
+  &--hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+  }
 }
 
 .rf-tabs__link:last-of-type {
@@ -40,7 +51,7 @@ $lineWidth: 2px;
   background-color: transparent;
   outline: none;
   border: 0;
-  padding: 0 16px;
+  padding: 12px 16px;
 
   &:not(.rf-tabs__button--active) {
     & .rf-badge {
@@ -73,31 +84,45 @@ $lineWidth: 2px;
   }
 }
 
-.rf-tabs--buttons {
+.button-group__menu {
+  max-width: 240px;
+}
 
-  .rf-tabs__navigation {
-    border-bottom: none;
-  }
+.rf-tabs__menu {
+  position: absolute;
+  right: 4px;
+  top: 0px;
+  width: auto;
 
-  .rf-tabs__button {
-    @include button-m-16;
+  .rf-tabs__menu__btn {
     color: var(--text-secondary);
+    margin-bottom: 10px;
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+      color: var(--basic-primary);
+    }
   }
 
-  .rf-tabs__button:disabled {
-    color: var(--text-tertiary);
-    pointer-events: none;
+  &--active {
+    .rf-tabs__menu__btn {
+      color: var(--basic-press);
+    }
+  }
+}
+
+.rf-tabs__menu-link {
+  .rf-tabs__menu-button {
+    width: 100%;
+    transition: 0.2s ease-in-out;
+
+    &--active {
+      background-color: var(--background-tertiary);
+    }
   }
 
-  .rf-tabs__button--active {
-    color: var(--text-primary);
-  }
-
-  .rf-tabs__navigation-line {
-    height: 4px;
-  }
-
-  .rf-tabs__content {
-    margin-top: 24px;
+  .rf-tabs__menu-button:hover {
+    background-color: var(--background-secondary);
   }
 }

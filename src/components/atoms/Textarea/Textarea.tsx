@@ -6,29 +6,28 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
+import { classnames } from '../../../utils/classnames';
+import Close from '../../../assets/icons/Close';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
   autoResize?: boolean;
   /** Количество строк */
   initialRowCount?: number;
-  /** Последовательность перехода при нажатии на Tab */
-  tabIndex?: number;
   /** Дебаунс */
   debounce?: number;
   /** Вернуть value */
   getValue?: (value: string) => void;
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
-  /**
-   * Показывать счетчик символов под инпутом.
-   * @default true
-   */
-  showMaxLength?: boolean;
+  /** обработка ввода комментария с эффектом debounce */
+  onDebounce?: (e: Event) => void;
+  /** Возможность очистки поля по клику */
+  onClear?: () => void;
 }
 
 const Textarea: FC<ITextareaProps> = ({
-  className,
+  className = '',
   autoResize = false,
   initialRowCount = 3,
   debounce = 300,
@@ -37,25 +36,18 @@ const Textarea: FC<ITextareaProps> = ({
   invalid,
   onFocus,
   onBlur,
-  showMaxLength = true,
+  onDebounce = () => {},
+  onClear,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
   const textarea = useRef<HTMLTextAreaElement>(null);
-
-  /** Количество рядов */
-  const [rows, setRows] = useState(initialRowCount);
 
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
   /** Находится ли инпут в состоянии фокуса */
   const [isFocused, setFocused] = useState(false);
 
   useEffect(() => {
-    /** При фокусе на поле раскрываем его */
-    if (textarea.current && autoResize) {
-      setRows(textarea.current.value.split('\n').length + 1);
-    }
-
     /** Подписываемся на ввод текста */
     let sub: any;
 
@@ -66,12 +58,8 @@ const Textarea: FC<ITextareaProps> = ({
           debounceTime(debounce),
           distinctUntilChanged()
         )
-        .subscribe((e: any) => {
+        .subscribe((e: Event) => {
           if (textarea.current) {
-            if (autoResize) {
-              setRows(textarea.current.value.split('\n').length + 1);
-            }
-
             if (props.maxLength) {
               setValue(textarea.current.value);
             }
@@ -79,7 +67,9 @@ const Textarea: FC<ITextareaProps> = ({
             getValue && getValue(textarea.current.value);
           }
 
+          // @ts-ignore
           props.onKeyUp && props.onKeyUp(e);
+          onDebounce(e);
         });
     }
 
@@ -92,7 +82,12 @@ const Textarea: FC<ITextareaProps> = ({
         console.log(e);
       }
     };
-  }, [props.maxLength, autoResize]);
+  }, [
+    props.maxLength,
+    autoResize,
+    onDebounce,
+    debounce
+  ]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -114,33 +109,57 @@ const Textarea: FC<ITextareaProps> = ({
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  /** Очистка поля ввода */
+  const clearInput = () => {
+
+    if (textarea.current) {
+      textarea.current.value = '';
+      setValue('');
+      onClear && onClear();
+    }
+  };
+
+  /** Кнопка сброса */
+  const closeButton = onClear && value.length > 0 && (
+    <button type='button' className='rf-textarea__action' onClick={ clearInput } aria-label='Сбросить'>
+      <Close/>
+    </button>
+  );
+
+  // ------------------------------------------------------------------------------------------------------------------
+
   // Делаем проверку на className для обратной совместимости.
   const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
   return (
     <div className={`rf-textarea ${className}`}>
-      <div className={`
-        rf-textarea__wrapper
-        ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
-        ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
-        ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
-      `}>
+      <div
+        className={classnames(
+          'rf-textarea__wrapper',
+          disabled && 'rf-textarea__wrapper--disabled',
+          isFocused && 'rf-textarea__wrapper--focused',
+          isInvalid && 'rf-textarea__wrapper--invalid',
+          autoResize && 'rf-textarea__wrapper--auto-resize',
+          !autoResize && 'rf-textarea--scroll',
+          onClear && value.length > 0 && 'rf-textarea--clearable'
+        )}
+        data-replicated-value={props.value}
+      >
         <textarea
           {...props}
           disabled={disabled}
           ref={textarea}
-          rows={rows}
-          className={'rf-textarea__field'}
+          rows={initialRowCount}
+          className={`
+          rf-textarea__field
+          ${!autoResize ? 'rf-textarea--scroll' : ''}
+        `}
           autoComplete='off'
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
+        {closeButton}
       </div>
-      {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
-        <p className='rf-textarea__max-length'>
-          {value.length} / {props.maxLength}
-        </p>
-      )}
     </div>
   );
 };

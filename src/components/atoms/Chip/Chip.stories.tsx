@@ -143,6 +143,19 @@ export const Demo = () => {
           </div>
         </div>
       </StoryItem>
+
+      <StoryItem subtitle='Chips max length'>
+        <div style={{ display: 'flex' }}>
+          <div style={frameStyle}>
+            <div style={elementStyle}>
+              <Chip type='secondary' size='s' onRemove={onRemove}>The size of the line is greater than 32</Chip>
+            </div>
+            <div style={elementStyle}>
+              <Chip type='outline' size='s' onRemove={onRemove}>The size of the line equals 30</Chip>
+            </div>
+          </div>
+        </div>
+      </StoryItem>
     </StoryDocs>
   );
 };

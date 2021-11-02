@@ -51,7 +51,7 @@ const FindUsers: FC<IProps> = ({
   disableSelected,
   getUsers,
   multiSelect = true,
-  subtitle = 'Поиск осуществляется по выбранной компании и в рамках одного подразделения.',
+  subtitle,
   host = '',
   headers = {},
   AxiosInstance,
@@ -345,20 +345,21 @@ const FindUsers: FC<IProps> = ({
     onSearch(searchString);
   }, [activeFilter]);
 
-  const tabs: ITab[] = [
-    {
-      label: 'Все',
-      handler: () => {
-        setActiveFilter('all');
-      }
-    },
-    {
-      label: 'Моя команда',
-      handler: () => {
-        setActiveFilter('team');
-      }
+  const tabs: ITab[] = [];
+  showAll &&
+  tabs.push( {
+    label: 'Все',
+    handler: () => {
+      setActiveFilter('all');
     }
-  ];
+  });
+  tabs.push({
+    label: 'Моя команда',
+    handler: () => {
+      setActiveFilter('team');
+    }
+  });
+
 
   return (
     <div className='find-users__wrapper'>

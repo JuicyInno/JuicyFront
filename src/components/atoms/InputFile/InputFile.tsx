@@ -31,8 +31,6 @@ export interface IFileInputProps extends Omit<IButtonProps, 'onError'> {
   maxSize?: number;
   /** Количество файлов */
   count?: number;
-  /** Сжать изображения */
-  compressImages?: boolean;
   showChips?: boolean;
   customPlaceholder?: ReactNode;
 }
