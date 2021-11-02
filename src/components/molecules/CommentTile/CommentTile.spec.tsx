@@ -37,19 +37,29 @@ describe('Test <CommentTile/> component', () => {
         expect(container.getElementsByClassName('rf-comment-tile__title')).toHaveLength(1);
     });
 
-    it('should be button', () => {
+    it('should be textarea', () => {
         const { container } = render(<CommentTile />);
         expect(container.getElementsByClassName('rf-textarea__field')).toHaveLength(1);
     });
 
-    it('should be textarea', () => {
+    it('should be button', () => {
         const { container } = render(<CommentTile />);
         expect(container.getElementsByClassName('rf-comment-tile-button')).toHaveLength(1);
+    });
+
+    it('should not be button', () => {
+        const { container } = render(<CommentTile showFieldForFiles={false}/>);
+        expect(container.getElementsByClassName('rf-comment-tile-button')).toHaveLength(0);
     });
 
     it('should be initial comment text', () => {
         render(<CommentTile comment={'comment'}/>);
         expect(byText("comment").get()).toBeInTheDocument();
+    });
+
+    it('should be changed title', () => {
+        render(<CommentTile title={'title'} />);
+        expect(byText(/title/).get()).toBeInTheDocument();
     });
 
     it('should be changed maxLength by text', () => {
