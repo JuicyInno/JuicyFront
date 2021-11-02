@@ -19,7 +19,13 @@ export default {
       defaultValue: 'default'
     }
   },
-  argTypes: { initialFiles: { control: null }, }
+  argTypes: {
+    maxLength: {
+      type: 'number',
+      defaultValue: 255
+    },
+    initialFiles: { control: null },
+  }
 };
 
 const initialFiles = [
@@ -39,7 +45,7 @@ const comment = 'Давно выяснено, что при оценке диз�
 export const Demo: Story = () => {
   return (
     <StoryDocs>
-      <StoryDocsH2>Комментарии и файлы</StoryDocsH2>
+      <StoryDocsH2>CommentTile</StoryDocsH2>
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
@@ -74,6 +80,6 @@ export const Playground: Story<ICommentTileProps> = (args) => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A77566',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=31%3A33319',
   },
 };

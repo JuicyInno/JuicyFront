@@ -7,14 +7,13 @@ import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
 import { classnames } from '../../../utils/classnames';
+import Close from '../../../assets/icons/Close';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
   autoResize?: boolean;
   /** Количество строк */
   initialRowCount?: number;
-  /** Последовательность перехода при нажатии на Tab */
-  tabIndex?: number;
   /** Дебаунс */
   debounce?: number;
   /** Вернуть value */
@@ -23,11 +22,8 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   invalid?: boolean;
   /** обработка ввода комментария с эффектом debounce */
   onDebounce?: (e: Event) => void;
-  /**
-   * Показывать счетчик символов под инпутом.
-   * @default true
-   */
-  showMaxLength?: boolean;
+  /** Возможность очистки поля по клику */
+  onClear?: () => void;
 }
 
 const Textarea: FC<ITextareaProps> = ({
@@ -41,14 +37,11 @@ const Textarea: FC<ITextareaProps> = ({
   onFocus,
   onBlur,
   onDebounce = () => {},
-  showMaxLength = true,
+  onClear,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
   const textarea = useRef<HTMLTextAreaElement>(null);
-
-  /** Количество рядов */
-  const [rows, setRows] = useState(initialRowCount);
 
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
   /** Находится ли инпут в состоянии фокуса */
@@ -89,7 +82,12 @@ const Textarea: FC<ITextareaProps> = ({
         console.log(e);
       }
     };
-  }, [props.maxLength, autoResize, onDebounce]);
+  }, [
+    props.maxLength,
+    autoResize,
+    onDebounce,
+    debounce
+  ]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -111,6 +109,25 @@ const Textarea: FC<ITextareaProps> = ({
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  /** Очистка поля ввода */
+  const clearInput = () => {
+
+    if (textarea.current) {
+      textarea.current.value = '';
+      setValue('');
+      onClear && onClear();
+    }
+  };
+
+  /** Кнопка сброса */
+  const closeButton = onClear && value.length > 0 && (
+    <button type='button' className='rf-textarea__action' onClick={ clearInput } aria-label='Сбросить'>
+      <Close/>
+    </button>
+  );
+
+  // ------------------------------------------------------------------------------------------------------------------
+
   // Делаем проверку на className для обратной совместимости.
   const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
@@ -122,7 +139,9 @@ const Textarea: FC<ITextareaProps> = ({
           disabled && 'rf-textarea__wrapper--disabled',
           isFocused && 'rf-textarea__wrapper--focused',
           isInvalid && 'rf-textarea__wrapper--invalid',
-          autoResize && 'rf-textarea__wrapper--auto-resize'
+          autoResize && 'rf-textarea__wrapper--auto-resize',
+          !autoResize && 'rf-textarea--scroll',
+          onClear && value.length > 0 && 'rf-textarea--clearable'
         )}
         data-replicated-value={props.value}
       >
@@ -130,18 +149,17 @@ const Textarea: FC<ITextareaProps> = ({
           {...props}
           disabled={disabled}
           ref={textarea}
-          rows={rows}
-          className={'rf-textarea__field'}
+          rows={initialRowCount}
+          className={`
+          rf-textarea__field
+          ${!autoResize ? 'rf-textarea--scroll' : ''}
+        `}
           autoComplete='off'
           onFocus={onInputFocus}
           onBlur={onInputBlur}
         />
+        {closeButton}
       </div>
-      {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
-        <p className='rf-textarea__max-length'>
-          {value.length} / {props.maxLength}
-        </p>
-      )}
     </div>
   );
 };
