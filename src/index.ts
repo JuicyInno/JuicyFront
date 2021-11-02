@@ -180,6 +180,8 @@ import Bag from './assets/icons/Bag';
 import Bank from './assets/icons/Bank';
 import Left from './assets/icons/Left';
 import Exchange from './assets/icons/Exchange';
+import Add from './assets/icons/Add';
+import Edit from './assets/icons/Edit';
 
 export {
   Refresh,
@@ -218,7 +220,9 @@ export {
   Bag,
   Bank,
   Left,
-  Exchange
+  Exchange,
+  Add,
+  Edit
 };
 
 export { variables, download };
