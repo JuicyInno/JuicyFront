@@ -14,6 +14,7 @@ import ContentExpander from '../../molecules/ContentExpander';
 import { Certificate } from 'crypto-pro';
 import Download from '../../../assets/icons/Download';
 import { IFileData } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 
 export type TButtons = 'sign'|'manual'|'reject'|'rejectManual'
@@ -32,7 +33,7 @@ export interface ISignifyCallback{
 const buttonNamesDefault:ICustomTexts = {
   manual: 'Подписать вручную',
   reject: 'Отклонить ЭДО',
-  sign: 'Подписать ЭЦП (цифровая подпись)',
+  sign: 'Подписать электронной подписью',
   rejectManual: 'Отклонить'
 };
 
@@ -108,7 +109,7 @@ const Signification:FC<IProps> = ({
   useEffect(() => {
     data && setValue(data);
   }, [data]);
-  // =======================================================================================================================================
+  // ===================================================================================================================
 
   const successHandle = (result: ICertResult) => {
     onSignify({
@@ -122,13 +123,13 @@ const Signification:FC<IProps> = ({
     setFinalStage('auto');
     setOpenContent(false);
   };
+  //* ************************************************
   const refuseHandle = (result: ICertResult) => {
-
     setCurrentCert(result.cert);
     setRefusePopup(result);
   };
+  //* ************************************************
   const refuseHandlePopupSuccess = (comment = '') => {
-
     setComment(comment);
     setFinalStage('reject');
     setOpenContent(false);
@@ -139,17 +140,18 @@ const Signification:FC<IProps> = ({
       comment,
       currentCert
     });
-
   };
+  //* ************************************************
   const refuseHandlePopupFail = () => {
     setCurrentCert(undefined);
     setRefusePopup(undefined);
   };
-
+  //* ************************************************
   const errorHandle = (e:Error) => {
     !~e.message.toLowerCase().indexOf('отменена пользователем') &&
     setCertError(true);
   };
+  //* ************************************************
   const cancelSign = () => {
     setComment('');
     setFinalStage(undefined);
@@ -158,6 +160,7 @@ const Signification:FC<IProps> = ({
     onSignify({ file: initialFile.current });
 
   };
+  //* ************************************************
   const manualSignHandler = () => {
     setFinalStage('manual');
     const file = {
@@ -174,6 +177,7 @@ const Signification:FC<IProps> = ({
     setManualPopup(false);
     setOpenContent(false);
   };
+  //* ************************************************
   const setFileHandler = (file: IFileData[]) => {
     setManualFile({
       fileName: file[0].file.name,
@@ -340,11 +344,10 @@ const Signification:FC<IProps> = ({
     { buttonsTSX}
     {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
-
   return <div className='signification__wrapper'>
     <Tile>
-      <div className={`signification__title-row ${onlyView ? 'signification__title-row--onlyView' : ''}`}>
-        <Document/>
+      <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
+        <Document color1={onlyView ? '#F1F2F4' : undefined}/>
         <div className='signification__title-text'>{title}</div>
       </div>
       {documentInfo && documentInfo}
@@ -357,7 +360,7 @@ const Signification:FC<IProps> = ({
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' && !onlyView ? ' и подписать документ' : ''} `}>
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${!finalStage && !onlyView ? ' и подписать документ' : ''} `}>
             { isOpenContent && expanderContentTSX}
           </ContentExpander>
         </>}

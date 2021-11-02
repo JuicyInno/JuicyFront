@@ -3,6 +3,10 @@
 .rf-textarea {
   width: 100%;
   position: relative;
+
+  &--clearable {
+    padding-right: 48px;
+  }
 }
 
 .rf-textarea__wrapper {
@@ -16,11 +20,11 @@
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px var(--basic-hover);
+    box-shadow: 0 0 0 1px var(--basic-press);
   }
 
   &--focused {
-    box-shadow: 0 0 0 1px var(--basic-hover);
+    box-shadow: 0 0 0 1px var(--basic-press);
   }
 
   &--disabled {
@@ -32,8 +36,37 @@
   }
 }
 
+.rf-textarea__action {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 22px;
+  right: 16px;
+  transform: translateY(-50%);
+  color: var(--basic-tertiary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    fill: var(--basic-tertiary);
+  }
+}
+
+.rf-textarea__action:hover,
+.rf-textarea__action:focus {
+  color: var(--basic-primary);
+}
+
 .rf-textarea__wrapper--auto-resize {
   display: grid;
+  min-height: 88px;
+}
+
+.rf-textarea--scroll {
+  height: 88px;
 }
 
 .rf-textarea__wrapper--auto-resize::after {
@@ -50,7 +83,7 @@
 
 .rf-textarea__wrapper--auto-resize > .rf-textarea__field,
 .rf-textarea__wrapper--auto-resize::after {
-  padding: 0.5rem;
+  padding: 14px 16px;
   font: inherit;
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -60,21 +93,22 @@
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  padding: 8px 16px;
+  padding: 14px 16px;
   border-radius: 8px;
-  line-height: 20px;
   border: 0;
+  box-sizing: border-box;
 
-  @include text-l-16;
+  @include text-m-16;
 }
 
 .rf-textarea__field::placeholder {
-  @include text-l-16;
+  @include text-m-16;
   color: var(--text-secondary);
 }
 
 .rf-textarea__field:disabled {
   cursor: default;
+  color: var(--text-secondary);
 }
 
 .rf-textarea__max-length {

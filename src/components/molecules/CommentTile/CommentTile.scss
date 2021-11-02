@@ -18,9 +18,7 @@
   margin-top: 20px;
   color: var(--text-secondary);
   width: 648px;
-  & .rf-textarea__wrapper{
-    min-height: 76px;
-  }
+
   & .rf-form-group__label {
     @include text-xs-14();
     color: var(--text-secondary);
@@ -31,10 +29,10 @@
   }
 }
 
-.rf-comment-tile__input-wrapper--auto-resize {
+.rf-comment-tile__input-wrapper--scroll {
   & .rf-textarea__wrapper,
   .rf-textarea__field{
-    height: 76px;
+    height: 88px;
   }
 }
 

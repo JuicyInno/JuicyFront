@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react';
-
+/* eslint-disable max-len */
 const svgResult = (props: SVGProps<SVGSVGElement>) => (
   <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'{...props}>
     <rect x='0.5' y='0.5' width='47' height='47' rx='23.5' fill='#F2F8FF' stroke='#00AAFF'/>

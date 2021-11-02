@@ -30,6 +30,8 @@ export interface IPageWithSectionsProps {
   showHeader?: boolean;
   /** Кнопки действий внизу страницы */
   buttonsGroup?: IButtonGroup[];
+  /** количество кнопок для меню */
+  countOfButtonsGroup?:number;
 }
 
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
@@ -44,6 +46,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   showHeader = true,
   actionMenuAlwaysBottom = false,
   showNavigationPosition = false,
+  countOfButtonsGroup = 2,
   buttonsGroup = []
 }: IPageWithSectionsProps) => {
 
@@ -96,10 +99,13 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const sectionsJSX = sections?.map((section: IPageSection) => {
     return (
       <section key={ section.id } className='rf-page__section-block'>
-        <Tile hideBackground={section.hideBackground}>
-          { section.title && <h2 className='rf-page__section-title' id={ section.id }>{ section.title }</h2> }
-          { section.component }
-        </Tile>
+        {section.withoutTileWrapper ?
+          <> { section.component }</> :
+          <Tile hideBackground={section.hideBackground}>
+            { section.title && <h2 className='rf-page__section-title' id={ section.id }>{ section.title }</h2> }
+            { section.component }
+          </Tile>}
+
       </section>
     );
   });
@@ -211,13 +217,12 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         }
       </div>
 
-      { !preloader && actionMenu ? actionMenu : (
-        buttonsGroup !== undefined && buttonsGroup.length > 0 && (
-          <div className='rf-page__buttons-group'>
-            <ButtonGroup list={buttonsGroup}/>
-          </div>
-        )
-      ) }
+      { !preloader && buttonsGroup && !!buttonsGroup.length && (
+        <div className='rf-page__buttons-group'>
+          <ButtonGroup list={buttonsGroup} max={countOfButtonsGroup}/>
+        </div>
+      )
+      }
     </div>
   );
 };
