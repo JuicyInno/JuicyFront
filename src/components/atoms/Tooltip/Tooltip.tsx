@@ -216,14 +216,14 @@ const TooltipContent: FC<ITooltipContentProps> = ({
 // ---------------------------------------------------------------------------------------------------------------------
 
 export interface ITooltipProps {
+  /** Если false - тултип отключен. Если true | undefined - тултип работает как обычно */
+  isVisible?: boolean;
   /** Состояние тултипа (открыт/закрыт) */
   open?: boolean;
   /** Вызывается при закрытии тултипа */
   onClose?: (e: React.MouseEvent) => void;
   /** Вызывается при открытии тултипа */
   onOpen?: (e: React.MouseEvent) => void;
-  /** Кастомный контейнер для тултипа */
-  getPopupContainer?: () => HTMLElement;
   /** [1] Элемент, на который наводим, [2] Элемент с подсказкой */
   children: [ReactNode, ReactNode];
   /** Позиция тултипа */
@@ -236,10 +236,13 @@ export interface ITooltipProps {
   size?: 'm' | 'l';
   /** Портал в элемент - по умолчанию body */
   portal?: boolean;
+  /** Кастомный контейнер для портала */
+  getPopupContainer?: () => HTMLElement;
 }
 
 
 const Tooltip: FC<ITooltipProps> = ({
+  isVisible,
   open: openProp,
   onOpen,
   onClose,
@@ -286,7 +289,7 @@ const Tooltip: FC<ITooltipProps> = ({
 
   const isOpen = !!tooltipRect && (isControlled ? openProp : open);
 
-  const tooltipContent = isOpen && (
+  const tooltipContent = isOpen && isVisible !== false && (
     <TooltipContent
       className={className}
       position={position}

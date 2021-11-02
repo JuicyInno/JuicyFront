@@ -102,6 +102,22 @@ describe('Test <Tooltip/> component', () => {
     expect(screen.queryByTestId('tooltip')).toBeInTheDocument()
   });
 
+  it('should  not render Tooltip component with isVisible === false', async () => {
+    render(
+      <Tooltip open={true} isVisible={false}>
+        <div data-testid="button">Button</div>
+        <div data-testid="tooltip" >
+          <p>Tooltip</p>
+        </div>
+      </Tooltip>
+    )
+
+    fireEvent.mouseOver(screen.getByText('Button'));
+
+    await waitFor(() => screen.getByTestId('button'))
+    expect(screen.queryByTestId('tooltip')).toBeNull();
+  });
+
   it('should render Tooltip component with position = top', () => {
     render(
       <Tooltip open position='top'>
