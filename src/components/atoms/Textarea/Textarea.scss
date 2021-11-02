@@ -20,11 +20,11 @@
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px var(--basic-hover);
+    box-shadow: 0 0 0 1px var(--basic-primary);
   }
 
   &--focused {
-    box-shadow: 0 0 0 1px var(--basic-press);
+    box-shadow: 0 0 0 1px var(--basic-primary);
   }
 
   &--disabled {
