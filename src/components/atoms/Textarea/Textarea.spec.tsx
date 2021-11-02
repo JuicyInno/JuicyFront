@@ -74,7 +74,7 @@ describe('Test <Textarea/> component', () => {
 
   it('should be call onClear', () => {
     const onClear = jest.fn();
-    render(<Textarea onClear={onClear} value={'Hello'} />);
+    render(<Textarea onClear={onClear} onChange={() => {}} value={'Hello'} />);
     fireEvent.click(screen.getByLabelText('Сбросить'));
     expect(onClear).toHaveBeenCalledTimes(1);
   });
