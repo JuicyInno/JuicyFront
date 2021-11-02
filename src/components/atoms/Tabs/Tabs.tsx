@@ -71,23 +71,36 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
 
   /** Получаем индекс последнего видимого таба */
   const handleLastVisibleIndex = (width = 0) => {
-    const MENU_WIDTH = 50;
-    let visibleWidth = MENU_WIDTH;
+    const MENU_WIDTH = 48;
+    const hasHiddenIndex = lastVisibleInexRef.current < list.length - 1;
     let visibleIndex = lastVisibleInexRef.current;
+    let visibleWidth = hasHiddenIndex ? MENU_WIDTH : 0;
 
     for (let index = 0; index < list.length; index++) {
       if (refs.current?.[index]?.current) {
-        visibleWidth += getWidthTab(refs.current[index].current);
-      }
-
-      if (visibleWidth >= width) {
-        break;
+        if (width > visibleWidth + getWidthTab(refs.current[index].current)) {
+          visibleWidth += getWidthTab(refs.current[index].current);
+        } else {
+          break;
+        }
       }
 
       visibleIndex = index;
     }
 
     lastVisibleInexRef.current = visibleIndex;
+
+    /** Определяем показывать ли следующий скрытый таб */
+    if (hasHiddenIndex) {
+      const nextIndex = lastVisibleInexRef.current + 1;
+      const isLastIndex = nextIndex === refs.current.length - 1;
+      const nextWidth = getWidthTab(refs.current?.[nextIndex]?.current);
+
+      if (visibleWidth + nextWidth - (isLastIndex ? MENU_WIDTH : 0) <= width) {
+        visibleWidth += isLastIndex ? nextWidth : nextWidth + MENU_WIDTH;
+        lastVisibleInexRef.current = nextIndex;
+      }
+    }
   };
 
   // -------------------------------------------------------------------------------------------------------------------
