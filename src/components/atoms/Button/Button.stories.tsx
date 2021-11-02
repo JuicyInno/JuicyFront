@@ -308,36 +308,31 @@ export const Demo: Story = () => {
           buttonType: 'white',
           preloader: true
         })}
-
+      </div>
+      <div style={{
+        display: 'grid',
+        gap: '20px',
+        gridTemplateColumns: 'repeat(3, auto)',
+        justifyItems: 'center',
+        width: 'max-content'
+      }}>
         <StoryDocsH3>Text Button</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        {/* {getButtons({ buttonType: 'text' })}*/}
-        {/* <div style={{*/}
-        {/*  display: 'grid',*/}
-        {/*  width: '100%',*/}
-        {/*  gap: '20px',*/}
-        {/*  gridTemplateColumns: 'repeat(2, auto)',*/}
-        {/*  justifyItems: 'flex-start',*/}
-        {/* }}>*/}
-        {/*  <Button buttonType={'text'} size='xl'>Button 56</Button>*/}
-        {/*  <Button buttonType={'text'} size='s'>Button 32</Button>*/}
-        {/* </div>*/}
+        <Button buttonType={'text'} size='xl'>Button 56</Button>
+        <Button buttonType={'text'} size='s'>Button 32</Button>
         <StoryDocsLabel>Disabled</StoryDocsLabel>
-        {getButtons({
-          buttonType: 'text',
-          disabled: true
-        })}
+        <Button buttonType={'text'} disabled size='xl'>Button 56</Button>
+        <Button buttonType={'text'} disabled size='s'>Button 32</Button>
         <StoryDocsLabel>Loading</StoryDocsLabel>
-        {getButtons({
-          buttonType: 'text',
-          preloader: true
-        })}
+        <Button buttonType={'text'} preloader size='xl'>Button 56</Button>
+        <Button buttonType={'text'} preloader size='s'>Button 32</Button>
 
         <StoryDocsH3>Text Icon Button</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        {getButtons({ buttonType: 'text' })}
+        <Button size='xl' buttonType='text' startAdornment={<Placeholder24 />}>Text button 56</Button>
+        <Button size='s' buttonType='text' startAdornment={<Placeholder20 />}>Text button 32</Button>
       </div>
     </StoryDocs>
   );
@@ -346,7 +341,7 @@ export const Demo: Story = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=13613%3A74510',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A4233',
   },
   actions: { disabled: true },
   controls: { disabled: true }
