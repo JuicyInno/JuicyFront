@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import './Radio.scss';
 import { Variant } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Лейбл */
@@ -28,11 +29,7 @@ const Radio: FC<IRadioProps> = ({
 }: IRadioProps) => {
   return (
     <label
-      className={`
-        rf-radio ${props.className || ''} 
-        ${props.disabled ? 'disabled' : ''} 
-        ${fullWidth ? 'rf-radio--fullwidth' : ''}
-      `}
+      className={classnames('rf-radio', props.className, props.disabled && 'disabled', fullWidth && 'rf-radio--fullwidth')}
     >
       <input {...props} type='radio' className='rf-radio__input' value={value} />
 
