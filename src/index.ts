@@ -175,6 +175,7 @@ import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
 import Exit from './assets/icons/Exit';
 import External from './assets/icons/External';
+import Cart from './assets/icons/Cart';
 
 export {
   Refresh,
@@ -208,7 +209,8 @@ export {
   Cross,
   Redo,
   Exit,
-  External
+  External,
+  Cart
 };
 
 export { variables, download };
@@ -220,7 +222,9 @@ import { useLocation } from './hooks/useLocation';
 import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
-import { numberWithSpaces, addLeadingZeros } from './utils/helpers';
+import {
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal
+} from './utils/helpers';
 
 export {
   useClickOutside,
@@ -230,5 +234,7 @@ export {
   useUpdateEffect,
   numberWithSpaces,
   openPopup,
-  addLeadingZeros
+  addLeadingZeros,
+  LocalToUTC,
+  UTCToLocal
 };
