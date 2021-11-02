@@ -175,6 +175,7 @@ import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
 import Exit from './assets/icons/Exit';
 import External from './assets/icons/External';
+import Cart from './assets/icons/Cart';
 
 export {
   Refresh,
@@ -208,7 +209,8 @@ export {
   Cross,
   Redo,
   Exit,
-  External
+  External,
+  Cart
 };
 
 export { variables, download };
