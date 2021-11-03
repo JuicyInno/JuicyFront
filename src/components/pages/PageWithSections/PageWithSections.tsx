@@ -220,7 +220,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
       { !preloader && actionMenu ? actionMenu : (
         buttonsGroup !== undefined && buttonsGroup.length > 0 && (
           <div className='rf-page__buttons-group'>
-            <ButtonGroup list={ buttonsGroup }/>
+            <ButtonGroup max={countOfButtonsGroup} list={ buttonsGroup }/>
           </div>
         )
       ) }
