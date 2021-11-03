@@ -187,7 +187,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
 
   const tooltip = (
     <div
-      className={classnames('rf-tooltip__content-wrapper', `rf-tooltip--${color}`)}
+      className='rf-tooltip__content-wrapper'
       data-testid='tooltip__content-wrapper'
       onWheel={stopPropagationWheel}
       style={{
@@ -306,7 +306,7 @@ const Tooltip: FC<ITooltipProps> = ({
     <div
       // @ts-ignore
       ref={anchorRef}
-      className='rf-tooltip'
+      className={classnames('rf-tooltip', `rf-tooltip--${color}`)}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       portal={portal}
