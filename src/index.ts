@@ -49,7 +49,7 @@ import Card from './components/molecules/Card';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
-import ButtonGroup from './components/atoms/ButtonGroup';
+import ButtonGroup from './components/molecules/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
 import UsersStack from './components/molecules/UsersStack';

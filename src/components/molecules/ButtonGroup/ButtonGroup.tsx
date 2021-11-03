@@ -1,12 +1,10 @@
 import React from 'react';
 import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
-import {
-  Button, ChevronLeft, KebabMenu
-} from '../../../index';
-import Menu from '../Menu';
+import { Button, ChevronLeft, KebabMenu } from '../../../index';
+import Menu from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
-import Tooltip from '../Tooltip';
+import Tooltip from '../../atoms/Tooltip';
 
 export interface IButtonGroupProps {
   /** Список кнопок */
@@ -16,7 +14,6 @@ export interface IButtonGroupProps {
 }
 
 const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
-
   // -------------------------------------------------------------------------------------------------------------------
   /** Видимые кнопки */
 
@@ -27,11 +24,11 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   for (let i = 0; i < m; i++) {
     if (list[i].component) {
-      buttonsJSX.push((
-        <div className='button-group__item' key={ i }>
-          { list[i].component }
+      buttonsJSX.push(
+        <div className='button-group__item' key={i}>
+          {list[i].component}
         </div>
-      ));
+      );
     }
   }
 
@@ -42,7 +39,6 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   if (max < list.length) {
     for (let i = max; i < list.length; i++) {
-
       const onClick = (e: React.MouseEvent) => {
         if (list[i] && list[i].onClick) {
           e.preventDefault();
@@ -52,20 +48,19 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
         }
       };
 
-      menuJSX.push((
-        <Link to={ list[i].url || '/' } className='button-group__menu-button' key={ i } onClick={ onClick }>
+      menuJSX.push(
+        <Link to={list[i].url || '/'} className='button-group__menu-button' key={i} onClick={onClick}>
           <div className='button-group__menu-button-details'>
-            <h4 className='button-group__menu-button-name'>{ list[i].label }</h4>
-            { list[i].description && <p className='button-group__menu-button-description'>{ list[i].description }</p> }
+            <h4 className='button-group__menu-button-name'>{list[i].label}</h4>
+            {list[i].description && <p className='button-group__menu-button-description'>{list[i].description}</p>}
           </div>
-          <ChevronLeft className='button-group__menu-button-icon'/>
+          <ChevronLeft className='button-group__menu-button-icon' />
         </Link>
-      ));
+      );
     }
   }
 
   // -------------------------------------------------------------------------------------------------------------------
-
 
   if (list.length === 0) {
     return null;
@@ -73,18 +68,16 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   return (
     <div className='button-group'>
-      { buttonsJSX }
-      {
-        menuJSX.length > 0 && (
-          <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
-            {/* TODO: перестает работать onClick в Menu */}
-            <Tooltip portal position='bottom'>
-              <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
-              <>Другие действия</>
-            </Tooltip>
-          </Menu>
-        )
-      }
+      {buttonsJSX}
+      {menuJSX.length > 0 && (
+        <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
+          {/* TODO: перестает работать onClick в Menu */}
+          <Tooltip portal position='bottom'>
+            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+            <>Другие действия</>
+          </Tooltip>
+        </Menu>
+      )}
     </div>
   );
 };
