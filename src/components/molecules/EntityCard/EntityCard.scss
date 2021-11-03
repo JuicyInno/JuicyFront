@@ -1,6 +1,6 @@
 @import "../../../styles/mixins";
 
-.rf-card {
+.rf-entity-card {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
@@ -10,7 +10,7 @@
   }
 }
 
-.rf-card__entity-wrapper {
+.rf-entity-card__wrapper {
   display: flex;
   padding: 12px 16px 12px 12px;
   width: 100%;
@@ -18,49 +18,49 @@
   border-radius: 12px;
 }
 
-.rf-card__entity-photo-wrapper {
+.rf-entity-card__photo-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 16px;
 }
 
-.rf-card__entity-info-wrapper {
+.rf-entity-card__info-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.rf-card__entity-row {
+.rf-entity-card__row {
   display: flex;
   align-items: center;
 }
 
-.rf-card__entity-full-name {
+.rf-entity-card__full-name {
   @include text-m-16();
   font-weight: bold;
 }
 
-.rf-card__entity-role {
+.rf-entity-card__role {
   color: var(--text-secondary);
   white-space: pre-wrap;
 }
 
-.rf-card__entity-additional {
+.rf-entity-card__additional {
   @include text-m-16();
   color: var(--text-secondary);
   margin-right: 8px;
 }
 
-.rf-card__entity-accent {
+.rf-entity-card__accent {
   margin-right: 12px;
   color: var(--text-primary);
 }
 
-.rf-card__entity-accent_number {
+.rf-entity-card__accent_number {
   margin-right: 8px;
 }
 
-.rf-card__icon-wrapper {
+.rf-entity-card__icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,12 +69,12 @@
   cursor: pointer;
 }
 
-.rf-card__tooltip-text {
+.rf-entity-card__tooltip-text {
   display: block;
   white-space:nowrap;
 }
 
-.rf-card__toast-text {
+.rf-entity-card__toast-text {
   @include text-xs-14();
   color: var(--text-secondary);
 }

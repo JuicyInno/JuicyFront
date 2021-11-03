@@ -12,7 +12,7 @@ export interface IUserPositions {
     /** ФИО */
     fullName: string;
     /** Ссылка на фото */
-    photo: string;
+    photo?: string;
     /** Роль пользователя */
     role?: string;
     /** Первый лейбл */
@@ -29,7 +29,7 @@ export interface IUserPositions {
 
 const EntityCard: FC<IUserPositions> = ({
   fullName,
-  photo,
+  photo = '',
   role = '',
   firstLabel = '',
   valueByFirstLabel = '',
@@ -46,35 +46,35 @@ const EntityCard: FC<IUserPositions> = ({
     navigator.clipboard.writeText(value);
   };
 
-  return <div className='rf-card'>
-    <div className='rf-card__entity-wrapper'>
-      <div className='rf-card__entity-photo-wrapper'>
+  return <div className='rf-entity-card'>
+    <div className='rf-entity-card__wrapper'>
+      <div className='rf-entity-card__photo-wrapper'>
         <UserPhoto url={photo} radius='48' />
       </div>
-      <div className='rf-card__entity-info-wrapper'>
-        <div className='rf-card__entity-row'>
-          <p className='rf-card__entity-full-name'>{fullName}</p>
-          {!!role && <p className='rf-card__entity-role'>{`  / ${role}`}</p>}
+      <div className='rf-entity-card__info-wrapper'>
+        <div className='rf-entity-card__row'>
+          <p className='rf-entity-card__full-name'>{fullName}</p>
+          {!!role && <p className='rf-entity-card__role'>{`  / ${role}`}</p>}
         </div>
-        <div className='rf-card__entity-row'>
-          <p className='rf-card__entity-additional'>{firstLabel}</p>
-          <div className='rf-card__entity-row'>
-            <p className='rf-card__entity-accent rf-card__entity-accent_number'>{valueByFirstLabel}</p>
-            {!!canCopy && <div className='rf-card__icon-wrapper'>
+        <div className='rf-entity-card__row'>
+          <p className='rf-entity-card__additional'>{firstLabel}</p>
+          <div className='rf-entity-card__row'>
+            <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
+            {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
               <Tooltip position='bottom'>
                 <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon'/>
-                <div className='rf-card__tooltip-text'>Скопировать ТН</div>
+                <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>
               <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                <p className='rf-card__toast-text'>ТН скопирован</p>
+                <p className='rf-entity-card__toast-text'>ТН скопирован</p>
               </Toast>
             </div>
             }
             {secondLabel && valueBySecondLabel &&
             <>
-              <p className='rf-card__entity-additional'>{secondLabel}</p>
-              <div className='rf-card__entity-row'>
-                <p className='rf-card__entity-accent'>{valueBySecondLabel}</p>
+              <p className='rf-entity-card__additional'>{secondLabel}</p>
+              <div className='rf-entity-card__row'>
+                <p className='rf-entity-card__accent'>{valueBySecondLabel}</p>
               </div>
             </>
             }
