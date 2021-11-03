@@ -17,8 +17,12 @@ import { classnames } from '../../../utils/classnames';
 export interface ICommentTileProps {
     /** Начальный комментарий */
     comment?: string;
+    /** Заголовок */
+    title?: string;
     /** Автоматическое изменение высоты */
     autoResize?: boolean;
+    /** Возможность прикрепить файл */
+    showFieldForFiles?: boolean;
     /** Прикрепленные файлы */
     initialFiles?: IRequestAttachment[];
     /** Максимальная длина комментария */
@@ -33,9 +37,11 @@ export interface ICommentTileProps {
 
 const CommentTile: FC<ICommentTileProps> = ({
   comment = '',
+  title = 'Комментарии и файлы',
   maxLength = 255,
   initialFiles = [],
   autoResize = false,
+  showFieldForFiles = true,
   onDebounce = () => {},
   accept = '*',
   maxSize = undefined
@@ -132,14 +138,13 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   return <div className='rf-comment-tile__wrapper'>
     <Tile className='rf-comment-tile'>
-      <h1 className='rf-comment-tile__title'>Комментарии и файлы</h1>
+      <h1 className='rf-comment-tile__title'>{title}</h1>
       <FormGroup
         className={classnames(
           'rf-comment-tile__input-wrapper',
           !autoResize && 'rf-comment-tile__input-wrapper--scroll'
         )}
         label={'Комментарий'}
-        showLargeSizeFirstLabel
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
         <Textarea autoResize={autoResize}
@@ -148,18 +153,22 @@ const CommentTile: FC<ICommentTileProps> = ({
           value={value}
           placeholder='Оставить комментарий' />
       </FormGroup>
-      <InputFile
-        className='rf-comment-tile-button'
-        showChips={false}
-        setFile={setFileHandler}
-        buttonType='light'
-        placeholder='Прикрепить файл'
-        accept = {accept}
-        maxSize = {maxSize}
-      />
-      <div className='rf-comment-tile-chip-wrapper'>
-        {getFileChips}
-      </div>
+      { !!showFieldForFiles &&
+            <>
+              <InputFile
+                className='rf-comment-tile-button'
+                showChips={false}
+                setFile={setFileHandler}
+                buttonType='light'
+                placeholder='Прикрепить файл'
+                accept = {accept}
+                maxSize = {maxSize}
+              />
+              <div className='rf-comment-tile-chip-wrapper'>
+                {getFileChips}
+              </div>
+            </>
+      }
     </Tile>
   </div>;
 };

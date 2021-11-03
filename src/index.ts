@@ -176,6 +176,12 @@ import Redo from './assets/icons/Redo';
 import Exit from './assets/icons/Exit';
 import External from './assets/icons/External';
 import Cart from './assets/icons/Cart';
+import Bag from './assets/icons/Bag';
+import Bank from './assets/icons/Bank';
+import Left from './assets/icons/Left';
+import Exchange from './assets/icons/Exchange';
+import Add from './assets/icons/Add';
+import Edit from './assets/icons/Edit';
 
 export {
   Refresh,
@@ -210,7 +216,13 @@ export {
   Redo,
   Exit,
   External,
-  Cart
+  Cart,
+  Bag,
+  Bank,
+  Left,
+  Exchange,
+  Add,
+  Edit
 };
 
 export { variables, download };

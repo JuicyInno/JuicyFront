@@ -4,6 +4,8 @@ import React, {
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
+import { extractTextFromHTML } from '../../../utils/helpers';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 interface ITooltipContentProps {
   rect: DOMRect;
@@ -165,6 +167,17 @@ const Tooltip: FC<ITooltipProps> = ({
     e.stopPropagation();
   };
 
+
+  // @ts-ignore
+  const text: string = useMemo(() => {
+    try {
+      // @ts-ignore
+      return extractTextFromHTML(renderToStaticMarkup(children[1]));
+    } catch {
+      return '';
+    }
+  }, [children[1]]);
+
   return (
     <div
       className={`rf-tooltip rf-tooltip--${background}`}
@@ -173,7 +186,7 @@ const Tooltip: FC<ITooltipProps> = ({
       onClick={stopPropagation}
       onMouseUp={stopPropagation}>
       {children[0]}
-      {tooltipRect && isVisible && (
+      {tooltipRect && isVisible && text.length > 0 && (
         <TooltipContent className={className} position={position} rect={tooltipRect} portal={portal} background={background}>
           {children[1]}
         </TooltipContent>

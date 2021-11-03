@@ -217,12 +217,13 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         }
       </div>
 
-      { !preloader && buttonsGroup && !!buttonsGroup.length && (
-        <div className='rf-page__buttons-group'>
-          <ButtonGroup list={buttonsGroup} max={countOfButtonsGroup}/>
-        </div>
-      )
-      }
+      { !preloader && actionMenu ? actionMenu : (
+        buttonsGroup !== undefined && buttonsGroup.length > 0 && (
+          <div className='rf-page__buttons-group'>
+            <ButtonGroup max={countOfButtonsGroup} list={ buttonsGroup }/>
+          </div>
+        )
+      ) }
     </div>
   );
 };

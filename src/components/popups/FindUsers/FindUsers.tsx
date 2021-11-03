@@ -43,6 +43,8 @@ export interface IProps {
   showAll?: boolean;
   /** Исключить из поиска */
   searchOption?: number[];
+  /** Фон тултипа */
+  tooltipBackground?: 'default' | 'white';
 }
 
 const FindUsers: FC<IProps> = ({
@@ -56,7 +58,8 @@ const FindUsers: FC<IProps> = ({
   headers = {},
   AxiosInstance,
   showAll = true,
-  searchOption = []
+  searchOption = [],
+  tooltipBackground = 'default'
 }: IProps) => {
 
   const inputRef = useRef<HTMLDivElement>(null);
@@ -267,9 +270,9 @@ const FindUsers: FC<IProps> = ({
             { `${item.lastName} ${item.firstName} ${item.middleName}` }
             { item.id && <span className='list-users__user-id'>({ item.id })</span> }
             { item.departmentsPath && (
-              <Tooltip portal>
+              <Tooltip portal background={tooltipBackground}>
                 <Info className='list-users__user-info'/>
-                <Structure departmentsPath={ item.departmentsPath }/>
+                <Structure departmentsPath={ item.departmentsPath } background={tooltipBackground}/>
               </Tooltip>
             ) }
           </h3>
