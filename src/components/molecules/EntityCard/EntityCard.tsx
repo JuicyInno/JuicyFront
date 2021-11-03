@@ -71,12 +71,12 @@ const EntityCard: FC<IUserPositions> = ({
             </div>
             }
             {secondLabel && valueBySecondLabel &&
-                        <>
-                          <p className='rf-card__entity-additional'>{secondLabel}</p>
-                          <div className='rf-card__entity-row'>
-                            <p className='rf-card__entity-accent'>{valueBySecondLabel}</p>
-                          </div>
-                        </>
+            <>
+              <p className='rf-card__entity-additional'>{secondLabel}</p>
+              <div className='rf-card__entity-row'>
+                <p className='rf-card__entity-accent'>{valueBySecondLabel}</p>
+              </div>
+            </>
             }
           </div>
         </div>
