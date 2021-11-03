@@ -177,6 +177,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       const [from, to] = value.split(' - ');
       const fromD = stringToDate(from, format).getTime();
       const toD = stringToDate(to, format).getTime();
+      const fromUTCD = stringToDate(from, format, true).getTime();
+      const toUTCD = stringToDate(to, format, true).getTime();
+
       return {
         value,
         date: {
@@ -187,12 +190,19 @@ const Datepicker: React.FC<IDatepickerProps> = ({
         timestamp: {
           from: fromD,
           to: toD,
-          value: fromD
+          value: fromD,
+          utc: {
+            from: fromUTCD,
+            to: toUTCD,
+            value: fromUTCD,
+          }
         }
       };
     }
 
     const date = stringToDate(value, format);
+    const dateUTC = stringToDate(value, format, true);
+
     return {
       date: {
         from: date,
@@ -203,7 +213,12 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       timestamp: {
         from: date.getTime(),
         to: date.getTime(),
-        value: date.getTime()
+        value: date.getTime(),
+        utc: {
+          from: dateUTC.getTime(),
+          to: dateUTC.getTime(),
+          value: dateUTC.getTime(),
+        }
       }
     };
   };

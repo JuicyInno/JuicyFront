@@ -48,37 +48,37 @@ export const Demo = () => {
         gap: 32,
         maxWidth: 435
       }}>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} getValue={getValue} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} getValue={getValue} onClear={() => {}} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} maxLength={MAX_LENGTH} onClear={() => {}} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea disabled maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} disabled maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel invalid={false} errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup invalid={false} errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+        <FormGroup errorMessage={errorMassage} label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} invalid maxLength={MAX_LENGTH} value={value} onChange={onChange} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${getCurrentLength(value || LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${getCurrentLength(value || LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
           <Textarea placeholder={PLACEHOLDER} value={LONG_DEFAULT_VALUE} maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${getCurrentLength(value || LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
+        <FormGroup label={LABEL} labelSecondary={`(${getCurrentLength(value || LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
           <Textarea autoResize placeholder={PLACEHOLDER} value={LONG_DEFAULT_VALUE} maxLength={MAX_LENGTH} />
         </FormGroup>
-        <FormGroup showLargeSizeFirstLabel invalidLabelSecondary label={LABEL} labelSecondary={`(${getCurrentLength(LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
+        <FormGroup invalidLabelSecondary label={LABEL} labelSecondary={`(${getCurrentLength(LONG_DEFAULT_VALUE)}/${MAX_LENGTH})`}>
           <Textarea autoResize placeholder={PLACEHOLDER} value={LONG_DEFAULT_VALUE} maxLength={MAX_LENGTH} />
         </FormGroup>
       </div>
@@ -101,7 +101,7 @@ export const Playground: Story = ({ MAX_LENGTH = 255, ...args }) => {
     <StoryContainer>
       <StoryRow>
         <div style={{ width: 435 }}>
-          <FormGroup showLargeSizeFirstLabel label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+          <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
             <Textarea {...args} placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} value={value} onClear={onClear} onChange={onChange} />
           </FormGroup>
         </div>

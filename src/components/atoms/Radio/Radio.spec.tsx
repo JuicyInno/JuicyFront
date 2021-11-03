@@ -10,7 +10,21 @@ describe('Test <Radio/> component', () => {
     expect(getByText(container, 'Label')).toBeInTheDocument();
   });
 
+  it('should be rendered without icon', () => {
+    const { container } = render(<Radio value='1' label='Label' icon={false} />);
 
+    expect(container.getElementsByClassName('rf-radio__circle')).toHaveLength(0);
+  });
 
+  it('should be disabled', () => {
+    const { container } = render(<Radio value='1' label='Label' disabled />);
 
+    expect(container.getElementsByClassName('disabled')).toHaveLength(1);
+  });
+
+  it('should be rendered fullWidth', () => {
+    const { container } = render(<Radio value='1' label='Label' fullWidth />);
+
+    expect(container.getElementsByClassName('rf-radio--fullwidth')).toHaveLength(1);
+  });
 });

@@ -7,8 +7,6 @@ export interface IFormGroup {
   children: React.ReactNode | React.ReactNode[];
   /** Имя */
   label?: React.ReactNode;
-  /** Размер главного лейбла сделать больше */
-  showLargeSizeFirstLabel?: boolean;
   /** Имя */
   labelSecondary?: React.ReactNode;
   /** Сообщение об ошибке */
@@ -31,18 +29,14 @@ const FormGroup: FC<IFormGroup> = ({
   className = '',
   required = false,
   invalid = true,
-  invalidLabelSecondary,
-  showLargeSizeFirstLabel = false
+  invalidLabelSecondary
 }: IFormGroup) => {
   return (
     <div className={`rf-form-group ${className} `}>
       <div className='rf-form-group__inner'>
         {label && (
           <p
-            className={classnames(
-              'rf-form-group__label',
-              showLargeSizeFirstLabel && 'rf-form-group__label-large'
-            )}
+            className={classnames('rf-form-group__label')}
           >
             {label}
             {required && <span className='rf-form-group__required'>*</span>}
@@ -50,7 +44,7 @@ const FormGroup: FC<IFormGroup> = ({
             <span
               className={classnames(
                 'rf-form-group__label-secondary',
-                invalidLabelSecondary && 'rf-form-group__label-secondary-invalid'
+                invalidLabelSecondary && 'rf-form-group__message_no_invalidd'
               )}
             >
               {labelSecondary}
@@ -63,7 +57,7 @@ const FormGroup: FC<IFormGroup> = ({
       {errorMessage && <p
         className={classnames(
           'rf-form-group__message',
-          !invalid && 'rf-form-group__message-no-invalid'
+          !invalid && 'rf-form-group__message_no-invalid'
         )}
       >
         {errorMessage}

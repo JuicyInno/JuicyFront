@@ -207,3 +207,28 @@ export const LocalToUTC = (date: Date | number): Date => {
   const withOffset = moment(date).toDate().getTime() - offset * 60000;
   return moment(withOffset).toDate();
 };
+
+/** Выделить текст из HTML */
+export const extractTextFromHTML = (element: string): string => {
+  let result = '';
+  let skip = false;
+
+  for (let i = 0; i < element.length; i++) {
+    if (element[i] === '<') {
+      skip = true;
+    }
+
+    if (element[i] === '>') {
+      skip = false;
+      continue;
+    }
+
+    if (skip) {
+      continue;
+    }
+
+    result += element[i];
+  }
+
+  return result;
+};
