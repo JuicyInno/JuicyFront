@@ -9,7 +9,7 @@ import { Variant } from '../../../types';
 import { IUser } from '../../../types/projects.types';
 
 import './Card.scss';
-import UserCard from '../EntityCard/EntityCard';
+import EntityCard from '../EntityCard/EntityCard';
 
 export interface ICard {
   /** Дата заявки */
@@ -44,7 +44,7 @@ const Card: FC<ICard> = ({
   onClick = () => { },
 }) => {
 
-  const listUsers = users.map((user: IUser) => <UserCard
+  const listUsers = users.map((user: IUser) => <EntityCard
     {...user}
     key={user.id}
     canCopy
@@ -55,7 +55,7 @@ const Card: FC<ICard> = ({
   />);
 
   return <div className='rf-card__wrapper' onClick={onClick}>
-    <Tile key={`${title}${requestNumber}${date}`} className='rf-card__tile'>
+    <Tile className='rf-card__tile'>
       <div className='rf-card__row rf-card__row_first-row'>
         <div className='rf-card__title-wrapper'>
           <h1 className='rf-card__title'>{`${title} №${requestNumber} от ${date}`}</h1>
