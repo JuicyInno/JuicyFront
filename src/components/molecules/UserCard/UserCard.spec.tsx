@@ -44,4 +44,18 @@ describe('Test <UserCard/> component', () => {
         render(<UserCard {...user} />);
         expect(byText(user.fullName).get()).toBeInTheDocument();
     });
+
+    it('should be role', () => {
+        render(<UserCard {...user} role={'role'} />);
+        expect(byText(/role/i).get()).toBeInTheDocument();
+    });
+
+    it('should be position', () => {
+        render(<UserCard {...user} role={'position'} />);
+        expect(byText(/position/i).get()).toBeInTheDocument();
+    });
+    it('should be period', () => {
+        render(<UserCard {...user} role={'period'} />);
+        expect(byText(/period/i).get()).toBeInTheDocument();
+    });
 });
