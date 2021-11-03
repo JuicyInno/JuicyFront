@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useRef, useState, RefObject, createRef,
+  useCallback, useEffect, useRef, useState, RefObject,
 } from 'react';
 import './Segment.scss';
 import { IOption } from '../../../types';
@@ -25,15 +25,9 @@ const Segment: React.FC<ISegmentProps> = ({
   const refs = useRef<RefObject<HTMLDivElement>[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const getWidth = (element: HTMLDivElement | null) => element?.getBoundingClientRect().width || 0;
-
   const setBoundary = (i: number) => {
-    if (slider.current && i >= 0 ) {
-      const firstTranslate = i === 0 ? 0 : -1;
-      const width = getWidth(refs.current[i].current);
-
-      slider.current.style.width = `${width}px`;
-      slider.current.style.transform = `translateX(${width * i + firstTranslate}px)`;
+    if (slider.current) {
+      slider.current.style.transform = `translateX(${100 * i}%)`;
     }
   };
 
@@ -64,20 +58,17 @@ const Segment: React.FC<ISegmentProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const radioButtons = list.map((o: IOption, i: number) => {
-    if (!refs.current[i]) {
-      refs.current[i] = createRef();
-    }
+    const showSlider = i === 0;
 
     return (
       <div
         className={classnames('rf-segment__list-item', activeIndex === i && 'active')}
         key={o.value}
-        ref={refs.current[i]}
         onClick={() => handleChange(i)}
       >
+        {showSlider && <div className='rf-segment__slider' ref={slider} />}
         {o.label}
-      </div>
-    );
+      </div>);
   });
 
   return (
@@ -85,8 +76,6 @@ const Segment: React.FC<ISegmentProps> = ({
       <div className='rf-segment__list'>
         {radioButtons}
       </div>
-
-      <div className='rf-segment__slider' ref={slider} />
     </div>
   );
 };
