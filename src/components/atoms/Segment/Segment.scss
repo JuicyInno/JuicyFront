@@ -12,7 +12,7 @@
   grid-auto-columns: 1fr;
   height: 100%;
   background-color: var(--background-secondary);
-  border-radius: 8px;
+  border-radius: 10px;
   transition: 0.2s ease-in-out;
 
   &:hover {
@@ -31,20 +31,12 @@
   background-color: transparent;
   cursor: pointer;
   padding: 10px;
-  transition: border 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   @include text-s-14;
-
-  &:first-of-type {
-    border-radius: 8px;
-  }
-
-  &:last-of-type {
-    border-radius: 8px;
-  }
 
   &.active {
     background-color: var(--background-primary);
-    border-radius: 8px;
+    border-radius: 10px;
     @include text-s-14-bold;
   }
 }

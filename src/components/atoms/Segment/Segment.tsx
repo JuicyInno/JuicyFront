@@ -1,6 +1,4 @@
-import React, {
-  useCallback, useEffect, useRef, useState, RefObject,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Segment.scss';
 import { IOption } from '../../../types';
 import { classnames } from '../../../utils/classnames';
@@ -16,13 +14,8 @@ export interface ISegmentProps {
   value?: IOption;
 }
 
-const Segment: React.FC<ISegmentProps> = ({
-  list,
-  value,
-  onChange
-}: ISegmentProps) => {
+const Segment: React.FC<ISegmentProps> = ({ list, value, onChange }: ISegmentProps) => {
   const slider = useRef<HTMLDivElement>(null);
-  const refs = useRef<RefObject<HTMLDivElement>[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const setBoundary = (i: number) => {
@@ -46,14 +39,14 @@ const Segment: React.FC<ISegmentProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const handleChange = useCallback((i: number) => {
+  const handleChange = (i: number) => {
     if (list[i].disabled) {
       return;
     }
 
     setActiveIndex(i);
     onChange(list[i]);
-  }, [setActiveIndex, list]);
+  };
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -61,21 +54,16 @@ const Segment: React.FC<ISegmentProps> = ({
     const showSlider = i === 0;
 
     return (
-      <div
-        className={classnames('rf-segment__list-item', activeIndex === i && 'active')}
-        key={o.value}
-        onClick={() => handleChange(i)}
-      >
+      <div className={classnames('rf-segment__list-item', activeIndex === i && 'active')} key={o.value} onClick={() => handleChange(i)}>
         {showSlider && <div className='rf-segment__slider' ref={slider} />}
         {o.label}
-      </div>);
+      </div>
+    );
   });
 
   return (
     <div className='rf-segment__container'>
-      <div className='rf-segment__list'>
-        {radioButtons}
-      </div>
+      <div className='rf-segment__list'>{radioButtons}</div>
     </div>
   );
 };
