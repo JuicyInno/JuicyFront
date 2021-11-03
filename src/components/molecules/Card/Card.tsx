@@ -1,18 +1,15 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import Tile from '../../atoms/Tile';
 import Tag from '../../atoms/Tag';
-import UserPhoto from '../../atoms/UserPhoto';
-import Tooltip from '../../atoms/Tooltip';
-import Toast from '../../atoms/Toast';
 import Button from '../../atoms/Button';
 
-import Copy from '../../../assets/icons/Copy';
 
 import { Variant } from '../../../types';
 import { IUser } from '../../../types/projects.types';
 
 import './Card.scss';
+import EntityCard from '../EntityCard/EntityCard';
 
 export interface ICard {
   /** Дата заявки */
@@ -47,59 +44,15 @@ const Card: FC<ICard> = ({
   onClick = () => { },
 }) => {
 
-  const [isCopied, setIsCopied] = useState(false);
-
-  const copyHandler = (user: IUser) => {
-    setIsCopied(true);
-    navigator.clipboard.writeText(user.id);
-  };
-
-  const getUsers = users.map((user: IUser) => (
-    <div className='rf-card__row' key={user.id}>
-      <div className='rf-card__user-wrapper'>
-        <div className='rf-card__user-photo-wrapper'>
-          <UserPhoto url={user.photo} radius='48' />
-        </div>
-        <div className='rf-card__user-info-wrapper'>
-          <div className='rf-card__user-row'>
-            <p className='rf-card__user-full-name'>{user.fullName}</p>
-            {!!user.role && <p className='rf-card__user-role'>{`  / ${user.role}`}</p>}
-          </div>
-          <div className='rf-card__user-row'>
-            <p className='rf-card__user-additional'>Табельный номер</p>
-            <div className='rf-card__user-row'>
-              <p className='rf-card__user-accent rf-card__user-accent_number'>{user.id}</p>
-              <div className='rf-card__icon-wrapper'>
-                <Tooltip position='bottom'>
-                  <Copy onClick={() => copyHandler(user)} id='copyIcon' />
-                  <div className='rf-card__tooltip-text'>Скопировать ТН</div>
-                </Tooltip>
-                <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                  <p className='rf-card__toast-text'>ТН скопирован</p>
-                </Toast>
-              </div>
-              {!!user.position &&
-                <>
-                  <p className='rf-card__user-additional'>Должность</p>
-                  <div className='rf-card__user-row'>
-                    <p className='rf-card__user-accent'>{user.position}</p>
-                  </div>
-                </>
-              }
-              {!!user.period &&
-                <>
-                  <p className='rf-card__user-additional'>Период</p>
-                  <div className='rf-card__user-row'>
-                    <p className='rf-card__user-accent'>{user.period}</p>
-                  </div>
-                </>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ));
+  const listUsers = users.map((user: IUser) => <EntityCard
+    {...user}
+    key={user.id}
+    canCopy
+    firstLabel={'Табельный номер'}
+    valueByFirstLabel={user.id}
+    secondLabel={ user.position ? 'Должность' : user.period ? 'Период' : ''}
+    valueBySecondLabel={ user.position || user.period || undefined }
+  />);
 
   return <div className='rf-card__wrapper' onClick={onClick}>
     <Tile className='rf-card__tile'>
@@ -110,7 +63,7 @@ const Card: FC<ICard> = ({
         </div>
         <Tag variant={statusColor} onClick={onClick}>{statusText}</Tag>
       </div>
-      {getUsers}
+      {listUsers}
       {showActionButton && (
         <div className='rf-card__button-wrapper'>
           <Button className='rf-card__button' > Обработать </Button>
