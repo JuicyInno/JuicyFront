@@ -105,9 +105,13 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
             )}
           </div>
           <div className='rf-history__details-column'>
-            {r.user.length === 1 && (
+            {r.user.length === 1 ? (
               <p className='rf-history__details-info'>
                 {isUZADO ? r.user[0].position : r.activityText}
+              </p>
+            ) : (
+              <p className='rf-history__details-info'>
+                {r.activityText}
               </p>
             )}
 
