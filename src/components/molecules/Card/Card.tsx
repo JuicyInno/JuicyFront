@@ -49,7 +49,7 @@ const Card: FC<ICard> = ({
   />);
 
   return <div className='rf-card__wrapper' onClick={onClick}>
-    <Tile className='rf-card__tile'>
+    <Tile key={`${title}${requestNumber}${date}`} className='rf-card__tile'>
       <div className='rf-card__row rf-card__row_first-row'>
         <div className='rf-card__title-wrapper'>
           <h1 className='rf-card__title'>{`${title} №${requestNumber} от ${date}`}</h1>
