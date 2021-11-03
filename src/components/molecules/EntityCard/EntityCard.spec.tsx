@@ -15,17 +15,17 @@ describe('Test <EntityCard/> component', () => {
 
     it('should be wrapper', () => {
         const { container } = render(<EntityCard {...entity} />);
-        expect(container.getElementsByClassName('rf-card__entity-wrapper')).toHaveLength(1);
+        expect(container.getElementsByClassName('rf-entity-card__wrapper')).toHaveLength(1);
     });
 
     it('should be entity-photo', () => {
         const { container } = render(<EntityCard {...entity} />);
-        expect(container.getElementsByClassName('rf-card__entity-photo-wrapper')).toHaveLength(1);
+        expect(container.getElementsByClassName('rf-entity-card__photo-wrapper')).toHaveLength(1);
     });
 
     it('should be copy icon', () => {
         const { container } = render(<EntityCard {...entity} canCopy />);
-        expect(container.getElementsByClassName('rf-card__icon-wrapper')).toHaveLength(1);
+        expect(container.getElementsByClassName('rf-entity-card__icon-wrapper')).toHaveLength(1);
     });
 
     it('should be first label', () => {
