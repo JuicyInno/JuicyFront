@@ -7,6 +7,7 @@ import './Menu.scss';
 import { IListElement, IMenuContext } from '../../../types';
 import List from './List';
 import useClickOutside from '../../../hooks/useClickOutside';
+import { classnames } from '../../../utils/classnames';
 
 export interface IListProps {
   /** Кнопка открытия меню */
@@ -208,12 +209,17 @@ const Menu: React.FC<IListProps> = ({
     } else {
       setCoordinates(clearCoordinates());
     }
-  }, [show, portal, anchorElement]);
+  }, [
+    show,
+    portal,
+    anchorElement,
+    position
+  ]);
   // -------------------------------------------------------------------------------------------------------------------
 
   const menu = (
     <div
-      className={`rf-menu__content ${show ? 'rf-menu__content--show' : ''} ${portal ? 'rf-menu__content--portal' : ''}`}
+      className={classnames('rf-menu__content', show && 'rf-menu__content--show', portal && 'rf-menu__content--portal')}
       style={coordinates}
       ref={contentRef}
     >
@@ -226,7 +232,7 @@ const Menu: React.FC<IListProps> = ({
       onClose,
       show
     }}>
-      <div className={`rf-menu ${className}`} ref={menuRef}>
+      <div className={classnames('rf-menu', className)} ref={menuRef}>
         <div className='rf-menu__toggle' onClick={onClick} ref={toggleRef}>
           {children}
         </div>
