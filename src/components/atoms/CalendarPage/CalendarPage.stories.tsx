@@ -7,7 +7,7 @@ import {
 import CalendarPage, { ICalendarPageMark } from './CalendarPage';
 
 export default {
-  title: 'components/withTest/Календарь',
+  title: 'components/withTest/CalendarPage',
   component: CalendarPage
 };
 
@@ -44,7 +44,7 @@ const MARKS: ICalendarPageMark[] = [
 export const Demo: Story = () => {
   return (
     <StoryDocs>
-      <StoryDocsH1>Календарь (CalendarPage)</StoryDocsH1>
+      <StoryDocsH1>CalendarPage (Календарь)</StoryDocsH1>
       <StoryDocsDescription>
         Данный компонент используется для отображения дней месяца и отметок для определенных дней.
       </StoryDocsDescription>
@@ -61,6 +61,6 @@ export const Demo: Story = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=17887%3A198621'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A22864'
   }
 };
