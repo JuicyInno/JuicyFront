@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 $radius: 20px;
 
@@ -63,6 +63,7 @@ $radius: 20px;
 
 .rf-radio:hover .rf-radio__input:checked:not(:disabled) + .rf-radio__circle {
   border-color: var(--basic-hover);
+  background-color: transparent;
 }
 
 // Focus
