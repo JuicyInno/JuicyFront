@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Card, { ICard } from './Card';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';

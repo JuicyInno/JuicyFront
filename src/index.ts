@@ -47,6 +47,7 @@ import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
+import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
@@ -125,6 +126,7 @@ export {
   Column,
   UserPhoto,
   Card,
+  EntityCard,
   Toast,
   History,
   Status,
