@@ -145,7 +145,6 @@ const CommentTile: FC<ICommentTileProps> = ({
           !autoResize && 'rf-comment-tile__input-wrapper--scroll'
         )}
         label={'Комментарий'}
-        showLargeSizeFirstLabel
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
         <Textarea autoResize={autoResize}
