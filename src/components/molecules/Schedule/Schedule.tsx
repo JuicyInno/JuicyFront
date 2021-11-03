@@ -6,11 +6,8 @@ import './Schedule.scss';
 import Button from '../../atoms/Button';
 import CalendarPage, { ICalendarPageMark } from '../../atoms/CalendarPage';
 
-import { classnames } from '../../../utils/classnames';
 
 export interface IScheduleProps {
-  /** Класс для корневого элемента. */
-  className?: string;
   /** Отображаемый по умолчанию год. */
   defaultYear: number;
   /** Отображаемый по умолчанию месяц. Отсчет начинается с нулю. */
@@ -19,7 +16,7 @@ export interface IScheduleProps {
   marks?: ICalendarPageMark[];
 }
 
-const Schedule: FC<IScheduleProps> = ({ children, className, defaultYear, defaultMonth, marks = [] }) => {
+const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, marks = [] }) => {
   const [year, setYear] = useState(defaultYear);
   const [month, setMonth] = useState(defaultMonth);
 
@@ -61,7 +58,7 @@ const Schedule: FC<IScheduleProps> = ({ children, className, defaultYear, defaul
   };
 
   return (
-    <div className={classnames(className, 'rf-schedule')}>
+    <div className='rf-schedule'>
       <div className='rf-schedule__calendars'>
         <div className='rf-schedule__calendar'>
           <div className='rf-schedule__heading rf-schedule__heading_start'>

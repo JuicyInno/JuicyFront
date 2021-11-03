@@ -56,10 +56,10 @@ export const Demo: Story = () => {
 
       <Schedule defaultYear={2021} defaultMonth={8} marks={MARKS}>
         <ScheduleLegend>
-          <ScheduleLegendItem color='default'>Отпуск</ScheduleLegendItem>
-          <ScheduleLegendItem color='yellow'>Командировка</ScheduleLegendItem>
-          <ScheduleLegendItem color='red'>Больничный</ScheduleLegendItem>
-          <ScheduleLegendItem color='magenta'>Прочие отсутствия</ScheduleLegendItem>
+          <ScheduleLegendItem variant='default'>Отпуск</ScheduleLegendItem>
+          <ScheduleLegendItem variant='yellow'>Командировка</ScheduleLegendItem>
+          <ScheduleLegendItem variant='red'>Больничный</ScheduleLegendItem>
+          <ScheduleLegendItem variant='magenta'>Прочие отсутствия</ScheduleLegendItem>
         </ScheduleLegend>
       </Schedule>
     </StoryDocs>

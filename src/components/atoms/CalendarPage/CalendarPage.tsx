@@ -42,13 +42,29 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
       endWeekday = 7;
     }
 
+    // Дни текущего месяца
     const days = Array.from({ length: new Date(year, month + 1, 0).getDate() }, (_, i) => i + 1);
+    // Выходные дни
+    const weekends: Record<number, boolean> = {};
+
+    for (const day of days) {
+      const date = new Date(year, month, day);
+      const weekday = date.getDay();
+
+      if (weekday === 0 || weekday === 6) {
+        weekends[day] = true;
+      }
+    }
 
     const startDate = new Date(year, month, -(startWeekday - 1)).getDate();
+
+    // Видимые дни предыдущего месяца
     const prevDays = Array.from({ length: new Date(year, month, 0).getDate() - startDate }, (_, i) => i + startDate + 1);
 
+    // Видимые дни следующего месяца
     const nextDays = Array.from({ length: 7 - endWeekday }, (_, i) => i + 1);
 
+    // Отметки на календаре
     const marksMap: Record<number, Record<number, Record<number, string>>> = {};
 
     for (const mark of marks) {
@@ -118,6 +134,7 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
             key={`${month}-${i}`}
             className={classnames(
               'rf-calendar-page__cell',
+              weekends[i] && 'rf-calendar-page__cell_disabled',
               marksMap[year]?.[month]?.[i] && `rf-calendar-page__cell_${marksMap[year][month][i]}`
             )}
           >
