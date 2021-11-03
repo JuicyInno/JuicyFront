@@ -1,6 +1,6 @@
 @import "../../../styles/mixins";
 
-.rf-card__row {
+.rf-card {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
@@ -10,7 +10,7 @@
   }
 }
 
-.rf-card__user-wrapper {
+.rf-card__entity-wrapper {
   display: flex;
   padding: 12px 16px 12px 12px;
   width: 840px;
@@ -18,45 +18,45 @@
   border-radius: 12px;
 }
 
-.rf-card__user-photo-wrapper {
+.rf-card__entity-photo-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 16px;
 }
 
-.rf-card__user-info-wrapper {
+.rf-card__entity-info-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.rf-card__user-row {
+.rf-card__entity-row {
   display: flex;
   align-items: center;
 }
 
-.rf-card__user-full-name {
+.rf-card__entity-full-name {
   @include text-m-16();
   font-weight: bold;
 }
 
-.rf-card__user-role {
+.rf-card__entity-role {
   color: var(--text-secondary);
   white-space: pre-wrap;
 }
 
-.rf-card__user-additional {
+.rf-card__entity-additional {
   @include text-m-16();
   color: var(--text-secondary);
   margin-right: 8px;
 }
 
-.rf-card__user-accent {
+.rf-card__entity-accent {
   margin-right: 12px;
   color: var(--text-primary);
 }
 
-.rf-card__user-accent_number {
+.rf-card__entity-accent_number {
   margin-right: 8px;
 }
 

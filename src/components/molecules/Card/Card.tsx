@@ -9,7 +9,7 @@ import { Variant } from '../../../types';
 import { IUser } from '../../../types/projects.types';
 
 import './Card.scss';
-import UserCard from '../UserCard/UserCard';
+import UserCard from '../EntityCard/EntityCard';
 
 export interface ICard {
   /** Дата заявки */
@@ -44,8 +44,14 @@ const Card: FC<ICard> = ({
   onClick = () => { },
 }) => {
 
-  const getUsers = users.map((user: IUser) => <UserCard
-    {...user} canCopy firstLabel={'Табельный номер'} valueByFirstLabel={user.id}
+  const listUsers = users.map((user: IUser) => <UserCard
+    {...user}
+    key={user.id}
+    canCopy
+    firstLabel={'Табельный номер'}
+    valueByFirstLabel={user.id}
+    secondLabel={ user.position ? 'Должность' : user.period ? 'Период' : ''}
+    valueBySecondLabel={ user.position || user.period || undefined }
   />);
 
   return <div className='rf-card__wrapper' onClick={onClick}>
@@ -57,7 +63,7 @@ const Card: FC<ICard> = ({
         </div>
         <Tag variant={statusColor} onClick={onClick}>{statusText}</Tag>
       </div>
-      {getUsers}
+      {listUsers}
       {showActionButton && (
         <div className='rf-card__button-wrapper'>
           <Button className='rf-card__button' > Обработать </Button>

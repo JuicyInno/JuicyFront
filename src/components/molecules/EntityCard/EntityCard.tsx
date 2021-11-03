@@ -6,21 +6,15 @@ import Toast from '../../atoms/Toast';
 
 import Copy from '../../../assets/icons/Copy';
 
-import './UserCard.scss';
+import './EntityCard.scss';
 
 export interface IUserPositions {
-    /** Уникальный ID карточки */
-    id: string;
     /** ФИО */
     fullName: string;
     /** Ссылка на фото */
     photo: string;
     /** Роль пользователя */
     role?: string;
-    /** Период для заявки */
-    period?: string;
-    /** Должность */
-    position?: string;
     /** Первый лейбл */
     firstLabel?: string;
     /** Значение первого лейбла */
@@ -33,8 +27,7 @@ export interface IUserPositions {
     valueBySecondLabel?: string;
 }
 
-const UserCard: FC<IUserPositions> = ({
-  id,
+const EntityCard: FC<IUserPositions> = ({
   fullName,
   photo,
   role = '',
@@ -42,8 +35,6 @@ const UserCard: FC<IUserPositions> = ({
   valueByFirstLabel = '',
   secondLabel = '',
   valueBySecondLabel = '',
-  position = '',
-  period = '',
   canCopy = false,
 
 }) => {
@@ -55,20 +46,20 @@ const UserCard: FC<IUserPositions> = ({
     navigator.clipboard.writeText(value);
   };
 
-  return <div className='rf-card__row' key={id}>
-    <div className='rf-card__user-wrapper'>
-      <div className='rf-card__user-photo-wrapper'>
+  return <div className='rf-card'>
+    <div className='rf-card__entity-wrapper'>
+      <div className='rf-card__entity-photo-wrapper'>
         <UserPhoto url={photo} radius='48' />
       </div>
-      <div className='rf-card__user-info-wrapper'>
-        <div className='rf-card__user-row'>
-          <p className='rf-card__user-full-name'>{fullName}</p>
-          {!!role && <p className='rf-card__user-role'>{`  / ${role}`}</p>}
+      <div className='rf-card__entity-info-wrapper'>
+        <div className='rf-card__entity-row'>
+          <p className='rf-card__entity-full-name'>{fullName}</p>
+          {!!role && <p className='rf-card__entity-role'>{`  / ${role}`}</p>}
         </div>
-        <div className='rf-card__user-row'>
-          <p className='rf-card__user-additional'>{firstLabel}</p>
-          <div className='rf-card__user-row'>
-            <p className='rf-card__user-accent rf-card__user-accent_number'>{valueByFirstLabel}</p>
+        <div className='rf-card__entity-row'>
+          <p className='rf-card__entity-additional'>{firstLabel}</p>
+          <div className='rf-card__entity-row'>
+            <p className='rf-card__entity-accent rf-card__entity-accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-card__icon-wrapper'>
               <Tooltip position='bottom'>
                 <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon'/>
@@ -79,27 +70,11 @@ const UserCard: FC<IUserPositions> = ({
               </Toast>
             </div>
             }
-            {position && !secondLabel &&
-                        <>
-                          <p className='rf-card__user-additional'>Должность</p>
-                          <div className='rf-card__user-row'>
-                            <p className='rf-card__user-accent'>{position}</p>
-                          </div>
-                        </>
-            }
-            {period && !secondLabel &&
-                        <>
-                          <p className='rf-card__user-additional'>Период</p>
-                          <div className='rf-card__user-row'>
-                            <p className='rf-card__user-accent'>{period}</p>
-                          </div>
-                        </>
-            }
             {secondLabel && valueBySecondLabel &&
                         <>
-                          <p className='rf-card__user-additional'>{secondLabel}</p>
-                          <div className='rf-card__user-row'>
-                            <p className='rf-card__user-accent'>{valueBySecondLabel}</p>
+                          <p className='rf-card__entity-additional'>{secondLabel}</p>
+                          <div className='rf-card__entity-row'>
+                            <p className='rf-card__entity-accent'>{valueBySecondLabel}</p>
                           </div>
                         </>
             }
@@ -110,4 +85,4 @@ const UserCard: FC<IUserPositions> = ({
   </div>;
 };
 
-export default UserCard;
+export default EntityCard;
