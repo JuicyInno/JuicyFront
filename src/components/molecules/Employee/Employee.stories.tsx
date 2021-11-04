@@ -8,7 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 
 export default {
-  title: 'components/не проверено/Employee',
+  title: 'components/withTest/Employee',
   component: Employee,
 };
 
