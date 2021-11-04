@@ -20,6 +20,7 @@ $radius: 8px;
 }
 
 .rf-tooltip__inner {
+  white-space: nowrap;
   position: relative;
   padding: 16px;
   font-weight: normal;
