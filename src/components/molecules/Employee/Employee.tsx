@@ -6,6 +6,7 @@ import Tile from '../../atoms/Tile';
 import Tooltip from '../../atoms/Tooltip';
 import Info from '../../../assets/icons/Info';
 import Structure from '../Structure';
+import Refresh from '../../../assets/icons/Refresh';
 
 export interface IEmployeeProps {
   /** Пользователь */
@@ -15,11 +16,17 @@ export interface IEmployeeProps {
   portal?: boolean;
   /** Заголовок карточки */
   title?: string;
+  /** Коллбек клика по кнопке. */
+  onClick?: () => void;
+  /** Показывать кнопку */
+  showActionButton?: boolean;
 }
 
 const Employee: React.FC<IEmployeeProps> = ({ user,
   position = 'right',
   title = '',
+  onClick = () => {},
+  showActionButton = false,
   portal = false }: IEmployeeProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -54,6 +61,10 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
             </div>
           </div>
         </div>
+        {showActionButton && <div onClick={onClick} className='rf-employee__button'>
+          <Refresh />
+          <p>Выбрать другого сотрудника</p>
+        </div>}
       </Tile>
     </div>
   );

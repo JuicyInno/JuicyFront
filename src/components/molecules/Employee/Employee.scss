@@ -51,3 +51,16 @@
   color: var(--basic-tertiary);
   cursor: pointer;
 }
+
+.rf-employee__button {
+  @include text-l-16;
+  display: flex;
+  margin-top: 20px;
+  color: var(--basic-primary);
+  &:hover {
+    cursor: pointer;
+  }
+  & svg {
+    margin-right: 8px;
+  }
+}
