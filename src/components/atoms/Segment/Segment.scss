@@ -1,60 +1,53 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-segment__container {
   position: relative;
   cursor: pointer;
-  height: 30px;
+  height: 40px;
+  width: 100%;
 }
 
 .rf-segment__list {
-  display: flex;
-  align-items: center;
+  display: inline-grid;
+  grid-auto-columns: 1fr;
   height: 100%;
   background-color: var(--background-secondary);
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--background-tertiary);
+  }
 }
 
 .rf-segment__list-item {
+  position: relative;
   height: 100%;
+  grid-row: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-top: 2px solid var(--background-secondary);
-  border-bottom: 2px solid var(--background-secondary);
-  background-color: var(--background-secondary);
+  background-color: transparent;
   cursor: pointer;
+  padding: 10px;
+  transition: all 0.2s ease-in-out;
   @include text-s-14;
 
-  border-right: 2px solid var(--background-secondary);
-
-  &:first-of-type {
-    //border-radius: 8px 0 0 8px;
-    border-radius: 8px;
-    border-left: 2px solid var(--background-secondary);
+  &.active {
+    background-color: var(--background-primary);
+    border-radius: 10px;
+    @include text-s-14-bold;
   }
-
-  &:last-of-type {
-    border-left: 0;
-    border-radius: 8px;
-    //border-radius: 0 8px 8px 0;
-  }
-
-  transition: 0.35s;
-}
-
-.rf-segment__list-item.active {
-  background-color: var(--background-primary);
-  @include text-s-14-bold;
 }
 
 .rf-segment__slider {
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 2px solid var(--basic-primary);
   transition: 0.25s;
   z-index: 10;
+  box-sizing: border-box;
 }
