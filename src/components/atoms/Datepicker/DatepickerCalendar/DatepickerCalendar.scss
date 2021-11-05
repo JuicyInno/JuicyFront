@@ -29,6 +29,11 @@
 .rf-datepicker-calendar__control__button-section{
   display: flex;
   justify-content: center;
+
+
+}
+.rf-datepicker-calendar__tooltip{
+  white-space: nowrap;
 }
 
 .rf-datepicker-calendar__button {
@@ -172,7 +177,6 @@
 
 .rf-datepicker__calendar-date {
   @include text-s-14-bold;
-  margin: 2px;
   position: relative;
 }
 
@@ -193,11 +197,10 @@
     color: #fff;
 }
 
-.rf-datepicker__calendar-date:not(.rf-datepicker__calendar-date--active):focus {
-  background-color: var(--special-softBlue);
-}
+
 
 .rf-datepicker__calendar-day {
+  margin: 2px;
   margin-bottom: 8px;
 }
 
@@ -258,6 +261,7 @@
 .rf-datepicker__calendar-month-wrapper {
   display: flex;
   width: 76px;
+  border-radius: 4px;
   margin-bottom: 8px;
   margin-top: 8px;
   background-color: var(--background-secondary);
@@ -312,6 +316,8 @@
 .rf-datepicker__calendar-year-wrapper {
   background-color: var(--background-secondary);
   width: 55px;
+  height: 32px;
+  border-radius: 4px;
   margin-right: 9px;
   margin-bottom: 8px;
   margin-top: 8px;

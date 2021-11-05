@@ -246,8 +246,6 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
     const disabledMin = minDate && minDate.getTime() > d.getTime();
     const disabledMax = maxDate && maxDate.getTime() < d.getTime();
     const disabledClass = disabledWeekDay || disabledMin || disabledMax ? 'rf-datepicker__calendar-date--disabled' : '';
-    console.log(currentDayClass);
-
 
     return (
       <button
@@ -444,6 +442,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
       <Tooltip
         position='bottom'
         background='default'
+        className='rf-datepicker-calendar__tooltip'
       >
         <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
           onClick={onPeriodTypeChange(period)}>
