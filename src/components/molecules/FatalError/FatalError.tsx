@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './FatalError.scss';
-import FatalErrorIcon from './FatalErrorIcon';
 
-const FatalError = () => {
+interface IProps {
+  icon: ReactNode
+  title: string,
+  description: string
+
+}
+
+const FatalError = ({ description, icon, title }: IProps) => {
 
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -10,11 +16,9 @@ const FatalError = () => {
 
   return (
     <div className='fatal-error'>
-      <FatalErrorIcon/>
-      <p className='fatal-error__label'>Что-то пошло не так. Пожалуйста, обновите страницу.</p>
-      <p className='fatal-error__message'>Для заведения инцидента воспользуйтесь ЦСПП (
-        <a href='https://cspp.vtb.ru' target='_blank' className='fatal-error__link'>https://cspp.vtb.ru</a>).
-      </p>
+      {icon}
+      <p className='fatal-error__label'>{title}</p>
+      <p className='fatal-error__message'>{description} </p>
     </div>
   );
 };
