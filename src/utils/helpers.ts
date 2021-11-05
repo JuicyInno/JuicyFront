@@ -154,12 +154,15 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xxs': 'rf--xxs',
   'xs': 'rf--xs',
   's': 'rf--s',
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
-  'xxl': 'rf--xxl'
+  'xxl': 'rf--xxl',
+  'xxxl': 'rf--xxxl',
+  'xxxxl': 'rf--xxxxl'
 };
 
 function oDataServ(data:any) {
