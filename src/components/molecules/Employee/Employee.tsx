@@ -32,7 +32,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
       <Tile className='rf-employee__tile'>
         { title && <h6 className='rf-employee__title'> {title} </h6>}
         <div className={'rf-employee__details-wrapper'}>
-          <Avatar photo={ user.photo } fullName={ user.fullName} size='xxl'/>
+          <Avatar photo={ user.photo } fullName={ user.fullName} size='xxxl'/>
           <div className='rf-employee__details'>
             <div className='rf-employee__name-container'>
               <h3 className='rf-employee__name'>{ user.fullName }</h3>
