@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Avatar.scss';
-import { Size } from '../../../types';
+import { AvatarColor, Size } from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
+import AvatarIcon from './AvatarIcon';
 
 export interface IAvatarProps {
   size?: Size;
@@ -9,9 +10,19 @@ export interface IAvatarProps {
   photo?: string;
   /** Фамилия и Имя */
   fullName?: string;
+  /** Цвет фона аватара */
+  backgroundColor?: AvatarColor;
+  /** Иконка заглушки */
+  hasIcon?: boolean;
 }
 
-const Avatar: React.FC<IAvatarProps> = ({ size = 'm', photo = '', fullName = '' }: IAvatarProps) => {
+const Avatar: React.FC<IAvatarProps> = ({
+  size = 'm',
+  photo = '',
+  fullName = '',
+  backgroundColor = 'default',
+  hasIcon = false
+}: IAvatarProps) => {
 
   const [initials, setInitials] = useState<string>('');
 
@@ -33,14 +44,26 @@ const Avatar: React.FC<IAvatarProps> = ({ size = 'm', photo = '', fullName = '' 
       const [f, s]: string[] = fullName.split(' ');
       let text = '';
       f && (text = f.charAt(0).toUpperCase());
-      s && (text += s.charAt(0).toUpperCase());
+
+      // при размере xxs и xs оставляем только одну букву инициалов
+      if (size !== 'xxs' && size !== 'xs') {
+        s && (text += s.charAt(0).toUpperCase());
+      }
+
       setInitials(text);
     }
   }, [fullName]);
 
   return (
-    <div className={`rf-avatar ${sizeClass[size]}`} style={{ backgroundImage: `url("${photo}")`, }}>
-      {!photo && initials}
+    <div className={`rf-avatar ${sizeClass[size]} rf-avatar__background_${backgroundColor}`}
+      style={{ backgroundImage: `url("${photo}")`, }}
+    >
+      {hasIcon ? (
+        <div className='rf-avatar__icon-wrapper'>
+          <AvatarIcon className={`rf-avatar__icon ${sizeClass[size]}`} />
+        </div>
+      ) :
+        !photo && initials}
     </div>
   );
 };
