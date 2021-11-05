@@ -1,26 +1,40 @@
-import React, { ReactNode } from 'react';
+import React, {
+  ReactNode, InputHTMLAttributes, FC, useState, useEffect
+} from 'react';
 import './FatalError.scss';
+import FatalErrorIcon from './FatalErrorIcon';
 
-interface IProps {
-  icon: ReactNode
-  title: string,
+export interface IFatalErrorProps extends InputHTMLAttributes<HTMLLabelElement> {
+  icon?: ReactNode
+  title?: string,
   description: string
 
 }
 
-const FatalError = ({ description, icon, title }: IProps) => {
+
+const FatalError: FC<IFatalErrorProps> =
+  ({ description = 'Что-то пошло не так, Пожалуйста, обновите страницу.',
+    icon = <FatalErrorIcon />,
+    title = 'Ошибка' }) => {
+
+    const [t, setT] = useState(title);
+    const [d, setD] = useState(description);
+
+    useEffect(() => {
+      setT(title);
+      setD(description);
+    }, [title, description]);
+
+    // -------------------------------------------------------------------------------------------------------------------
 
 
-  // -------------------------------------------------------------------------------------------------------------------
-
-
-  return (
-    <div className='fatal-error'>
-      {icon}
-      <p className='fatal-error__label'>{title}</p>
-      <p className='fatal-error__message'>{description} </p>
-    </div>
-  );
-};
+    return (
+      <div className='fatal-error'>
+        {icon}
+        <p className='fatal-error__label'>{t}</p>
+        <p className='fatal-error__message'>{d} </p>
+      </div>
+    );
+  };
 
 export default FatalError;
