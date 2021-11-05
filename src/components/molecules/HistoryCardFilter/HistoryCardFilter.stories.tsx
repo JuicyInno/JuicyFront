@@ -5,7 +5,7 @@ import HistoryCardFilter, { IHistoryCardFilterProps, IHistoryCardValues } from '
 import { IOption } from '../../../types';
 
 
-const opt:IOption[] = [
+const opt: IOption[] = [
   {
     value: 'END',
     label: 'Завершено'
@@ -22,8 +22,8 @@ const opt:IOption[] = [
 
 const data: IHistoryCardFilterProps = {
   statusOptions: opt,
-  initialValues: { status: 'DRAFT' },
-  onChange: (values:IHistoryCardValues) => {
+  initialValues: {},
+  onChange: (values: IHistoryCardValues) => {
     console.warn(values);
   }
 };
@@ -48,7 +48,7 @@ export const historyCardFilter = (props: IHistoryCardFilterProps) => {
     <StoryItem>
       <HistoryCardFilter {...values} onChange={(result) => {
         console.warn('Значени изменились: ', result);
-      }}/>
+      }} />
     </StoryItem>
   </Story>;
 };

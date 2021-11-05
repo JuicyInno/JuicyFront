@@ -8,17 +8,23 @@
 .rf-datepicker__input-wrapper {
   position: relative;
   cursor: pointer;
+  .rf-input__field{
+    padding-left: 29px;
+  }
 }
+
+
 
 .rf-datepicker__calendar-button {
   position: absolute;
+  z-index: 99;
   width: 24px;
   height: 24px;
-  top: 50%;
-  right: 8px;
+  top: calc(50% - 14px);
+  right:calc(100% - 38px);
   transform: translateY(-50%) rotate(0);
   transition: 0.35s;
-  color: var(--base-500);
+  color: var(--text-secondary);
   cursor: pointer;
   pointer-events: none;
 
@@ -27,11 +33,22 @@
   }
 }
 
+.rf-datepicker__calendar-chevron{
+  position: relative;
+  z-index: 99;
+  bottom:32px;
+  left: calc(100% - 38px);
+  color:var(--text-tertiary);
+  svg{
+    font-size: 15px;
+  }
+}
+
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
 
   .rf-datepicker__calendar-button {
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
   }
 }
 

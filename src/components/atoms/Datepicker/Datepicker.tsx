@@ -11,7 +11,7 @@ import {
 import Input from '../Input';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import useClickOutside from '../../../hooks/useClickOutside';
-import { Calendar } from '../../../index';
+import { Calendar, ChevronDown } from '../../../index';
 
 export interface IDatepickerProps {
   name?: string;
@@ -319,50 +319,50 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   const readOnlyClass = readOnly ? 'rf-datepicker__input-wrapper--readonly' : '';
 
   return (
-    <div className='rf-datepicker' ref={ datepickerRef }>
-      <div className={ `rf-datepicker__input-wrapper ${disabledClass} ${readOnlyClass}` }
-        ref={ inputRef }
-        onClick={ () => toggleCalendar(true) }>
+    <div className='rf-datepicker' ref={datepickerRef}>
+      <div className={`rf-datepicker__input-wrapper ${disabledClass} ${readOnlyClass}`}
+        ref={inputRef}
+        onClick={() => toggleCalendar(true)}>
         {
           children || (
             <>
-              <InputMask
-                mask={ mask }
-                name={ name }
-                placeholder={ placeholder }
-                value={ inputValue }
-                disabled={ disabled }
-                readOnly={ readOnly }
-                onKeyPress={ onKeyPress }
-                onChange={ onDatepickerChange }>
-                <Input invalid={invalid}/>
-              </InputMask>
-
               <button type='button' className='rf-datepicker__calendar-button'>
-                <Calendar/>
+                <Calendar />
               </button>
+              <InputMask
+                mask={mask}
+                name={name}
+                placeholder={placeholder}
+                value={inputValue}
+                disabled={disabled}
+                readOnly={readOnly}
+                onKeyPress={onKeyPress}
+                onChange={onDatepickerChange}>
+                <Input invalid={invalid} />
+              </InputMask>
+              <ChevronDown className='rf-datepicker__calendar-chevron' />
             </>
           )
         }
       </div>
-      { showCalendar && (
+      {showCalendar && (
         <DatepickerCalendar
-          value={ inputValue }
-          minDate={ minDate }
-          maxDate={ maxDate }
-          toggleRef={ inputRef }
-          setInputValue={ setValue }
-          range={ range }
-          locale={ locale }
-          showCalendar={ showCalendar }
-          toggleCalendar={ toggleCalendar }
-          showTodayButton={ showTodayButton }
-          position={ position }
-          separator={ separator }
-          format={ format }
+          value={inputValue}
+          minDate={minDate}
+          maxDate={maxDate}
+          toggleRef={inputRef}
+          setInputValue={setValue}
+          range={range}
+          locale={locale}
+          showCalendar={showCalendar}
+          toggleCalendar={toggleCalendar}
+          showTodayButton={showTodayButton}
+          position={position}
+          separator={separator}
+          format={format}
           disableWeekDays={disableWeekDays || []}
         />
-      ) }
+      )}
     </div>
   );
 };
