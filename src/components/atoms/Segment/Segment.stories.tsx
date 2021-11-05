@@ -1,40 +1,57 @@
 import React from 'react';
 import Segment from './Segment';
-import Story from '../../storybook/Story';
+
+import { Story } from '@storybook/react';
+
+import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 import { IOption } from '../../../types';
+import { _segmentList } from './mock';
 
 export default {
-  title: 'navigations/не проверено/Segment',
-  component: Segment
+  title: 'navigations/withTest/Segment',
+  component: Segment,
+  argTypes: {
+    list: { control: null },
+    value: { control: null },
+  }
 };
 
-export const segment = () => {
-
-  const list: [IOption, IOption] = [
-    {
-      value: '1',
-      label: 'Заявки'
-    },
-    {
-      value: '2',
-      label: 'Задачи'
-    }
-  ];
+export const Demo = () => {
 
   const onChange = (option: IOption) => {
     console.log(option);
   };
 
   return (
-    <Story name='Segment (Сегмент 🧐)' description='Текстовый переключатель.'>
+    <StoryContainer name='Segment (Сегмент 🧐)' description='Текстовый переключатель.'>
 
       <StoryItem>
         <StoryRow>
-          <Segment list={list} onChange={onChange} width={100}/>
+          <Segment list={_segmentList} onChange={onChange} />
+        </StoryRow>
+        <StoryRow>
+          <Segment list={_segmentList} value={_segmentList[1]} onChange={onChange} />
         </StoryRow>
       </StoryItem>
-    </Story>
+    </StoryContainer>
   );
+};
+
+export const Playground: Story = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Segment list={_segmentList} value={_segmentList[1]} onChange={() => {}} {...args} />
+      </StoryRow>
+    </StoryContainer>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A29002',
+  },
 };
