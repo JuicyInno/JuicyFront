@@ -1,6 +1,8 @@
 import React from 'react';
 import './Employee.scss';
-import { IUser, TooltipPosition } from '../../../types/projects.types';
+import {
+  IStructure, IUser, TooltipPosition
+} from '../../../types/projects.types';
 import Avatar from '../../atoms/Avatar';
 import Tile from '../../atoms/Tile';
 import Tooltip from '../../atoms/Tooltip';
@@ -36,6 +38,24 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
   const shortDepartment = user.department.slice(0, 60);
   const department = shortDepartment.length < user.department.length ? shortDepartment + '...' : shortDepartment;
 
+  const getButton = () => <Button
+    size='xl'
+    className='rf-employee__button'
+    buttonType='text'
+    onClick={onClick}
+    startAdornment={<Refresh />}
+  >
+    Выбрать другого сотрудника
+  </Button>;
+
+  const getTooltip = (departmentsPath: IStructure[]) => <Tooltip
+    position={position}
+    portal={portal}
+  >
+    <Info data-testid='icon' className='rf-employee__department-icon'/>
+    <Structure departmentsPath={ departmentsPath }/>
+  </Tooltip>;
+
   return (
     <div className='rf-employee'>
       <Tile className='rf-employee__tile'>
@@ -45,14 +65,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
           <div className='rf-employee__details'>
             <div className='rf-employee__name-container'>
               <h3 className='rf-employee__name'>{ user.fullName }</h3>
-              {
-                user.departmentsPath && (
-                  <Tooltip position={position} portal={portal}>
-                    <Info data-testid='icon' className='rf-employee__department-icon'/>
-                    <Structure departmentsPath={ user.departmentsPath }/>
-                  </Tooltip>
-                )
-              }
+              {user.departmentsPath && getTooltip(user.departmentsPath)}
             </div>
             <div className='rf-employee__info'> { user.position } </div>
             <div className='rf-employee__info rf-employee__info-department'>
@@ -63,17 +76,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
             </div>
           </div>
         </div>
-        {showActionButton &&
-          <Button
-            size='xl'
-            className='rf-employee__button'
-            buttonType='text'
-            onClick={onClick}
-            startAdornment={<Refresh />}
-          >
-            Выбрать другого сотрудника
-          </Button>
-        }
+        {showActionButton && getButton()}
       </Tile>
     </div>
   );
