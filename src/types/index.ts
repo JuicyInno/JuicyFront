@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -125,7 +125,7 @@ export const variants: Variant[] = [
 ];
 
 /** Размер */
-export type Size = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';
@@ -153,4 +153,10 @@ export interface IButtonGroup {
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+}
+
+/** Пропсы иконки */
+export interface IIconProps extends SVGProps<SVGSVGElement> {
+  /** размер */
+  size?: Size
 }

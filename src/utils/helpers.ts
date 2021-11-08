@@ -154,12 +154,23 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xxs': 'rf--xxs',
   'xs': 'rf--xs',
   's': 'rf--s',
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
   'xxl': 'rf--xxl'
+};
+
+export const iconSize: Record<Size, string> = {
+  'xxs': '16',
+  'xs': '24',
+  's': '32',
+  'm': '40',
+  'l': '48',
+  'xl': '56',
+  'xxl': '64'
 };
 
 function oDataServ(data:any) {
