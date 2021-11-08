@@ -7,12 +7,14 @@ import Tooltip from '../../atoms/Tooltip';
 import Info from '../../../assets/icons/Info';
 import Structure from '../Structure';
 import Refresh from '../../../assets/icons/Refresh';
+import Button from '../../atoms/Button';
 
 export interface IEmployeeProps {
   /** Пользователь */
   user: IUser;
   /** Позиция тултипа подсказки */
   position?: TooltipPosition;
+  /** Портал для тултипа */
   portal?: boolean;
   /** Заголовок карточки */
   title?: string;
@@ -61,10 +63,16 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
             </div>
           </div>
         </div>
-        {showActionButton && <div onClick={onClick} className='rf-employee__button'>
-          <Refresh />
-          <p>Выбрать другого сотрудника</p>
-        </div>}
+        {showActionButton &&
+          <Button
+            size='xl'
+            className='rf-employee__button'
+            buttonType='text'
+            startAdornment={<Refresh />}
+          >
+            Выбрать другого сотрудника
+          </Button>
+        }
       </Tile>
     </div>
   );

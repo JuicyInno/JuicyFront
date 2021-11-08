@@ -10,6 +10,7 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 export default {
   title: 'components/withTest/Employee',
   component: Employee,
+  argTypes: { user: { control: null }, }
 };
 
 export const Demo: Story = () => {
