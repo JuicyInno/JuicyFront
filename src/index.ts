@@ -432,6 +432,70 @@ export {
   LightModeStrokeFill
 };
 
+// --------------------------Иконки status------------------------------------------------------------------------------
+import Blocked from './assets/icons/Status/Blocked';
+import Flag from './assets/icons/Status/Flag';
+import InfoFill from './assets/icons/Status/InfoFill';
+import InfoOutline from './assets/icons/Status/InfoOutline';
+import Loader from './assets/icons/Status/Loader';
+import Pending from './assets/icons/Status/Pending';
+import Pin from './assets/icons/Status/Pin';
+import Release from './assets/icons/Status/Release';
+import Reserved from './assets/icons/Status/Reserved';
+import StatusError from './assets/icons/Status/Error';
+import StatusInformation from './assets/icons/Status/Information';
+import StatusReturn from './assets/icons/Status/Return';
+import StatusWarning from './assets/icons/Status/Warning';
+import Timer from './assets/icons/Status/Timer';
+import Troyka from './assets/icons/Status/Troyka';
+import Unread from './assets/icons/Status/Unread';
+
+export {
+  Blocked,
+  Flag,
+  InfoFill,
+  InfoOutline,
+  Loader,
+  Pending,
+  Pin,
+  Release,
+  Reserved,
+  StatusError,
+  StatusInformation,
+  StatusReturn,
+  StatusWarning,
+  Timer,
+  Troyka,
+  Unread
+};
+
+// --------------------------Иконки social------------------------------------------------------------------------------
+import Android from './assets/icons/Social/Android';
+import Apple from './assets/icons/Social/Apple';
+import Classmates from './assets/icons/Social/Classmates';
+import Facebook from './assets/icons/Social/Facebook';
+import GooglePlay from './assets/icons/Social/GooglePlay';
+import Huawei from './assets/icons/Social/Huawei';
+import Telegram from './assets/icons/Social/Telegram';
+import Twitter from './assets/icons/Social/Twitter';
+import VK from './assets/icons/Social/VK';
+import Windows from './assets/icons/Social/Windows';
+import YouTube from './assets/icons/Social/Youtube';
+
+export {
+  Android,
+  Apple,
+  Classmates,
+  Facebook,
+  GooglePlay,
+  Huawei,
+  Telegram,
+  Twitter,
+  VK,
+  Windows,
+  YouTube
+};
+
 export { variables, download };
 
 // --------------------------Функции------------------------------------------------------------------------------------

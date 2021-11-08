@@ -98,6 +98,34 @@ import Close from '../../../assets/icons/Arrows/Close';
 import Renew from '../../../assets/icons/Arrows/Renew';
 import InfoStatus from '../../../assets/icons/Arrows/InfoStatus';
 
+import StatusWarning from '../../../assets/icons/Status/Warning';
+import StatusInformation from '../../../assets/icons/Status/Information';
+import Release from '../../../assets/icons/Status/Release';
+import StatusError from '../../../assets/icons/Status/Error';
+import StatusQuestion from '../../../assets/icons/Status/Question';
+import StatusReturn from '../../../assets/icons/Status/Return';
+import Unread from '../../../assets/icons/Status/Unread';
+import Pending from '../../../assets/icons/Status/Pending';
+import InfoFill from '../../../assets/icons/Status/InfoFill';
+import InfoOutline from '../../../assets/icons/Status/InfoOutline';
+import Blocked from '../../../assets/icons/Status/Blocked';
+import Timer from '../../../assets/icons/Status/Timer';
+import Loader from '../../../assets/icons/Status/Loader';
+import Reserved from '../../../assets/icons/Status/Reserved';
+import Flag from '../../../assets/icons/Status/Flag';
+import Troyka from '../../../assets/icons/Status/Troyka';
+import Pin from '../../../assets/icons/Status/Pin';
+import Android from '../../../assets/icons/Social/Android';
+import Windows from '../../../assets/icons/Social/Windows';
+import Classmates from '../../../assets/icons/Social/Classmates';
+import Facebook from '../../../assets/icons/Social/Facebook';
+import Youtube from '../../../assets/icons/Social/Youtube';
+import VK from '../../../assets/icons/Social/VK';
+import GooglePlay from '../../../assets/icons/Social/GooglePlay';
+import Twitter from '../../../assets/icons/Social/Twitter';
+import Telegram from '../../../assets/icons/Social/Telegram';
+import Huawei from '../../../assets/icons/Social/Huawei';
+
 export default {
   title: 'icons,illustrations/не проверено/Icons',
   decorators: [withDesign],
@@ -301,6 +329,62 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><Close /></div>Close</div>
           <div style={elemStyle}><div style={iconStyle}><Renew /></div>Renew</div>
           <div style={elemStyle}><div style={iconStyle}><InfoStatus /></div>Info status</div>
+        </div>
+      </div>
+      <StoryDocsH2>Status</StoryDocsH2>
+      <div style={{ display: 'flex' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginRight: 250
+        }}>
+          <div style={elemStyle}><div style={iconStyle}><StatusWarning /></div>Warning</div>
+          <div style={elemStyle}><div style={iconStyle}><StatusInformation /></div>Information</div>
+          <div style={elemStyle}><div style={iconStyle}><Release /></div>Release</div>
+          <div style={elemStyle}><div style={iconStyle}><StatusError /></div>Error</div>
+          <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question</div>
+          <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
+          <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
+          <div style={elemStyle}><div style={iconStyle}><Pending /></div>Pending</div>
+          <div style={elemStyle}><div style={iconStyle}><InfoFill /></div>Info_fill</div>
+          <div style={elemStyle}><div style={iconStyle}><InfoOutline /></div>Info_outline</div>
+        </div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
+          <div style={elemStyle}><div style={iconStyle}><Timer /></div>Timer</div>
+          <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
+          <div style={elemStyle}><div style={iconStyle}><Reserved /></div>Reserved</div>
+          <div style={elemStyle}><div style={iconStyle}><Flag /></div>Flag</div>
+          <div style={elemStyle}><div style={iconStyle}><Troyka /></div>Troyka</div>
+          <div style={elemStyle}><div style={iconStyle}><Pin /></div>Pin</div>
+        </div>
+      </div>
+      <StoryDocsH2>Social</StoryDocsH2>
+      <div style={{ display: 'flex' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginRight: 250
+        }}>
+          <div style={elemStyle}><div style={iconStyle}><Android /></div>Android</div>
+          <div style={elemStyle}><div style={iconStyle}><Windows /></div>Windows</div>
+          <div style={elemStyle}><div style={iconStyle}><Classmates /></div>Classmates</div>
+          <div style={elemStyle}><div style={iconStyle}><Facebook /></div>Facebook</div>
+          <div style={elemStyle}><div style={iconStyle}><Apple /></div>Apple</div>
+          <div style={elemStyle}><div style={iconStyle}><Youtube /></div>Youtube</div>
+        </div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={elemStyle}><div style={iconStyle}><VK /></div>VK</div>
+          <div style={elemStyle}><div style={iconStyle}><GooglePlay /></div>Google Play</div>
+          <div style={elemStyle}><div style={iconStyle}><Twitter /></div>Twitter</div>
+          <div style={elemStyle}><div style={iconStyle}><Telegram /></div>Telegram</div>
+          <div style={elemStyle}><div style={iconStyle}><Huawei /></div>Huawei</div>
         </div>
       </div>
     </StoryDocs>
