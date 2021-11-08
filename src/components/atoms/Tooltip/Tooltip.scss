@@ -29,7 +29,7 @@ $radius: 8px;
   font-size: 14px;
   line-height: 16px;
   border-radius: $radius;
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  box-shadow: 0 2px 4px 2px rgb(25 59 104 / 11%);
 
   &.rf--l {
     padding: 20px 20px 20px 20px;
@@ -46,87 +46,76 @@ $radius: 8px;
 }
 
 .rf-tooltip__inner--right .rf-tooltip__arrow {
-  transform: translate(-12px, -50%) rotate(90deg);
+  transform: translate(-11.8px, -50%) rotate(90deg);
   top: 50%;
-  left: 0;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
-  //box-shadow: -3px 4px 6px -2px rgba(25, 59, 104, 0.1);
+  left: -5px;
+  // filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--right-start .rf-tooltip__arrow {
-  transform: translate(-12px, -50%) rotate(90deg);
+  transform: translate(-11.8px, -50%) rotate(90deg);
   top: 20px;
-  left: 0;
+  left: -5px;
 }
 
 .rf-tooltip__inner--right-end .rf-tooltip__arrow {
-  transform: translate(-12px, 50%) rotate(90deg);
+  transform: translate(-11.8px, 50%) rotate(90deg);
   bottom: 16px;
-  left: 0;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
+  left: -5px;
 }
 
 .rf-tooltip__inner--left .rf-tooltip__arrow {
   transform: translate(12px, -50%) rotate(-90deg);
   top: 50%;
-  right: 0;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
+  right: -5px;
 }
 
 .rf-tooltip__inner--left-start .rf-tooltip__arrow {
-  transform: translate(12px, -50%) rotate(-90deg);
+  transform: translate(-50%, -12px)   rotate(-90deg);
   top: 20px;
-  right: 0;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
+  right: -5px;
 }
 
 .rf-tooltip__inner--left-end .rf-tooltip__arrow {
-  transform: translate(12px, 50%) rotate(-90deg);
+  transform:  translate(-50%, -12px)   rotate(-90deg);
   bottom: 20px;
-  right: 0;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
+  right: -5px;
 }
 
 .rf-tooltip__inner--bottom .rf-tooltip__arrow {
-  transform: translate(-50%, -12px) rotate(180deg);
-  top: 0;
+  transform: translate(-50%, -11.8px) rotate(180deg);
+  top: -5px;
   left: 50%;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--bottom-start .rf-tooltip__arrow {
-  transform: translate(-50%, -12px) rotate(180deg);
-  top: 0;
+  transform:  translate(-50%, -11.8px) rotate(180deg);
+  top: -5px;
   left: 20px;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--bottom-end .rf-tooltip__arrow {
-  transform: translate(50%, -12px) rotate(180deg);
-  top: 0;
+  transform: translate(-50%, -11.8px)rotate(180deg);
+  top: -5px;
   right: 20px;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--top .rf-tooltip__arrow {
   transform: translate(-50%, 12px);
-  bottom: 0;
+  bottom: -5px;
   left: 50%;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--top-start .rf-tooltip__arrow {
   transform: translate(-50%, 12px);
-  bottom: 0;
+  bottom: -5px;
   left: 20px;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__inner--top-end .rf-tooltip__arrow {
   transform: translate(50%, 12px);
-  bottom: 0;
+  bottom: -5px;
   right: 20px;
-  filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
 }
 
 .rf-tooltip__content--default .rf-tooltip__inner {
