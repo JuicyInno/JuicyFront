@@ -2,8 +2,8 @@
 
 .rf-datepicker__calendar {
   position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
+  top: calc(100% + 4px) !important;
+  left: 0 !important;
   z-index: 999;
   width: 296px;
   height: 356px;

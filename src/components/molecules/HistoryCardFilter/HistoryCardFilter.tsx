@@ -52,8 +52,6 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   const [filterStatus, setStatus] = useState<IHistoryCardValues>({});
 
   // =======================
-
-
   useEffect(() => {
     initialValues && setStatus({
       ...filterStatus,
@@ -104,11 +102,10 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
     <div >
-      <Select
-        placeholder='Статус'
+      <Select placeholder='Статус'
         readOnly
         options={statusOptions}
-        values={statusOptions?.filter(i => i.value === filterStatus.status || '')}
+        values={statusOptions?.filter(i => i.value === filterStatus.status)}
         tagsPosition='outside'
         onChange={changeSelectHandler} />
     </div>;
@@ -116,7 +113,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} placeholder='ID, ФИО, ТН' />
+      <Search onDebounce={changeSearchHandler} />
     </div>;
   // =======================================================================================================================================
 
