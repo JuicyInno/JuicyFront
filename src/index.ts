@@ -184,6 +184,7 @@ import Left from './assets/icons/Left';
 import Exchange from './assets/icons/Exchange';
 import Add from './assets/icons/Add';
 import Edit from './assets/icons/Edit';
+import Dialog from './assets/icons/Dialog';
 
 export {
   Refresh,
@@ -224,7 +225,8 @@ export {
   Left,
   Exchange,
   Add,
-  Edit
+  Edit,
+  Dialog
 };
 
 export { variables, download };
