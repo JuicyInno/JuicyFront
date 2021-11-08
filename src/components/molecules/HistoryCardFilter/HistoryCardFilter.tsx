@@ -101,7 +101,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
-    <div >
+    <div className='card-filter__status-picker' >
       <Select placeholder='Статус'
         readOnly
         options={statusOptions}
@@ -113,7 +113,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} />
+      <Search onDebounce={changeSearchHandler} placeholder='ID, ФИО, ТН' />
     </div>;
   // =======================================================================================================================================
 

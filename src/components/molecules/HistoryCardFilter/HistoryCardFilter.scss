@@ -6,7 +6,20 @@
   .rf-input__field{
     padding-left: 29px;
   }
-  
+  .rf-search {
+    width: 282px;
+  }
+}
+
+.card-filter__status-picker{
+  width: 111px;
+  .rf-select__input {
+    width:105%;
+    .rf-select__list {
+      width: auto;
+    }
+  }
+
 }
 .card-filter__wrapper {
   display: flex;
@@ -17,6 +30,9 @@
   width: 250px;
   box-sizing: content-box;
   padding-right: 12px;
+  .rf-datepicker__calendar-button{
+    color:red;
+  }
 }
 
 
