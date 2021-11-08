@@ -9,6 +9,9 @@ import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import InputNumber from '../InputNumber';
 import Select from '../Select';
+import ControlGroup from '../ControlGroup';
+import Radio from '../Radio';
+import Textarea from '../Textarea';
 
 export default {
   title: 'forms/withTest/FormGroup',
@@ -23,21 +26,25 @@ export default {
 export const Demo = () => (
   <StoryDocs>
     <StoryDocsH1>FormGroup</StoryDocsH1>
-    <div style={{ maxWidth: 600 }}>
+    <div style={{
+      maxWidth: 600,
+      display: 'grid',
+      gap: 32,
+    }}>
       <StoryRow>
-        <FormGroup label='Дефолтное состояние с контентом' required errorMessage='Ошибка'>
-          <Input name='text' placeholder='Введите текст' />
+        <FormGroup label='Invalid FormGroup with invalid Input' required errorMessage='Error'>
+          <Input name='text' invalid placeholder='placeholder' />
         </FormGroup>
       </StoryRow>
 
       <StoryRow>
-        <FormGroup label='FormGroup с InputNumber' labelSecondary='(0/255)'>
+        <FormGroup label='FormGroup with InputNumber' labelSecondary='(0/255)'>
           <InputNumber defaultValue={'1200.60'} floatPoints={2} />
         </FormGroup>
       </StoryRow>
 
       <StoryRow>
-        <FormGroup label='FormGroup с Select'>
+        <FormGroup label='FormGroup with Select'>
           <Select
             placeholder='Выберите значение'
             options={[
@@ -60,6 +67,26 @@ export const Demo = () => (
           />
         </FormGroup>
       </StoryRow>
+
+      <StoryRow>
+        <FormGroup label='FormGroup with Radio'>
+          <ControlGroup>
+            <Radio
+              name='vertical-group'
+              label='Active'
+              value='1'
+              defaultChecked
+            />
+          </ControlGroup>
+        </FormGroup>
+      </StoryRow>
+
+      <StoryRow>
+        <FormGroup label='FormGroup with Textarea' labelSecondary={'(0/255)'}>
+          <Textarea placeholder='placeholder' />
+        </FormGroup>
+      </StoryRow>
+
     </div>
   </StoryDocs>
 );
