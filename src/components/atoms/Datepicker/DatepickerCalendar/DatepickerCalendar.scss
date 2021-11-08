@@ -1,6 +1,7 @@
 @import 'src/styles/mixins';
 
 .rf-datepicker__calendar {
+ margin-top: 10px;
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
@@ -202,6 +203,7 @@
 .rf-datepicker__calendar-day {
   margin: 2px;
   margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 .rf-datepicker__calendar-day:nth-child(7n) {
