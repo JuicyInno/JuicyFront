@@ -187,7 +187,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
 
   const tooltip = (
     <div
-      className='rf-tooltip__content-wrapper'
+      className={classnames('rf-tooltip__content-wrapper', `rf-tooltip__content--${color}`)}
       data-testid='tooltip__content-wrapper'
       onWheel={stopPropagationWheel}
       style={{
@@ -202,8 +202,37 @@ const TooltipContent: FC<ITooltipContentProps> = ({
             `rf-tooltip__inner rf-tooltip__inner--${position} ${sizeClass[size]}`
           }>
           {children}
-        </div>
 
+          <svg className='rf-tooltip__arrow' width='26' height='10' viewBox='0 0 26 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+            <g clip-path='url(#clip0_1:2)'>
+              <g filter='url(#filter0_d_1:2)'>
+                <path d='M25 -8H1V0H1.59688C2.50516 0 3.3864 0.290891 4.09566 0.824826L11.7506 6.58759C12.481 7.13747 13.519 7.13747 14.2494 6.58759L21.9043 0.824826C22.6136 0.290891 23.4948 0 24.4031 0H25V-8Z' fill='currentColor'/>
+                <path fillRule='evenodd' clipRule='evenodd' d='M2 -1V-0.984499C2.97712 -0.909226 3.91703 -0.561341 4.69709 0.0259066L12.352 5.78867C12.7263 6.07044 13.2737 6.07044 13.648 5.78867L21.3029 0.0259066C22.083 -0.561341 23.0229 -0.909226 24 -0.984499V-1L25 -1V0H24.4031C23.4948 0 22.6136 0.290891 21.9043 0.824826L14.2494 6.58759C13.519 7.13747 12.481 7.13747 11.7506 6.58759L4.09566 0.824826C3.3864 0.290891 2.50516 0 1.59688 0H1V-1L2 -1Z' fill='white'/>
+              </g>
+            </g>
+            <defs>
+              <filter id='filter0_d_1:2' x='-1' y='-10' width='28' height='19' filterUnits='userSpaceOnUse' colorInterpolationFilters='sRGB'>
+                <feFlood floodOpacity='0' result='BackgroundImageFix'/>
+                <feColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/>
+                <feOffset/>
+                <feGaussianBlur stdDeviation='1'/>
+                <feComposite in2='hardAlpha' operator='out'/>
+                <feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0'/>
+                <feBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_1:2'/>
+                <feBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_1:2' result='shape'/>
+              </filter>
+              <clipPath id='clip0_1:2'>
+                <rect width='26' height='10' fill='currentColor'/>
+              </clipPath>
+            </defs>
+          </svg>
+
+
+          {/* <svg className='rf-tooltip__arrow' width='25' height='15' viewBox='0 0 25 15' fill='none' xmlns='http://www.w3.org/2000/svg'>*/}
+          {/*  <path d='M24.5 0H0.5V8H1.09688C2.00516 8 2.8864 8.29089 3.59566 8.82483L11.2506 14.5876C11.981 15.1375 13.019 15.1375 13.7494 14.5876L21.4043 8.82483C22.1136 8.29089 22.9948 8 23.9031 8H24.5V0Z' fill='currentColor'/>*/}
+          {/*  <path fillRule='evenodd' clipRule='evenodd' d='M1.5 7V7.0155C2.47712 7.09077 3.41703 7.43866 4.19709 8.02591L11.852 13.7887C12.2263 14.0704 12.7737 14.0704 13.148 13.7887L20.8029 8.02591C21.583 7.43866 22.5229 7.09077 23.5 7.0155V7H24.5V8H23.9031C22.9948 8 22.1136 8.29089 21.4043 8.82483L13.7494 14.5876C13.019 15.1375 11.981 15.1375 11.2506 14.5876L3.59566 8.82483C2.8864 8.29089 2.00516 8 1.09688 8H0.5V7H1.5Z' fill='currentColor'/>*/}
+          {/* </svg>*/}
+        </div>
       </div>
     </div >
   );
@@ -306,7 +335,7 @@ const Tooltip: FC<ITooltipProps> = ({
     <div
       // @ts-ignore
       ref={anchorRef}
-      className={classnames('rf-tooltip', `rf-tooltip--${color}`)}
+      className='rf-tooltip'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       portal={portal}
