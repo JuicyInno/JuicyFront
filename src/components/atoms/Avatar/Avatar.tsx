@@ -16,7 +16,7 @@ export interface IAvatarProps {
   hasIcon?: boolean;
 }
 
-const Avatar: React.FC<IAvatarProps> = ({
+export const Avatar: React.FC<IAvatarProps> = ({
   size = 'm',
   photo = '',
   fullName = '',

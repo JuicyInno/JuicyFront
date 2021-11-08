@@ -1,0 +1,49 @@
+@import 'src/styles/mixins';
+
+.rf-avatar-status {
+  &--xxs,
+  &--xs {
+    .rf-avatar-status__badge .rf-badge {
+      display: none;
+    }
+  }
+
+  &--s,
+  &--m {
+    .rf-avatar-status__badge .rf-badge {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &--l,
+  &--xl {
+    .rf-avatar-status__badge .rf-badge {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &--l,
+  &--xl,
+  &--xxl {
+    .rf-avatar-status__badge .rf-badge {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &--xxxl,
+  &--xxxxl {
+    .rf-avatar-status__badge .rf-badge {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__badge .rf-badge {
+    outline: 3px solid white;
+    width: 16px;
+    height: 16px;
+  }
+}
