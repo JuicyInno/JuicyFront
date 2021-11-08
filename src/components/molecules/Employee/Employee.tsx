@@ -68,6 +68,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
             size='xl'
             className='rf-employee__button'
             buttonType='text'
+            onClick={onClick}
             startAdornment={<Refresh />}
           >
             Выбрать другого сотрудника
