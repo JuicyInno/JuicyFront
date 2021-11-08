@@ -1,17 +1,18 @@
 @import 'src/styles/mixins';
 
 .rf-datepicker__calendar {
- margin-top: 10px;
+  margin-top: 10px;
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   z-index: 999;
   width: 280px;
-  height: 340px;
+  height: auto;
+  max-height: 390px;
   padding: 16px 16px;
   background-color: var(--background-primary);
   box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-  border-radius: 4px;
+  border-radius: 12px;
   cursor: default;
 }
 
@@ -27,13 +28,11 @@
   align-items: center;
   width: 248px;
 }
-.rf-datepicker-calendar__control__button-section{
+.rf-datepicker-calendar__control__button-section {
   display: flex;
   justify-content: center;
-
-
 }
-.rf-datepicker-calendar__tooltip{
+.rf-datepicker-calendar__tooltip {
   white-space: nowrap;
 }
 
@@ -50,18 +49,13 @@
 }
 
 .rf-datepicker-calendar__button--arrow {
-
-
   svg {
     color: var(--text-secondary);
-   
   }
-  svg:hover{
-    color: var(--basic-primary)
+  svg:hover {
+    color: var(--basic-primary);
   }
 }
-
-
 
 .rf-datepicker-calendar__label-button {
   width: auto;
@@ -80,7 +74,7 @@
   &:hover,
   &:focus {
     .rf-datepicker__calendar-label {
-      color: var(--basic-primary)
+      color: var(--basic-primary);
     }
   }
 }
@@ -126,8 +120,8 @@
   align-items: center;
   padding: 2px;
   padding-top: 8px;
-
   margin-bottom: 8px;
+  padding-bottom: 0px;
 }
 
 .rf-datepicker__calendar-week-day {
@@ -148,30 +142,28 @@
   justify-content: center;
   border-radius: 4px;
 }
-.rf-datepicker__today-day{
+.rf-datepicker__today-day {
   color: var(--basic-primary) !important;
 }
 
 .rf-datepicker__calendar-periods {
-  height: 240px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-} 
-.rf-datepicker__calendar-periods-month{
+}
+.rf-datepicker__calendar-periods-month {
   display: flex;
   flex-wrap: wrap;
   margin-top: 32px;
   justify-content: space-between;
 }
-.rf-datepicker__calendar-periods-year{
+.rf-datepicker__calendar-periods-year {
   display: flex;
   flex-wrap: wrap;
   margin-top: 32px;
 
   justify-content: start;
-
 }
 
 // Days
@@ -183,8 +175,6 @@
 
 @mixin inRange() {
   border-radius: 4px;
-
-
 }
 
 .rf-datepicker__calendar-date--range {
@@ -194,16 +184,17 @@
 
 .rf-datepicker__calendar-date:not(.rf-datepicker__calendar-date--active):hover {
   background-color: var(--basic-hover);
-   font-weight: 400;
-    color: #fff;
+  font-weight: 400;
+  color: #fff;
 }
-
-
 
 .rf-datepicker__calendar-day {
   margin: 2px;
   margin-bottom: 8px;
   margin-top: 8px;
+  &:nth-last-child(-n+9){
+    margin-bottom: 0px;
+  }
 }
 
 .rf-datepicker__calendar-day:nth-child(7n) {
@@ -214,10 +205,9 @@
   }
 }
 
-.rf-datepicker__calendar-day--current{
+.rf-datepicker__calendar-day--current {
   background-color: var(--background-secondary);
 }
-
 
 .rf-datepicker__calendar-day--prev {
   @include text-s-14;
@@ -233,8 +223,9 @@
   background-color: var(--basic-primary);
   border: 1px solid var(--basic-primary);
   color: var(--text-static-white);
+  font-weight: 500;
 }
-.rf-datepicker__calendar-date--nonactive{
+.rf-datepicker__calendar-date--nonactive {
   color: red;
 }
 
@@ -323,7 +314,7 @@
   margin-right: 9px;
   margin-bottom: 8px;
   margin-top: 8px;
-  & :nth-child(4){
+  & :nth-child(4) {
     margin-right: 0px;
   }
 }
