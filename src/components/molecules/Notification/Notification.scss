@@ -30,7 +30,7 @@
 }
 
 .rf-notification--green {
-  color: #01c898;
+  color: var(--status-success);
 }
 
 .rf-notification--yellow {
@@ -42,7 +42,7 @@
 }
 
 .rf-notification__wrap {
-  margin-left: 16px;
+  margin-left: 12px;
 }
 
 .rf-notification__title {
@@ -52,7 +52,7 @@
 }
 .rf-notification__message {
   width: 100%;
-  @include caption;
+  @include text-s-14;
   white-space: normal;
   color: var(--text-secondary);
 }
