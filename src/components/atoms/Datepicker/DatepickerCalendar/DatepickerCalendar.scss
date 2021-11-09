@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 24px;
 }
 
 .rf-datepicker-calendar__control {
@@ -37,6 +38,7 @@
 }
 
 .rf-datepicker-calendar__button {
+  height: 24px;
   outline: 0;
   border: 0;
   background-color: transparent;
@@ -190,8 +192,8 @@
 
 .rf-datepicker__calendar-day {
   margin: 2px;
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin-bottom: 4px;
+  margin-top: 4px;
   &:nth-last-child(-n+9){
     margin-bottom: 0px;
   }
