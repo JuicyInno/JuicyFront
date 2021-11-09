@@ -16,8 +16,8 @@ export default {
   argTypes: {
     files: { control: null },
     placeholder: { defaultValue: 'Выберите файлы' },
+    name: { defaultValue: 'file' },
     className: { control: null },
-    defaultValue: { control: null },
     customPlaceholder: { control: null },
     type: { control: null },
     startAdornment: { control: null },
@@ -41,7 +41,7 @@ export const Demo: Story = () => {
       </StoryItem>
       <StoryItem description='Выбор определенного типа файлов'>
         <StoryRow>
-          <InputFile name='file' buttonType='light' placeholder='Выберите pdf' accept='application/pdf' multiple setFile={setFile} />
+          <InputFile name='file' buttonType='light' placeholder='Выберите PDF' accept='application/pdf' multiple setFile={setFile} />
         </StoryRow>
         <StoryRow>
           <InputFile

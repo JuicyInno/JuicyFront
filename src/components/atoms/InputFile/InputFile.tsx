@@ -24,8 +24,6 @@ export interface IFileInputProps extends Omit<IButtonProps, 'onError'> {
   multiple?: boolean;
   /** className */
   className?: string;
-  /** Дефолтное значение */
-  defaultValue?: string;
   /** Недоступный */
   disabled?: boolean;
   /** Плейсхолдер */
@@ -51,7 +49,6 @@ const InputFile: React.FC<IFileInputProps> = ({
   accept = '*',
   multiple = true,
   className = '',
-  defaultValue = '',
   disabled = false,
   placeholder = '',
   files = [],
@@ -184,7 +181,6 @@ const InputFile: React.FC<IFileInputProps> = ({
           type='file'
           name={ name }
           className='rf-input__file-hidden'
-          defaultValue={ defaultValue }
           accept={ accept }
           placeholder={ placeholder || 'Выберите файл' }
           disabled={ disabled }
@@ -200,7 +196,7 @@ const InputFile: React.FC<IFileInputProps> = ({
         <div className='rf-file-input__chip-wrapper'>
           {getFileChips}
         </div>
-      ) }
+      )}
     </div>
   );
 };
