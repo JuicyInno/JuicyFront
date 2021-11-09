@@ -2,8 +2,9 @@
 @import "../../../styles/variables";
 
 .fatal-error {
-  width: 100%;
-  height: 100%;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,18 +12,25 @@
 }
 
 .fatal-error__label {
-  @include caption;
-  margin-top: 32px;
-  margin-bottom: 4px;
-  cursor: default;
+  display: inline-block;
+  text-align: center;
+  width: 480px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 36px;
+  margin-top: 20px;
+  margin-bottom: 16px;
 }
 
 .fatal-error__message {
-  @include text-l-16;
-  color: var(--text-primary);
-  cursor: default;
+  display: inline-block;
+  width: 480px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
 }
 
-.fatal-error__link {
-  color: var(--basic-primary)
-}
+
