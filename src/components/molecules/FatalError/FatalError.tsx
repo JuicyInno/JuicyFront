@@ -1,15 +1,13 @@
-import React, {
-  ReactNode, InputHTMLAttributes, FC
-} from 'react';
+import React, { ReactNode, FC } from 'react';
 import './FatalError.scss';
 import FatalErrorIcon from './FatalErrorIcon';
 
-export interface IFatalErrorProps extends InputHTMLAttributes<HTMLLabelElement> {
+export interface IFatalErrorProps {
   /** Компонент для изображения ошибки */
   icon?: ReactNode,
-  /** Компонент для задания заголовка ошибки */
+  /** Заголовок ошибки */
   title?: string,
-  /** Компонент для задания описания ошибки */
+  /** Описание ошибки */
   description?: string
 
 }
@@ -18,15 +16,12 @@ export interface IFatalErrorProps extends InputHTMLAttributes<HTMLLabelElement> 
 const FatalError: FC<IFatalErrorProps> =
   ({ description = 'Что-то пошло не так, Пожалуйста, обновите страницу.',
     icon = <FatalErrorIcon />,
-    title }) => {
-
-
-    // -------------------------------------------------------------------------------------------------------------------
+    title = 'Ошибка' }: IFatalErrorProps) => {
 
     return (
       <div className='fatal-error'>
         {icon}
-        <p className='fatal-error__label'>{title || 'Ошибка'}</p>
+        <p className='fatal-error__label'>{title}</p>
         <p className='fatal-error__message'>{description} </p>
       </div>
     );
