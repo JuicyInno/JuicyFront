@@ -12,7 +12,7 @@
   &__heading {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 
     &_start {
       justify-content: flex-start;
@@ -28,19 +28,24 @@
     margin: 0 auto;
 
     &:first-child {
-      padding-left: 32px;
+      padding-left: 24px;
     }
 
     &:last-child {
-      padding-right: 32px;
+      padding-right: 24px;
     }
   }
 
   &__separator {
-    margin: 0 30px;
+    margin: 0 34px;
     width: 1px;
     flex-shrink: 0;
     background-color: var(--background-tertiary);
+  }
+
+  &__button {
+    margin: -4px;
+    background: none;
   }
 
   &__chevron {

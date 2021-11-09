@@ -39,8 +39,8 @@ describe('Test <Schedule/> component', () => {
     render(
       <Schedule defaultYear={2021} defaultMonth={8}>
         <ScheduleLegend>
-          <ScheduleLegendItem color="default">Отпуск</ScheduleLegendItem>
-          <ScheduleLegendItem color="red">Больничный</ScheduleLegendItem>
+          <ScheduleLegendItem variant="default">Отпуск</ScheduleLegendItem>
+          <ScheduleLegendItem variant="red">Больничный</ScheduleLegendItem>
         </ScheduleLegend>
       </Schedule>
     );
