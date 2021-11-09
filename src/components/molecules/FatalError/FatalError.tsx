@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, InputHTMLAttributes, FC, useState, useEffect
+  ReactNode, InputHTMLAttributes, FC
 } from 'react';
 import './FatalError.scss';
 import FatalErrorIcon from './FatalErrorIcon';
@@ -20,22 +20,14 @@ const FatalError: FC<IFatalErrorProps> =
     icon = <FatalErrorIcon />,
     title }) => {
 
-    const [currentTitle, setCurrentTitile] = useState(title);
-    const [currentDescription, setCurrentDescription] = useState(description);
-
-    useEffect(() => {
-      setCurrentTitile(title);
-      setCurrentDescription(description);
-    }, [title, description]);
 
     // -------------------------------------------------------------------------------------------------------------------
-
 
     return (
       <div className='fatal-error'>
         {icon}
-        <p className='fatal-error__label'>{currentTitle || 'Ошибка'}</p>
-        <p className='fatal-error__message'>{currentDescription} </p>
+        <p className='fatal-error__label'>{title || 'Ошибка'}</p>
+        <p className='fatal-error__message'>{description} </p>
       </div>
     );
   };
