@@ -31,6 +31,10 @@ export interface IListProps {
   portal?: boolean;
   /** Меню будет отображено рядом с указанным элементом вместо тоггла */
   anchorElement?: HTMLElement | null;
+  /** Максимальная ширина меню
+   * @default 320px
+  */
+  maxWidth?: string | number;
 }
 
 /** Контекст для передачи функций работы с меню. */
@@ -47,6 +51,7 @@ const Menu: React.FC<IListProps> = ({
   className = '',
   portal,
   anchorElement,
+  maxWidth = '320px',
   ...props
 }: IListProps) => {
   // Обратная совместимость с версией без поратала
@@ -280,10 +285,14 @@ const Menu: React.FC<IListProps> = ({
   const menu = (
     <div
       className={classnames('rf-menu__content', show && 'rf-menu__content--show', portal && 'rf-menu__content--portal')}
-      style={coordinates}
+      style={{
+        ...coordinates,
+        maxWidth
+      }}
+      data-testid='rf-menu-content'
       ref={contentRef}
     >
-      {content ? content : list && list.length > 0 && <List list={list} maxWidth='320px' />}
+      {content ? content : list && list.length > 0 && <List list={list} />}
     </div>
   );
 
@@ -296,6 +305,7 @@ const Menu: React.FC<IListProps> = ({
         <div className='rf-menu__toggle' onClick={onClick} ref={toggleRef}>
           {children}
         </div>
+
         {portal ? createPortal(menu, div) : menu}
       </div>
     </MenuContext.Provider>

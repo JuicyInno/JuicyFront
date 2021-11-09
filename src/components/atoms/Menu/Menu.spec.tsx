@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, getByTestId } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { _listMenu } from './mock';
@@ -21,6 +21,7 @@ describe('Test <Menu /> component', () => {
     expect(container.getElementsByClassName('menu-content-childten')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-menu')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-list')).toHaveLength(1);
+    expect(getByTestId(container, 'rf-menu-content')).toHaveStyle('max-width: 320px');
   });
 
   it('should be render with content', () => {
@@ -49,5 +50,19 @@ describe('Test <Menu /> component', () => {
     );
 
     expect(container.getElementsByClassName('menu-class-name')).toHaveLength(1);
+  });
+
+  it('should be pass maxWidth=500px', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <Menu content={<>content</>} maxWidth='500px' className='menu-class-name'>
+          <Button buttonType='secondary' className='menu-content-childten'>
+            Меню
+          </Button>
+        </Menu>
+      </BrowserRouter>
+    );
+
+    expect(getByTestId(container, 'rf-menu-content')).toHaveStyle('max-width: 500px');
   });
 });

@@ -11,11 +11,9 @@ import Tooltip from '../../Tooltip';
 interface IListProps {
   /** Элементы меню */
   list: IListElement[];
-  /** Максимальная ширина списка */
-  maxWidth?: number | string;
 }
 
-const List: React.FC<IListProps> = ({ list, maxWidth }: IListProps) => {
+const List: React.FC<IListProps> = ({ list }: IListProps) => {
   /** Ссылки на элементы списка */
   const refs = useRef<RefObject<HTMLDivElement | HTMLAnchorElement>[]>([]);
 
@@ -83,7 +81,7 @@ const List: React.FC<IListProps> = ({ list, maxWidth }: IListProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  return <ul className='rf-list' style={{ maxWidth, }}>{listElementJSX}</ul>;
+  return <ul className='rf-list'>{listElementJSX}</ul>;
 };
 
 export default List;
