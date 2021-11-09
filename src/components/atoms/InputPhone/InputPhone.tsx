@@ -97,22 +97,16 @@ const InputPhone: React.FC<IInputPhoneProps> =
         '+',
         ...country.code.toString().split(''),
         ' ',
-        '(',
-        /[0-9]/,
-        /[0-9]/,
-        /[0-9]/,
-        ')',
-        ' ',
         /[0-9]/,
         /[0-9]/,
         /[0-9]/,
         ' ',
-        '-',
+        /[0-9]/,
+        /[0-9]/,
+        /[0-9]/,
         ' ',
         /[0-9]/,
         /[0-9]/,
-        ' ',
-        '-',
         ' ',
         /[0-9]/,
         /[0-9]/
@@ -123,7 +117,10 @@ const InputPhone: React.FC<IInputPhoneProps> =
       <>
         <InputMask
           mask={mask}
-          value={displayValue} disabled={disabled} onChange={onInputChange}>
+          maskPlaceholder={null}
+          value={displayValue}
+          disabled={disabled}
+          onChange={onInputChange}>
           <Input
             {...props}
             name={`${name}-display`}
