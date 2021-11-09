@@ -5,6 +5,9 @@
   border-radius: 20px;
   .rf-input__field{
     padding-left: 29px;
+    &::placeholder{
+      font-family: 400 !important;
+    }
   }
   .rf-search {
     width: 282px;
@@ -12,9 +15,11 @@
 }
 
 .card-filter__status-picker{
-  width: 111px;
+  width:200px;
   .rf-select__input {
-    width:105%;
+    &::placeholder{
+      color: var(--text-secondary);
+    }
     .rf-select__list {
       width: auto;
     }
@@ -31,7 +36,9 @@
   box-sizing: content-box;
   padding-right: 12px;
   .rf-datepicker__calendar-button{
-    color:red;
+    svg{
+      color: red;
+    }
   }
 }
 
