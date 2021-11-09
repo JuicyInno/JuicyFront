@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState,
+  ReactNode, useCallback, useEffect, useMemo, useRef, useState, useLayoutEffect
 } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -8,6 +8,8 @@ import { IListElement, IMenuContext } from '../../../types';
 import List from './List';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { classnames } from '../../../utils/classnames';
+
+type ListProsition = 'left' | 'right' | 'top-left' | 'top-right';
 
 export interface IListProps {
   /** Кнопка открытия меню */
@@ -19,7 +21,7 @@ export interface IListProps {
   /** Класс */
   className?: string;
   /** Положение слева или справа */
-  position?: 'left' | 'right' | 'top-left' | 'top-right';
+  position?: ListProsition;
   /** Блок, относительно которого выравнивается меню */
   relativeBlock?: HTMLElement;
   /**
@@ -57,6 +59,8 @@ const Menu: React.FC<IListProps> = ({
 
   /** Флаг отображения выпадающего списка  */
   const [show, setShow] = useState<boolean>(false);
+
+  const [currentPosition, setCurrentPosition] = useState<ListProsition>(position);
 
   /** Клик по кнопке */
   const onClick = (e: React.MouseEvent) => {
@@ -101,7 +105,7 @@ const Menu: React.FC<IListProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const clearCoordinates = () => {
-    return position === 'left' ?
+    return currentPosition === 'left' ?
       {
         top: '-99999px',
         bottom: 'auto',
@@ -120,20 +124,20 @@ const Menu: React.FC<IListProps> = ({
 
   /** Пересчитываем координаты, если не помещается*/
   const rearrangePosition = () => {
-    if (contentRef.current && toggleRef.current) {
+    if (contentRef.current && toggleRef.current && show) {
       const toggleRect: DOMRect = (anchorElement || toggleRef.current).getBoundingClientRect();
       const listRect: DOMRect = contentRef.current.getBoundingClientRect();
 
-      if (portal) {
-        const GAP = 8;
+      const GAP = 8;
 
+      if (portal) {
         let left = 0;
         let right = 0;
         let top = 0;
         let bottom = 0;
 
         // Позиция по горизонтали
-        if (position === 'left' || position === 'top-left') {
+        if (currentPosition === 'left' || currentPosition === 'top-left') {
           // Получаем положительное число в случае если меню вылезло за пределы родителя
           const offset = (relativeBlock.scrollLeft + toggleRect.left + listRect.width + GAP) - relativeBlock.scrollWidth;
           left = relativeBlock.scrollLeft + toggleRect.left - Math.max(0, offset);
@@ -143,7 +147,7 @@ const Menu: React.FC<IListProps> = ({
         }
 
         // Позиция по вертикали
-        if (position === 'left' || position === 'right') {
+        if (currentPosition === 'left' || currentPosition === 'right') {
           const offset = (toggleRect.bottom + relativeBlock.scrollTop + listRect.height + GAP * 2) - relativeBlock.scrollHeight;
           top = toggleRect.bottom + relativeBlock.scrollTop + GAP - Math.max(0, offset);
         } else {
@@ -161,24 +165,22 @@ const Menu: React.FC<IListProps> = ({
       } else {
         let left = 0;
         let right = 0;
-        let top: number = toggleRect.height;
-        const minGap = 10;
+        let top: number = toggleRect.height + GAP;
 
         if (toggleRect.height + toggleRect.top + listRect.height > relativeBlock.offsetHeight) {
           top =
           toggleRect.height -
           (toggleRect.height + toggleRect.top + listRect.height - relativeBlock.offsetHeight) -
-          minGap;
+          GAP;
         }
 
-        if (position === 'top-right' || position === 'top-left') {
-          top = -listRect.height - minGap;
-        // debugger;
+        if (currentPosition === 'top-right' || currentPosition === 'top-left') {
+          top = -listRect.height - GAP;
         }
 
-        if (position === 'left' || position === 'top-left') {
+        if (currentPosition === 'left' || currentPosition === 'top-left') {
           if (toggleRect.left + listRect.width > relativeBlock.offsetWidth) {
-            left = relativeBlock.offsetWidth - listRect.width - toggleRect.left - minGap;
+            left = relativeBlock.offsetWidth - listRect.width - toggleRect.left - GAP;
           }
 
           setCoordinates({
@@ -189,7 +191,7 @@ const Menu: React.FC<IListProps> = ({
           });
         } else {
           if (listRect.left < 0) {
-            right = listRect.left - minGap;
+            right = listRect.left - GAP;
           }
 
           setCoordinates({
@@ -203,18 +205,76 @@ const Menu: React.FC<IListProps> = ({
     }
   };
 
-  useLayoutEffect(() => {
-    if (show) {
-      rearrangePosition();
-    } else {
-      setCoordinates(clearCoordinates());
+  const handlePosition = () => {
+    if (contentRef.current && toggleRef.current) {
+      const listRect: DOMRect = contentRef.current.getBoundingClientRect();
+      const toggleRect: DOMRect = toggleRef.current.getBoundingClientRect();
+
+      const diffTop = toggleRect.top;
+      const diffBottom = window.innerHeight - toggleRect.bottom;
+
+      const showTop = diffTop - listRect.height > 0;
+      const showBottom = diffBottom - listRect.height > 0;
+
+      // Если меню помещается сверху и снизу, то устанавливаем значение по умолчанию
+      if (showTop && showBottom) {
+        setCurrentPosition(position);
+        return;
+      }
+
+      // Если позиция была указана сверху и не помещается сверху и помещается снизу
+      if (currentPosition === 'top-left' || currentPosition === 'top-right') {
+        if (!showTop && showBottom) {
+          if (currentPosition === 'top-left') {
+            setCurrentPosition('left');
+          } else {
+            setCurrentPosition('right');
+          }
+        }
+      } else {
+      // Если позиция была указана снизу и не помещается снизу и помещается сверху
+        if (showTop && !showBottom) {
+          if (currentPosition === 'left') {
+            setCurrentPosition('top-left');
+          } else {
+            setCurrentPosition('top-right');
+          }
+        }
+      }
     }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handlePosition);
+
+    return () => window.removeEventListener('scroll', handlePosition);
+  }, [
+    currentPosition,
+    portal,
+    position,
+    show
+  ]);
+
+  useEffect(() => {
+    rearrangePosition();
+
+  }, [
+    currentPosition,
+    portal,
+    position,
+    show
+  ]);
+
+  useLayoutEffect(() => {
+    handlePosition();
+
   }, [
     show,
-    portal,
     anchorElement,
+    portal,
     position
   ]);
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const menu = (

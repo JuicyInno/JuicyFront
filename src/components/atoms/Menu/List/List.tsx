@@ -42,7 +42,7 @@ const List: React.FC<IListProps> = ({ list, maxWidth }: IListProps) => {
   };
 
   const renderLabel = (index: number, label: ReactNode) => {
-    return checkOverflow(index) ? <Tooltip portal position='bottom'><span>{label}</span><>{label}</></Tooltip> : label;
+    return checkOverflow(index) ? <Tooltip portal position='bottom'><span>{label}</span><>{label}</></Tooltip> : <>{label}</>;
   };
 
   const listElementJSX =

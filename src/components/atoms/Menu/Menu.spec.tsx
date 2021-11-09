@@ -50,18 +50,4 @@ describe('Test <Menu /> component', () => {
 
     expect(container.getElementsByClassName('menu-class-name')).toHaveLength(1);
   });
-
-  it('should be pass portal', () => {
-    render(
-      <BrowserRouter>
-        <Menu content={<>content</>} portal>
-          <Button buttonType='secondary' className='menu-content-childten'>
-            Меню
-          </Button>
-        </Menu>
-      </BrowserRouter>
-    );
-
-    expect(screen.getByText(/content/i)).toBeInTheDocument();
-  });
 });

@@ -1,4 +1,4 @@
-import Menu, { MenuContext, IListProps } from './Menu';
+import Menu, { MenuContext } from './Menu';
 import React from 'react';
 import { Story } from '@storybook/react';
 
@@ -24,7 +24,7 @@ export default {
   }
 };
 
-export const Demo = ({ portal }: IListProps) => {
+export const Demo = () => {
   const content = (
     <MenuContext.Consumer>
       {({ onClose }: IMenuContext) => (
@@ -59,7 +59,7 @@ export const Demo = ({ portal }: IListProps) => {
         <StoryItem description='Выпадающий список с действиями'>
           <StoryRow>
             <StoryCol>
-              <Menu list={_listMenu} position='right' portal={portal}>
+              <Menu list={_listMenu} position='right'>
                 <Button buttonType='secondary'>
                   Правое меню слева
                 </Button>
@@ -67,7 +67,7 @@ export const Demo = ({ portal }: IListProps) => {
             </StoryCol>
 
             <StoryCol>
-              <Menu list={_listMenu} portal={portal}>
+              <Menu list={_listMenu}>
                 <Button buttonType='secondary'>
                   Левое меню
                 </Button>
@@ -75,21 +75,21 @@ export const Demo = ({ portal }: IListProps) => {
             </StoryCol>
 
             <StoryCol>
-              <Menu position='right' list={_listMenu} portal={portal}>
+              <Menu position='right' list={_listMenu}>
                 <Button buttonType='secondary'>
                   Правое меню
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right' portal={portal}>
+              <Menu list={_listMenu} position='top-right'>
                 <Button buttonType='secondary'>
                   Верхнее меню
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='left' portal={portal}>
+              <Menu list={_listMenu} position='left'>
                 <Button buttonType='secondary'>
                   Левое меню справа
                 </Button>
@@ -100,7 +100,7 @@ export const Demo = ({ portal }: IListProps) => {
         <StoryItem description='Выпадающий список с произвольным контентом'>
           <StoryRow>
             <StoryCol>
-              <Menu position='right' content={content} portal={portal}>
+              <Menu position='right' portal content={content}>
                 <Button buttonType='secondary'>
                   Тут контент 😏
                 </Button>
@@ -108,7 +108,7 @@ export const Demo = ({ portal }: IListProps) => {
             </StoryCol>
 
             <StoryCol>
-              <Menu position='right' list={_listMenuWithTile} portal={portal}>
+              <Menu position='right' list={_listMenuWithTile}>
                 <Button buttonType='secondary'>
                   Меню с заголовком
                 </Button>
@@ -118,28 +118,28 @@ export const Demo = ({ portal }: IListProps) => {
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' portal={portal}>
+              <Menu list={_listMenu} position='top-left' >
                 <Button buttonType='secondary'>
                 top-left
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right' portal={portal}>
+              <Menu list={_listMenu} position='top-right' >
                 <Button buttonType='secondary'>
                 top-right
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' content={content} portal={portal}>
+              <Menu list={_listMenu} position='top-left' content={content}>
                 <Button buttonType='secondary'>
-                top-left custom content
+                  top-left custom content
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='left' portal={portal}>
+              <Menu list={_listMenu} position='left'>
                 <Button buttonType='secondary'>
                   Левое меню
                 </Button>
@@ -156,15 +156,20 @@ export const Playground: Story = (args) => {
   return (
     <BrowserRouter>
       <StoryContainer>
-        <StoryRow>
-          <StoryCol>
-            <Menu list={_listMenu} portal {...args}>
+        <div style={{
+          width: '100%',
+          minHeight: '100vh',
+          display: 'flex',
+        }}>
+          <div style={{ margin: 'auto' }}>
+            <Menu list={_listMenu} {...args}>
               <Button buttonType='secondary'>
-              Меню
+                Меню
               </Button>
             </Menu>
-          </StoryCol>
-        </StoryRow>
+          </div>
+
+        </div>
 
       </StoryContainer>
     </BrowserRouter>
