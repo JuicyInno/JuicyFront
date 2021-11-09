@@ -1,7 +1,9 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IFormattedDate, Size } from '../types';
+import {
+  IFileData, IFormattedDate, Size
+} from '../types';
 import moment from 'moment';
 
 const months = [
@@ -235,3 +237,22 @@ export const extractTextFromHTML = (element: string): string => {
 
   return result;
 };
+
+export const initialFiles: IFileData[] = [
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot1.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot2.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  }
+];
