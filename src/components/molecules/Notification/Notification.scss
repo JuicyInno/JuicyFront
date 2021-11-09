@@ -6,7 +6,7 @@
   width: 570px;
   padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   cursor: default;
   border-radius: 8px;
@@ -47,7 +47,7 @@
 
 .rf-notification__title {
   width: 100%;
-  @include h6;
+  @include text-l-16-bold;
   white-space: normal;
 }
 .rf-notification__message {
