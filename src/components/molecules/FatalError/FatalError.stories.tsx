@@ -38,17 +38,6 @@ export const Playground: Story = (args: IFatalErrorProps) => {
         <FatalError
           {...args}
         />
-        <FatalError
-          {...args}
-          icon={<FatalErrorIcon variant='server' />}
-          title='Ошибка 500'
-          description='Сервер не смог выполнить запрос из-за непредвиденной ошибки' />
-
-        <FatalError
-          {...args}
-          icon={<FatalErrorIcon variant='task' />}
-          title='Задачи не найдены'
-          description='Что-то пошло не так, Пожалуйста, обновите страницу.' />
       </StoryItem>
     </StoryContainer>
   );
