@@ -11,7 +11,7 @@ import Location from '../../../assets/icons/Tools/Location';
 import OnCard from '../../../assets/icons/Tools/OnCard';
 import NewCalendar from '../../../assets/icons/Tools/Calendar';
 import Lock from '../../../assets/icons/Tools/Lock';
-import Apple from '../../../assets/icons/Tools/Shop';
+import Shop from '../../../assets/icons/Tools/Shop';
 import NewEdit from '../../../assets/icons/Tools/Edit';
 import OnPhone from '../../../assets/icons/Tools/OnPhone';
 import Microphone from '../../../assets/icons/Tools/Microphone';
@@ -115,10 +115,12 @@ import Reserved from '../../../assets/icons/Status/Reserved';
 import Flag from '../../../assets/icons/Status/Flag';
 import Troyka from '../../../assets/icons/Status/Troyka';
 import Pin from '../../../assets/icons/Status/Pin';
+
 import Android from '../../../assets/icons/Social/Android';
 import Windows from '../../../assets/icons/Social/Windows';
 import Classmates from '../../../assets/icons/Social/Classmates';
 import Facebook from '../../../assets/icons/Social/Facebook';
+import Apple from '../../../assets/icons/Social/Apple';
 import Youtube from '../../../assets/icons/Social/Youtube';
 import VK from '../../../assets/icons/Social/VK';
 import GooglePlay from '../../../assets/icons/Social/GooglePlay';
@@ -159,7 +161,7 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><OnCard /></div>On_Card</div>
           <div style={elemStyle}><div style={iconStyle}><NewCalendar /></div>Calendar</div>
           <div style={elemStyle}><div style={iconStyle}><Lock /></div>Lock</div>
-          <div style={elemStyle}><div style={iconStyle}><Apple /></div>Shop</div>
+          <div style={elemStyle}><div style={iconStyle}><Shop /></div>Shop</div>
           <div style={elemStyle}><div style={iconStyle}><NewEdit /></div>Edit</div>
           <div style={elemStyle}><div style={iconStyle}><OnPhone /></div>On_phone</div>
           <div style={elemStyle}><div style={iconStyle}><Microphone /></div>Microphone</div>
