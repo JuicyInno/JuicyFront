@@ -140,7 +140,7 @@ export {
   UsersStack,
   ContentExpander,
   BackdropLoader,
-  PopupMaker
+  PopupMaker,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
