@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-menu {
   position: relative;
@@ -16,7 +16,7 @@
   left: 0;
   z-index: 999;
   background-color: var(--background-primary);
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  box-shadow: 0px 4px 16px rgba(138, 150, 168, 0.4), 0px 0px 6px rgba(138, 150, 168, 0.08);
   border-radius: 12px;
   overflow: hidden;
   display: none;

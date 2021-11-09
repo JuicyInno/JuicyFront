@@ -9,7 +9,7 @@ import StoryRow from '../../storybook/StoryRow';
 import StoryCol from '../../storybook/StoryCol';
 import StoryItem from '../../storybook/StoryItem';
 import { BrowserRouter } from 'react-router-dom';
-import { _listMenu } from './mock';
+import { _listMenu, _listMenuWithTile } from './mock';
 
 export default {
   title: 'controls/withTest/Menu',
@@ -106,6 +106,14 @@ export const Demo = ({ portal }: IListProps) => {
                 </Button>
               </Menu>
             </StoryCol>
+
+            <StoryCol>
+              <Menu position='right' list={_listMenuWithTile} portal={portal}>
+                <Button buttonType='secondary'>
+                  Меню с заголовком
+                </Button>
+              </Menu>
+            </StoryCol>
           </StoryRow>
           <div style={{ height: '300px' }}></div>
           <StoryRow>
@@ -166,6 +174,6 @@ export const Playground: Story = (args) => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A9653',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15727',
   },
 };

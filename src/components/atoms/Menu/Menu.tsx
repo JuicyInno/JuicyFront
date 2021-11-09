@@ -223,7 +223,7 @@ const Menu: React.FC<IListProps> = ({
       style={coordinates}
       ref={contentRef}
     >
-      {content ? content : list && list.length > 0 && <List list={list} />}
+      {content ? content : list && list.length > 0 && <List list={list} maxWidth='320px' />}
     </div>
   );
 

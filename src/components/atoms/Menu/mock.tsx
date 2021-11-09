@@ -28,5 +28,23 @@ export const _listMenu: IListElement[] = [
     value: '6',
     label: 'Значение 6',
     separated: true
-  }
+  },
+];
+
+export const _listMenuWithTile: IListElement[] = [
+  {
+    value: '0',
+    label: 'Заголовок 2',
+    isTitle: true
+  },
+  ..._listMenu,
+  {
+    value: '10',
+    label: 'Заголовок 2',
+    isTitle: true,
+  },
+  {
+    value: '10',
+    label: 'Длинный текст очень длинный ооооочень',
+  },
 ];
