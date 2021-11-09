@@ -26,7 +26,7 @@ export const Demo = () => {
   const [data, setData] = useState<ITreeOption[]>([]);
   const [dataSmall, setDataSmall] = useState<ITreeOption[]>([]);
   const [activeItem, setActiveItem] = useState<ITreeOption | undefined>(undefined);
-
+  const [activeItemSmall, setActiveItemSmall] = useState<ITreeOption | undefined>(undefined);
 
   const onChange = (o: ITreeOption) => {
     setActiveItem(o);
@@ -44,6 +44,9 @@ export const Demo = () => {
     }, 500);
   }, []);
 
+  const onChangeSmall = (o: ITreeOption) => {
+    setActiveItemSmall(o);
+  };
 
   return (
     <StoryDocs>
@@ -61,7 +64,7 @@ export const Demo = () => {
             <OrgTree id='first' list={data} onChange={onChange} activeOption={activeItem} />
           </div>
           <div style={{ maxWidth: '288px' }}>
-            <OrgTree open={false} id='second' list={dataSmall} />
+            <OrgTree open={false} id='second' list={dataSmall} onChange={onChangeSmall} activeOption={activeItemSmall} />
           </div>
         </div>
       </StoryRow>
