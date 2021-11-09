@@ -22,6 +22,13 @@ export interface ICalendarPageProps {
   marks?: ICalendarPageMark[];
 }
 
+// Суббота
+const SATURDAY = 6;
+// Воскресенье
+const SUNDAY = 0;
+// Воскресенье при начале недели с понедельника
+const END_OF_WEEK_SUNDAY = 7;
+
 const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
   const content = useMemo(() => {
 
@@ -34,12 +41,14 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
     let startWeekday = new Date(year, month, 1).getDay();
     let endWeekday = new Date(year, month + 1, 0).getDay();
 
-    if (startWeekday === 0) {
-      startWeekday = 7;
+    // Меняем нумерацию для воскресенья на седьмой день недели
+
+    if (startWeekday === SUNDAY) {
+      startWeekday = END_OF_WEEK_SUNDAY;
     }
 
-    if (endWeekday === 0) {
-      endWeekday = 7;
+    if (endWeekday === SUNDAY) {
+      endWeekday = END_OF_WEEK_SUNDAY;
     }
 
     // Дни текущего месяца
@@ -51,7 +60,7 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
       const date = new Date(year, month, day);
       const weekday = date.getDay();
 
-      if (weekday === 0 || weekday === 6) {
+      if (weekday === SATURDAY || weekday === SUNDAY) {
         weekends[day] = true;
       }
     }

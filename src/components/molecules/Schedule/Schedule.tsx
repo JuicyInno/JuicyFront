@@ -5,7 +5,8 @@ import './Schedule.scss';
 
 import Button from '../../atoms/Button';
 import CalendarPage, { ICalendarPageMark } from '../../atoms/CalendarPage';
-
+import ChevronLeft from '../../../assets/icons/ChevronLeft';
+import ChevronRight from '../../../assets/icons/ChevronRight';
 
 export interface IScheduleProps {
   /** Отображаемый по умолчанию год. */
@@ -69,23 +70,7 @@ const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, mar
               round
               onClick={onPrevClick}
               aria-label='Назад'
-              startAdornment={
-                <svg
-                  className='rf-schedule__chevron'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fillRule='evenodd'
-                    clipRule='evenodd'
-                    d='M14.6783 4.7652C15.0841 5.13981 15.1094 5.77246 14.7348 6.17829L9.36091 12L14.7348 17.8217C15.1094 18.2275 15.0841 18.8602 14.6783 19.2348C14.2725 19.6094 13.6398 19.5841 13.2652 19.1783L7.2652 12.6783C6.9116 12.2952 6.9116 11.7048 7.2652 11.3217L13.2652 4.82172C13.6398 4.4159 14.2725 4.3906 14.6783 4.7652Z'
-                    fill='currentColor'
-                  />
-                </svg>
-              }
+              startAdornment={<ChevronLeft className='rf-schedule__chevron' />}
             />
             <div className='rf-schedule__date'>
               {monthName} {year}
@@ -106,23 +91,7 @@ const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, mar
               round
               onClick={onNextClick}
               aria-label='Вперед'
-              startAdornment={
-                <svg
-                  className='rf-schedule__chevron'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fillRule='evenodd'
-                    clipRule='evenodd'
-                    d='M8.32172 4.7652C7.9159 5.13981 7.89059 5.77246 8.2652 6.17829L13.6391 12L8.2652 17.8217C7.89059 18.2275 7.9159 18.8602 8.32172 19.2348C8.72754 19.6094 9.3602 19.5841 9.7348 19.1783L15.7348 12.6783C16.0884 12.2952 16.0884 11.7048 15.7348 11.3217L9.7348 4.82172C9.3602 4.4159 8.72754 4.3906 8.32172 4.7652Z'
-                    fill='currentColor'
-                  />
-                </svg>
-              }
+              startAdornment={<ChevronRight className='rf-schedule__chevron' />}
             />
           </div>
           <CalendarPage year={nextYear} month={nextMonth} marks={marks} />

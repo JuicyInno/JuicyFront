@@ -3,8 +3,10 @@ import { Story } from '@storybook/react';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH3, StoryDocsDescription
 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
 
-import CalendarPage, { ICalendarPageMark } from './CalendarPage';
+import CalendarPage, { ICalendarPageProps, ICalendarPageMark, } from './CalendarPage';
 
 export default {
   title: 'components/withTest/CalendarPage',
@@ -63,4 +65,20 @@ Demo.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A22864'
   }
+};
+
+export const Playground: Story<ICalendarPageProps> = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <CalendarPage {...args} marks={MARKS} />
+      </StoryRow>
+    </StoryContainer>
+  );
+};
+
+Playground.argTypes = {
+  year: { defaultValue: 2021 },
+  month: { defaultValue: 8 },
+  marks: { table: { disable: true } },
 };
