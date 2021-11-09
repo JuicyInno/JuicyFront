@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-tree__item {
   position: relative;
@@ -10,7 +10,7 @@
   content: '';
   position: absolute;
   width: 2px;
-  top: 20px;
+  top: 21px;
   left: 10px;
   bottom: -14px;
   transform: translate(-50%, 0);
@@ -31,10 +31,8 @@
   content: '';
   position: absolute;
   left: -13px;
-  top: 6px;
-  //width: 14px;
-  //height: 2px;
-  transform: translate(0, -50%);
+  top: 2px;
+  width: 14px;
   color: var(--background-tertiary);
 }
 
@@ -52,11 +50,11 @@
 }
 
 .rf-tree__item-label-icon {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
   margin-right: 6px;
-  transition: transform 0.15s;
+  margin-left: -2px;
   transform: rotate(180deg);
   color: var(--basic-tertiary);
 }
