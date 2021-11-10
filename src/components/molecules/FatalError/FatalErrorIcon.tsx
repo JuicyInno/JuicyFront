@@ -235,6 +235,4 @@ export default ({ variant = 'default' }: IProps) => {
       </linearGradient>
     </defs>
   </svg>;
-
-
 };
