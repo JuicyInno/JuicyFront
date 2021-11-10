@@ -5,7 +5,7 @@ import Badge from './Badge';
 describe('Test <Badge/> component', () => {
   it('should render <Badge /> component with text "Badge" and badgeContent "9"', () => {
     const { container } = render(
-      <Badge badgeContent='9'>
+      <Badge badgeContent={9}>
         <span className='badge-test-9'>Badge</span>
       </Badge>
     );
@@ -19,11 +19,11 @@ describe('Test <Badge/> component', () => {
 
   it('should render <Badge /> component with badgeContent "99+"', () => {
     render(
-      <Badge badgeContent='999' max={99}>
+      <Badge badgeContent={999} max={99}>
         Badge
       </Badge>
     );
-    
+
     const t = screen.getByText('99+');
     expect(t).toBeInTheDocument();
   });
@@ -35,48 +35,48 @@ describe('Test <Badge/> component', () => {
     expect(item).toHaveClass('rf-badge--dot');
     expect(item?.textContent).toHaveLength(0);
   });
-  
+
   it('should be blue', () => {
     const badge = <Badge variant='blue'>Badge</Badge>;
     const { container } = render(badge);
     expect(container.getElementsByClassName('rf-badge--blue')).toHaveLength(1);
   });
-  
+
   it('should be lightBlue', () => {
     const { container } = render(<Badge variant='lightBlue'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--lightBlue')).toHaveLength(1);
   });
-  
+
   it('should be turquoise', () => {
     const { container } = render(<Badge variant='turquoise'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--turquoise')).toHaveLength(1);
   });
-  
+
   it('should be green', () => {
     const { container } = render(<Badge variant='green'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--green')).toHaveLength(1);
   });
-  
+
   it('should be yellow', () => {
     const { container } = render(<Badge variant='yellow'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--yellow')).toHaveLength(1);
   });
-  
+
   it('should be red', () => {
     const { container } = render(<Badge variant='red'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--red')).toHaveLength(1);
   });
-  
+
   it('should be magenta', () => {
     const { container } = render(<Badge variant='magenta'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--magenta')).toHaveLength(1);
   });
-  
+
   it('should be purple', () => {
     const { container } = render(<Badge variant='purple'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--purple')).toHaveLength(1);
   });
-  
+
   it('should be violet', () => {
     const { container } = render(<Badge variant='violet'> Badge </Badge>);
     expect(container.getElementsByClassName('rf-badge--violet')).toHaveLength(1);
