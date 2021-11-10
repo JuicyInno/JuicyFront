@@ -24,7 +24,7 @@ describe('Test <InputPhone/> component', () => {
     render(<InputPhone name="phone" />);
 
     fireEvent.change(screen.getByTestId('input-display'), { target: { value: '+79999999999' } });
-    expect(screen.getByTestId('input-display')).toHaveValue('+7 (999) 999 - 99 - 99');
+    expect(screen.getByTestId('input-display')).toHaveValue('+7 999 999 99 99');
     expect(screen.getByTestId('input')).toHaveValue('+79999999999');
   });
 
@@ -52,9 +52,9 @@ describe('Test <InputPhone/> component', () => {
 
     fireEvent.click(screen.getByText('Великобритания'));
 
-    expect(inputDisplay).toHaveValue('+44 (999) 999 - 99 - 99');
+    expect(inputDisplay).toHaveValue('+44 999 999 99 99');
 
     fireEvent.change(inputDisplay, { target: { value: '+449999999999' } });
-    expect(inputDisplay).toHaveValue('+44 (999) 999 - 99 - 99');
+    expect(inputDisplay).toHaveValue('+44 999 999 99 99');
   });
 });
