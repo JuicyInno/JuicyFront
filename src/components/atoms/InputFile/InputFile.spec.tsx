@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import InputFile  from './InputFile';
 import { initialFiles } from '../../../utils/helpers';
 
-describe('Test <CommentTile/> component', () => {
+describe('Test <InputFile/> component', () => {
     it('should render InputFile component', () => {
         render(<InputFile setFile={() => {}} />)
     });

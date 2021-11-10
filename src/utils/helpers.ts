@@ -238,6 +238,17 @@ export const extractTextFromHTML = (element: string): string => {
   return result;
 };
 
+/** Debounce */
+export function debounce(fn: (...args: any) => any, ms: number) {
+  let timeout: any;
+  return function(...args: any) {
+    // @ts-ignore
+    const fnCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+}
+
 export const initialFiles: IFileData[] = [
   {
     file: {
