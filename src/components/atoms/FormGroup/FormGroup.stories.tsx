@@ -63,7 +63,7 @@ export const Demo = () => (
                 value: '1'
               }
             ]}
-            onChange={() => {}}
+            onChange={() => { }}
           />
         </FormGroup>
       </StoryRow>
