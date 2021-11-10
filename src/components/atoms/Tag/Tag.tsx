@@ -18,7 +18,7 @@ export interface ITagProps {
   maxLength?: number;
 }
 
-const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled, variant = 'default', outlined, maxLength = 32 }) => {
+const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled, variant = 'default', maxLength = 32 }) => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
