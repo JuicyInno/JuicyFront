@@ -43,9 +43,9 @@ describe('Test <CommentTile/> component', () => {
     });
 
     it('should pass className', () => {
-        const { container } = render(<InputFile className='test-class-name' setFile={() => {}} />);
+        const { container } = render(<InputFile className='rf-file-input__test' setFile={() => {}} />);
 
-        expect(container.getElementsByClassName('test-class-name')).toHaveLength(1);
+        expect(container.getElementsByClassName('rf-file-input__test')).toHaveLength(1);
     });
 
     it('should be placeholder', () => {
@@ -89,13 +89,13 @@ describe('Test <CommentTile/> component', () => {
         })
     });
 
-    it('should be call onError', async() => {
+    it('should not be call onError', async() => {
         const onError = jest.fn();
         let file = new File(['(⌐□_□)'], 'sweetfile.png', { type: 'image/png' });
-        render(<InputFile accept={'image/jpg'} setFile={() => {}} onError={onError} placeholder={'Прикрепить файл'} />);
+        render(<InputFile accept={'image/png'} setFile={() => {}} onError={onError} placeholder={'Прикрепить файл'} />);
         userEvent.upload(screen.getByPlaceholderText('Прикрепить файл'),file)
         await waitFor(() =>{
-            expect(onError).toHaveBeenCalledTimes(1);
+            expect(onError).toHaveBeenCalledTimes(0);
         })
     });
 });
