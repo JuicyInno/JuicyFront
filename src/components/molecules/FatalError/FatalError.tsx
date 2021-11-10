@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { ReactNode, FC } from 'react';
 import './FatalError.scss';
 import FatalErrorIcon from './FatalErrorIcon';
 
-const FatalError = () => {
+export interface IFatalErrorProps {
+  /** Компонент для изображения ошибки */
+  icon?: ReactNode,
+  /** Заголовок ошибки */
+  title?: string,
+  /** Описание ошибки */
+  description?: string
+
+}
 
 
-  // -------------------------------------------------------------------------------------------------------------------
+const FatalError: FC<IFatalErrorProps> =
+  ({ description = 'Что-то пошло не так, Пожалуйста, обновите страницу.',
+    icon = <FatalErrorIcon />,
+    title = 'Ошибка' }: IFatalErrorProps) => {
 
-
-  return (
-    <div className='fatal-error'>
-      <FatalErrorIcon/>
-      <p className='fatal-error__label'>Что-то пошло не так. Пожалуйста, обновите страницу.</p>
-      <p className='fatal-error__message'>Для заведения инцидента воспользуйтесь ЦСПП (
-        <a href='https://cspp.vtb.ru' target='_blank' className='fatal-error__link'>https://cspp.vtb.ru</a>).
-      </p>
-    </div>
-  );
-};
+    return (
+      <div className='fatal-error'>
+        {icon}
+        <p className='fatal-error__label'>{title}</p>
+        <p className='fatal-error__message'>{description} </p>
+      </div>
+    );
+  };
 
 export default FatalError;

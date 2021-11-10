@@ -140,7 +140,7 @@ export {
   UsersStack,
   ContentExpander,
   BackdropLoader,
-  PopupMaker
+  PopupMaker,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -153,6 +153,7 @@ import Success from './assets/icons/Success';
 import Reduce from './assets/icons/Reduce';
 import ChevronDown from './assets/icons/ChevronDown';
 import ChevronLeft from './assets/icons/ChevronLeft';
+import ChevronRight from './assets/icons/ChevronRight';
 import Info from './assets/icons/Info';
 import Calendar from './assets/icons/Calendar';
 import Up from './assets/icons/Up';
@@ -197,6 +198,7 @@ export {
   Info,
   Calendar,
   ChevronLeft,
+  ChevronRight,
   Up,
   Eye,
   EyeClose,

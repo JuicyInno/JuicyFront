@@ -1,16 +1,9 @@
 import React, { FC } from 'react';
 import './ScheduleLegend.scss';
 
-import { classnames } from '../../../utils/classnames';
-
-export interface IScheduleLegendProps {
-  /** Класс для корневого элемента. */
-  className?: string;
-}
-
-const ScheduleLegend: FC<IScheduleLegendProps> = ({ children, className }) => {
+const ScheduleLegend: FC = ({ children }) => {
   return (
-    <div className={classnames(className, 'rf-schedule-legend')}>
+    <div className='rf-schedule-legend'>
       {children}
     </div>
   );
