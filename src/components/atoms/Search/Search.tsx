@@ -83,7 +83,7 @@ const Search: React.FC<ISearchProps> = ({ onClear, showClear = true, debounce = 
       />
       <SearchIcon className='rf-search__search-icon' />
 
-      {value.length > 0 && showClear && <Close className={`rf-search__close-icon ${withEndAdornment}`} onClick={onClearClickHandler} />}
+      {value.length > 0 && showClear && <Close data-testid='search-clear-test-id' className={`rf-search__close-icon ${withEndAdornment}`} onClick={onClearClickHandler} />}
       {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 

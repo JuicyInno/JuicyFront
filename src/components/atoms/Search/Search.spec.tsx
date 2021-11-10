@@ -32,19 +32,30 @@ describe('Test <Search/> component', () => {
     expect(container.getElementsByClassName('test-classname')).toHaveLength(1);
   });
   
-  it('should have 1 second debounce', async () => {
+  it('should have 0.5 second debounce', async () => {
     let str = '';
     const onDebounce = (result: IDebounceResult) => {
       console.log('Debounce worked');
       str = result.debounceString;
     };
     
-    render(<Search debounce={ 1000 } onDebounce={ onDebounce }/>);
+    render(<Search debounce={ 500 } onDebounce={ onDebounce }/>);
     userEvent.type(byTestId('search-test-id').get(), 'TEST');
     expect(str).toBe('');
     
     await waitFor(() => {
       expect(str).toBe('TEST');
     });
+  });
+  
+  it('should call onClear function', () => {
+    let cleared = false;
+    const onClear = () => {
+      cleared = true;
+    };
+    
+    render(<Search value='test' onClear={ onClear }/>);
+    userEvent.click(byTestId('search-clear-test-id').get());
+    expect(cleared).toBe(true);
   });
 });
