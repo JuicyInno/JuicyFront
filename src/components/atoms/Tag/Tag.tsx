@@ -16,9 +16,11 @@ export interface ITagProps {
   onRemove?: () => void;
   /** Дизейбл клика по тегу и кнопке удаления. */
   disabled?: boolean;
+  /** Максимальная длина строки */
+  maxLength?: number;
 }
 
-const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled, variant = 'default', outlined }) => {
+const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled, variant = 'default', outlined, maxLength = 32 }) => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -37,6 +39,10 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const overMaxLength = typeof children === 'string' && children.length > maxLength;
+
+  // -------------------------------------------------------------------------------------------------------------------
+
   return (
     <div className={`rf-tag ${clickableClass} rf-tag--${variant} ${outlined ? 'rf-tag--outlined' : ''}`} onClick={handleClick}>
       {!!icon && (
@@ -44,7 +50,7 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
           {icon}
         </div>
       )}
-      {children}
+      {overMaxLength ? children.slice(0, maxLength) + '...' : children}
       {!!onRemove && <button type='button' className='rf-tag__remove' onClick={handleRemove} disabled={disabled} aria-label='Удалить'>
         <Close/>
       </button>}

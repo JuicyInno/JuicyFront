@@ -37,6 +37,8 @@ export interface IDatepickerProps {
   disableWeekDays?: number[];
   /** Кастомная кнопка */
   children?: ReactNode | ReactNode[];
+  /** Переводит инпут в невалидный статус */
+  invalid?: boolean;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -46,6 +48,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   defaultValue,
   min,
   max,
+  invalid = false,
   disabled = false,
   readOnly = false,
   onChange,
@@ -56,6 +59,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
   children
+
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -173,6 +177,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       const [from, to] = value.split(' - ');
       const fromD = stringToDate(from, format).getTime();
       const toD = stringToDate(to, format).getTime();
+      const fromUTCD = stringToDate(from, format, true).getTime();
+      const toUTCD = stringToDate(to, format, true).getTime();
+
       return {
         value,
         date: {
@@ -183,12 +190,19 @@ const Datepicker: React.FC<IDatepickerProps> = ({
         timestamp: {
           from: fromD,
           to: toD,
-          value: fromD
+          value: fromD,
+          utc: {
+            from: fromUTCD,
+            to: toUTCD,
+            value: fromUTCD,
+          }
         }
       };
     }
 
     const date = stringToDate(value, format);
+    const dateUTC = stringToDate(value, format, true);
+
     return {
       date: {
         from: date,
@@ -199,7 +213,12 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       timestamp: {
         from: date.getTime(),
         to: date.getTime(),
-        value: date.getTime()
+        value: date.getTime(),
+        utc: {
+          from: dateUTC.getTime(),
+          to: dateUTC.getTime(),
+          value: dateUTC.getTime(),
+        }
       }
     };
   };
@@ -316,7 +335,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 readOnly={ readOnly }
                 onKeyPress={ onKeyPress }
                 onChange={ onDatepickerChange }>
-                <Input/>
+                <Input invalid={invalid}/>
               </InputMask>
 
               <button type='button' className='rf-datepicker__calendar-button'>

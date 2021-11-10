@@ -27,6 +27,11 @@ export interface IDateVariants {
     from: number;
     to: number;
     value: number;
+    utc: {
+      from: number;
+      to: number;
+      value: number;
+    }
   }
   value: string;
 }

@@ -162,6 +162,13 @@
   border-radius: 50%;
 }
 
+@mixin square($l) {
+  width: $l;
+  height: $l;
+  min-width: $l;
+  min-height: $l;
+}
+
 @mixin clearfix() {
   &::after {
     display: block;

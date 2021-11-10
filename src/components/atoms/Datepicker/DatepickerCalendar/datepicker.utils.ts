@@ -281,7 +281,7 @@ export const formatDate = (date: string | number | undefined, format: DateFormat
   };
 };
 
-export const stringToDate = (s: string, format: DateFormat): Date => {
+export const stringToDate = (s: string, format: DateFormat, isUTC = false): Date => {
   const d = new Date();
 
   if (!s) {
@@ -304,7 +304,7 @@ export const stringToDate = (s: string, format: DateFormat): Date => {
   dd = dd.includes('_') ? formatToday[dayFirst ? 0 : 1] : dd;
   mm = mm.includes('_') ? formatToday[dayFirst ? 1 : 0] : mm;
   yyyy = yyyy.includes('_') ? formatToday[2] : yyyy;
-  return new Date(+yyyy, +mm - 1, +dd);
+  return !isUTC ? new Date(+yyyy, +mm - 1, +dd) : new Date(Date.UTC(+yyyy, +mm - 1, +dd));
 };
 
 export const replaceAt = (str: string, index: number, replacement: string): string => {

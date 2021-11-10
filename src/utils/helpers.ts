@@ -2,6 +2,7 @@ import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IFormattedDate, Size } from '../types';
+import moment from 'moment';
 
 const months = [
   'январь',
@@ -153,12 +154,15 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xxs': 'rf--xxs',
   'xs': 'rf--xs',
   's': 'rf--s',
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
-  'xxl': 'rf--xxl'
+  'xxl': 'rf--xxl',
+  'xxxl': 'rf--xxxl',
+  'xxxxl': 'rf--xxxxl'
 };
 
 function oDataServ(data:any) {
@@ -194,3 +198,51 @@ export const numberWithSpaces = (x: number, n = 3, s = ' '): string => {
   parts[0] = parts[0].replace(regex, s);
   return parts.join('.');
 };
+
+export const UTCToLocal = (date: Date | number): Date => {
+  const offset = moment().utcOffset();
+  const withOffset = moment(date).toDate().getTime() + offset * 60000;
+  return moment(withOffset).toDate();
+};
+
+export const LocalToUTC = (date: Date | number): Date => {
+  const offset = moment().utcOffset();
+  const withOffset = moment(date).toDate().getTime() - offset * 60000;
+  return moment(withOffset).toDate();
+};
+
+/** Выделить текст из HTML */
+export const extractTextFromHTML = (element: string): string => {
+  let result = '';
+  let skip = false;
+
+  for (let i = 0; i < element.length; i++) {
+    if (element[i] === '<') {
+      skip = true;
+    }
+
+    if (element[i] === '>') {
+      skip = false;
+      continue;
+    }
+
+    if (skip) {
+      continue;
+    }
+
+    result += element[i];
+  }
+
+  return result;
+};
+
+/** Debounce */
+export function debounce(fn: (...args: any) => any, ms: number) {
+  let timeout: any;
+  return function(...args: any) {
+    // @ts-ignore
+    const fnCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+}

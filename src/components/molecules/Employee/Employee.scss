@@ -1,9 +1,22 @@
 @import "src/styles/mixins";
 
 .rf-employee {
+  cursor: default;
+}
+
+.rf-employee__tile {
+  box-shadow: 0px 2px 6px 0px #193B6826;
+  border-radius: 20px;
+}
+
+.rf-employee__title {
+  @include h6;
+  padding-bottom: 20px;
+}
+
+.rf-employee__details-wrapper {
   display: flex;
   align-items: flex-start;
-  cursor: default;
 }
 
 .rf-employee__details {
@@ -18,13 +31,14 @@
 
 .rf-employee__name {
   @include h5;
-  color: var(--basic-secondary);
 }
 
 .rf-employee__info {
   @include text-m-16;
   color: var(--basic-tertiary);
-  margin-bottom: 4px;
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
 }
 
 .rf-employee__info-department {
@@ -33,7 +47,17 @@
 }
 
 .rf-employee__department-icon {
-  margin-left: 10px;
+  margin-left: 8px;
   color: var(--basic-tertiary);
   cursor: pointer;
+}
+
+.rf-employee__button {
+  @include text-l-16;
+  display: flex;
+  margin-top: 20px;
+  color: var(--basic-primary);
+  &:hover {
+    cursor: pointer;
+  }
 }

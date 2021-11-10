@@ -4,10 +4,14 @@ import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
 import { Button } from '../../../index';
+import { IDateVariants } from './DatepickerCalendar/datepicker.types';
 
 export default {
   title: 'forms/не проверено/Datepicker',
   component: Datepicker
+};
+const log = (res: IDateVariants) => {
+  console.log(res);
 };
 
 export const datepicker = () => {
@@ -30,7 +34,7 @@ export const datepicker = () => {
       </StoryItem>
       <StoryItem subtitle='Включает диапазон одним пропсом range'>
         <StoryRow>
-          <Datepicker min={Date.now() - 7 * 24 * 3600 * 1000} range showDayOfWeek/>
+          <Datepicker min={Date.now() - 7 * 24 * 3600 * 1000} range showDayOfWeek onChange={log}/>
         </StoryRow>
       </StoryItem>
       <StoryItem subtitle='Кастомная кнопка'>

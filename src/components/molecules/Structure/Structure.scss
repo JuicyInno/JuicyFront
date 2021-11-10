@@ -10,10 +10,19 @@
 
 .structure__unit {
   @include caption;
-  color: var(--text-static-white);
 }
 
 .structure__name {
   @include text-m-16;
-  color: var(--text-static-white);
+}
+
+.structure__unit,
+.structure__name {
+  &.light-text {
+    color: var(--text-static-white);
+  }
+
+  &.dark-text {
+    color: var(--text-static-black);
+  }
 }

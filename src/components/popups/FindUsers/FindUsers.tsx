@@ -18,6 +18,7 @@ import {
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
+import { debounce } from '../../../utils/helpers';
 
 // SwiperCore.use([Navigation]);
 
@@ -43,6 +44,8 @@ export interface IProps {
   showAll?: boolean;
   /** Исключить из поиска */
   searchOption?: number[];
+  /** Фон тултипа */
+  tooltipBackground?: 'default' | 'white';
 }
 
 const FindUsers: FC<IProps> = ({
@@ -51,12 +54,13 @@ const FindUsers: FC<IProps> = ({
   disableSelected,
   getUsers,
   multiSelect = true,
-  subtitle = 'Поиск осуществляется по выбранной компании и в рамках одного подразделения.',
+  subtitle,
   host = '',
   headers = {},
   AxiosInstance,
   showAll = true,
-  searchOption = []
+  searchOption = [],
+  tooltipBackground = 'default'
 }: IProps) => {
 
   const inputRef = useRef<HTMLDivElement>(null);
@@ -267,9 +271,9 @@ const FindUsers: FC<IProps> = ({
             { `${item.lastName} ${item.firstName} ${item.middleName}` }
             { item.id && <span className='list-users__user-id'>({ item.id })</span> }
             { item.departmentsPath && (
-              <Tooltip portal>
+              <Tooltip portal background={tooltipBackground}>
                 <Info className='list-users__user-info'/>
-                <Structure departmentsPath={ item.departmentsPath }/>
+                <Structure departmentsPath={ item.departmentsPath } background={tooltipBackground}/>
               </Tooltip>
             ) }
           </h3>
@@ -345,27 +349,28 @@ const FindUsers: FC<IProps> = ({
     onSearch(searchString);
   }, [activeFilter]);
 
-  const tabs: ITab[] = [
-    {
-      label: 'Все',
-      handler: () => {
-        setActiveFilter('all');
-      }
-    },
-    {
-      label: 'Моя команда',
-      handler: () => {
-        setActiveFilter('team');
-      }
+  const tabs: ITab[] = [];
+  showAll &&
+  tabs.push( {
+    label: 'Все',
+    handler: () => {
+      setActiveFilter('all');
     }
-  ];
+  });
+  tabs.push({
+    label: 'Моя команда',
+    handler: () => {
+      setActiveFilter('team');
+    }
+  });
+
 
   return (
     <div className='find-users__wrapper'>
       <h4 className='find-users__title'>Поиск сотрудников</h4>
       <p className='find-users__notice'>{ subtitle }</p>
       <div className='find-users__input-wrapper' ref={ inputRef }>
-        <Search onKeyUp={ inputHandle } autoFocus onClear={ onClear }/>
+        <Search onKeyUp={ debounce(inputHandle, 500) } autoFocus onClear={ onClear }/>
       </div>
       <div className='find-users__filters'>
         <Tabs list={tabs}/>
