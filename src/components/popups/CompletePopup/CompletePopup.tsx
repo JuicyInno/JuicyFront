@@ -14,6 +14,8 @@ export interface ICompletePopupProps {
   description?: string;
   /** Кнопки */
   buttons?: ReactNode | ReactNode[];
+  /** Отображать кнопку */
+  isButton?: boolean,
   /** Функция закрытия модалки */
   onClose?: () => void;
   /** Иконка */
@@ -23,11 +25,11 @@ export interface ICompletePopupProps {
 const getIcon = (icon: IconType) => {
 
   const icons: Partial<Record<IconType, ReactElement>> = {
-    'success': <CircleConfirm/>,
-    'close': <CircleReject/>,
-    'trash': <CircleTrash/>,
-    'return': <CircleReturn/>,
-    'refresh': <CircleRefresh/>
+    'success': <CircleConfirm />,
+    'close': <CircleReject />,
+    'trash': <CircleTrash />,
+    'return': <CircleReturn />,
+    'refresh': <CircleRefresh />
   };
 
   return icons[icon];
@@ -38,6 +40,7 @@ const CompletePopup: React.FC<ICompletePopupProps> = ({
   description,
   onClose,
   buttons,
+  isButton = true,
   icon = 'success'
 }: ICompletePopupProps) => {
 
@@ -46,12 +49,12 @@ const CompletePopup: React.FC<ICompletePopupProps> = ({
   return (
     <div className='rf-complete-popup'>
       <div
-        className={ classnames('rf-complete-popup__icon', `rf-complete-popup__icon--${icon}`) }>{ getIcon(icon) }</div>
+        className={classnames('rf-complete-popup__icon', `rf-complete-popup__icon--${icon}`)}>{getIcon(icon)}</div>
 
-      <h5 className='rf-complete-popup__label'>{ label }</h5>
-      { description && <p className='rf-complete-popup__description'>{ description }</p> }
+      <h5 className='rf-complete-popup__label'>{label}</h5>
+      {description && <p className='rf-complete-popup__description'>{description}</p>}
 
-      { buttons ? buttons : <Button fullWidth onClick={ onClose }>Продолжить</Button> }
+      {isButton ? buttons ? buttons : <Button fullWidth onClick={onClose}>Продолжить</Button> : null}
     </div>
   );
 };
