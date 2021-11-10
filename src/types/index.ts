@@ -19,7 +19,9 @@ export interface ICustomOption extends IOption {
   __isNew__: boolean;
 }
 
-export function isCustomOption(option: IOption | ICustomOption): option is ICustomOption {
+export function isCustomOption(
+  option: IOption | ICustomOption
+): option is ICustomOption {
   return (option as ICustomOption).__isNew__;
 }
 
@@ -101,15 +103,29 @@ export interface IBreadcrumb {
 
 /** Тип цветового оформления */
 export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
-export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+export type Variant =
+  | VariantClassic
+  | 'blue'
+  | 'lightBlue'
+  | 'turquoise'
+  | 'magenta'
+  | 'purple'
+  | 'violet'
+  | 'tertiary'
+  | 'grey'
+  | 'dark'
+  | 'light-inactive'
+  | 'light-disable'
+  | 'white'
+  | 'white-disable'
+  | 'white-inactive';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
 
   'green',
   'yellow',
-  'red'
-
+  'red',
 ];
 export const variants: Variant[] = [
   'default',
@@ -121,14 +137,23 @@ export const variants: Variant[] = [
   'red',
   'magenta',
   'purple',
-  'violet'
+  'violet',
 ];
 
 /** Цвет фона аватара */
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
 
 /** Размер */
-export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
+export type Size =
+  | 'xxs'
+  | 'xs'
+  | 's'
+  | 'm'
+  | 'l'
+  | 'xl'
+  | 'xxl'
+  | 'xxxl'
+  | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';

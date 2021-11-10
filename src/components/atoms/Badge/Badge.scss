@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-badge__wrapper {
   display: inline-flex;
@@ -24,10 +24,6 @@
 
   @include caption;
   cursor: inherit;
-}
-
-.rf-badge--text {
-  transform: translate(100%, -50%);
 }
 
 .rf-badge--near {
@@ -64,17 +60,26 @@
 }
 
 .rf-badge--green {
-  background-color: var(--special-green);
+  background-color: var(--status-success);
   color: var(--text-static-white);
 }
 
+.rf-badge--grey {
+  background-color: var(--text-secondary);
+  color: var(--text-static-white);
+}
 .rf-badge--yellow {
-  background-color: var(--special-yellow);
+  background-color: var(--status-warn);
   color: var(--text-static-white);
 }
 
 .rf-badge--red {
-  background-color: var(--special-red);
+  background-color: var(--status-danger);
+  color: var(--text-static-white);
+}
+
+.rf-badge--dark {
+  background-color: var(--background-inversion);
   color: var(--text-static-white);
 }
 
@@ -93,9 +98,59 @@
   color: var(--text-static-white);
 }
 
-.rf-badge--dot {
-  @include round(8px);
+.rf-badge--tertiary {
+  background-color: var(--background-tertiary);
+  color: var(--basic-secondary);
+}
+
+.rf-badge--light-inactive {
+  background-color: var(--background-tertiary);
+  color: var(--text-secondary);
+}
+
+.rf-badge--light-disable {
+  background-color: var(--background-tertiary);
+  color: var(--text-tertiary);
+}
+
+.rf-badge--white {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.rf-badge--white-inactive {
+  background-color: var(--background-primary);
+  color: var(--text-secondary);
+}
+
+.rf-badge--white-disable {
+  background-color: var(--background-primary);
+  color: var(--text-tertiary);
+}
+
+.rf-badge--s {
+  @include round(16px);
+  width: 17px;
   padding: 0;
   border: 2px solid var(--base-000);
   box-sizing: content-box;
+}
+
+.rf-badge--m {
+  width: 23px;
+  height: 20px;
+  padding: 0;
+  border: 2px solid var(--base-000);
+  box-sizing: content-box;
+  transform: translate(20%, -50%);
+}
+.rf-badge--dot {
+  @include round(16px);
+  padding: 0;
+  border: 2px solid var(--base-000);
+  box-sizing: content-box;
+}
+
+.rf-badge--text {
+  transform: translate(120%, 0%);
 }

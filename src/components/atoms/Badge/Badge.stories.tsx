@@ -1,70 +1,400 @@
 import React from 'react';
 import Badge, { IBadgeProps } from './Badge';
-import Story from '../../storybook/Story';
-import StoryItem from '../../storybook/StoryItem';
+import { Story } from '@storybook/react';
 import { variants } from '../../../types';
 import { withDesign } from 'storybook-addon-designs';
+import { StoryDocs, StoryDocsH1, StoryDocsH2, } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
+
 
 export default {
-  title: 'components/не проверено/Badge',
+  title: 'components/withTest/Badge',
   component: Badge,
   decorators: [withDesign],
   typeArgs: {
+    size: {
+      options: ['s', 'm'],
+      control: { type: 'select' },
+      defaultValue: 'm'
+    },
     variant: {
       options: variants,
       control: { type: 'select' },
       defaultValue: 'blue'
     },
     className: { control: null },
-    position: {
-      options: [
-        'topRight',
-        'topLeft',
-        'bottomLeft',
-        'bottomRight'
-      ],
-      control: { type: 'select' },
-      defaultValue: 'topRight'
-    }
+    position: { control: null }
   }
 };
 
 export const badge = (args: IBadgeProps) => {
 
   return (
-    <Story name='Badge (Значок)' description='Создает значок в правом верхнем углу элемента.'>
-      <StoryItem subtitle='Простой значок'>
-        <Badge variant={args.variant}>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' style={{ color: '#888' }}>
-            <path
-              d='M4.23189 8.76499C3.77232 8.40651 3.10156 8.73215 3.10138 9.315C3.10084 11.1344 3.09999 14.2613 3.09999 16.12C3.09999 17.78 4.43999 19.12 6.09999 19.12H18.1C19.76 19.12 21.1 17.78 21.1 16.12C21.1 13.8399 21.1511 11.5519 21.1248 9.2699C21.1182 8.69995 20.4669 8.38656 20.013 8.73127L15.4407 12.2033L18.0233 14.1464C18.3101 14.3623 18.3677 14.7698 18.1519 15.0566C17.936 15.3435 17.5285 15.4011 17.2417 15.1852L14.3646 13.0205L14.232 13.1213C12.9131 14.1228 11.0853 14.1109 9.77962 13.0924L9.66192 13.0006L9.66055 13.0016L6.75834 15.1852C6.47149 15.4011 6.06398 15.3435 5.84815 15.0566C5.63231 14.7698 5.68989 14.3623 5.97675 14.1464L8.6003 12.1725L4.23189 8.76499Z'
-              fill='currentColor'/>
-            <path
-              d='M3.82051 6.03702C3.59589 6.29911 3.67888 6.68491 3.95105 6.89721L10.5792 12.0674C11.4199 12.7231 12.5967 12.7307 13.4458 12.0859L20.2525 6.917C20.5286 6.70733 20.6159 6.32039 20.392 6.05565C19.8406 5.40349 19.0166 4.98999 18.1 4.98999H6.09999C5.18667 4.98999 4.37021 5.39563 3.82051 6.03702Z'
-              fill='currentColor'/>
+    <StoryDocs>
+      <StoryDocsH1>Badge Documentation</StoryDocsH1>
+      <div style={{ fontSize: '16px' }}>
+        Badge — компонент, который обычно дополняет другие компоненты и показывает количественные зачения. Например, в компоненте Tabs может показывать количество элементов в закладке. Или показывать количество оповещений в панели нотификации.
+
+      </div>
+      <div style={{
+        fontSize: '16px',
+        marginBottom: '80px'
+      }}>
+        <br /> Компонент существует в двух размерах — S 16 и M 20 px по высоте.
+      </div>
+
+      <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='tertiary' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='tertiary' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Light</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='blue' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='blue' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Info</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='yellow' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='yellow' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Warning</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='green' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='green' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Success</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='red' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='red' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Error</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='grey' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='grey' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Grey</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='dark' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='dark' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Dark</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='light-inactive' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='light-inactive' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Light Inactive</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start'
+        }}>
+          <Badge variant='light-disable' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='light-disable' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>Light Disable</p>
+        </div>
+      </div>
+
+      <div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start',
+          background: '#F1F2F4',
+          paddingTop: '25px'
+
+        }}>
+          <Badge variant='white' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='white' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>White</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start',
+          background: '#F1F2F4',
+        }}>
+          <Badge variant='white-inactive' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='white-inactive' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>White Inactive</p>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'self-start',
+          background: '#F1F2F4',
+        }}>
+          <Badge variant='white-disable' badgeContent={5} size='m'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <Badge variant='white-disable' badgeContent={5} size='s'>
+            <div style={{
+              width: 30,
+              height: 30
+            }} />
+          </Badge>
+          <p style={{
+            fontSize: '14px',
+            lineHeight: '20px',
+            marginLeft: '35px',
+            marginTop: '-10px'
+
+          }}>White Disable</p>
+        </div>
+      </div>
+
+      <StoryDocsH2>Пример использования</StoryDocsH2>
+      <div style={{
+        fontSize: '16px',
+        marginBottom: '20px'
+      }}>Напротив заголовка показывает количество айтемов</div>
+
+      <div style={{
+        marginBottom: '40px',
+        fontWeight: 500
+      }}>
+        <Badge variant={args.variant} position='bottomRight' size='m' badgeContent={5}>Заголовок</Badge>
+      </div>
+
+      <div style={{
+        fontSize: '16px',
+        marginBottom: '20px'
+      }}>Рядом с иконкой показывает количество</div>
+
+      <div style={{ marginBottom: '40px' }}>
+        <Badge variant={args.variant} size='m' badgeContent={5}>
+          <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg' style={{ color: '#8A96A8' }}>
+            <circle cx='24' cy='24' r='24' fill='#F1F2F4' />
+            <path fill-rule='evenodd' clip-rule='evenodd' d='M17 18.2C17 17.0799 17 16.5198 17.218 16.092C17.4097 15.7157 17.7157 15.4097 18.092 15.218C18.5198 15 19.0799 15 20.2 15H27.8C28.9201 15 29.4802 15 29.908 15.218C30.2843 15.4097 30.5903 15.7157 30.782 16.092C31 16.5198 31 17.0799 31 18.2V29.8C31 30.9201 31 31.4802 30.782 31.908C30.5903 32.2843 30.2843 32.5903 29.908 32.782C29.4802 33 28.9201 33 27.8 33H20.2C19.0799 33 18.5198 33 18.092 32.782C17.7157 32.5903 17.4097 32.2843 17.218 31.908C17 31.4802 17 30.9201 17 29.8V18.2ZM20 19C20 18.4477 20.4477 18 21 18H27C27.5523 18 28 18.4477 28 19C28 19.5523 27.5523 20 27 20H21C20.4477 20 20 19.5523 20 19ZM21 22C20.4477 22 20 22.4477 20 23C20 23.5523 20.4477 24 21 24H24C24.5523 24 25 23.5523 25 23C25 22.4477 24.5523 22 24 22H21Z' fill='currentColor' />
           </svg>
         </Badge>
-      </StoryItem>
+      </div>
 
-      <StoryItem subtitle='Значок со значением'>
-        <Badge variant={args.variant} badgeContent={10}>
-          <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' style={{ color: '#888' }}>
-            <path
-              d='M4.23189 8.76499C3.77232 8.40651 3.10156 8.73215 3.10138 9.315C3.10084 11.1344 3.09999 14.2613 3.09999 16.12C3.09999 17.78 4.43999 19.12 6.09999 19.12H18.1C19.76 19.12 21.1 17.78 21.1 16.12C21.1 13.8399 21.1511 11.5519 21.1248 9.2699C21.1182 8.69995 20.4669 8.38656 20.013 8.73127L15.4407 12.2033L18.0233 14.1464C18.3101 14.3623 18.3677 14.7698 18.1519 15.0566C17.936 15.3435 17.5285 15.4011 17.2417 15.1852L14.3646 13.0205L14.232 13.1213C12.9131 14.1228 11.0853 14.1109 9.77962 13.0924L9.66192 13.0006L9.66055 13.0016L6.75834 15.1852C6.47149 15.4011 6.06398 15.3435 5.84815 15.0566C5.63231 14.7698 5.68989 14.3623 5.97675 14.1464L8.6003 12.1725L4.23189 8.76499Z'
-              fill='currentColor'/>
-            <path
-              d='M3.82051 6.03702C3.59589 6.29911 3.67888 6.68491 3.95105 6.89721L10.5792 12.0674C11.4199 12.7231 12.5967 12.7307 13.4458 12.0859L20.2525 6.917C20.5286 6.70733 20.6159 6.32039 20.392 6.05565C19.8406 5.40349 19.0166 4.98999 18.1 4.98999H6.09999C5.18667 4.98999 4.37021 5.39563 3.82051 6.03702Z'
-              fill='currentColor'/>
+      <div style={{
+        fontSize: '16px',
+        marginBottom: '20px'
+      }}>Рядом с иконкой показывает количество</div>
+
+      <div>
+        <Badge variant={args.variant} size='m'>
+          <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg' style={{ color: '#8A96A8' }}>
+            <circle cx='24' cy='24' r='24' fill='#F1F2F4' />
+            <path fill-rule='evenodd' clip-rule='evenodd' d='M17 18.2C17 17.0799 17 16.5198 17.218 16.092C17.4097 15.7157 17.7157 15.4097 18.092 15.218C18.5198 15 19.0799 15 20.2 15H27.8C28.9201 15 29.4802 15 29.908 15.218C30.2843 15.4097 30.5903 15.7157 30.782 16.092C31 16.5198 31 17.0799 31 18.2V29.8C31 30.9201 31 31.4802 30.782 31.908C30.5903 32.2843 30.2843 32.5903 29.908 32.782C29.4802 33 28.9201 33 27.8 33H20.2C19.0799 33 18.5198 33 18.092 32.782C17.7157 32.5903 17.4097 32.2843 17.218 31.908C17 31.4802 17 30.9201 17 29.8V18.2ZM20 19C20 18.4477 20.4477 18 21 18H27C27.5523 18 28 18.4477 28 19C28 19.5523 27.5523 20 27 20H21C20.4477 20 20 19.5523 20 19ZM21 22C20.4477 22 20 22.4477 20 23C20 23.5523 20.4477 24 21 24H24C24.5523 24 25 23.5523 25 23C25 22.4477 24.5523 22 24 22H21Z' fill='currentColor' />
           </svg>
         </Badge>
-      </StoryItem>
+      </div>
+    </StoryDocs >
 
-      <StoryItem subtitle='Значок рядом с текстом'>
-        <Badge variant={args.variant} badgeContent={200} placeNear>
-          Задачи
-        </Badge>
-      </StoryItem>
-    </Story>
   );
 };
 
@@ -74,4 +404,19 @@ badge.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/LKQ4FJ4bTnCSjedbRpk931/Sample-File',
   },
+};
+
+export const Playground: Story = (args: IBadgeProps) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Badge variant={args.variant} {...args}>
+          <svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg' style={{ color: '#8A96A8' }}>
+            <circle cx='24' cy='24' r='24' fill='#F1F2F4' />
+            <path fill-rule='evenodd' clip-rule='evenodd' d='M17 18.2C17 17.0799 17 16.5198 17.218 16.092C17.4097 15.7157 17.7157 15.4097 18.092 15.218C18.5198 15 19.0799 15 20.2 15H27.8C28.9201 15 29.4802 15 29.908 15.218C30.2843 15.4097 30.5903 15.7157 30.782 16.092C31 16.5198 31 17.0799 31 18.2V29.8C31 30.9201 31 31.4802 30.782 31.908C30.5903 32.2843 30.2843 32.5903 29.908 32.782C29.4802 33 28.9201 33 27.8 33H20.2C19.0799 33 18.5198 33 18.092 32.782C17.7157 32.5903 17.4097 32.2843 17.218 31.908C17 31.4802 17 30.9201 17 29.8V18.2ZM20 19C20 18.4477 20.4477 18 21 18H27C27.5523 18 28 18.4477 28 19C28 19.5523 27.5523 20 27 20H21C20.4477 20 20 19.5523 20 19ZM21 22C20.4477 22 20 22.4477 20 23C20 23.5523 20.4477 24 21 24H24C24.5523 24 25 23.5523 25 23C25 22.4477 24.5523 22 24 22H21Z' fill='currentColor' />
+          </svg>
+        </Badge>
+      </StoryRow>
+    </StoryContainer>
+  );
 };
