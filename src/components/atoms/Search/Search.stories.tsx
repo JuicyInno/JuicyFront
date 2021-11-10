@@ -4,6 +4,7 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { Microphone } from '../../../index';
+import { IDebounceResult } from '../../../types/projects.types';
 
 export default {
   title: 'forms/withTest/Search',
@@ -21,13 +22,25 @@ export const Demo = () => {
     padding: 16,
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('Change event', e.target.value);
+  };
+
+  const onDebounce = (result: IDebounceResult) => {
+    console.log('Debounce event', result.debounceString);
+  };
+
+  const onClear = () => {
+    console.log('Очистка');
+  };
+
   return (
     <StoryDocs>
       <StoryDocsH1>Search</StoryDocsH1>
       <div style={frameStyle}>
         <Search endAdornment={<Microphone />} />
-        <Search value='Приве' />
-        <Search />
+        <Search value='Приве' onChange={onChange} onDebounce={onDebounce} onClear={onClear} />
+        <Search onClear={onClear} />
       </div>
 
     </StoryDocs>
@@ -44,7 +57,7 @@ Demo.parameters = {
   },
 };
 
-export const Playground = (args) => {
+export const Playground = (args: any) => {
   return (
     <StoryContainer>
       <StoryRow>

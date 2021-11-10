@@ -13,7 +13,7 @@ export interface ISearchProps extends HTMLProps<HTMLInputElement> {
   /** Возможность очистки поля по клику */
   onClear?: () => void;
   /** Показать иконку очистки */
-  isShowClear?: boolean;
+  showClear?: boolean;
   /** Дебаунс */
   debounce?: number;
   /** Иконка в конце поля */
@@ -22,7 +22,7 @@ export interface ISearchProps extends HTMLProps<HTMLInputElement> {
   onDebounce?: (result: IDebounceResult) => void
 }
 
-const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce = 500, endAdornment, onDebounce = () => { }, ...props }: ISearchProps) => {
+const Search: React.FC<ISearchProps> = ({ onClear, showClear = true, debounce = 500, endAdornment, onDebounce = () => { }, ...props }: ISearchProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -78,11 +78,12 @@ const Search: React.FC<ISearchProps> = ({ onClear, isShowClear = true, debounce 
         className='rf-search__input'
         placeholder={props.placeholder || 'Поиск'}
         value={value}
+        data-testid='search-test-id'
         onChange={onChangeHandler}
       />
       <SearchIcon className='rf-search__search-icon' />
 
-      {value.length > 0 && isShowClear && <Close className={`rf-search__close-icon ${withEndAdornment}`} onClick={onClearClickHandler} />}
+      {value.length > 0 && showClear && <Close className={`rf-search__close-icon ${withEndAdornment}`} onClick={onClearClickHandler} />}
       {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 
