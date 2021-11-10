@@ -59,8 +59,6 @@ const PageWithList: React.FC<IPageWithListProps> = ({
   useEffect(() => {
     if (!preloader) {
       setTimeout(() => {
-        debugger;
-
         if (mainRef.current) {
           const topPixels = mainRef.current.offsetTop;
 
