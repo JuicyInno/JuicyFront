@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-tag {
   display: inline-flex;
@@ -18,7 +18,8 @@
   background-color: var(--background-secondary);
   color: var(--text-primary);
 
-  & .rf-tag__icon, & .rf-tag__remove {
+  & .rf-tag__icon,
+  & .rf-tag__remove {
     color: var(--text-secondary);
   }
 }
@@ -45,17 +46,17 @@
 
 .rf-tag--green {
   background-color: var(--special-softGreen);
-  color: var(--special-green);
+  color: var(--status-success);
 }
 
 .rf-tag--yellow {
   background-color: var(--special-softYellow);
-  color: var(--special-yellow);
+  color: var(--status-warn);
 }
 
 .rf-tag--red {
   background-color: var(--special-softRed);
-  color: var(--special-red);
+  color: var(--status-danger);
 }
 
 .rf-tag--magenta {
@@ -71,11 +72,6 @@
 .rf-tag--violet {
   background-color: var(--special-softViolet);
   color: var(--special-violet);
-}
-
-.rf-tag--outlined {
-  background-color: transparent;
-  border: 1px solid currentColor;
 }
 
 .rf-tag__icon {
