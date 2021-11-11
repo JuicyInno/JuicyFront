@@ -1,21 +1,12 @@
 import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {byText} from "testing-library-selector";
-
-import CommentTile  from './CommentTile';
 import userEvent from "@testing-library/user-event";
 
+import CommentTile  from './CommentTile';
+import { initialFiles } from '../../../utils/helpers';
+
 const maxLength = 355;
-const initialFiles = [
-    {
-        base64: '',
-        fileName: 'screenshot1.jpg',
-    },
-    {
-        base64: '',
-        fileName: 'screenshot2.jpg',
-    }
-];
 
 describe('Test <CommentTile/> component', () => {
     it('should render CommentTile component', () => {
