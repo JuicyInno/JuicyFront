@@ -344,6 +344,7 @@ import Courier from './assets/icons/Specific/Сourier';
 import Diagram from './assets/icons/Specific/Diagram';
 import DigitalCard from './assets/icons/Specific/DigitalCard';
 import Gosuslygi from './assets/icons/Specific/Gosuslygi';
+import InvestmentProducts from './assets/icons/Specific/InvestmentProducts';
 import LightBulb from './assets/icons/Specific/LightBulb';
 import NewBank from './assets/icons/Specific/Bank'; // refactor name to Bank
 import Safe from './assets/icons/Specific/Safe';
@@ -359,6 +360,7 @@ export {
   Diagram,
   DigitalCard,
   Gosuslygi,
+  InvestmentProducts,
   LightBulb,
   NewBank,
   Safe,
@@ -494,6 +496,368 @@ export {
   VK,
   Windows,
   YouTube
+};
+
+// --------------------------Иконки settings----------------------------------------------------------------------------
+import AnotherCard from './assets/icons/Settings/AnotherCard';
+import Authorization from './assets/icons/Settings/Authorization';
+import Connect from './assets/icons/Settings/Connect';
+import CreditCard from './assets/icons/Settings/CreditCard';
+import DebitCard from './assets/icons/Settings/DebitCard';
+import DigitalCardM from './assets/icons/Settings/DigitalCard';
+import Limits from './assets/icons/Settings/Limits';
+import ListOfCards from './assets/icons/Settings/ListOfCards';
+import Login from './assets/icons/Settings/Login';
+import NewCard from './assets/icons/Settings/Card';
+import ProductSettings from './assets/icons/Settings/ProductSettings';
+import Push from './assets/icons/Settings/Push';
+
+export {
+  AnotherCard,
+  Authorization,
+  Connect,
+  CreditCard,
+  DebitCard,
+  DigitalCardM,
+  Limits,
+  ListOfCards,
+  Login,
+  NewCard, // refactor name to Card
+  ProductSettings,
+  Push
+};
+
+// --------------------------Иконки Profile And Bank Contact------------------------------------------------------------
+import BackCall from './assets/icons/ProfileAndBankContact/BackCall';
+import OperationCompleted from './assets/icons/ProfileAndBankContact/OperationCompleted';
+import Salary from './assets/icons/ProfileAndBankContact/Salary';
+import TransferOfSalary from './assets/icons/ProfileAndBankContact/TransferOfSalary';
+import WebsiteCall from './assets/icons/ProfileAndBankContact/WebsiteCall';
+
+export {
+  BackCall,
+  OperationCompleted,
+  Salary,
+  TransferOfSalary,
+  WebsiteCall
+};
+
+// --------------------------Иконки Credit------------------------------------------------------------------------------
+import Autocredit from './assets/icons/Credit/Autocredit';
+import Credit from './assets/icons/Credit/Credit';
+import Credits from './assets/icons/Credit/Credits';
+import Mortgage from './assets/icons/Credit/Mortgage';
+
+export {
+  Autocredit,
+  Credit,
+  Credits,
+  Mortgage
+};
+
+// --------------------------Иконки investments-------------------------------------------------------------------------
+import Brocker from './assets/icons/Investments/Brocker';
+import IIS from './assets/icons/Investments/IIS';
+import Investment from './assets/icons/Investments/Investment';
+import Microinvestments from './assets/icons/Investments/Microinvestments';
+
+export {
+  Brocker,
+  IIS,
+  Investment,
+  Microinvestments
+};
+
+// --------------------------Иконки refinancing-------------------------------------------------------------------------
+import CreditCardRefinancing from './assets/icons/Refinancing/CreditCardRefinancing';
+import DedicatedLineOfCredit from './assets/icons/Refinancing/DedicatedLineOfCredit';
+import MortgageRefinancing from './assets/icons/Refinancing/MortgageRefinancing';
+
+export {
+  CreditCardRefinancing,
+  DedicatedLineOfCredit,
+  MortgageRefinancing
+};
+
+// --------------------------Иконки documents---------------------------------------------------------------------------
+import Doc from './assets/icons/Documents/Doc';
+import Passport from './assets/icons/Documents/Passport';
+import ReceiptBig from './assets/icons/Documents/ReceiptBig';
+
+export {
+  Doc,
+  Passport,
+  ReceiptBig
+};
+
+// --------------------------Иконки payments----------------------------------------------------------------------------
+import Airplane from './assets/icons/Payments/Airplane';
+import CashWithdrawal from './assets/icons/Payments/CashWithdrawal';
+import Charity from './assets/icons/Payments/Charity';
+import Collecting from './assets/icons/Payments/Collecting';
+import CommunalApartment from './assets/icons/Payments/CommunalApartment';
+import CurrencyExchange from './assets/icons/Payments/CurrencyExchange';
+import Education from './assets/icons/Payments/Education';
+import Elections from './assets/icons/Payments/Elections';
+import ElectronicMoney from './assets/icons/Payments/ElectronicMoney';
+import ExtractAndReferences from './assets/icons/Payments/ExtractAndReferences';
+import Free from './assets/icons/Payments/Free';
+import FromCardToCard from './assets/icons/Payments/FromCardToCard';
+import GetCash from './assets/icons/Payments/GetCash';
+import GosuslugiBig from './assets/icons/Payments/GosuslugiBig';
+import GovernmentServices from './assets/icons/Payments/GovernmentServices';
+import InternetNetworks from './assets/icons/Payments/InternetNetworks';
+import InvestmentFunds from './assets/icons/Payments/InvestmentFunds';
+import LoanRepayment from './assets/icons/Payments/LoanRepayment';
+import MobileConnection from './assets/icons/Payments/MobileConnection';
+import OnlineGames from './assets/icons/Payments/OnlineGames';
+import OtherPeople from './assets/icons/Payments/OtherPeople';
+import OtherServices from './assets/icons/Payments/OtherServices';
+import PensionFunds from './assets/icons/Payments/PensionFunds';
+import RefundMoney from './assets/icons/Payments/RefundMoney';
+import RepeatBig from './assets/icons/Payments/RepeatBig';
+import ShopBig from './assets/icons/Payments/ShopBig';
+import SWIFT from './assets/icons/Payments/SWIFT';
+import ToOrganizations from './assets/icons/Payments/ToOrganizations';
+import TransfersAddressManagement from './assets/icons/Payments/TransfersAddressManagement';
+import TransfersBetweenYourAccountsCards from './assets/icons/Payments/TransfersBetweenAccounts';
+import TransfersPhoneNumber from './assets/icons/Payments/TransfersPhoneNumber';
+import TransfersWithinBankLegalEntities from './assets/icons/Payments/TransfersWithinBankLegalEntities';
+import Transport from './assets/icons/Payments/Transport';
+import World from './assets/icons/Payments/World';
+
+export {
+  Airplane,
+  CashWithdrawal,
+  Charity,
+  Collecting,
+  CommunalApartment,
+  CurrencyExchange,
+  Education, Elections,
+  ElectronicMoney,
+  ExtractAndReferences,
+  Free,
+  FromCardToCard,
+  GetCash,
+  GosuslugiBig,
+  GovernmentServices,
+  InternetNetworks,
+  InvestmentFunds,
+  LoanRepayment,
+  MobileConnection,
+  OnlineGames,
+  OtherPeople,
+  OtherServices,
+  PensionFunds,
+  RefundMoney,
+  RepeatBig,
+  ShopBig,
+  SWIFT,
+  ToOrganizations,
+  TransfersAddressManagement,
+  TransfersBetweenYourAccountsCards,
+  TransfersPhoneNumber,
+  TransfersWithinBankLegalEntities,
+  Transport,
+  World
+};
+
+// --------------------------Иконки digital service---------------------------------------------------------------------
+import AccountProtection from './assets/icons/DigitalService/AccountProtection';
+import Baggage from './assets/icons/DigitalService/Baggage';
+import Concierge from './assets/icons/DigitalService/Concierge';
+import Drink from './assets/icons/DigitalService/Drink';
+import Gender from './assets/icons/DigitalService/Gender';
+import Gift from './assets/icons/DigitalService/Gift';
+import InjuryFall from './assets/icons/DigitalService/InjuryFall';
+import Transponder from './assets/icons/DigitalService/Transponder';
+
+export {
+  AccountProtection,
+  Baggage,
+  Concierge,
+  Drink,
+  Gender,
+  Gift,
+  InjuryFall,
+  Transponder,
+};
+
+// --------------------------Иконки fines and taxes---------------------------------------------------------------------
+import LandTax from './assets/icons/FinesAndTaxes/LandTax';
+import MovableProperty from './assets/icons/FinesAndTaxes/MovableProperty';
+
+export {
+  LandTax,
+  MovableProperty
+};
+
+// --------------------------Иконки metal-------------------------------------------------------------------------------
+import MetalAccount from './assets/icons/Metal/MetalAccount';
+
+export { MetalAccount };
+
+// --------------------------Иконки insurance---------------------------------------------------------------------------
+import CarAccident from './assets/icons/Insurance/CarAccident';
+import ChildProtection from './assets/icons/Insurance/ChildProtection';
+import ChildrenBankCardBig from './assets/icons/Insurance/ChildrenBankCardBig';
+import CivilLiability from './assets/icons/Insurance/CivilLiability';
+import CreditCardInsurance from './assets/icons/Insurance/CreditCardInsurance';
+import Death from './assets/icons/Insurance/Death';
+import Disability from './assets/icons/Insurance/Disability';
+import DMS from './assets/icons/Insurance/DMS';
+import ExtractAndReference from './assets/icons/Insurance/ExtractAndReferences';
+import Hospital from './assets/icons/Insurance/Hospital';
+import IJS from './assets/icons/Insurance/IJS';
+import Injury from './assets/icons/Insurance/Injury';
+import InsuranceAgainstFraud from './assets/icons/Insurance/InsuranceAgainstFraud';
+import InteriorDecoration from './assets/icons/Insurance/InteriorDecoration';
+import MortgageInsurance from './assets/icons/Insurance/MortgageInsurance';
+
+export {
+  CarAccident,
+  ChildProtection,
+  ChildrenBankCardBig,
+  CivilLiability,
+  CreditCardInsurance,
+  Death,
+  Disability,
+  DMS,
+  ExtractAndReference,
+  Hospital,
+  IJS,
+  Injury,
+  InsuranceAgainstFraud,
+  InteriorDecoration,
+  MortgageInsurance,
+};
+
+// --------------------------Иконки plans-------------------------------------------------------------------------------
+import PricingPlansL from './assets/icons/Plans/PricingPlansL';
+import PricingPlansM from './assets/icons/Plans/PricingPlansM';
+import PricingPlansS from './assets/icons/Plans/PricingPlansS';
+
+export {
+  PricingPlansL,
+  PricingPlansM,
+  PricingPlansS
+};
+
+// --------------------------Иконки savings-----------------------------------------------------------------------------
+import CreditCash from './assets/icons/Savings/CreditCash';
+import Deposit from './assets/icons/Savings/Deposit';
+import Refinancing from './assets/icons/Savings/Refinancing';
+import Savings from './assets/icons/Savings/Savings';
+import SavingsAccountBanknote from './assets/icons/Savings/SavingsAccountBanknote';
+import SavingsAccountMoneyBox from './assets/icons/Savings/SavingsAccountMoneyBox';
+
+export {
+  CreditCash,
+  Deposit,
+  Refinancing,
+  Savings,
+  SavingsAccountBanknote,
+  SavingsAccountMoneyBox,
+};
+
+// --------------------------Иконки my funds----------------------------------------------------------------------------
+import AvailableFunds from './assets/icons/MyFunds/AvailableFunds';
+import StarBig from './assets/icons/MyFunds/StarBig';
+
+export {
+  AvailableFunds,
+  StarBig,
+};
+
+// --------------------------Иконки mobile------------------------------------------------------------------------------
+import VTBMobile from './assets/icons/Mobile/VTBMobile';
+
+export { VTBMobile };
+
+// --------------------------Иконки goal--------------------------------------------------------------------------------
+import OnVacation from './assets/icons/Goal/OnVacation';
+import OnYourself from './assets/icons/Goal/OnYourself';
+
+export {
+  OnVacation,
+  OnYourself
+};
+
+// --------------------------Иконки bonus-------------------------------------------------------------------------------
+import Borrower from './assets/icons/Bonus/Borrower';
+import CollectBonus from './assets/icons/Bonus/CollectBonus';
+import Restaurant from './assets/icons/Bonus/Restaurant';
+
+export {
+  Borrower,
+  CollectBonus,
+  Restaurant,
+};
+
+// --------------------------Иконки operations--------------------------------------------------------------------------
+import AnotherViolation from './assets/icons/Operations/AnotherViolation';
+import ATMOperation from './assets/icons/Operations/ATMOperation';
+import DriverLicense from './assets/icons/Operations/DriverLicense';
+import GetAReceipt from './assets/icons/Operations/GetAReceipt';
+import HearingImpairment from './assets/icons/Operations/HearingImpairment';
+import InvestmentProductsBig from './assets/icons/Operations/InvestmentProductsBig';
+import Maintenance from './assets/icons/Operations/Maintenance';
+import Number from './assets/icons/Operations/Number';
+import OtherBankProducts from './assets/icons/Operations/OtherBankProducts';
+import ParkingAccount from './assets/icons/Operations/ParkingAccount';
+import PercentRatio from './assets/icons/Operations/PercentRatio';
+import PerceptionDisorder from './assets/icons/Operations/PerceptionDisorder';
+import ProtestingOperations from './assets/icons/Operations/ProtestingOperations';
+import QualityOfService from './assets/icons/Operations/QualityOfService';
+import SaveMoney from './assets/icons/Operations/SaveMoney';
+import SpeechDisorder from './assets/icons/Operations/SpeechDisorder';
+import STS from './assets/icons/Operations/STS';
+import TireService from './assets/icons/Operations/TireService';
+import TransferInvestments from './assets/icons/Operations/TransferInvestments';
+import TroikaAccount from './assets/icons/Operations/TroikaAccount';
+import ViolationOfMotorSystem from './assets/icons/Operations/ViolationOfMotorSystem';
+import VisualImpairment from './assets/icons/Operations/VisualImpairment';
+import VolumeOfMargin from './assets/icons/Operations/VolumeOfMargin';
+
+export {
+  AnotherViolation,
+  ATMOperation,
+  DriverLicense,
+  GetAReceipt,
+  HearingImpairment,
+  InvestmentProductsBig,
+  Maintenance,
+  Number,
+  OtherBankProducts,
+  ParkingAccount,
+  PercentRatio,
+  PerceptionDisorder,
+  ProtestingOperations,
+  QualityOfService,
+  SaveMoney,
+  SpeechDisorder,
+  STS,
+  TireService,
+  TransferInvestments,
+  TroikaAccount,
+  ViolationOfMotorSystem,
+  VisualImpairment,
+  VolumeOfMargin,
+};
+
+// --------------------------Иконки other-------------------------------------------------------------------------------
+import Cashback from './assets/icons/Other/Cashback';
+import GhostLiveBalances from './assets/icons/Other/GhostLiveBalances';
+import Goal from './assets/icons/Other/Goal';
+import InformationAlertBig from './assets/icons/Other/InformationAlertBig';
+import ReplenishmentOtherInvestments from './assets/icons/Other/ReplenishmentOtherInvestments';
+
+export {
+  Cashback,
+  GhostLiveBalances,
+  Goal,
+  InformationAlertBig,
+  ReplenishmentOtherInvestments
 };
 
 export { variables, download };
