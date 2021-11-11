@@ -6,9 +6,7 @@ import { IFileData } from '../../../types';
 import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
 import { getBase64, validateFile } from './file-utils';
-import {
-  Chip, Close, download
-} from '../../../index';
+import { Chip, download } from '../../../index';
 
 /**
  * Файловый инпут для небольших файлов, конвертирует файл в base64.
@@ -132,7 +130,7 @@ const InputFile: React.FC<IFileInputProps> = ({
 
   // =======================================================================================================================================
   /** Чип прикрепленного файла */
-  const attachedFileChipsTSX = (name:string, index: number, onClick:(e: React.MouseEvent)=>void) =>
+  const attachedFileChipsTSX = (name:string, index: number, onRemove:(e: React.MouseEvent)=>void) =>
     <div className='rf-file-input__chip' key={name + index}>
       <Chip
         onClick={() => file && download({
@@ -141,34 +139,31 @@ const InputFile: React.FC<IFileInputProps> = ({
         }, file[index]?.file.name)}
         size='s'
         type='outline'
+        onRemove={onRemove}
       >
         <div className='rf-file-input__chip-text'>
           {name}
-          <div className='rf-file-input__chip-button' onClick={onClick}>
-            <Close/>
-          </div>
         </div>
       </Chip>
     </div>;
 
   // =======================================================================================================================================
   /** Отображение чипов прикрепленных файлов */
-  const getFileChips = !!file?.length && file
-    .map((currentFile: IFileData, index: number) => attachedFileChipsTSX(
-      currentFile.file.name,
-      index,
-      (e:React.MouseEvent) => {
-        e.stopPropagation();
-        const newListFile = file;
-        newListFile.splice(index, 1);
+  const fileList = file?.map((currentFile: IFileData, index: number) => attachedFileChipsTSX(
+    currentFile.file.name,
+    index,
+    (e:React.MouseEvent) => {
+      e.stopPropagation();
+      const newListFile = file;
+      newListFile.splice(index, 1);
 
-        if (!newListFile.length) {
-          uploadFile([]);
-        } else {
-          uploadFile([...newListFile]);
-        }
+      if (!newListFile.length) {
+        uploadFile([]);
+      } else {
+        uploadFile([...newListFile]);
       }
-    ));
+    }
+  ));
 
   // =======================================================================================================================================
 
@@ -194,7 +189,7 @@ const InputFile: React.FC<IFileInputProps> = ({
 
       { showChips && file.length > 0 && (
         <div className='rf-file-input__chip-wrapper'>
-          {getFileChips}
+          {fileList}
         </div>
       )}
     </div>

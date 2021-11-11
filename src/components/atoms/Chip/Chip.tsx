@@ -11,7 +11,7 @@ export interface ITagProps {
   /** Функция вызываемая при изменении значения */
   onClick?: () => void;
   /** Функция вызываемая при нажатии на крестик */
-  onRemove?: () => void;
+  onRemove?: (e: React.MouseEvent) => void;
   /** залочен или нет */
   disabled?: boolean;
   /** размер */
@@ -45,7 +45,7 @@ const Chip: React.FC<ITagProps> = ({
 
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onRemove && !disabled && onRemove();
+    onRemove && !disabled && onRemove(e);
   };
 
   // -------------------------------------------------------------------------------------------------------------------
