@@ -105,7 +105,7 @@ Demo.parameters = {
   controls: { disabled: true }
 };
 
-export const Playground: Story = (args: IProps) => {
+export const Playground: Story = (args: any) => {
 
   return (
     <StoryContainer>

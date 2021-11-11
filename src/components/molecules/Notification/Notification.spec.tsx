@@ -23,6 +23,11 @@ describe('Test <Notification/> component', () => {
     const { container } = render(<Notification item={{ title: 'title', variant: 'green' }} />);
     expect(container.getElementsByClassName('rf-notification--green')).toHaveLength(1);
   });
+  
+  it('should render Notification blue', () => {
+    const { container } = render(<Notification item={{ title: 'title', variant: 'blue' }} />);
+    expect(container.getElementsByClassName('rf-notification--blue')).toHaveLength(1);
+  });
 
   it('should render Notification yellow', () => {
     const { container } = render(<Notification item={{ title: 'title', variant: 'yellow' }} />);

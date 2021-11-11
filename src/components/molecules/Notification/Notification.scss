@@ -9,9 +9,9 @@
   align-items: flex-start;
   justify-content: center;
   cursor: default;
-  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-primary);
+  box-shadow: 0 4px 16px rgba(138, 150, 168, 0.4), 0 0 6px rgba(138, 150, 168, 0.08);
   border-radius: 16px;
 }
 
@@ -26,6 +26,10 @@
 }
 
 .rf-notification--default {
+  color: var(--basic-primary);
+}
+
+.rf-notification--blue {
   color: var(--basic-primary);
 }
 
@@ -50,6 +54,7 @@
   @include text-l-16-bold;
   white-space: normal;
 }
+
 .rf-notification__message {
   width: 100%;
   @include text-s-14;
@@ -66,5 +71,5 @@
   background-color: transparent;
   border: 0;
   outline: none;
-  color: var(--basic-tertiary);
+  color: var(--text-tertiary);
 }

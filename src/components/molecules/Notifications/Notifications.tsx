@@ -60,16 +60,10 @@ export interface INotification {
   id?: number;
   /** Тип сообщения */
   variant?: VariantClassic;
-  /** Обратный отсчет для уведомлений о повторном подключении*/
-  countdown?: number[];
-  /** Функция для повторного подключения */
-  retryAction?: () => void;
-  /** Отменить повторение подключения */
-  cancelRetry?: () => void;
 }
 
 const Notifications = () => {
-  /** Флаг по которому оставновить подписку */
+  /** Флаг по которому остановить подписку */
   const obstacle = useRef<Subject<boolean>>(new Subject());
 
   const [sub, setSub] = useState<BehaviorSubject<INotification[]> | null>(null);

@@ -189,6 +189,7 @@ import Add from './assets/icons/Add';
 import Edit from './assets/icons/Edit';
 import Dialog from './assets/icons/Dialog';
 import Microphone from './assets/icons/Microphone';
+import StatusSuccess from './assets/icons/StatusSuccess';
 
 export {
   Refresh,
@@ -232,7 +233,9 @@ export {
   Exchange,
   Add,
   Edit,
-  Dialog
+  Dialog,
+  // Возможно, эта иконка будет заменена
+  StatusSuccess
 };
 
 export { variables, download };

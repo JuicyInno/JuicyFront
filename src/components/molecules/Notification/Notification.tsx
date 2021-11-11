@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Notification.scss';
 import {
-  Close, Info, Check
+  Close, Info, StatusSuccess
 } from '../../../index';
 import { INotification } from '../Notifications/Notifications';
 
@@ -16,25 +16,21 @@ const Notification: FC<IProps> = ({ item, remove }: IProps) => {
   /** Удалить уведомление */
   const removeNotification = () => {
     item.id && remove && remove(item.id);
-    item.cancelRetry && item.cancelRetry();
   };
 
-  const Icon = item.variant === 'green' ? Check : Info;
+  const Icon = item.variant === 'green' ? StatusSuccess : Info;
 
   return (
     <>
       <div className='rf-notification'>
-        <Icon className={`rf-notification--${item.variant || 'default'}`} />
+        <Icon className={ `rf-notification--${item.variant || 'default'}` }/>
         <div className='rf-notification__wrap'>
-          <p className='rf-notification__title'>
-            {item.title}
-          </p>
-          <p className='rf-notification__message'>
-            {item.message}
-          </p></div>
+          <h3 className='rf-notification__title'>{ item.title }</h3>
+          <p className='rf-notification__message'>{ item.message }</p>
+        </div>
 
-        <button type='button' className='rf-notification__close' onClick={removeNotification}>
-          <Close />
+        <button type='button' className='rf-notification__close' onClick={ removeNotification }>
+          <Close/>
         </button>
       </div>
     </>
