@@ -34,6 +34,31 @@ describe('Test <Button/> component', () => {
     expect(container.getElementsByClassName('rf-button--danger')).toHaveLength(1);
   });
 
+  it('should be round', () => {
+    const { container } = render(<Button buttonType='round'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--round')).toHaveLength(1);
+  });
+
+  it('should be icon-round', () => {
+    const { container } = render(<Button buttonType='icon-round'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--icon-round')).toHaveLength(1);
+  });
+
+  it('should be white', () => {
+    const { container } = render(<Button buttonType='white'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--white')).toHaveLength(1);
+  });
+
+  it('should be success', () => {
+    const { container } = render(<Button buttonType='success'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--success')).toHaveLength(1);
+  });
+
+  it('should be round-active', () => {
+    const { container } = render(<Button buttonType='round-active'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--round-active')).toHaveLength(1);
+  });
+
   it('should be icon', () => {
     const { container } = render(<Button buttonType='icon'> Button </Button>);
     expect(container.getElementsByClassName('rf-button--icon')).toHaveLength(1);

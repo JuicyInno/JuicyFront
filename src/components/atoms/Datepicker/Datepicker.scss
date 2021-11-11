@@ -6,32 +6,51 @@
 }
 
 .rf-datepicker__input-wrapper {
-  position: relative;
+  display: flex;
   cursor: pointer;
+  height: 40px;
+  .rf-input__field{
+    padding-left: 29px;
+  }
+  svg{
+    color: var(--text-tertiary); 
+  }
 }
+
+
 
 .rf-datepicker__calendar-button {
   position: absolute;
+  z-index: 99;
   width: 24px;
   height: 24px;
-  top: 50%;
-  right: 8px;
+  top: calc(50% - 1px);
+  left: 14px;
   transform: translateY(-50%) rotate(0);
   transition: 0.35s;
-  color: var(--base-500);
+  color: var(--text-secondary);
   cursor: pointer;
   pointer-events: none;
 
   svg {
-    color: var(--text-secondary);
+    color: var(--text-tertiary); 
   }
+}
+
+.rf-datepicker__calendar-chevron{
+  position: relative;
+  z-index: 99;
+  bottom:32px;
+  right: 38px;
+  top: 8px;
+  color:var(--basic-tertiary);
 }
 
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
 
   .rf-datepicker__calendar-button {
-    color: var(--text-tertiary);
+    color: var(--basic-tertiary);
   }
 }
 

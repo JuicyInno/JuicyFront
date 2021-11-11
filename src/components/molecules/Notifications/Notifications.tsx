@@ -52,22 +52,18 @@ export const sendNotification = (message: INotification, delay = 8000) => {
 // ----Компонент--------------------------------------------------------------------------------------------------------
 
 export interface INotification {
+  /** Заголовок сообщения */
+  title?: string;
   /** Текст сообщения */
-  message: string;
+  message?: string;
   /** ID сообщения */
   id?: number;
   /** Тип сообщения */
   variant?: VariantClassic;
-  /** Обратный отсчет для уведомлений о повторном подключении*/
-  countdown?: number[];
-  /** Функция для повторного подключения */
-  retryAction?: () => void;
-  /** Отменить повторение подключения */
-  cancelRetry?: () => void;
 }
 
 const Notifications = () => {
-  /** Флаг по которому оставновить подписку */
+  /** Флаг по которому остановить подписку */
   const obstacle = useRef<Subject<boolean>>(new Subject());
 
   const [sub, setSub] = useState<BehaviorSubject<INotification[]> | null>(null);

@@ -1,14 +1,40 @@
 @import "../../../styles/mixins";
 .filter__wrapper {
   width: 880px;
+  box-shadow: 0px 2px 6px rgba(25, 59, 104, 0.15);
+  border-radius: 20px;
+  .rf-input__field{
+    padding-left: 29px;
+    &::placeholder{
+      font-family: 400 !important;
+    }
+  }
+  .rf-search {
+    width: 282px;
+  }
+}
+
+.card-filter__status-picker{
+  width:200px;
+  .rf-select__input {
+    &::placeholder{
+      color: var(--text-secondary);
+    }
+    .rf-select__list {
+      top: 8px;
+      width: auto;
+    }
+  }
+
 }
 .card-filter__wrapper {
   display: flex;
-
+  height: 40px;
 }
 
 .card-filter__datepicker {
   width: 250px;
+  box-sizing: content-box;
   padding-right: 12px;
 }
 
@@ -17,3 +43,4 @@
   margin-left: auto;
   left:20px
 }
+

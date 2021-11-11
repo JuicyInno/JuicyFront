@@ -5,14 +5,13 @@ import { classnames } from '../../../utils/classnames';
 import { Variant } from '../../../types';
 
 export interface IScheduleLegendItemProps {
-  /** Класс для корневого элемента. */
-  className?: string;
-  color: Variant;
+  /** Цвет точки. */
+  variant: Variant;
 }
 
-const ScheduleLegendItem: FC<IScheduleLegendItemProps> = ({ children, className, color }) => {
+const ScheduleLegendItem: FC<IScheduleLegendItemProps> = ({ children, variant }) => {
   return (
-    <div className={classnames(className, 'rf-schedule-legend-item', `rf-schedule-legend-item_${color}`)}>
+    <div className={classnames('rf-schedule-legend-item', `rf-schedule-legend-item_${variant}`)}>
       {children}
     </div>
   );

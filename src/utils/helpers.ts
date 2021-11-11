@@ -1,7 +1,9 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IFormattedDate, Size } from '../types';
+import {
+  IFileData, IFormattedDate, Size
+} from '../types';
 import moment from 'moment';
 
 const months = [
@@ -160,7 +162,9 @@ export const sizeClass: Record<Size, string> = {
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
-  'xxl': 'rf--xxl'
+  'xxl': 'rf--xxl',
+  'xxxl': 'rf--xxxl',
+  'xxxxl': 'rf--xxxxl'
 };
 
 export const iconSize: Record<Size, string> = {
@@ -243,3 +247,33 @@ export const extractTextFromHTML = (element: string): string => {
 
   return result;
 };
+
+/** Debounce */
+export function debounce(fn: (...args: any) => any, ms: number) {
+  let timeout: any;
+  return function(...args: any) {
+    // @ts-ignore
+    const fnCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+}
+
+export const initialFiles: IFileData[] = [
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot1.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot2.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  }
+];

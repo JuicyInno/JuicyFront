@@ -45,8 +45,9 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification } from './components/molecules/Notifications';
+import Notifications, { sendNotification, } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
+import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
@@ -64,12 +65,14 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
-import Schedule, { ScheduleLegend, ScheduleLegendItem } from './components/molecules/Schedule';
+import Schedule, {
+  ScheduleLegend,
+  ScheduleLegendItem,
+} from './components/molecules/Schedule';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
-
 
 export {
   CommentTile,
@@ -125,6 +128,7 @@ export {
   Column,
   UserPhoto,
   Card,
+  EntityCard,
   Toast,
   History,
   Status,
@@ -138,7 +142,7 @@ export {
   UsersStack,
   ContentExpander,
   BackdropLoader,
-  PopupMaker
+  PopupMaker,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -151,6 +155,7 @@ import Success from './assets/icons/Success';
 import Reduce from './assets/icons/Reduce';
 import ChevronDown from './assets/icons/ChevronDown';
 import ChevronLeft from './assets/icons/ChevronLeft';
+import ChevronRight from './assets/icons/ChevronRight';
 import Info from './assets/icons/Info';
 import Calendar from './assets/icons/Calendar';
 import Up from './assets/icons/Up';
@@ -182,6 +187,9 @@ import Left from './assets/icons/Left';
 import Exchange from './assets/icons/Exchange';
 import Add from './assets/icons/Add';
 import Edit from './assets/icons/Edit';
+import Dialog from './assets/icons/Dialog';
+import Microphone from './assets/icons/Microphone';
+import StatusSuccess from './assets/icons/StatusSuccess';
 
 export {
   Refresh,
@@ -194,6 +202,7 @@ export {
   Info,
   Calendar,
   ChevronLeft,
+  ChevronRight,
   Up,
   Eye,
   EyeClose,
@@ -214,6 +223,7 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Microphone,
   Exit,
   External,
   Cart,
@@ -222,7 +232,10 @@ export {
   Left,
   Exchange,
   Add,
-  Edit
+  Edit,
+  Dialog,
+  // Возможно, эта иконка будет заменена
+  StatusSuccess
 };
 
 // --------------------------Новые иконки-------------------------------------------------------------------------------
