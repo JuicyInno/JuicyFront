@@ -45,7 +45,7 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification } from './components/molecules/Notifications';
+import Notifications, { sendNotification, } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
@@ -65,12 +65,14 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
-import Schedule, { ScheduleLegend, ScheduleLegendItem } from './components/molecules/Schedule';
+import Schedule, {
+  ScheduleLegend,
+  ScheduleLegendItem,
+} from './components/molecules/Schedule';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
-
 
 export {
   CommentTile,
@@ -186,6 +188,8 @@ import Exchange from './assets/icons/Exchange';
 import Add from './assets/icons/Add';
 import Edit from './assets/icons/Edit';
 import Dialog from './assets/icons/Dialog';
+import Microphone from './assets/icons/Microphone';
+import StatusSuccess from './assets/icons/StatusSuccess';
 
 export {
   Refresh,
@@ -219,6 +223,7 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Microphone,
   Exit,
   External,
   Cart,
@@ -228,7 +233,9 @@ export {
   Exchange,
   Add,
   Edit,
-  Dialog
+  Dialog,
+  // Возможно, эта иконка будет заменена
+  StatusSuccess
 };
 
 export { variables, download };

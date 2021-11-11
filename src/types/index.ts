@@ -19,7 +19,9 @@ export interface ICustomOption extends IOption {
   __isNew__: boolean;
 }
 
-export function isCustomOption(option: IOption | ICustomOption): option is ICustomOption {
+export function isCustomOption(
+  option: IOption | ICustomOption
+): option is ICustomOption {
   return (option as ICustomOption).__isNew__;
 }
 
@@ -100,16 +102,22 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
-export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
+export type Variant =
+  | VariantClassic
+  | 'blue'
+  | 'lightBlue'
+  | 'turquoise'
+  | 'magenta'
+  | 'purple'
+  | 'violet';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
-
+  'blue',
   'green',
   'yellow',
-  'red'
-
+  'red',
 ];
 export const variants: Variant[] = [
   'default',
@@ -121,7 +129,7 @@ export const variants: Variant[] = [
   'red',
   'magenta',
   'purple',
-  'violet'
+  'violet',
 ];
 
 /** Цвет фона аватара */
