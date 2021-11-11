@@ -226,35 +226,36 @@ export {
 };
 
 // --------------------------Новые иконки-------------------------------------------------------------------------------
+// --------------------------Иконки 24px--------------------------------------------------------------------------------
 // --------------------------Иконки tools-------------------------------------------------------------------------------
-import AutoPayment from './assets/icons/Tools/AutoPayment';
-import Cancel from './assets/icons/Tools/Cancel';
-import Cash from './assets/icons/Tools/Cash';
-import Change from './assets/icons/Tools/Change';
-import ChildrenBankCard from './assets/icons/Tools/ChildrenBankCard';
-import Cog from './assets/icons/Tools/Cog';
-import Location from './assets/icons/Tools/Location';
-import Lock from './assets/icons/Tools/Lock';
-import MenuHorizontal from './assets/icons/Tools/MenuHorizontal';
-import MenuVertical from './assets/icons/Tools/MenuVertical';
-import Microphone from './assets/icons/Tools/Microphone';
-import NewCalendar from './assets/icons/Tools/Calendar'; // refactor name to Calendar
-import NewEdit from './assets/icons/Tools/Edit'; // refactor name to Edit
-import NewRefresh from './assets/icons/Tools/Refresh';
-import NewTuneUp from './assets/icons/Tools/TuneUp'; // refactor name to TuneUp
-import Link from './assets/icons/Tools/Link';
-import OnCard from './assets/icons/Tools/OnCard';
-import OnCount from './assets/icons/Tools/OnCount';
-import OnPhone from './assets/icons/Tools/OnPhone';
-import Point from './assets/icons/Tools/Point';
-import Printer from './assets/icons/Tools/Printer';
-import QR from './assets/icons/Tools/QR';
-import Receipt from './assets/icons/Tools/Receipt';
-import Repeat from './assets/icons/Tools/Repeat';
-import Shop from './assets/icons/Tools/Shop';
-import ShowAll from './assets/icons/Tools/ShowAll';
-import Template from './assets/icons/Tools/Template';
-import Trash from './assets/icons/Tools/Trash';
+import AutoPayment from './assets/icons/24px/Tools/AutoPayment';
+import Cancel from './assets/icons/24px/Tools/Cancel';
+import Cash from './assets/icons/24px/Tools/Cash';
+import Change from './assets/icons/24px/Tools/Change';
+import ChildrenBankCard from './assets/icons/24px/Tools/ChildrenBankCard';
+import Cog from './assets/icons/24px/Tools/Cog';
+import Location from './assets/icons/24px/Tools/Location';
+import Lock from './assets/icons/24px/Tools/Lock';
+import MenuHorizontal from './assets/icons/24px/Tools/MenuHorizontal';
+import MenuVertical from './assets/icons/24px/Tools/MenuVertical';
+import Microphone from './assets/icons/24px/Tools/Microphone';
+import NewCalendar from './assets/icons/24px/Tools/Calendar'; // refactor name to Calendar
+import NewDoc from './assets/icons/24px/Tools/Doc'; // refactor name to Doc
+import NewEdit from './assets/icons/24px/Tools/Edit'; // refactor name to Edit
+import NewRefresh from './assets/icons/24px/Tools/Refresh';
+import NewTuneUp from './assets/icons/24px/Tools/TuneUp'; // refactor name to TuneUp
+import Link from './assets/icons/24px/Tools/Link';
+import OnCard from './assets/icons/24px/Tools/OnCard';
+import OnPhone from './assets/icons/24px/Tools/OnPhone';
+import Point from './assets/icons/24px/Tools/Point';
+import Printer from './assets/icons/24px/Tools/Printer';
+import QR from './assets/icons/24px/Tools/QR';
+import Receipt from './assets/icons/24px/Tools/Receipt';
+import Repeat from './assets/icons/24px/Tools/Repeat';
+import Shop from './assets/icons/24px/Tools/Shop';
+import ShowAll from './assets/icons/24px/Tools/ShowAll';
+import Template from './assets/icons/24px/Tools/Template';
+import Trash from './assets/icons/24px/Tools/Trash';
 
 
 export {
@@ -270,12 +271,12 @@ export {
   MenuVertical,
   Microphone,
   NewCalendar,
+  NewDoc,
   NewEdit,
   NewRefresh,
   NewTuneUp,
   Link,
   OnCard,
-  OnCount,
   OnPhone,
   Point,
   Printer,
@@ -289,25 +290,25 @@ export {
 };
 
 // --------------------------Иконки alerts------------------------------------------------------------------------------
-import Dialog from './assets/icons/Alerts/Dialog';
-import Holidays from './assets/icons/Alerts/Holidays';
-import InfoAlert from './assets/icons/Alerts/InfoAlert';
-import NotificationIcon from './assets/icons/Alerts/Notification';
-import QuestionAlert from './assets/icons/Alerts/QuestionAlert';
+import Dialog from './assets/icons/24px/Alerts/Dialog';
+import Holidays from './assets/icons/24px/Alerts/Holidays';
+import InformationAlert from './assets/icons/24px/Alerts/InformationAlert';
+import NotificationIcon from './assets/icons/24px/Alerts/Notification';
+import QuestionAlert from './assets/icons/24px/Alerts/QuestionAlert';
 
 export {
   Dialog,
   Holidays,
-  InfoAlert,
+  InformationAlert,
   NotificationIcon,
   QuestionAlert
 };
 
 // --------------------------Иконки messaging---------------------------------------------------------------------------
-import Alternative from './assets/icons/Messaging/Alternative';
-import Envelope from './assets/icons/Messaging/Envelope';
-import Phone from './assets/icons/Messaging/Phone';
-import Smartphone from './assets/icons/Messaging/Smartphone';
+import Alternative from './assets/icons/24px/Messaging/Alternative';
+import Envelope from './assets/icons/24px/Messaging/Envelope';
+import Phone from './assets/icons/24px/Messaging/Phone';
+import Smartphone from './assets/icons/24px/Messaging/Smartphone';
 
 export {
   Alternative,
@@ -317,13 +318,13 @@ export {
 };
 
 // --------------------------Иконки account-----------------------------------------------------------------------------
-import NewCopy from './assets/icons/Account/Copy';
-import NewExit from './assets/icons/Account/Exit'; // refactor name to Exit
-import EyeOpen from './assets/icons/Account/EyeOpen';
-import NewEyeClose from './assets/icons/Account/EyeClose'; // refactor name to EyeClose
-import NewSearch from './assets/icons/Account/Search'; // refactor name to Search
-import Send from './assets/icons/Account/Send';
-import User from './assets/icons/Account/User';
+import NewCopy from './assets/icons/24px/Account/Copy';
+import NewExit from './assets/icons/24px/Account/Exit'; // refactor name to Exit
+import EyeOpen from './assets/icons/24px/Account/EyeOpen';
+import NewEyeClose from './assets/icons/24px/Account/EyeClose'; // refactor name to EyeClose
+import NewSearch from './assets/icons/24px/Account/Search'; // refactor name to Search
+import Send from './assets/icons/24px/Account/Send';
+import User from './assets/icons/24px/Account/User';
 
 export {
   NewCopy,
@@ -336,20 +337,20 @@ export {
 };
 
 // --------------------------Иконки specific----------------------------------------------------------------------------
-import Archive from './assets/icons/Specific/Archive';
-import BankCard from './assets/icons/Specific/BankCard';
-import CardRecommend from './assets/icons/Specific/CardRecommend';
-import Coin from './assets/icons/Specific/Coin';
-import Courier from './assets/icons/Specific/Сourier';
-import Diagram from './assets/icons/Specific/Diagram';
-import DigitalCard from './assets/icons/Specific/DigitalCard';
-import Gosuslygi from './assets/icons/Specific/Gosuslygi';
-import InvestmentProducts from './assets/icons/Specific/InvestmentProducts';
-import LightBulb from './assets/icons/Specific/LightBulb';
-import NewBank from './assets/icons/Specific/Bank'; // refactor name to Bank
-import Safe from './assets/icons/Specific/Safe';
-import SpecialSearch from './assets/icons/Specific/SpecialSearch';
-import Star from './assets/icons/Specific/Star';
+import Archive from './assets/icons/24px/Specific/Archive';
+import BankCard from './assets/icons/24px/Specific/BankCard';
+import CardRecommend from './assets/icons/24px/Specific/CardRecommend';
+import Coin from './assets/icons/24px/Specific/Coin';
+import Courier from './assets/icons/24px/Specific/Сourier';
+import Diagram from './assets/icons/24px/Specific/Diagram';
+import DigitalCard from './assets/icons/24px/Specific/DigitalCard';
+import Gosuslygi from './assets/icons/24px/Specific/Gosuslygi';
+import InvestmentProducts from './assets/icons/24px/Specific/InvestmentProducts';
+import LightBulb from './assets/icons/24px/Specific/LightBulb';
+import NewBank from './assets/icons/24px/Specific/Bank'; // refactor name to Bank
+import Safe from './assets/icons/24px/Specific/Safe';
+import SpecialSearch from './assets/icons/24px/Specific/SpecialSearch';
+import Star from './assets/icons/24px/Specific/Star';
 
 export {
   Archive,
@@ -369,30 +370,30 @@ export {
 };
 
 // --------------------------Иконки arrows------------------------------------------------------------------------------
-import Attach from './assets/icons/Arrows/Attach';
-import ChevronUp from './assets/icons/Arrows/ChevronUp';
-import Down from './assets/icons/Arrows/Down';
-import DownMini from './assets/icons/Arrows/DownMini';
-import InfoStatus from './assets/icons/Arrows/InfoStatus';
-import NewAdd from './assets/icons/Arrows/Add';
-import NewChevronDown from './assets/icons/Arrows/ChevronDown';
-import NewChevronLeft from './assets/icons/Arrows/ChevronLeft';
-import NewChevronRight from './assets/icons/Arrows/ChevronRight';
-import NewDownload from './assets/icons/Arrows/Download';
-import NewExchange from './assets/icons/Arrows/Exchange';
-import NewLeft from './assets/icons/Arrows/Left';
-import NewClose from './assets/icons/Arrows/Close';
-import NewReduce from './assets/icons/Arrows/Reduce';
-import NewSuccess from './assets/icons/Arrows/Success';
-import NewUp from './assets/icons/Arrows/Up';
-import Renew from './assets/icons/Arrows/Renew';
-import Right from './assets/icons/Arrows/Right';
-import Sort from './assets/icons/Arrows/Sort';
-import SubdirectoryRight from './assets/icons/Arrows/SubdirectoryRight';
-import Transfer from './assets/icons/Arrows/Transfer';
-import Upload from './assets/icons/Arrows/Upload';
-import UpMini from './assets/icons/Arrows/UpMini';
-import Warning from './assets/icons/Arrows/Warning';
+import Attach from './assets/icons/24px/Arrows/Attach';
+import ChevronUp from './assets/icons/24px/Arrows/ChevronUp';
+import Down from './assets/icons/24px/Arrows/Down';
+import DownMini from './assets/icons/24px/Arrows/DownMini';
+import InfoStatus from './assets/icons/24px/Arrows/InfoStatus';
+import NewAdd from './assets/icons/24px/Arrows/Add';
+import NewChevronDown from './assets/icons/24px/Arrows/ChevronDown';
+import NewChevronLeft from './assets/icons/24px/Arrows/ChevronLeft';
+import NewChevronRight from './assets/icons/24px/Arrows/ChevronRight';
+import NewDownload from './assets/icons/24px/Arrows/Download';
+import NewExchange from './assets/icons/24px/Arrows/Exchange';
+import NewLeft from './assets/icons/24px/Arrows/Left';
+import NewClose from './assets/icons/24px/Arrows/Close';
+import NewReduce from './assets/icons/24px/Arrows/Reduce';
+import NewSuccess from './assets/icons/24px/Arrows/Success';
+import NewUp from './assets/icons/24px/Arrows/Up';
+import Renew from './assets/icons/24px/Arrows/Renew';
+import Right from './assets/icons/24px/Arrows/Right';
+import Sort from './assets/icons/24px/Arrows/Sort';
+import SubdirectoryRight from './assets/icons/24px/Arrows/SubdirectoryRight';
+import Transfer from './assets/icons/24px/Arrows/Transfer';
+import Upload from './assets/icons/24px/Arrows/Upload';
+import UpMini from './assets/icons/24px/Arrows/UpMini';
+import Warning from './assets/icons/24px/Arrows/Warning';
 
 export {
   Attach,
@@ -422,10 +423,10 @@ export {
 };
 
 // --------------------------Иконки Themes------------------------------------------------------------------------------
-import DarkModeFill from './assets/icons/Themes/DarkModeFill';
-import DarkModeStroke from './assets/icons/Themes/DarkModeStroke';
-import LightModeStroke from './assets/icons/Themes/LightModeStroke';
-import LightModeStrokeFill from './assets/icons/Themes/LightModeStrokeFill';
+import DarkModeFill from './assets/icons/24px/Themes/DarkModeFill';
+import DarkModeStroke from './assets/icons/24px/Themes/DarkModeStroke';
+import LightModeStroke from './assets/icons/24px/Themes/LightModeStroke';
+import LightModeStrokeFill from './assets/icons/24px/Themes/LightModeStrokeFill';
 
 export {
   DarkModeFill,
@@ -435,22 +436,22 @@ export {
 };
 
 // --------------------------Иконки status------------------------------------------------------------------------------
-import Blocked from './assets/icons/Status/Blocked';
-import Flag from './assets/icons/Status/Flag';
-import InfoFill from './assets/icons/Status/InfoFill';
-import InfoOutline from './assets/icons/Status/InfoOutline';
-import Loader from './assets/icons/Status/Loader';
-import Pending from './assets/icons/Status/Pending';
-import Pin from './assets/icons/Status/Pin';
-import Release from './assets/icons/Status/Release';
-import Reserved from './assets/icons/Status/Reserved';
-import StatusError from './assets/icons/Status/Error';
-import StatusInformation from './assets/icons/Status/Information';
-import StatusReturn from './assets/icons/Status/Return';
-import StatusWarning from './assets/icons/Status/Warning';
-import Timer from './assets/icons/Status/Timer';
-import Troyka from './assets/icons/Status/Troyka';
-import Unread from './assets/icons/Status/Unread';
+import Blocked from './assets/icons/24px/Status/Blocked';
+import Flag from './assets/icons/24px/Status/Flag';
+import InfoFill from './assets/icons/24px/Status/InfoFill';
+import InfoOutline from './assets/icons/24px/Status/InfoOutline';
+import Loader from './assets/icons/24px/Status/Loader';
+import Pending from './assets/icons/24px/Status/Pending';
+import Pin from './assets/icons/24px/Status/Pin';
+import Release from './assets/icons/24px/Status/Release';
+import Reserved from './assets/icons/24px/Status/Reserved';
+import StatusError from './assets/icons/24px/Status/Error';
+import StatusInformation from './assets/icons/24px/Status/Information';
+import StatusReturn from './assets/icons/24px/Status/Return';
+import StatusWarning from './assets/icons/24px/Status/Warning';
+import Timer from './assets/icons/24px/Status/Timer';
+import Troyka from './assets/icons/24px/Status/Troyka';
+import Unread from './assets/icons/24px/Status/Unread';
 
 export {
   Blocked,
@@ -472,17 +473,17 @@ export {
 };
 
 // --------------------------Иконки social------------------------------------------------------------------------------
-import Android from './assets/icons/Social/Android';
-import Apple from './assets/icons/Social/Apple';
-import Classmates from './assets/icons/Social/Classmates';
-import Facebook from './assets/icons/Social/Facebook';
-import GooglePlay from './assets/icons/Social/GooglePlay';
-import Huawei from './assets/icons/Social/Huawei';
-import Telegram from './assets/icons/Social/Telegram';
-import Twitter from './assets/icons/Social/Twitter';
-import VK from './assets/icons/Social/VK';
-import Windows from './assets/icons/Social/Windows';
-import YouTube from './assets/icons/Social/Youtube';
+import Android from './assets/icons/24px/Social/Android';
+import Apple from './assets/icons/24px/Social/Apple';
+import Classmates from './assets/icons/24px/Social/Classmates';
+import Facebook from './assets/icons/24px/Social/Facebook';
+import GooglePlay from './assets/icons/24px/Social/GooglePlay';
+import Huawei from './assets/icons/24px/Social/Huawei';
+import Telegram from './assets/icons/24px/Social/Telegram';
+import Twitter from './assets/icons/24px/Social/Twitter';
+import VK from './assets/icons/24px/Social/VK';
+import Windows from './assets/icons/24px/Social/Windows';
+import YouTube from './assets/icons/24px/Social/Youtube';
 
 export {
   Android,
@@ -498,91 +499,106 @@ export {
   YouTube
 };
 
+// --------------------------Иконки 40px--------------------------------------------------------------------------------
 // --------------------------Иконки settings----------------------------------------------------------------------------
-import AnotherCard from './assets/icons/Settings/AnotherCard';
-import Authorization from './assets/icons/Settings/Authorization';
-import Connect from './assets/icons/Settings/Connect';
-import CreditCard from './assets/icons/Settings/CreditCard';
-import DebitCard from './assets/icons/Settings/DebitCard';
-import DigitalCardM from './assets/icons/Settings/DigitalCard';
-import Limits from './assets/icons/Settings/Limits';
-import ListOfCards from './assets/icons/Settings/ListOfCards';
-import Login from './assets/icons/Settings/Login';
-import NewCard from './assets/icons/Settings/Card';
-import ProductSettings from './assets/icons/Settings/ProductSettings';
-import Push from './assets/icons/Settings/Push';
+import AnotherCard from './assets/icons/40px/Settings/AnotherCard';
+import Authorization from './assets/icons/40px/Settings/Authorization';
+import CreditCard from './assets/icons/40px/Settings/CreditCard';
+import DebitCard from './assets/icons/40px/Settings/DebitCard';
+import DigitalCardM from './assets/icons/40px/Settings/DigitalCard';
+import Limits from './assets/icons/40px/Settings/Limits';
+import LinkBig from './assets/icons/40px/Settings/LinkBig';
+import ListOfCards from './assets/icons/40px/Settings/ListOfCards';
+import Login from './assets/icons/40px/Settings/Login';
+import NewCard from './assets/icons/40px/Settings/Card';
+import NotificationBig from './assets/icons/40px/Settings/NotificationBig';
+import SpecialSearchBig from './assets/icons/40px/Settings/SpecialSearchBig';
+import TuneUpBig from './assets/icons/40px/Settings/TuneUpBig';
 
 export {
   AnotherCard,
   Authorization,
-  Connect,
   CreditCard,
   DebitCard,
   DigitalCardM,
   Limits,
+  LinkBig,
   ListOfCards,
   Login,
   NewCard, // refactor name to Card
-  ProductSettings,
-  Push
+  NotificationBig,
+  SpecialSearchBig,
+  TuneUpBig
 };
 
 // --------------------------Иконки Profile And Bank Contact------------------------------------------------------------
-import BackCall from './assets/icons/ProfileAndBankContact/BackCall';
-import OperationCompleted from './assets/icons/ProfileAndBankContact/OperationCompleted';
-import Salary from './assets/icons/ProfileAndBankContact/Salary';
-import TransferOfSalary from './assets/icons/ProfileAndBankContact/TransferOfSalary';
-import WebsiteCall from './assets/icons/ProfileAndBankContact/WebsiteCall';
+import BackCall from './assets/icons/40px/ProfileAndBankContact/BackCall';
+import CogBig from './assets/icons/40px/ProfileAndBankContact/CogBig';
+import DialogBig from './assets/icons/40px/ProfileAndBankContact/DialogBig';
+import EnvelopeBig from './assets/icons/40px/ProfileAndBankContact/EnvelopeBig';
+import ExitBig from './assets/icons/40px/ProfileAndBankContact/ExitBig';
+import OperationCompleted from './assets/icons/40px/ProfileAndBankContact/OperationCompleted';
+import PhoneBig from './assets/icons/40px/ProfileAndBankContact/PhoneBig';
+import PointBig from './assets/icons/40px/ProfileAndBankContact/PointBig';
+import Salary from './assets/icons/40px/ProfileAndBankContact/Salary';
+import TransferOfSalary from './assets/icons/40px/ProfileAndBankContact/TransferOfSalary';
+import UserBig from './assets/icons/40px/ProfileAndBankContact/UserBig';
+import WebsiteCall from './assets/icons/40px/ProfileAndBankContact/WebsiteCall';
 
 export {
   BackCall,
+  CogBig,
+  DialogBig,
+  EnvelopeBig,
+  ExitBig,
   OperationCompleted,
+  PhoneBig,
+  PointBig,
   Salary,
   TransferOfSalary,
+  UserBig,
   WebsiteCall
 };
 
 // --------------------------Иконки Credit------------------------------------------------------------------------------
-import Autocredit from './assets/icons/Credit/Autocredit';
-import Credit from './assets/icons/Credit/Credit';
-import Credits from './assets/icons/Credit/Credits';
-import Mortgage from './assets/icons/Credit/Mortgage';
+import AutoCredit from './assets/icons/40px/Credit/AutoCredit';
+import Credit from './assets/icons/40px/Credit/Credit';
+import Credits from './assets/icons/40px/Credit/Credits';
+import Mortgage from './assets/icons/40px/Credit/Mortgage';
 
 export {
-  Autocredit,
+  AutoCredit,
   Credit,
   Credits,
   Mortgage
 };
 
 // --------------------------Иконки investments-------------------------------------------------------------------------
-import Brocker from './assets/icons/Investments/Brocker';
-import IIS from './assets/icons/Investments/IIS';
-import Investment from './assets/icons/Investments/Investment';
-import Microinvestments from './assets/icons/Investments/Microinvestments';
+import Broker from './assets/icons/40px/Investments/Broker';
+import IIS from './assets/icons/40px/Investments/IIS';
+import Investment from './assets/icons/40px/Investments/Investment';
+import MicroInvestments from './assets/icons/40px/Investments/MicroInvestments';
 
 export {
-  Brocker,
+  Broker,
   IIS,
   Investment,
-  Microinvestments
+  MicroInvestments
 };
 
 // --------------------------Иконки refinancing-------------------------------------------------------------------------
-import CreditCardRefinancing from './assets/icons/Refinancing/CreditCardRefinancing';
-import DedicatedLineOfCredit from './assets/icons/Refinancing/DedicatedLineOfCredit';
-import MortgageRefinancing from './assets/icons/Refinancing/MortgageRefinancing';
+import CreditCardRefinancing from './assets/icons/40px/Refinancing/CreditCardRefinancing';
+import MortgageRefinancing from './assets/icons/40px/Refinancing/MortgageRefinancing';
 
 export {
   CreditCardRefinancing,
-  DedicatedLineOfCredit,
   MortgageRefinancing
 };
 
 // --------------------------Иконки documents---------------------------------------------------------------------------
-import Doc from './assets/icons/Documents/Doc';
-import Passport from './assets/icons/Documents/Passport';
-import ReceiptBig from './assets/icons/Documents/ReceiptBig';
+import Doc from './assets/icons/40px/Documents/Doc';
+import Passport from './assets/icons/40px/Documents/Passport';
+import ReceiptBig from './assets/icons/40px/Documents/ReceiptBig';
 
 export {
   Doc,
@@ -591,59 +607,55 @@ export {
 };
 
 // --------------------------Иконки payments----------------------------------------------------------------------------
-import Airplane from './assets/icons/Payments/Airplane';
-import CashWithdrawal from './assets/icons/Payments/CashWithdrawal';
-import Charity from './assets/icons/Payments/Charity';
-import Collecting from './assets/icons/Payments/Collecting';
-import CommunalApartment from './assets/icons/Payments/CommunalApartment';
-import CurrencyExchange from './assets/icons/Payments/CurrencyExchange';
-import Education from './assets/icons/Payments/Education';
-import Elections from './assets/icons/Payments/Elections';
-import ElectronicMoney from './assets/icons/Payments/ElectronicMoney';
-import ExtractAndReferences from './assets/icons/Payments/ExtractAndReferences';
-import Free from './assets/icons/Payments/Free';
-import FromCardToCard from './assets/icons/Payments/FromCardToCard';
-import GetCash from './assets/icons/Payments/GetCash';
-import GosuslugiBig from './assets/icons/Payments/GosuslugiBig';
-import GovernmentServices from './assets/icons/Payments/GovernmentServices';
-import InternetNetworks from './assets/icons/Payments/InternetNetworks';
-import InvestmentFunds from './assets/icons/Payments/InvestmentFunds';
-import LoanRepayment from './assets/icons/Payments/LoanRepayment';
-import MobileConnection from './assets/icons/Payments/MobileConnection';
-import OnlineGames from './assets/icons/Payments/OnlineGames';
-import OtherPeople from './assets/icons/Payments/OtherPeople';
-import OtherServices from './assets/icons/Payments/OtherServices';
-import PensionFunds from './assets/icons/Payments/PensionFunds';
-import RefundMoney from './assets/icons/Payments/RefundMoney';
-import RepeatBig from './assets/icons/Payments/RepeatBig';
-import ShopBig from './assets/icons/Payments/ShopBig';
-import SWIFT from './assets/icons/Payments/SWIFT';
-import ToOrganizations from './assets/icons/Payments/ToOrganizations';
-import TransfersAddressManagement from './assets/icons/Payments/TransfersAddressManagement';
-import TransfersBetweenYourAccountsCards from './assets/icons/Payments/TransfersBetweenAccounts';
-import TransfersPhoneNumber from './assets/icons/Payments/TransfersPhoneNumber';
-import TransfersWithinBankLegalEntities from './assets/icons/Payments/TransfersWithinBankLegalEntities';
-import Transport from './assets/icons/Payments/Transport';
-import World from './assets/icons/Payments/World';
+import Airplane from './assets/icons/40px/Payments/Airplane';
+import CashBig from './assets/icons/40px/Payments/CashBig';
+import CashWithdrawal from './assets/icons/40px/Payments/CashWithdrawal';
+import Charity from './assets/icons/40px/Payments/Charity';
+import Collecting from './assets/icons/40px/Payments/Collecting';
+import CurrencyExchange from './assets/icons/40px/Payments/CurrencyExchange';
+import Education from './assets/icons/40px/Payments/Education';
+import Elections from './assets/icons/40px/Payments/Elections';
+import ElectronicMoney from './assets/icons/40px/Payments/ElectronicMoney';
+import ExtractAndReferences from './assets/icons/40px/Payments/ExtractAndReferences';
+import Free from './assets/icons/40px/Payments/Free';
+import FromCardToCard from './assets/icons/40px/Payments/FromCardToCard';
+import GosuslugiBig from './assets/icons/40px/Payments/GosuslugiBig';
+import GovernmentServices from './assets/icons/40px/Payments/GovernmentServices';
+import InternetNetworks from './assets/icons/40px/Payments/InternetNetworks';
+import InvestmentFunds from './assets/icons/40px/Payments/InvestmentFunds';
+import MobileConnection from './assets/icons/40px/Payments/MobileConnection';
+import OnlineGames from './assets/icons/40px/Payments/OnlineGames';
+import OtherPeople from './assets/icons/40px/Payments/OtherPeople';
+import OtherServices from './assets/icons/40px/Payments/OtherServices';
+import PensionFunds from './assets/icons/40px/Payments/PensionFunds';
+import RefundMoney from './assets/icons/40px/Payments/RefundMoney';
+import RepeatBig from './assets/icons/40px/Payments/RepeatBig';
+import ShopBig from './assets/icons/40px/Payments/ShopBig';
+import SWIFT from './assets/icons/40px/Payments/SWIFT';
+import ToOrganizations from './assets/icons/40px/Payments/ToOrganizations';
+import TransfersAddressManagement from './assets/icons/40px/Payments/TransfersAddressManagement';
+import TransfersBetweenYourAccountsCards from './assets/icons/40px/Payments/TransfersBetweenAccounts';
+import TransfersPhoneNumber from './assets/icons/40px/Payments/TransfersPhoneNumber';
+import TransfersWithinBankLegalEntities from './assets/icons/40px/Payments/TransfersWithinBankLegalEntities';
+import Transport from './assets/icons/40px/Payments/Transport';
+import World from './assets/icons/40px/Payments/World';
 
 export {
   Airplane,
+  CashBig,
   CashWithdrawal,
   Charity,
   Collecting,
-  CommunalApartment,
   CurrencyExchange,
   Education, Elections,
   ElectronicMoney,
   ExtractAndReferences,
   Free,
   FromCardToCard,
-  GetCash,
   GosuslugiBig,
   GovernmentServices,
   InternetNetworks,
   InvestmentFunds,
-  LoanRepayment,
   MobileConnection,
   OnlineGames,
   OtherPeople,
@@ -663,14 +675,14 @@ export {
 };
 
 // --------------------------Иконки digital service---------------------------------------------------------------------
-import AccountProtection from './assets/icons/DigitalService/AccountProtection';
-import Baggage from './assets/icons/DigitalService/Baggage';
-import Concierge from './assets/icons/DigitalService/Concierge';
-import Drink from './assets/icons/DigitalService/Drink';
-import Gender from './assets/icons/DigitalService/Gender';
-import Gift from './assets/icons/DigitalService/Gift';
-import InjuryFall from './assets/icons/DigitalService/InjuryFall';
-import Transponder from './assets/icons/DigitalService/Transponder';
+import AccountProtection from './assets/icons/40px/DigitalService/AccountProtection';
+import Baggage from './assets/icons/40px/DigitalService/Baggage';
+import Concierge from './assets/icons/40px/DigitalService/Concierge';
+import Drink from './assets/icons/40px/DigitalService/Drink';
+import Gender from './assets/icons/40px/DigitalService/Gender';
+import Gift from './assets/icons/40px/DigitalService/Gift';
+import InjuryFall from './assets/icons/40px/DigitalService/InjuryFall';
+import Transponder from './assets/icons/40px/DigitalService/Transponder';
 
 export {
   AccountProtection,
@@ -684,8 +696,8 @@ export {
 };
 
 // --------------------------Иконки fines and taxes---------------------------------------------------------------------
-import LandTax from './assets/icons/FinesAndTaxes/LandTax';
-import MovableProperty from './assets/icons/FinesAndTaxes/MovableProperty';
+import LandTax from './assets/icons/40px/FinesAndTaxes/LandTax';
+import MovableProperty from './assets/icons/40px/FinesAndTaxes/MovableProperty';
 
 export {
   LandTax,
@@ -693,33 +705,31 @@ export {
 };
 
 // --------------------------Иконки metal-------------------------------------------------------------------------------
-import MetalAccount from './assets/icons/Metal/MetalAccount';
+import MetalAccount from './assets/icons/40px/Metal/MetalAccount';
 
 export { MetalAccount };
 
 // --------------------------Иконки insurance---------------------------------------------------------------------------
-import CarAccident from './assets/icons/Insurance/CarAccident';
-import ChildProtection from './assets/icons/Insurance/ChildProtection';
-import ChildrenBankCardBig from './assets/icons/Insurance/ChildrenBankCardBig';
-import CivilLiability from './assets/icons/Insurance/CivilLiability';
-import CreditCardInsurance from './assets/icons/Insurance/CreditCardInsurance';
-import Death from './assets/icons/Insurance/Death';
-import Disability from './assets/icons/Insurance/Disability';
-import DMS from './assets/icons/Insurance/DMS';
-import ExtractAndReference from './assets/icons/Insurance/ExtractAndReferences';
-import Hospital from './assets/icons/Insurance/Hospital';
-import IJS from './assets/icons/Insurance/IJS';
-import Injury from './assets/icons/Insurance/Injury';
-import InsuranceAgainstFraud from './assets/icons/Insurance/InsuranceAgainstFraud';
-import InteriorDecoration from './assets/icons/Insurance/InteriorDecoration';
-import MortgageInsurance from './assets/icons/Insurance/MortgageInsurance';
+import CarAccident from './assets/icons/40px/Insurance/CarAccident';
+import ChildProtection from './assets/icons/40px/Insurance/ChildProtection';
+import ChildrenBankCardBig from './assets/icons/40px/Insurance/ChildrenBankCardBig';
+import CivilLiability from './assets/icons/40px/Insurance/CivilLiability';
+import Death from './assets/icons/40px/Insurance/Death';
+import Disability from './assets/icons/40px/Insurance/Disability';
+import DMS from './assets/icons/40px/Insurance/DMS';
+import ExtractAndReference from './assets/icons/40px/Insurance/ExtractAndReferences';
+import Hospital from './assets/icons/40px/Insurance/Hospital';
+import IJS from './assets/icons/40px/Insurance/IJS';
+import Injury from './assets/icons/40px/Insurance/Injury';
+import InsuranceAgainstFraud from './assets/icons/40px/Insurance/InsuranceAgainstFraud';
+import InteriorDecoration from './assets/icons/40px/Insurance/InteriorDecoration';
+import MortgageInsurance from './assets/icons/40px/Insurance/MortgageInsurance';
 
 export {
   CarAccident,
   ChildProtection,
   ChildrenBankCardBig,
   CivilLiability,
-  CreditCardInsurance,
   Death,
   Disability,
   DMS,
@@ -733,9 +743,9 @@ export {
 };
 
 // --------------------------Иконки plans-------------------------------------------------------------------------------
-import PricingPlansL from './assets/icons/Plans/PricingPlansL';
-import PricingPlansM from './assets/icons/Plans/PricingPlansM';
-import PricingPlansS from './assets/icons/Plans/PricingPlansS';
+import PricingPlansL from './assets/icons/40px/Plans/PricingPlansL';
+import PricingPlansM from './assets/icons/40px/Plans/PricingPlansM';
+import PricingPlansS from './assets/icons/40px/Plans/PricingPlansS';
 
 export {
   PricingPlansL,
@@ -744,12 +754,12 @@ export {
 };
 
 // --------------------------Иконки savings-----------------------------------------------------------------------------
-import CreditCash from './assets/icons/Savings/CreditCash';
-import Deposit from './assets/icons/Savings/Deposit';
-import Refinancing from './assets/icons/Savings/Refinancing';
-import Savings from './assets/icons/Savings/Savings';
-import SavingsAccountBanknote from './assets/icons/Savings/SavingsAccountBanknote';
-import SavingsAccountMoneyBox from './assets/icons/Savings/SavingsAccountMoneyBox';
+import CreditCash from './assets/icons/40px/Savings/CreditCash';
+import Deposit from './assets/icons/40px/Savings/Deposit';
+import Refinancing from './assets/icons/40px/Savings/Refinancing';
+import Savings from './assets/icons/40px/Savings/Savings';
+import SavingsAccountBanknote from './assets/icons/40px/Savings/SavingsAccountBanknote';
+import SavingsAccountMoneyBox from './assets/icons/40px/Savings/SavingsAccountMoneyBox';
 
 export {
   CreditCash,
@@ -761,8 +771,8 @@ export {
 };
 
 // --------------------------Иконки my funds----------------------------------------------------------------------------
-import AvailableFunds from './assets/icons/MyFunds/AvailableFunds';
-import StarBig from './assets/icons/MyFunds/StarBig';
+import AvailableFunds from './assets/icons/40px/MyFunds/AvailableFunds';
+import StarBig from './assets/icons/40px/MyFunds/StarBig';
 
 export {
   AvailableFunds,
@@ -770,23 +780,25 @@ export {
 };
 
 // --------------------------Иконки mobile------------------------------------------------------------------------------
-import VTBMobile from './assets/icons/Mobile/VTBMobile';
+import VTBMobile from './assets/icons/40px/Mobile/VTBMobile';
 
 export { VTBMobile };
 
 // --------------------------Иконки goal--------------------------------------------------------------------------------
-import OnVacation from './assets/icons/Goal/OnVacation';
-import OnYourself from './assets/icons/Goal/OnYourself';
+import Home from './assets/icons/40px/Goal/Home';
+import OnVacation from './assets/icons/40px/Goal/OnVacation';
+import OnYourself from './assets/icons/40px/Goal/OnYourself';
 
 export {
+  Home,
   OnVacation,
   OnYourself
 };
 
 // --------------------------Иконки bonus-------------------------------------------------------------------------------
-import Borrower from './assets/icons/Bonus/Borrower';
-import CollectBonus from './assets/icons/Bonus/CollectBonus';
-import Restaurant from './assets/icons/Bonus/Restaurant';
+import Borrower from './assets/icons/40px/Bonus/Borrower';
+import CollectBonus from './assets/icons/40px/Bonus/CollectBonus';
+import Restaurant from './assets/icons/40px/Bonus/Restaurant';
 
 export {
   Borrower,
@@ -795,29 +807,29 @@ export {
 };
 
 // --------------------------Иконки operations--------------------------------------------------------------------------
-import AnotherViolation from './assets/icons/Operations/AnotherViolation';
-import ATMOperation from './assets/icons/Operations/ATMOperation';
-import DriverLicense from './assets/icons/Operations/DriverLicense';
-import GetAReceipt from './assets/icons/Operations/GetAReceipt';
-import HearingImpairment from './assets/icons/Operations/HearingImpairment';
-import InvestmentProductsBig from './assets/icons/Operations/InvestmentProductsBig';
-import Maintenance from './assets/icons/Operations/Maintenance';
-import Number from './assets/icons/Operations/Number';
-import OtherBankProducts from './assets/icons/Operations/OtherBankProducts';
-import ParkingAccount from './assets/icons/Operations/ParkingAccount';
-import PercentRatio from './assets/icons/Operations/PercentRatio';
-import PerceptionDisorder from './assets/icons/Operations/PerceptionDisorder';
-import ProtestingOperations from './assets/icons/Operations/ProtestingOperations';
-import QualityOfService from './assets/icons/Operations/QualityOfService';
-import SaveMoney from './assets/icons/Operations/SaveMoney';
-import SpeechDisorder from './assets/icons/Operations/SpeechDisorder';
-import STS from './assets/icons/Operations/STS';
-import TireService from './assets/icons/Operations/TireService';
-import TransferInvestments from './assets/icons/Operations/TransferInvestments';
-import TroikaAccount from './assets/icons/Operations/TroikaAccount';
-import ViolationOfMotorSystem from './assets/icons/Operations/ViolationOfMotorSystem';
-import VisualImpairment from './assets/icons/Operations/VisualImpairment';
-import VolumeOfMargin from './assets/icons/Operations/VolumeOfMargin';
+import AnotherViolation from './assets/icons/40px/Operations/AnotherViolation';
+import ATMOperation from './assets/icons/40px/Operations/ATMOperation';
+import DriverLicense from './assets/icons/40px/Operations/DriverLicense';
+import GetAReceipt from './assets/icons/40px/Operations/GetAReceipt';
+import HearingImpairment from './assets/icons/40px/Operations/HearingImpairment';
+import InvestmentProductsBig from './assets/icons/40px/Operations/InvestmentProductsBig';
+import Maintenance from './assets/icons/40px/Operations/Maintenance';
+import OtherBankProducts from './assets/icons/40px/Operations/OtherBankProducts';
+import ParkingAccount from './assets/icons/40px/Operations/ParkingAccount';
+import PercentRatio from './assets/icons/40px/Operations/PercentRatio';
+import PerceptionDisorder from './assets/icons/40px/Operations/PerceptionDisorder';
+import ProtestingOperations from './assets/icons/40px/Operations/ProtestingOperations';
+import QualityOfService from './assets/icons/40px/Operations/QualityOfService';
+import SaveMoney from './assets/icons/40px/Operations/SaveMoney';
+import Sharp from './assets/icons/40px/Operations/Sharp';
+import SpeechDisorder from './assets/icons/40px/Operations/SpeechDisorder';
+import STS from './assets/icons/40px/Operations/STS';
+import TireService from './assets/icons/40px/Operations/TireService';
+import TransferInvestments from './assets/icons/40px/Operations/TransferInvestments';
+import TroikaAccount from './assets/icons/40px/Operations/TroikaAccount';
+import ViolationOfMotorSystem from './assets/icons/40px/Operations/ViolationOfMotorSystem';
+import VisualImpairment from './assets/icons/40px/Operations/VisualImpairment';
+import VolumeOfMargin from './assets/icons/40px/Operations/VolumeOfMargin';
 
 export {
   AnotherViolation,
@@ -827,7 +839,6 @@ export {
   HearingImpairment,
   InvestmentProductsBig,
   Maintenance,
-  Number,
   OtherBankProducts,
   ParkingAccount,
   PercentRatio,
@@ -835,6 +846,7 @@ export {
   ProtestingOperations,
   QualityOfService,
   SaveMoney,
+  Sharp,
   SpeechDisorder,
   STS,
   TireService,
@@ -846,16 +858,16 @@ export {
 };
 
 // --------------------------Иконки other-------------------------------------------------------------------------------
-import Cashback from './assets/icons/Other/Cashback';
-import GhostLiveBalances from './assets/icons/Other/GhostLiveBalances';
-import Goal from './assets/icons/Other/Goal';
-import InformationAlertBig from './assets/icons/Other/InformationAlertBig';
-import ReplenishmentOtherInvestments from './assets/icons/Other/ReplenishmentOtherInvestments';
+import Cashback from './assets/icons/40px/Other/Cashback';
+import FlagBig from './assets/icons/40px/Other/FlagBig';
+import GhostLiveBalances from './assets/icons/40px/Other/GhostLiveBalances';
+import InformationAlertBig from './assets/icons/40px/Other/InformationAlertBig';
+import ReplenishmentOtherInvestments from './assets/icons/40px/Other/ReplenishmentOtherInvestments';
 
 export {
   Cashback,
+  FlagBig,
   GhostLiveBalances,
-  Goal,
   InformationAlertBig,
   ReplenishmentOtherInvestments
 };
