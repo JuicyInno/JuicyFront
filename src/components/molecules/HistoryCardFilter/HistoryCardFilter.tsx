@@ -12,31 +12,31 @@ import {
 } from '../../../index';
 import { IDateVariants, IDebounceResult } from '../../../types/projects.types';
 
-export interface IHistoryCardValues{
+export interface IHistoryCardValues {
   /** Выбранный период*/
-  datePicker?:{
-    startDate?:number,
-    endDate?:number
+  datePicker?: {
+    startDate?: number,
+    endDate?: number
   },
   /** Начальное значение поиска*/
-  search?:string,
+  search?: string,
   /** Начальное значение id статуса*/
-  status?:string
+  status?: string
 }
 
-export interface IHistoryCardFilterProps{
+export interface IHistoryCardFilterProps {
   /** Показывать выбор дат или нет*/
-  isShowDatePicker?:boolean;
+  isShowDatePicker?: boolean;
   /** Показывать статус*/
-  isShowStatusFilter?:boolean;
+  isShowStatusFilter?: boolean;
   /** Показывать поиск*/
-  isShowSearch?:boolean
+  isShowSearch?: boolean
   /** Значение статусов*/
-  statusOptions?:IOption[],
+  statusOptions?: IOption[],
   /** Начальные значения*/
-  initialValues?:IHistoryCardValues,
+  initialValues?: IHistoryCardValues,
   /** Срабатывает при изменении значения*/
-  onChange?:(values:IHistoryCardValues)=>void
+  onChange?: (values: IHistoryCardValues) => void
 }
 
 
@@ -45,9 +45,14 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowStatusFilter = true,
   isShowSearch = true,
   initialValues,
-  statusOptions = [],
-  onChange = () => {}
-}:IHistoryCardFilterProps) => {
+  statusOptions = [
+    {
+      label: 'test',
+      value: 'f'
+    }
+  ],
+  onChange = () => { }
+}: IHistoryCardFilterProps) => {
   // текущие состояние фильтров
   const [filterStatus, setStatus] = useState<IHistoryCardValues>({});
 
@@ -85,7 +90,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   };
   //* *****************************************
   // Если изменился результат поиска
-  const changeSearchHandler = (result:IDebounceResult) => {
+  const changeSearchHandler = (result: IDebounceResult) => {
     const newValues = {
       ...filterStatus,
       search: result.debounceString
@@ -97,23 +102,23 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const dateTSX = isShowDatePicker &&
     <div className='card-filter__datepicker'>
-      <Datepicker onChange={changeDateHandler} placeholder='Выбрать период' range/>
+      <Datepicker onChange={changeDateHandler} placeholder='Выбрать период' range />
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
-   <div >
-     <Select placeholder='Статус'
-       readOnly
-       options={ statusOptions }
-       values={statusOptions?.filter(i => i.value === filterStatus.status) }
-       tagsPosition='outside'
-       onChange={changeSelectHandler}/>
-   </div>;
+    <div className='card-filter__status-picker' >
+      <Select placeholder='Статус'
+        readOnly
+        options={statusOptions}
+        values={statusOptions?.filter(i => i.value === filterStatus.status)}
+        tagsPosition='outside'
+        onChange={changeSelectHandler} />
+    </div>;
   //* *****************************************
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={ changeSearchHandler} />
+      <Search onDebounce={changeSearchHandler} placeholder='ID, ФИО, ТН' />
     </div>;
   // =======================================================================================================================================
 
