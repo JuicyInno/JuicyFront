@@ -1,4 +1,5 @@
 import '../src/styles/index.scss';
+import '../src/styles/fonts.css';
 import cssVars from 'css-vars-ponyfill';
 import variables from '../src/styles/variables.json';
 
@@ -41,9 +42,8 @@ const storySort = (a, b) => {
 };
 
 
-
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort,
   },
