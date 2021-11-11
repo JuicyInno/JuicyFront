@@ -10,8 +10,6 @@ export interface IHintProps {
   title?: ReactNode | string;
   /** Текст кнопки*/
   button?: ReactNode;
-  /** Дополнительный класс */
-  className?: string;
   /** Цвет сообщения */
   variant?: VariantClassic;
   /** Иконка */
@@ -23,7 +21,6 @@ export interface IHintProps {
 const Hint: React.FC<IHintProps> = ({
   children,
   button,
-  className = '',
   variant = 'default',
   icon,
   title,
@@ -31,7 +28,7 @@ const Hint: React.FC<IHintProps> = ({
 }: IHintProps) => {
 
   return (
-    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant} ${className} `}>
+    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant}`}>
       {icon === 'info' &&
         <div className='rf-hint__icon'>
           <Info />

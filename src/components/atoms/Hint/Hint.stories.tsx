@@ -26,7 +26,7 @@ export default {
     },
     button: {
       control: 'text',
-      defaultValue: 'Text Button'
+      defaultValue: 'Действие'
     },
     variant: {
       options: variantsClassic,
@@ -42,7 +42,7 @@ export default {
 
 export const Demo: Story = (args: IHintProps) => {
 
-  const frameStyle = {
+  const frameStyle: any = {
     display: 'flex',
     flexDirection: 'column',
     width: 680,
@@ -62,7 +62,7 @@ export const Demo: Story = (args: IHintProps) => {
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -73,7 +73,7 @@ export const Demo: Story = (args: IHintProps) => {
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -83,7 +83,7 @@ export const Demo: Story = (args: IHintProps) => {
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -93,7 +93,7 @@ export const Demo: Story = (args: IHintProps) => {
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -103,7 +103,7 @@ export const Demo: Story = (args: IHintProps) => {
               maxWidth={args.maxWidth}
               title={args.title}
               icon='info'
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -112,7 +112,7 @@ export const Demo: Story = (args: IHintProps) => {
             <Hint variant='blue'
               maxWidth={args.maxWidth}
               title={args.title}
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -121,7 +121,7 @@ export const Demo: Story = (args: IHintProps) => {
             <Hint
               maxWidth={args.maxWidth}
               title={args.title}
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -130,7 +130,7 @@ export const Demo: Story = (args: IHintProps) => {
             <Hint variant='yellow'
               maxWidth={args.maxWidth}
               title={args.title}
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -139,7 +139,7 @@ export const Demo: Story = (args: IHintProps) => {
             <Hint variant='green'
               maxWidth={args.maxWidth}
               title={args.title}
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -148,7 +148,7 @@ export const Demo: Story = (args: IHintProps) => {
             <Hint variant='red'
               maxWidth={args.maxWidth}
               title={args.title}
-              button='Text Button'>
+              button={args.button}>
               {args.children}
             </Hint>
           </div>
@@ -189,4 +189,3 @@ export const Playground: Story = (args: IHintProps) => {
     </StoryContainer>
   );
 };
-
