@@ -57,6 +57,8 @@ export interface IListElement {
   disabled?: boolean;
   /** Отделение линией */
   separated?: boolean;
+  /** Указывает что это заголовок раздела */
+  isTitle?: boolean;
 }
 
 /** Контекст меню */
