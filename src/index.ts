@@ -45,9 +45,7 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, {
-  sendNotification,
-} from './components/molecules/Notifications';
+import Notifications, { sendNotification, } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
@@ -150,7 +148,6 @@ export {
 // --------------------------Иконки-------------------------------------------------------------------------------------
 
 import Close from './assets/icons/Close';
-import Check from './assets/icons/Check';
 import Download from './assets/icons/Download';
 import Refresh from './assets/icons/Refresh';
 import SearchIcon from './assets/icons/Search';
@@ -158,6 +155,7 @@ import Success from './assets/icons/Success';
 import Reduce from './assets/icons/Reduce';
 import ChevronDown from './assets/icons/ChevronDown';
 import ChevronLeft from './assets/icons/ChevronLeft';
+import ChevronRight from './assets/icons/ChevronRight';
 import Info from './assets/icons/Info';
 import Calendar from './assets/icons/Calendar';
 import Up from './assets/icons/Up';
@@ -190,11 +188,11 @@ import Exchange from './assets/icons/Exchange';
 import Add from './assets/icons/Add';
 import Edit from './assets/icons/Edit';
 import Dialog from './assets/icons/Dialog';
+import Microphone from './assets/icons/Microphone';
 
 export {
   Refresh,
   Close,
-  Check,
   Download,
   SearchIcon,
   Success,
@@ -203,6 +201,7 @@ export {
   Info,
   Calendar,
   ChevronLeft,
+  ChevronRight,
   Up,
   Eye,
   EyeClose,
@@ -223,6 +222,7 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Microphone,
   Exit,
   External,
   Cart,
@@ -232,7 +232,7 @@ export {
   Exchange,
   Add,
   Edit,
-  Dialog,
+  Dialog
 };
 
 export { variables, download };
@@ -245,10 +245,7 @@ import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import {
-  numberWithSpaces,
-  addLeadingZeros,
-  LocalToUTC,
-  UTCToLocal,
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal
 } from './utils/helpers';
 
 export {
@@ -261,5 +258,5 @@ export {
   openPopup,
   addLeadingZeros,
   LocalToUTC,
-  UTCToLocal,
+  UTCToLocal
 };
