@@ -31,7 +31,7 @@ const data: IHistoryCardFilterProps = {
 };
 
 export default {
-  title: 'components/withTest//HistoryCardFilter',
+  title: 'components/withTest/HistoryCardFilter',
   component: HistoryCardFilter,
   typeArgs: {
     isShowDatePicker: { type: 'boolean' },
