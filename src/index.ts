@@ -251,10 +251,10 @@ import Location from './assets/icons/24px/Tools/Location';
 import Lock from './assets/icons/24px/Tools/Lock';
 import MenuHorizontal from './assets/icons/24px/Tools/MenuHorizontal';
 import MenuVertical from './assets/icons/24px/Tools/MenuVertical';
-import Microphone from './assets/icons/24px/Tools/Microphone';
 import NewCalendar from './assets/icons/24px/Tools/Calendar'; // refactor name to Calendar
 import NewDoc from './assets/icons/24px/Tools/Doc'; // refactor name to Doc
 import NewEdit from './assets/icons/24px/Tools/Edit'; // refactor name to Edit
+import NewMicrophone from './assets/icons/24px/Tools/Microphone'; // refactor name to Microphone
 import NewRefresh from './assets/icons/24px/Tools/Refresh';
 import NewTuneUp from './assets/icons/24px/Tools/TuneUp'; // refactor name to TuneUp
 import Link from './assets/icons/24px/Tools/Link';
@@ -282,10 +282,10 @@ export {
   Lock,
   MenuHorizontal,
   MenuVertical,
-  Microphone,
   NewCalendar,
   NewDoc,
   NewEdit,
+  NewMicrophone,
   NewRefresh,
   NewTuneUp,
   Link,
@@ -303,16 +303,16 @@ export {
 };
 
 // --------------------------Иконки alerts------------------------------------------------------------------------------
-import Dialog from './assets/icons/24px/Alerts/Dialog';
 import Holidays from './assets/icons/24px/Alerts/Holidays';
 import InformationAlert from './assets/icons/24px/Alerts/InformationAlert';
+import NewDialog from './assets/icons/24px/Alerts/Dialog'; // refactor to Dialog
 import NotificationIcon from './assets/icons/24px/Alerts/Notification';
 import QuestionAlert from './assets/icons/24px/Alerts/QuestionAlert';
 
 export {
-  Dialog,
   Holidays,
   InformationAlert,
+  NewDialog,
   NotificationIcon,
   QuestionAlert
 };
