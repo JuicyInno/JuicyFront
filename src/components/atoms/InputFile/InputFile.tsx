@@ -130,7 +130,7 @@ const InputFile: React.FC<IFileInputProps> = ({
 
   // =======================================================================================================================================
   /** Чип прикрепленного файла */
-  const attachedFileChipsTSX = (name:string, index: number, onRemove:(e: React.MouseEvent)=>void) =>
+  const attachedFileChipsTSX = (name:string, index: number, onRemove:()=>void) =>
     <div className='rf-file-input__chip' key={name + index}>
       <Chip
         onClick={() => file && download({
@@ -152,8 +152,7 @@ const InputFile: React.FC<IFileInputProps> = ({
   const fileList = file?.map((currentFile: IFileData, index: number) => attachedFileChipsTSX(
     currentFile.file.name,
     index,
-    (e:React.MouseEvent) => {
-      e.stopPropagation();
+    () => {
       const newListFile = file;
       newListFile.splice(index, 1);
 
