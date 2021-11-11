@@ -340,7 +340,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 onChange={onDatepickerChange}>
                 <Input invalid={invalid} />
               </InputMask>
-              <ChevronDown className='rf-datepicker__calendar-chevron' />
+              <div className='rf-datepicker__calendar-chevron'>
+                <ChevronDown />
+              </div>
+
             </>
           )
         }

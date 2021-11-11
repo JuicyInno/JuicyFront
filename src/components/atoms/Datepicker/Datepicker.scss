@@ -6,10 +6,14 @@
 }
 
 .rf-datepicker__input-wrapper {
-  position: relative;
+  display: flex;
   cursor: pointer;
+  height: 40px;
   .rf-input__field{
     padding-left: 29px;
+  }
+  svg{
+    color: var(--text-tertiary); 
   }
 }
 
@@ -20,7 +24,7 @@
   z-index: 99;
   width: 24px;
   height: 24px;
-  top: calc(50% - 10px);
+  top: calc(50% - 1px);
   right:calc(100% - 38px);
   transform: translateY(-50%) rotate(0);
   transition: 0.35s;
@@ -37,11 +41,9 @@
   position: relative;
   z-index: 99;
   bottom:32px;
-  left: calc(100% - 38px);
+  right: 38px;
+  top: 8px;
   color:var(--basic-tertiary);
-  svg{
-    font-size: 15px;
-  }
 }
 
 .rf-datepicker__input-wrapper--disabled {
