@@ -174,7 +174,9 @@ export const iconSize: Record<Size, string> = {
   'm': '40',
   'l': '48',
   'xl': '56',
-  'xxl': '64'
+  'xxl': '64',
+  'xxxl': '72',
+  'xxxxl': '80'
 };
 
 function oDataServ(data:any) {
