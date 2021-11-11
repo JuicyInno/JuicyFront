@@ -12,6 +12,7 @@ import { variantsClassic } from '../../../types';
 
 import Placeholder20 from '../../../assets/icons/Placeholder20';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
+import Add from '../../../assets/icons/Add';
 import { withDesign } from 'storybook-addon-designs';
 
 const buttonTypes: ButtonType[] = [
@@ -184,6 +185,36 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
+        <StoryDocsH3>Danger</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'danger' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'danger',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'danger',
+          preloader: true
+        })}
+
+        <StoryDocsH3>Success</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'success' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'success',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'success',
+          preloader: true
+        })}
+
         <StoryDocsH3>Secondary</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
@@ -215,7 +246,7 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
-        <StoryDocsH3>Icon Button</StoryDocsH3>
+        <StoryDocsH3>Icon Buttons</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
         {getIconButtons({ buttonType: 'icon' })}
@@ -230,21 +261,79 @@ export const Demo: Story = () => {
           preloader: true
         })}
 
-
-        <StoryDocsH3>Text Button</StoryDocsH3>
+        <StoryDocsH3>Buttons Round</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        {getButtons({ buttonType: 'text' })}
+        {getButtons({ buttonType: 'round' })}
+        <StoryDocsLabel>Active</StoryDocsLabel>
+        {getButtons({ buttonType: 'round-active' })}
         <StoryDocsLabel>Disabled</StoryDocsLabel>
         {getButtons({
-          buttonType: 'text',
+          buttonType: 'round',
           disabled: true
         })}
         <StoryDocsLabel>Loading</StoryDocsLabel>
         {getButtons({
-          buttonType: 'text',
+          buttonType: 'round',
           preloader: true
         })}
+
+        <StoryDocsH3>Icon Buttons Round</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getIconButtons({ buttonType: 'icon-round' })}
+        <StoryDocsLabel>Active</StoryDocsLabel>
+        {getIconButtons({ buttonType: 'icon-round-active' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getIconButtons({
+          buttonType: 'icon-round',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getIconButtons({
+          buttonType: 'icon-round',
+          preloader: true
+        })}
+
+        <StoryDocsH3>White Button</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'white' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'white',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'white',
+          preloader: true
+        })}
+      </div>
+      <div style={{
+        display: 'grid',
+        gap: '40px',
+        gridTemplateColumns: 'repeat(3, auto)',
+        justifyItems: 'center',
+        width: 'max-content'
+      }}>
+        <StoryDocsH3>Text Button</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        <Button buttonType={'text'} size='xl'>Button 56</Button>
+        <Button buttonType={'text'} size='s'>Button 32</Button>
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        <Button buttonType={'text'} disabled size='xl'>Button 56</Button>
+        <Button buttonType={'text'} disabled size='s'>Button 32</Button>
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        <Button buttonType={'text'} preloader size='xl'>Button 56</Button>
+        <Button buttonType={'text'} preloader size='s'>Button 32</Button>
+
+        <StoryDocsH3>Text Icon Button</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        <Button size='xl' buttonType='text' startAdornment={<Add />}>Text button 56</Button>
+        <Button size='s' buttonType='text' startAdornment={<Add />}>Text button 32</Button>
       </div>
     </StoryDocs>
   );
@@ -253,7 +342,7 @@ export const Demo: Story = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=13613%3A74510',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A4233',
   },
   actions: { disabled: true },
   controls: { disabled: true }

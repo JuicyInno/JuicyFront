@@ -37,16 +37,24 @@
       right: 3px;
       text-align: center;
     }
+
+    & .rf-select__list-element-single {
+      overflow: initial;
+    }
   }
 }
 
 .rf-select__wrapper {
   width: 100%;
   position: relative;
-  border: 1px solid var(--basic-tertiary);
+
+  box-shadow: 0 0 0 1px var(--basic-tertiary);
   border-radius: 8px;
   background-color: var(--background-primary);
   overflow: hidden;
+}
+.rf-select__wrapper--invalid{
+  box-shadow: 0 0 0 1px var(--status-danger);
 }
 
 .rf-select__wrapper:hover {

@@ -5,7 +5,7 @@ export interface svgWithColor extends SVGProps<SVGSVGElement>{
   color2?:string,
   color3?:string
 }
-
+/* eslint-disable max-len */
 
 export default (props: svgWithColor) =>
   <svg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>

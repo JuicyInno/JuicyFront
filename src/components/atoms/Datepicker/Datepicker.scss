@@ -23,7 +23,7 @@
   pointer-events: none;
 
   svg {
-    color: var(--text-secondary);
+    color: var(--text-tertiary); 
   }
 }
 
@@ -31,7 +31,7 @@
   pointer-events: none;
 
   .rf-datepicker__calendar-button {
-    color: var(--text-tertiary);
+    color: var(--basic-tertiary);
   }
 }
 

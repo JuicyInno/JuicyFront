@@ -35,8 +35,8 @@ describe('Test <Signification/> component', () => {
       expect(container.getElementsByClassName('buttons__wrapper')).toHaveLength(0)
       fireEvent.click(container.getElementsByClassName('expander__title-text')[0]);
       expect(container.getElementsByClassName('buttons__wrapper')).toHaveLength(1)
-      expect(getByText(container, 'Подписать ЭЦП (цифровая подпись)')).toBeTruthy();
-      expect(getByText(container, 'Подписать ЭЦП (цифровая подпись)').parentElement!.parentElement).toBeDisabled();
+      expect(getByText(container, 'Подписать электронной подписью')).toBeTruthy();
+      expect(getByText(container, 'Подписать электронной подписью').parentElement!.parentElement).toBeDisabled();
       expect(getByText(container, 'Подписать вручную')).toBeTruthy();
       expect(getByText(container, 'Отклонить ЭДО')).toBeTruthy();
       expect(getByText(container, 'Отклонить ЭДО').parentElement!.parentElement).toBeDisabled();
@@ -51,8 +51,8 @@ describe('Test <Signification/> component', () => {
     it('should be without spoiler consist buttons',  () => {
       const {container} = render(<Signification title={'Text'} isSpoiler={false} data={file}/>);
       expect(container.getElementsByClassName('buttons__wrapper')).toHaveLength(1)
-      expect(getByText(container, 'Подписать ЭЦП (цифровая подпись)')).toBeTruthy();
-      expect(getByText(container, 'Подписать ЭЦП (цифровая подпись)').parentElement!.parentElement).toBeDisabled();
+      expect(getByText(container, 'Подписать электронной подписью')).toBeTruthy();
+      expect(getByText(container, 'Подписать электронной подписью').parentElement!.parentElement).toBeDisabled();
       expect(getByText(container, 'Подписать вручную')).toBeTruthy();
       expect(getByText(container, 'Отклонить ЭДО')).toBeTruthy();
       expect(getByText(container, 'Отклонить ЭДО').parentElement!.parentElement).toBeDisabled();
@@ -74,8 +74,10 @@ describe('Test <Signification/> component', () => {
       const {container} = render(<Signification title={'Text'} isSpoiler={false} data={file}/>);
       fireEvent.click(byText('Отклонить').get());
       expect(byText('Отклонить документ').get().parentElement!.parentElement).toBeDisabled()
-
-      userEvent.type(screen.getByRole('textbox'),'testik')
+      jest.useFakeTimers();
+      userEvent.type(screen.getByRole('textbox'), 'testik')
+      jest.runAllTimers();
+      jest.useRealTimers()
       expect(byText('testik').query()).toBeTruthy();
       expect(byText('Отклонить документ').get().parentElement!.parentElement).not.toBeDisabled()
       userEvent.click(byText('Отклонить документ').get())
@@ -91,6 +93,7 @@ describe('Test <Signification/> component', () => {
       const {container} = render(<Signification title={'Text'} isSpoiler={false} data={file}/>);
       fireEvent.click(byText('Подписать вручную').get());
       expect(byText('Подписать').get().parentElement!.parentElement).toBeDisabled()
+      expect(screen.getByPlaceholderText('Прикрепить файл')).toBeTruthy()
       userEvent.upload(screen.getByPlaceholderText('Прикрепить файл'),file)
 
       await waitFor(() =>{

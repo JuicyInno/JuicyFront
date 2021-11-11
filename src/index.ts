@@ -12,6 +12,7 @@ import ControlGroup from './components/atoms/ControlGroup';
 import Datepicker from './components/atoms/Datepicker';
 import FormGroup from './components/atoms/FormGroup';
 import Hint from './components/atoms/Hint';
+import CommentTile from './components/molecules/CommentTile';
 import Input from './components/atoms/Input';
 import InputFile from './components/atoms/InputFile';
 import InputNumber from './components/atoms/InputNumber';
@@ -44,8 +45,9 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification } from './components/molecules/Notifications';
+import Notifications, { sendNotification, } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
+import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
@@ -63,14 +65,17 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
-import Schedule, { ScheduleLegend, ScheduleLegendItem } from './components/molecules/Schedule';
+import Schedule, {
+  ScheduleLegend,
+  ScheduleLegendItem,
+} from './components/molecules/Schedule';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
 
-
 export {
+  CommentTile,
   Signification,
   GhostScreen,
   HistoryCardFilter,
@@ -123,6 +128,7 @@ export {
   Column,
   UserPhoto,
   Card,
+  EntityCard,
   Toast,
   History,
   Status,
@@ -136,7 +142,7 @@ export {
   UsersStack,
   ContentExpander,
   BackdropLoader,
-  PopupMaker
+  PopupMaker,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -149,6 +155,7 @@ import Success from './assets/icons/Success';
 import Reduce from './assets/icons/Reduce';
 import ChevronDown from './assets/icons/ChevronDown';
 import ChevronLeft from './assets/icons/ChevronLeft';
+import ChevronRight from './assets/icons/ChevronRight';
 import Info from './assets/icons/Info';
 import Calendar from './assets/icons/Calendar';
 import Up from './assets/icons/Up';
@@ -171,6 +178,17 @@ import Time from './assets/icons/Time';
 import EmptyUser from './assets/icons/EmptyUser';
 import Cross from './assets/icons/Cross';
 import Redo from './assets/icons/Redo';
+import Exit from './assets/icons/Exit';
+import External from './assets/icons/External';
+import Cart from './assets/icons/Cart';
+import Bag from './assets/icons/Bag';
+import Bank from './assets/icons/Bank';
+import Left from './assets/icons/Left';
+import Exchange from './assets/icons/Exchange';
+import Add from './assets/icons/Add';
+import Edit from './assets/icons/Edit';
+import Dialog from './assets/icons/Dialog';
+import Microphone from './assets/icons/Microphone';
 
 export {
   Refresh,
@@ -183,6 +201,7 @@ export {
   Info,
   Calendar,
   ChevronLeft,
+  ChevronRight,
   Up,
   Eye,
   EyeClose,
@@ -203,6 +222,17 @@ export {
   EmptyUser,
   Cross,
   Redo,
+  Microphone,
+  Exit,
+  External,
+  Cart,
+  Bag,
+  Bank,
+  Left,
+  Exchange,
+  Add,
+  Edit,
+  Dialog
 };
 
 export { variables, download };
@@ -214,7 +244,9 @@ import { useLocation } from './hooks/useLocation';
 import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
-import { numberWithSpaces, addLeadingZeros } from './utils/helpers';
+import {
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal
+} from './utils/helpers';
 
 export {
   useClickOutside,
@@ -224,5 +256,7 @@ export {
   useUpdateEffect,
   numberWithSpaces,
   openPopup,
-  addLeadingZeros
+  addLeadingZeros,
+  LocalToUTC,
+  UTCToLocal
 };

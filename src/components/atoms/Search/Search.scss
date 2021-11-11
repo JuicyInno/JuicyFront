@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-search {
   height: 40px;
@@ -23,10 +23,10 @@
 
   &:focus {
     background-color: var(--background-primary);
-    border-color: var(--basic-press);
+    border-color: var(--basic-primary);
 
     & + .rf-search__search-icon {
-      color: var(--basic-press);
+      color: var(--basic-primary);
     }
   }
 }
@@ -42,6 +42,20 @@
 }
 
 .rf-search__close-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: var(--basic-tertiary);
+  cursor: pointer;
+}
+
+.rf-search__close-withEndAdornment {
+  right: 40px;
+}
+
+.rf-search__endAdornment {
+  display: flex;
   position: absolute;
   top: 50%;
   right: 14px;

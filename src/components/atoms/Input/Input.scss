@@ -15,7 +15,7 @@
   box-shadow: 0 0 0 1px var(--basic-tertiary);
 
   &--invalid {
-    box-shadow: 0 0 0 2px var(--status-danger);
+    box-shadow: 0 0 0 1px var(--status-danger);
   }
 
   &:hover {
@@ -25,7 +25,7 @@
   &--focused {
     box-shadow: 0 0 0 1px var(--basic-press);
   }
-  
+
 
   &--inline {
     box-shadow: none;
@@ -37,7 +37,7 @@
     &:hover {
       box-shadow: 0 0 0 1px var(--basic-press);
     }
-  
+
 
     &.rf-input--focused {
       box-shadow: 0 0 0 1px var(--basic-press);
@@ -64,7 +64,7 @@
     &--start {
       margin-right: 8px;
     }
-  
+
     &--end {
       margin-left: 8px;
     }

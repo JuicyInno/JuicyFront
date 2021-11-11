@@ -22,6 +22,13 @@ export interface ICalendarPageProps {
   marks?: ICalendarPageMark[];
 }
 
+// Суббота
+const SATURDAY = 6;
+// Воскресенье
+const SUNDAY = 0;
+// Воскресенье при начале недели с понедельника
+const END_OF_WEEK_SUNDAY = 7;
+
 const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
   const content = useMemo(() => {
 
@@ -34,21 +41,39 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
     let startWeekday = new Date(year, month, 1).getDay();
     let endWeekday = new Date(year, month + 1, 0).getDay();
 
-    if (startWeekday === 0) {
-      startWeekday = 7;
+    // Меняем нумерацию для воскресенья на седьмой день недели
+
+    if (startWeekday === SUNDAY) {
+      startWeekday = END_OF_WEEK_SUNDAY;
     }
 
-    if (endWeekday === 0) {
-      endWeekday = 7;
+    if (endWeekday === SUNDAY) {
+      endWeekday = END_OF_WEEK_SUNDAY;
     }
 
+    // Дни текущего месяца
     const days = Array.from({ length: new Date(year, month + 1, 0).getDate() }, (_, i) => i + 1);
+    // Выходные дни
+    const weekends: Record<number, boolean> = {};
+
+    for (const day of days) {
+      const date = new Date(year, month, day);
+      const weekday = date.getDay();
+
+      if (weekday === SATURDAY || weekday === SUNDAY) {
+        weekends[day] = true;
+      }
+    }
 
     const startDate = new Date(year, month, -(startWeekday - 1)).getDate();
+
+    // Видимые дни предыдущего месяца
     const prevDays = Array.from({ length: new Date(year, month, 0).getDate() - startDate }, (_, i) => i + startDate + 1);
 
+    // Видимые дни следующего месяца
     const nextDays = Array.from({ length: 7 - endWeekday }, (_, i) => i + 1);
 
+    // Отметки на календаре
     const marksMap: Record<number, Record<number, Record<number, string>>> = {};
 
     for (const mark of marks) {
@@ -118,6 +143,7 @@ const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
             key={`${month}-${i}`}
             className={classnames(
               'rf-calendar-page__cell',
+              weekends[i] && 'rf-calendar-page__cell_disabled',
               marksMap[year]?.[month]?.[i] && `rf-calendar-page__cell_${marksMap[year][month][i]}`
             )}
           >
