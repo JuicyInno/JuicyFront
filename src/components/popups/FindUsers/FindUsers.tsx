@@ -18,6 +18,7 @@ import {
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
+import { debounce } from '../../../utils/helpers';
 
 // SwiperCore.use([Navigation]);
 
@@ -369,7 +370,7 @@ const FindUsers: FC<IProps> = ({
       <h4 className='find-users__title'>Поиск сотрудников</h4>
       <p className='find-users__notice'>{ subtitle }</p>
       <div className='find-users__input-wrapper' ref={ inputRef }>
-        <Search onKeyUp={ inputHandle } autoFocus onClear={ onClear }/>
+        <Search onKeyUp={ debounce(inputHandle, 500) } autoFocus onClear={ onClear }/>
       </div>
       <div className='find-users__filters'>
         <Tabs list={tabs}/>
