@@ -45,7 +45,12 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowStatusFilter = true,
   isShowSearch = true,
   initialValues,
-  statusOptions = [],
+  statusOptions = [
+    {
+      label: 'test',
+      value: 'f'
+    }
+  ],
   onChange = () => { }
 }: IHistoryCardFilterProps) => {
   // текущие состояние фильтров
