@@ -135,7 +135,8 @@
       "^.+\\.(ts|tsx)?$": "ts-jest"
     },
     "moduleNameMapper": {
-      "\\.(css|scss|svg)$": "identity-obj-proxy"
+      "\\.(css|scss|svg)$": "identity-obj-proxy",
+      "^react-pdf/dist/esm/entry.webpack$": "react-pdf/dist/umd/entry.jest"
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
