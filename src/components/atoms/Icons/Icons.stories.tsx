@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story } from '@storybook/react';
 import {
-  StoryDocs, StoryDocsH1, StoryDocsH2
+  StoryDocs, StoryDocsDescription, StoryDocsH1, StoryDocsH2
 } from '../../storybook';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -294,7 +294,7 @@ import ReplenishmentOtherInvestments from '../../../assets/icons/40px/Other/Repl
 import GhostLiveBalances from '../../../assets/icons/40px/Other/GhostLiveBalances';
 
 export default {
-  title: 'icons,illustrations/не проверено/Icons',
+  title: 'icons,illustrations/Icons',
   decorators: [withDesign],
 };
 
@@ -335,7 +335,7 @@ const columnSecondStyle = {
 
 export const Demo: Story = () => (
   <StoryDocs>
-    <StoryDocsH1>Системные иконки 24 px</StoryDocsH1>
+    <StoryDocsH1>Icons 24px</StoryDocsH1>
     <StoryDocsH2>Tools</StoryDocsH2>
     <div style={sectionStyle}>
       <div style={columnFirstStyle}>
@@ -473,6 +473,7 @@ export const Demo: Story = () => (
       </div>
     </div>
     <StoryDocsH2>Status</StoryDocsH2>
+    <StoryDocsDescription>Цветные иконки с кругом могут быть только в цветах которыми они тут представленны</StoryDocsDescription>
     <div style={sectionStyle}>
       <div style={columnFirstStyle}>
         <div style={elemStyle}><div style={iconStyle}><StatusWarning /></div>Warning</div>
@@ -514,11 +515,6 @@ export const Demo: Story = () => (
         <div style={elemStyle}><div style={iconStyle}><Huawei /></div>Huawei</div>
       </div>
     </div>
-  </StoryDocs>
-);
-
-export const Icons = () => (
-  <StoryDocs>
     <StoryDocsH1>Icons 40px</StoryDocsH1>
     <StoryDocsH2>Настройки</StoryDocsH2>
     <div style={sectionStyle}>
@@ -802,7 +798,7 @@ export const Icons = () => (
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=182%3A23104',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/?node-id=8%3A15635',
   },
   actions: { disabled: true },
   controls: { disabled: true }
