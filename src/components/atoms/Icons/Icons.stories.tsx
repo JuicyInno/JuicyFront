@@ -298,700 +298,505 @@ export default {
   decorators: [withDesign],
 };
 
-export const Demo: Story = () => {
-  const iconStyle = {
-    color: '#8A96A8',
-    marginRight: 25
-  };
-  const iconStyleStatus = {
-    color: '#A7B0BE',
-    marginRight: 25
-  };
-  const elemStyle = {
-    fontFamily: 'VTB Group UI',
-    fontSize: 14,
-    lineHeight: '20px',
-    marginBottom: 28,
-    display: 'flex',
-    justifyItems: 'center',
-    color: '#4C5767'
-  };
-
-  return (
-    <StoryDocs>
-      <StoryDocsH1>Системные иконки 24 px</StoryDocsH1>
-      <StoryDocsH2>Tools</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Point /></div>Point</div>
-          <div style={elemStyle}><div style={iconStyle}><Trash /></div>Trash</div>
-          <div style={elemStyle}><div style={iconStyle}><Location /></div>Location</div>
-          <div style={elemStyle}><div style={iconStyle}><OnCard /></div>On Card</div>
-          <div style={elemStyle}><div style={iconStyle}><NewCalendar /></div>Calendar</div>
-          <div style={elemStyle}><div style={iconStyle}><Lock /></div>Lock</div>
-          <div style={elemStyle}><div style={iconStyle}><InternetShop /></div>Internet Shop</div>
-          <div style={elemStyle}><div style={iconStyle}><NewEdit /></div>Edit</div>
-          <div style={elemStyle}><div style={iconStyle}><OnPhone /></div>On phone</div>
-          <div style={elemStyle}><div style={iconStyle}><Microphone /></div>Microphone</div>
-          <div style={elemStyle}><div style={iconStyle}><ChildrenBankCard /></div>Children bank card</div>
-          <div style={elemStyle}><div style={iconStyle}><QR /></div>QR</div>
-          <div style={elemStyle}><div style={iconStyle}><Doc /></div>Doc</div>
-          <div style={elemStyle}><div style={iconStyle}><TuneUp /></div>Tune up</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Change /></div>Change</div>
-          <div style={elemStyle}><div style={iconStyle}><MenuHorizontal /></div>Menu horizontal</div>
-          <div style={elemStyle}><div style={iconStyle}><MenuVertical /></div>Menu vertical</div>
-          <div style={elemStyle}><div style={iconStyle}><Refresh /></div>Refresh</div>
-          <div style={elemStyle}><div style={iconStyle}><Link /></div>Link</div>
-          <div style={elemStyle}><div style={iconStyle}><Cog /></div>Cog</div>
-          <div style={elemStyle}><div style={iconStyle}><Printer /></div>Printer</div>
-          <div style={elemStyle}><div style={iconStyle}><ShowAll /></div>Show all</div>
-          <div style={elemStyle}><div style={iconStyle}><Template /></div>Template</div>
-          <div style={elemStyle}><div style={iconStyle}><Receipt/></div>Receipt</div>
-          <div style={elemStyle}><div style={iconStyle}><AutoPayment /></div>Auto payment</div>
-          <div style={elemStyle}><div style={iconStyle}><Cash /></div>Cash</div>
-          <div style={elemStyle}><div style={iconStyle}><Repeat /></div>Repeat</div>
-          <div style={elemStyle}><div style={iconStyle}><Cancel /></div>Cancel</div>
-        </div>
-      </div>
-      <StoryDocsH2>Alerts</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><InformationAlert /></div>Information Alert</div>
-          <div style={elemStyle}><div style={iconStyle}><QuestionAlert /></div>Question alert</div>
-          <div style={elemStyle}><div style={iconStyle}><Dialog /></div>Dialog</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Holidays /></div>Holidays</div>
-          <div style={elemStyle}><div style={iconStyle}><Notification /></div>Notification</div>
-        </div>
-      </div>
-      <StoryDocsH2>Messaging</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Envelope /></div>Envelope</div>
-          <div style={elemStyle}><div style={iconStyle}><Smartphone /></div>Smartphone</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Phone /></div>Phone</div>
-          <div style={elemStyle}><div style={iconStyle}><Alternative /></div>Alternative</div>
-        </div>
-      </div>
-      <StoryDocsH2>Account</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><User /></div>User</div>
-          <div style={elemStyle}><div style={iconStyle}><Exit /></div>Exit</div>
-          <div style={elemStyle}><div style={iconStyle}><Send /></div>Send</div>
-          <div style={elemStyle}><div style={iconStyle}><Copy /></div>Copy</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><EyeOpen /></div>Eye open</div>
-          <div style={elemStyle}><div style={iconStyle}><EyeClose /></div>Eye close</div>
-          <div style={elemStyle}><div style={iconStyle}><Search /></div>Search</div>
-        </div>
-      </div>
-      <StoryDocsH2>Specific</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Star /></div>Star</div>
-          <div style={elemStyle}><div style={iconStyle}><BankCard /></div>Bank card</div>
-          <div style={elemStyle}><div style={iconStyle}><Archive /></div>Archive</div>
-          <div style={elemStyle}><div style={iconStyle}><Courier /></div>Courier</div>
-          <div style={elemStyle}><div style={iconStyle}><Diagram /></div>Diagram</div>
-          <div style={elemStyle}><div style={iconStyle}><Safe /></div>Safe</div>
-          <div style={elemStyle}><div style={iconStyle}><DigitalCard /></div>Digital card</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><SpecialSearch /></div>Special search</div>
-          <div style={elemStyle}><div style={iconStyle}><LightBulb /></div>Light bulb</div>
-          <div style={elemStyle}><div style={iconStyle}><Coin /></div>Coin</div>
-          <div style={elemStyle}><div style={iconStyle}><CardRecommend /></div>Card recommend</div>
-          <div style={elemStyle}><div style={iconStyle}><Bank /></div>Bank</div>
-          <div style={elemStyle}><div style={iconStyle}><Gosuslygi /></div>Gosuslygi</div>
-          <div style={elemStyle}><div style={iconStyle}><InvestmentProducts /></div>Investment products</div>
-        </div>
-      </div>
-      <StoryDocsH2>Themes</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><DarkModeStroke /></div>Dark mode stroke</div>
-          <div style={elemStyle}><div style={iconStyle}><LightModeStroke /></div>Light mode stroke</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><DarkModeFill /></div>Dark mode fill</div>
-          <div style={elemStyle}><div style={iconStyle}><LightModeStrokeFill /></div>Light mode Fill</div>
-        </div>
-      </div>
-      <StoryDocsH2>Arrows</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ChevronLeft /></div>Chevron left</div>
-          <div style={elemStyle}><div style={iconStyle}><ChevronRight /></div>Chevron right</div>
-          <div style={elemStyle}><div style={iconStyle}><ChevronUp /></div>Chevron up</div>
-          <div style={elemStyle}><div style={iconStyle}><ChevronDown /></div>Chevron down</div>
-          <div style={elemStyle}><div style={iconStyle}><ArrowLeft /></div>Arrow left</div>
-          <div style={elemStyle}><div style={iconStyle}><ArrowRight /></div>Arrow Right</div>
-          <div style={elemStyle}><div style={iconStyle}><ArrowUp /></div>Arrow Up</div>
-          <div style={elemStyle}><div style={iconStyle}><ArrowDown /></div>Arrow Down</div>
-          <div style={elemStyle}><div style={iconStyle}><Up/></div>Up</div>
-          <div style={elemStyle}><div style={iconStyle}><Down /></div>Down</div>
-          <div style={elemStyle}><div style={iconStyle}><Download /></div>Download</div>
-          <div style={elemStyle}><div style={iconStyle}><Upload /></div>Upload</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoStatus /></div>Info status</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Exchange /></div>Exchange</div>
-          <div style={elemStyle}><div style={iconStyle}><Sort /></div>Sort</div>
-          <div style={elemStyle}><div style={iconStyle}><Transfer /></div>Transfer</div>
-          <div style={elemStyle}><div style={iconStyle}><SubdirectoryRight /></div>Subdirectory right</div>
-          <div style={elemStyle}><div style={iconStyle}><Attach /></div>Attach</div>
-          <div style={elemStyle}><div style={iconStyle}><Add /></div>Add</div>
-          <div style={elemStyle}><div style={iconStyle}><Reduce /></div>Reduce</div>
-          <div style={elemStyle}><div style={iconStyle}><Question /></div>Question</div>
-          <div style={elemStyle}><div style={iconStyle}><Success /></div>Success</div>
-          <div style={elemStyle}><div style={iconStyle}><Warning /></div>Warning</div>
-          <div style={elemStyle}><div style={iconStyle}><Close /></div>Close</div>
-          <div style={elemStyle}><div style={iconStyle}><Renew /></div>Renew</div>
-        </div>
-      </div>
-      <StoryDocsH2>Status</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><StatusWarning /></div>Warning</div>
-          <div style={elemStyle}><div style={iconStyle}><StatusInformation /></div>Information</div>
-          <div style={elemStyle}><div style={iconStyle}><Release /></div>Release</div>
-          <div style={elemStyle}><div style={iconStyle}><StatusError /></div>Error</div>
-          <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question Status</div>
-          <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
-          <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
-          <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
-          <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyleStatus}><Timer /></div>Timer</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><Pending /></div>Pending</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><Reserved /></div>Reserved</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><Flag /></div>Flag</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><Troyka /></div>Troyka</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><Pin /></div>Pin</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><InfoFill /></div>Info fill</div>
-          <div style={elemStyle}><div style={iconStyleStatus}><InfoOutline /></div>Info outline</div>
-        </div>
-      </div>
-      <StoryDocsH2>Social</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Android size='xs' /></div>Android</div>
-          <div style={elemStyle}><div style={iconStyle}><Windows /></div>Windows</div>
-          <div style={elemStyle}><div style={iconStyle}><Classmates /></div>Classmates</div>
-          <div style={elemStyle}><div style={iconStyle}><Facebook /></div>Facebook</div>
-          <div style={elemStyle}><div style={iconStyle}><Apple /></div>Apple</div>
-          <div style={elemStyle}><div style={iconStyle}><Youtube /></div>Youtube</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><VK /></div>VK</div>
-          <div style={elemStyle}><div style={iconStyle}><GooglePlay /></div>Google Play</div>
-          <div style={elemStyle}><div style={iconStyle}><Twitter /></div>Twitter</div>
-          <div style={elemStyle}><div style={iconStyle}><Telegram /></div>Telegram</div>
-          <div style={elemStyle}><div style={iconStyle}><Huawei /></div>Huawei</div>
-        </div>
-      </div>
-    </StoryDocs>
-  );
+const iconStyle = {
+  color: '#8A96A8',
+  marginRight: 25
 };
 
-export const Icons = () => {
-  const iconStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    color: '#8A96A8',
-    marginRight: 25
-  };
-  const elemStyle = {
-    fontFamily: 'VTB Group UI',
-    fontSize: 14,
-    lineHeight: '20px',
-    marginBottom: 28,
-    display: 'flex',
-    alignItems: 'center',
-    justifyItems: 'center',
-    color: '#4C5767'
-  };
-
-  return (
-    <StoryDocs>
-      <StoryDocsH1>Icons 40px</StoryDocsH1>
-      <StoryDocsH2>Настройки</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><NotificationBig /></div>Notification Big</div>
-          <div style={elemStyle}><div style={iconStyle}><TuneUpBig /></div>Tune Up Big</div>
-          <div style={elemStyle}><div style={iconStyle}><Login /></div>Login</div>
-          <div style={elemStyle}><div style={iconStyle}><Authorization /></div>Authorization</div>
-          <div style={elemStyle}><div style={iconStyle}><LinkBig /></div>Link Big</div>
-          <div style={elemStyle}><div style={iconStyle}><Card /></div>Card</div>
-          <div style={elemStyle}><div style={iconStyle}><DigitalCardM /></div>Digital Card M</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ListOfCards /></div>List of cards</div>
-          <div style={elemStyle}><div style={iconStyle}><OnCardBig /></div>On Card big</div>
-          <div style={elemStyle}><div style={iconStyle}><AnotherCard /></div>Another card</div>
-          <div style={elemStyle}><div style={iconStyle}><CreditCard /></div>Credit Card</div>
-          <div style={elemStyle}><div style={iconStyle}><Limits /></div>Limits</div>
-          <div style={elemStyle}><div style={iconStyle}><SpecialSearchBig /></div>Special Search Big</div>
-        </div>
-      </div>
-      <StoryDocsH2>Профиль и связь с банком</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><PointBig /></div>Point big</div>
-          <div style={elemStyle}><div style={iconStyle}><WebsiteCall /></div>Website call</div>
-          <div style={elemStyle}><div style={iconStyle}><BackCall /></div>Back call</div>
-          <div style={elemStyle}><div style={iconStyle}><DialogBig /></div>Dialog big</div>
-          <div style={elemStyle}><div style={iconStyle}><PhoneBig /></div>Phone big</div>
-          <div style={elemStyle}><div style={iconStyle}><TransferOfSalary /></div>Transfer of salary</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><UserBig /></div>User big</div>
-          <div style={elemStyle}><div style={iconStyle}><CogBig /></div>Cog big</div>
-          <div style={elemStyle}><div style={iconStyle}><ExitBig /></div>Exit big</div>
-          <div style={elemStyle}><div style={iconStyle}><Salary /></div>Salary</div>
-          <div style={elemStyle}><div style={iconStyle}><EnvelopeBig /></div>Envelope big</div>
-          <div style={elemStyle}><div style={iconStyle}><OperationCompleted /></div>Operation Completed</div>
-        </div>
-      </div>
-      <StoryDocsH2>Кредиты</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Credit /></div>Credit</div>
-          <div style={elemStyle}><div style={iconStyle}><Credits /></div>Credits</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Mortgage /></div>Mortgage</div>
-          <div style={elemStyle}><div style={iconStyle}><AutoCredit /></div>Auto credit</div>
-        </div>
-      </div>
-      <StoryDocsH2>Инвестиции</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Broker /></div>Broker 2</div>
-          <div style={elemStyle}><div style={iconStyle}><Investment /></div>Investment</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><IIS /></div>IIS 2</div>
-          <div style={elemStyle}><div style={iconStyle}><MicroInvestments /></div>Micro investments</div>
-        </div>
-      </div>
-      <StoryDocsH2>Рефинасирование</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><MortgageRefinancing /></div>Mortgage Refinancing</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><CreditCardRefinancing /></div>Credit Card Refinancing</div>
-        </div>
-      </div>
-      <StoryDocsH2>Документы</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ReceiptBig /></div>Receipt Big</div>
-          <div style={elemStyle}><div style={iconStyle}><DocBig /></div>Doc Big</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Passport /></div>Passport</div>
-        </div>
-      </div>
-      <StoryDocsH2>Платежи и переводы</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><GosuslugiBig /></div>Gosuslugi Big</div>
-          <div style={elemStyle}><div style={iconStyle}><World /></div>World</div>
-          <div style={elemStyle}><div style={iconStyle}><FromCardToCard /></div>From Card To Card</div>
-          <div style={elemStyle}><div style={iconStyle}><TransfersBetweenAccounts /></div>Between accounts</div>
-          <div style={elemStyle}><div style={iconStyle}><ToOrganizations /></div>To Organizations</div>
-          <div style={elemStyle}><div style={iconStyle}><OtherPeople /></div>Other People</div>
-          <div style={elemStyle}><div style={iconStyle}><Charity /></div>Charity</div>
-          <div style={elemStyle}><div style={iconStyle}><Airplane /></div>Airplane</div>
-          <div style={elemStyle}><div style={iconStyle}><InternetNetworks /></div>Internet Networks</div>
-          <div style={elemStyle}><div style={iconStyle}><OnlineGames /></div>Online Games</div>
-          <div style={elemStyle}><div style={iconStyle}><MobileConnection /></div>Mobile Connection</div>
-          <div style={elemStyle}><div style={iconStyle}><InternetShopBig /></div>Internet Shops</div>
-          <div style={elemStyle}><div style={iconStyle}><ExtractAndReferences /></div>Extract And References</div>
-          <div style={elemStyle}><div style={iconStyle}><Education /></div>Education</div>
-          <div style={elemStyle}><div style={iconStyle}><OtherServices /></div>Other Services</div>
-          <div style={elemStyle}><div style={iconStyle}><PensionFunds /></div>Pension Funds</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ElectronicMoney /></div>Electronic Money</div>
-          <div style={elemStyle}><div style={iconStyle}><SWIFT /></div>SWIFT</div>
-          <div style={elemStyle}><div style={iconStyle}><GovernmentServices /></div>Government Services</div>
-          <div style={elemStyle}><div style={iconStyle}><InvestmentFunds /></div>Investment Funds</div>
-          <div style={elemStyle}><div style={iconStyle}><RepeatBig /></div>Repeat Big</div>
-          <div style={elemStyle}><div style={iconStyle}><TransfersWithinBankLegalEntities /></div>Transfers Within Bank Legal Entities</div>
-          <div style={elemStyle}><div style={iconStyle}><TransfersPhoneNumber /></div>Transfers Phone Number</div>
-          <div style={elemStyle}><div style={iconStyle}><TransfersAddressManagement /></div>Transfers Address Management Company PIF</div>
-          <div style={elemStyle}><div style={iconStyle}><CashWithdrawal /></div>Cash Withdrawal</div>
-          <div style={elemStyle}><div style={iconStyle}><Free /></div>Free</div>
-          <div style={elemStyle}><div style={iconStyle}><RefundMoney /></div>Refund Money</div>
-          <div style={elemStyle}><div style={iconStyle}><CurrencyExchange /></div>Currency Exchange</div>
-          <div style={elemStyle}><div style={iconStyle}><Transport /></div>Transport</div>
-          <div style={elemStyle}><div style={iconStyle}><Collecting /></div>Collecting</div>
-          <div style={elemStyle}><div style={iconStyle}><CashBig /></div>Cash Big</div>
-          <div style={elemStyle}><div style={iconStyle}><Elections /></div>Elections</div>
-        </div>
-      </div>
-      <StoryDocsH2>Цифровой пакет услуг</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Gift /></div>Gift</div>
-          <div style={elemStyle}><div style={iconStyle}><Concierge /></div>Concierge</div>
-          <div style={elemStyle}><div style={iconStyle}><Baggage /></div>Baggage</div>
-          <div style={elemStyle}><div style={iconStyle}><InjuryFall /></div>Injury-Fall</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Drink /></div>Drink</div>
-          <div style={elemStyle}><div style={iconStyle}><AccountProtection /></div>Account Protection</div>
-          <div style={elemStyle}><div style={iconStyle}><Transponder /></div>Transponder</div>
-          <div style={elemStyle}><div style={iconStyle}><Gender /></div>Gender</div>
-        </div>
-      </div>
-      <StoryDocsH2>Штрафы и налоги</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><MovableProperty /></div>Movable Property</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><LandTax /></div>Land Tax</div>
-        </div>
-      </div>
-      <StoryDocsH2>Металлы</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><MetalAccount /></div>Metal Account</div>
-        </div>
-      </div>
-      <StoryDocsH2>Страхование</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><HomeInsurance /></div>Home Insurance</div>
-          <div style={elemStyle}><div style={iconStyle}><Hospital /></div>Hospital</div>
-          <div style={elemStyle}><div style={iconStyle}><Disability /></div>Disability</div>
-          <div style={elemStyle}><div style={iconStyle}><Death /></div>Death</div>
-          <div style={elemStyle}><div style={iconStyle}><Injury /></div>Injury</div>
-          <div style={elemStyle}><div style={iconStyle}><CivilLiability /></div>Civil Liability</div>
-          <div style={elemStyle}><div style={iconStyle}><IJS /></div>IJS</div>
-          <div style={elemStyle}><div style={iconStyle}><InsuranceAgainstFraud /></div>Insurance Against Fraud</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><InteriorDecoration /></div>Interior Decoration</div>
-          <div style={elemStyle}><div style={iconStyle}><MortgageInsurance /></div>Mortgage Insurance</div>
-          <div style={elemStyle}><div style={iconStyle}><Lawyer /></div>Lawyer</div>
-          <div style={elemStyle}><div style={iconStyle}><CarAccident /></div>Car Accident</div>
-          <div style={elemStyle}><div style={iconStyle}><DMS /></div>DMS</div>
-          <div style={elemStyle}><div style={iconStyle}><ChildProtection /></div>Child Protection</div>
-          <div style={elemStyle}><div style={iconStyle}><ChildrenBankCardBig /></div>Children Bank Card Big</div>
-        </div>
-      </div>
-      <StoryDocsH2>Тарифы</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><PricingPlansS /></div>Pricing Plans S</div>
-          <div style={elemStyle}><div style={iconStyle}><PricingPlansM /></div>Pricing Plans M</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><PricingPlansL /></div>Pricing Plans L</div>
-        </div>
-      </div>
-      <StoryDocsH2>Сбережения</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Refinancing /></div>Refinancing</div>
-          <div style={elemStyle}><div style={iconStyle}><CreditCard /></div>CreditCard</div>
-          <div style={elemStyle}><div style={iconStyle}><SavingsAccountMoneyBox /></div>Savings Account Money Box</div>
-          <div style={elemStyle}><div style={iconStyle}><SavingsAccountBanknote /></div>Savings Account Banknote</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><CreditCash /></div>Credit Cash</div>
-          <div style={elemStyle}><div style={iconStyle}><Deposit /></div>Deposit</div>
-          <div style={elemStyle}><div style={iconStyle}><Savings /></div>Savings</div>
-
-        </div>
-      </div>
-      <StoryDocsH2>Мои средства</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><AvailableFunds /></div>Available Funds</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><StarBig /></div>Star Big</div>
-
-        </div>
-      </div>
-      <StoryDocsH2>Мобильная связь</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><VTBMobile /></div>VTB Mobile</div>
-        </div>
-      </div>
-      <StoryDocsH2>Цели</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><OnVacation /></div>On Vacation</div>
-          <div style={elemStyle}><div style={iconStyle}><Home /></div>Home</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><OnYourself /></div>On Yourself</div>
-        </div>
-      </div>
-      <StoryDocsH2>Бонусы</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><CollectBonus /></div>Collect Bonus</div>
-          <div style={elemStyle}><div style={iconStyle}><Borrower /></div>Borrower</div>
-
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><Restaurant /></div>Restaurant</div>
-        </div>
-      </div>
-      <StoryDocsH2>Операции</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ProtestingOperations /></div>Protesting Operations</div>
-          <div style={elemStyle}><div style={iconStyle}><OtherBankProducts /></div>Other Bank Products</div>
-          <div style={elemStyle}><div style={iconStyle}><Maintenance /></div>Maintenance</div>
-          <div style={elemStyle}><div style={iconStyle}><QualityOfService /></div>Quality Of Service</div>
-          <div style={elemStyle}><div style={iconStyle}><ATMOperation /></div>ATM Operation</div>
-          <div style={elemStyle}><div style={iconStyle}><Credit /></div>Credit</div>
-          <div style={elemStyle}><div style={iconStyle}><InvestmentProductsBig /></div>Investment Products Big</div>
-          <div style={elemStyle}><div style={iconStyle}><GetAReceipt /></div>Get A Receipt</div>
-          <div style={elemStyle}><div style={iconStyle}><ParkingAccount /></div>Parking Account</div>
-          <div style={elemStyle}><div style={iconStyle}><TroikaAccount /></div>Troika Account</div>
-          <div style={elemStyle}><div style={iconStyle}><SaveMoney /></div>Save Money</div>
-          <div style={elemStyle}><div style={iconStyle}><STS /></div>STS</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><DriverLicense /></div>Driver License</div>
-          <div style={elemStyle}><div style={iconStyle}><Sharp /></div>Number</div>
-          <div style={elemStyle}><div style={iconStyle}><PercentRatio /></div>Percent Ratio</div>
-          <div style={elemStyle}><div style={iconStyle}><TireService /></div>Tire Service</div>
-          <div style={elemStyle}><div style={iconStyle}><VisualImpairment /></div>Visual Impairment</div>
-          <div style={elemStyle}><div style={iconStyle}><HearingImpairment /></div>Hearing Impairment</div>
-          <div style={elemStyle}><div style={iconStyle}><ViolationOfMotorSystem /></div>Violation Of The Motor System</div>
-          <div style={elemStyle}><div style={iconStyle}><SpeechDisorder /></div>Speech Disorder</div>
-          <div style={elemStyle}><div style={iconStyle}><AnotherViolation /></div>Another Violation</div>
-          <div style={elemStyle}><div style={iconStyle}><PerceptionDisorder /></div>Perception Disorder</div>
-          <div style={elemStyle}><div style={iconStyle}><TransferInvestments /></div>Transfer Investments</div>
-          <div style={elemStyle}><div style={iconStyle}><VolumeOfMargin /></div>Volume Of The Margin</div>
-        </div>
-      </div>
-      <StoryDocsH2>Остальные</StoryDocsH2>
-      <div style={{ display: 'flex' }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginRight: 250
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><FlagBig /></div>Flag big</div>
-          <div style={elemStyle}><div style={iconStyle}><InformationAlertBig /></div>Information Alert Big</div>
-          <div style={elemStyle}><div style={iconStyle}><Cashback /></div>Cashback</div>
-        </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column'
-        }}>
-          <div style={elemStyle}><div style={iconStyle}><ReplenishmentOtherInvestments /></div>Replenishment Other Investments</div>
-          <div style={elemStyle}><div style={iconStyle}><GhostLiveBalances /></div>Ghost Live Balances</div>
-        </div>
-      </div>
-    </StoryDocs>
-  );
+const iconStyleStatus = {
+  color: '#A7B0BE',
+  marginRight: 25
 };
+
+const elemStyle = {
+  fontFamily: 'VTB Group UI',
+  fontSize: 14,
+  lineHeight: '20px',
+  marginBottom: 28,
+  display: 'flex',
+  justifyItems: 'center',
+  color: '#4C5767'
+};
+
+const sectionStyle = { display: 'flex' };
+
+const columnFirstStyle = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+  marginRight: '40px',
+  flexBasis: '380px',
+};
+
+const columnSecondStyle = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+};
+
+export const Demo: Story = () => (
+  <StoryDocs>
+    <StoryDocsH1>Системные иконки 24 px</StoryDocsH1>
+    <StoryDocsH2>Tools</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Point /></div>Point</div>
+        <div style={elemStyle}><div style={iconStyle}><Trash /></div>Trash</div>
+        <div style={elemStyle}><div style={iconStyle}><Location /></div>Location</div>
+        <div style={elemStyle}><div style={iconStyle}><OnCard /></div>On Card</div>
+        <div style={elemStyle}><div style={iconStyle}><NewCalendar /></div>Calendar</div>
+        <div style={elemStyle}><div style={iconStyle}><Lock /></div>Lock</div>
+        <div style={elemStyle}><div style={iconStyle}><InternetShop /></div>Internet Shop</div>
+        <div style={elemStyle}><div style={iconStyle}><NewEdit /></div>Edit</div>
+        <div style={elemStyle}><div style={iconStyle}><OnPhone /></div>On phone</div>
+        <div style={elemStyle}><div style={iconStyle}><Microphone /></div>Microphone</div>
+        <div style={elemStyle}><div style={iconStyle}><ChildrenBankCard /></div>Children bank card</div>
+        <div style={elemStyle}><div style={iconStyle}><QR /></div>QR</div>
+        <div style={elemStyle}><div style={iconStyle}><Doc /></div>Doc</div>
+        <div style={elemStyle}><div style={iconStyle}><TuneUp /></div>Tune up</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Change /></div>Change</div>
+        <div style={elemStyle}><div style={iconStyle}><MenuHorizontal /></div>Menu horizontal</div>
+        <div style={elemStyle}><div style={iconStyle}><MenuVertical /></div>Menu vertical</div>
+        <div style={elemStyle}><div style={iconStyle}><Refresh /></div>Refresh</div>
+        <div style={elemStyle}><div style={iconStyle}><Link /></div>Link</div>
+        <div style={elemStyle}><div style={iconStyle}><Cog /></div>Cog</div>
+        <div style={elemStyle}><div style={iconStyle}><Printer /></div>Printer</div>
+        <div style={elemStyle}><div style={iconStyle}><ShowAll /></div>Show all</div>
+        <div style={elemStyle}><div style={iconStyle}><Template /></div>Template</div>
+        <div style={elemStyle}><div style={iconStyle}><Receipt/></div>Receipt</div>
+        <div style={elemStyle}><div style={iconStyle}><AutoPayment /></div>Auto payment</div>
+        <div style={elemStyle}><div style={iconStyle}><Cash /></div>Cash</div>
+        <div style={elemStyle}><div style={iconStyle}><Repeat /></div>Repeat</div>
+        <div style={elemStyle}><div style={iconStyle}><Cancel /></div>Cancel</div>
+      </div>
+    </div>
+    <StoryDocsH2>Alerts</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><InformationAlert /></div>Information Alert</div>
+        <div style={elemStyle}><div style={iconStyle}><QuestionAlert /></div>Question alert</div>
+        <div style={elemStyle}><div style={iconStyle}><Dialog /></div>Dialog</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Holidays /></div>Holidays</div>
+        <div style={elemStyle}><div style={iconStyle}><Notification /></div>Notification</div>
+      </div>
+    </div>
+    <StoryDocsH2>Messaging</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Envelope /></div>Envelope</div>
+        <div style={elemStyle}><div style={iconStyle}><Smartphone /></div>Smartphone</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Phone /></div>Phone</div>
+        <div style={elemStyle}><div style={iconStyle}><Alternative /></div>Alternative</div>
+      </div>
+    </div>
+    <StoryDocsH2>Account</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><User /></div>User</div>
+        <div style={elemStyle}><div style={iconStyle}><Exit /></div>Exit</div>
+        <div style={elemStyle}><div style={iconStyle}><Send /></div>Send</div>
+        <div style={elemStyle}><div style={iconStyle}><Copy /></div>Copy</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><EyeOpen /></div>Eye open</div>
+        <div style={elemStyle}><div style={iconStyle}><EyeClose /></div>Eye close</div>
+        <div style={elemStyle}><div style={iconStyle}><Search /></div>Search</div>
+      </div>
+    </div>
+    <StoryDocsH2>Specific</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Star /></div>Star</div>
+        <div style={elemStyle}><div style={iconStyle}><BankCard /></div>Bank card</div>
+        <div style={elemStyle}><div style={iconStyle}><Archive /></div>Archive</div>
+        <div style={elemStyle}><div style={iconStyle}><Courier /></div>Courier</div>
+        <div style={elemStyle}><div style={iconStyle}><Diagram /></div>Diagram</div>
+        <div style={elemStyle}><div style={iconStyle}><Safe /></div>Safe</div>
+        <div style={elemStyle}><div style={iconStyle}><DigitalCard /></div>Digital card</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><SpecialSearch /></div>Special search</div>
+        <div style={elemStyle}><div style={iconStyle}><LightBulb /></div>Light bulb</div>
+        <div style={elemStyle}><div style={iconStyle}><Coin /></div>Coin</div>
+        <div style={elemStyle}><div style={iconStyle}><CardRecommend /></div>Card recommend</div>
+        <div style={elemStyle}><div style={iconStyle}><Bank /></div>Bank</div>
+        <div style={elemStyle}><div style={iconStyle}><Gosuslygi /></div>Gosuslygi</div>
+        <div style={elemStyle}><div style={iconStyle}><InvestmentProducts /></div>Investment products</div>
+      </div>
+    </div>
+    <StoryDocsH2>Themes</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><DarkModeStroke /></div>Dark mode stroke</div>
+        <div style={elemStyle}><div style={iconStyle}><LightModeStroke /></div>Light mode stroke</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><DarkModeFill /></div>Dark mode fill</div>
+        <div style={elemStyle}><div style={iconStyle}><LightModeStrokeFill /></div>Light mode Fill</div>
+      </div>
+    </div>
+    <StoryDocsH2>Arrows</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ChevronLeft /></div>Chevron left</div>
+        <div style={elemStyle}><div style={iconStyle}><ChevronRight /></div>Chevron right</div>
+        <div style={elemStyle}><div style={iconStyle}><ChevronUp /></div>Chevron up</div>
+        <div style={elemStyle}><div style={iconStyle}><ChevronDown /></div>Chevron down</div>
+        <div style={elemStyle}><div style={iconStyle}><ArrowLeft /></div>Arrow left</div>
+        <div style={elemStyle}><div style={iconStyle}><ArrowRight /></div>Arrow Right</div>
+        <div style={elemStyle}><div style={iconStyle}><ArrowUp /></div>Arrow Up</div>
+        <div style={elemStyle}><div style={iconStyle}><ArrowDown /></div>Arrow Down</div>
+        <div style={elemStyle}><div style={iconStyle}><Up/></div>Up</div>
+        <div style={elemStyle}><div style={iconStyle}><Down /></div>Down</div>
+        <div style={elemStyle}><div style={iconStyle}><Download /></div>Download</div>
+        <div style={elemStyle}><div style={iconStyle}><Upload /></div>Upload</div>
+        <div style={elemStyle}><div style={iconStyle}><InfoStatus /></div>Info status</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Exchange /></div>Exchange</div>
+        <div style={elemStyle}><div style={iconStyle}><Sort /></div>Sort</div>
+        <div style={elemStyle}><div style={iconStyle}><Transfer /></div>Transfer</div>
+        <div style={elemStyle}><div style={iconStyle}><SubdirectoryRight /></div>Subdirectory right</div>
+        <div style={elemStyle}><div style={iconStyle}><Attach /></div>Attach</div>
+        <div style={elemStyle}><div style={iconStyle}><Add /></div>Add</div>
+        <div style={elemStyle}><div style={iconStyle}><Reduce /></div>Reduce</div>
+        <div style={elemStyle}><div style={iconStyle}><Question /></div>Question Status</div>
+        <div style={elemStyle}><div style={iconStyle}><Success /></div>Success</div>
+        <div style={elemStyle}><div style={iconStyle}><Warning /></div>Warning</div>
+        <div style={elemStyle}><div style={iconStyle}><Close /></div>Close</div>
+        <div style={elemStyle}><div style={iconStyle}><Renew /></div>Renew</div>
+      </div>
+    </div>
+    <StoryDocsH2>Status</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><StatusWarning /></div>Warning</div>
+        <div style={elemStyle}><div style={iconStyle}><StatusInformation /></div>Information</div>
+        <div style={elemStyle}><div style={iconStyle}><Release /></div>Release</div>
+        <div style={elemStyle}><div style={iconStyle}><StatusError /></div>Error</div>
+        <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question</div>
+        <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
+        <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
+        <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
+        <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyleStatus}><Timer /></div>Timer</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><Pending /></div>Pending</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><Reserved /></div>Reserved</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><Flag /></div>Flag</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><Troyka /></div>Troyka</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><Pin /></div>Pin</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><InfoFill /></div>Info fill</div>
+        <div style={elemStyle}><div style={iconStyleStatus}><InfoOutline /></div>Info outline</div>
+      </div>
+    </div>
+    <StoryDocsH2>Social</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Android size='xs' /></div>Android</div>
+        <div style={elemStyle}><div style={iconStyle}><Windows /></div>Windows</div>
+        <div style={elemStyle}><div style={iconStyle}><Classmates /></div>Classmates</div>
+        <div style={elemStyle}><div style={iconStyle}><Facebook /></div>Facebook</div>
+        <div style={elemStyle}><div style={iconStyle}><Apple /></div>Apple</div>
+        <div style={elemStyle}><div style={iconStyle}><Youtube /></div>Youtube</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><VK /></div>VK</div>
+        <div style={elemStyle}><div style={iconStyle}><GooglePlay /></div>Google Play</div>
+        <div style={elemStyle}><div style={iconStyle}><Twitter /></div>Twitter</div>
+        <div style={elemStyle}><div style={iconStyle}><Telegram /></div>Telegram</div>
+        <div style={elemStyle}><div style={iconStyle}><Huawei /></div>Huawei</div>
+      </div>
+    </div>
+  </StoryDocs>
+);
+
+export const Icons = () => (
+  <StoryDocs>
+    <StoryDocsH1>Icons 40px</StoryDocsH1>
+    <StoryDocsH2>Настройки</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><NotificationBig /></div>Notification Big</div>
+        <div style={elemStyle}><div style={iconStyle}><TuneUpBig /></div>Tune Up Big</div>
+        <div style={elemStyle}><div style={iconStyle}><Login /></div>Login</div>
+        <div style={elemStyle}><div style={iconStyle}><Authorization /></div>Authorization</div>
+        <div style={elemStyle}><div style={iconStyle}><LinkBig /></div>Link Big</div>
+        <div style={elemStyle}><div style={iconStyle}><Card /></div>Card</div>
+        <div style={elemStyle}><div style={iconStyle}><DigitalCardM /></div>Digital Card M</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ListOfCards /></div>List of cards</div>
+        <div style={elemStyle}><div style={iconStyle}><OnCardBig /></div>On Card big</div>
+        <div style={elemStyle}><div style={iconStyle}><AnotherCard /></div>Another card</div>
+        <div style={elemStyle}><div style={iconStyle}><CreditCard /></div>Credit Card</div>
+        <div style={elemStyle}><div style={iconStyle}><Limits /></div>Limits</div>
+        <div style={elemStyle}><div style={iconStyle}><SpecialSearchBig /></div>Special Search Big</div>
+      </div>
+    </div>
+    <StoryDocsH2>Профиль и связь с банком</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><PointBig /></div>Point big</div>
+        <div style={elemStyle}><div style={iconStyle}><WebsiteCall /></div>Website call</div>
+        <div style={elemStyle}><div style={iconStyle}><BackCall /></div>Back call</div>
+        <div style={elemStyle}><div style={iconStyle}><DialogBig /></div>Dialog big</div>
+        <div style={elemStyle}><div style={iconStyle}><PhoneBig /></div>Phone big</div>
+        <div style={elemStyle}><div style={iconStyle}><TransferOfSalary /></div>Transfer of salary</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><UserBig /></div>User big</div>
+        <div style={elemStyle}><div style={iconStyle}><CogBig /></div>Cog big</div>
+        <div style={elemStyle}><div style={iconStyle}><ExitBig /></div>Exit big</div>
+        <div style={elemStyle}><div style={iconStyle}><Salary /></div>Salary</div>
+        <div style={elemStyle}><div style={iconStyle}><EnvelopeBig /></div>Envelope big</div>
+        <div style={elemStyle}><div style={iconStyle}><OperationCompleted /></div>Operation Completed</div>
+      </div>
+    </div>
+    <StoryDocsH2>Кредиты</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Credit /></div>Credit</div>
+        <div style={elemStyle}><div style={iconStyle}><Credits /></div>Credits</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Mortgage /></div>Mortgage</div>
+        <div style={elemStyle}><div style={iconStyle}><AutoCredit /></div>Auto credit</div>
+      </div>
+    </div>
+    <StoryDocsH2>Инвестиции</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Broker /></div>Broker 2</div>
+        <div style={elemStyle}><div style={iconStyle}><Investment /></div>Investment</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><IIS /></div>IIS 2</div>
+        <div style={elemStyle}><div style={iconStyle}><MicroInvestments /></div>Micro investments</div>
+      </div>
+    </div>
+    <StoryDocsH2>Рефинасирование</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><MortgageRefinancing /></div>Mortgage Refinancing</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><CreditCardRefinancing /></div>Credit Card Refinancing</div>
+      </div>
+    </div>
+    <StoryDocsH2>Документы</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ReceiptBig /></div>Receipt Big</div>
+        <div style={elemStyle}><div style={iconStyle}><DocBig /></div>Doc Big</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Passport /></div>Passport</div>
+      </div>
+    </div>
+    <StoryDocsH2>Платежи и переводы</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><GosuslugiBig /></div>Gosuslugi Big</div>
+        <div style={elemStyle}><div style={iconStyle}><World /></div>World</div>
+        <div style={elemStyle}><div style={iconStyle}><FromCardToCard /></div>From Card To Card</div>
+        <div style={elemStyle}><div style={iconStyle}><TransfersBetweenAccounts /></div>Between accounts</div>
+        <div style={elemStyle}><div style={iconStyle}><ToOrganizations /></div>To Organizations</div>
+        <div style={elemStyle}><div style={iconStyle}><OtherPeople /></div>Other People</div>
+        <div style={elemStyle}><div style={iconStyle}><Charity /></div>Charity</div>
+        <div style={elemStyle}><div style={iconStyle}><Airplane /></div>Airplane</div>
+        <div style={elemStyle}><div style={iconStyle}><InternetNetworks /></div>Internet Networks</div>
+        <div style={elemStyle}><div style={iconStyle}><OnlineGames /></div>Online Games</div>
+        <div style={elemStyle}><div style={iconStyle}><MobileConnection /></div>Mobile Connection</div>
+        <div style={elemStyle}><div style={iconStyle}><InternetShopBig /></div>Internet Shops</div>
+        <div style={elemStyle}><div style={iconStyle}><ExtractAndReferences /></div>Extract And References</div>
+        <div style={elemStyle}><div style={iconStyle}><Education /></div>Education</div>
+        <div style={elemStyle}><div style={iconStyle}><OtherServices /></div>Other Services</div>
+        <div style={elemStyle}><div style={iconStyle}><PensionFunds /></div>Pension Funds</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ElectronicMoney /></div>Electronic Money</div>
+        <div style={elemStyle}><div style={iconStyle}><SWIFT /></div>SWIFT</div>
+        <div style={elemStyle}><div style={iconStyle}><GovernmentServices /></div>Government Services</div>
+        <div style={elemStyle}><div style={iconStyle}><InvestmentFunds /></div>Investment Funds</div>
+        <div style={elemStyle}><div style={iconStyle}><RepeatBig /></div>Repeat Big</div>
+        <div style={elemStyle}><div style={iconStyle}><TransfersWithinBankLegalEntities /></div>Transfers Within Bank Legal Entities</div>
+        <div style={elemStyle}><div style={iconStyle}><TransfersPhoneNumber /></div>Transfers Phone Number</div>
+        <div style={elemStyle}><div style={iconStyle}><TransfersAddressManagement /></div>Transfers Address Management Company PIF</div>
+        <div style={elemStyle}><div style={iconStyle}><CashWithdrawal /></div>Cash Withdrawal</div>
+        <div style={elemStyle}><div style={iconStyle}><Free /></div>Free</div>
+        <div style={elemStyle}><div style={iconStyle}><RefundMoney /></div>Refund Money</div>
+        <div style={elemStyle}><div style={iconStyle}><CurrencyExchange /></div>Currency Exchange</div>
+        <div style={elemStyle}><div style={iconStyle}><Transport /></div>Transport</div>
+        <div style={elemStyle}><div style={iconStyle}><Collecting /></div>Collecting</div>
+        <div style={elemStyle}><div style={iconStyle}><CashBig /></div>Cash Big</div>
+        <div style={elemStyle}><div style={iconStyle}><Elections /></div>Elections</div>
+      </div>
+    </div>
+    <StoryDocsH2>Цифровой пакет услуг</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Gift /></div>Gift</div>
+        <div style={elemStyle}><div style={iconStyle}><Concierge /></div>Concierge</div>
+        <div style={elemStyle}><div style={iconStyle}><Baggage /></div>Baggage</div>
+        <div style={elemStyle}><div style={iconStyle}><InjuryFall /></div>Injury-Fall</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Drink /></div>Drink</div>
+        <div style={elemStyle}><div style={iconStyle}><AccountProtection /></div>Account Protection</div>
+        <div style={elemStyle}><div style={iconStyle}><Transponder /></div>Transponder</div>
+        <div style={elemStyle}><div style={iconStyle}><Gender /></div>Gender</div>
+      </div>
+    </div>
+    <StoryDocsH2>Штрафы и налоги</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><MovableProperty /></div>Movable Property</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><LandTax /></div>Land Tax</div>
+      </div>
+    </div>
+    <StoryDocsH2>Металлы</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><MetalAccount /></div>Metal Account</div>
+      </div>
+    </div>
+    <StoryDocsH2>Страхование</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><HomeInsurance /></div>Home Insurance</div>
+        <div style={elemStyle}><div style={iconStyle}><Hospital /></div>Hospital</div>
+        <div style={elemStyle}><div style={iconStyle}><Disability /></div>Disability</div>
+        <div style={elemStyle}><div style={iconStyle}><Death /></div>Death</div>
+        <div style={elemStyle}><div style={iconStyle}><Injury /></div>Injury</div>
+        <div style={elemStyle}><div style={iconStyle}><CivilLiability /></div>Civil Liability</div>
+        <div style={elemStyle}><div style={iconStyle}><IJS /></div>IJS</div>
+        <div style={elemStyle}><div style={iconStyle}><InsuranceAgainstFraud /></div>Insurance Against Fraud</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><InteriorDecoration /></div>Interior Decoration</div>
+        <div style={elemStyle}><div style={iconStyle}><MortgageInsurance /></div>Mortgage Insurance</div>
+        <div style={elemStyle}><div style={iconStyle}><Lawyer /></div>Lawyer</div>
+        <div style={elemStyle}><div style={iconStyle}><CarAccident /></div>Car Accident</div>
+        <div style={elemStyle}><div style={iconStyle}><DMS /></div>DMS</div>
+        <div style={elemStyle}><div style={iconStyle}><ChildProtection /></div>Child Protection</div>
+        <div style={elemStyle}><div style={iconStyle}><ChildrenBankCardBig /></div>Children Bank Card Big</div>
+      </div>
+    </div>
+    <StoryDocsH2>Тарифы</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><PricingPlansS /></div>Pricing Plans S</div>
+        <div style={elemStyle}><div style={iconStyle}><PricingPlansM /></div>Pricing Plans M</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><PricingPlansL /></div>Pricing Plans L</div>
+      </div>
+    </div>
+    <StoryDocsH2>Сбережения</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Refinancing /></div>Refinancing</div>
+        <div style={elemStyle}><div style={iconStyle}><CreditCard /></div>CreditCard</div>
+        <div style={elemStyle}><div style={iconStyle}><SavingsAccountMoneyBox /></div>Savings Account Money Box</div>
+        <div style={elemStyle}><div style={iconStyle}><SavingsAccountBanknote /></div>Savings Account Banknote</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><CreditCash /></div>Credit Cash</div>
+        <div style={elemStyle}><div style={iconStyle}><Deposit /></div>Deposit</div>
+        <div style={elemStyle}><div style={iconStyle}><Savings /></div>Savings</div>
+
+      </div>
+    </div>
+    <StoryDocsH2>Мои средства</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><AvailableFunds /></div>Available Funds</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><StarBig /></div>Star Big</div>
+
+      </div>
+    </div>
+    <StoryDocsH2>Мобильная связь</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><VTBMobile /></div>VTB Mobile</div>
+      </div>
+    </div>
+    <StoryDocsH2>Цели</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><OnVacation /></div>On Vacation</div>
+        <div style={elemStyle}><div style={iconStyle}><Home /></div>Home</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><OnYourself /></div>On Yourself</div>
+      </div>
+    </div>
+    <StoryDocsH2>Бонусы</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><CollectBonus /></div>Collect Bonus</div>
+        <div style={elemStyle}><div style={iconStyle}><Borrower /></div>Borrower</div>
+
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><Restaurant /></div>Restaurant</div>
+      </div>
+    </div>
+    <StoryDocsH2>Операции</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ProtestingOperations /></div>Protesting Operations</div>
+        <div style={elemStyle}><div style={iconStyle}><OtherBankProducts /></div>Other Bank Products</div>
+        <div style={elemStyle}><div style={iconStyle}><Maintenance /></div>Maintenance</div>
+        <div style={elemStyle}><div style={iconStyle}><QualityOfService /></div>Quality Of Service</div>
+        <div style={elemStyle}><div style={iconStyle}><ATMOperation /></div>ATM Operation</div>
+        <div style={elemStyle}><div style={iconStyle}><Credit /></div>Credit</div>
+        <div style={elemStyle}><div style={iconStyle}><InvestmentProductsBig /></div>Investment Products Big</div>
+        <div style={elemStyle}><div style={iconStyle}><GetAReceipt /></div>Get A Receipt</div>
+        <div style={elemStyle}><div style={iconStyle}><ParkingAccount /></div>Parking Account</div>
+        <div style={elemStyle}><div style={iconStyle}><TroikaAccount /></div>Troika Account</div>
+        <div style={elemStyle}><div style={iconStyle}><SaveMoney /></div>Save Money</div>
+        <div style={elemStyle}><div style={iconStyle}><STS /></div>STS</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><DriverLicense /></div>Driver License</div>
+        <div style={elemStyle}><div style={iconStyle}><Sharp /></div>Number</div>
+        <div style={elemStyle}><div style={iconStyle}><PercentRatio /></div>Percent Ratio</div>
+        <div style={elemStyle}><div style={iconStyle}><TireService /></div>Tire Service</div>
+        <div style={elemStyle}><div style={iconStyle}><VisualImpairment /></div>Visual Impairment</div>
+        <div style={elemStyle}><div style={iconStyle}><HearingImpairment /></div>Hearing Impairment</div>
+        <div style={elemStyle}><div style={iconStyle}><ViolationOfMotorSystem /></div>Violation Of The Motor System</div>
+        <div style={elemStyle}><div style={iconStyle}><SpeechDisorder /></div>Speech Disorder</div>
+        <div style={elemStyle}><div style={iconStyle}><AnotherViolation /></div>Another Violation</div>
+        <div style={elemStyle}><div style={iconStyle}><PerceptionDisorder /></div>Perception Disorder</div>
+        <div style={elemStyle}><div style={iconStyle}><TransferInvestments /></div>Transfer Investments</div>
+        <div style={elemStyle}><div style={iconStyle}><VolumeOfMargin /></div>Volume Of The Margin</div>
+      </div>
+    </div>
+    <StoryDocsH2>Остальные</StoryDocsH2>
+    <div style={sectionStyle}>
+      <div style={columnFirstStyle}>
+        <div style={elemStyle}><div style={iconStyle}><FlagBig /></div>Flag big</div>
+        <div style={elemStyle}><div style={iconStyle}><InformationAlertBig /></div>Information Alert Big</div>
+        <div style={elemStyle}><div style={iconStyle}><Cashback /></div>Cashback</div>
+      </div>
+      <div style={columnSecondStyle}>
+        <div style={elemStyle}><div style={iconStyle}><ReplenishmentOtherInvestments /></div>Replenishment Other Investments</div>
+        <div style={elemStyle}><div style={iconStyle}><GhostLiveBalances /></div>Ghost Live Balances</div>
+      </div>
+    </div>
+  </StoryDocs>
+);
 
 Demo.parameters = {
   design: {
