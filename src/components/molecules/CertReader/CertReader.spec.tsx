@@ -1,7 +1,6 @@
 import React from 'react';
 import { getByText, render, waitFor } from '@testing-library/react';
 
-
 import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../PDFViewer/pdf';
 
@@ -11,28 +10,25 @@ import { byText } from 'testing-library-selector';
 
 const file: IRequestAttachment = {
   fileName: 'test',
-  base64: pdfFile
+  base64: pdfFile,
 };
-
 const onError = jest.fn();
 const onSuccess = jest.fn();
 
-describe('Test <CertReader/> component', () => {
+describe('Test <CertReader /> component', () => {
   /** Обработка ошибок */
   const originalError = console.error;
-  
+
   afterEach(() => (console.error = originalError));
-  beforeEach(() => (console.error = () => {
-  }));
-  
-  it('should render <CertReader/> ', () => {
-    const { container } = render(<CertReader buttonTitle="test" file={ file } onError={ onError }
-                                             onSuccess={ onSuccess }/>);
+  beforeEach(() => (console.error = () => {}));
+
+  it('should render <CertReader /> ', () => {
+    const { container } = render(<CertReader buttonTitle='test' file={file} onError={onError} onSuccess={onSuccess} />);
     expect(getByText(container, 'test')).toBeTruthy();
   });
-  
+
   it('should success sign with mock ', async () => {
-    render(<CertReader useMock buttonTitle="test" file={ file } onError={ onError } onSuccess={ onSuccess }/>);
+    render(<CertReader useMock buttonTitle='test' file={file} onError={onError} onSuccess={onSuccess} />);
     userEvent.click(byText('test').get());
     expect(byText('Гомер Симпсон (CN=VTB Group CA 3, O=VTB, C=RU)').get()).toBeTruthy();
     expect(byText('Барт Симпсон (CN=VTB Group DSO CA 7, O=VTB, C=RU)').get()).toBeTruthy();
