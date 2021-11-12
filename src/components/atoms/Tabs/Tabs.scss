@@ -15,6 +15,10 @@ $lineWidth: 2px;
   position: relative;
   display: flex;
   align-items: center;
+
+  &--without-menu {
+    overflow: hidden;
+  }
 }
 
 .rf-tabs__navigation-line {
