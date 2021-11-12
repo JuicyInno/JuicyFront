@@ -48,6 +48,15 @@ describe('Test <Tabs/> component', () => {
     expect(container.getElementsByClassName('rf-tabs__navigation__line')).toHaveLength(0);
   });
 
+  it('should be without menu', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <Tabs list={_simpleTabs} showMenu={false} />
+      </BrowserRouter>
+    );
+    expect(container.getElementsByClassName('rf-tabs__navigation-list--without-menu')).toHaveLength(1);
+  });
+
   it('should have active tab at index 1', () => {
     const { container } = render(
       <BrowserRouter>
