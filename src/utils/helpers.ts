@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import {
   IFileData, IFormattedDate, Size
 } from '../types';
-import moment from 'moment';
 
 const months = [
   'январь',
@@ -202,15 +201,15 @@ export const numberWithSpaces = (x: number, n = 3, s = ' '): string => {
 };
 
 export const UTCToLocal = (date: Date | number): Date => {
-  const offset = moment().utcOffset();
-  const withOffset = moment(date).toDate().getTime() + offset * 60000;
-  return moment(withOffset).toDate();
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() + offset * 60000;
+  return new Date(withOffset);
 };
 
 export const LocalToUTC = (date: Date | number): Date => {
-  const offset = moment().utcOffset();
-  const withOffset = moment(date).toDate().getTime() - offset * 60000;
-  return moment(withOffset).toDate();
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() - offset * 60000;
+  return new Date(withOffset);
 };
 
 /** Выделить текст из HTML */
