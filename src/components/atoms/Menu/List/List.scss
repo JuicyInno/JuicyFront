@@ -1,11 +1,15 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-list {
   min-width: 150px;
-  padding: 24px 0;
+  padding: 8px 0;
+  // 6 elements + paddings
+  max-height: 256px;
+  overflow: auto;
 }
 
 .rf-li {
+  position: relative;
   list-style: none;
   width: 100%;
 }
@@ -13,13 +17,32 @@
 .rf-list__element {
   display: block;
   text-align: left;
-  padding: 8px 24px;
+  padding: 8px 16px;
   cursor: pointer;
   transition: 0.15s;
   background-color: var(--background-primary);
   @include text-l-16;
   color: var(--text-primary);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  .rf-tooltip {
+    max-width: 100%;
+  }
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &--title {
+    font-weight: 500;
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 .rf-list__element--disabled {
@@ -29,10 +52,12 @@
 }
 
 .rf-list__separator {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 1px;
   background-color: var(--background-secondary);
-  margin: 8px 0;
 }
 
 .rf-list__element:hover {
