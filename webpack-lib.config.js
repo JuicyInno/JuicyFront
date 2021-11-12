@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // =========================================================================
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
     ],
     modules: [__dirname, 'node_modules']
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   module: {
     rules: [
       {
@@ -94,5 +95,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     writeToDisk: true
-  }
+  },
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
 };
