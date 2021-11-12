@@ -247,6 +247,7 @@ import Cash from './assets/icons/24px/Tools/Cash';
 import Change from './assets/icons/24px/Tools/Change';
 import ChildrenBankCard from './assets/icons/24px/Tools/ChildrenBankCard';
 import Cog from './assets/icons/24px/Tools/Cog';
+import InternetShop from './assets/icons/24px/Tools/InternetShop';
 import Location from './assets/icons/24px/Tools/Location';
 import Lock from './assets/icons/24px/Tools/Lock';
 import MenuHorizontal from './assets/icons/24px/Tools/MenuHorizontal';
@@ -265,7 +266,6 @@ import Printer from './assets/icons/24px/Tools/Printer';
 import QR from './assets/icons/24px/Tools/QR';
 import Receipt from './assets/icons/24px/Tools/Receipt';
 import Repeat from './assets/icons/24px/Tools/Repeat';
-import Shop from './assets/icons/24px/Tools/Shop';
 import ShowAll from './assets/icons/24px/Tools/ShowAll';
 import Template from './assets/icons/24px/Tools/Template';
 import Trash from './assets/icons/24px/Tools/Trash';
@@ -278,6 +278,7 @@ export {
   Change,
   ChildrenBankCard,
   Cog,
+  InternetShop,
   Location,
   Lock,
   MenuHorizontal,
@@ -296,7 +297,6 @@ export {
   QR,
   Receipt,
   Repeat,
-  Shop,
   ShowAll,
   Template,
   Trash
@@ -384,9 +384,12 @@ export {
 
 // --------------------------Иконки arrows------------------------------------------------------------------------------
 import Attach from './assets/icons/24px/Arrows/Attach';
+import ArrowDown from './assets/icons/24px/Arrows/ArrowDown';
+import ArrowLeft from './assets/icons/24px/Arrows/ArrowLeft';
+import ArrowRight from './assets/icons/24px/Arrows/ArrowRight';
+import ArrowUp from './assets/icons/24px/Arrows/ArrowUp';
 import ChevronUp from './assets/icons/24px/Arrows/ChevronUp';
 import Down from './assets/icons/24px/Arrows/Down';
-import DownMini from './assets/icons/24px/Arrows/DownMini';
 import InfoStatus from './assets/icons/24px/Arrows/InfoStatus';
 import NewAdd from './assets/icons/24px/Arrows/Add';
 import NewChevronDown from './assets/icons/24px/Arrows/ChevronDown';
@@ -394,25 +397,25 @@ import NewChevronLeft from './assets/icons/24px/Arrows/ChevronLeft';
 import NewChevronRight from './assets/icons/24px/Arrows/ChevronRight';
 import NewDownload from './assets/icons/24px/Arrows/Download';
 import NewExchange from './assets/icons/24px/Arrows/Exchange';
-import NewLeft from './assets/icons/24px/Arrows/Left';
 import NewClose from './assets/icons/24px/Arrows/Close';
 import NewReduce from './assets/icons/24px/Arrows/Reduce';
 import NewSuccess from './assets/icons/24px/Arrows/Success';
 import NewUp from './assets/icons/24px/Arrows/Up';
 import Renew from './assets/icons/24px/Arrows/Renew';
-import Right from './assets/icons/24px/Arrows/Right';
 import Sort from './assets/icons/24px/Arrows/Sort';
 import SubdirectoryRight from './assets/icons/24px/Arrows/SubdirectoryRight';
 import Transfer from './assets/icons/24px/Arrows/Transfer';
 import Upload from './assets/icons/24px/Arrows/Upload';
-import UpMini from './assets/icons/24px/Arrows/UpMini';
 import Warning from './assets/icons/24px/Arrows/Warning';
 
 export {
   Attach,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
   ChevronUp,
   Down,
-  DownMini,
   InfoStatus,
   NewAdd,
   NewChevronDown, // refactor name to ChevronDown
@@ -421,17 +424,14 @@ export {
   NewDownload, // refactor name to Download
   NewExchange, // refactor name to Exchange
   NewClose, // refactor name to NewClose
-  NewLeft, // refactor name to Left
   NewReduce, // refactor name to Reduce
   NewSuccess, // refactor name to Success
   NewUp, // refactor name to Up
   Renew,
-  Right,
   Sort,
   SubdirectoryRight,
   Transfer,
   Upload,
-  UpMini,
   Warning
 };
 
@@ -517,7 +517,6 @@ export {
 import AnotherCard from './assets/icons/40px/Settings/AnotherCard';
 import Authorization from './assets/icons/40px/Settings/Authorization';
 import CreditCard from './assets/icons/40px/Settings/CreditCard';
-import DebitCard from './assets/icons/40px/Settings/DebitCard';
 import DigitalCardM from './assets/icons/40px/Settings/DigitalCard';
 import Limits from './assets/icons/40px/Settings/Limits';
 import LinkBig from './assets/icons/40px/Settings/LinkBig';
@@ -525,6 +524,7 @@ import ListOfCards from './assets/icons/40px/Settings/ListOfCards';
 import Login from './assets/icons/40px/Settings/Login';
 import NewCard from './assets/icons/40px/Settings/Card';
 import NotificationBig from './assets/icons/40px/Settings/NotificationBig';
+import OnCardBig from './assets/icons/40px/Settings/OnCardBig';
 import SpecialSearchBig from './assets/icons/40px/Settings/SpecialSearchBig';
 import TuneUpBig from './assets/icons/40px/Settings/TuneUpBig';
 
@@ -532,7 +532,6 @@ export {
   AnotherCard,
   Authorization,
   CreditCard,
-  DebitCard,
   DigitalCardM,
   Limits,
   LinkBig,
@@ -540,6 +539,7 @@ export {
   Login,
   NewCard, // refactor name to Card
   NotificationBig,
+  OnCardBig,
   SpecialSearchBig,
   TuneUpBig
 };
@@ -635,6 +635,7 @@ import FromCardToCard from './assets/icons/40px/Payments/FromCardToCard';
 import GosuslugiBig from './assets/icons/40px/Payments/GosuslugiBig';
 import GovernmentServices from './assets/icons/40px/Payments/GovernmentServices';
 import InternetNetworks from './assets/icons/40px/Payments/InternetNetworks';
+import InternetShopBig from './assets/icons/40px/Payments/InternetShopBig';
 import InvestmentFunds from './assets/icons/40px/Payments/InvestmentFunds';
 import MobileConnection from './assets/icons/40px/Payments/MobileConnection';
 import OnlineGames from './assets/icons/40px/Payments/OnlineGames';
@@ -643,7 +644,6 @@ import OtherServices from './assets/icons/40px/Payments/OtherServices';
 import PensionFunds from './assets/icons/40px/Payments/PensionFunds';
 import RefundMoney from './assets/icons/40px/Payments/RefundMoney';
 import RepeatBig from './assets/icons/40px/Payments/RepeatBig';
-import ShopBig from './assets/icons/40px/Payments/ShopBig';
 import SWIFT from './assets/icons/40px/Payments/SWIFT';
 import ToOrganizations from './assets/icons/40px/Payments/ToOrganizations';
 import TransfersAddressManagement from './assets/icons/40px/Payments/TransfersAddressManagement';
@@ -668,6 +668,7 @@ export {
   GosuslugiBig,
   GovernmentServices,
   InternetNetworks,
+  InternetShopBig,
   InvestmentFunds,
   MobileConnection,
   OnlineGames,
@@ -676,7 +677,6 @@ export {
   PensionFunds,
   RefundMoney,
   RepeatBig,
-  ShopBig,
   SWIFT,
   ToOrganizations,
   TransfersAddressManagement,

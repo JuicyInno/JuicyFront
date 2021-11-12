@@ -12,7 +12,7 @@ import Location from '../../../assets/icons/24px/Tools/Location';
 import OnCard from '../../../assets/icons/24px/Tools/OnCard';
 import NewCalendar from '../../../assets/icons/24px/Tools/Calendar';
 import Lock from '../../../assets/icons/24px/Tools/Lock';
-import Shop from '../../../assets/icons/24px/Tools/Shop';
+import InternetShop from '../../../assets/icons/24px/Tools/InternetShop';
 import NewEdit from '../../../assets/icons/24px/Tools/Edit';
 import OnPhone from '../../../assets/icons/24px/Tools/OnPhone';
 import Microphone from '../../../assets/icons/24px/Tools/Microphone';
@@ -77,12 +77,12 @@ import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
 import ChevronRight from '../../../assets/icons/24px/Arrows/ChevronRight';
 import ChevronUp from '../../../assets/icons/24px/Arrows/ChevronUp';
 import ChevronDown from '../../../assets/icons/24px/Arrows/ChevronDown';
-import Right from '../../../assets/icons/24px/Arrows/Right';
-import Left from '../../../assets/icons/24px/Arrows/Left';
-import Up from '../../../assets/icons/24px/Arrows/Up';
+import ArrowLeft from '../../../assets/icons/24px/Arrows/ArrowLeft';
+import ArrowRight from '../../../assets/icons/24px/Arrows/ArrowRight';
+import ArrowUp from '../../../assets/icons/24px/Arrows/ArrowUp';
+import ArrowDown from '../../../assets/icons/24px/Arrows/ArrowDown';
 import Down from '../../../assets/icons/24px/Arrows/Down';
-import DownMini from '../../../assets/icons/24px/Arrows/DownMini';
-import UpMini from '../../../assets/icons/24px/Arrows/UpMini';
+import UpMini from '../../../assets/icons/24px/Arrows/Up';
 import Download from '../../../assets/icons/24px/Arrows/Download';
 import Upload from '../../../assets/icons/24px/Arrows/Upload';
 import Exchange from '../../../assets/icons/24px/Arrows/Exchange';
@@ -139,7 +139,7 @@ import LinkBig from '../../../assets/icons/40px/Settings/LinkBig';
 import Card from '../../../assets/icons/40px/Settings/Card';
 import DigitalCardM from '../../../assets/icons/40px/Settings/DigitalCard';
 import ListOfCards from '../../../assets/icons/40px/Settings/ListOfCards';
-import DebitCard from '../../../assets/icons/40px/Settings/DebitCard';
+import OnCardBig from '../../../assets/icons/40px/Settings/OnCardBig';
 import AnotherCard from '../../../assets/icons/40px/Settings/AnotherCard';
 import CreditCard from '../../../assets/icons/40px/Settings/CreditCard';
 import Limits from '../../../assets/icons/40px/Settings/Limits';
@@ -187,7 +187,7 @@ import Airplane from '../../../assets/icons/40px/Payments/Airplane';
 import InternetNetworks from '../../../assets/icons/40px/Payments/InternetNetworks';
 import OnlineGames from '../../../assets/icons/40px/Payments/OnlineGames';
 import MobileConnection from '../../../assets/icons/40px/Payments/MobileConnection';
-import ShopBig from '../../../assets/icons/40px/Payments/ShopBig';
+import InternetShopBig from '../../../assets/icons/40px/Payments/InternetShopBig';
 import ExtractAndReferences from '../../../assets/icons/40px/Payments/ExtractAndReferences';
 import Education from '../../../assets/icons/40px/Payments/Education';
 import OtherServices from '../../../assets/icons/40px/Payments/OtherServices';
@@ -329,7 +329,7 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><OnCard /></div>On Card</div>
           <div style={elemStyle}><div style={iconStyle}><NewCalendar /></div>Calendar</div>
           <div style={elemStyle}><div style={iconStyle}><Lock /></div>Lock</div>
-          <div style={elemStyle}><div style={iconStyle}><Shop /></div>Shop</div>
+          <div style={elemStyle}><div style={iconStyle}><InternetShop /></div>Internet Shop</div>
           <div style={elemStyle}><div style={iconStyle}><NewEdit /></div>Edit</div>
           <div style={elemStyle}><div style={iconStyle}><OnPhone /></div>On phone</div>
           <div style={elemStyle}><div style={iconStyle}><Microphone /></div>Microphone</div>
@@ -473,11 +473,11 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><ChevronRight /></div>Chevron right</div>
           <div style={elemStyle}><div style={iconStyle}><ChevronUp /></div>Chevron up</div>
           <div style={elemStyle}><div style={iconStyle}><ChevronDown /></div>Chevron down</div>
-          <div style={elemStyle}><div style={iconStyle}><Left /></div>Left</div>
-          <div style={elemStyle}><div style={iconStyle}><Right /></div>Right</div>
-          <div style={elemStyle}><div style={iconStyle}><Up /></div>Up</div>
+          <div style={elemStyle}><div style={iconStyle}><ArrowLeft /></div>Arrow left</div>
+          <div style={elemStyle}><div style={iconStyle}><ArrowRight /></div>Arrow Right</div>
+          <div style={elemStyle}><div style={iconStyle}><ArrowUp /></div>Arrow Up</div>
+          <div style={elemStyle}><div style={iconStyle}><ArrowDown /></div>Arrow Down</div>
           <div style={elemStyle}><div style={iconStyle}><Down /></div>Down</div>
-          <div style={elemStyle}><div style={iconStyle}><DownMini /></div>Down</div>
           <div style={elemStyle}><div style={iconStyle}><UpMini /></div>Up</div>
           <div style={elemStyle}><div style={iconStyle}><Download /></div>Download</div>
           <div style={elemStyle}><div style={iconStyle}><Upload /></div>Upload</div>
@@ -516,20 +516,20 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
           <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
           <div style={elemStyle}><div style={iconStyle}><Pending /></div>Pending</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoFill /></div>Info fill</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoOutline /></div>Info outline</div>
+          <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
         </div>
         <div style={{
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
           <div style={elemStyle}><div style={iconStyle}><Timer /></div>Timer</div>
           <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
           <div style={elemStyle}><div style={iconStyle}><Reserved /></div>Reserved</div>
           <div style={elemStyle}><div style={iconStyle}><Flag /></div>Flag</div>
           <div style={elemStyle}><div style={iconStyle}><Troyka /></div>Troyka</div>
           <div style={elemStyle}><div style={iconStyle}><Pin /></div>Pin</div>
+          <div style={elemStyle}><div style={iconStyle}><InfoFill /></div>Info fill</div>
+          <div style={elemStyle}><div style={iconStyle}><InfoOutline /></div>Info outline</div>
         </div>
       </div>
       <StoryDocsH2>Social</StoryDocsH2>
@@ -602,7 +602,7 @@ export const Icons = () => {
           flexDirection: 'column'
         }}>
           <div style={elemStyle}><div style={iconStyle}><ListOfCards /></div>List of cards</div>
-          <div style={elemStyle}><div style={iconStyle}><DebitCard /></div>Debit Card</div>
+          <div style={elemStyle}><div style={iconStyle}><OnCardBig /></div>On Card big</div>
           <div style={elemStyle}><div style={iconStyle}><AnotherCard /></div>Another card</div>
           <div style={elemStyle}><div style={iconStyle}><CreditCard /></div>Credit Card</div>
           <div style={elemStyle}><div style={iconStyle}><Limits /></div>Limits</div>
@@ -717,7 +717,7 @@ export const Icons = () => {
           <div style={elemStyle}><div style={iconStyle}><InternetNetworks /></div>Internet Networks</div>
           <div style={elemStyle}><div style={iconStyle}><OnlineGames /></div>Online Games</div>
           <div style={elemStyle}><div style={iconStyle}><MobileConnection /></div>Mobile Connection</div>
-          <div style={elemStyle}><div style={iconStyle}><ShopBig /></div>Shop Big</div>
+          <div style={elemStyle}><div style={iconStyle}><InternetShopBig /></div>Internet Shops</div>
           <div style={elemStyle}><div style={iconStyle}><ExtractAndReferences /></div>Extract And References</div>
           <div style={elemStyle}><div style={iconStyle}><Education /></div>Education</div>
           <div style={elemStyle}><div style={iconStyle}><OtherServices /></div>Other Services</div>
@@ -815,7 +815,7 @@ export const Icons = () => {
           flexDirection: 'column'
         }}>
           <div style={elemStyle}><div style={iconStyle}><InteriorDecoration /></div>Interior Decoration</div>
-          <div style={elemStyle}><div style={iconStyle}><MortgageInsurance /></div>Credit Card Insurance</div>
+          <div style={elemStyle}><div style={iconStyle}><MortgageInsurance /></div>Mortgage Insurance</div>
           <div style={elemStyle}><div style={iconStyle}><Lawyer /></div>Lawyer</div>
           <div style={elemStyle}><div style={iconStyle}><CarAccident /></div>Car Accident</div>
           <div style={elemStyle}><div style={iconStyle}><DMS /></div>DMS</div>
@@ -961,7 +961,7 @@ export const Icons = () => {
           <div style={elemStyle}><div style={iconStyle}><VolumeOfMargin /></div>Volume Of The Margin</div>
         </div>
       </div>
-      <StoryDocsH2>Операции</StoryDocsH2>
+      <StoryDocsH2>Остальные</StoryDocsH2>
       <div style={{ display: 'flex' }}>
         <div style={{
           display: 'flex',
