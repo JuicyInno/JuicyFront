@@ -82,7 +82,7 @@ import ArrowRight from '../../../assets/icons/24px/Arrows/ArrowRight';
 import ArrowUp from '../../../assets/icons/24px/Arrows/ArrowUp';
 import ArrowDown from '../../../assets/icons/24px/Arrows/ArrowDown';
 import Down from '../../../assets/icons/24px/Arrows/Down';
-import UpMini from '../../../assets/icons/24px/Arrows/Up';
+import Up from '../../../assets/icons/24px/Arrows/Up';
 import Download from '../../../assets/icons/24px/Arrows/Download';
 import Upload from '../../../assets/icons/24px/Arrows/Upload';
 import Exchange from '../../../assets/icons/24px/Arrows/Exchange';
@@ -459,7 +459,7 @@ export const Demo: Story = () => {
           flexDirection: 'column'
         }}>
           <div style={elemStyle}><div style={iconStyle}><DarkModeFill /></div>Dark mode fill</div>
-          <div style={elemStyle}><div style={iconStyle}><LightModeStrokeFill /></div>Light mode stroke Fill</div>
+          <div style={elemStyle}><div style={iconStyle}><LightModeStrokeFill /></div>Light mode Fill</div>
         </div>
       </div>
       <StoryDocsH2>Arrows</StoryDocsH2>
@@ -477,10 +477,11 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><ArrowRight /></div>Arrow Right</div>
           <div style={elemStyle}><div style={iconStyle}><ArrowUp /></div>Arrow Up</div>
           <div style={elemStyle}><div style={iconStyle}><ArrowDown /></div>Arrow Down</div>
+          <div style={elemStyle}><div style={iconStyle}><Up/></div>Up</div>
           <div style={elemStyle}><div style={iconStyle}><Down /></div>Down</div>
-          <div style={elemStyle}><div style={iconStyle}><UpMini /></div>Up</div>
           <div style={elemStyle}><div style={iconStyle}><Download /></div>Download</div>
           <div style={elemStyle}><div style={iconStyle}><Upload /></div>Upload</div>
+          <div style={elemStyle}><div style={iconStyle}><InfoStatus /></div>Info status</div>
         </div>
         <div style={{
           display: 'flex',
@@ -498,7 +499,6 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><Warning /></div>Warning</div>
           <div style={elemStyle}><div style={iconStyle}><Close /></div>Close</div>
           <div style={elemStyle}><div style={iconStyle}><Renew /></div>Renew</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoStatus /></div>Info status</div>
         </div>
       </div>
       <StoryDocsH2>Status</StoryDocsH2>
@@ -512,7 +512,7 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><StatusInformation /></div>Information</div>
           <div style={elemStyle}><div style={iconStyle}><Release /></div>Release</div>
           <div style={elemStyle}><div style={iconStyle}><StatusError /></div>Error</div>
-          <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question</div>
+          <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question Status</div>
           <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
           <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
           <div style={elemStyle}><div style={iconStyle}><Pending /></div>Pending</div>
@@ -679,6 +679,11 @@ export const Icons = () => {
           marginRight: 250
         }}>
           <div style={elemStyle}><div style={iconStyle}><MortgageRefinancing /></div>Mortgage Refinancing</div>
+        </div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           <div style={elemStyle}><div style={iconStyle}><CreditCardRefinancing /></div>Credit Card Refinancing</div>
         </div>
       </div>
@@ -808,7 +813,6 @@ export const Icons = () => {
           <div style={elemStyle}><div style={iconStyle}><CivilLiability /></div>Civil Liability</div>
           <div style={elemStyle}><div style={iconStyle}><IJS /></div>IJS</div>
           <div style={elemStyle}><div style={iconStyle}><InsuranceAgainstFraud /></div>Insurance Against Fraud</div>
-          <div style={elemStyle}><div style={iconStyle}><ChildrenBankCardBig /></div>Children Bank Card Big</div>
         </div>
         <div style={{
           display: 'flex',
@@ -820,6 +824,7 @@ export const Icons = () => {
           <div style={elemStyle}><div style={iconStyle}><CarAccident /></div>Car Accident</div>
           <div style={elemStyle}><div style={iconStyle}><DMS /></div>DMS</div>
           <div style={elemStyle}><div style={iconStyle}><ChildProtection /></div>Child Protection</div>
+          <div style={elemStyle}><div style={iconStyle}><ChildrenBankCardBig /></div>Children Bank Card Big</div>
         </div>
       </div>
       <StoryDocsH2>Тарифы</StoryDocsH2>
