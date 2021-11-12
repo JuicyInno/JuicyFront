@@ -303,6 +303,10 @@ export const Demo: Story = () => {
     color: '#8A96A8',
     marginRight: 25
   };
+  const iconStyleStatus = {
+    color: '#A7B0BE',
+    marginRight: 25
+  };
   const elemStyle = {
     fontFamily: 'VTB Group UI',
     fontSize: 14,
@@ -515,21 +519,21 @@ export const Demo: Story = () => {
           <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question Status</div>
           <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
           <div style={elemStyle}><div style={iconStyle}><Unread /></div>Unread</div>
-          <div style={elemStyle}><div style={iconStyle}><Pending /></div>Pending</div>
+          <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
           <div style={elemStyle}><div style={iconStyle}><Blocked /></div>Blocked</div>
         </div>
         <div style={{
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div style={elemStyle}><div style={iconStyle}><Timer /></div>Timer</div>
-          <div style={elemStyle}><div style={iconStyle}><Loader /></div>Loader</div>
-          <div style={elemStyle}><div style={iconStyle}><Reserved /></div>Reserved</div>
-          <div style={elemStyle}><div style={iconStyle}><Flag /></div>Flag</div>
-          <div style={elemStyle}><div style={iconStyle}><Troyka /></div>Troyka</div>
-          <div style={elemStyle}><div style={iconStyle}><Pin /></div>Pin</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoFill /></div>Info fill</div>
-          <div style={elemStyle}><div style={iconStyle}><InfoOutline /></div>Info outline</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Timer /></div>Timer</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Pending /></div>Pending</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Reserved /></div>Reserved</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Flag /></div>Flag</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Troyka /></div>Troyka</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><Pin /></div>Pin</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><InfoFill /></div>Info fill</div>
+          <div style={elemStyle}><div style={iconStyleStatus}><InfoOutline /></div>Info outline</div>
         </div>
       </div>
       <StoryDocsH2>Social</StoryDocsH2>
