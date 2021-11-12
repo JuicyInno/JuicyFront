@@ -314,6 +314,7 @@ const elemStyle = {
   lineHeight: '20px',
   marginBottom: 28,
   display: 'flex',
+  alignItems: 'center',
   justifyItems: 'center',
   color: '#4C5767'
 };

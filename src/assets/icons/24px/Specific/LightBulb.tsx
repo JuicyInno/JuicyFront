@@ -21,14 +21,14 @@ export default (props: IIconProps) => {
       <path
         d='M11 11H14'
         stroke='white'
-        stroke-width='2'
-        stroke-linecap='round'
+        strokeWidth='2'
+        strokeLinecap='round'
       />
       <path
         d='M12.5 12L12.5 15'
         stroke='white'
-        stroke-width='2'
-        stroke-linecap='square'
+        strokeWidth='2'
+        strokeLinecap='square'
       />
     </svg>
   );

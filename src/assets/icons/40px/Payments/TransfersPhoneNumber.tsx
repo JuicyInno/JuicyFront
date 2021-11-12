@@ -9,7 +9,7 @@ export default (props: IIconProps) => {
     <svg
       width={Number(size) + 1}
       height={size}
-      viewBox='0 0 4q 40'
+      viewBox='0 0 41 40'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
