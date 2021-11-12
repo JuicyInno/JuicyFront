@@ -1,18 +1,31 @@
 .rf-tile {
   padding: 20px;
-  margin-bottom: 16px;
-}
-.rf-tile__background{
-  background: var(--background-card);
-  box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 168, 0.08);
+  margin-bottom: 20px;
   border-radius: 20px;
 }
 
-.rf-tile--outlined {
-  box-shadow: none;
-  border-radius: 16px;
+.rf-tile--default {
+  box-shadow: var(--shadow-clicable-active);
+}
+
+.rf-tile--clicable-default {
+  box-shadow: var(--shadow-clicable-default);
+}
+
+.rf-tile--non-clicable {
+  box-shadow: var(--shadow-non-clicable);
+}
+
+.rf-tile--clicable-hover {
+  box-shadow: var(--shadow-clicable-hover);
+}
+
+.rf-tile--border {
   border: 1px solid var(--background-tertiary);
-  
+}
+
+.rf-tile__background {
+  background: var(--background-card);
 }
 
 .rf-tile--stretch {

@@ -6,6 +6,7 @@ import {
 } from '../../../index';
 import Menu from '../Menu';
 import { Link } from 'react-router-dom';
+import Tile from '../Tile';
 
 export interface IButtonGroupProps {
   list: IButtonGroup[];
@@ -65,7 +66,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   return (
     list.length > 0 ? (
-      <div className='button-group'>
+      <Tile className='button-group' padding='12px'>
         { buttonsJSX }
         {
           menuJSX.length > 0 && (
@@ -76,7 +77,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
             </Menu>
           )
         }
-      </div>
+      </Tile>
     ) : null
   );
 };
