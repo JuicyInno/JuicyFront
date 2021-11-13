@@ -24,13 +24,21 @@ import { KebabMenu } from '../../..';
 export interface ITabsProps {
   /** Список вкладок */
   list: ITab[];
-  /** Показывать линию под табами */
+  /**
+   * @default true
+   * Показывать линию под табами
+   * */
   showLine?: boolean;
+  /**
+   * Показывать меню если табы не вмещаются в контейре
+   * @default true
+  */
+  showMenu?: boolean;
   /** Если во вкладках есть url, то через children пробрасывается <Router/> */
   children?: ReactNode | ReactNode[];
 }
 
-const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsProps) => {
+const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, children }: ITabsProps) => {
   const history = useHistory();
   const { pathname } = useLocation();
   /** Ссылки на вкладки */
@@ -46,13 +54,19 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
   /** Устанавливаем индекс последнего видимого таба */
   const onResize = useCallback((width: number | undefined) => {
     handleLastVisibleIndex(width);
-  }, []);
+  }, [showMenu]);
 
   const { ref } = useResizeDetector<HTMLDivElement>({
     onResize,
     refreshMode: 'debounce',
     refreshRate: 300,
   });
+
+  useEffect(() => {
+    if (!showMenu) {
+      lastVisibleInexRef.current = list.length - 1;
+    }
+  }, [showMenu]);
 
   useEffect(() => {
     setActive((i: number) => {
@@ -71,6 +85,10 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
 
   /** Получаем индекс последнего видимого таба */
   const handleLastVisibleIndex = (width = 0) => {
+    if (!showMenu) {
+      return;
+    }
+
     const MENU_WIDTH = 48;
     const hasHiddenIndex = lastVisibleInexRef.current < list.length - 1;
     let visibleIndex = lastVisibleInexRef.current;
@@ -213,7 +231,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
   return (
     <div className={'rf-tabs rf-tabs--buttons'} ref={ref}>
       <nav className={classnames('rf-tabs__navigation', showLine && 'rf-tabs__navigation__line')}>
-        <div className='rf-tabs__navigation-list'>
+        <div className={classnames('rf-tabs__navigation-list', !showMenu && 'rf-tabs__navigation-list--without-menu')}>
           {nav}
 
           {hasMenuNav && (

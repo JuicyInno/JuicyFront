@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .cert__wrapper {
   min-height: 200px;
@@ -6,13 +6,13 @@
 }
 
 .cert__success {
-  color: var(--status-success)
+  color: var(--status-success);
 }
 
 .cert__error {
-  color: var(--status-danger)
+  color: var(--status-danger);
 }
 
-.cert__wrapper .rf-menu{
-  padding-bottom: 24px ;
+.cert__wrapper .rf-menu {
+  padding-bottom: 24px;
 }
