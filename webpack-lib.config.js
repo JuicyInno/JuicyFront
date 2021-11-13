@@ -96,7 +96,7 @@ module.exports = {
     historyApiFallback: true,
     writeToDisk: true
   },
-  plugins: [
-    new BundleAnalyzerPlugin()
-  ]
+  // plugins: [
+  //   new BundleAnalyzerPlugin()
+  // ]
 };
