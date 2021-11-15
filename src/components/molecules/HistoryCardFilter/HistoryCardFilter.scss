@@ -20,6 +20,7 @@
 .card-filter__status-picker{
   width:200px;
   .rf-select__input {
+    background-color: var(--background-secondary);
     &::placeholder{
       color: var(--text-secondary);
     }
@@ -28,7 +29,6 @@
       width: auto;
     }
   }
-
 }
 .card-filter__wrapper {
   display: flex;
