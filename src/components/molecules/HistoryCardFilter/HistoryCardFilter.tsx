@@ -125,8 +125,6 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} />
     </div>;
   // =======================================================================================================================================
-
-
   return <div className='filter__wrapper' >
     <Tile>
       <div className='card-filter__wrapper' >
