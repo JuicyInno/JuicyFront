@@ -22,6 +22,7 @@ export interface IHistoryCardValues {
   search?: string,
   /** Начальное значение id статуса*/
   status?: string
+
 }
 
 export interface IHistoryCardFilterProps {
@@ -35,6 +36,8 @@ export interface IHistoryCardFilterProps {
   statusOptions?: IOption[],
   /** Начальные значения*/
   initialValues?: IHistoryCardValues,
+  /** Плэйсхолдер для поиска*/
+  searchPlaceholder?: string
   /** Срабатывает при изменении значения*/
   onChange?: (values: IHistoryCardValues) => void
 }
@@ -44,6 +47,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowDatePicker = true,
   isShowStatusFilter = true,
   isShowSearch = true,
+  searchPlaceholder = 'ID, ФИО, ТН',
   initialValues,
   statusOptions = [
     {
@@ -118,7 +122,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} placeholder='ID, ФИО, ТН' />
+      <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} />
     </div>;
   // =======================================================================================================================================
 
