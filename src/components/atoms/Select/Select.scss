@@ -8,7 +8,6 @@
     & .rf-select__wrapper {
       position: absolute;
       border: none;
-      background-color: var(--background-tertiary);
       height: 28px;
       max-width: 55px;
       border-radius: 16px;
@@ -49,6 +48,7 @@
   width: 100%;
   position: relative;
   border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--background-tertiary);
   background-color: var(--background-primary);
   overflow: hidden;
 }
@@ -72,7 +72,6 @@
   @include text-l-16;
   padding-left: 16px;
   padding-right: 48px;
-  background-color: var(--background-secondary);
 }
 
 .rf-select__list {
