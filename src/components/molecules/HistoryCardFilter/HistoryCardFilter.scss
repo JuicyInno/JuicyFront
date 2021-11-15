@@ -11,14 +11,19 @@
   }
   .rf-search {
     width: 282px;
+    border: none;
   }
   .rf-input{
     background-color: var(--background-secondary);
+    border: none;
   } 
 }
 
 .card-filter__status-picker{
   width:200px;
+  .rf-select  {
+    box-shadow: none;
+  }
   .rf-select__input {
     background-color: var(--background-secondary);
     &::placeholder{

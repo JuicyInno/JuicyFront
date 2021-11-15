@@ -6,7 +6,6 @@
 }
 
 .rf-datepicker__input-wrapper {
-  display: flex;
   cursor: pointer;
   height: 40px;
   .rf-input__field{
@@ -38,10 +37,10 @@
 }
 
 .rf-datepicker__calendar-chevron{
-  position: relative;
+  position: absolute;
   z-index: 99;
   bottom:32px;
-  right: 38px;
+  right: 16px;
   top: 8px;
   color:var(--basic-tertiary);
 }
