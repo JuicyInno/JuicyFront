@@ -8,6 +8,9 @@
   box-shadow: 0px 2px 6px 0px #193B6826;
   border-radius: 20px;
 }
+.rf-employee__tile--disable-shadow{
+  box-shadow: none
+}
 
 .rf-employee__title {
   @include h6;
