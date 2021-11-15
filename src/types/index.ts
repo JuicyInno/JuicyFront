@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -166,4 +166,10 @@ export interface IButtonGroup {
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+}
+
+/** Пропсы иконки */
+export interface IIconProps extends SVGProps<SVGSVGElement> {
+  /** размер */
+  size?: Size
 }

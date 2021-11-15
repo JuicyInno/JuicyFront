@@ -166,6 +166,18 @@ export const sizeClass: Record<Size, string> = {
   'xxxxl': 'rf--xxxxl'
 };
 
+export const iconSize: Record<Size, string> = {
+  'xxs': '16',
+  'xs': '24',
+  's': '32',
+  'm': '40',
+  'l': '48',
+  'xl': '56',
+  'xxl': '64',
+  'xxxl': '72',
+  'xxxxl': '80'
+};
+
 function oDataServ(data:any) {
   (data.results ) && (data = data.results);
 
