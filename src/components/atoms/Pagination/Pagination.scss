@@ -1,0 +1,53 @@
+@import "../../../styles/mixins";
+
+.rf-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.rf-pagination__label-text {
+
+}
+
+.rf-pagination__label,
+.rf-pagination__chevron-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 50%;
+  @include text-m-16;
+  &:hover {
+    background-color: var(--background-tertiary);
+    color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--background-tertiary);
+    color: var(--basic-press);
+  }
+  &--selected {
+    color: var(--text-static-white);
+    background-color: var(--basic-primary);
+  }
+}
+
+.rf-pagination__chevron-wrapper {
+  color: var(--basic-tertiary);
+}
+
+.rf-pagination__ellipsis {
+  width: 40px;
+  height: 40px;
+  @include text-l-16;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.rf-pagination__input {
+  width: 129px;
+}
