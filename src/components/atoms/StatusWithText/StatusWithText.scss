@@ -1,0 +1,36 @@
+@import "src/styles/mixins";
+
+.rf-status-with-text {
+  display: flex;
+  align-items: center;
+}
+
+.rf-status-with-text__title{
+  @include text-s-14();
+}
+
+.rf-status-with-text__icon-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.rf-status-with-text__default {
+  color: var(--basic-primary);
+}
+
+.rf-status-with-text__success {
+  color: var(--status-success);
+}
+
+.rf-status-with-text__warning {
+  color: var(--status-warn);
+}
+
+.rf-status-with-text__error {
+  color: var(--status-danger);
+}
+
+.rf-status-with-text__none {
+  color: var(--text-secondary);
+}

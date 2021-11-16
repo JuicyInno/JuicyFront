@@ -50,7 +50,7 @@ import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
-import Status from './components/atoms/Status';
+import StatusWithText from './components/atoms/StatusWithText';
 import ButtonGroup from './components/atoms/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
@@ -131,7 +131,7 @@ export {
   EntityCard,
   Toast,
   History,
-  Status,
+  StatusWithText,
   ButtonGroup,
   CalendarPage,
   Schedule,
@@ -457,6 +457,7 @@ import Loader from './assets/icons/24px/Status/Loader';
 import Pending from './assets/icons/24px/Status/Pending';
 import Pin from './assets/icons/24px/Status/Pin';
 import Release from './assets/icons/24px/Status/Release';
+import ReleaseSecondary from './assets/icons/24px/Status/ReleaseSecondary';
 import Reserved from './assets/icons/24px/Status/Reserved';
 import StatusError from './assets/icons/24px/Status/Error';
 import StatusInformation from './assets/icons/24px/Status/Information';
@@ -475,6 +476,7 @@ export {
   Pending,
   Pin,
   Release,
+  ReleaseSecondary,
   Reserved,
   StatusError,
   StatusInformation,

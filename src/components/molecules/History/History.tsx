@@ -10,7 +10,7 @@ import {
 } from '../../../types/projects.types';
 import { formatDate } from '../../../utils/helpers';
 import Button from '../../atoms/Button';
-import Status from '../../atoms/Status';
+import StatusWithText from '../../atoms/StatusWithText';
 import Tooltip from '../../atoms/Tooltip';
 import UserPhoto from '../../atoms/UserPhoto';
 import './History.scss';
@@ -122,7 +122,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
             )}
             {!!r.date && (
               <div className='rf-history__status-wrapper'>
-                <Status statusText={r.statusText} criticality={r.criticality}/>
+                <StatusWithText statusText={r.statusText} criticality={r.criticality}/>
               </div>
             )}
           </div>
