@@ -13,15 +13,14 @@ export interface ITreeOption extends IOption {
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
+  variant?: Variant;
 }
 
 export interface ICustomOption extends IOption {
   __isNew__: boolean;
 }
 
-export function isCustomOption(
-  option: IOption | ICustomOption
-): option is ICustomOption {
+export function isCustomOption(option: IOption | ICustomOption): option is ICustomOption {
   return (option as ICustomOption).__isNew__;
 }
 

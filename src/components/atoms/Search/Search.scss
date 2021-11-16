@@ -23,10 +23,10 @@
 
   &:focus {
     background-color: var(--background-primary);
-    border-color: var(--basic-primary);
+    border-color: var(--basic-press);
 
     & + .rf-search__search-icon {
-      color: var(--basic-primary);
+      color: var(--basic-press);
     }
   }
 }

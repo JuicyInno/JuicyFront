@@ -154,7 +154,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
           item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`} onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
-        { item.label }
+        <span className={`rf-tree__item-label--${item.variant || 'default'}`}>{ item.label }</span>
       </div>
       {item.children && item.children.length > 0 && (
         <div className={`rf-tree__item-folder ${showFolderClass}`}>
