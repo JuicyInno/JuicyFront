@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState
+} from 'react';
 import './Segment.scss';
 import { IOption } from '../../../types';
 import { classnames } from '../../../utils/classnames';
@@ -12,9 +14,13 @@ export interface ISegmentProps {
   onChange: (option: IOption) => void;
   /** Значение */
   value?: IOption;
+  /** На всю ширину
+   * @default false
+  */
+  fullWidth?: boolean;
 }
 
-const Segment: React.FC<ISegmentProps> = ({ list, value, onChange }: ISegmentProps) => {
+const Segment: React.FC<ISegmentProps> = ({ list, fullWidth = false, value, onChange }: ISegmentProps) => {
   const slider = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -63,7 +69,7 @@ const Segment: React.FC<ISegmentProps> = ({ list, value, onChange }: ISegmentPro
 
   return (
     <div className='rf-segment__container'>
-      <div className='rf-segment__list'>{radioButtons}</div>
+      <div className={classnames('rf-segment__list', fullWidth && 'rf-segment__list--full')}>{radioButtons}</div>
     </div>
   );
 };

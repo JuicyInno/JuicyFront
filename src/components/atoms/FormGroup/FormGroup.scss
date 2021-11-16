@@ -16,14 +16,7 @@
   transition: 0.15s ease-in;
 }
 
-.rf-form-group__label-large {
-  @include text-xs-14();
-  color: var(--text-secondary);
-}
-
 .rf-form-group__label-secondary {
-  @include caption();
-  color: var(--text-secondary);
   float: right;
   margin-left: 8px;
 }

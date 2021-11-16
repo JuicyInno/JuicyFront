@@ -3,17 +3,13 @@ import React, {
 } from 'react';
 import './PDFViewer.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
-// @ts-ignore
-import * as pdfjsLib from 'pdfjs-dist/build/pdf';
-// @ts-ignore
-import PDFJSWorker from 'pdfjs-dist/build/pdf.worker.entry';
+
 import DownloadIcon from '../../../assets/icons/Download';
 import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import { Button } from '../../../index';
-import { Page, Document } from 'react-pdf';
 // @ts-ignore
-import { PDFPageProxy } from 'pdfjs-dist';
+import { Page, Document } from 'react-pdf/dist/esm/entry.webpack';
 import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
 
@@ -37,9 +33,6 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   const [pageWidth, setPageWidth] = useState(0);
   const pdfWrapper = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
-  }, []);
 
   useEffect(() => {
     setNumPages(1);
@@ -53,12 +46,12 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Переключение страницы */
-  const onPageChange = useCallback((page: number) => {
+  const onPageChange = useCallback((page) => {
     setCurrentPage(page);
   }, []);
 
   /** Определение ширины страницы */
-  const calculatePageWidth = (page: PDFPageProxy) => {
+  const calculatePageWidth = (page:any) => {
     if (pdfWrapper.current) {
       const blockWidth = pdfWrapper.current?.getBoundingClientRect().width;
       const pageWidth = page.getViewport({ scale: 1 }).width;

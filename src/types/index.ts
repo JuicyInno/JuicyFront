@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -13,6 +13,7 @@ export interface ITreeOption extends IOption {
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
+  variant?: Variant;
 }
 
 export interface ICustomOption extends IOption {
@@ -55,6 +56,8 @@ export interface IListElement {
   disabled?: boolean;
   /** Отделение линией */
   separated?: boolean;
+  /** Указывает что это заголовок раздела */
+  isTitle?: boolean;
 }
 
 /** Контекст меню */
@@ -100,16 +103,22 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
-export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
+export type Variant =
+  | VariantClassic
+  | 'blue'
+  | 'lightBlue'
+  | 'turquoise'
+  | 'magenta'
+  | 'purple'
+  | 'violet';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
-
+  'blue',
   'green',
   'yellow',
-  'red'
-
+  'red',
 ];
 export const variants: Variant[] = [
   'default',
@@ -121,7 +130,7 @@ export const variants: Variant[] = [
   'red',
   'magenta',
   'purple',
-  'violet'
+  'violet',
 ];
 
 /** Цвет фона аватара */
@@ -156,4 +165,10 @@ export interface IButtonGroup {
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+}
+
+/** Пропсы иконки */
+export interface IIconProps extends SVGProps<SVGSVGElement> {
+  /** размер */
+  size?: Size
 }

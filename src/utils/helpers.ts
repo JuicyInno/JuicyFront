@@ -1,8 +1,9 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IFormattedDate, Size } from '../types';
-import moment from 'moment';
+import {
+  IFileData, IFormattedDate, Size
+} from '../types';
 
 const months = [
   'январь',
@@ -165,6 +166,18 @@ export const sizeClass: Record<Size, string> = {
   'xxxxl': 'rf--xxxxl'
 };
 
+export const iconSize: Record<Size, string> = {
+  'xxs': '16',
+  'xs': '24',
+  's': '32',
+  'm': '40',
+  'l': '48',
+  'xl': '56',
+  'xxl': '64',
+  'xxxl': '72',
+  'xxxxl': '80'
+};
+
 function oDataServ(data:any) {
   (data.results ) && (data = data.results);
 
@@ -200,15 +213,15 @@ export const numberWithSpaces = (x: number, n = 3, s = ' '): string => {
 };
 
 export const UTCToLocal = (date: Date | number): Date => {
-  const offset = moment().utcOffset();
-  const withOffset = moment(date).toDate().getTime() + offset * 60000;
-  return moment(withOffset).toDate();
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() + offset * 60000;
+  return new Date(withOffset);
 };
 
 export const LocalToUTC = (date: Date | number): Date => {
-  const offset = moment().utcOffset();
-  const withOffset = moment(date).toDate().getTime() - offset * 60000;
-  return moment(withOffset).toDate();
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() - offset * 60000;
+  return new Date(withOffset);
 };
 
 /** Выделить текст из HTML */
@@ -235,3 +248,33 @@ export const extractTextFromHTML = (element: string): string => {
 
   return result;
 };
+
+/** Debounce */
+export function debounce(fn: (...args: any) => any, ms: number) {
+  let timeout: any;
+  return function(...args: any) {
+    // @ts-ignore
+    const fnCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+}
+
+export const initialFiles: IFileData[] = [
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot1.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot2.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  }
+];

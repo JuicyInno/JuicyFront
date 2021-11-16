@@ -9,7 +9,14 @@ describe('Test <Segment /> component', () => {
 
     expect(container.getElementsByClassName('rf-segment__container')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-segment__list-item')).toHaveLength(2);
+    expect(container.getElementsByClassName('rf-segment__list--full')).toHaveLength(0);
     expect(screen.getByText('Линейная')).toHaveClass('active');
+  });
+
+  it('should be full width', () => {
+    const { container } = render(<Segment list={_segmentList} value={_segmentList[1]} onChange={jest.fn} fullWidth />);
+
+    expect(container.getElementsByClassName('rf-segment__list--full')).toHaveLength(1);
   });
 
   it('should be pass value', () => {

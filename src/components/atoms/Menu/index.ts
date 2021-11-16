@@ -1,1 +1,3 @@
-export { default, MenuContext } from './Menu';
+export {
+  default, MenuContext, IListProps
+} from './Menu';
