@@ -8,7 +8,7 @@ export default {
   component: Tile
 };
 
-export const tile = () => {
+export const Demo = () => {
   return (
     <Story name='Tile (Плитка)'>
       <StoryItem description='Плитка оборачивает контент в стилизованный блок'>
@@ -22,4 +22,11 @@ export const tile = () => {
       </StoryItem>
     </Story>
   );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A31714',
+  }
 };

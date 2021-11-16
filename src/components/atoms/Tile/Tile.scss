@@ -8,6 +8,12 @@
   border-radius: 20px;
 }
 
+.rf-tile--outlined {
+  box-shadow: none;
+  border-radius: 16px;
+  border: 1px solid var(--background-tertiary);
+  
+}
 
 .rf-tile--stretch {
   padding-top: 40px;
