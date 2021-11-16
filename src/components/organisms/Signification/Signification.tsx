@@ -59,6 +59,8 @@ export interface IProps{
   buttonCustomTexts?:ICustomTexts
   /** ссылка на pdf если надо открыть в отдельном окне */
   pdfUrl?:string
+  /** Заменить тень карточки на бордер */
+  outlined?: boolean;
 }
 
 
@@ -70,6 +72,7 @@ const Signification:FC<IProps> = ({
   isSpoiler = true,
   isOpenSpoiler = false,
   documentInfo,
+  outlined,
 
   hideButtons = [],
   buttonCustomTexts = {},
@@ -345,7 +348,7 @@ const Signification:FC<IProps> = ({
     {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
   return <div className='signification__wrapper'>
-    <Tile>
+    <Tile outlined={outlined}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
         <Document color1={onlyView ? '#F1F2F4' : undefined}/>
         <div className='signification__title-text'>{title}</div>
