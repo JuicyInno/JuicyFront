@@ -19,6 +19,8 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   variant?: 'base' | 'inline';
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
+  /** Добавляет инпуту белый фон */
+  filled?: boolean;
   /** Контент для вставки в начало инпута */
   startAdornment?: ReactNode;
   /** Контент для вставки в конец инпута */
@@ -39,6 +41,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   endAdornment,
   disabled,
   invalid,
+  filled,
   onFocus,
   onBlur,
   onDebounce,
@@ -131,7 +134,8 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         ${variant === 'inline' ? 'rf-input--inline' : ''} 
         ${disabled ? 'rf-input--disabled' : ''} 
         ${isFocused ? 'rf-input--focused' : ''} 
-        ${isInvalid ? 'rf-input--invalid' : ''}
+        ${isInvalid ? 'rf-input--invalid' : ''} 
+        ${filled ? 'rf-input--filled' : ''}
         ${className || ''}`
       }
     >
