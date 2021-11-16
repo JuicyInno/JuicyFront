@@ -147,7 +147,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
       <div className='rf-tree__item--v'/>
 
-      <div className='rf-tree__item-label' onClick={handleChange}>
+      <div className={`rf-tree__item-label rf-tree__item-label--${item.variant || 'default'}`} onClick={handleChange}>
         <HLine className='rf-tree__item--h' data-id={`d-${depth}`}/>
         {/* <div className='rf-tree__item--h' data-id={`d-${depth}`}/>*/}
         {
