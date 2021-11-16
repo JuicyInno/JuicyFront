@@ -48,6 +48,8 @@ export interface IDatepickerProps {
   children?: ReactNode | ReactNode[];
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
+  /** Добавляет инпуту белый фон */
+  filled?: boolean;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -58,6 +60,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   min,
   max,
   invalid = false,
+  filled = false,
   disabled = false,
   readOnly = false,
   onChange,
@@ -350,7 +353,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 readOnly={readOnly}
                 onKeyPress={onKeyPress}
                 onChange={onDatepickerChange}>
-                <Input invalid={invalid} />
+                <Input invalid={invalid} filled={filled} />
               </InputMask>
               <div className='rf-datepicker__calendar-chevron'>
                 <ChevronDown />
