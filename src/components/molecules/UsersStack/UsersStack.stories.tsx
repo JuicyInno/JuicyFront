@@ -11,7 +11,7 @@ export default {
 export const usersStack = () => {
   const users: IUser[] = [
     {
-      id: 'vtb4037115',
+      id: 'vtb4037234',
       fullName: 'Симпсон Гомер Абрахамович',
       firstName: 'Гомер',
       lastName: 'Симпсон',
