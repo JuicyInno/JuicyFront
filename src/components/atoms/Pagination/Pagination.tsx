@@ -155,6 +155,7 @@ const Pagination: React.FC<IPaginationProps> = ({
       <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
+          'rf-pagination__chevron-left',
           currentPage === FIRST_PAGE_LABEL && 'rf-pagination__chevron-wrapper--disabled'
         )}
         onClick={handleClickByLeftChevron} >
@@ -173,6 +174,7 @@ const Pagination: React.FC<IPaginationProps> = ({
       <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
+          'rf-pagination__chevron-right',
           currentPage === count && 'rf-pagination__chevron-wrapper--disabled'
         )}
         onClick={handleClickByRightChevron}

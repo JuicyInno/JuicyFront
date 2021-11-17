@@ -12,6 +12,14 @@
   color: var(--basic-tertiary);
 }
 
+.rf-pagination__chevron-left {
+  padding-right: 8px;
+}
+
+.rf-pagination__chevron-right {
+  padding-left: 8px;
+}
+
 .rf-pagination__label {
   @include text-m-16;
 }
@@ -44,6 +52,10 @@
   &--selected {
     color: var(--text-static-white);
     background-color: var(--basic-primary);
+    &:hover {
+      background-color: var(--basic-primary);
+      color: var(--text-static-white);
+    }
   }
 }
 
