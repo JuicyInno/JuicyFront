@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { render } from '@testing-library/react'
-import StatusWithText, {IStatusWithTextProps} from "./StatusWithText";
-import Chip from "../Chip";
+import StatusWithText from "./StatusWithText";
 
 describe('Test <StatusWithText/> component', () => {
     it('should be render StatusWithText component', () => {

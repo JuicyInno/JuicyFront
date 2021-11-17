@@ -5,16 +5,16 @@ import Error from '../../../assets/icons/24px/Status/Error';
 import Return from '../../../assets/icons/24px/Status/Return';
 import ReleaseSecondary from '../../../assets/icons/24px/Status/ReleaseSecondary';
 
-/** Критичность (0 - None (blue) / 1 - Error (red) / 2 - Warning (yellow) / 3 - Success (green))*/
-export type ICriticality = '0' | '1' | '2' | '3';
-
 export interface IStatusWithTextProps {
     /** Текст статуса */
     statusText: string;
-    criticality: ICriticality;
+    /** Критичность (0 - None (blue) / 1 - Error (red) / 2 - Warning (yellow) / 3 - Success (green))*/
+    criticality: string;
 }
 
-const statusColors = {
+type IStatusColor = { symbol: string, icon: JSX.Element }
+
+const statusColors: { [key: string]: IStatusColor } = {
   '0': {
     symbol: 'rf-status-with-text__title_default',
     icon: <ReleaseSecondary />
