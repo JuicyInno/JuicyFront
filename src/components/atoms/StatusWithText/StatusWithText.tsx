@@ -5,28 +5,30 @@ import Error from '../../../assets/icons/24px/Status/Error';
 import Return from '../../../assets/icons/24px/Status/Return';
 import ReleaseSecondary from '../../../assets/icons/24px/Status/ReleaseSecondary';
 
+/** Критичность (0 - None (blue) / 1 - Error (red) / 2 - Warning (yellow) / 3 - Success (green))*/
+export type ICriticality = '0' | '1' | '2' | '3';
+
 export interface IStatusWithTextProps {
     /** Текст статуса */
     statusText: string;
-    /** Критичность (0 - None (no color) / 1 - Error (red) / 2 - Warning (yellow) / 3 - Success (green))*/
-    criticality: string;
+    criticality: ICriticality;
 }
 
-const statusColors: any = {
+const statusColors = {
   '0': {
-    symbol: 'rf-status-with-text__default',
+    symbol: 'rf-status-with-text__title_default',
     icon: <ReleaseSecondary />
   },
   '1': {
-    symbol: 'rf-status-with-text__error',
+    symbol: 'rf-status-with-text__title_error',
     icon: <Error />
   },
   '2': {
-    symbol: 'rf-status-with-text__warning',
+    symbol: 'rf-status-with-text__title_warning',
     icon: <Return />
   },
   '3': {
-    symbol: 'rf-status-with-text__success',
+    symbol: 'rf-status-with-text__title_success',
     icon: <Release />
   }
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import StatusWithText from './StatusWithText';
+import StatusWithText, { ICriticality } from './StatusWithText';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 
 export default {
@@ -13,7 +13,7 @@ export default {
     criticality: {
       type: 'string',
       defaultValue: '0'
-    },
+    }
   }
 };
 
@@ -41,7 +41,7 @@ export const Demo = () => <StoryDocs>
   <div style={{ display: 'flex' }}>
     {statuses.map(item => <div style={{ padding: 4 }}>
       <div style={{ marginRight: 27 }}>
-        <StatusWithText statusText={item.statusText} criticality={item.criticality} />
+        <StatusWithText statusText={item.statusText} criticality={item.criticality as ICriticality} />
       </div>
     </div>)}
   </div>
