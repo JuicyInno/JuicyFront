@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   .rf-pagination__input {
+    margin-left: 8px;
     width: 129px;
   }
 }
@@ -13,11 +14,11 @@
 }
 
 .rf-pagination__chevron-left {
-  padding-right: 8px;
+  margin-right: 8px;
 }
 
 .rf-pagination__chevron-right {
-  padding-left: 8px;
+  margin-left: 8px;
 }
 
 .rf-pagination__label {
