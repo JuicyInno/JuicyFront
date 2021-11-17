@@ -23,6 +23,7 @@
 
 .rf-pagination__label {
   @include text-m-16;
+  user-select: none;
 }
 
 .rf-pagination__label,
