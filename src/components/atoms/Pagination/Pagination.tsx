@@ -11,33 +11,47 @@ export interface IPaginationProps extends HTMLProps<HTMLInputElement> {
     /** Количество страниц */
     count: number;
     /** Функция получения текущей страницы */
-    getCurrentPage: (page: number) => void;
+    getCurrentPage?: (page: number) => void;
+    /** Недоступные страницы */
+    disabledPages?: number[];
 }
 
 const Pagination: React.FC<IPaginationProps> = ({
   count,
-  getCurrentPage,
+  getCurrentPage = () => {},
+  disabledPages = [],
 }: IPaginationProps) => {
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const MIN_PAGE_NUMBER = 1;
   const FIRST_PAGE_LABEL = 1;
+  const MIN_PAGE_NUMBER = 1;
   const STEP = 1;
   const STEP_BEFORE_SHOWING_DOTS = 4;
   const PAGES_WITHOUT_DOTS = 7;
   const PAGES_WITHOUT_NUMBER_SELECT = 21;
+
+  const [currentPage, setCurrentPage] = useState(() => {
+    let initialPage = FIRST_PAGE_LABEL;
+    while (disabledPages.includes(initialPage) && initialPage <= count) {
+      initialPage += STEP;
+    }
+    return initialPage;
+  });
   const firstEllipsisCondition = currentPage > STEP_BEFORE_SHOWING_DOTS;
   const secondEllipsisCondition = currentPage <= count - STEP_BEFORE_SHOWING_DOTS;
 
   /** клик по номеру страницы */
   const handleClickByPage = (newPage: number) => () => {
-    setCurrentPage(newPage);
-    getCurrentPage(newPage);
+    if (!disabledPages.includes(newPage)) {
+      setCurrentPage(newPage);
+      getCurrentPage(newPage);
+    }
   };
 
   /** клик по левому шеврону */
   const handleClickByLeftChevron = () => {
-    const newPage = currentPage - STEP;
+    let newPage = currentPage - STEP;
+    while (disabledPages.includes(newPage) && newPage >= MIN_PAGE_NUMBER) {
+      newPage -= STEP;
+    }
 
     if (newPage >= MIN_PAGE_NUMBER) {
       setCurrentPage(newPage);
@@ -47,7 +61,10 @@ const Pagination: React.FC<IPaginationProps> = ({
 
   /** клик по правому шеврону */
   const handleClickByRightChevron = () => {
-    const newPage = currentPage + STEP;
+    let newPage = currentPage + STEP;
+    while (disabledPages.includes(newPage) && newPage <= count) {
+      newPage += STEP;
+    }
 
     if (newPage <= count) {
       setCurrentPage(newPage);
@@ -75,10 +92,11 @@ const Pagination: React.FC<IPaginationProps> = ({
     <div
       className={classnames(
         'rf-pagination__label',
-        label === currentPage && 'rf-pagination__label--selected'
+        label === currentPage && 'rf-pagination__label--selected',
+        disabledPages.includes(label) && 'rf-pagination__label--disabled'
       )}
-
-      onClick={handleClickByPage(label)} >
+      onClick={handleClickByPage(label)}
+    >
       <span className='rf-pagination__label-text' >
         {label}
       </span>
@@ -134,7 +152,12 @@ const Pagination: React.FC<IPaginationProps> = ({
 
   return (
     <div className='rf-pagination'>
-      <div className='rf-pagination__chevron-wrapper' onClick={handleClickByLeftChevron} >
+      <div
+        className={classnames(
+          'rf-pagination__chevron-wrapper',
+          currentPage === FIRST_PAGE_LABEL && 'rf-pagination__chevron-wrapper--disabled'
+        )}
+        onClick={handleClickByLeftChevron} >
         <ChevronLeft />
       </div>
       { count <= PAGES_WITHOUT_DOTS ?
@@ -147,10 +170,16 @@ const Pagination: React.FC<IPaginationProps> = ({
           {getPageLabel(count)}
         </>)
       }
-      <div className='rf-pagination__chevron-wrapper' onClick={handleClickByRightChevron} >
+      <div
+        className={classnames(
+          'rf-pagination__chevron-wrapper',
+          currentPage === count && 'rf-pagination__chevron-wrapper--disabled'
+        )}
+        onClick={handleClickByRightChevron}
+      >
         <ChevronRight />
       </div>
-      {count > PAGES_WITHOUT_NUMBER_SELECT &&
+      {count >= PAGES_WITHOUT_NUMBER_SELECT &&
         <Input className={'rf-pagination__input'} placeholder='№ страницы' onDebounce={handleInsertPage}/>
       }
     </div>
