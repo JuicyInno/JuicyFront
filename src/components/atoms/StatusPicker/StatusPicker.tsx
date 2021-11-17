@@ -1,4 +1,6 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, {
+  FC, InputHTMLAttributes, useRef
+} from 'react';
 import './StatusPicker.scss';
 
 
@@ -24,15 +26,29 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
   IPickerProps) => {
 
   const statusColors = ['low', 'medium', 'high'];
+  const prevCurrentIndex = useRef(-1);
 
-  const clickStatusHandler = (selectIndex: number, currentIndex: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
-    if (pickedValues[position][currentIndex] === '' || pickedValues[position][currentIndex] === '0') {
-      const { htmlFor } = e.target as HTMLLabelElement;
-      const res = +htmlFor;
+  const clickStatusHandler = (selectIndex: number /* row*/, currentIndex: number /* col*/) => (e: React.MouseEvent<HTMLLabelElement>) => {
+    const { htmlFor } = e.target as HTMLLabelElement;
+    const res = +htmlFor;
 
-      const newArr = pickedValues.map((pv, index) => {
+    if (pickedValues[position][currentIndex] === '') {
+      let newArr = [...pickedValues];
+      console.log('here');
+
+      if (pickedValues[position].find(i => i === '0')) {
+        pickedValues.map((pv, index) => {
+
+          if (index !== selectIndex) {
+            pv[prevCurrentIndex.current] = '';
+          }
+        });
+      }
+
+      prevCurrentIndex.current = currentIndex;
+      newArr = pickedValues.map((pv, index) => {
         if (index === selectIndex) {
-          pv = pv.map((a, i) => res - 1 === i ? a = '0' : 'X');
+          pv = pv.map((a, i) => res - 1 === i ? a = '0' : a !== 'X' ? '' : 'X');
           return pv;
         }
 
@@ -40,7 +56,30 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
       });
       getRate(res, newArr, position);
     }
+
+    if (pickedValues[position][currentIndex] === '0') {
+
+
+      const newArr = pickedValues.map((pv, index) => {
+
+        return pv.map((p, index) => {
+          if (index === currentIndex) {
+            return p = '';
+          }
+
+          return p;
+        });
+
+
+      });
+      console.log(newArr);
+
+
+      getRate(res, newArr, position);
+    }
+
   };
+
 
   const status: StatusLabelType[] = [
     {
