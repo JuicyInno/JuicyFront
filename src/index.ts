@@ -35,6 +35,7 @@ import FatalError from './components/molecules/FatalError';
 import CompletePopup from './components/popups/CompletePopup';
 import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
+import Pagination from './components/atoms/Pagination';
 import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
 import CertReader from './components/molecules/CertReader';
@@ -111,6 +112,7 @@ export {
   FatalError,
   Page,
   PageWithSections,
+  Pagination,
   InputHook,
   Timepicker,
   FindUsers,
