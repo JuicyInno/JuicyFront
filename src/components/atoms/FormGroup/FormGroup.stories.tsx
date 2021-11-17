@@ -32,7 +32,7 @@ export const Demo = () => (
       gap: 32,
     }}>
       <StoryRow>
-        <FormGroup label='Invalid FormGroup with invalid Input' required errorMessage='Error'>
+        <FormGroup label='Invalid FormGroup with invalid Input' required errorMessage='Decline'>
           <Input name='text' invalid placeholder='placeholder' />
         </FormGroup>
       </StoryRow>

@@ -21,7 +21,7 @@ describe('Test <FormGroup/> component', () => {
 
   it('should have error message "Error"', () => {
     render(
-      <FormGroup label='Label' errorMessage='Error'>
+      <FormGroup label='Label' errorMessage='Decline'>
         Content
       </FormGroup>
     );
