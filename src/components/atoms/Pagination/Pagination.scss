@@ -13,7 +13,7 @@
 }
 
 .rf-pagination__label {
-  color: var(--text-primary);
+  @include text-m-16;
 }
 
 .rf-pagination__label,
@@ -25,7 +25,6 @@
   align-items: center;
   cursor: pointer;
   border-radius: 50%;
-  @include text-m-16;
   &:hover {
     background-color: var(--background-tertiary);
     color: var(--basic-hover);

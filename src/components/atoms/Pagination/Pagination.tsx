@@ -26,7 +26,7 @@ const Pagination: React.FC<IPaginationProps> = ({
   const STEP = 1;
   const STEP_BEFORE_SHOWING_DOTS = 4;
   const PAGES_WITHOUT_DOTS = 7;
-  const PAGES_WITHOUT_NUMBER_SELECT = 21;
+  const PAGES_WITHOUT_NUMBER_SELECT = 20;
 
   const [currentPage, setCurrentPage] = useState(() => {
     let initialPage = FIRST_PAGE_LABEL;
@@ -179,7 +179,7 @@ const Pagination: React.FC<IPaginationProps> = ({
       >
         <ChevronRight />
       </div>
-      {count >= PAGES_WITHOUT_NUMBER_SELECT &&
+      {count > PAGES_WITHOUT_NUMBER_SELECT &&
         <Input className={'rf-pagination__input'} placeholder='№ страницы' onDebounce={handleInsertPage}/>
       }
     </div>
