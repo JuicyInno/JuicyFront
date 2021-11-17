@@ -148,7 +148,7 @@ const Select: FC<ISelectProps> = ({
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!selectValues) {
+    if (!selectValues || selectValues.length === 0) {
       return;
     }
 
