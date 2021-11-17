@@ -28,11 +28,15 @@
 .rf-entity-card__info-wrapper {
   display: flex;
   flex-direction: column;
+  .rf-entity-card__row:first-child {
+    margin-bottom: 4px;
+  }
 }
 
 .rf-entity-card__row {
   display: flex;
   align-items: center;
+  height: 24px;
 }
 
 .rf-entity-card__full-name {
