@@ -17,7 +17,7 @@ export interface ICard {
   /** Дата заявки */
   date?: string;
   /** Обработка заявки */
-  onClick?: (event?: React.MouseEvent<HTMLDivElement>, requestId?: string) => void;
+  onClick?: (event?: React.MouseEvent, requestId?: string) => void;
   /** Номер заявки */
   requestNumber?: string;
   /** Цвет статуса заявки */
@@ -57,7 +57,8 @@ const Card: FC<ICard> = ({
     valueBySecondLabel={ user.position || user.period || undefined }
   />);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (e: React.MouseEvent) => {
+    console.log('e', e);
     onClick(e, id);
   };
 
@@ -72,8 +73,10 @@ const Card: FC<ICard> = ({
       </div>
       {listUsers}
       {showActionButton && (
-        <div className='rf-card__button-wrapper' onClick={handleClick}>
-          <Button className='rf-card__button' > Обработать </Button>
+        <div className='rf-card__button-wrapper'>
+          <Button onClick={handleClick} className='rf-card__button'>
+            Обработать
+          </Button>
         </div>
       )}
     </Tile>
