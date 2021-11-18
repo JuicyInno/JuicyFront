@@ -1,12 +1,10 @@
 import React from 'react';
-import {render, screen, fireEvent, waitFor} from '@testing-library/react';
-import {byRole, byText} from "testing-library-selector";
-import userEvent from "@testing-library/user-event";
+import {render, screen, fireEvent} from '@testing-library/react';
+import {byText} from "testing-library-selector";
 
 import Employee  from './Employee';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import {IUser} from "../../../types/projects.types";
-import CommentTile from "../CommentTile";
 
 const user: IUser = {
     ...usersMocks[0],
