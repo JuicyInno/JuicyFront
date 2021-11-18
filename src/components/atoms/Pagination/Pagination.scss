@@ -65,6 +65,7 @@
   width: 40px;
   height: 40px;
   @include text-l-16;
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
