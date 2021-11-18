@@ -19,6 +19,7 @@ const icons: IconType[] = [
   'disease',
   'businessTrip',
   'remoteWork',
+  'decree',
   'boss'
 ];
 

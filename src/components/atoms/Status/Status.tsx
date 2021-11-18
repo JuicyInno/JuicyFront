@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import {
   Birthday, BusinessTrip,
-  Decline, In, RemoteWork, Online, Load, Disease, Boss, Icon, Vacation, Out
+  Decline, In, RemoteWork, Online, Load, Disease, Boss, Icon, Vacation, Out, Decree
 } from './icons';
 import { Size } from '../../../types';
 
 import './Status.scss';
 
 export type IconType = 'online' | 'icon' | 'decline' | 'load' | 'in' | 'out' | 'vacation' |
-    'birthday' | 'disease' | 'businessTrip' | 'remoteWork' | 'boss'
+    'birthday' | 'disease' | 'businessTrip' | 'remoteWork' | 'boss' | 'decree';
 
 export interface IStatus {
     type: IconType;
@@ -28,7 +28,8 @@ const getIcon = (type: IconType, size: Size): JSX.Element => {
     disease: <Disease size={size} />,
     businessTrip: <BusinessTrip size={size} />,
     remoteWork: <RemoteWork size={size} />,
-    boss: <Boss size={size} />
+    boss: <Boss size={size} />,
+    decree: <Decree size={size} />
   };
 
   return iconTypes[type];
