@@ -17,7 +17,7 @@ export interface ICard {
   /** Дата заявки */
   date?: string;
   /** Обработка заявки */
-  onClick?: (event?: React.MouseEvent, requestId?: string) => void;
+  onClick?: (event: React.MouseEvent, requestId?: string) => void;
   /** Номер заявки */
   requestNumber?: string;
   /** Цвет статуса заявки */
@@ -58,7 +58,6 @@ const Card: FC<ICard> = ({
   />);
 
   const handleClick = (e: React.MouseEvent) => {
-    console.log('e', e);
     onClick(e, id);
   };
 
