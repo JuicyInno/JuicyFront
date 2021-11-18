@@ -58,10 +58,6 @@ const Card: FC<ICard> = ({
   />);
 
   const handleClick = (e: React.MouseEvent) => {
-<<<<<<< HEAD
-=======
-    console.log('e', e);
->>>>>>> ebb83ffe541b83b904f4a7b3fe37837fd9d91924
     onClick(e, id);
   };
 
