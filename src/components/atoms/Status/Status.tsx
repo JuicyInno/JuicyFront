@@ -39,7 +39,7 @@ const Status: FC<IStatus> = ({ type = 'online', size = 'xs' }) => {
   return (
     <div>
       <div className='rf-status'>
-        <div className={`rf-status__wrapper rf-status__wrapper_size-${size}`}>
+        <div className={`rf-status__wrapper rf-status__wrapper--size-${size}`}>
           {getIcon(type, size)}
         </div>
       </div>
