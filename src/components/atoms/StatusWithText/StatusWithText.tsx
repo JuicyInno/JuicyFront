@@ -16,19 +16,19 @@ type IStatusColor = { symbol: string, icon: JSX.Element }
 
 const statusColors: { [key: string]: IStatusColor } = {
   '0': {
-    symbol: 'rf-status-with-text__title_default',
+    symbol: 'rf-status-with-text__title--default',
     icon: <ReleaseSecondary />
   },
   '1': {
-    symbol: 'rf-status-with-text__title_error',
+    symbol: 'rf-status-with-text__title--error',
     icon: <Error />
   },
   '2': {
-    symbol: 'rf-status-with-text__title_warning',
+    symbol: 'rf-status-with-text__title--warning',
     icon: <Return />
   },
   '3': {
-    symbol: 'rf-status-with-text__title_success',
+    symbol: 'rf-status-with-text__title--success',
     icon: <Release />
   }
 };

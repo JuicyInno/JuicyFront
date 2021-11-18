@@ -15,22 +15,22 @@
   margin-right: 4px;
 }
 
-.rf-status-with-text__title_default {
+.rf-status-with-text__title--default {
   color: var(--basic-primary);
 }
 
-.rf-status-with-text__title_success {
+.rf-status-with-text__title--success {
   color: var(--status-success);
 }
 
-.rf-status-with-text__title_warning {
+.rf-status-with-text__title--warning {
   color: var(--status-warn);
 }
 
-.rf-status-with-text__title_error {
+.rf-status-with-text__title--error {
   color: var(--status-danger);
 }
 
-.rf-status-with-text__title_none {
+.rf-status-with-text__title--none {
   color: var(--text-secondary);
 }
