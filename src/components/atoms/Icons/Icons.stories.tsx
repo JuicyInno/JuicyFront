@@ -113,6 +113,7 @@ import Blocked from '../../../assets/icons/24px/Status/Blocked';
 import Timer from '../../../assets/icons/24px/Status/Timer';
 import Loader from '../../../assets/icons/24px/Status/Loader';
 import Reserved from '../../../assets/icons/24px/Status/Reserved';
+import ReleaseSecondary from '../../../assets/icons/24px/Status/ReleaseSecondary';
 import Flag from '../../../assets/icons/24px/Status/Flag';
 import Troyka from '../../../assets/icons/24px/Status/Troyka';
 import Pin from '../../../assets/icons/24px/Status/Pin';
@@ -479,6 +480,7 @@ export const Demo: Story = () => (
         <div style={elemStyle}><div style={iconStyle}><StatusWarning /></div>Warning</div>
         <div style={elemStyle}><div style={iconStyle}><StatusInformation /></div>Information</div>
         <div style={elemStyle}><div style={iconStyle}><Release /></div>Release</div>
+        <div style={elemStyle}><div style={iconStyle}><ReleaseSecondary /></div>ReleaseSecondary</div>
         <div style={elemStyle}><div style={iconStyle}><StatusError /></div>Error</div>
         <div style={elemStyle}><div style={iconStyle}><StatusQuestion /></div>Question</div>
         <div style={elemStyle}><div style={iconStyle}><StatusReturn /></div>Return</div>
