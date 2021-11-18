@@ -1,10 +1,10 @@
 import React from 'react';
-import { IIconProps } from '../../../../types';
-import { iconSize } from '../../../../utils/helpers';
+import { IStatusIconProps } from './types';
+import { statusIconSize } from './helpers';
 /* eslint-disable max-len */
 
-export default (props: IIconProps) => {
-  const size = props.size ? iconSize[props.size] : '20';
+export default (props: IStatusIconProps) => {
+  const size = props.size ? statusIconSize[props.size] : '20';
   return (
     <svg
       width={size}

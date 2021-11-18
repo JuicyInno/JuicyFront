@@ -1,7 +1,7 @@
 import React from 'react';
-import Status, { IconType } from './Status';
+import Status from './Status';
+import { IconType, StatusIconSize } from './icons/types';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
-import { Size } from '../../../types';
 
 export default {
   title: 'controls/withTest/Status',
@@ -79,7 +79,7 @@ export const Demo = () => (
               borderRight: '2px solid #2ABB5B'
             }} />
           </div>
-          <Status type='disease' size={icon.size as Size}/>
+          <Status type='disease' size={icon.size as StatusIconSize}/>
         </div>
       ))}
     </div>

@@ -3,19 +3,16 @@ import {
   Birthday, BusinessTrip,
   Decline, In, RemoteWork, Online, Load, Disease, Boss, Icon, Vacation, Out, Decree
 } from './icons';
-import { Size } from '../../../types';
+import { IconType, StatusIconSize } from './icons/types';
 
 import './Status.scss';
 
-export type IconType = 'online' | 'icon' | 'decline' | 'load' | 'in' | 'out' | 'vacation' |
-    'birthday' | 'disease' | 'businessTrip' | 'remoteWork' | 'boss' | 'decree';
-
 export interface IStatus {
     type: IconType;
-    size: Size
+    size: StatusIconSize
 }
 
-const getIcon = (type: IconType, size: Size): JSX.Element => {
+const getIcon = (type: IconType, size: StatusIconSize): JSX.Element => {
   const iconTypes = {
     online: <Online size={size} />,
     icon: <Icon size={size} />,
