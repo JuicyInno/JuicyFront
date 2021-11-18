@@ -44,6 +44,7 @@ const EntityCard: FC<IUserPositions> = ({
   const copyHandler = (value: string) => {
     setIsCopied(true);
     navigator.clipboard.writeText(value);
+
   };
 
   return <div className='rf-entity-card'>
