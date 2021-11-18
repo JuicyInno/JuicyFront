@@ -74,6 +74,7 @@
     "lint-staged": "^11.0.1",
     "md5": "^2.3.0",
     "pdfjs-dist": "2.1.266",
+
     "react-input-mask": "^3.0.0-alpha.2",
     "release-it": "^14.10.1",
     "resize-observer-polyfill": "^1.5.1",
@@ -98,7 +99,8 @@
     "crypto-pro": "2.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-pdf": "^5.5.0",
+
+    "react-pdf": "4.2.0",
     "react-resize-detector": "^6.7.6",
     "react-router-dom": "^5.2.0"
   },
