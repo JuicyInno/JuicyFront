@@ -158,8 +158,10 @@ const InputFile: React.FC<IFileInputProps> = ({
 
       if (!newListFile.length) {
         uploadFile([]);
+        setFile([]);
       } else {
         uploadFile([...newListFile]);
+        setFile([...newListFile]);
       }
     }
   ));
