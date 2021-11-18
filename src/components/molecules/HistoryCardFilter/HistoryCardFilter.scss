@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 .filter__wrapper {
   width: 100%;
-  box-shadow: 0px 2px 6px rgba(25, 59, 104, 0.15);
+  box-shadow: 0px -2px 2px 0px rgba(138, 150, 168, 0.08);
   border-radius: 20px;
   .rf-input__field{
     padding-left: 29px;
@@ -41,7 +41,7 @@
 }
 
 .card-filter__datepicker {
-  width: 250px;
+  width: 288px;
   box-sizing: content-box;
   padding-right: 12px;
 }
