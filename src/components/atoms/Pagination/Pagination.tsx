@@ -95,6 +95,7 @@ const Pagination: React.FC<IPaginationProps> = ({
         label === currentPage && 'rf-pagination__label--selected',
         disabledPages.includes(label) && 'rf-pagination__label--disabled'
       )}
+      key={label}
       onClick={handleClickByPage(label)}
     >
       <span className='rf-pagination__label-text' >
