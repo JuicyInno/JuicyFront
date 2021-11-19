@@ -71,13 +71,26 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   // =======================================================================================================================================
   // Если изменился календарь
   const changeDateHandler = (value: IDateVariants) => {
-    const newValues = {
-      ...filterStatus,
-      datePicker: {
-        startDate: value.timestamp.from,
-        endDate: value.timestamp.to
-      }
-    };
+    let newValues = {};
+
+    if (!value.value) {
+      newValues = {
+        ...filterStatus,
+        datePicker: {
+          startDate: '',
+          endDate: ''
+        }
+      };
+    } else {
+      newValues = {
+        ...filterStatus,
+        datePicker: {
+          startDate: value.timestamp.from,
+          endDate: value.timestamp.to
+        }
+      };
+    }
+
     setStatus(newValues);
     onChange(newValues);
   };
@@ -88,7 +101,6 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       ...filterStatus,
       status: option[0].value
     };
-    console.log(newValues, filterStatus);
     setStatus(newValues);
     onChange(newValues);
   };

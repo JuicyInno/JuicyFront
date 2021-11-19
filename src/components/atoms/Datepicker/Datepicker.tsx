@@ -75,6 +75,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 }: IDatepickerProps) => {
   const separator = format[2];
 
+
   const [dayOfWeek, setDayOfWeek] = useState<string[]>([]);
 
   const [minDate, setMinDate] = useState<Date | undefined>(undefined);
@@ -109,10 +110,12 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   const validate = (date: string): string => {
     let result = date;
 
+
     if (range) {
       let [from, to] = date.split(' - ');
       let fromD = 0;
       let toD = 0;
+
 
       if (from) {
         from = from.slice(0, 10);
@@ -153,6 +156,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       if (from || to) {
         result = [from, to].join(' - ');
       }
+
+      if (result === '__.__.____ - __.__.____') {
+
+      }
     } else {
       const d = stringToDate(date, format);
 
@@ -164,6 +171,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
         result = formatDate(maxDate.getTime(), format).date;
       }
     }
+
 
     return result;
   };
@@ -177,6 +185,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
     if (!inputValue.includes('_')) {
       inputValue = validate(parseToFormat(format, defaultValue).string);
+
     }
 
     setInputValue(inputValue);
@@ -185,6 +194,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const getReturnValue = (value: string, range: boolean): IDateVariants => {
+
     if (range) {
       const [from, to] = value.split(' - ');
       const fromD = stringToDate(from, format).getTime();
@@ -250,6 +260,13 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   useEffect(() => {
+
+    if (inputValue === '__.__.____ - __.__.____') {
+      const result = getReturnValue('', range);
+      onChange && onChange(result, name);
+      fireOnChange();
+    }
+
     if (!inputValue.includes('_') && inputValue !== '') {
       const result = getReturnValue(inputValue, range);
       onChange && onChange(result, name);
@@ -358,7 +375,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
               <div className='rf-datepicker__calendar-chevron'>
                 <ChevronDown />
               </div>
-
             </>
           )
         }
