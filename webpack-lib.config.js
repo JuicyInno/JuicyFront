@@ -63,26 +63,7 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.(svg)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: { name: 'assets/svg/[name].[ext]' }
-      //     }
-      //   ]
-      // },
 
-      // {
-      //   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-      //   options: { name: 'assets/fonts/[name].[ext]' }
-      // },
-      // {
-      //   test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   loader: 'file-loader',
-      //   options: { name: 'assets/fonts/[name].[ext]' }
-      // }
     ]
   },
   node: { fs: 'empty' },
@@ -96,7 +77,10 @@ module.exports = {
     historyApiFallback: true,
     writeToDisk: true
   },
-  // plugins: [
-  //   new BundleAnalyzerPlugin()
-  // ]
+  optimization: {
+    minimize: true
+  },
+  plugins: [
+    // new BundleAnalyzerPlugin(),
+  ]
 };
