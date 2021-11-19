@@ -51,6 +51,7 @@ import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
+import Status from './components/atoms/Status';
 import StatusWithText from './components/atoms/StatusWithText';
 import ButtonGroup from './components/atoms/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
@@ -133,6 +134,7 @@ export {
   EntityCard,
   Toast,
   History,
+  Status,
   StatusWithText,
   ButtonGroup,
   CalendarPage,

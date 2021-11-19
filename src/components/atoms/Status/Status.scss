@@ -1,0 +1,24 @@
+@import "src/styles/mixins";
+
+.rf-status {
+  display: flex;
+}
+.rf-status__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--background-primary);
+  border-radius: 50%;
+}
+
+.rf-status__wrapper--size-s,
+.rf-status__wrapper--size-m {
+  border: 3px solid var(--background-primary);
+}
+
+.rf-status__wrapper--size-l {
+  border: 4px solid var(--background-primary);
+}
+
+
