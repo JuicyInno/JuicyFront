@@ -2,13 +2,14 @@ import React from 'react';
 import Status from './Status';
 import { IconType, StatusIconSize } from './icons/types';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import { Story } from '@storybook/react';
 
 export default {
   title: 'controls/withTest/Status',
-  component: Status,
+  component: Status
 };
 
-const icons: IconType[] = [
+const iconTypes: IconType[] = [
   'online',
   'icon',
   'decline',
@@ -26,68 +27,80 @@ const icons: IconType[] = [
 
 const demoIcons = [
   {
-    size: 'xxs',
+    size: 's',
     sizeNumber: 16
   },
   {
-    size: 'xs',
+    size: 'm',
     sizeNumber: 20
   },
   {
-    size: 's',
+    size: 'l',
     sizeNumber: 24
   }
 ];
 
-export const Demo = () => (
-  <StoryDocs>
-    <StoryDocsH1>Status</StoryDocsH1>
-    <div style={{
-      display: 'flex',
-      width: 200,
-      marginBottom: 50,
-      backgroundColor: '#F1F2F4',
-      padding: 24,
-      borderRadius: 16
-    }}>
-      {demoIcons.map(icon => (
+export const Demo = () => {
+  const demoSizes = demoIcons.map((icon, i) => (
+    <div
+      key={i}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginRight: 28
+      }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}>
         <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginRight: 28
+          padding: '0px 4px',
+          color: 'white',
+          backgroundColor: '#2ABB5B',
+          borderRadius: 2,
+          marginBottom: 4
         }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            <div style={{
-              padding: '0px 4px',
-              color: 'white',
-              backgroundColor: '#2ABB5B',
-              borderRadius: 2,
-              marginBottom: 4
-            }}>
-              {icon.sizeNumber}
-            </div>
-            <div style={{
-              width: icon.sizeNumber + 4,
-              height: 12,
-              borderTop: '2px solid #2ABB5B',
-              borderLeft: '2px solid #2ABB5B',
-              borderRight: '2px solid #2ABB5B'
-            }} />
-          </div>
-          <Status type='disease' size={icon.size as StatusIconSize}/>
+          {icon.sizeNumber}
         </div>
-      ))}
+        <div style={{
+          width: icon.sizeNumber + 4,
+          height: 12,
+          borderTop: '2px solid #2ABB5B',
+          borderLeft: '2px solid #2ABB5B',
+          borderRight: '2px solid #2ABB5B'
+        }} />
+      </div>
+      <Status type='disease' size={icon.size as StatusIconSize}/>
     </div>
-    <div style={{ display: 'flex' }}>
-      {icons.map(icon => <div style={{ marginRight: 8 }}><Status type={icon} size='xs'/></div>)}
+  ));
+
+  const icons = iconTypes.map((icon, i) => (
+    <div style={{ marginRight: 8 }} key={i}>
+      <Status type={icon} size='l'/>
     </div>
-  </StoryDocs>
-);
+  ));
+
+  return (
+    <StoryDocs>
+      <StoryDocsH1>Status</StoryDocsH1>
+      <div style={{
+        display: 'flex',
+        width: 200,
+        marginBottom: 50,
+        backgroundColor: '#F1F2F4',
+        padding: 24,
+        borderRadius: 16
+      }}>
+        {demoSizes}
+      </div>
+      <div style={{ display: 'flex' }}>
+        {icons}
+      </div>
+    </StoryDocs>
+  );
+};
 
 Demo.parameters = {
   design: {
@@ -96,4 +109,21 @@ Demo.parameters = {
   },
   actions: { disabled: true },
   controls: { disabled: true }
+};
+
+export const Playground: Story = (args: any) => {
+  return (
+    <div style={{
+      backgroundColor: 'lightgray',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 45,
+      height: 45,
+      borderRadius: 8,
+      margin: 30
+    }}>
+      <Status { ...args } />
+    </div>
+  );
 };

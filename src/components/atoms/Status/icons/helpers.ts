@@ -1,5 +1,5 @@
 export const statusIconSize = {
-  'xxs': '16',
-  'xs': '20',
-  's': '24'
+  's': '16',
+  'm': '20',
+  'l': '24'
 };

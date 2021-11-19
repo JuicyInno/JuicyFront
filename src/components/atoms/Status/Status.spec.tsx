@@ -4,21 +4,21 @@ import Status from "./Status";
 
 describe('Test <Status/> component', () => {
     it('should be render Status component', () => {
-        render(<Status type='online' size='xs'  />)
+        render(<Status type='online' size='s'  />)
     })
 
-    it('should be render Status in size xxs 16px', () => {
-        const { container } = render(<Status type='online' size='xxs' />);
-        expect(container.getElementsByClassName('rf-status__wrapper--size-xxs')).toHaveLength(1);
-    })
-
-    it('should be render Status in size xs 20px', () => {
-        const { container } = render(<Status type='online' size='xs' />);
-        expect(container.getElementsByClassName('rf-status__wrapper--size-xs')).toHaveLength(1);
-    })
-
-    it('should be render Status in size s 24px', () => {
+    it('should be render Status in size s 16px', () => {
         const { container } = render(<Status type='online' size='s' />);
         expect(container.getElementsByClassName('rf-status__wrapper--size-s')).toHaveLength(1);
+    })
+
+    it('should be render Status in size m 20px', () => {
+        const { container } = render(<Status type='online' size='m' />);
+        expect(container.getElementsByClassName('rf-status__wrapper--size-m')).toHaveLength(1);
+    })
+
+    it('should be render Status in size l 24px', () => {
+        const { container } = render(<Status type='online' size='l' />);
+        expect(container.getElementsByClassName('rf-status__wrapper--size-l')).toHaveLength(1);
     })
 })
