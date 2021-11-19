@@ -16,7 +16,7 @@ import CommentTile from './components/molecules/CommentTile';
 import Input from './components/atoms/Input';
 import InputFile from './components/atoms/InputFile';
 import InputNumber from './components/atoms/InputNumber';
-import Menu from './components/atoms/Menu';
+import Menu, { MenuContext } from './components/atoms/Menu';
 import Modal from './components/atoms/Modal';
 import Preloader from './components/atoms/Preloader';
 import Radio from './components/atoms/Radio';
@@ -94,6 +94,7 @@ export {
   InputFile,
   InputNumber,
   Menu,
+  MenuContext,
   Modal,
   Preloader,
   Radio,
