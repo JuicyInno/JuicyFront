@@ -45,7 +45,7 @@ const iconTypes = {
   decree: Decree
 };
 
-const Status: FC<IStatus> = ({ type = 'online', size = 's' }) => {
+const Status: FC<IStatus> = ({ type = 'online', size = 'm' }) => {
   const TargetIconTag = iconTypes[type];
   return (
     <div className='rf-status'>
