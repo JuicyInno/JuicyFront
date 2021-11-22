@@ -162,13 +162,12 @@ const Tooltip: FC<ITooltipProps> = ({
     addListener(false);
     setTooltipRect(null);
   };
-
-  const stopPropagation = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  // todo: отключил тк ломало сертификаты
+  const stopPropagation = (_e: React.MouseEvent) => {
+    // e.stopPropagation();
   };
 
 
-  // @ts-ignore
   const text: string = useMemo(() => {
     try {
       // @ts-ignore

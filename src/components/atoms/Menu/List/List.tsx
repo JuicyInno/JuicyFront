@@ -11,6 +11,7 @@ import Tooltip from '../../Tooltip';
 interface IListProps {
   /** Элементы меню */
   list: IListElement[];
+
 }
 
 const List: React.FC<IListProps> = ({ list }: IListProps) => {
