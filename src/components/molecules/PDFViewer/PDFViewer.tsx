@@ -12,6 +12,7 @@ import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import { Button } from '../../../index';
 import { Page, Document } from 'react-pdf';
+// @ts-ignore
 import { PDFPageProxy } from 'pdfjs-dist';
 import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
