@@ -61,19 +61,19 @@ const Card: FC<ICard> = ({
     onClick(e, id);
   };
 
-  return <div className='rf-card__wrapper'>
-    <Tile className='rf-card__tile'>
-      <div className='rf-card__row rf-card__row_first-row'>
+  return <div className='rf-card__wrapper' onClick={handleClick} >
+    <Tile className='rf-card__tile' >
+      <div className='rf-card__row rf-card__row_first-row' >
         <div className='rf-card__title-wrapper'>
           <h1 className='rf-card__title'>{`${title} №${requestNumber} от ${date}`}</h1>
           {subTitle && <p className='rf-card__subtitle'>{subTitle}</p>}
         </div>
-        <Tag variant={statusColor}>{statusText}</Tag>
+        <Tag variant={statusColor} >{statusText}</Tag>
       </div>
       {listUsers}
       {showActionButton && (
         <div className='rf-card__button-wrapper'>
-          <Button onClick={handleClick} className='rf-card__button'>
+          <Button className='rf-card__button'>
             Обработать
           </Button>
         </div>

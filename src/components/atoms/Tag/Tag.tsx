@@ -42,7 +42,7 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className={`rf-tag ${clickableClass} rf-tag--${variant}`} onClick={handleClick}>
+    <div className={`rf-tag ${clickableClass} rf-tag--${variant}`} onClick={ onClick ? handleClick : undefined}>
       {!!icon && (
         <div className='rf-tag__icon'>
           {icon}
