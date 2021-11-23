@@ -3,7 +3,7 @@ import './Badge.scss';
 import { BadgeVariant } from '../../../types';
 
 export interface IBadgeProps {
-  children: ReactNode;
+  children?: ReactNode;
   badgeContent?: ReactNode;
   className?: string;
   variant?: BadgeVariant;
