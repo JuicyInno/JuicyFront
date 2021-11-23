@@ -18,7 +18,7 @@ export const Demo: Story = () => {
     <StoryDocs>
       <StoryDocsH1>Employee</StoryDocsH1>
       <div style={{ width: '880px', }}>
-        <Employee user={usersMocks[0]} title={'Сотрудник'}/>
+        <Employee toolTipBackground='default' user={usersMocks[0]} title={'Сотрудник'} />
       </div>
     </StoryDocs >
   );
@@ -29,7 +29,7 @@ export const Playground: Story<IEmployeeProps> = (args) => {
     <StoryContainer>
       <StoryRow>
         <div style={{ width: '880px', }}>
-          <Employee title={'Сотрудник'} {...args} user={usersMocks[0]}/>
+          <Employee title={'Сотрудник'} {...args} user={usersMocks[0]} />
         </div>
       </StoryRow>
     </StoryContainer>

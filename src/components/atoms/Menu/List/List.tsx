@@ -11,10 +11,12 @@ import Tooltip from '../../Tooltip';
 interface IListProps {
   /** Элементы меню */
   list: IListElement[];
+  /** Цвет tooltip */
+  toolTipBackground?: 'white' | 'default'
 
 }
 
-const List: React.FC<IListProps> = ({ list }: IListProps) => {
+const List: React.FC<IListProps> = ({ list, toolTipBackground = 'default' }: IListProps) => {
   /** Ссылки на элементы списка */
   const refs = useRef<RefObject<HTMLDivElement | HTMLAnchorElement>[]>([]);
 
@@ -41,7 +43,8 @@ const List: React.FC<IListProps> = ({ list }: IListProps) => {
   };
 
   const renderLabel = (index: number, label: ReactNode) => {
-    return checkOverflow(index) ? <Tooltip portal position='bottom'><span>{label}</span><>{label}</></Tooltip> : <>{label}</>;
+    return checkOverflow(index) ?
+      <Tooltip background={toolTipBackground} portal position='bottom'><span>{label}</span><>{label}</></Tooltip> : <>{label}</>;
   };
 
   const listElementJSX =

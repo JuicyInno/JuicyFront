@@ -176,7 +176,6 @@ const Tooltip: FC<ITooltipProps> = ({
       return '';
     }
   }, [children[1]]);
-
   return (
     <div
       className={`rf-tooltip rf-tooltip--${background}`}

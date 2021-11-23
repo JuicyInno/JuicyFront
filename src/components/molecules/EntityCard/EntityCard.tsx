@@ -9,22 +9,24 @@ import Copy from '../../../assets/icons/24px/Account/Copy';
 import './EntityCard.scss';
 
 export interface IUserPositions {
-    /** ФИО */
-    fullName: string;
-    /** Ссылка на фото */
-    photo?: string;
-    /** Роль пользователя */
-    role?: string;
-    /** Первый лейбл */
-    firstLabel?: string;
-    /** Значение первого лейбла */
-    valueByFirstLabel?: string;
-    /** Можно скопировать первый лейбл */
-    canCopy?: boolean;
-    /** Второй лейбл */
-    secondLabel?: string;
-    /** Значение второго лейбла */
-    valueBySecondLabel?: string;
+  /** ФИО */
+  fullName: string;
+  /** Ссылка на фото */
+  photo?: string;
+  /** Роль пользователя */
+  role?: string;
+  /** Первый лейбл */
+  firstLabel?: string;
+  /** Значение первого лейбла */
+  valueByFirstLabel?: string;
+  /** Можно скопировать первый лейбл */
+  canCopy?: boolean;
+  /** Второй лейбл */
+  secondLabel?: string;
+  /** Значение второго лейбла */
+  valueBySecondLabel?: string;
+  /** Цвет tooltip */
+  toolTipBackground?: 'white' | 'default'
 }
 
 const EntityCard: FC<IUserPositions> = ({
@@ -36,6 +38,7 @@ const EntityCard: FC<IUserPositions> = ({
   secondLabel = '',
   valueBySecondLabel = '',
   canCopy = false,
+  toolTipBackground = 'default'
 
 }) => {
 
@@ -62,8 +65,8 @@ const EntityCard: FC<IUserPositions> = ({
           <div className='rf-entity-card__row'>
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
-              <Tooltip position='bottom'>
-                <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon'/>
+              <Tooltip background={toolTipBackground} position='bottom'>
+                <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon' />
                 <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>
               <Toast isVisible={isCopied} setVisibility={setIsCopied}>
@@ -72,12 +75,12 @@ const EntityCard: FC<IUserPositions> = ({
             </div>
             }
             {secondLabel && valueBySecondLabel &&
-            <>
-              <p className='rf-entity-card__additional'>{secondLabel}</p>
-              <div className='rf-entity-card__row'>
-                <p className='rf-entity-card__accent'>{valueBySecondLabel}</p>
-              </div>
-            </>
+              <>
+                <p className='rf-entity-card__additional'>{secondLabel}</p>
+                <div className='rf-entity-card__row'>
+                  <p className='rf-entity-card__accent'>{valueBySecondLabel}</p>
+                </div>
+              </>
             }
           </div>
         </div>

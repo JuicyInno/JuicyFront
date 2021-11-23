@@ -32,6 +32,9 @@ export interface ICard {
   showActionButton?: boolean;
   /** Пользователи */
   users?: IUser[];
+  /** Цвет tooltip */
+  toolTipBackground?: 'white' | 'default'
+
 }
 
 const Card: FC<ICard> = ({
@@ -44,6 +47,7 @@ const Card: FC<ICard> = ({
   statusColor = 'default',
   users = [],
   showActionButton = false,
+  toolTipBackground = 'default',
   onClick = () => { },
 }) => {
 
@@ -51,10 +55,11 @@ const Card: FC<ICard> = ({
     {...user}
     key={user.id}
     canCopy
+    toolTipBackground={toolTipBackground}
     firstLabel={'Табельный номер'}
     valueByFirstLabel={user.id}
-    secondLabel={ user.position ? 'Должность' : user.period ? 'Период' : ''}
-    valueBySecondLabel={ user.position || user.period || undefined }
+    secondLabel={user.position ? 'Должность' : user.period ? 'Период' : ''}
+    valueBySecondLabel={user.position || user.period || undefined}
   />);
 
   const handleClick = (e: React.MouseEvent) => {

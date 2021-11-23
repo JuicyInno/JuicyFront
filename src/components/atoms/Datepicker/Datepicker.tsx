@@ -50,6 +50,8 @@ export interface IDatepickerProps {
   invalid?: boolean;
   /** Добавляет инпуту белый фон */
   filled?: boolean;
+  /** Цвет tooltip */
+  toolTipBackground?: 'white' | 'default'
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -70,7 +72,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   position = 'left',
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
-  children
+  children,
+  toolTipBackground = 'default'
 
 }: IDatepickerProps) => {
   const separator = format[2];
@@ -395,6 +398,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           separator={separator}
           format={format}
           disableWeekDays={disableWeekDays || []}
+          toolTipBackground={toolTipBackground}
         />
       )}
     </div>
