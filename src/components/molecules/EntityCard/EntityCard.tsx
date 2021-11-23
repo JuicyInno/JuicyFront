@@ -26,7 +26,7 @@ export interface IUserPositions {
   /** Значение второго лейбла */
   valueBySecondLabel?: string;
   /** Цвет tooltip */
-  toolTipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default'
 }
 
 const EntityCard: FC<IUserPositions> = ({
@@ -38,7 +38,7 @@ const EntityCard: FC<IUserPositions> = ({
   secondLabel = '',
   valueBySecondLabel = '',
   canCopy = false,
-  toolTipBackground = 'default'
+  tooltipBackground = 'default'
 
 }) => {
 
@@ -65,7 +65,7 @@ const EntityCard: FC<IUserPositions> = ({
           <div className='rf-entity-card__row'>
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
-              <Tooltip background={toolTipBackground} position='bottom'>
+              <Tooltip background={tooltipBackground} position='bottom'>
                 <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon' />
                 <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>

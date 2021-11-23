@@ -14,6 +14,8 @@ import useClickOutside from '../../../hooks/useClickOutside';
 import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
 
+type TooltipBackgroundColor = 'default' | 'white'
+
 export interface IDatepickerProps {
   /** Имя поля */
   name?: string;
@@ -50,8 +52,11 @@ export interface IDatepickerProps {
   invalid?: boolean;
   /** Добавляет инпуту белый фон */
   filled?: boolean;
-  /** Цвет tooltip */
-  toolTipBackground?: 'white' | 'default'
+  /**
+   * Цвет tooltip
+   *  @default default
+   */
+  tooltipBackground?: TooltipBackgroundColor
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -73,7 +78,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
   children,
-  toolTipBackground = 'default'
+  tooltipBackground = 'default'
 
 }: IDatepickerProps) => {
   const separator = format[2];
@@ -398,7 +403,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           separator={separator}
           format={format}
           disableWeekDays={disableWeekDays || []}
-          toolTipBackground={toolTipBackground}
+          tooltipBackground={tooltipBackground}
         />
       )}
     </div>

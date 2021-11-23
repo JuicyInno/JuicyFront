@@ -265,33 +265,33 @@ const FindUsers: FC<IProps> = ({
 
     const label = (
       <div className='list-users__user'>
-        <Avatar photo={ item.photo } size='m' fullName={ `${item.firstName} ${item.lastName}` }/>
+        <Avatar photo={item.photo} size='m' fullName={`${item.firstName} ${item.lastName}`} />
         <div className='list-users__texts-wrapper'>
           <h3 className='list-users__user-name'>
-            { `${item.lastName} ${item.firstName} ${item.middleName}` }
-            { item.id && <span className='list-users__user-id'>({ item.id })</span> }
-            { item.departmentsPath && (
+            {`${item.lastName} ${item.firstName} ${item.middleName}`}
+            {item.id && <span className='list-users__user-id'>({item.id})</span>}
+            {item.departmentsPath && (
               <Tooltip portal background={tooltipBackground}>
-                <Info className='list-users__user-info'/>
-                <Structure departmentsPath={ item.departmentsPath } background={tooltipBackground}/>
+                <Info className='list-users__user-info' />
+                <Structure departmentsPath={item.departmentsPath} background={tooltipBackground} />
               </Tooltip>
-            ) }
+            )}
           </h3>
           <h5 className='list-users__user-position'
-            title={ isShorter ? item.department : undefined }>{ isShorter ? `${shortPosition}...` : shortPosition }</h5>
+            title={isShorter ? item.department : undefined}>{isShorter ? `${shortPosition}...` : shortPosition}</h5>
         </div>
       </div>
     );
 
     return (
-      <div className='list-users__wrapper' key={ item.id }>
+      <div className='list-users__wrapper' key={item.id}>
         <Checkbox
-          label={ label }
+          label={label}
           align='center'
-          value={ item.id }
-          disabled={ disableSelected && disablePeopleMap.current[item.id] }
-          checked={ selectedPeopleMap[item.id] || false }
-          onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChange(e, item) }
+          value={item.id}
+          disabled={disableSelected && disablePeopleMap.current[item.id]}
+          checked={selectedPeopleMap[item.id] || false}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, item)}
         />
       </div>
     );
@@ -301,8 +301,8 @@ const FindUsers: FC<IProps> = ({
 
   const placeholder = (placeholder: string) => (
     <div className='search-results__message'>
-      <Icon className='search-results__message-icon'/>
-      <p className='search-results__message-text'>{ placeholder }</p>
+      <Icon className='search-results__message-icon' />
+      <p className='search-results__message-text'>{placeholder}</p>
     </div>
   );
 
@@ -351,12 +351,12 @@ const FindUsers: FC<IProps> = ({
 
   const tabs: ITab[] = [];
   showAll &&
-  tabs.push( {
-    label: 'Все',
-    handler: () => {
-      setActiveFilter('all');
-    }
-  });
+    tabs.push({
+      label: 'Все',
+      handler: () => {
+        setActiveFilter('all');
+      }
+    });
   tabs.push({
     label: 'Моя команда',
     handler: () => {
@@ -368,12 +368,12 @@ const FindUsers: FC<IProps> = ({
   return (
     <div className='find-users__wrapper'>
       <h4 className='find-users__title'>Поиск сотрудников</h4>
-      <p className='find-users__notice'>{ subtitle }</p>
-      <div className='find-users__input-wrapper' ref={ inputRef }>
-        <Search onKeyUp={ debounce(inputHandle, 500) } autoFocus onClear={ onClear }/>
+      <p className='find-users__notice'>{subtitle}</p>
+      <div className='find-users__input-wrapper' ref={inputRef}>
+        <Search onKeyUp={debounce(inputHandle, 500)} autoFocus onClear={onClear} />
       </div>
       <div className='find-users__filters'>
-        <Tabs list={tabs}/>
+        <Tabs list={tabs} />
       </div>
 
       {/* { !!selectedPeople.length && multiSelect && (*/}
@@ -397,18 +397,18 @@ const FindUsers: FC<IProps> = ({
       {/*    </Button>*/}
       {/*  </div>*/}
       {/* ) }*/}
-      <div className='find-users__list-wrapper' ref={ dropdownRef } onScroll={ onLazyScroll }>
-        { loaded ? (
+      <div className='find-users__list-wrapper' ref={dropdownRef} onScroll={onLazyScroll}>
+        {loaded ? (
           listUsers.length > 0 ? (
             listUsers
           ) : (
             searchString === '' ? placeholder('Начните поиск') : placeholder('Нет результатов для отображения. Измените запрос.')
           )
-        ) : <Preloader/> }
+        ) : <Preloader />}
         {
           lazyPreloader && (
             <div className='find-users__list-lazy-preloader'>
-              <Preloader size='s'/>
+              <Preloader size='s' />
             </div>
           )
         }
