@@ -357,25 +357,31 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       >
         {
           children || (
-            <>
-              <button type='button' className='rf-datepicker__calendar-button'>
-                <Calendar />
-              </button>
-              <InputMask
-                mask={mask}
-                name={name}
-                placeholder={placeholder}
-                value={inputValue}
-                disabled={disabled}
-                readOnly={readOnly}
-                onKeyPress={onKeyPress}
-                onChange={onDatepickerChange}>
-                <Input invalid={invalid} filled={filled} />
-              </InputMask>
-              <div className='rf-datepicker__calendar-chevron'>
-                <ChevronDown />
-              </div>
-            </>
+            <InputMask
+              mask={mask}
+              name={name}
+              placeholder={placeholder}
+              value={inputValue}
+              disabled={disabled}
+              readOnly={readOnly}
+              onKeyPress={onKeyPress}
+              onChange={onDatepickerChange}
+            >
+              <Input
+                invalid={invalid}
+                filled={filled}
+                startAdornment={
+                  <button type='button' className='rf-datepicker__calendar-button'>
+                    <Calendar />
+                  </button>
+                }
+                endAdornment={
+                  <div className='rf-datepicker__calendar-chevron'>
+                    <ChevronDown />
+                  </div>
+                }
+              />
+            </InputMask>
           )
         }
       </div>
