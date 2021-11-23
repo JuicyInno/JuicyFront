@@ -1,6 +1,4 @@
-import React, {
-  ReactNode, useLayoutEffect, useRef
-} from 'react';
+import React, { ReactNode, useRef } from 'react';
 import './Badge.scss';
 import { BadgeVariant } from '../../../types';
 
@@ -10,15 +8,13 @@ export interface IBadgeProps {
   className?: string;
   variant?: BadgeVariant;
   max?: number;
-
   display?: boolean;
   /** Расположить сбоку на одном уровне*/
   placeNear?: boolean;
-  /** Расположить сбоку на одном уровне*/
+  /** Размер badge*/
   size?: 'M' | 'S';
 }
 
-type Coordinates = { top: number; right: number };
 
 const Badge: React.FC<IBadgeProps> = ({
   badgeContent,
@@ -35,41 +31,6 @@ const Badge: React.FC<IBadgeProps> = ({
   const isDot = badgeContent ? '' : `rf-badge--dot--${size}`;
 
 
-  useLayoutEffect(() => {
-    if (badgeContent || placeNear) {
-      return;
-    }
-
-    const child = wrapper.current?.firstElementChild;
-
-    if (child) {
-      const w = child.clientWidth;
-
-      const kX = Math.cos(Math.PI / 3);
-      const kY = Math.sin(Math.PI / 3);
-      const badgeR = 4;
-
-      const coordinates: Record<string, Coordinates> = {
-        bottomRight: {
-          top: w / 2 * (kY + 1) - badgeR,
-          right: w / 2 * (1 - kX) - badgeR
-        },
-        bottomLeft: {
-          top: w / 2 * (kY + 1) - badgeR,
-          right: w / 2 * (kX + 1) + badgeR
-        },
-        topLeft: {
-          top: w / 2 * (1 - kY) + badgeR,
-          right: w / 2 * (kX + 1) + badgeR
-        },
-        topRight: {
-          top: w / 2 * (1 - kY) + badgeR,
-          right: w / 2 * (1 - kX) - badgeR
-        }
-      };
-
-    }
-  }, [children, badgeContent]);
   // -------------------------------------------------------------------------------------------------------------------
 
   const textClass = typeof children === 'string' ? 'rf-badge--text' : '';
