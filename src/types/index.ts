@@ -133,6 +133,22 @@ export const variants: Variant[] = [
   'violet',
 ];
 
+
+export type BadgeVariant =
+  'light' |
+  'info' |
+  'warning' |
+  'success' |
+  'error' |
+  'grey' |
+  'dark' |
+  'light-inactive' |
+  'light-disable' |
+  'white' |
+  'white-inactive' |
+  'white-disable';
+
+
 /** Цвет фона аватара */
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
 
