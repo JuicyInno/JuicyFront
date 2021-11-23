@@ -48,7 +48,10 @@ export interface IDatepickerProps {
   children?: ReactNode | ReactNode[];
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
-  /** Добавляет инпуту белый фон */
+  /**
+   * Добавляет инпуту белый фон
+   * @default true
+   */
   filled?: boolean;
 }
 
@@ -60,7 +63,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   min,
   max,
   invalid = false,
-  filled = false,
+  filled = true,
   disabled = false,
   readOnly = false,
   onChange,
