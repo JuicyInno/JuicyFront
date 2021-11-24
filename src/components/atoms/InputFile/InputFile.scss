@@ -25,10 +25,12 @@
 
 .rf-file-input__chip-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }
 
 .rf-file-input__chip {
-  padding: 20px 12px 0px 0px;
+  margin: 12px 12px 0px 0px;
 }
 
 .rf-file-input__chip-text {

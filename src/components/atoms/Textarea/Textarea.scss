@@ -14,6 +14,7 @@
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--basic-tertiary);
   border-radius: 8px;
+  background-color: var(--background-primary);
 
   &--invalid {
     box-shadow: 0 0 0 2px var(--status-danger);
@@ -97,6 +98,7 @@
   border-radius: 8px;
   border: 0;
   box-sizing: border-box;
+  background: none;
 
   @include text-m-16;
 }
