@@ -31,9 +31,9 @@ export interface IBadgeProps {
   placeNear?: boolean;
   /**
    * Размер badge
-   * @default 'S'
+   * @default 's'
   */
-  size?: 'S' | 'M';
+  size?: 's' | 'm';
 }
 
 
@@ -45,7 +45,7 @@ const Badge: React.FC<IBadgeProps> = ({
   max = 99,
   display = true,
   placeNear = false,
-  size = 'M'
+  size = 'm'
 }: IBadgeProps) => {
   const wrapper = useRef<HTMLDivElement>(null);
 
