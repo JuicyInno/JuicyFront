@@ -18,6 +18,12 @@
   right: -7px;
 }
 
+.rf-avatar-status__sticker--size-s {
+  position: absolute;
+  bottom: -9px;
+  right: -9px;
+}
+
 .rf-avatar-status.rf--xxs,
 .rf-avatar-status__border.rf--xxs {
   @include round(20px);
