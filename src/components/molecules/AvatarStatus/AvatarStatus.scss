@@ -1,0 +1,85 @@
+@import "src/styles/mixins";
+
+.rf-avatar-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rf-avatar-status__border {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.rf-avatar-status__sticker {
+  position: absolute;
+  bottom: -7px;
+  right: -7px;
+}
+
+.rf-avatar-status.rf--xxs,
+.rf-avatar-status__border.rf--xxs {
+  @include round(20px);
+}
+
+.rf-avatar-status.rf--xs,
+.rf-avatar-status__border.rf--xs{
+  @include round(24px);
+}
+
+.rf-avatar-status.rf--s,
+.rf-avatar-status__border.rf--s{
+  @include round(32px);
+}
+
+.rf-avatar-status.rf--m,
+.rf-avatar-status__border.rf--m {
+  @include round(40px);
+}
+
+.rf-avatar-status.rf--l,
+.rf-avatar-status__border.rf--l {
+  @include round(48px);
+}
+
+.rf-avatar-status.rf--xl,
+.rf-avatar-status__border.rf--xl {
+  @include round(56px);
+}
+
+.rf-avatar-status.rf--xxl,
+.rf-avatar-status__border.rf--xxl {
+  @include round(64px);
+}
+
+.rf-avatar-status.rf--xxxl,
+.rf-avatar-status__border.rf--xxxl {
+  @include round(72px);
+}
+
+
+.rf-avatar-status.rf--xxxxl,
+.rf-avatar-status__border.rf--xxxxl {
+  @include round(80px);
+}
+
+.rf-avatar-status__border.blue {
+  border: 3px solid var(--basic-primary);
+}
+
+.rf-avatar-status__border.green {
+  border: 3px solid var(--status-success);
+}
+
+.rf-avatar-status__border.red {
+  border: 3px solid var(--status-danger);
+}
+
+.rf-avatar-status__border.yellow {
+  border: 3px solid var(--status-warn);
+}
+
+.rf-avatar-status__border.default {
+  border: 3px solid var(--background-tertiary-hover);
+}

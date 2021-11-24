@@ -2,6 +2,7 @@ import './styles/index.scss';
 
 // ------------------------ Компоненты ---------------------------------------------------------------------------
 import Avatar from './components/atoms/Avatar';
+import AvatarStatus from './components/molecules/AvatarStatus';
 import Badge from './components/atoms/Badge';
 import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
@@ -82,6 +83,7 @@ export {
   GhostScreen,
   HistoryCardFilter,
   Avatar,
+  AvatarStatus,
   Badge,
   Button,
   Checkbox,
