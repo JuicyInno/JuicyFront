@@ -28,18 +28,18 @@ describe('Test <Badge/> component', () => {
     expect(t).toBeInTheDocument();
   });
 
-  it('should be empty and have class "rf-badge--dot--M"', () => {
-    const badge = <Badge size='M'>Badge</Badge>;
+  it('should be empty and have class "rf-badge--dot--s"', () => {
+    const badge = <Badge size='m'>Badge</Badge>;
     const { container } = render(badge);
     const item = container.getElementsByClassName('rf-badge')[0];
-    expect(item).toHaveClass('rf-badge--dot--M');
+    expect(item).toHaveClass('rf-badge--dot--s');
     expect(item?.textContent).toHaveLength(0);
   });
-  it('should be empty and have class "rf-badge--dot--S"', () => {
-    const badge = <Badge size='S'>Badge</Badge>;
+  it('should be empty and have class "rf-badge--dot--s"', () => {
+    const badge = <Badge size='s'>Badge</Badge>;
     const { container } = render(badge);
     const item = container.getElementsByClassName('rf-badge')[0];
-    expect(item).toHaveClass('rf-badge--dot--S');
+    expect(item).toHaveClass('rf-badge--dot--s');
     expect(item?.textContent).toHaveLength(0);
   });
 

@@ -26,13 +26,13 @@
   cursor: inherit;
 }
 
-.badge-size--M{
+.badge-size--m{
  height: 20px;
  min-width: 23px;
   font-size: 14px;
 
 }
-.badge-size--S{
+.badge-size--s{
   height: 16px;
   min-width: 17px;
   font-size: 12px;
@@ -111,13 +111,13 @@
   color: var(--text-static-white);
 }
 
-.rf-badge--dot--M {
+.rf-badge--dot--m {
   @include round(16px);
   padding: 0;
   border: 2px solid var(--base-000);
   box-sizing: content-box;
 }
-.rf-badge--dot--S {
+.rf-badge--dot--s {
   @include round(12px);
   padding: 0;
   border: 2px solid var(--base-000);
