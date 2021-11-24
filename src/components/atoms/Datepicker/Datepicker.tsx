@@ -48,7 +48,10 @@ export interface IDatepickerProps {
   children?: ReactNode | ReactNode[];
   /** Переводит инпут в невалидный статус */
   invalid?: boolean;
-  /** Добавляет инпуту белый фон */
+  /**
+   * Добавляет инпуту белый фон
+   * @default true
+   */
   filled?: boolean;
   /** Цвет tooltip */
   toolTipBackground?: 'white' | 'default'
@@ -62,7 +65,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   min,
   max,
   invalid = false,
-  filled = false,
+  filled = true,
   disabled = false,
   readOnly = false,
   onChange,
@@ -360,25 +363,31 @@ const Datepicker: React.FC<IDatepickerProps> = ({
       >
         {
           children || (
-            <>
-              <button type='button' className='rf-datepicker__calendar-button'>
-                <Calendar />
-              </button>
-              <InputMask
-                mask={mask}
-                name={name}
-                placeholder={placeholder}
-                value={inputValue}
-                disabled={disabled}
-                readOnly={readOnly}
-                onKeyPress={onKeyPress}
-                onChange={onDatepickerChange}>
-                <Input invalid={invalid} filled={filled} />
-              </InputMask>
-              <div className='rf-datepicker__calendar-chevron'>
-                <ChevronDown />
-              </div>
-            </>
+            <InputMask
+              mask={mask}
+              name={name}
+              placeholder={placeholder}
+              value={inputValue}
+              disabled={disabled}
+              readOnly={readOnly}
+              onKeyPress={onKeyPress}
+              onChange={onDatepickerChange}
+            >
+              <Input
+                invalid={invalid}
+                filled={filled}
+                startAdornment={
+                  <button type='button' className='rf-datepicker__calendar-button'>
+                    <Calendar />
+                  </button>
+                }
+                endAdornment={
+                  <div className='rf-datepicker__calendar-chevron'>
+                    <ChevronDown />
+                  </div>
+                }
+              />
+            </InputMask>
           )
         }
       </div>

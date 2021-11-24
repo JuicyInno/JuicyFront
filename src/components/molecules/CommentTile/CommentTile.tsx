@@ -86,17 +86,11 @@ const CommentTile: FC<ICommentTileProps> = ({
   };
 
   /** Прикрепление файла */
-  const setFileHandler = (file: IFileData[]) => {
-    const newFile = {
-      fileName: file[0].file.name,
-      base64: file[0].base64
-    };
-
-    if (attachedFiles?.length) {
-      setAttachedFiles([...attachedFiles, newFile]);
-    } else {
-      setAttachedFiles([newFile]);
-    }
+  const setFileHandler = (files: IFileData[]) => {
+    setAttachedFiles(files.map(file => ({
+      fileName: file.file.name,
+      base64: file.base64
+    })));
   };
 
   // =======================================================================================================================================
