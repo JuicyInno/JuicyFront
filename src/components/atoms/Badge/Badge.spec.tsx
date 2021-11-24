@@ -32,7 +32,7 @@ describe('Test <Badge/> component', () => {
     const badge = <Badge size='m'>Badge</Badge>;
     const { container } = render(badge);
     const item = container.getElementsByClassName('rf-badge')[0];
-    expect(item).toHaveClass('rf-badge--dot--s');
+    expect(item).toHaveClass('rf-badge--dot--m');
     expect(item?.textContent).toHaveLength(0);
   });
   it('should be empty and have class "rf-badge--dot--s"', () => {
