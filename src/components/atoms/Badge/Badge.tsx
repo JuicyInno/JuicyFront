@@ -3,16 +3,37 @@ import './Badge.scss';
 import { BadgeVariant } from '../../../types';
 
 export interface IBadgeProps {
+  /** Контент внутри бейджа*/
   children?: ReactNode;
+  /** Содержимое бейджа*/
   badgeContent?: ReactNode;
+  /** Имя класса*/
   className?: string;
+  /**
+   *  Цвет бейджа
+   * @default 'info'
+   */
   variant?: BadgeVariant;
+  /**
+   *  Максимальное значение символов отображаемое в бэйдж
+   * @default 99
+  */
   max?: number;
+  /**
+   * Показать бейдж
+   * @default true
+  */
   display?: boolean;
-  /** Расположить сбоку на одном уровне*/
+  /**
+   * Расположить сбоку на одном уровне
+   * @default false
+  */
   placeNear?: boolean;
-  /** Размер badge*/
-  size?: 'M' | 'S';
+  /**
+   * Размер badge
+   * @default 'S'
+  */
+  size?: 'S' | 'M';
 }
 
 
