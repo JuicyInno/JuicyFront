@@ -14,12 +14,17 @@ describe('Test <Datepicker/> component', () => {
     expect(disabled.length).toBe(1);
   })
   /*   it('should be render with white tooltip', () => {
-      const { container } = render(<Datepicker tooltipBackground={'white'} />);
+
+      const { container } = render(<Datepicker toolTipBackground={'white'} />);
+
       const toolTip = container.getElementsByClassName(`rf-tooltip rf-tooltip--white`);
       expect(toolTip.length).toBe(1);
     })
     it('should be render with default tooltip', () => {
+
+
       const { container } = render(<Datepicker tooltipBackground='default' />);
+
       const toolTip = container.getElementsByClassName(`rf-tooltip rf-tooltip--default`);
       expect(toolTip.length).toBe(1);
     }) */

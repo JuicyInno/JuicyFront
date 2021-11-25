@@ -13,7 +13,6 @@ interface IListProps {
   list: IListElement[];
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default'
-
 }
 
 const List: React.FC<IListProps> = ({ list, tooltipBackground = 'default' }: IListProps) => {
