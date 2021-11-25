@@ -26,7 +26,7 @@ export interface IStatus {
    Размер статуса
    @default m
    */
-  statusSize?: StatusIconSize
+  size?: StatusIconSize
 }
 
 const iconTypes = {
@@ -45,12 +45,12 @@ const iconTypes = {
   decree: Decree
 };
 
-const Status: FC<IStatus> = ({ type = 'online', statusSize = 'm' }) => {
+const Status: FC<IStatus> = ({ type = 'online', size = 'm' }) => {
   const TargetIconTag = iconTypes[type];
   return (
     <div className='rf-status'>
-      <div className={`rf-status__wrapper rf-status__wrapper--size-${statusSize}`}>
-        <TargetIconTag size={statusSize}/>
+      <div className={`rf-status__wrapper rf-status__wrapper--size-${size}`}>
+        <TargetIconTag size={size}/>
       </div>
     </div>
   );

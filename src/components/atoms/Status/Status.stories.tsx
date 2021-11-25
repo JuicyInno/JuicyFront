@@ -72,13 +72,13 @@ export const Demo = () => {
           borderRight: '2px solid #2ABB5B'
         }} />
       </div>
-      <Status type='disease' statusSize={icon.size as StatusIconSize}/>
+      <Status type='disease' size={icon.size as StatusIconSize}/>
     </div>
   ));
 
   const icons = iconTypes.map((icon, i) => (
     <div style={{ marginRight: 8 }} key={i}>
-      <Status type={icon} statusSize='l'/>
+      <Status type={icon} size='l'/>
     </div>
   ));
 

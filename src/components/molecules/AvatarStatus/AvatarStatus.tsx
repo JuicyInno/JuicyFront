@@ -8,7 +8,7 @@ import { statusSize } from './helper';
 
 import './AvatarStatus.scss';
 
-export interface IAvatarStatus extends IAvatarProps, IStatus {
+export interface IAvatarStatus extends IAvatarProps, Omit<IStatus, 'size'> {
     /** Цвет статуса (обводки) */
     variant?: VariantClassic;
 }
@@ -25,7 +25,7 @@ const AvatarStatus: FC<IAvatarStatus> = ({
       {variant && <div className={`rf-avatar-status__border ${sizeClass[size]} ${variant}`}/>}
       {type && (size !== 'xxs' && size !== 'xs') && variant !== 'default' && (
         <div className={size === 's' ? 'rf-avatar-status__sticker--size-s' : 'rf-avatar-status__sticker'}>
-          <Status statusSize={statusSize[size] as StatusIconSize} type={type} />
+          <Status size={statusSize[size] as StatusIconSize} type={type} />
         </div>
       )}
     </div>
