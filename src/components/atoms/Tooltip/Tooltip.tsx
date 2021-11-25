@@ -14,7 +14,12 @@ interface ITooltipContentProps {
   /** Дополнительный класс */
   className?: string;
   portal: boolean;
-  /** Цвет тултипа */
+
+  /**
+   * Цвет тултипа
+   * @default default
+   *
+   */
   background: 'default' | 'white';
 }
 

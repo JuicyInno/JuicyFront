@@ -28,7 +28,7 @@ interface IDatepickerCalendarProps {
   format: DateFormat;
   separator: string;
   disableWeekDays: number[];
-  toolTipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default'
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
@@ -45,7 +45,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   format,
   separator,
   disableWeekDays,
-  toolTipBackground = 'default'
+  tooltipBackground = 'default'
 }: IDatepickerCalendarProps) => {
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -441,9 +441,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
 
     return (
       <Tooltip
-
-        position='bottom'
-        background={toolTipBackground}
+        background={tooltipBackground}
         className='rf-datepicker-calendar__tooltip'
       >
         <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
