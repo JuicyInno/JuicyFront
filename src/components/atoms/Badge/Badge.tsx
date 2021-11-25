@@ -36,7 +36,6 @@ export interface IBadgeProps {
   size?: 's' | 'm';
 }
 
-
 const Badge: React.FC<IBadgeProps> = ({
   badgeContent,
   children,
