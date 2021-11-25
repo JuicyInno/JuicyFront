@@ -27,7 +27,7 @@ export interface IEmployeeProps {
   /** Показывать тень */
   showBoxShadow?: boolean;
   /** Цвет tooltip */
-  toolTipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default'
 }
 
 const Employee: React.FC<IEmployeeProps> = ({ user,
@@ -37,7 +37,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
   onClick = () => { },
   showActionButton = false,
   portal = false,
-  toolTipBackground = 'default' }: IEmployeeProps) => {
+  tooltipBackground = 'default' }: IEmployeeProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
   const getTooltip = (departmentsPath: IStructure[]) => <Tooltip
     position={position}
     portal={portal}
-    background={toolTipBackground}
+    background={tooltipBackground}
   >
     <Info data-testid='icon' className='rf-employee__department-icon' />
     <Structure departmentsPath={departmentsPath} />

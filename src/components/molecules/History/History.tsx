@@ -22,10 +22,10 @@ export interface IProps {
   isUZADO?: boolean;
   host?: string;
   /** Цвет tooltip */
-  toolTipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default'
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin, toolTipBackground = 'white' }: IProps) => {
+const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin, tooltipBackground = 'white' }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Показать / Скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -98,7 +98,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
               {(r.user && r.user.length === 1 && r.user[0].fullName) || r.agentName}
             </h4>
             {!(r.user && r.user.length < 2) && (
-              <Tooltip background={toolTipBackground}>
+              <Tooltip background={tooltipBackground}>
                 <div className='rf-history__info-wrapper'>
                   <Info width={18} height={18} />
                 </div>

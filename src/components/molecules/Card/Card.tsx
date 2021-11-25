@@ -33,7 +33,7 @@ export interface ICard {
   /** Пользователи */
   users?: IUser[];
   /** Цвет tooltip */
-  toolTipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default'
 
 }
 
@@ -47,7 +47,7 @@ const Card: FC<ICard> = ({
   statusColor = 'default',
   users = [],
   showActionButton = false,
-  toolTipBackground = 'default',
+  tooltipBackground = 'default',
   onClick = () => { },
 }) => {
 
@@ -55,7 +55,7 @@ const Card: FC<ICard> = ({
     {...user}
     key={user.id}
     canCopy
-    toolTipBackground={toolTipBackground}
+    tooltipBackground={tooltipBackground}
     firstLabel={'Табельный номер'}
     valueByFirstLabel={user.id}
     secondLabel={user.position ? 'Должность' : user.period ? 'Период' : ''}

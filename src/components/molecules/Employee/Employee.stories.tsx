@@ -18,7 +18,7 @@ export const Demo: Story = () => {
     <StoryDocs>
       <StoryDocsH1>Employee</StoryDocsH1>
       <div style={{ width: '880px', }}>
-        <Employee toolTipBackground='default' user={usersMocks[0]} title={'Сотрудник'} />
+        <Employee tooltipBackground='default' user={usersMocks[0]} title={'Сотрудник'} />
       </div>
     </StoryDocs >
   );
