@@ -21,12 +21,12 @@ export interface IStatus {
   /** Тип иконки
    @default online
    */
-    type: IconType;
+    type?: IconType;
   /**
    Размер статуса
-   @default s
+   @default m
    */
-    size: StatusIconSize
+  size?: StatusIconSize
 }
 
 const iconTypes = {
