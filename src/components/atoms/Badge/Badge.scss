@@ -93,15 +93,15 @@
   color: var(--text-tertiary);
 }
 .rf-badge--white {
-  background-color: #fff;
+  background-color:var(--background-primary);
   color: var(--text-primary);
 }
 .rf-badge--white-inactive {
-  background-color: #fff;
+  background-color:var(--background-primary);
   color: var(--text-secondary);
 }
 .rf-badge--white-disable {
-  background-color: #fff;
+  background-color:var(--background-primary);
   color: var(--text-tertiary);
 }
 
