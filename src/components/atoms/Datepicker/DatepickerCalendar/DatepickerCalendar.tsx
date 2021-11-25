@@ -28,6 +28,7 @@ interface IDatepickerCalendarProps {
   format: DateFormat;
   separator: string;
   disableWeekDays: number[];
+  tooltipBackground?: 'white' | 'default'
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
@@ -40,11 +41,11 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   toggleRef,
   range,
   locale,
-  showTodayButton,
   position,
   format,
   separator,
-  disableWeekDays
+  disableWeekDays,
+  tooltipBackground = 'default'
 }: IDatepickerCalendarProps) => {
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -440,8 +441,9 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
 
     return (
       <Tooltip
+
         position='bottom'
-        background='default'
+        background={tooltipBackground}
         className='rf-datepicker-calendar__tooltip'
       >
         <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
@@ -460,7 +462,8 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
     <div className='rf-datepicker__calendar' ref={contentRef} style={coordinates}>
       <header className='rf-datepicker__calendar-header'>
         <div className='rf-datepicker-calendar__control'>
-          <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-prev'
+          <button type='button'
+            className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-prev'
             disabled={prevArrowDisabled} onClick={() => onPeriodChange(-1)}>
             <span className='rf-datepicker__calendar-left'>
               <ChevronLeft />
@@ -470,7 +473,8 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
             {ButtonWithTooltip('month', 'Выбор месяца')}
             {ButtonWithTooltip('year', 'Выбор года')}
           </div>
-          <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-next'
+          <button type='button'
+            className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-next'
             disabled={nextArrowDisabled} onClick={() => onPeriodChange(1)}>
             <span className='rf-datepicker__calendar-right'>
               <ChevronLeft />

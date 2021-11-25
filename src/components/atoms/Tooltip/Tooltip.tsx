@@ -14,7 +14,12 @@ interface ITooltipContentProps {
   /** Дополнительный класс */
   className?: string;
   portal: boolean;
-  /** Цвет тултипа */
+
+  /**
+   * Цвет тултипа
+   * @default default
+   *
+   */
   background: 'default' | 'white';
 }
 
@@ -176,7 +181,6 @@ const Tooltip: FC<ITooltipProps> = ({
       return '';
     }
   }, [children[1]]);
-
   return (
     <div
       className={`rf-tooltip rf-tooltip--${background}`}

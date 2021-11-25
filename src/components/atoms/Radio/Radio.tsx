@@ -22,6 +22,7 @@ export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
    * @default true
    */
   fullWidth?: boolean;
+
 }
 
 const Radio: FC<IRadioProps> = ({
@@ -35,7 +36,7 @@ const Radio: FC<IRadioProps> = ({
 
       {!!icon && (
         <span className='rf-radio__circle'>
-          <span className='rf-radio__mark'/>
+          <span className='rf-radio__mark' />
         </span>
       )}
 

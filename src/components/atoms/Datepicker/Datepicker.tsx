@@ -14,6 +14,7 @@ import useClickOutside from '../../../hooks/useClickOutside';
 import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
 
+
 export interface IDatepickerProps {
   /** Имя поля */
   name?: string;
@@ -53,6 +54,8 @@ export interface IDatepickerProps {
    * @default true
    */
   filled?: boolean;
+  /** Цвет tooltip */
+  tooltipBackground?: 'default' | 'white'
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -73,7 +76,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   position = 'left',
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
-  children
+  children,
+  tooltipBackground = 'default'
 
 }: IDatepickerProps) => {
   const separator = format[2];
@@ -404,6 +408,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           separator={separator}
           format={format}
           disableWeekDays={disableWeekDays || []}
+          tooltipBackground={tooltipBackground}
         />
       )}
     </div>
