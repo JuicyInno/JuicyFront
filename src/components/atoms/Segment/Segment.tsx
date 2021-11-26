@@ -57,11 +57,10 @@ const Segment: React.FC<ISegmentProps> = ({ list, fullWidth = false, value, onCh
   // -------------------------------------------------------------------------------------------------------------------
 
   const radioButtons = list.map((o: IOption, i: number) => {
-    const showSlider = i === 0;
+    const className = classnames('rf-segment__list-item', activeIndex === i && 'active', o.disabled && 'disabled');
 
     return (
-      <div className={classnames('rf-segment__list-item', activeIndex === i && 'active')} key={o.value} onClick={() => handleChange(i)}>
-        {showSlider && <div className='rf-segment__slider' ref={slider} />}
+      <div className={className} key={o.value} onClick={() => handleChange(i)}>
         {o.label}
       </div>
     );
@@ -69,7 +68,10 @@ const Segment: React.FC<ISegmentProps> = ({ list, fullWidth = false, value, onCh
 
   return (
     <div className='rf-segment__container'>
-      <div className={classnames('rf-segment__list', fullWidth && 'rf-segment__list--full')}>{radioButtons}</div>
+      <div className={classnames('rf-segment__list', fullWidth && 'rf-segment__list--full')}>
+        {radioButtons}
+        <div className='rf-segment__slider' style={{ width: `calc(100% / ${list.length})` }} ref={slider} />
+      </div>
     </div>
   );
 };
