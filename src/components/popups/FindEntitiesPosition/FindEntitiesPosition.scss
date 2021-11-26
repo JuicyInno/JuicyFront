@@ -1,0 +1,54 @@
+@import "src/styles/mixins";
+
+.rf-find-entities-position {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--background-tertiary);
+  }
+
+  &__content {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    margin-right: 16px;
+  }
+
+  &__title {
+    @include button-m-16;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+  }
+
+  &__info {
+    display: flex;
+    margin-left: 8px;
+    color: var(--basic-tertiary);
+  }
+
+  &__subtitle {
+    @include text-m-16;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+  }
+
+  &__copy {
+    display: flex;
+    margin-left: 4px;
+    color: var(--basic-tertiary);
+  }
+
+  &__toast {
+    @include text-xs-14();
+    color: var(--text-secondary);
+  }
+}

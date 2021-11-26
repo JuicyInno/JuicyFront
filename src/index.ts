@@ -73,6 +73,11 @@ import Schedule, {
   ScheduleLegendItem,
 } from './components/molecules/Schedule';
 import ButtonGroup from './components/molecules/ButtonGroup';
+import { FindEntities } from './components/popups/FindEntities';
+import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
+import {
+  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, findUsers
+} from './components/popups/FindEntitiesUser';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -151,7 +156,12 @@ export {
   ContentExpander,
   BackdropLoader,
   PopupMaker,
-  Dropdown
+  Dropdown,
+  FindEntities,
+  FindEntitiesPosition,
+  FindEntitiesUser,
+  FindEntitiesUserEmptyStateIcon,
+  findUsers
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
