@@ -73,6 +73,7 @@ export interface IFileData {
   file: File;
   base64: string;
   base64Compressed?: string;
+  id?: string;
 }
 
 /** Чипсы */

@@ -276,5 +276,23 @@ export const initialFiles: IFileData[] = [
       webkitRelativePath: '',
     } as File,
     base64: '',
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'quston.png',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+    id: '00505683-c29f-1eec-93d2-5fcd53023f78'
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'word_file.docx',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+    id: '00505683-c29f-1eec-9390-0b884bf2ff6f'
   }
 ];

@@ -129,20 +129,40 @@ const InputFile: React.FC<IFileInputProps> = ({
 
 
   // =======================================================================================================================================
+
+  const downloadFile = (currentFile: IFileData) => {
+    if (currentFile.id) {
+      /** Скачивание через файловый сервер */
+      let host = window.location.origin;
+
+      if (host.includes('127.0.0') || host.includes('6006')) {
+        host = 'https://sapd-fes-ap01.vtb24.ru:44310';
+      }
+
+      const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${currentFile.id})/content`;
+      window.open(url, '_blank');
+    } else {
+      /** Скачивание через blob */
+      download({
+        fileName: currentFile.file.name,
+        base64: currentFile.base64
+      }, currentFile.file.name);
+    }
+  };
+
+  // =======================================================================================================================================
+
   /** Чип прикрепленного файла */
-  const attachedFileChipTSX = (name:string, index: number, onRemove:()=>void) =>
-    <div className='rf-file-input__chip' key={name + index}>
+  const attachedFileChipTSX = (currentFile: IFileData, index: number, onRemove:()=>void) =>
+    <div className='rf-file-input__chip' key={currentFile.file.name + index}>
       <Chip
-        onClick={() => file && download({
-          fileName: file[index].file.name,
-          base64: file[index].base64
-        }, file[index]?.file.name)}
+        onClick={() => downloadFile(currentFile)}
         size='s'
         type='outline'
         onRemove={onRemove}
       >
         <div className='rf-file-input__chip-text'>
-          {name}
+          {currentFile.file.name}
         </div>
       </Chip>
     </div>;
@@ -150,7 +170,7 @@ const InputFile: React.FC<IFileInputProps> = ({
   // =======================================================================================================================================
   /** Отображение чипов прикрепленных файлов */
   const fileList = file?.map((currentFile: IFileData, index: number) => attachedFileChipTSX(
-    currentFile.file.name,
+    currentFile,
     index,
     () => {
       const newListFile = file;
