@@ -4,7 +4,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
 import RatePicker, { IPickerProps } from './RatePicker';
 import { withDesign } from 'storybook-addon-designs';
-
+/* eslint-disable max-len */
 
 export default {
   title: 'forms/withTest/Rate Picker',

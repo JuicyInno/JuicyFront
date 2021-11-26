@@ -2,7 +2,7 @@ import React from 'react';
 import Input from './Input';
 import FormGroup from '../FormGroup';
 import { Story } from '@storybook/react';
-
+/* eslint-disable max-len */
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2
 } from '../../storybook';

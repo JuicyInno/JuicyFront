@@ -8,7 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { MobileView } from './previews/mobile-view';
 
 import { withDesign } from 'storybook-addon-designs';
-
+/* eslint-disable max-len */
 export default {
   title: 'controls/withTest/Switch',
   decorators: [withDesign],

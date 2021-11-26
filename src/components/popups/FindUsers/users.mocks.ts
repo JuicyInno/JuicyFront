@@ -1,5 +1,5 @@
 import { IUser } from '../../../types/projects.types';
-
+/* eslint-disable max-len */
 export const usersMocks: IUser[] = [
   {
     id: '#000001',

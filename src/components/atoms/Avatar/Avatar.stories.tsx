@@ -107,7 +107,9 @@ export const Demo: Story = () => {
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' backgroundColor='black' /></div>
       </div>
       <StoryDocsH2>Scale text</StoryDocsH2>
-      <StoryDocsDescription>Допускается использование одной или двух букв для обозначения пользователя (в размере XXS, XS только одна буква).</StoryDocsDescription>
+      <StoryDocsDescription>
+        Допускается использование одной или двух букв для обозначения пользователя (в размере XXS, XS только одна буква).
+      </StoryDocsDescription>
       <div style={{
         display: 'flex',
         position: 'relative'

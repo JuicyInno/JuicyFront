@@ -14,6 +14,7 @@
     "build"
   ],
   "rules": {
+    "linebreak-style": ["error", "unix"],
     "no-extra-parens": "off",
     "curly": "error",
     "default-case": "error",

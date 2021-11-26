@@ -34,7 +34,7 @@ export const Playground: Story = (args) => {
   );
 };
 
-
+/* eslint-disable max-len */
 Demo.parameters = {
   design: {
     type: 'figma',

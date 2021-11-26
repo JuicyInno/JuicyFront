@@ -98,7 +98,8 @@ export const select = () => {
 
         <StoryItem description='Изменяемое значение извне'>
           <Button onClick={() => {
-            setState([list[1]]), setState2(!state2);
+            setState([list[1]]);
+            setState2(!state2);
           }}>Set State</Button>
           <div style={{ height: '20px' }}/>
           <Select placeholder='Выберите значение'
