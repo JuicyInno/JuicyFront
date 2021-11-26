@@ -56,7 +56,22 @@ export const Demo = () => {
             label='Заявка была отозвана'
             description='Корткое объяснение в три строчки'
             icon='refresh'
-            buttons={<><Button fullWidth buttonType='light' onClick={() => {}}>Закрыть</Button></>}
+            buttons={<div style={{
+              marginTop: '32px',
+              width: '100%'
+            }}><Button fullWidth buttonType='light' onClick={() => {}} size='l'>Закрыть</Button></div>}
+          />
+        </StoryRow>
+      </StoryItem>
+
+      <StoryDocsH2>Вариация без кнопки</StoryDocsH2>
+      <StoryItem>
+        <StoryRow>
+          <CompletePopup
+            label='Заявка была отозвана'
+            description='Корткое объяснение в три строчки'
+            icon='refresh'
+            buttons={<></>}
           />
         </StoryRow>
       </StoryItem>
