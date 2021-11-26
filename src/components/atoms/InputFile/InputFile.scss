@@ -33,13 +33,6 @@
   margin: 12px 12px 0px 0px;
 }
 
-.rf-file-input__chip-text {
-  @include text-s-14;
-  color: var(--basic-primary);
-  display: flex;
-  align-items: center;
-}
-
 .rf-file-input__chip-button {
   padding-left: 8px;
   padding-top: 4px;

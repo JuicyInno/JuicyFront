@@ -40,6 +40,10 @@ export interface IFileInputProps extends Omit<IButtonProps, 'onError'> {
   showChips?: boolean;
   /** Кастомныый плейсхолдер */
   customPlaceholder?: ReactNode;
+  /** Способ скачивания файлов */
+  customDownloadMethod?: boolean;
+  /** Условие для удаления вложений */
+  showRemoveIcon?: boolean;
 }
 
 const InputFile: React.FC<IFileInputProps> = ({
@@ -56,6 +60,8 @@ const InputFile: React.FC<IFileInputProps> = ({
   count,
   showChips = true,
   customPlaceholder,
+  customDownloadMethod = false,
+  showRemoveIcon = true,
   ...props
 }: IFileInputProps) => {
   /** Файл */
@@ -131,7 +137,7 @@ const InputFile: React.FC<IFileInputProps> = ({
   // =======================================================================================================================================
 
   const downloadFile = (currentFile: IFileData) => {
-    if (currentFile.id) {
+    if (customDownloadMethod || (currentFile.id && currentFile.id !== '')) {
       /** Скачивание через файловый сервер */
       let host = window.location.origin;
 
@@ -159,17 +165,17 @@ const InputFile: React.FC<IFileInputProps> = ({
         onClick={() => downloadFile(currentFile)}
         size='s'
         type='outline'
-        onRemove={onRemove}
+        maxLength={30}
+        tooltipBackground={'white'}
+        onRemove={showRemoveIcon ? onRemove : undefined}
       >
-        <div className='rf-file-input__chip-text'>
-          {currentFile.file.name}
-        </div>
+        {currentFile.file.name}
       </Chip>
     </div>;
 
   // =======================================================================================================================================
   /** Отображение чипов прикрепленных файлов */
-  const fileList = file?.map((currentFile: IFileData, index: number) => attachedFileChipTSX(
+  const fileList = file.map((currentFile: IFileData, index: number) => attachedFileChipTSX(
     currentFile,
     index,
     () => {

@@ -161,7 +161,14 @@ const History: React.FC<IProps> = ({ history,
     <div className='rf-history__attachments-container'>
       {attachments?.map(attachment => (
         <div className='rf-history__attachment' key={attachment.fileName + attachment.id}>
-          <Chip type='secondary' size='s' onClick={() => openDownloadLink(attachment.id)}>{attachment.fileName}</Chip>
+          <Chip
+            type='secondary'
+            size='s'
+            onClick={() => openDownloadLink(attachment.id)}
+            maxLength={30}
+            tooltipBackground={tooltipBackground}>
+            {attachment.fileName}
+          </Chip>
         </div>
       ))}
     </div>
