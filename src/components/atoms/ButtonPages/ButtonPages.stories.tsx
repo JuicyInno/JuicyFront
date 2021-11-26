@@ -3,7 +3,7 @@ import ButtonPages from './ButtonPages';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import { withDesign } from 'storybook-addon-designs';
-
+/* eslint-disable max-len */
 export default {
   title: 'controls/не проверено/ButtonPages',
   decorators: [withDesign],

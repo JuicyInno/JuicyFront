@@ -1,6 +1,6 @@
 import { IOption } from '../../../types';
 
-export const _segmentList: [IOption, IOption] = [
+export const _segmentList: IOption[] = [
   {
     value: '1',
     label: 'Линейная'
@@ -8,5 +8,5 @@ export const _segmentList: [IOption, IOption] = [
   {
     value: '2',
     label: 'Функциональная'
-  },
+  }
 ];

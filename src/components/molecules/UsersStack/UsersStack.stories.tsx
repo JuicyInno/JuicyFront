@@ -2,7 +2,7 @@ import React from 'react';
 import UsersStack from './UsersStack';
 import { IUser } from '../../../types/projects.types';
 import Story from '../../storybook/Story';
-
+/* eslint-disable max-len */
 export default {
   title: 'components/не проверено/UsersStack',
   component: UsersStack

@@ -2,6 +2,7 @@ import './styles/index.scss';
 
 // ------------------------ Компоненты ---------------------------------------------------------------------------
 import Avatar from './components/atoms/Avatar';
+import AvatarStatus from './components/molecules/AvatarStatus';
 import Badge from './components/atoms/Badge';
 import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
@@ -82,6 +83,7 @@ export {
   GhostScreen,
   HistoryCardFilter,
   Avatar,
+  AvatarStatus,
   Badge,
   Button,
   Checkbox,
@@ -257,12 +259,12 @@ import Location from './assets/icons/24px/Tools/Location';
 import Lock from './assets/icons/24px/Tools/Lock';
 import MenuHorizontal from './assets/icons/24px/Tools/MenuHorizontal';
 import MenuVertical from './assets/icons/24px/Tools/MenuVertical';
-import NewCalendar from './assets/icons/24px/Tools/Calendar'; // refactor name to Calendar
-import NewDoc from './assets/icons/24px/Tools/Doc'; // refactor name to Doc
-import NewEdit from './assets/icons/24px/Tools/Edit'; // refactor name to Edit
-import NewMicrophone from './assets/icons/24px/Tools/Microphone'; // refactor name to Microphone
+import NewCalendar from './assets/icons/24px/Tools/Calendar';
+import NewDoc from './assets/icons/24px/Tools/Doc';
+import NewEdit from './assets/icons/24px/Tools/Edit';
+import NewMicrophone from './assets/icons/24px/Tools/Microphone';
 import NewRefresh from './assets/icons/24px/Tools/Refresh';
-import NewTuneUp from './assets/icons/24px/Tools/TuneUp'; // refactor name to TuneUp
+import NewTuneUp from './assets/icons/24px/Tools/TuneUp';
 import Link from './assets/icons/24px/Tools/Link';
 import OnCard from './assets/icons/24px/Tools/OnCard';
 import OnPhone from './assets/icons/24px/Tools/OnPhone';
@@ -310,7 +312,7 @@ export {
 // --------------------------Иконки alerts------------------------------------------------------------------------------
 import Holidays from './assets/icons/24px/Alerts/Holidays';
 import InformationAlert from './assets/icons/24px/Alerts/InformationAlert';
-import NewDialog from './assets/icons/24px/Alerts/Dialog'; // refactor to Dialog
+import NewDialog from './assets/icons/24px/Alerts/Dialog';
 import NotificationIcon from './assets/icons/24px/Alerts/Notification';
 import QuestionAlert from './assets/icons/24px/Alerts/QuestionAlert';
 
@@ -337,10 +339,10 @@ export {
 
 // --------------------------Иконки account-----------------------------------------------------------------------------
 import NewCopy from './assets/icons/24px/Account/Copy';
-import NewExit from './assets/icons/24px/Account/Exit'; // refactor name to Exit
+import NewExit from './assets/icons/24px/Account/Exit';
 import EyeOpen from './assets/icons/24px/Account/EyeOpen';
-import NewEyeClose from './assets/icons/24px/Account/EyeClose'; // refactor name to EyeClose
-import NewSearch from './assets/icons/24px/Account/Search'; // refactor name to Search
+import NewEyeClose from './assets/icons/24px/Account/EyeClose';
+import NewSearch from './assets/icons/24px/Account/Search';
 import Send from './assets/icons/24px/Account/Send';
 import User from './assets/icons/24px/Account/User';
 
@@ -365,7 +367,7 @@ import DigitalCard from './assets/icons/24px/Specific/DigitalCard';
 import Gosuslygi from './assets/icons/24px/Specific/Gosuslygi';
 import InvestmentProducts from './assets/icons/24px/Specific/InvestmentProducts';
 import LightBulb from './assets/icons/24px/Specific/LightBulb';
-import NewBank from './assets/icons/24px/Specific/Bank'; // refactor name to Bank
+import NewBank from './assets/icons/24px/Specific/Bank';
 import Safe from './assets/icons/24px/Specific/Safe';
 import SpecialSearch from './assets/icons/24px/Specific/SpecialSearch';
 import Star from './assets/icons/24px/Specific/Star';
@@ -423,15 +425,15 @@ export {
   Down,
   InfoStatus,
   NewAdd,
-  NewChevronDown, // refactor name to ChevronDown
-  NewChevronLeft, // refactor name to ChevronLeft
-  NewChevronRight, // refactor name to ChevronRight
-  NewDownload, // refactor name to Download
-  NewExchange, // refactor name to Exchange
-  NewClose, // refactor name to NewClose
-  NewReduce, // refactor name to Reduce
-  NewSuccess, // refactor name to Success
-  NewUp, // refactor name to Up
+  NewChevronDown,
+  NewChevronLeft,
+  NewChevronRight,
+  NewDownload,
+  NewExchange,
+  NewClose,
+  NewReduce,
+  NewSuccess,
+  NewUp,
   Renew,
   Sort,
   SubdirectoryRight,
@@ -544,7 +546,7 @@ export {
   LinkBig,
   ListOfCards,
   Login,
-  NewCard, // refactor name to Card
+  NewCard,
   NotificationBig,
   OnCardBig,
   SpecialSearchBig,

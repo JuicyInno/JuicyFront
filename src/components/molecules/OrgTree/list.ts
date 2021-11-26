@@ -1,5 +1,5 @@
 import { ITreeOption } from '../../../types';
-
+/* eslint-disable max-len */
 export const list: ITreeOption[] = [
   {
     value: '0',

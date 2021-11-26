@@ -1,13 +1,13 @@
 @import 'src/styles/mixins';
 
 .rf-segment__container {
-  position: relative;
   cursor: pointer;
   height: 40px;
   width: 100%;
 }
 
 .rf-segment__list {
+  position: relative;
   display: inline-grid;
   grid-auto-columns: 1fr;
   height: 100%;
@@ -38,20 +38,34 @@
   transition: all 0.2s ease-in-out;
   @include text-s-14;
 
+  &:first-of-type {
+    border-radius: 10px 0 0 10px;
+  }
+
+  &:last-of-type {
+    border-radius: 0 10px 10px 0;
+  }
+
   &.active {
-    background-color: var(--background-primary);
     border-radius: 10px;
+    background-color: var(--background-primary);
     @include text-s-14-bold;
+  }
+
+  &.disabled {
+    color: var(--text-secondary);
   }
 }
 
 .rf-segment__slider {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border-radius: 10px;
   border: 2px solid var(--basic-primary);
-  transition: 0.25s;
+  transition: 0.175s;
   z-index: 10;
   box-sizing: border-box;
 }

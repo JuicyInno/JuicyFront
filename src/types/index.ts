@@ -36,6 +36,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Точность url */
+  exact?: boolean;
   /** Иконка вкладки */
   icon?: ReactNode;
   /** Действие при клике на вкладку */
@@ -132,6 +134,22 @@ export const variants: Variant[] = [
   'purple',
   'violet',
 ];
+
+
+export type BadgeVariant =
+  'light' |
+  'info' |
+  'warning' |
+  'success' |
+  'error' |
+  'grey' |
+  'dark' |
+  'light-inactive' |
+  'light-disable' |
+  'white' |
+  'white-inactive' |
+  'white-disable';
+
 
 /** Цвет фона аватара */
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
