@@ -148,7 +148,9 @@ const FindUsers: FC<IProps> = ({
       searchOptionStr += i === 0 ? `searchOption eq '${n}'` : `and searchOption eq '${n}'`;
     });
 
-    const uri = `sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IUserSearch?$search=${encodeURIComponent(queryWithOutSpecSymbols)}&$expand=departmentsPath&$skip=${skip.current}&$top=${LIMIT}&${searchOptionStr}`;
+    const uri = 'sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IUserSearch?' +
+      `$search=${encodeURIComponent(queryWithOutSpecSymbols)}&$expand=departmentsPath` +
+      `&$skip=${skip.current}&$top=${LIMIT}&${searchOptionStr}`;
     const url = `${host}${activeFilter === 'all' ? uri : teamUri}`;
 
     const axios = AxiosInstance || Axios;
