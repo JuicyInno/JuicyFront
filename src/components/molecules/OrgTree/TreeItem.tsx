@@ -115,7 +115,9 @@ const FolderItem: React.FC<IFolderItemProps> = ({
       return;
     }
 
-    const s = '.rf-tree__item--1:last-of-type > .rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > .rf-tree__item-label .rf-tree__item-label-icon';
+    const s = '.rf-tree__item--1:last-of-type > ' +
+      '.rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > ' +
+      '.rf-tree__item-label .rf-tree__item-label-icon';
     const lastChildItem = root.querySelector<HTMLDivElement>(s);
 
     if (!lastChildItem) {

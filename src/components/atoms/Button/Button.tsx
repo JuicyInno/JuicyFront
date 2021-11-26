@@ -102,7 +102,12 @@ const Button: FC<IButtonProps> = ({
           </div>
         )}
       </div>
-      {!!preloader && <Preloader className={classnames(buttonType === 'round' && 'rf-button--round-loading')} size={getPreloaderSize()} variant='inherit' />}
+      {!!preloader &&
+      <Preloader
+        className={classnames(buttonType === 'round' && 'rf-button--round-loading')}
+        size={getPreloaderSize()}
+        variant='inherit'
+      />}
     </button>
   );
 };

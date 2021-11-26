@@ -60,7 +60,8 @@ const Chip: React.FC<ITagProps> = ({
 
   return (
     <Tooltip position={'bottom'} isVisible={overMaxLength}>
-      <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)} onClick={handleClick}>
+      <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
+        onClick={handleClick}>
         {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
         {overMaxLength ? children.slice(0, maxLength) + '...' : children}
         {onRemove && (

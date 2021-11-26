@@ -38,6 +38,7 @@ export const tree = () => {
     </Story>
   );
 };
+/* eslint-disable max-len */
 tree.parameters = {
   design: {
     type: 'figma',

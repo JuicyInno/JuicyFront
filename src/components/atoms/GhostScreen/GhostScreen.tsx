@@ -2,12 +2,12 @@ import React from 'react';
 import './GhostScreen.scss';
 import GhostImage from '../../../assets/icons/Ghost';
 
-export interface IAvatarProps {
+export interface IGhostProps {
   text?: string;
 
 }
 
-const GhostScreen: React.FC<IAvatarProps> = ({ text = 'Задачи не найдены' }: IAvatarProps) => {
+const GhostScreen: React.FC<IGhostProps> = ({ text = 'Задачи не найдены' }: IGhostProps) => {
 
   return (
     <div className='ghost__wrapper'>

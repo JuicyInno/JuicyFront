@@ -25,7 +25,10 @@ export interface IProps {
   tooltipBackground?: 'white' | 'default'
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin, tooltipBackground = 'white' }: IProps) => {
+const History: React.FC<IProps> = ({ history,
+  isUZADO, attachments,
+  host = window.location.origin,
+  tooltipBackground = 'white' }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Показать / Скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);

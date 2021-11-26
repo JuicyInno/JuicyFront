@@ -172,7 +172,7 @@ export const Playground: Story = (args) => {
     </StoryContainer>
   );
 };
-
+/* eslint-disable max-len */
 Demo.parameters = {
   design: {
     type: 'figma',

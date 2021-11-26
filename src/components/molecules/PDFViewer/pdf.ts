@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const pdfFile = 'data:application/pdf;base64,JVBERi0xLjYNJeLjz9MNCjQ3NSAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvRmlyc3QgMTY2OS9' +
     'MZW5ndGggMjk5MS9OIDIwMC9UeXBlL09ialN0bT4+c3RyZWFtDQpo3rRaTY8ctxHVYX6BT7koZoActAdj+VVkUVpNvPpYH2THgqSc1kEgCAvBgCMZwiqI' +
     '/3yS90h298xODycfDox1c5qsYlXxvSJZLTHWJKPZZONEjBpXvCnGu2KcNT7itTM+i3HeBBuNCyZEjIomFAwREz2GJBMFv7KJ0OTUCMWLEUnGWyMqUGgS/r' +
