@@ -48,6 +48,7 @@ const CompletePopup: React.FC<ICompletePopupProps> = ({
     <Tile
       className='rf-complete-popup'
       padding='32px 20px 24px'
+      variant='clicable-hover'
     >
       <div className={classnames('rf-complete-popup__icon', `rf-complete-popup__icon--${icon}`)}>
         {getIcon(icon)}

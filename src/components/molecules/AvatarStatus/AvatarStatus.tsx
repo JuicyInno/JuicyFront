@@ -9,8 +9,8 @@ import { statusSize } from './helper';
 import './AvatarStatus.scss';
 
 export interface IAvatarStatus extends IAvatarProps, Omit<IStatus, 'size'> {
-    /** Цвет статуса (обводки) */
-    variant?: VariantClassic;
+  /** Цвет статуса (обводки) */
+  variant?: VariantClassic;
 }
 
 const AvatarStatus: FC<IAvatarStatus> = ({
