@@ -95,6 +95,17 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
   const stopPropagationWheel = (e: React.WheelEvent) => {
     e.stopPropagation();
   };
+  const SvgImageUnion = (color: 'default' | 'white' = 'default', position: TooltipPosition = 'bottom') => {
+    return <div className={`rf-tooltip__content-union--${position}`}>
+      {color === 'white' ? <svg width='25' height='15' viewBox='0 0 25 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <path d='M24.5 0H0.5V8H1.09688C2.00516 8 2.8864 8.29089 3.59566 8.82483L11.2506 14.5876C11.981 15.1375 13.019 15.1375 13.7494 14.5876L21.4043 8.82483C22.1136 8.29089 22.9948 8 23.9031 8H24.5V0Z' fill='white' />
+      </svg> : <svg width='25' height='15' viewBox='0 0 25 15' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <path d='M24.5 0H0.5V8H1.09688C2.00516 8 2.8864 8.29089 3.59566 8.82483L11.2506 14.5876C11.981 15.1375 13.019 15.1375 13.7494 14.5876L21.4043 8.82483C22.1136 8.29089 22.9948 8 23.9031 8H24.5V0Z' fill='#8A96A8' />
+      </svg>
+      }
+    </div>;
+  };
+
 
   const tooltip = (
     <div
@@ -105,7 +116,10 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
         [padding[position]]: '8px'
       }}>
       <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
-        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>{children}</div>
+        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>
+          {children}
+          {SvgImageUnion(background, position)}
+        </div>
       </div>
     </div>
   );

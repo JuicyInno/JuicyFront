@@ -17,15 +17,15 @@ export const tooltip = () => {
       <StoryItem description='Подсказка при наведении на элемент.'>
         <StoryRow>
           <StoryCol>
-            <Tooltip background='white'>
-              <Button>Hover me</Button>
+            <Tooltip background='default'>
+              <Button>Hover right</Button>
               <div>Tooltip text</div>
             </Tooltip>
           </StoryCol>
 
           <StoryCol>
-            <Tooltip position='left'>
-              <Button>Hover me</Button>
+            <Tooltip background='white' position='left'>
+              <Button>Hover left</Button>
               <div>Tooltip text</div>
             </Tooltip>
           </StoryCol>
@@ -33,15 +33,15 @@ export const tooltip = () => {
 
         <StoryRow>
           <StoryCol>
-            <Tooltip position='bottom'>
-              <Button>Hover me</Button>
+            <Tooltip background='white' position='bottom'>
+              <Button>Hover bottom</Button>
               <div>Tooltip text</div>
             </Tooltip>
           </StoryCol>
 
           <StoryCol>
-            <Tooltip position='top'>
-              <Button>Hover me</Button>
+            <Tooltip background='default' position='top'>
+              <Button>Hover top</Button>
               <div>Tooltip text</div>
             </Tooltip>
           </StoryCol>
