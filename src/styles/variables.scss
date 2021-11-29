@@ -1,64 +1,64 @@
 :root {
-  --basic-primary: #0D69F2;
-  --basic-secondary: #2B313B;
-  --basic-tertiary: #8A96A8;
-  --basic-hover: #0A54C2;
-  --basic-press: #0949AA;
-  --basic-disable: #C4CAD4;
-  --basic-primary-light: #6EA5F7;
+  --basic-primary: #0d69f2;
+  --basic-secondary: #2b313b;
+  --basic-tertiary: #8a96a8;
+  --basic-hover: #0a54c2;
+  --basic-press: #0949aa;
+  --basic-disable: #c4cad4;
+  --basic-primary-light: #6ea5f7;
 
-  --background-primary: #FFFFFF;
-  --background-secondary: #F1F2F4;
-  --background-tertiary: #E2E5E9;
-  --background-tertiary-hover: #D3D8DE;
-  --background-card: #FFFFFF;
-  --background-card-hover: #FFFFFF;
-  --background-inversion: #2B313B;
-  --background-shadow: #8A96A8;
-  --background-header: #0949AA;
-  --background-danger: #FEF0F1;
-  --background-warn: #FFF7F0;
-  --background-success: #F2FCF5;
+  --background-primary: #ffffff;
+  --background-secondary: #f1f2f4;
+  --background-tertiary: #e2e5e9;
+  --background-tertiary-hover: #d3d8de;
+  --background-card: #ffffff;
+  --background-card-hover: #ffffff;
+  --background-inversion: #2b313b;
+  --background-shadow: #8a96a8;
+  --background-header: #0949aa;
+  --background-danger: #fef0f1;
+  --background-warn: #fff7f0;
+  --background-success: #f2fcf5;
 
-  --text-primary: #2B313B;
-  --text-secondary: #626F84;
-  --text-tertiary: #A7B0BE;
-  --text-inversion: #FFFFFF;
-  --text-static-white: #FFFFFF;
-  --text-static-black: #2B313B;
+  --text-primary: #2b313b;
+  --text-secondary: #626f84;
+  --text-tertiary: #a7b0be;
+  --text-inversion: #ffffff;
+  --text-static-white: #ffffff;
+  --text-static-black: #2b313b;
 
-  --status-warn: #FF8C19;
-  --status-warn-hover: #E57300;
-  --status-warn-press: #CC6600;
+  --status-warn: #ff8c19;
+  --status-warn-hover: #e57300;
+  --status-warn-press: #cc6600;
 
-  --status-success: #2ABB5B;
+  --status-success: #2abb5b;
   --status-success-hover: #219246;
-  --status-success-press: #1C7D3C;
+  --status-success-press: #1c7d3c;
 
-  --status-danger: #DA0B20;
-  --status-danger-hover: #A90919;
+  --status-danger: #da0b20;
+  --status-danger-hover: #a90919;
   --status-danger-press: #910815;
 
-  --special-blue: #3F7DFE;
-  --special-softBlue: #E6EEFF;
-  --special-lightBlue: #0ABBFB;
-  --special-softLightBlue: #E6F8FF;
-  --special-turquoise: #4AD2CA;
-  --special-softTurquoise: #EAFAF9;
-  --special-green: #5ECF70;
-  --special-softGreen: #EBF9EE;
-  --special-yellow: #FFAF37;
-  --special-softYellow: #FFF5E6;
-  --special-red: #FF525C;
-  --special-softRed: #FFE6E7;
-  --special-magenta: #E052BD;
-  --special-softMagenta: #FBE9F7;
-  --special-purple: #BF67C7;
-  --special-softPurple: #F7ECF8;
-  --special-violet: #8742F0;
-  --special-softViolet: #F0E7FD;
-  --special-gray: #98ABCD;
-  --special-softGray: #EDF1F8;
+  --special-blue: #3f7dfe;
+  --special-softBlue: #e6eeff;
+  --special-lightBlue: #0abbfb;
+  --special-softLightBlue: #e6f8ff;
+  --special-turquoise: #4ad2ca;
+  --special-softTurquoise: #eafaf9;
+  --special-green: #5ecf70;
+  --special-softGreen: #ebf9ee;
+  --special-yellow: #ffaf37;
+  --special-softYellow: #fff5e6;
+  --special-red: #ff525c;
+  --special-softRed: #ffe6e7;
+  --special-magenta: #e052bd;
+  --special-softMagenta: #fbe9f7;
+  --special-purple: #bf67c7;
+  --special-softPurple: #f7ecf8;
+  --special-violet: #8742f0;
+  --special-softViolet: #f0e7fd;
+  --special-gray: #98abcd;
+  --special-softGray: #edf1f8;
 
   --4: 4px;
   --8: 8px;
@@ -67,6 +67,10 @@
   --20: 20px;
   --24: 24px;
   --32: 32px;
+  --shadow-clicable-active: 0px 2px 4px rgba(138, 150, 168, 0.4), 0px -2px 2px rgba(138, 150, 168, 0.08);
+  --shadow-clicable-default: 0px 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 168, 0.08);
+  --shadow-non-clicable: 0px 4px 16px rgba(138, 150, 168, 0.4), 0px 0px 6px rgba(138, 150, 168, 0.08);
+  --shadow-clicable-hover: 0px 8px 16px rgba(138, 150, 168, 0.4), 0px -2px 8px rgba(138, 150, 168, 0.08);
 
 // старые переменные !!!!! НЕ ИСПОЛЬЗОВАТЬ !!!!!!!!!!!!!
 --base-000: #FFFFFF;
@@ -153,7 +157,8 @@
 --shadow-strong: 0 15px 30px rgba(0, 2, 82, 0.15);
 --shadow-weak: 0 2px 4px rgba(0, 2, 82, 0.2);
 --basic-shadow-long: 0px 2px 16px rgba(25, 59, 104, 0.1), 0px 8px 32px rgba(25, 59, 104, 0.15);
---basic-shadow: 0px 0px 32px rgba(0, 40, 130, 0.25)
+--basic-shadow: 0px 0px 32px rgba(0, 40, 130, 0.25);
+
 }
 
 // Брейкпоинты

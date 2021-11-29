@@ -24,6 +24,11 @@ export interface ITagProps {
   iconPosition?: 'right' | 'left';
   /** Максимальная длина строки */
   maxLength?: number;
+  /**
+   * Цвет tooltip
+   * @default 'default'
+   */
+  tooltipBackground?: 'default' | 'white'
 }
 
 const Chip: React.FC<ITagProps> = ({
@@ -35,7 +40,8 @@ const Chip: React.FC<ITagProps> = ({
   icon,
   iconPosition,
   disabled,
-  maxLength = 32
+  maxLength = 32,
+  tooltipBackground = 'default'
 }: ITagProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -59,7 +65,8 @@ const Chip: React.FC<ITagProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <Tooltip position={'bottom'} isVisible={overMaxLength}>
+    <Tooltip background={tooltipBackground} position={'bottom'} isVisible={overMaxLength}>
+
       <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
         onClick={handleClick}>
         {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}

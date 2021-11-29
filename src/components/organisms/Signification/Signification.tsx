@@ -15,6 +15,7 @@ import { Certificate } from 'crypto-pro';
 import Download from '../../../assets/icons/Download';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
+import { ITileProps } from '../../atoms/Tile/Tile';
 
 
 export type TButtons = 'sign'|'manual'|'reject'|'rejectManual'
@@ -38,7 +39,7 @@ const buttonNamesDefault:ICustomTexts = {
 };
 
 
-export interface IProps{
+export interface IProps extends Pick<ITileProps, 'variant'> {
   /** Изначальный файл*/
   data:IRequestAttachment
   /** Дополнительные данные о документе*/
@@ -58,9 +59,7 @@ export interface IProps{
   /** кастомные названия кнопок */
   buttonCustomTexts?:ICustomTexts
   /** ссылка на pdf если надо открыть в отдельном окне */
-  pdfUrl?:string
-  /** Заменить тень карточки на бордер */
-  outlined?: boolean;
+  pdfUrl?: string
 }
 
 
@@ -72,8 +71,7 @@ const Signification:FC<IProps> = ({
   isSpoiler = true,
   isOpenSpoiler = false,
   documentInfo,
-  outlined,
-
+  variant = 'default',
   hideButtons = [],
   buttonCustomTexts = {},
   filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
@@ -347,8 +345,9 @@ const Signification:FC<IProps> = ({
     { buttonsTSX}
     {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
+
   return <div className='signification__wrapper'>
-    <Tile outlined={outlined}>
+    <Tile variant={variant}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
         <Document color1={onlyView ? '#F1F2F4' : undefined}/>
         <div className='signification__title-text'>{title}</div>

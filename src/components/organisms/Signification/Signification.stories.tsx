@@ -87,7 +87,7 @@ export const Demo = () => {
           ]}
           documentInfo={docInfo}
           title='Счет №SVTB2060_22 от 30.08.2021'
-          outlined
+          variant='border'
         />
       </StoryItem>
     </Story>
