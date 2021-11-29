@@ -8,6 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { withDesign } from 'storybook-addon-designs';
 import AvatarStatus from './AvatarStatus';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
+import User from '../../../assets/icons/24px/Account/User';
 
 export default {
   title: 'components/withTest/AvatarStatus',
@@ -51,7 +52,7 @@ export default {
       control: { type: 'select' },
       defaultValue: 'default'
     },
-    hasIcon: { type: 'boolean' },
+    icon: { control: false },
     type: {
       options: [
         'online',
@@ -129,7 +130,7 @@ const scale = sizes.map((size: any) =>
       textAlign: 'center',
       color: '#626F84'
     }}>{size}</div>
-    <div><AvatarStatus type='online' size={size} hasIcon /></div>
+    <div><AvatarStatus type='online' size={size} icon={User} /></div>
   </div>);
 
 const getStatusesWithSticker = (hasSticker = true) => {

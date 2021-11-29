@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Avatar.scss';
-import { AvatarColor, Size } from '../../../types';
+import {
+  AvatarColor, Size, IIconProps
+} from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
-import AvatarIcon from './AvatarIcon';
+import { classnames } from '../../../utils/classnames';
 
 export interface IAvatarProps {
   size?: Size;
@@ -12,8 +14,8 @@ export interface IAvatarProps {
   fullName?: string;
   /** Цвет фона аватара */
   backgroundColor?: AvatarColor;
-  /** Иконка заглушки */
-  hasIcon?: boolean;
+  /** Иконка */
+  icon?: (props: IIconProps) => JSX.Element;
 }
 
 const Avatar: React.FC<IAvatarProps> = ({
@@ -21,9 +23,8 @@ const Avatar: React.FC<IAvatarProps> = ({
   photo = '',
   fullName = '',
   backgroundColor = 'default',
-  hasIcon = false
+  icon: Icon
 }: IAvatarProps) => {
-
   const [initials, setInitials] = useState<string>('');
 
   const isSapUrl: boolean = photo?.slice(0, 4) === '/sap';
@@ -55,15 +56,14 @@ const Avatar: React.FC<IAvatarProps> = ({
   }, [fullName]);
 
   return (
-    <div className={`rf-avatar ${sizeClass[size]} rf-avatar__background_${backgroundColor}`}
+    <div
+      className={classnames('rf-avatar', sizeClass[size], `rf-avatar__background_${backgroundColor}`)}
       style={{ backgroundImage: `url("${photo}")`, }}
     >
-      {hasIcon ? (
-        <div className='rf-avatar__icon-wrapper'>
-          <AvatarIcon className={`rf-avatar__icon ${sizeClass[size]}`} />
-        </div>
-      ) :
-        !photo && initials}
+      {Icon ?
+        <div className='rf-avatar__icon-wrapper'><Icon className={classnames('rf-avatar__icon', sizeClass[size])} /></div> :
+        !photo && initials
+      }
     </div>
   );
 };

@@ -21,7 +21,7 @@ export interface IStatus {
   /** Тип иконки
    @default online
    */
-    type?: IconType;
+  type?: IconType;
   /**
    Размер статуса
    @default m

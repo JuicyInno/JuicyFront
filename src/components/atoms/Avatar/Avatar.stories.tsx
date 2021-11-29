@@ -9,6 +9,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import { withDesign } from 'storybook-addon-designs';
+import User from '../../../assets/icons/24px/Account/User';
 
 export default {
   title: 'components/withTest/Avatar',
@@ -42,7 +43,7 @@ export default {
       control: { type: 'select' },
       defaultValue: 'default'
     },
-    hasIcon: { type: 'boolean' },
+    icon: { control: false },
   }
 };
 
@@ -92,7 +93,7 @@ export const Demo: Story = () => {
               textAlign: 'center',
               color: '#626F84'
             }}>{size}</div>
-            <div><Avatar fullName='K M' size={size} hasIcon /></div>
+            <div><Avatar fullName='K M' size={size} icon={User} /></div>
           </div>)
         }
       </div>
@@ -100,7 +101,7 @@ export const Demo: Story = () => {
       <StoryDocsDescription>Компоненты, которые переключаются внутри основного компонента</StoryDocsDescription>
       <div style={{ display: 'flex' }}>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' photo={usersMocks[0].photo} /></div>
-        <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' hasIcon /></div>
+        <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' icon={User} /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' backgroundColor='white' /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' backgroundColor='grey' /></div>
@@ -143,8 +144,8 @@ export const Demo: Story = () => {
       </div>
       <StoryDocsH2>Hover</StoryDocsH2>
       <StoryDocsDescription>При ховере под аватаром показывается Tooltip с именем пользователя.</StoryDocsDescription>
-      <Tooltip position='bottom'>
-        <Avatar hasIcon />
+      <Tooltip position='top' portal>
+        <Avatar icon={(props) => <User {...props} />} />
         <div>Андрей Борисов</div>
       </Tooltip>
     </StoryDocs>

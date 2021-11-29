@@ -12,8 +12,8 @@ export default {
   argTypes: {
     children: { control: null },
     borderRadius: { type: 'string' },
-    padding: { type: 'string' }
-  }
+    padding: { type: 'string' },
+  },
 };
 
 export const Demo = () => {
@@ -21,19 +21,23 @@ export const Demo = () => {
     <StoryContainer name='Tile (Плитка)'>
       <StoryRow>
         <StoryItem description='Плитка оборачивает контент в стилизованный блок'>
-          <div style={{
-            backgroundColor: '#F1F2F4',
-            padding: '20px',
-            width: '600px'
-          }}>
-            <Tile>variant <strong>default</strong></Tile>
+          <div
+            style={{
+              backgroundColor: '#F1F2F4',
+              padding: '20px',
+              width: '600px',
+            }}
+          >
+            <Tile>
+              variant <strong>default</strong>
+            </Tile>
 
             <Tile variant='clicable-default'>
               variant <strong>clicable-default</strong>
             </Tile>
 
-            <Tile variant='clicable-hover'>
-              variant <strong>clicable-hover</strong>
+            <Tile variant='clickable-hover'>
+              variant <strong>clickable-hover</strong>
             </Tile>
 
             <Tile variant='non-clicable'>
