@@ -1,6 +1,6 @@
 {
   "name": "juicyfront",
-  "version": "1.3.174",
+  "version": "1.3.175",
   "description": "Библиотека компонентов Juicy Team!!",
   "main": "index.js",
   "scripts": {
