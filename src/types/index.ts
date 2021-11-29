@@ -36,6 +36,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Точность url */
+  exact?: boolean;
   /** Иконка вкладки */
   icon?: ReactNode;
   /** Действие при клике на вкладку */

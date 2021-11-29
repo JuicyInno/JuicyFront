@@ -71,7 +71,11 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, ch
   useEffect(() => {
     setActive((i: number) => {
       const index = list.findIndex((t: ITab) => {
-        return isRouting ? t.url === pathname : t.active;
+        if (isRouting && t.url) {
+          return t.exact ? t.url === pathname : pathname.includes(t.url);
+        }
+
+        return t.active;
       });
 
       return index >= 0 && !list[index].disabled ? index : i;
