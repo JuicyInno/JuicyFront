@@ -44,10 +44,10 @@ const EntityCard: FC<IUserPositions> = ({
 
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyHandler = (value: string) => {
+  const onCopy = (event: React.MouseEvent) => {
+    event.stopPropagation();
     setIsCopied(true);
-    navigator.clipboard.writeText(value);
-
+    navigator.clipboard.writeText(valueByFirstLabel);
   };
 
   return <div className='rf-entity-card'>
@@ -66,7 +66,7 @@ const EntityCard: FC<IUserPositions> = ({
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
               <Tooltip background={tooltipBackground} position='bottom'>
-                <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon' />
+                <Copy onClick={onCopy} id='copyIcon' />
                 <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>
               <Toast isVisible={isCopied} setVisibility={setIsCopied}>
