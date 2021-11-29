@@ -84,10 +84,10 @@ describe('Test <Tile/> component', () => {
     expect(container.getElementsByClassName('rf-tile--non-clicable')).toHaveLength(1);
   });
 
-  it('should be variant clicable-hover', () => {
-    const { container } = render(<Tile variant='clicable-hover'>Content</Tile>);
+  it('should be variant clickable-hover', () => {
+    const { container } = render(<Tile variant='clickable-hover'>Content</Tile>);
 
-    expect(container.getElementsByClassName('rf-tile--clicable-hover')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-tile--clickable-hover')).toHaveLength(1);
   });
 
   it('should be variant border', () => {

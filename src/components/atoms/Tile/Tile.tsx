@@ -20,13 +20,13 @@ export interface ITileProps {
    */
   padding?: number | string;
   /** Скругление улов
-  * @default 20px
-  */
+   * @default 20px
+   */
   borderRadius?: number | string;
   /** Типы теней/бордер
    * @default default
-  */
-  variant?: 'default' | 'clicable-default' | 'non-clicable' | 'clicable-hover' | 'border';
+   */
+  variant?: 'default' | 'clicable-default' | 'non-clicable' | 'clickable-hover' | 'border';
 }
 
 const Tile: React.FC<ITileProps> = ({
@@ -36,12 +36,12 @@ const Tile: React.FC<ITileProps> = ({
   hideBackground = false,
   padding = '20px',
   borderRadius = '20px',
-  variant = 'default'
+  variant = 'default',
 }: ITileProps) => (
   <div
     style={{
       padding,
-      borderRadius
+      borderRadius,
     }}
     className={classnames(
       'rf-tile',
