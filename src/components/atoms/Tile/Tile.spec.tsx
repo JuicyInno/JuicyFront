@@ -72,16 +72,16 @@ describe('Test <Tile/> component', () => {
     expect(container.getElementsByClassName('rf-tile--default')).toHaveLength(1);
   });
 
-  it('should be variant clicable-default', () => {
-    const { container } = render(<Tile variant='clicable-default'>Content</Tile>);
+  it('should be variant clickable-default', () => {
+    const { container } = render(<Tile variant='clickable-default'>Content</Tile>);
 
-    expect(container.getElementsByClassName('rf-tile--clicable-default')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-tile--clickable-default')).toHaveLength(1);
   });
 
-  it('should be variant non-clicable', () => {
-    const { container } = render(<Tile variant='non-clicable'>Content</Tile>);
+  it('should be variant non-clickable', () => {
+    const { container } = render(<Tile variant='non-clickable'>Content</Tile>);
 
-    expect(container.getElementsByClassName('rf-tile--non-clicable')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-tile--non-clickable')).toHaveLength(1);
   });
 
   it('should be variant clickable-hover', () => {
