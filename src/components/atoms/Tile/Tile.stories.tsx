@@ -32,16 +32,16 @@ export const Demo = () => {
               variant <strong>default</strong>
             </Tile>
 
-            <Tile variant='clicable-default'>
-              variant <strong>clicable-default</strong>
+            <Tile variant='clickable-default'>
+              variant <strong>clickable-default</strong>
             </Tile>
 
             <Tile variant='clickable-hover'>
               variant <strong>clickable-hover</strong>
             </Tile>
 
-            <Tile variant='non-clicable'>
-              variant <strong>non-clicable</strong>
+            <Tile variant='non-clickable'>
+              variant <strong>non-clickable</strong>
             </Tile>
 
             <Tile variant='border'>

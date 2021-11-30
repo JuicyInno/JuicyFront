@@ -5,15 +5,15 @@
 }
 
 .rf-tile--default {
-  box-shadow: var(--shadow-clicable-active);
+  box-shadow: var(--shadow-clickable-active);
 }
 
-.rf-tile--clicable-default {
-  box-shadow: var(--shadow-clicable-default);
+.rf-tile--clickable-default {
+  box-shadow: var(--shadow-clickable-default);
 }
 
-.rf-tile--non-clicable {
-  box-shadow: var(--shadow-non-clicable);
+.rf-tile--non-clickable {
+  box-shadow: var(--shadow-non-clickable);
 }
 
 .rf-tile--clickable-hover {
