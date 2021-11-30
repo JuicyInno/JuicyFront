@@ -1,8 +1,14 @@
 import React from 'react';
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
+} from '../../storybook';
 import History from './History';
-import Story from '../../storybook/Story';
-import StoryItem from '../../storybook/StoryItem';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
+
+export default {
+  title: 'components/не проверено/History',
+  component: History
+};
 
 export const history = () => {
   const paths = [
@@ -12,10 +18,10 @@ export const history = () => {
       activityText: 'Подписание приказа',
       agent: 'agent',
       agentName: 'Кузнецова Злата Игоревна',
-      user: [usersMocks[0]],
+      user: [usersMocks[9]],
       statusId: '0',
-      statusText: 'Согласовано',
-      criticality: '0',
+      statusText: 'Подписано ЭП',
+      criticality: '3',
       comment: 'Прошу выдать работникам банка ключи ЭП',
       actArea: 'Ведущий аналитик',
       pathId: '',
@@ -66,22 +72,19 @@ export const history = () => {
       id: '0',
       attType: '',
       attTypeText: '',
-      fileName: 'myDoc.pdf',
+      fileName: 'myDocksjdfhalkdsjhflkahglkdahglkdsajhflkdsajhgalksgsagdekherliytwreoiytoireuytoiurewytoireytoirewytoirewuytoiurewytoiurewytoirewuytoirewuytoirewytoirewuytoiurewytoirewytoiurewytoirewuytoirewytoirewuytoirewuytoirewuytoirewytoiew.pdf',
       base64: '',
       singBase64: '',
       cert: ''
     }
   ];
-  return <Story name='History'>
-    <StoryItem description='История'>
-      <div>
-        <History history={paths} attachments={attachments} />
-      </div>
-    </StoryItem>
-  </Story>;
-};
 
-export default {
-  title: 'components/не проверено/History',
-  component: History
+  return (
+    <StoryDocs>
+      <StoryDocsH1>History</StoryDocsH1>
+      <StoryDocsH2>История согласования</StoryDocsH2>
+      <StoryDocsDescription>Отображение пути согласования, используется во всех сервисах, кроме ЮЗЭДО</StoryDocsDescription>
+      <History history={paths} attachments={attachments} />
+    </StoryDocs>
+  );
 };
