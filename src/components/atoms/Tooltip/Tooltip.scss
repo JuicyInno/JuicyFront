@@ -53,29 +53,6 @@ box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 16
     transform: translate(-50% ) rotate(90deg);
   }
   }
-
-
-
-/* .rf-tooltip__inner--right::after {
-  top: 50%;
-  left: 0;
-}
-
-.rf-tooltip__inner--left::after {
-  top: 50%;
-  left: 100%;
-}
-
-.rf-tooltip__inner--bottom::after {
-  top: 0;
-  left: 50%;
-}
-
-.rf-tooltip__inner--top::after {
-  top: 100%;
-  left: 50%;
-} */
-
 .rf-tooltip__content--default .rf-tooltip__inner,
 .rf-tooltip--default .rf-tooltip__inner {
   background: var(--basic-tertiary);

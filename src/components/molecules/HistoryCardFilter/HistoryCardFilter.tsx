@@ -91,6 +91,8 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       };
     }
 
+    console.log('ok');
+
     setStatus(newValues);
     onChange(newValues);
   };

@@ -4,15 +4,16 @@ import React, {
 } from 'react';
 import './Datepicker.scss';
 import DatepickerCalendar from './DatepickerCalendar';
-import InputMask from 'react-input-mask';
 import {
   formatDate, generateMask, getWeekDay, parseToFormat, stringToDate
 } from './DatepickerCalendar/datepicker.utils';
 import Input from '../Input';
+import InputMask from 'react-input-mask';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
+import Cross from '../../../assets/icons/Cross';
 
 
 export interface IDatepickerProps {
@@ -270,8 +271,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   useEffect(() => {
-
-    if (inputValue === '__.__.____ - __.__.____') {
+    if (inputValue === '__.__.____ - __.__.____' || inputValue === '_') {
       const result = getReturnValue('', range);
       onChange && onChange(result, name);
       fireOnChange();
@@ -348,6 +348,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
     }
   };
 
+  const clearDateRangeHandler = () => {
+    setInputValue('_');
+  };
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const mask = generateMask(inputValue, format, range, showDayOfWeek, dayOfWeek);
@@ -387,7 +391,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 }
                 endAdornment={
                   <div className='rf-datepicker__calendar-chevron'>
-                    <ChevronDown />
+                    {inputValue.split('-').length === 2 &&
+                      inputValue.split('-')[1].trim() !== '__.__.____' ?
+                      <Cross onClick={clearDateRangeHandler} /> :
+                      <ChevronDown />}
                   </div>
                 }
               />
