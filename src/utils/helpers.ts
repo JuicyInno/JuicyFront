@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import {
   IFileData, IFormattedDate, Size
 } from '../types';
+import { pdfFile } from '../components/molecules/PDFViewer/pdf';
 
 const months = [
   'январь',
@@ -272,10 +273,10 @@ export const initialFiles: IFileData[] = [
   {
     file: {
       lastModified: 1633960085077,
-      name: 'screenshot2.jpg',
+      name: 'pdfFile.pdf',
       webkitRelativePath: '',
     } as File,
-    base64: '',
+    base64: pdfFile,
   },
   {
     file: {
