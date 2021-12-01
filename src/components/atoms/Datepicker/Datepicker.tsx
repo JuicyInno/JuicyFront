@@ -351,6 +351,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
     setInputValue('');
   };
 
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const mask = generateMask(inputValue, format, range, showDayOfWeek, dayOfWeek);
