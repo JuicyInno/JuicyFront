@@ -227,7 +227,7 @@ const Signification:FC<IProps> = ({
   // =======================================================================================================================================
   const manualFileChipTSX = (name:string, onClick:(e:any)=>void) =>
     <div className='manual__chip-wrapper'>
-      <Chip onClick={() => manualFile && download(manualFile, manualFile?.fileName)} size='s' type='outline'>
+      <Chip onClick={() => manualFile && download(manualFile)} size='s' type='outline'>
         <div className='manual__chip-text'>
           {name}
           <div className='manual__chip-button' onClick={onClick}>
@@ -301,7 +301,7 @@ const Signification:FC<IProps> = ({
       </div>
       <div className='manual__hint-wrapper'>
         <Hint button={<Button
-          onClick={() => download(value, value.fileName)}
+          onClick={() => download(value)}
           buttonType='text'
           startAdornment={<Download/>} >Скачать</Button>}
         icon='info'

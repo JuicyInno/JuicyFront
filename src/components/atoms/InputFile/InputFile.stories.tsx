@@ -8,6 +8,7 @@ import StoryItem from '../../storybook/StoryItem';
 import InputFile, { IFileInputProps } from './InputFile';
 import { StoryDocsH1, StoryDocs } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
+import { Notifications } from '../../../index';
 
 
 export default {
@@ -57,6 +58,8 @@ export const Demo: Story = () => {
       <StoryItem description='Неактивное поле'>
         <InputFile name='file' placeholder='Это поле неактивно' setFile={setFile} disabled={true} />
       </StoryItem>
+
+      <Notifications/>
     </StoryDocs>
   );
 };

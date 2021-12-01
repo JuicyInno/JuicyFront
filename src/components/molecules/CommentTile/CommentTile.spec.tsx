@@ -66,7 +66,9 @@ describe('Test <CommentTile/> component', () => {
     it('should be initialFiles in chips', () => {
         render(<CommentTile initialFiles={initialFiles}/>);
         expect(byText("screenshot1.jpg").get()).toBeInTheDocument();
-        expect(byText("screenshot2.jpg").get()).toBeInTheDocument();
+        expect(byText("pdfFile.pdf").get()).toBeInTheDocument();
+        expect(byText("quston.png").get()).toBeInTheDocument();
+        expect(byText("word_file.docx").get()).toBeInTheDocument();
     });
 
     it('should be change textarea and call onDebounce', () => {

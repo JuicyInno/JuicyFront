@@ -68,7 +68,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   };
 
   const onClickDownload = () => {
-    download(file, file.fileName);
+    download(file);
   };
 
   const onClickOpen = () => {

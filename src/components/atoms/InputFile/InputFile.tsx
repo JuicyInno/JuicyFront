@@ -7,6 +7,7 @@ import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
 import { getBase64, validateFile } from './file-utils';
 import { Chip, download } from '../../../index';
+import { IRequestAttachment } from '../../../types/projects.types';
 
 /**
  * Файловый инпут для небольших файлов, конвертирует файл в base64.
@@ -137,23 +138,14 @@ const InputFile: React.FC<IFileInputProps> = ({
   // =======================================================================================================================================
 
   const downloadFile = (currentFile: IFileData) => {
-    if (customDownloadMethod || (currentFile.id && currentFile.id !== '')) {
-      /** Скачивание через файловый сервер */
-      let host = window.location.origin;
 
-      if (host.includes('127.0.0') || host.includes('6006')) {
-        host = 'https://sapd-fes-ap01.vtb24.ru:44310';
-      }
+    const file: IRequestAttachment = {
+      id: currentFile.id,
+      fileName: currentFile.file.name,
+      base64: currentFile.base64,
+    };
 
-      const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${currentFile.id})/content`;
-      window.open(url, '_blank');
-    } else {
-      /** Скачивание через blob */
-      download({
-        fileName: currentFile.file.name,
-        base64: currentFile.base64
-      }, currentFile.file.name);
-    }
+    download(file);
   };
 
   // =======================================================================================================================================
