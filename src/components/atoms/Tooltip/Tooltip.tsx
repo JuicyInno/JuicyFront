@@ -6,9 +6,8 @@ import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
 import { extractTextFromHTML } from '../../../utils/helpers';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { ArrowTooltipIcon } from './ArrowTooltipIcon';
 
-export interface ITooltipContentProps {
+interface ITooltipContentProps {
   rect: DOMRect;
   children: ReactNode | ReactNode[];
   position: TooltipPosition;
@@ -97,7 +96,6 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
     e.stopPropagation();
   };
 
-
   const tooltip = (
     <div
       className='rf-tooltip__content-wrapper'
@@ -107,10 +105,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
         [padding[position]]: '8px'
       }}>
       <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
-        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>
-          {children}
-          <ArrowTooltipIcon color={background} position={position} />
-        </div>
+        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>{children}</div>
       </div>
     </div>
   );
@@ -150,7 +145,6 @@ const Tooltip: FC<ITooltipProps> = ({
   const onScrollElementScroll = useCallback(() => {
     setTooltipRect(null);
   }, []);
-
 
   const addListener = (add: boolean) => {
     if (add) {
@@ -200,7 +194,6 @@ const Tooltip: FC<ITooltipProps> = ({
           {children[1]}
         </TooltipContent>
       )}
-
     </div>
   );
 };
