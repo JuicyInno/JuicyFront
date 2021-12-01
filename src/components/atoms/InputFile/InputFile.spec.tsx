@@ -39,7 +39,9 @@ describe('Test <InputFile/> component', () => {
     it('should be initialFiles in chips', () => {
         render(<InputFile files={initialFiles} setFile={() => {}} />);
         expect(byText("screenshot1.jpg").get()).toBeInTheDocument();
-        expect(byText("screenshot2.jpg").get()).toBeInTheDocument();
+        expect(byText("pdfFile.pdf").get()).toBeInTheDocument();
+        expect(byText("quston.png").get()).toBeInTheDocument();
+        expect(byText("word_file.docx").get()).toBeInTheDocument();
     });
 
     it('should pass className', () => {
