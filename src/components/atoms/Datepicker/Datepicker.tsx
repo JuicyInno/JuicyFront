@@ -348,7 +348,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   const clearDateRangeHandler = () => {
-    setInputValue('_');
+    setInputValue('');
   };
 
   // -------------------------------------------------------------------------------------------------------------------
