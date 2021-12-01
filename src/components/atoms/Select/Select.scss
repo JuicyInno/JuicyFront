@@ -20,7 +20,7 @@
     }
 
     & .rf-select__input {
-      
+
       height: 28px;
       padding: 0 10px;
       background-color: var(--background-tertiary);
@@ -75,15 +75,9 @@
 }
 
 .rf-select__list {
-  top:48px;
-  position: absolute;
   width: 100%;
   max-height: 250px;
-  z-index: 100;
   padding: 8px 0;
-  background-color: var(--background-primary);
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-  border-radius: 12px;
   overflow-y: auto;
   overflow-x: hidden;
   cursor: pointer;

@@ -12,6 +12,7 @@ import {
 } from './datepicker.types';
 import { ChevronLeft } from '../../../../index';
 import Tooltip from '../../Tooltip';
+import { DropdownPosition } from '../../../../types';
 
 interface IDatepickerCalendarProps {
   value: string;
@@ -24,7 +25,7 @@ interface IDatepickerCalendarProps {
   range: boolean;
   showTodayButton: boolean;
   locale: 'ru' | 'en';
-  position: 'left' | 'right';
+  position: DropdownPosition;
   format: DateFormat;
   separator: string;
   disableWeekDays: number[];
@@ -254,9 +255,9 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
         type='button'
         className={`rf-datepicker__calendar-tile rf-datepicker__calendar-date rf-datepicker__calendar-day
         ${periodClass}
-         ${currentDayClass} 
+         ${currentDayClass}
          ${disabledClass} ${fromDateClass}
-          ${toDateClass} ${inRangeClass} 
+          ${toDateClass} ${inRangeClass}
           `}
         onClick={() => onDayClick(date)}
         onBlur={() => onBlur(i === array.length - 1)}
