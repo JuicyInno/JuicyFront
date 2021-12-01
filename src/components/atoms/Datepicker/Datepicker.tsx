@@ -270,7 +270,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   useEffect(() => {
-    if (inputValue === '__.__.____ - __.__.____' || inputValue === '_') {
+    if (inputValue === '__.__.____ - __.__.____' || inputValue === '') {
       const result = getReturnValue('', range);
       onChange && onChange(result, name);
       fireOnChange();
