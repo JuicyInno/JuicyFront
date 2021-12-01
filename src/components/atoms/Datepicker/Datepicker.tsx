@@ -10,9 +10,10 @@ import {
 } from './DatepickerCalendar/datepicker.utils';
 import Input from '../Input';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import useClickOutside from '../../../hooks/useClickOutside';
 import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
+import { DropdownPosition } from '../../../types';
+import Dropdown from '../Dropdown';
 
 
 export interface IDatepickerProps {
@@ -40,7 +41,7 @@ export interface IDatepickerProps {
   locale?: 'ru' | 'en';
   /** Кнопка Сегодня */
   showTodayButton?: boolean;
-  position?: 'left' | 'right';
+  position?: DropdownPosition;
   /** Формат даты */
   format?: DateFormat;
   /** Ограничения на дни недели 0 - 6 */
@@ -57,7 +58,8 @@ export interface IDatepickerProps {
   /** Цвет tooltip */
 
   tooltipBackground?: 'default' | 'white'
-
+  /** Использовать портал */
+  portal?: boolean;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -79,8 +81,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
   children,
-  tooltipBackground = 'default'
-
+  tooltipBackground = 'default',
+  portal = false
 
 }: IDatepickerProps) => {
   const separator = format[2];
@@ -105,13 +107,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   const inputRef = useRef<HTMLDivElement>(null);
 
   const [showCalendar, toggleCalendar] = useState<boolean>(false);
-  // -------------------------------------------------------------------------------------------------------------------
 
-  const handleClickOutside = useCallback(() => {
+  const onClose = useCallback(() => {
     toggleCalendar(false);
-  }, []);
-
-  useClickOutside(datepickerRef, handleClickOutside);
+  }, [toggleCalendar]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -395,7 +394,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           )
         }
       </div>
-      {showCalendar && (
+      <Dropdown show={showCalendar} toggleRef={inputRef} onClose={onClose} portal={portal} position={position}>
         <DatepickerCalendar
           value={inputValue}
           minDate={minDate}
@@ -413,7 +412,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           disableWeekDays={disableWeekDays || []}
           tooltipBackground={tooltipBackground}
         />
-      )}
+      </Dropdown>
     </div>
   );
 };

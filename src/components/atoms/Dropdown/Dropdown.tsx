@@ -5,8 +5,7 @@ import './Dropdown.scss';
 import { classnames } from '../../../utils/classnames';
 import { createPortal } from 'react-dom';
 import useClickOutside from '../../../hooks/useClickOutside';
-
-type DropdownPosition = 'left' | 'right' | 'top-left' | 'top-right';
+import { DropdownPosition } from '../../../types';
 
 export interface ICoordinates {
   top: string;

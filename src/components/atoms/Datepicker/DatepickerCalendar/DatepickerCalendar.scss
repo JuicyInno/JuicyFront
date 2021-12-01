@@ -1,18 +1,10 @@
 @import 'src/styles/mixins';
 
 .rf-datepicker__calendar {
-  margin-top: 10px;
-  position: absolute;
-  top: calc(100% + 4px) !important;
-  left: 0 !important;
-  z-index: 999;
   width: 280px;
   height: auto;
   max-height: 390px;
   padding: 16px 16px;
-  background-color: var(--background-primary);
-  box-shadow: 0px 4px 16px rgba(138, 150, 168, 0.4), 0px 0px 6px rgba(138, 150, 168, 0.08);
-  border-radius: 12px;
   cursor: default;
 }
 
