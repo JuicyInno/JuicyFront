@@ -30,7 +30,7 @@ $radius: 8px;
 
   .rf-tooltip__content-union--bottom {
     position: absolute;
-    bottom: calc(100% - 2px);
+    bottom: calc(100% - 1px);
     right: 50%;
     transform: translate(50%) rotate(-180deg);
   }
@@ -43,13 +43,13 @@ $radius: 8px;
   .rf-tooltip__content-union--left {
     position: absolute;
     top: calc(50% - 8px);
-    right: -7px;
+    right: -7.8px;
     transform: translate(50%) rotate(-90deg);
   }
   .rf-tooltip__content-union--right {
     position: absolute;
     top: calc(50% - 8px);
-    left: -7px;
+    left: -8px;
     transform: translate(-50%) rotate(90deg);
   }
 }
