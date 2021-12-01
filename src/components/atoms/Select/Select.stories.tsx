@@ -122,6 +122,17 @@ export const select = () => {
             preloader={loading}/>
         </StoryItem>
 
+        <StoryItem description='Портал'>
+          <Select placeholder='Выберите значение'
+            readOnly
+            options={ list }
+            values={state1}
+            tagsPosition='outside'
+            onChange={onChange2}
+            portal
+            preloader={loading}/>
+        </StoryItem>
+
         <StoryItem description='Tag Select'>
           <div style={{ position: 'relative' }}>
             <InputNumber defaultValue={'1200.60'} floatPoints={2} />

@@ -191,3 +191,5 @@ export interface IIconProps extends SVGProps<SVGSVGElement> {
   /** размер */
   size?: Size
 }
+
+export type DropdownPosition = 'left' | 'right' | 'top-left' | 'top-right';
