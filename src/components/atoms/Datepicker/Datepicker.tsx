@@ -358,10 +358,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const chevronPicker = inputValue.split('-').length === 2 &&
-    inputValue.split('-')[1].trim() !== '__.__.____' ?
-    <Cross onClick={clearDateRangeHandler} /> :
-    <ChevronDown />;
+  const isCrossChevronPicker = inputValue.split('-').length === 2 && inputValue.split('-')[1].trim() !== '__.__.____';
 
 
   return (
@@ -397,7 +394,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 }
                 endAdornment={
                   <div className='rf-datepicker__calendar-chevron'>
-                    {chevronPicker}
+                    {isCrossChevronPicker ?
+                      <Cross onClick={clearDateRangeHandler} /> :
+                      <ChevronDown />}
                   </div>
                 }
               />
