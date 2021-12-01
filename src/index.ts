@@ -68,6 +68,7 @@ import Confirm from './components/popups/Confirm';
 import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
+import Dropdown from './components/atoms/Dropdown';
 import Schedule, {
   ScheduleLegend,
   ScheduleLegendItem,
@@ -150,6 +151,7 @@ export {
   ContentExpander,
   BackdropLoader,
   PopupMaker,
+  Dropdown
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

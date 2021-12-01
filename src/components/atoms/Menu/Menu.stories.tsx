@@ -97,7 +97,7 @@ export const Demo = () => {
             </StoryCol>
           </StoryRow>
         </StoryItem>
-        <StoryItem description='Выпадающий список с произвольным контентом'>
+        <StoryItem description='Выпадающий список с произвольным контентом в портале'>
           <StoryRow>
             <StoryCol>
               <Menu position='right' portal content={content}>
@@ -106,15 +106,18 @@ export const Demo = () => {
                 </Button>
               </Menu>
             </StoryCol>
+          </StoryRow>
 
+          <StoryRow>
             <StoryCol>
-              <Menu position='right' list={_listMenuWithTile}>
+              <Menu position='right' list={_listMenuWithTile} portal>
                 <Button buttonType='secondary'>
                   Меню с заголовком
                 </Button>
               </Menu>
             </StoryCol>
           </StoryRow>
+
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
