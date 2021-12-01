@@ -294,6 +294,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
         if (input) {
 
+
           let event;
 
           if (typeof (Event) === 'function') {
