@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
 import { extractTextFromHTML } from '../../../utils/helpers';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { SvgImageUnion } from './svgImages';
+import { ArrowTooltipIcon } from './ArrowTooltipIcon';
 
 export interface ITooltipContentProps {
   rect: DOMRect;
@@ -109,7 +109,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
       <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
         <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>
           {children}
-          {SvgImageUnion(background, position)}
+          <ArrowTooltipIcon color={background} position={position} />
         </div>
       </div>
     </div>
