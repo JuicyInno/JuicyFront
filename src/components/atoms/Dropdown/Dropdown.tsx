@@ -70,6 +70,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
 
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = useCallback((event: MouseEvent) => {
+    console.log('handleClickOutside', event.target, toggleRef.current, toggleRef.current && toggleRef.current.contains(event.target as HTMLElement));
+
     if (event.target && toggleRef.current && toggleRef.current.contains(event.target as HTMLElement)) {
       return;
     }
@@ -260,7 +262,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
         maxWidth: maxWidth || dropdownWidth
       }}
       data-testid='rf-dropdown-content'
-      ref={contentRef}>
+      ref={contentRef}
+    >
       {children}
     </div>
   );

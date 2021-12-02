@@ -1,10 +1,13 @@
 import React, {
   useEffect, useRef, useState
 } from 'react';
+import { Story } from '@storybook/react';
+
 import Select from './Select';
 import { IOption } from '../../../types';
+import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
-import Story from '../../storybook/Story';
+import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
 import InputNumber from '../InputNumber';
 
@@ -23,9 +26,8 @@ for (let i = 1; i < 15; i++) {
   });
 }
 
-export const select = () => {
+export const Demo = () => {
   const [values, setValues] = useState<IOption[]>([]);
-
 
   const onChange = (options: IOption[]) => {
     console.log(options);
@@ -82,7 +84,7 @@ export const select = () => {
   ];
 
   return (
-    <Story name='Select' description='Select кнопки' width={400}>
+    <StoryContainer name='Select' description='Select кнопки' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
         <StoryItem description='Multiselect'>
           <Select placeholder='Выберите значение'
@@ -148,6 +150,86 @@ export const select = () => {
         </StoryItem>
 
       </form>
-    </Story>
+    </StoryContainer>
   );
+};
+
+export const LazySelect: Story = (args) => {
+  const [list, setList] = useState<IOption[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const limit = 10;
+
+  const onSearch = (query: string, isLazy?: boolean) => {
+    if (!query) {
+      return;
+    }
+
+    const offset = isLazy ? list.length : 0;
+
+    setIsLoading(true);
+
+    return fetch(`https://jsonplaceholder.typicode.com/todos?_start=${offset}&_limit=${limit}`)
+      .then(response => response.json())
+      .then(json => {
+        const resList = json.map((item) => ({
+          value: item.id,
+          label: item.title
+        }));
+
+        setList(prevList => isLazy ? [...prevList, ...resList] : resList);
+
+        setTotalItems(200);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const hasMore = !isLoading && list.length < totalItems;
+
+  return <StoryContainer>
+    <StoryRow>
+      <form>
+        <Select
+          placeholder='Выберите значение'
+          values={[]}
+          options={list}
+          onChange={() => {}}
+          infinityScrollProps={{
+            hasMore,
+            dataLength: list.length
+          }}
+          portal
+          onSearch={onSearch}
+        />
+      </form>
+
+    </StoryRow>
+  </StoryContainer>;
+};
+
+export const Playground: Story = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <StoryItem description='Select'>
+          <Select
+            placeholder='Выберите значение'
+            values={[]}
+            options={list}
+            onChange={() => {}}
+            {...args}
+          />
+        </StoryItem>
+      </StoryRow>
+    </StoryContainer>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15730',
+  },
 };
