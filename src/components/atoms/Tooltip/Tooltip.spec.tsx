@@ -1,7 +1,7 @@
 import React from 'react';
-import HistoryCardFilter from './HistoryCardFilter'
 import { render } from '@testing-library/react';
 import { IOption } from '../../../types';
+import HistoryCardFilter from "../../molecules/HistoryCardFilter";
 
 describe('HistoryCardFilter default render', () => {
   it('should be render error screen with default Error text', () => {
