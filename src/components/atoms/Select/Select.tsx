@@ -1,5 +1,5 @@
 import React, {
-  FC, ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState
+  FC, ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
 
@@ -289,18 +289,6 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const [dropdownWidth, setDropdownWidth] = useState<string>('100%');
-
-  useLayoutEffect(() => {
-    if (!toggleRef.current) {
-      return;
-    }
-
-    setDropdownWidth(`${toggleRef.current.offsetWidth}px`);
-  }, []);
-
-  // -------------------------------------------------------------------------------------------------------------------
-
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
   const multiselectClass = multiselect ? 'rf-select--multi' : '';
   const tagClass = variant === 'tag' ? 'rf-select__wrapper--tag' : '';
@@ -320,16 +308,18 @@ const Select: FC<ISelectProps> = ({
         { closeButton }
         { chevronButton }
       </div>
-      <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal}
-        maxWidth={maxWidth || dropdownWidth}>
-        <div className='rf-select__list' onScroll={onListScroll}>
-          { preloader ? (
-            <div className='rf-select__list-preloader'>
-              <Preloader size='m'/>
-            </div>
-          ) : listJSX }
-        </div>
-      </Dropdown>
+      { (preloader || listJSX.length > 0) &&
+        <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal}
+          maxWidth={maxWidth}>
+          <div className='rf-select__list' onScroll={onListScroll}>
+            { preloader ? (
+              <div className='rf-select__list-preloader'>
+                <Preloader size='m'/>
+              </div>
+            ) : listJSX }
+          </div>
+        </Dropdown>
+      }
       {/* filteredOptions.length > 0*/}
       { tagsJSX }
     </div>
