@@ -1,14 +1,12 @@
-import React, {
-  FC, ReactNode, useCallback, useEffect, useRef, useState
-} from 'react';
+// eslint-disable-next-line object-curly-newline
+import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
 import './Select.scss';
 
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
-import {
-  ChevronDown, Close, Preloader
-} from '../../../index';
+
+import { ChevronDown, Close, Preloader } from '../../../index';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
@@ -20,10 +18,11 @@ export interface ISelectProps {
   onChange: (option: IOption[]) => void;
   /** Значение */
   values: IOption[];
-  /** Поиск внутри селекта */
-  onSearch?: (query: string, islazy?: boolean) => void;
-  /* Функция для загрузки данных */
-  onLazyFecth?: () => void;
+  /** Поиск внутри селекта
+   * @param query - страка поиска
+   * @param isPagination - указывает что изменилась пагинация
+   */
+  onSearch?: (query: string, isPagination?: boolean) => void;
   /** Множественный выбор */
   multiselect?: boolean;
   /** Плейсхолдер */
@@ -46,13 +45,21 @@ export interface ISelectProps {
   variant?: 'base' | 'tag';
   /** Переводит селект в невалидный статус */
   invalid?: boolean;
-  /** Скролл списка (для лези лоуда) */
-  onListScroll?: (e: React.UIEvent) => void;
-  /** Пропсы для infinityScroll */
+  /** Указывает будет ли селект асинхронным
+   * Если значение указано true, тогда нужно передавать infinityScrollProps
+   * @default false
+   */
+  isAsync?: boolean;
+  /** Пропсы для infinityScroll
+   * @requires dataLength текущая длина массива
+   * @requires hasMore стоит ли еще загружать данные
+   */
   infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
   /** Расположение */
   position?: DropdownPosition;
-  /** Использовать портал */
+  /** Использовать портал
+   * @default false
+   */
   portal?: boolean;
   /** Ширина */
   maxWidth?: number | string;
@@ -74,6 +81,7 @@ const Select: FC<ISelectProps> = ({
   clearOnSelect = false,
   clearHook,
   variant = 'base',
+  isAsync,
   infinityScrollProps,
   position = 'left',
   portal = false,
@@ -84,7 +92,6 @@ const Select: FC<ISelectProps> = ({
 
   const onClose = useCallback(() => {
     toggleDropdown(false);
-    console.log('onClose');
   }, [toggleDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -189,17 +196,7 @@ const Select: FC<ISelectProps> = ({
     }
   };
 
-  // ---------
-
   const hasInfinityScroll = typeof onSearch === 'function';
-
-  // useEffect(() => {
-  //   if (showDropdown && hasInfinityScroll) {
-  //     if (!options.length) {
-  //       onLazyFecth();
-  //     }
-  //   }
-  // }, [showDropdown, hasInfinityScroll, onLazyFecth]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -222,7 +219,6 @@ const Select: FC<ISelectProps> = ({
       if (!multiselect) {
         setInputValue(clearOnSelect ? '' : o.label);
         toggleDropdown(false);
-        console.log('toggleDropdown ffffff');
       } else {
         setInputValue('');
       }
@@ -233,7 +229,7 @@ const Select: FC<ISelectProps> = ({
 
     let label: ReactNode = o.label;
 
-    // TODO: я бы создал для этого отдельный компонент (Highlighter)
+    // TODO: думаю это можно вынести в отдельный компонент (Highlighter)
     if (inputValue) {
       const indexStart = o.label.toLowerCase().indexOf(inputValue.toLowerCase());
 
@@ -330,7 +326,13 @@ const Select: FC<ISelectProps> = ({
     </div>
   );
 
-  const makeLasyFetch = () => (onSearch ? () => onSearch(inputValue, true) : noop);
+  const makeLazyFetch = useCallback(() => {
+    if (onSearch && isAsync) {
+      return () => onSearch(inputValue, isAsync);
+    }
+
+    return noop;
+  }, [onSearch, isAsync, inputValue]);
 
   return (
     <div className={classnames('rf-select', multiselectClass, tagClass)}>
@@ -348,14 +350,21 @@ const Select: FC<ISelectProps> = ({
         {chevronButton}
       </div>
 
-      <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal} maxWidth={maxWidth}>
+      <Dropdown
+        show={showDropdown && (!!listJSX.length || preloader)}
+        toggleRef={toggleRef}
+        onClose={onClose}
+        position={position}
+        portal={portal}
+        maxWidth={maxWidth}
+      >
         <div className='rf-select__list' id='rf-select-list-scroll'>
           {hasInfinityScroll ? (
             <InfiniteScroll
               dataLength={0}
               hasMore={false}
               {...infinityScrollProps}
-              next={makeLasyFetch()}
+              next={makeLazyFetch()}
               loader={loader}
               scrollableTarget='rf-select-list-scroll'
               className='rf-select__infinity-list'

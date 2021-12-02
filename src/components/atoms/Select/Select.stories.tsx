@@ -170,12 +170,12 @@ export const LazySelect: Story = () => {
   const [totalItems, setTotalItems] = useState<number>(0);
   const limit = 10;
 
-  const onSearch = (query: string, isLazy?: boolean) => {
+  const onSearch = (query: string, isPagination?: boolean) => {
     if (!query) {
       return;
     }
 
-    const offset = isLazy ? list.length : 0;
+    const offset = isPagination ? list.length : 0;
 
     setIsLoading(true);
 
@@ -187,7 +187,7 @@ export const LazySelect: Story = () => {
           label: item.title,
         }));
 
-        setList((prevList) => (isLazy ? [...prevList, ...resList] : resList));
+        setList((prevList) => (isPagination ? [...prevList, ...resList] : resList));
 
         setTotalItems(200);
       })
@@ -201,20 +201,23 @@ export const LazySelect: Story = () => {
   return (
     <StoryContainer>
       <StoryRow>
-        <form>
-          <Select
-            placeholder='Выберите значение'
-            values={[]}
-            options={list}
-            onChange={() => {}}
-            infinityScrollProps={{
-              hasMore,
-              dataLength: list.length,
-            }}
-            portal
-            onSearch={onSearch}
-          />
-        </form>
+        <StoryItem subtitle='Асинхронный select с InfinityScroll' description='Для примера используется апи jsonplaceholder.typicode.com'>
+          <form>
+            <Select
+              placeholder='Поиск'
+              values={[]}
+              options={list}
+              onChange={() => {}}
+              isAsync
+              infinityScrollProps={{
+                hasMore,
+                dataLength: list.length,
+              }}
+              portal
+              onSearch={onSearch}
+            />
+          </form>
+        </StoryItem>
       </StoryRow>
     </StoryContainer>
   );
@@ -225,7 +228,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} portal {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>

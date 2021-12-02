@@ -1,6 +1,4 @@
-import React, {
-  ReactNode, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState
-} from 'react';
+import React, { ReactNode, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './Dropdown.scss';
 import { classnames } from '../../../utils/classnames';
 import { createPortal } from 'react-dom';
@@ -47,9 +45,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
   anchorElement,
   position = 'left',
   maxWidth,
-  onClose
+  onClose,
 }: IDropdownProps) => {
-
   const relativeBlock = relativeElement || (portal ? document.documentElement : document.body);
   const contentRef = useRef<HTMLDivElement>(null);
   const [currentPosition, setCurrentPosition] = useState<DropdownPosition>(position);
@@ -69,34 +66,35 @@ const Dropdown: React.FC<IDropdownProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Функция для отслеживания клика вне элемента */
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    console.log('handleClickOutside', event.target, toggleRef.current, toggleRef.current && toggleRef.current.contains(event.target as HTMLElement));
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (event.target && toggleRef.current && toggleRef.current.contains(event.target as HTMLElement)) {
+        return;
+      }
 
-    if (event.target && toggleRef.current && toggleRef.current.contains(event.target as HTMLElement)) {
-      return;
-    }
-
-    onClose();
-  }, [onClose, toggleRef]);
+      onClose();
+    },
+    [onClose, toggleRef]
+  );
 
   useClickOutside(contentRef, handleClickOutside);
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const clearCoordinates = useCallback((): ICoordinates => {
-    return currentPosition === 'left' ?
-      {
-        top: '-99999px',
-        bottom: 'auto',
-        left: '0',
-        right: 'auto'
-      } :
-      {
-        top: '-99999px',
-        bottom: 'auto',
-        left: 'auto',
-        right: '0'
-      };
+    return currentPosition === 'left'
+      ? {
+          top: '-99999px',
+          bottom: 'auto',
+          left: '0',
+          right: 'auto',
+        }
+      : {
+          top: '-99999px',
+          bottom: 'auto',
+          left: 'auto',
+          right: '0',
+        };
   }, [currentPosition]);
 
   const [coordinates, setCoordinates] = useState<ICoordinates>(clearCoordinates());
@@ -118,7 +116,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
         // Позиция по горизонтали
         if (currentPosition === 'left' || currentPosition === 'top-left') {
           // Получаем положительное число в случае если меню вылезло за пределы родителя
-          const offset = (relativeBlock.scrollLeft + toggleRect.left + listRect.width + GAP) - relativeBlock.scrollWidth;
+          const offset = relativeBlock.scrollLeft + toggleRect.left + listRect.width + GAP - relativeBlock.scrollWidth;
           left = relativeBlock.scrollLeft + toggleRect.left - Math.max(0, offset);
         } else {
           const offset = listRect.width + GAP - (relativeBlock.scrollLeft + toggleRect.right);
@@ -127,10 +125,10 @@ const Dropdown: React.FC<IDropdownProps> = ({
 
         // Позиция по вертикали
         if (currentPosition === 'left' || currentPosition === 'right') {
-          const offset = (toggleRect.bottom + relativeBlock.scrollTop + listRect.height + GAP * 2) - relativeBlock.scrollHeight;
+          const offset = toggleRect.bottom + relativeBlock.scrollTop + listRect.height + GAP * 2 - relativeBlock.scrollHeight;
           top = toggleRect.bottom + relativeBlock.scrollTop + GAP - Math.max(0, offset);
         } else {
-          const offset = (listRect.height + GAP * 2) - (toggleRect.top + relativeBlock.scrollTop);
+          const offset = listRect.height + GAP * 2 - (toggleRect.top + relativeBlock.scrollTop);
           bottom = relativeBlock.scrollHeight - (toggleRect.top + relativeBlock.scrollTop) + GAP - Math.max(0, offset);
         }
 
@@ -140,17 +138,13 @@ const Dropdown: React.FC<IDropdownProps> = ({
           right: right ? `${right}px` : 'auto',
           bottom: bottom ? `${bottom}px` : 'auto',
         });
-
       } else {
         let left = 0;
         let right = 0;
         let top: number = toggleRect.height + GAP;
 
         if (toggleRect.height + toggleRect.top + listRect.height > relativeBlock.offsetHeight) {
-          top =
-            toggleRect.height -
-            (toggleRect.height + toggleRect.top + listRect.height - relativeBlock.offsetHeight) -
-            GAP;
+          top = toggleRect.height - (toggleRect.height + toggleRect.top + listRect.height - relativeBlock.offsetHeight) - GAP;
         }
 
         if (currentPosition === 'top-right' || currentPosition === 'top-left') {
@@ -227,39 +221,22 @@ const Dropdown: React.FC<IDropdownProps> = ({
     window.addEventListener('scroll', handlePosition);
 
     return () => window.removeEventListener('scroll', handlePosition);
-  }, [
-    currentPosition,
-    portal,
-    position,
-    show
-  ]);
+  }, [currentPosition, portal, position, show]);
 
   useEffect(() => {
     rearrangePosition();
-
-  }, [
-    currentPosition,
-    portal,
-    position,
-    show
-  ]);
+  }, [currentPosition, portal, position, show]);
 
   useLayoutEffect(() => {
     handlePosition();
-
-  }, [
-    show,
-    anchorElement,
-    portal,
-    position
-  ]);
+  }, [show, anchorElement, portal, position]);
 
   const dropdownJSX = (
     <div
       className={classnames('rf-dropdown__content', show && 'rf-dropdown__content--show', portal && 'rf-dropdown__content--portal')}
       style={{
         ...coordinates,
-        maxWidth: maxWidth || dropdownWidth
+        maxWidth: maxWidth || dropdownWidth,
       }}
       data-testid='rf-dropdown-content'
       ref={contentRef}
