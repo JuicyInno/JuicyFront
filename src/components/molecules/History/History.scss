@@ -7,6 +7,7 @@
 
 .rf-history__button {
   display: flex;
+  margin-left: 64px;
 }
 
 .rf-history__user-photo {
@@ -16,19 +17,25 @@
   position: relative;
 }
 
-.rf-history__user-line {
-  position: absolute;
-  top: 48px;
-  left: 49%;
-  transform: translateX(-50%);
-  border-right: 2px solid var(--background-tertiary);
-  height: calc(100% - 48px);
+.rf-history__user-line-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
-.rf-history__user-line--inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.rf-history__user-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(100%);
+}
+
+.rf-history__user-line.done {
+  border-right: 2px solid var(--background-tertiary);
+}
+
+.rf-history__user-line.incomplete {
+  border-right: 2px dashed var(--background-tertiary);
 }
 
 .rf-history__history-element {
@@ -53,18 +60,20 @@
 
 .rf-history__fullName {
   @include text-l-16-bold();
+  line-height: 24px;
   color: var(--basic-secondary);
 }
 
 .rf-history__details-date {
   @include text-l-16;
+  line-height: 28px;
   color: var(--basic-tertiary);
 }
 
 .rf-history__details-info {
   @include text-m-16();
   color: var(--basic-tertiary);
-  margin-top: 4px;
+  line-height: 28px;
 }
 
 .rf-history__details-comment {
@@ -151,9 +160,3 @@
   margin-top: 16px;
   grid-gap: 12px;
 }
-
-.rf-history__attachment {
-  margin-right: 12px;
-  margin-bottom: 12px;
-}
-

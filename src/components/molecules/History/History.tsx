@@ -88,27 +88,46 @@ const History: React.FC<IHistory> = ({
     return (
       <div className='rf-history__history-element' key={r.stepId}>
         <div className='rf-history__user-photo'>
+          {/** Если в массиве user находится больше одного юзера,
+           * это означает, что согласование производится группой людей,
+           * (впоследствии согласование предоставит один представитель этой группы)
+           * поэтому, при user.length > 1, необходимо ставить иконку кгруппы людей,
+           * а не фото конкретного пользователя из этой группы
+           */}
           {r.user && r.user.length === 1 ?
             <AvatarStatus
+              fullName={r.user[0].fullName}
               size='l'
               photo={r.user[0].photo}
               variant={r.user[0].fullName === 'Вы' ? statusValue['4'] : statusValue[r.criticality]}
             /> :
-            <AvatarStatus size='l' icon={User} variant={statusValue[r.criticality]} />
+            <AvatarStatus
+              size='l'
+              icon={User}
+              variant={statusValue[r.criticality]}
+              fullName={r.user[0].fullName}
+            />
           }
           {i !== path.length - 1 && (
-            <div className='rf-history__user-line'>
-              <div className='rf-history__user-line--inner' />
+            <div className='rf-history__user-line-wrapper'>
+              {/** Если нет результат согласования слующего шага, рисуем прерывистую линию */}
+              <div className={`rf-history__user-line ${path[i + 1] && path[i + 1].criticality === '0' ?
+                'incomplete' : 'done'}`} />
             </div>
           )}
         </div>
 
         <div className='rf-history__details'>
           <div className='rf-history__details-user-name'>
+            {/** При user.length > 1 вместо имени пользователя необходимо ставить значение поля agentName,
+             * которое означает группу людей в массиве user (напр., этот шаг будет согласован бухгалтерией),
+             * в ином случае ставим имя конкретного человека
+             */}
             <h4 className='rf-history__fullName'>
               {(r.user && r.user.length === 1 && r.user[0].fullName) || r.agentName}
             </h4>
-            {!(r.user && r.user.length < 2) && (
+            {/** Подсказка не используется в проекте ЮЗАДО */}
+            {!(r.user && r.user.length < 2) && !isUZADO && (
               <Tooltip background='white'>
                 <div className='rf-history__icon-wrapper'>
                   <InformationAlert />
@@ -117,6 +136,7 @@ const History: React.FC<IHistory> = ({
               </Tooltip>
             )}
           </div>
+          {/** В проекте ЮЗЭДО вместо описания шага необходимо ставить должность согласующего */}
           <div className='rf-history__details-column'>
             {r.user.length === 1 ? (
               <p className='rf-history__details-info'>
@@ -168,16 +188,15 @@ const History: React.FC<IHistory> = ({
 
   /** JSX прикреплённые документы */
   const attachmentElementsJSX = attachments?.map(attachment => (
-    <div className='rf-history__attachment' key={attachment.fileName + attachment.id}>
-      <Chip
-        type='secondary'
-        size='s'
-        maxLength={30}
-        onClick={() => openDownloadLink(attachment.id)}
-      >
-        {attachment.fileName}
-      </Chip>
-    </div>
+    <Chip
+      key={attachment.fileName + attachment.id}
+      type='secondary'
+      size='s'
+      maxLength={30}
+      onClick={() => openDownloadLink(attachment.id)}
+    >
+      {attachment.fileName}
+    </Chip>
   ));
 
   const attachmentsJSX = (
