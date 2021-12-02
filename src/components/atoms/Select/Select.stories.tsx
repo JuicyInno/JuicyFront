@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useRef, useState
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Story } from '@storybook/react';
 
 import Select from './Select';
@@ -13,7 +11,7 @@ import InputNumber from '../InputNumber';
 
 export default {
   title: 'forms/не проверено/Select',
-  component: Select
+  component: Select,
 };
 
 const list: IOption[] = [];
@@ -22,7 +20,7 @@ for (let i = 1; i < 15; i++) {
   list.push({
     value: `${i}`,
     label: `Вариант ${i} Изменяемое значение извне Изменяемое значение извне Изменяемое значение извне`,
-    disabled: i % 6 === 0
+    disabled: i % 6 === 0,
   });
 }
 
@@ -79,82 +77,94 @@ export const Demo = () => {
   const currencies = [
     {
       label: 'РOO',
-      value: '1'
-    }
+      value: '1',
+    },
   ];
 
   return (
     <StoryContainer name='Select' description='Select кнопки' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
         <StoryItem description='Multiselect'>
-          <Select placeholder='Выберите значение'
-            options={ filteredOptions }
+          <Select
+            placeholder='Выберите значение'
+            options={filteredOptions}
             values={values}
             invalid={true}
             tagsPosition='outside'
             onChange={onChange}
             onSearch={onSearch}
             multiselect
-            preloader={loading}/>
+            preloader={loading}
+          />
         </StoryItem>
 
         <StoryItem description='Изменяемое значение извне'>
-          <Button onClick={() => {
-            setState([list[1]]);
-            setState2(!state2);
-          }}>Set State</Button>
-          <div style={{ height: '20px' }}/>
-          <Select placeholder='Выберите значение'
-            options={ filteredOptions }
+          <Button
+            onClick={() => {
+              setState([list[1]]);
+              setState2(!state2);
+            }}
+          >
+            Set State
+          </Button>
+          <div style={{ height: '20px' }} />
+          <Select
+            placeholder='Выберите значение'
+            options={filteredOptions}
             values={state}
             invalid={state2}
             tagsPosition='outside'
             onChange={onChange1}
             onSearch={onSearch}
-            preloader={loading}/>
+            preloader={loading}
+          />
         </StoryItem>
 
         <StoryItem description='Readonly Select'>
-          <Select placeholder='Выберите значение'
+          <Select
+            placeholder='Выберите значение'
             readOnly
-            options={ list }
+            options={list}
             values={state1}
             tagsPosition='outside'
             onChange={onChange2}
-            preloader={loading}/>
+            preloader={loading}
+          />
         </StoryItem>
 
         <StoryItem description='Портал'>
-          <Select placeholder='Выберите значение'
+          <Select
+            placeholder='Выберите значение'
             readOnly
-            options={ list }
+            options={list}
             values={state1}
             tagsPosition='outside'
             onChange={onChange2}
             portal
-            preloader={loading}/>
+            preloader={loading}
+          />
         </StoryItem>
 
         <StoryItem description='Tag Select'>
           <div style={{ position: 'relative' }}>
             <InputNumber defaultValue={'1200.60'} floatPoints={2} />
-            <Select placeholder='Выберите значение'
+            <Select
+              placeholder='Выберите значение'
               readOnly
               variant='tag'
-              options={ currencies }
+              options={currencies}
               values={state1}
               onChange={onChange2}
-              preloader={loading}/>
+              preloader={loading}
+            />
           </div>
-
         </StoryItem>
-
       </form>
     </StoryContainer>
   );
 };
 
-export const LazySelect: Story = (args) => {
+export const LazySelect: Story = () => {
   const [list, setList] = useState<IOption[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [totalItems, setTotalItems] = useState<number>(0);
@@ -170,14 +180,14 @@ export const LazySelect: Story = (args) => {
     setIsLoading(true);
 
     return fetch(`https://jsonplaceholder.typicode.com/todos?_start=${offset}&_limit=${limit}`)
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         const resList = json.map((item) => ({
           value: item.id,
-          label: item.title
+          label: item.title,
         }));
 
-        setList(prevList => isLazy ? [...prevList, ...resList] : resList);
+        setList((prevList) => (isLazy ? [...prevList, ...resList] : resList));
 
         setTotalItems(200);
       })
@@ -188,25 +198,26 @@ export const LazySelect: Story = (args) => {
 
   const hasMore = !isLoading && list.length < totalItems;
 
-  return <StoryContainer>
-    <StoryRow>
-      <form>
-        <Select
-          placeholder='Выберите значение'
-          values={[]}
-          options={list}
-          onChange={() => {}}
-          infinityScrollProps={{
-            hasMore,
-            dataLength: list.length
-          }}
-          portal
-          onSearch={onSearch}
-        />
-      </form>
-
-    </StoryRow>
-  </StoryContainer>;
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <form>
+          <Select
+            placeholder='Выберите значение'
+            values={[]}
+            options={list}
+            onChange={() => {}}
+            infinityScrollProps={{
+              hasMore,
+              dataLength: list.length,
+            }}
+            portal
+            onSearch={onSearch}
+          />
+        </form>
+      </StoryRow>
+    </StoryContainer>
+  );
 };
 
 export const Playground: Story = (args) => {
@@ -214,13 +225,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select
-            placeholder='Выберите значение'
-            values={[]}
-            options={list}
-            onChange={() => {}}
-            {...args}
-          />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>

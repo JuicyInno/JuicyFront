@@ -356,7 +356,7 @@ const Select: FC<ISelectProps> = ({
               hasMore={false}
               {...infinityScrollProps}
               next={makeLasyFetch()}
-              loader={<>загрузка</>}
+              loader={loader}
               scrollableTarget='rf-select-list-scroll'
               className='rf-select__infinity-list'
             >
