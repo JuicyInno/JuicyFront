@@ -1,16 +1,16 @@
 import React, {
-  FC, ReactNode, useCallback, useEffect, useRef, useState
+  FC, ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState
 } from 'react';
 import './Select.scss';
 
-import { IOption } from '../../../types';
-import useClickOutside from '../../../hooks/useClickOutside';
+import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
 import {
   ChevronDown, Close, Preloader
 } from '../../../index';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
+import Dropdown from '../Dropdown';
 
 
 export interface ISelectProps {
@@ -44,7 +44,12 @@ export interface ISelectProps {
   invalid?: boolean;
   /** Скролл списка (для лези лоуда) */
   onListScroll?: (e: React.UIEvent) => void;
-
+  /** Расположение */
+  position?: DropdownPosition;
+  /** Использовать портал */
+  portal?: boolean;
+  /** Ширина */
+  maxWidth?: number | string;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -63,22 +68,20 @@ const Select: FC<ISelectProps> = ({
   clearOnSelect = false,
   clearHook,
   variant = 'base',
-  onListScroll
+  onListScroll,
+  position = 'left',
+  portal = false,
+  maxWidth
 }: ISelectProps) => {
 
   const [showDropdown, toggleDropdown] = useState(false);
   const componentNode = useRef<HTMLDivElement>(null);
 
-  // -------------------------------------------------------------------------------------------------------------------
+  const toggleRef = useRef<HTMLDivElement>(null);
 
-  /** Клик в сторону */
-  const handleClickOutside = useCallback(() => {
-    if (showDropdown) {
-      toggleDropdown(false);
-    }
-  }, [showDropdown, multiselect]);
-
-  useClickOutside(componentNode, handleClickOutside);
+  const onClose = useCallback(() => {
+    toggleDropdown(false);
+  }, [toggleDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -148,7 +151,7 @@ const Select: FC<ISelectProps> = ({
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!selectValues) {
+    if (!selectValues || selectValues.length === 0) {
       return;
     }
 
@@ -286,13 +289,26 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const [dropdownWidth, setDropdownWidth] = useState<string>('100%');
+
+  useLayoutEffect(() => {
+    if (!toggleRef.current) {
+      return;
+    }
+
+    setDropdownWidth(`${toggleRef.current.offsetWidth}px`);
+  }, []);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
   const multiselectClass = multiselect ? 'rf-select--multi' : '';
   const tagClass = variant === 'tag' ? 'rf-select__wrapper--tag' : '';
 
   return (
     <div className={`rf-select ${multiselectClass} ${tagClass}`} ref={ componentNode }>
-      <div className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)}>
+      <div className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)}
+        ref={toggleRef}>
         <input
           className='rf-select__input'
           onMouseDown={ openDropdown }
@@ -304,17 +320,17 @@ const Select: FC<ISelectProps> = ({
         { closeButton }
         { chevronButton }
       </div>
-      {
-        showDropdown && filteredOptions.length > 0 && (
-          <div className='rf-select__list' onScroll={onListScroll}>
-            { preloader ? (
-              <div className='rf-select__list-preloader'>
-                <Preloader size='m'/>
-              </div>
-            ) : listJSX }
-          </div>
-        )
-      }
+      <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal}
+        maxWidth={maxWidth || dropdownWidth}>
+        <div className='rf-select__list' onScroll={onListScroll}>
+          { preloader ? (
+            <div className='rf-select__list-preloader'>
+              <Preloader size='m'/>
+            </div>
+          ) : listJSX }
+        </div>
+      </Dropdown>
+      {/* filteredOptions.length > 0*/}
       { tagsJSX }
     </div>
   );

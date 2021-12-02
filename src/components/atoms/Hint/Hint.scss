@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-hint__wrapper {
   background: var(--background-secondary);
@@ -8,39 +8,65 @@
   position: relative;
 }
 
-.rf-hint__wrapper.line:before {
-  content: '';
-  width: 8px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: var(--12) 0 0 var(--12);
-}
-
 .rf-hint__title-text {
-  @include text-l-16-bold()
+  @include text-l-16-bold();
 }
 
 .rf-hint__message {
-  @include text-m-16()
+  @include text-m-16;
+  color: var(--text-secondary);
 }
 
 .rf-hint__body {
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 .rf-hint__icon {
-  width: var(--24);
-  height: var(--24);
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
+  margin-right: 4px;
 }
 
 .rf-hint__default {
   background-color: var(--background-secondary);
 
   .rf-hint__icon {
-    color: var(--basic-primary)
+    color: var(--basic-primary);
+  }
+
+  .rf-hint__button {
+    color: var(--basic-primary);
+    cursor: pointer;
+  }
+
+  &:before {
+    background-color: var(--basic-primary);
+  }
+}
+
+.rf-hint__default {
+  .rf-hint__icon {
+    color: var(--background-shadow);
+  }
+
+  .rf-hint__button {
+    @include button-m-16;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+}
+
+.rf-hint__blue {
+  background-color: var(--background-secondary);
+
+  .rf-hint__icon {
+    color: var(--basic-primary);
+  }
+
+  .rf-hint__button {
+    color: var(--basic-primary);
+    cursor: pointer;
   }
 
   &:before {
@@ -52,7 +78,12 @@
   background-color: var(--background-success);
 
   .rf-hint__icon {
-    color: var(--status-success)
+    color: var(--status-success);
+  }
+
+  .rf-hint__button {
+    color: var(--status-success);
+    cursor: pointer;
   }
 
   &:before {
@@ -64,7 +95,12 @@
   background-color: var(--background-warn);
 
   .rf-hint__icon {
-    color: var(--status-warn)
+    color: var(--status-warn);
+  }
+
+  .rf-hint__button {
+    color: var(--status-warn);
+    cursor: pointer;
   }
 
   &:before {
@@ -76,7 +112,12 @@
   background-color: var(--background-danger);
 
   .rf-hint__icon {
-    color: var(--status-danger)
+    color: var(--status-danger);
+  }
+
+  .rf-hint__button {
+    color: var(--status-danger);
+    cursor: pointer;
   }
 
   &:before {

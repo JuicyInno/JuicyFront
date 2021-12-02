@@ -11,7 +11,7 @@ import {
 import { variants } from '../../../types';
 
 export default {
-  title: 'components/withTest/Карточки задач-истории',
+  title: 'components/withTest/Card',
   component: Card,
   typeArgs: {
     statusColor: {
@@ -36,10 +36,10 @@ export const Demo: Story = () => {
           marginBottom: '40px',
         }}>
           <div style={{ marginRight: '100px', }}>
-            <Card {...card} />
+            <Card {...card} showActionButton />
           </div>
           <div style={{ height: 'fit-content', }}>
-            <Card {...card} showActionButton />
+            <Card {...card} />
           </div>
         </div>
       ))}
@@ -62,6 +62,6 @@ export const Playground: Story<ICard> = (args) => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A280017',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A20157',
   },
 };

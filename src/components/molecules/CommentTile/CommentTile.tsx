@@ -8,9 +8,7 @@ import Textarea from '../../atoms/Textarea';
 import { IDebounceCommentResult, IRequestAttachment } from '../../../types/projects.types';
 
 import './CommentTile.scss';
-import {
-  Chip, Close, download, InputFile
-} from '../../../index';
+import { InputFile } from '../../../index';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 
@@ -24,7 +22,7 @@ export interface ICommentTileProps {
     /** Возможность прикрепить файл */
     showFieldForFiles?: boolean;
     /** Прикрепленные файлы */
-    initialFiles?: IRequestAttachment[];
+    initialFiles?: IFileData[];
     /** Максимальная длина комментария */
     maxLength?: number;
     /** Срабатывает при изменении значения*/
@@ -49,7 +47,11 @@ const CommentTile: FC<ICommentTileProps> = ({
   const [value, setValue] = useState<string>(comment);
 
   /** хранит приложенные файлы*/
-  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[]>(initialFiles);
+  const [attachedFiles, setAttachedFiles] = useState<IRequestAttachment[]>(() => (
+    initialFiles.map((fileObject: IFileData, index: number) => ({
+      fileName: fileObject.file.name,
+      base64: fileObject.base64
+    }))));
 
   /** Отлов прикрепления файлов */
   useEffect(() => {
@@ -84,55 +86,12 @@ const CommentTile: FC<ICommentTileProps> = ({
   };
 
   /** Прикрепление файла */
-  const setFileHandler = (file: IFileData[]) => {
-    const newFile = {
-      fileName: file[0].file.name,
-      base64: file[0].base64
-    };
-
-    if (attachedFiles?.length) {
-      setAttachedFiles([...attachedFiles, newFile]);
-    } else {
-      setAttachedFiles([newFile]);
-    }
+  const setFileHandler = (files: IFileData[]) => {
+    setAttachedFiles(files.map(file => ({
+      fileName: file.file.name,
+      base64: file.base64
+    })));
   };
-
-  // =======================================================================================================================================
-  /** Чип прикрепленного файла */
-  const attachedFileChipsTSX = (name:string, index: number, onClick:(e: React.MouseEvent)=>void) =>
-    <div className='rf-comment-tile-chip' key={name + index}>
-      <Chip
-        onClick={() => attachedFiles && download(attachedFiles[index], attachedFiles[index]?.fileName)}
-        size='s'
-        type='outline'
-      >
-        <div className='rf-comment-tile-chip-text'>
-          {name}
-          <div className='rf-comment-tile-chip-button' onClick={onClick}>
-            <Close/>
-          </div>
-        </div>
-      </Chip>
-    </div>;
-
-  // =======================================================================================================================================
-  /** Отображение чипов прикрепленных файлов */
-  const getFileChips = !!attachedFiles?.length && attachedFiles
-    .map((file: IRequestAttachment, index: number) => attachedFileChipsTSX(
-      file.fileName,
-      index,
-      (e:React.MouseEvent) => {
-        e.stopPropagation();
-        const newListFile = attachedFiles;
-        newListFile.splice(index, 1);
-
-        if (!newListFile.length) {
-          setAttachedFiles([]);
-        } else {
-          setAttachedFiles([...newListFile]);
-        }
-      }
-    ));
 
   // =======================================================================================================================================
 
@@ -145,7 +104,6 @@ const CommentTile: FC<ICommentTileProps> = ({
           !autoResize && 'rf-comment-tile__input-wrapper--scroll'
         )}
         label={'Комментарий'}
-        showLargeSizeFirstLabel
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
         <Textarea autoResize={autoResize}
@@ -158,16 +116,14 @@ const CommentTile: FC<ICommentTileProps> = ({
             <>
               <InputFile
                 className='rf-comment-tile-button'
-                showChips={false}
+                showChips={true}
                 setFile={setFileHandler}
                 buttonType='light'
                 placeholder='Прикрепить файл'
                 accept = {accept}
                 maxSize = {maxSize}
+                files={initialFiles}
               />
-              <div className='rf-comment-tile-chip-wrapper'>
-                {getFileChips}
-              </div>
             </>
       }
     </Tile>

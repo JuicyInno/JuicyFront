@@ -22,100 +22,42 @@ $radius: 8px;
 
 .rf-tooltip__inner {
   position: relative;
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
+  padding: 12px 16px 12px 16px;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
   border-radius: $radius;
-  box-shadow: 0 2px 4px 2px rgb(25 59 104 / 11%);
+  box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4),0px -2px 4px rgba(138, 150, 168, 0.08);
 
-  &.rf--l {
-    padding: 20px 20px 20px 20px;
+  .rf-tooltip__content-union--bottom {
+    position: absolute;
+    bottom: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%) rotate(-180deg);
+  }
+  .rf-tooltip__content-union--top {
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%);
+  }
+  .rf-tooltip__content-union--left {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: -7.8px;
+    transform: translate(50%) rotate(-90deg);
+  }
+  .rf-tooltip__content-union--right {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: -8px;
+    transform: translate(-50%) rotate(90deg);
   }
 }
-
-.rf-tooltip__inner .rf-tooltip__arrow {
-  position: absolute;
-  display: block;
-  width: 25px;
-  height: 25px;
-  z-index: 2201;
-  transform-origin: 50% 50% 0;
-}
-
-.rf-tooltip__inner--right .rf-tooltip__arrow {
-  transform: translate(-11.8px, -50%) rotate(90deg);
-  top: 50%;
-  left: -5px;
-  // filter: drop-shadow(0px 0px 6px rgba(25, 59, 104, 0.1));
-}
-
-.rf-tooltip__inner--right-start .rf-tooltip__arrow {
-  transform: translate(-11.8px, -50%) rotate(90deg);
-  top: 20px;
-  left: -5px;
-}
-
-.rf-tooltip__inner--right-end .rf-tooltip__arrow {
-  transform: translate(-11.8px, 50%) rotate(90deg);
-  bottom: 16px;
-  left: -5px;
-}
-
-.rf-tooltip__inner--left .rf-tooltip__arrow {
-  transform: translate(12px, -50%) rotate(-90deg);
-  top: 50%;
-  right: -5px;
-}
-
-.rf-tooltip__inner--left-start .rf-tooltip__arrow {
-  transform: translate(-50%, -12px)   rotate(-90deg);
-  top: 20px;
-  right: -5px;
-}
-
-.rf-tooltip__inner--left-end .rf-tooltip__arrow {
-  transform:  translate(-50%, -12px)   rotate(-90deg);
-  bottom: 20px;
-  right: -5px;
-}
-
-.rf-tooltip__inner--bottom .rf-tooltip__arrow {
-  transform: translate(-50%, -11.8px) rotate(180deg);
-  top: -5px;
-  left: 50%;
-}
-
-.rf-tooltip__inner--bottom-start .rf-tooltip__arrow {
-  transform:  translate(-50%, -11.8px) rotate(180deg);
-  top: -5px;
-  left: 20px;
-}
-
-.rf-tooltip__inner--bottom-end .rf-tooltip__arrow {
-  transform: translate(-50%, -11.8px)rotate(180deg);
-  top: -5px;
-  right: 20px;
-}
-
-.rf-tooltip__inner--top .rf-tooltip__arrow {
-  transform: translate(-50%, 12px);
-  bottom: -5px;
-  left: 50%;
-}
-
-.rf-tooltip__inner--top-start .rf-tooltip__arrow {
-  transform: translate(-50%, 12px);
-  bottom: -5px;
-  left: 20px;
-}
-
-.rf-tooltip__inner--top-end .rf-tooltip__arrow {
-  transform: translate(50%, 12px);
-  bottom: -5px;
-  right: 20px;
+.rf-tooltip__content--default .rf-tooltip__inner,
+.rf-tooltip--default .rf-tooltip__inner {
+  background: var(--basic-tertiary);
+  color: var(--text-static-white);
 }
 
 .rf-tooltip__content--default .rf-tooltip__inner {
@@ -136,11 +78,7 @@ $radius: 8px;
   }
 }
 
-.rf-tooltip__content--primary .rf-tooltip__inner {
-  background: var(--basic-primary);
-  color: var(--text-static-white);
-
-  .rf-tooltip__arrow {
-    color: var(--basic-primary);
-  }
+.rf-tooltip__content--white .rf-tooltip__inner::after,
+.rf-tooltip--white .rf-tooltip__inner::after {
+  background: var(--background-primary);
 }

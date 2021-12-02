@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Tooltip from './Tooltip';
 
+
 describe('Test <Tooltip/> component', () => {
 
   it("should render Tooltip component after hover ", async () => {
@@ -19,93 +20,12 @@ describe('Test <Tooltip/> component', () => {
     expect(screen.getByText('Tooltip')).toBeInTheDocument()
   });
 
-  it('should render Tooltip component with default size m', () => {
-    render(
-      <Tooltip open>
-        <div>Button</div>
-        <div >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--m');
-  });
 
-  it('should render Tooltip component with  size m', () => {
-    render(
-      <Tooltip open size='m'>
-        <div>Button</div>
-        <div >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--m');
-  });
-
-  it('should render Tooltip component with  size l', () => {
-    render(
-      <Tooltip open size='l'>
-        <div>Button</div>
-        <div >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf--l');
-  });
-
-  it('should render Tooltip component with custom classname', async () => {
-    render(
-      <Tooltip open className='testClassName' >
-        <div >Button</div>
-        <div >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip >
-    )
-    fireEvent.mouseOver(screen.getByText('Button'));
-
-    await waitFor(() => screen.getByTestId('tooltip__content'));
-    expect(screen.queryByTestId('tooltip__content')).toHaveClass('testClassName')
-  });
-
-  it('should  not render Tooltip component with open == false', async () => {
-    render(
-      <Tooltip open={false}>
-        <div data-testid="button">Button</div>
-        <div data-testid="tooltip" >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-
-    fireEvent.mouseOver(screen.getByText('Button'));
-
-    await waitFor(() => screen.getByTestId('button'))
-    expect(screen.queryByTestId('tooltip')).toBeNull();
-  });
-
-  it('should render Tooltip component with open == true', async () => {
-    render(
-      <Tooltip open>
-        <div data-testid="button">Button</div>
-        <div data-testid="tooltip" >
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-
-    fireEvent.mouseOver(screen.getByText('Button'));
-
-    await waitFor(() => screen.getByTestId('button'))
-    expect(screen.queryByTestId('tooltip')).toBeInTheDocument()
-  });
 
   it('should  not render Tooltip component with isVisible === false', async () => {
     render(
-      <Tooltip open={true} isVisible={false}>
-        <div data-testid="button">Button</div>
+      <Tooltip isVisible={false}>
+        <div data-testid="Button">Button</div>
         <div data-testid="tooltip" >
           <p>Tooltip</p>
         </div>
@@ -114,69 +34,32 @@ describe('Test <Tooltip/> component', () => {
 
     fireEvent.mouseOver(screen.getByText('Button'));
 
-    await waitFor(() => screen.getByTestId('button'))
+    await waitFor(() => screen.getByTestId('Button'))
     expect(screen.queryByTestId('tooltip')).toBeNull();
   });
 
-  it('should render Tooltip component with position = top', () => {
-    render(
-      <Tooltip open position='top'>
+  it('should render Tooltip component with background = white', () => {
+    const { container } = render(
+      <Tooltip background='white'>
         <div>Button</div>
         <div>
           <p>Tooltip</p>
         </div>
       </Tooltip>
     )
-
-    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf-tooltip__inner--top')
+    expect(container.getElementsByClassName('rf-tooltip--white').length).toBe(1)
   });
+})
 
-  it('should render Tooltip component with position = bottom-start', () => {
-    render(
-      <Tooltip open position='bottom-start'>
-        <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-
-    expect(screen.queryByTestId('tooltip__inner')).toHaveClass('rf-tooltip__inner--bottom-start')
-  });
-
-  it('should render Tooltip component with color = white', () => {
-    render(
-      <Tooltip open color='white'>
-        <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--white')
-  });
-
-  it('should render Tooltip component with color = primary', () => {
-    render(
-      <Tooltip open color='primary' >
-        <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--primary')
-  });
-
-  it('should render Tooltip component with default color ', () => {
-    render(
-      <Tooltip open>
-        <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
-      </Tooltip>
-    )
-    expect(screen.queryByTestId('tooltip__content-wrapper')).toHaveClass('rf-tooltip--default')
-  });
+it('should render Tooltip component with background=default', () => {
+  const { container } = render(
+    <Tooltip background='default'>
+      <div>Button</div>
+      <div>
+        <p>Tooltip</p>
+      </div>
+    </Tooltip>
+  )
+  expect(container.getElementsByClassName('rf-tooltip--default').length).toBe(1)
 });
+

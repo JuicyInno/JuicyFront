@@ -74,12 +74,29 @@ export const Demo = () => {
           title='Счет №SVTB2060_22 от 30.08.2021' />
       </StoryItem>
     </Story>
+    <Story name='Вариант карточки без теней'>
+      <StoryItem>
+        <Signification
+          onSignify={response}
+          data={file}
+          hideButtons={[
+            'manual',
+            'sign',
+            'reject',
+            'rejectManual'
+          ]}
+          documentInfo={docInfo}
+          title='Счет №SVTB2060_22 от 30.08.2021'
+          variant='border'
+        />
+      </StoryItem>
+    </Story>
   </div>;
 };
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A266418'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=15%3A16731'
   },
   actions: { disabled: true },
   controls: { disabled: true }

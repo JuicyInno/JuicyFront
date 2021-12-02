@@ -27,6 +27,22 @@
   position: relative;
 }
 
+.rf-tree__item-label--default {
+  color: var(--text-primary);
+}
+
+.rf-tree__item-label--blue {
+  color: var(--basic-primary);
+}
+
+.rf-tree__item-label--green {
+  color: var(--status-success);
+}
+
+.rf-tree__item-label--red {
+  color: var(--status-danger);
+}
+
 .rf-tree__item-label .rf-tree__item--h {
   content: '';
   position: absolute;

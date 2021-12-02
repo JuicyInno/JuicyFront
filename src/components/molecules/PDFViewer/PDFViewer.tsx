@@ -68,7 +68,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   };
 
   const onClickDownload = () => {
-    download(file, file.fileName);
+    download(file);
   };
 
   const onClickOpen = () => {
@@ -79,13 +79,13 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   return (
     <>
       { file &&
-      <div ref={pdfWrapper} className='pdf-document'>
-        <Document file={ file.base64 } onLoadSuccess={ onDocumentLoadSuccess }>
-          <Page width={pageWidth} pageNumber={ currentPage } onLoadSuccess={calculatePageWidth} />
-        </Document>
-        <div className='pdf-document__download'>
+        <div ref={pdfWrapper} className='pdf-document'>
+          <Document file={ file.base64 } onLoadSuccess={ onDocumentLoadSuccess }>
+            <Page width={pageWidth} pageNumber={ currentPage } onLoadSuccess={calculatePageWidth} />
+          </Document>
+          <div className='pdf-document__download'>
 
-          {!!url &&
+            {!!url &&
             <div className='pdf-document__open'>
               <Button
                 buttonType='white'
@@ -95,21 +95,21 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
                 Просмотреть
               </Button>
             </div>
-          }
+            }
 
-          <Button
-            data-testid='pdf-download-btn'
-            buttonType='white'
-            size='s'
-            onClick={onClickDownload}
-            endAdornment={<DownloadIcon className='pdf-document__icon'/>}>
-            {url ? '' : 'Скачать'}
-          </Button>
+            <Button
+              data-testid='pdf-download-btn'
+              buttonType='white'
+              size='s'
+              onClick={onClickDownload}
+              endAdornment={<DownloadIcon className='pdf-document__icon'/>}>
+              {url ? '' : 'Скачать'}
+            </Button>
+          </div>
+          <div className='pdf-document__pager'>
+            <ButtonPages max={numPages} onChange={onPageChange}/>
+          </div>
         </div>
-        <div className='pdf-document__pager'>
-          <ButtonPages max={numPages} onChange={onPageChange}/>
-        </div>
-      </div>
       }
     </>
   );

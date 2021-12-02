@@ -1,8 +1,9 @@
 @import "../../../styles/mixins";
 
-.file-input__wrapper {
+.rf-file-input__wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
 }
 
@@ -20,4 +21,20 @@
   margin-right: 8px;
   margin-bottom: 8px;
   display: inline-flex;
+}
+
+.rf-file-input__chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.rf-file-input__chip {
+  margin: 12px 12px 0px 0px;
+}
+
+.rf-file-input__chip-button {
+  padding-left: 8px;
+  padding-top: 4px;
+  cursor: pointer;
 }

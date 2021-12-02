@@ -1,10 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {render} from '@testing-library/react';
 
 import Card, { ICard } from './Card';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
-import userEvent from "@testing-library/user-event";
-import {byText} from "testing-library-selector";
 
 const data: ICard = {
     title: 'Надбавка за увеличение объёма продаж',
@@ -44,15 +42,5 @@ describe('Test <Card/> component', () => {
     it('shouldn\'t have "process" button on tab by history', () => {
         const { container } = render(<Card {...data}  />);
         expect(container.getElementsByClassName('rf-card__button-wrapper')).not.toHaveLength(1);
-    });
-
-    it('should call onClick', () => {
-        const onClick = jest.fn();
-        const { container } = render(<Card {...data} onClick={onClick} />);
-
-
-        userEvent.click(byText("Табельный номер").get())
-
-        expect(onClick).toHaveBeenCalledTimes(1);
     });
 });

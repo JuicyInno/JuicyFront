@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { TooltipPosition } from './projects.types';
+import { ReactNode, SVGProps } from 'react';
+
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
   label: string;
@@ -13,15 +13,14 @@ export interface ITreeOption extends IOption {
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
+  variant?: Variant;
 }
 
 export interface ICustomOption extends IOption {
   __isNew__: boolean;
 }
 
-export function isCustomOption(
-  option: IOption | ICustomOption
-): option is ICustomOption {
+export function isCustomOption(option: IOption | ICustomOption): option is ICustomOption {
   return (option as ICustomOption).__isNew__;
 }
 
@@ -37,6 +36,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Точность url */
+  exact?: boolean;
   /** Иконка вкладки */
   icon?: ReactNode;
   /** Действие при клике на вкладку */
@@ -57,6 +58,8 @@ export interface IListElement {
   disabled?: boolean;
   /** Отделение линией */
   separated?: boolean;
+  /** Указывает что это заголовок раздела */
+  isTitle?: boolean;
 }
 
 /** Контекст меню */
@@ -70,6 +73,7 @@ export interface IFileData {
   file: File;
   base64: string;
   base64Compressed?: string;
+  id?: string;
 }
 
 /** Чипсы */
@@ -102,7 +106,7 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
 export type Variant =
   | VariantClassic
   | 'blue'
@@ -114,25 +118,10 @@ export type Variant =
 
 export const variantsClassic: VariantClassic[] = [
   'default',
-
+  'blue',
   'green',
   'yellow',
   'red',
-];
-
-export const variantsTooltip: TooltipPosition[] = [
-  'top',
-  'top-start',
-  'top-end',
-  'right',
-  'right-start',
-  'right-end',
-  'bottom',
-  'bottom-start',
-  'bottom-end',
-  'left',
-  'left-start',
-  'left-end',
 ];
 
 export const variants: Variant[] = [
@@ -148,8 +137,27 @@ export const variants: Variant[] = [
   'violet',
 ];
 
+
+export type BadgeVariant =
+  'light' |
+  'info' |
+  'warning' |
+  'success' |
+  'error' |
+  'grey' |
+  'dark' |
+  'light-inactive' |
+  'light-disable' |
+  'white' |
+  'white-inactive' |
+  'white-disable';
+
+
+/** Цвет фона аватара */
+export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
+
 /** Размер */
-export type Size = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';
@@ -178,3 +186,11 @@ export interface IButtonGroup {
   /** Клик по кнопке в меню */
   onClick?: () => void;
 }
+
+/** Пропсы иконки */
+export interface IIconProps extends SVGProps<SVGSVGElement> {
+  /** размер */
+  size?: Size
+}
+
+export type DropdownPosition = 'left' | 'right' | 'top-left' | 'top-right';

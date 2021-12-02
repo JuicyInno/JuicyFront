@@ -23,62 +23,69 @@ describe('Test <Badge/> component', () => {
         Badge
       </Badge>
     );
-    
+
     const t = screen.getByText('99+');
     expect(t).toBeInTheDocument();
   });
 
-  it('should be empty and have class "rf-badge--dot"', () => {
-    const badge = <Badge>Badge</Badge>;
+  it('should be empty and have class "rf-badge--dot--s"', () => {
+    const badge = <Badge size='m'>Badge</Badge>;
     const { container } = render(badge);
     const item = container.getElementsByClassName('rf-badge')[0];
-    expect(item).toHaveClass('rf-badge--dot');
+    expect(item).toHaveClass('rf-badge--dot--m');
     expect(item?.textContent).toHaveLength(0);
   });
-  
-  it('should be blue', () => {
-    const badge = <Badge variant='blue'>Badge</Badge>;
+  it('should be empty and have class "rf-badge--dot--s"', () => {
+    const badge = <Badge size='s'>Badge</Badge>;
     const { container } = render(badge);
-    expect(container.getElementsByClassName('rf-badge--blue')).toHaveLength(1);
+    const item = container.getElementsByClassName('rf-badge')[0];
+    expect(item).toHaveClass('rf-badge--dot--s');
+    expect(item?.textContent).toHaveLength(0);
   });
-  
-  it('should be lightBlue', () => {
-    const { container } = render(<Badge variant='lightBlue'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--lightBlue')).toHaveLength(1);
+
+  it('should be dark', () => {
+    const badge = <Badge variant='dark'>Badge</Badge>;
+    const { container } = render(badge);
+    expect(container.getElementsByClassName('rf-badge--dark')).toHaveLength(1);
   });
-  
-  it('should be turquoise', () => {
-    const { container } = render(<Badge variant='turquoise'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--turquoise')).toHaveLength(1);
+
+  it('should be error', () => {
+    const { container } = render(<Badge variant='error'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--error')).toHaveLength(1);
   });
-  
-  it('should be green', () => {
-    const { container } = render(<Badge variant='green'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--green')).toHaveLength(1);
+
+  it('should be info', () => {
+    const { container } = render(<Badge variant='info'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--info')).toHaveLength(1);
   });
-  
-  it('should be yellow', () => {
-    const { container } = render(<Badge variant='yellow'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--yellow')).toHaveLength(1);
+
+  it('should be light', () => {
+    const { container } = render(<Badge variant='light'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--light')).toHaveLength(1);
   });
-  
-  it('should be red', () => {
-    const { container } = render(<Badge variant='red'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--red')).toHaveLength(1);
+
+  it('should be light-disable', () => {
+    const { container } = render(<Badge variant='light-disable'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--light-disable')).toHaveLength(1);
   });
-  
-  it('should be magenta', () => {
-    const { container } = render(<Badge variant='magenta'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--magenta')).toHaveLength(1);
+
+  it('should be light-inactive', () => {
+    const { container } = render(<Badge variant='light-inactive'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--light-inactive')).toHaveLength(1);
   });
-  
-  it('should be purple', () => {
-    const { container } = render(<Badge variant='purple'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--purple')).toHaveLength(1);
+
+  it('should be success', () => {
+    const { container } = render(<Badge variant='success'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--success')).toHaveLength(1);
   });
-  
-  it('should be violet', () => {
-    const { container } = render(<Badge variant='violet'> Badge </Badge>);
-    expect(container.getElementsByClassName('rf-badge--violet')).toHaveLength(1);
+
+  it('should be warning', () => {
+    const { container } = render(<Badge variant='warning'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--warning')).toHaveLength(1);
+  });
+
+  it('should be white', () => {
+    const { container } = render(<Badge variant='white'> Badge </Badge>);
+    expect(container.getElementsByClassName('rf-badge--white')).toHaveLength(1);
   });
 });

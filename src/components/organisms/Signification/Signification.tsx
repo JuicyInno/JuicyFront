@@ -15,6 +15,7 @@ import { Certificate } from 'crypto-pro';
 import Download from '../../../assets/icons/Download';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
+import { ITileProps } from '../../atoms/Tile/Tile';
 
 
 export type TButtons = 'sign'|'manual'|'reject'|'rejectManual'
@@ -38,7 +39,7 @@ const buttonNamesDefault:ICustomTexts = {
 };
 
 
-export interface IProps{
+export interface IProps extends Pick<ITileProps, 'variant'> {
   /** Изначальный файл*/
   data:IRequestAttachment
   /** Дополнительные данные о документе*/
@@ -58,7 +59,7 @@ export interface IProps{
   /** кастомные названия кнопок */
   buttonCustomTexts?:ICustomTexts
   /** ссылка на pdf если надо открыть в отдельном окне */
-  pdfUrl?:string
+  pdfUrl?: string
 }
 
 
@@ -70,7 +71,7 @@ const Signification:FC<IProps> = ({
   isSpoiler = true,
   isOpenSpoiler = false,
   documentInfo,
-
+  variant = 'default',
   hideButtons = [],
   buttonCustomTexts = {},
   filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
@@ -226,7 +227,7 @@ const Signification:FC<IProps> = ({
   // =======================================================================================================================================
   const manualFileChipTSX = (name:string, onClick:(e:any)=>void) =>
     <div className='manual__chip-wrapper'>
-      <Chip onClick={() => manualFile && download(manualFile, manualFile?.fileName)} size='s' type='outline'>
+      <Chip onClick={() => manualFile && download(manualFile)} size='s' type='outline'>
         <div className='manual__chip-text'>
           {name}
           <div className='manual__chip-button' onClick={onClick}>
@@ -300,7 +301,7 @@ const Signification:FC<IProps> = ({
       </div>
       <div className='manual__hint-wrapper'>
         <Hint button={<Button
-          onClick={() => download(value, value.fileName)}
+          onClick={() => download(value)}
           buttonType='text'
           startAdornment={<Download/>} >Скачать</Button>}
         icon='info'
@@ -344,8 +345,9 @@ const Signification:FC<IProps> = ({
     { buttonsTSX}
     {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
   </>;
+
   return <div className='signification__wrapper'>
-    <Tile>
+    <Tile variant={variant}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
         <Document color1={onlyView ? '#F1F2F4' : undefined}/>
         <div className='signification__title-text'>{title}</div>

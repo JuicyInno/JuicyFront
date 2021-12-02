@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-form-group {
   width: 100%;
@@ -9,26 +9,19 @@
 }
 
 .rf-form-group__label {
-  @include caption;
+  @include text-xs-14();
   @include clearfix;
   color: var(--text-secondary);
   margin-bottom: 8px;
   transition: 0.15s ease-in;
 }
 
-.rf-form-group__label-large {
-  @include text-xs-14();
-  color: var(--text-secondary);
-}
-
 .rf-form-group__label-secondary {
-  @include caption();
-  color: var(--text-secondary);
   float: right;
   margin-left: 8px;
 }
 
-.rf-form-group__label-secondary-invalid {
+.rf-form-group__message_no_invalidd {
   color: var(--status-danger);
 }
 
@@ -38,7 +31,7 @@
   color: var(--status-danger);
 }
 
-.rf-form-group__message-no-invalid {
+.rf-form-group__message_no-invalid {
   color: var(--text-secondary);
 }
 

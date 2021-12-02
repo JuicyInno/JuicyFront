@@ -193,13 +193,11 @@
 
 .rf-button--light:hover,
 .rf-button--light:focus-visible {
-  background-color: var(--basic-primary-light);
-  color: var(--text-static-white);
+  color: var(--basic-hover);
 }
 
 .rf-button--light:active {
-  background-color: var(--basic-press);
-  color: var(--text-static-white);
+  color: var(--basic-press);
 }
 
 .rf-button--light:disabled {
@@ -260,6 +258,8 @@
 // Icon
 
 .rf-button--iconFill,
+.rf-button--icon-round,
+.rf-button--icon-round-active,
 .rf-button--icon {
   &.rf-button--s {
     padding: 0;
@@ -309,6 +309,35 @@
 .rf-button--iconFill:active {
   background-color: var(--basic-primary);
   color: var(--background-primary);
+}
+
+// Icon Round
+
+.rf-button--icon-round {
+  border-radius: 48px;
+  background-color: var(--background-secondary);
+}
+
+.rf-button--icon-round-active {
+  border-radius: 48px;
+  background-color: var(--basic-primary);
+  color: var(--text-static-white);
+}
+
+.rf-button--icon-round:hover,
+.rf-button--icon-round:focus-visible {
+  background-color: var(--background-tertiary);
+  color: var(--basic-hover);
+}
+
+.rf-button--icon-round:active {
+  background-color: var(--background-tertiary-hover);
+  color: var(--basic-press);
+}
+
+.rf-button--icon-round:disabled {
+  background-color: var(--background-secondary);
+  color: var(--text-tertiary);
 }
 
 // Text
@@ -420,7 +449,7 @@
 // Danger
 
 .rf-button--danger {
-  background-color: var(--background-danger);
+  background-color: var(--special-softRed);
   color: var(--status-danger);
 }
 
@@ -438,8 +467,57 @@
   color: var(--text-static-white);
 }
 
+// Success
+
+.rf-button--success {
+  background-color: var(--special-softGreen);
+  color: var(--status-success);
+}
+
+.rf-button--success:hover,
+.rf-button--success:focus-visible {
+  color: var(--status-success-hover);
+}
+
+.rf-button--success:active {
+  color: var(--status-success-press);
+}
+
+.rf-button--success:disabled {
+  background-color: var(--basic-disable);
+  color: var(--text-static-white);
+}
+
+// Round Button
+
 .rf-button--round {
-  border-radius: 50%;
+  border-radius: 48px;
+  background-color: var(--background-secondary);
+  color: var(--text-secondary);
+}
+
+.rf-button--round-active {
+  border-radius: 48px;
+  background-color: var(--basic-primary);
+  color: var(--text-static-white);
+}
+
+.rf-button--round-loading {
+  color: var(--basic-primary);
+}
+
+.rf-button--round:hover,
+.rf-button--round:focus-visible {
+  background-color: var(--background-tertiary);
+}
+
+.rf-button--round:active {
+  background-color: var(--background-tertiary-hover);
+}
+
+.rf-button--round:disabled {
+  background-color: var(--background-secondary);
+  color: var(--text-tertiary);
 }
 
 // White
@@ -447,18 +525,20 @@
 .rf-button--white {
   background-color: var(--background-primary);
   color: var(--basic-primary);
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+  box-shadow: 0px 2px 4px rgba(138, 150, 168, 0.4), 0px -2px 2px rgba(138, 150, 168, 0.08);
 }
 
 .rf-button--white:hover,
 .rf-button--white:focus-visible {
-  background-color: var(--background-primary);
+  color: var(--basic-hover);
+  box-shadow: 0px 8px 16px rgba(138, 150, 168, 0.4), 0px -2px 8px rgba(138, 150, 168, 0.08);
 }
 
 .rf-button--white:active {
-  background-color: var(--background-primary);
+  color: var(--basic-press);
+  box-shadow: 0px 2px 4px rgba(138, 150, 168, 0.4), 0px -2px 2px rgba(138, 150, 168, 0.08);
 }
 
 .rf-button--white:disabled {
-  background-color: var(--basic-disable);
+  color: var(--text-tertiary);
 }

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Avatar.scss';
-import { Size } from '../../../types';
+import {
+  AvatarColor, Size, IIconProps
+} from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
+import { classnames } from '../../../utils/classnames';
 
 export interface IAvatarProps {
   size?: Size;
@@ -9,10 +12,19 @@ export interface IAvatarProps {
   photo?: string;
   /** Фамилия и Имя */
   fullName?: string;
+  /** Цвет фона аватара */
+  backgroundColor?: AvatarColor;
+  /** Иконка */
+  icon?: (props: IIconProps) => JSX.Element;
 }
 
-const Avatar: React.FC<IAvatarProps> = ({ size = 'm', photo = '', fullName = '' }: IAvatarProps) => {
-
+const Avatar: React.FC<IAvatarProps> = ({
+  size = 'm',
+  photo = '',
+  fullName = '',
+  backgroundColor = 'default',
+  icon: Icon
+}: IAvatarProps) => {
   const [initials, setInitials] = useState<string>('');
 
   const isSapUrl: boolean = photo?.slice(0, 4) === '/sap';
@@ -33,14 +45,25 @@ const Avatar: React.FC<IAvatarProps> = ({ size = 'm', photo = '', fullName = '' 
       const [f, s]: string[] = fullName.split(' ');
       let text = '';
       f && (text = f.charAt(0).toUpperCase());
-      s && (text += s.charAt(0).toUpperCase());
+
+      // при размере xxs и xs оставляем только одну букву инициалов
+      if (size !== 'xxs' && size !== 'xs') {
+        s && (text += s.charAt(0).toUpperCase());
+      }
+
       setInitials(text);
     }
   }, [fullName]);
 
   return (
-    <div className={`rf-avatar ${sizeClass[size]}`} style={{ backgroundImage: `url("${photo}")`, }}>
-      {!photo && initials}
+    <div
+      className={classnames('rf-avatar', sizeClass[size], `rf-avatar__background_${backgroundColor}`)}
+      style={{ backgroundImage: `url("${photo}")`, }}
+    >
+      {Icon ?
+        <div className='rf-avatar__icon-wrapper'><Icon className={classnames('rf-avatar__icon', sizeClass[size])} /></div> :
+        !photo && initials
+      }
     </div>
   );
 };

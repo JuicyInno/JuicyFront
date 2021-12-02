@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-Light/VTBGroupUI-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-SemiBold/VTBGroupUI-SemiBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VTB Group UI';
+    src: url('../../node_modules/@openvtb/fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+html, body {
+    font-family: 'VTB Group UI', Arial, sans-serif;
+}

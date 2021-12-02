@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // =========================================================================
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
     ],
     modules: [__dirname, 'node_modules']
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   module: {
     rules: [
       {
@@ -62,26 +63,7 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.(svg)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: { name: 'assets/svg/[name].[ext]' }
-      //     }
-      //   ]
-      // },
 
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-        options: { name: 'assets/fonts/[name].[ext]' }
-      },
-      {
-        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-        options: { name: 'assets/fonts/[name].[ext]' }
-      }
     ]
   },
   node: { fs: 'empty' },
@@ -94,5 +76,11 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     writeToDisk: true
-  }
+  },
+  optimization: {
+    minimize: true
+  },
+  plugins: [
+    // new BundleAnalyzerPlugin(),
+  ]
 };

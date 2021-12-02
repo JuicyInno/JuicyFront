@@ -129,7 +129,6 @@
 
 @mixin text-s-14-bold {
   @include text-s-14;
-  font-weight: 500;
 }
 
 // Кнопки
@@ -160,6 +159,13 @@
   min-width: $r;
   min-height: $r;
   border-radius: 50%;
+}
+
+@mixin square($l) {
+  width: $l;
+  height: $l;
+  min-width: $l;
+  min-height: $l;
 }
 
 @mixin clearfix() {

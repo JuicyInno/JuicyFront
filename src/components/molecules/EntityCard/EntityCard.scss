@@ -1,0 +1,84 @@
+@import "../../../styles/mixins";
+
+.rf-entity-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.rf-entity-card__wrapper {
+  display: flex;
+  padding: 12px 16px 12px 12px;
+  width: 100%;
+  background: var(--background-secondary);
+  border-radius: 12px;
+}
+
+.rf-entity-card__photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.rf-entity-card__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  .rf-entity-card__row:first-child {
+    margin-bottom: 4px;
+  }
+}
+
+.rf-entity-card__row {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.rf-entity-card__full-name {
+  @include text-m-16();
+  font-weight: bold;
+}
+
+.rf-entity-card__role {
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.rf-entity-card__additional {
+  @include text-m-16();
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.rf-entity-card__accent {
+  margin-right: 12px;
+  color: var(--text-primary);
+}
+
+.rf-entity-card__accent_number {
+  margin-right: 8px;
+}
+
+.rf-entity-card__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--basic-tertiary);
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.rf-entity-card__tooltip-text {
+  display: block;
+  white-space:nowrap;
+}
+
+.rf-entity-card__toast-text {
+  @include text-xs-14();
+  color: var(--text-secondary);
+}

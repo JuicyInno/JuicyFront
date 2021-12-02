@@ -14,7 +14,12 @@ export type ButtonType =
   | 'secondary'
   | 'ghost'
   | 'danger'
+  | 'success'
+  | 'round'
+  | 'round-active'
   | 'icon'
+  | 'icon-round'
+  | 'icon-round-active'
   | 'iconFill'
   | 'text'
   | 'white';
@@ -97,7 +102,12 @@ const Button: FC<IButtonProps> = ({
           </div>
         )}
       </div>
-      {!!preloader && <Preloader size={getPreloaderSize()} variant='inherit' />}
+      {!!preloader &&
+      <Preloader
+        className={classnames(buttonType === 'round' && 'rf-button--round-loading')}
+        size={getPreloaderSize()}
+        variant='inherit'
+      />}
     </button>
   );
 };

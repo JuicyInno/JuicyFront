@@ -7,6 +7,7 @@ import StoryRow from '../../storybook/StoryRow';
 import {
   StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
+import { initialFiles } from '../../../utils/helpers';
 import { variants } from '../../../types';
 
 export default {
@@ -28,16 +29,6 @@ export default {
   }
 };
 
-const initialFiles = [
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  },
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  }
-];
 const comment = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. ' +
     'Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, ' +
     'а также реальное распределение букв и пробелов в абзацах, которо';
