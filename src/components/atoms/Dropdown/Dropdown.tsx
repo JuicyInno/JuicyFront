@@ -46,7 +46,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
   portal,
   anchorElement,
   position = 'left',
-  maxWidth,
+  maxWidth = '100%',
   onClose
 }: IDropdownProps) => {
 
