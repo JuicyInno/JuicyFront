@@ -46,13 +46,25 @@ const Dropdown: React.FC<IDropdownProps> = ({
   portal,
   anchorElement,
   position = 'left',
-  maxWidth = '100%',
+  maxWidth,
   onClose
 }: IDropdownProps) => {
 
   const relativeBlock = relativeElement || (portal ? document.documentElement : document.body);
   const contentRef = useRef<HTMLDivElement>(null);
   const [currentPosition, setCurrentPosition] = useState<DropdownPosition>(position);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const [dropdownWidth, setDropdownWidth] = useState<string>('100%');
+
+  useLayoutEffect(() => {
+    if (!toggleRef.current) {
+      return;
+    }
+
+    setDropdownWidth(`${toggleRef.current.offsetWidth}px`);
+  });
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -245,7 +257,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
       className={classnames('rf-dropdown__content', show && 'rf-dropdown__content--show', portal && 'rf-dropdown__content--portal')}
       style={{
         ...coordinates,
-        maxWidth
+        maxWidth: maxWidth || dropdownWidth
       }}
       data-testid='rf-dropdown-content'
       ref={contentRef}>
