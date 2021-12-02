@@ -308,16 +308,18 @@ const Select: FC<ISelectProps> = ({
         { closeButton }
         { chevronButton }
       </div>
-      <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal}
-        maxWidth={maxWidth}>
-        <div className='rf-select__list' onScroll={onListScroll}>
-          { preloader ? (
-            <div className='rf-select__list-preloader'>
-              <Preloader size='m'/>
-            </div>
-          ) : listJSX }
-        </div>
-      </Dropdown>
+      { (preloader || listJSX.length > 0) &&
+        <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onClose} position={position} portal={portal}
+          maxWidth={maxWidth}>
+          <div className='rf-select__list' onScroll={onListScroll}>
+            { preloader ? (
+              <div className='rf-select__list-preloader'>
+                <Preloader size='m'/>
+              </div>
+            ) : listJSX }
+          </div>
+        </Dropdown>
+      }
       {/* filteredOptions.length > 0*/}
       { tagsJSX }
     </div>
