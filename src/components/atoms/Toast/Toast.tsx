@@ -6,16 +6,24 @@ import { createPortal } from 'react-dom';
 import './Toast.scss';
 
 export interface IProps {
+  /** Содержимое toast */
   children: ReactNode;
+  /** Поаказать toast */
   isVisible: boolean;
+  /**
+   * Длитиельность показа в мс
+   * @default 2000
+   *  */
+  duration?: number
+  /** Функция отображения toast */
   setVisibility: (mode: boolean) => void;
 }
 
-const Toast: FC<IProps> = ({ children, isVisible, setVisibility }) => {
+const Toast: FC<IProps> = ({ children, isVisible, setVisibility, duration = 2000 }) => {
   useEffect(() => {
     setTimeout(() => {
       setVisibility(false);
-    }, 2000);
+    }, duration);
 
   }, [isVisible]);
 
