@@ -12,7 +12,7 @@ import StoryItem from '../../storybook/StoryItem';
 
 
 export default {
-  title: 'popovers/with tests/Toast',
+  title: 'popovers/withTest/Toast',
   component: Toast,
   decorators: [withDesign],
   argTypes: {
@@ -36,6 +36,10 @@ export const Demo: Story = (props: any) => {
         </Toast>
         <Button onClick={() => setIsVisible(true)}>Показать уведомление</Button>
       </StoryItem>
+      <StoryItem>
+
+
+      </StoryItem>
     </StoryDocs>
   );
 };
@@ -48,12 +52,12 @@ Demo.parameters = {
 };
 
 
-export const Playground: Story = () => {
+export const Playground: Story = (props: any) => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <StoryContainer>
       <StoryRow>
-        <Toast isVisible={isVisible} setVisibility={setIsVisible} >
+        <Toast {...props} isVisible={isVisible} setVisibility={setIsVisible} >
           <p>Текст уведомления</p>
         </Toast>
         <Button onClick={() => setIsVisible(true)}>Показать уведомление</Button>
