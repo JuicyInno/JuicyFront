@@ -20,8 +20,8 @@ describe('Test <Menu /> component', () => {
 
     expect(container.getElementsByClassName('menu-content-children')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-menu')).toHaveLength(1);
-    expect(container.getElementsByClassName('rf-list')).toHaveLength(1);
-    expect(getByTestId(container, 'rf-dropdown-content')).toHaveStyle('max-width: 320px');
+    expect(screen.getByTestId('rf-list')).toBeInTheDocument();
+    expect(screen.getByTestId('rf-dropdown-content')).toHaveStyle('max-width: 320px');
   });
 
   it('should be render with content', () => {
@@ -53,7 +53,7 @@ describe('Test <Menu /> component', () => {
   });
 
   it('should have width of 500px', () => {
-    const { container } = render(
+    render(
       <BrowserRouter>
         <Menu content={<>content</>} maxWidth='500px' className='menu-class-name'>
           <Button buttonType='secondary' className='menu-content-children'>
@@ -63,6 +63,6 @@ describe('Test <Menu /> component', () => {
       </BrowserRouter>
     );
 
-    expect(getByTestId(container, 'rf-dropdown-content')).toHaveStyle('max-width: 500px');
+    expect(screen.getByTestId('rf-dropdown-content')).toHaveStyle('max-width: 500px');
   });
 });

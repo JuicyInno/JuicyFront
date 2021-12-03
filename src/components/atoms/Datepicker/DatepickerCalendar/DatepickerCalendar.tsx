@@ -442,6 +442,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
 
     return (
       <Tooltip
+        portal
         background={tooltipBackground}
         className='rf-datepicker-calendar__tooltip'
       >

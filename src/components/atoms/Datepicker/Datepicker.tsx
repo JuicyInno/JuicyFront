@@ -16,7 +16,6 @@ import Cross from '../../../assets/icons/Cross';
 import { DropdownPosition } from '../../../types';
 import Dropdown from '../Dropdown';
 
-
 export interface IDatepickerProps {
   /** Имя поля */
   name?: string;
@@ -57,10 +56,7 @@ export interface IDatepickerProps {
    */
   filled?: boolean;
   /** Цвет tooltip */
-
   tooltipBackground?: 'default' | 'white'
-  /** Использовать портал */
-  portal?: boolean;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -83,8 +79,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   disableWeekDays = [0, 6],
   children,
   tooltipBackground = 'default',
-  portal = false
-
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -404,7 +398,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           )
         }
       </div>
-      <Dropdown show={showCalendar} toggleRef={inputRef} onClose={onClose} portal={portal} position={position}>
+
+      <Dropdown show={showCalendar} toggleRef={inputRef} onClose={onClose} portal position={position} maxWidth='auto'>
         <DatepickerCalendar
           value={inputValue}
           minDate={minDate}
