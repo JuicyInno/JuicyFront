@@ -84,7 +84,7 @@ const List: React.FC<IListProps> = ({ list, tooltipBackground = 'default' }: ILi
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  return <ul className='rf-list'>{listElementJSX}</ul>;
+  return <ul className='rf-list' data-testid='rf-list'>{listElementJSX}</ul>;
 };
 
 export default List;

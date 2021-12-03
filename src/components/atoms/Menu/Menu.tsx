@@ -23,11 +23,6 @@ export interface IListProps {
   position?: ListPosition;
   /** Блок, относительно которого выравнивается меню */
   relativeBlock?: HTMLElement;
-  /**
-   * Позиционировать меню через портал.
-   * Убедитесь что `relativeBlock` имеет `position` `relative` или `absolute`.
-   */
-  portal?: boolean;
   /** Меню будет отображено рядом с указанным элементом вместо тоггла */
   anchorElement?: HTMLElement | null;
   /** Максимальная ширина меню
@@ -49,7 +44,6 @@ const Menu: React.FC<IListProps> = ({
   content,
   position = 'left',
   className = '',
-  portal,
   anchorElement,
   maxWidth = '320px',
   ...props
@@ -89,8 +83,16 @@ const Menu: React.FC<IListProps> = ({
           { children }
         </div>
 
-        <Dropdown show={ show } toggleRef={ toggleRef } portal={ portal } anchorElement={ anchorElement }
-          position={ position } relativeElement={ props.relativeBlock } maxWidth={ maxWidth } onClose={onClose}>
+        <Dropdown
+          show={ show }
+          toggleRef={ toggleRef }
+          anchorElement={ anchorElement }
+          position={ position }
+          relativeElement={ props.relativeBlock }
+          maxWidth={ maxWidth }
+          onClose={onClose}
+          portal
+        >
           { content ? content : list && list.length > 0 && <List list={ list }/> }
         </Dropdown>
       </div>

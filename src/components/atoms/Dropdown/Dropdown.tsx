@@ -1,4 +1,6 @@
-import React, { ReactNode, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+  ReactNode, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState
+} from 'react';
 import './Dropdown.scss';
 import { classnames } from '../../../utils/classnames';
 import { createPortal } from 'react-dom';
@@ -82,19 +84,19 @@ const Dropdown: React.FC<IDropdownProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const clearCoordinates = useCallback((): ICoordinates => {
-    return currentPosition === 'left'
-      ? {
-          top: '-99999px',
-          bottom: 'auto',
-          left: '0',
-          right: 'auto',
-        }
-      : {
-          top: '-99999px',
-          bottom: 'auto',
-          left: 'auto',
-          right: '0',
-        };
+    return currentPosition === 'left' ?
+      {
+        top: '-99999px',
+        bottom: 'auto',
+        left: '0',
+        right: 'auto',
+      } :
+      {
+        top: '-99999px',
+        bottom: 'auto',
+        left: 'auto',
+        right: '0',
+      };
   }, [currentPosition]);
 
   const [coordinates, setCoordinates] = useState<ICoordinates>(clearCoordinates());
@@ -221,15 +223,30 @@ const Dropdown: React.FC<IDropdownProps> = ({
     window.addEventListener('scroll', handlePosition);
 
     return () => window.removeEventListener('scroll', handlePosition);
-  }, [currentPosition, portal, position, show]);
+  }, [
+    currentPosition,
+    portal,
+    position,
+    show
+  ]);
 
   useEffect(() => {
     rearrangePosition();
-  }, [currentPosition, portal, position, show]);
+  }, [
+    currentPosition,
+    portal,
+    position,
+    show
+  ]);
 
   useLayoutEffect(() => {
     handlePosition();
-  }, [show, anchorElement, portal, position]);
+  }, [
+    show,
+    anchorElement,
+    portal,
+    position
+  ]);
 
   const dropdownJSX = (
     <div
