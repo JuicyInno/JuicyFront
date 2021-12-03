@@ -6,7 +6,9 @@ import './Select.scss';
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
 
-import { ChevronDown, Close, Preloader } from '../../../index';
+import {
+  ChevronDown, Close, Preloader
+} from '../../../index';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
@@ -57,10 +59,6 @@ export interface ISelectProps {
   infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
   /** Расположение */
   position?: DropdownPosition;
-  /** Использовать портал
-   * @default false
-   */
-  portal?: boolean;
   /** Ширина */
   maxWidth?: number | string;
 }
@@ -84,7 +82,6 @@ const Select: FC<ISelectProps> = ({
   isAsync,
   infinityScrollProps,
   position = 'left',
-  portal = false,
   maxWidth,
 }: ISelectProps) => {
   const [showDropdown, toggleDropdown] = useState(false);
@@ -316,9 +313,10 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const isTagVariant = variant === 'tag';
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
   const multiselectClass = multiselect ? 'rf-select--multi' : '';
-  const tagClass = variant === 'tag' ? 'rf-select__wrapper--tag' : '';
+  const tagClass = isTagVariant ? 'rf-select__wrapper--tag' : '';
 
   const loader = (
     <div className='rf-select__preloader'>
@@ -355,8 +353,8 @@ const Select: FC<ISelectProps> = ({
         toggleRef={toggleRef}
         onClose={onClose}
         position={position}
-        portal={portal}
-        maxWidth={maxWidth}
+        portal
+        maxWidth={isTagVariant ? 'auto' : maxWidth}
       >
         <div className='rf-select__list' id='rf-select-list-scroll'>
           {hasInfinityScroll ? (
