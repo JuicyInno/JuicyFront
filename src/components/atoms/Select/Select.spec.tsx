@@ -3,6 +3,5 @@ import React from 'react';
 import Select from './Select';
 
 describe('Test <Select/> component', () => {
-  it('should render select', () => {
-  });
+  it('should render select', () => {});
 });
