@@ -117,7 +117,7 @@ const History: React.FC<IHistory> = ({
           )}
         </div>
 
-        <div className='rf-history__details'>
+        <div className={`rf-history__details ${i === path.length - 1 && 'rf-history__details--last'}`}>
           <div className='rf-history__details-user-name'>
             {/** При user.length > 1 вместо имени пользователя необходимо ставить значение поля agentName,
              * которое означает группу людей в массиве user (напр., этот шаг будет согласован бухгалтерией),
