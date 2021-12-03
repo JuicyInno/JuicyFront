@@ -48,6 +48,10 @@
   width: 100%;
 }
 
+.rf-history__details:last-of-type {
+  margin-bottom: 15px;
+}
+
 .rf-history__details-user-name {
   display: flex;
   min-height: 8px;
@@ -65,20 +69,22 @@
 }
 
 .rf-history__details-date {
+  margin-top: 4px;
   @include text-l-16;
-  line-height: 28px;
+  line-height: 24px;
   color: var(--basic-tertiary);
 }
 
 .rf-history__details-info {
+  margin-top: 4px;
   @include text-m-16();
   color: var(--basic-tertiary);
-  line-height: 28px;
+  line-height: 24px;
 }
 
 .rf-history__details-comment {
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 12px;
   background: var(--background-secondary);
   border-radius: 4px 22px 22px 22px;
@@ -129,7 +135,7 @@
 }
 
 .rf-history__status-wrapper {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .rf-history__details-comment-wrapper {
@@ -151,7 +157,7 @@
 .rf-history__attachments-title {
   @include text-m-16();
   color: var(--basic-tertiary);
-  margin-top: 16px;
+  margin-top: 18px;
 }
 
 .rf-history__attachments-container {
