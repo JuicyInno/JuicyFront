@@ -20,7 +20,8 @@ export const timepicker = () => {
   return (
     <Story name='Timepicker' height={600}>
       <StoryItem description='Выбор времени'>
-        <form>        <Timepicker name='timepicker' initialValue={s} min='12:30' max='20:15' />
+        <form>
+          <Timepicker name='timepicker' initialValue={s} min='12:30' max='20:15' />
         </form>
       </StoryItem>
 

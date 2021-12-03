@@ -8,7 +8,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryCol from '../../storybook/StoryCol';
 import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
-
+/* eslint-disable max-len */
 export default {
   title: 'popovers/withTest/Modal',
   component: Modal,
@@ -83,7 +83,7 @@ export const Playground: Story = (args) => {
     </StoryContainer>
   );
 };
-
+/* eslint-disable max-len */
 Demo.parameters = {
   design: {
     type: 'figma',

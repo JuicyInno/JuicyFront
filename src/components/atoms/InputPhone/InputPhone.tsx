@@ -116,7 +116,6 @@ const InputPhone: React.FC<IInputPhoneProps> =
           data-testid='input-display'
           startAdornment={
             <Menu
-              portal
               anchorElement={inputElement}
               content={
                 countries.length > 1 && <MenuContext.Consumer>

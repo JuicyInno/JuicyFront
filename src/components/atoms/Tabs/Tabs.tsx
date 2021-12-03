@@ -24,13 +24,21 @@ import { KebabMenu } from '../../..';
 export interface ITabsProps {
   /** Список вкладок */
   list: ITab[];
-  /** Показывать линию под табами */
+  /**
+   * @default true
+   * Показывать линию под табами
+   * */
   showLine?: boolean;
+  /**
+   * Показывать меню если табы не вмещаются в контейре
+   * @default true
+  */
+  showMenu?: boolean;
   /** Если во вкладках есть url, то через children пробрасывается <Router/> */
   children?: ReactNode | ReactNode[];
 }
 
-const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsProps) => {
+const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, children }: ITabsProps) => {
   const history = useHistory();
   const { pathname } = useLocation();
   /** Ссылки на вкладки */
@@ -46,7 +54,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
   /** Устанавливаем индекс последнего видимого таба */
   const onResize = useCallback((width: number | undefined) => {
     handleLastVisibleIndex(width);
-  }, []);
+  }, [showMenu]);
 
   const { ref } = useResizeDetector<HTMLDivElement>({
     onResize,
@@ -55,9 +63,19 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
   });
 
   useEffect(() => {
+    if (!showMenu) {
+      lastVisibleInexRef.current = list.length - 1;
+    }
+  }, [showMenu]);
+
+  useEffect(() => {
     setActive((i: number) => {
       const index = list.findIndex((t: ITab) => {
-        return isRouting ? t.url === pathname : t.active;
+        if (isRouting && t.url) {
+          return t.exact ? t.url === pathname : pathname.includes(t.url);
+        }
+
+        return t.active;
       });
 
       return index >= 0 && !list[index].disabled ? index : i;
@@ -71,23 +89,40 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
 
   /** Получаем индекс последнего видимого таба */
   const handleLastVisibleIndex = (width = 0) => {
-    const MENU_WIDTH = 50;
-    let visibleWidth = MENU_WIDTH;
+    if (!showMenu) {
+      return;
+    }
+
+    const MENU_WIDTH = 48;
+    const hasHiddenIndex = lastVisibleInexRef.current < list.length - 1;
     let visibleIndex = lastVisibleInexRef.current;
+    let visibleWidth = hasHiddenIndex ? MENU_WIDTH : 0;
 
     for (let index = 0; index < list.length; index++) {
       if (refs.current?.[index]?.current) {
-        visibleWidth += getWidthTab(refs.current[index].current);
-      }
-
-      if (visibleWidth >= width) {
-        break;
+        if (width > visibleWidth + getWidthTab(refs.current[index].current)) {
+          visibleWidth += getWidthTab(refs.current[index].current);
+        } else {
+          break;
+        }
       }
 
       visibleIndex = index;
     }
 
     lastVisibleInexRef.current = visibleIndex;
+
+    /** Определяем показывать ли следующий скрытый таб */
+    if (hasHiddenIndex) {
+      const nextIndex = lastVisibleInexRef.current + 1;
+      const isLastIndex = nextIndex === refs.current.length - 1;
+      const nextWidth = getWidthTab(refs.current?.[nextIndex]?.current);
+
+      if (visibleWidth + nextWidth - (isLastIndex ? MENU_WIDTH : 0) <= width) {
+        visibleWidth += isLastIndex ? nextWidth : nextWidth + MENU_WIDTH;
+        lastVisibleInexRef.current = nextIndex;
+      }
+    }
   };
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -200,7 +235,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, children }: ITabsPr
   return (
     <div className={'rf-tabs rf-tabs--buttons'} ref={ref}>
       <nav className={classnames('rf-tabs__navigation', showLine && 'rf-tabs__navigation__line')}>
-        <div className='rf-tabs__navigation-list'>
+        <div className={classnames('rf-tabs__navigation-list', !showMenu && 'rf-tabs__navigation-list--without-menu')}>
           {nav}
 
           {hasMenuNav && (

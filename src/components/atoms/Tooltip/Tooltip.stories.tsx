@@ -1,59 +1,75 @@
 import React from 'react';
 import Tooltip from './Tooltip';
 import Button from '../Button';
-import Story from '../../storybook/Story';
+import StoryContainer from '../../storybook/Story';
+import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
-import StoryCol from '../../storybook/StoryCol';
 import StoryItem from '../../storybook/StoryItem';
+import { withDesign } from 'storybook-addon-designs';
+import {
+  StoryDocs, StoryDocsDescription, StoryDocsH1
+} from '../../storybook';
+import { IBadgeProps } from '../Badge/Badge';
 
 export default {
   title: 'popovers/не проверено/Tooltip',
-  component: Tooltip
+  component: Tooltip,
+  decorators: [withDesign],
+  argTypes: {
+    background: {
+      options: ['default', 'white'],
+      control: { type: 'select' },
+      defaultValue: 'default'
+    },
+    position: {
+      options: [
+        'top',
+        'right',
+        'bottom',
+        'left'
+      ],
+      control: { type: 'select' },
+      defaultValue: 'right'
+    }
+  }
 };
 
-export const tooltip = () => {
+export const Demo: Story = (props: any) => {
   return (
-    <Story name='Tooltip (Подсказка)'>
-      <StoryItem description='Подсказка при наведении на элемент.'>
-        <StoryRow>
-          <StoryCol>
-            <Tooltip background='white'>
-              <Button onClick={() => console.log('awdawdw')}>Hover me 2</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
-
-          <StoryCol>
-            <Tooltip position='left'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
-        </StoryRow>
-
-        <StoryRow>
-          <StoryCol>
-            <Tooltip position='bottom'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
-
-          <StoryCol>
-            <Tooltip position='top'>
-              <Button>Hover me</Button>
-              <div>Tooltip text</div>
-            </Tooltip>
-          </StoryCol>
-        </StoryRow>
-      </StoryItem>
-
-      <StoryItem description='В некоторых случаях подсказку нужно отображать на уровне body. Для этого существует свойство portal.'>
-        <Tooltip portal>
-          <Button>Hover me</Button>
-          <div>Эта подсказка лежит в body </div>
+    <StoryDocs>
+      <StoryDocsH1>Tooltip</StoryDocsH1>
+      <StoryDocsDescription>Компонент tooltip</StoryDocsDescription>
+      <StoryItem subtitle={`${props.position} ${props.background} tooltip `}>
+        <Tooltip {...props} >
+          <Button>
+            Button
+          </Button>
+          <div>Tooltip</div>
         </Tooltip>
       </StoryItem>
-    </Story>
+    </StoryDocs>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15742',
+  },
+};
+
+
+export const Playground: Story = (args: IBadgeProps) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Tooltip {...args}>
+          <Button>
+            Button
+          </Button>
+          <div>Tooltip</div>
+        </Tooltip>
+      </StoryRow>
+    </StoryContainer>
   );
 };

@@ -44,4 +44,24 @@ describe('Test <FormGroup/> component', () => {
 
     expect(container.getElementsByClassName('class-name')).toHaveLength(1);
   });
+
+  it('should be valid errorMessage', () => {
+    const { container } = render(
+      <FormGroup invalid={false} errorMessage='message'>
+        Content
+      </FormGroup>
+    );
+
+    expect(container.getElementsByClassName('rf-form-group__message_no-invalid')).toHaveLength(1);
+  });
+
+  it('should be invalidLabelSecondary', () => {
+    const { container } = render(
+      <FormGroup invalidLabelSecondary labelSecondary='labelSecondary' label='label'>
+        Content
+      </FormGroup>
+    );
+
+    expect(container.getElementsByClassName('rf-form-group__message_no_invalidd')).toHaveLength(1);
+  });
 });

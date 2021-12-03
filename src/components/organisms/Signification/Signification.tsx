@@ -14,6 +14,8 @@ import ContentExpander from '../../molecules/ContentExpander';
 import { Certificate } from 'crypto-pro';
 import Download from '../../../assets/icons/Download';
 import { IFileData } from '../../../types';
+import { classnames } from '../../../utils/classnames';
+import { ITileProps } from '../../atoms/Tile/Tile';
 
 
 export type TButtons = 'sign'|'manual'|'reject'|'rejectManual'
@@ -32,12 +34,12 @@ export interface ISignifyCallback{
 const buttonNamesDefault:ICustomTexts = {
   manual: 'Подписать вручную',
   reject: 'Отклонить ЭДО',
-  sign: 'Подписать ЭЦП (цифровая подпись)',
+  sign: 'Подписать электронной подписью',
   rejectManual: 'Отклонить'
 };
 
 
-export interface IProps{
+export interface IProps extends Pick<ITileProps, 'variant'> {
   /** Изначальный файл*/
   data:IRequestAttachment
   /** Дополнительные данные о документе*/
@@ -57,7 +59,7 @@ export interface IProps{
   /** кастомные названия кнопок */
   buttonCustomTexts?:ICustomTexts
   /** ссылка на pdf если надо открыть в отдельном окне */
-  pdfUrl?:string
+  pdfUrl?: string
 }
 
 
@@ -69,7 +71,7 @@ const Signification:FC<IProps> = ({
   isSpoiler = true,
   isOpenSpoiler = false,
   documentInfo,
-
+  variant = 'default',
   hideButtons = [],
   buttonCustomTexts = {},
   filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
@@ -108,7 +110,7 @@ const Signification:FC<IProps> = ({
   useEffect(() => {
     data && setValue(data);
   }, [data]);
-  // =======================================================================================================================================
+  // ===================================================================================================================
 
   const successHandle = (result: ICertResult) => {
     onSignify({
@@ -122,13 +124,13 @@ const Signification:FC<IProps> = ({
     setFinalStage('auto');
     setOpenContent(false);
   };
+  //* ************************************************
   const refuseHandle = (result: ICertResult) => {
-
     setCurrentCert(result.cert);
     setRefusePopup(result);
   };
+  //* ************************************************
   const refuseHandlePopupSuccess = (comment = '') => {
-
     setComment(comment);
     setFinalStage('reject');
     setOpenContent(false);
@@ -139,17 +141,18 @@ const Signification:FC<IProps> = ({
       comment,
       currentCert
     });
-
   };
+  //* ************************************************
   const refuseHandlePopupFail = () => {
     setCurrentCert(undefined);
     setRefusePopup(undefined);
   };
-
+  //* ************************************************
   const errorHandle = (e:Error) => {
     !~e.message.toLowerCase().indexOf('отменена пользователем') &&
     setCertError(true);
   };
+  //* ************************************************
   const cancelSign = () => {
     setComment('');
     setFinalStage(undefined);
@@ -158,6 +161,7 @@ const Signification:FC<IProps> = ({
     onSignify({ file: initialFile.current });
 
   };
+  //* ************************************************
   const manualSignHandler = () => {
     setFinalStage('manual');
     const file = {
@@ -174,6 +178,7 @@ const Signification:FC<IProps> = ({
     setManualPopup(false);
     setOpenContent(false);
   };
+  //* ************************************************
   const setFileHandler = (file: IFileData[]) => {
     setManualFile({
       fileName: file[0].file.name,
@@ -222,7 +227,7 @@ const Signification:FC<IProps> = ({
   // =======================================================================================================================================
   const manualFileChipTSX = (name:string, onClick:(e:any)=>void) =>
     <div className='manual__chip-wrapper'>
-      <Chip onClick={() => manualFile && download(manualFile, manualFile?.fileName)} size='s' type='outline'>
+      <Chip onClick={() => manualFile && download(manualFile)} size='s' type='outline'>
         <div className='manual__chip-text'>
           {name}
           <div className='manual__chip-button' onClick={onClick}>
@@ -296,7 +301,7 @@ const Signification:FC<IProps> = ({
       </div>
       <div className='manual__hint-wrapper'>
         <Hint button={<Button
-          onClick={() => download(value, value.fileName)}
+          onClick={() => download(value)}
           buttonType='text'
           startAdornment={<Download/>} >Скачать</Button>}
         icon='info'
@@ -342,9 +347,9 @@ const Signification:FC<IProps> = ({
   </>;
 
   return <div className='signification__wrapper'>
-    <Tile>
-      <div className={`signification__title-row ${onlyView ? 'signification__title-row--onlyView' : ''}`}>
-        <Document/>
+    <Tile variant={variant}>
+      <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
+        <Document color1={onlyView ? '#F1F2F4' : undefined}/>
         <div className='signification__title-text'>{title}</div>
       </div>
       {documentInfo && documentInfo}
@@ -357,7 +362,7 @@ const Signification:FC<IProps> = ({
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' && !onlyView ? ' и подписать документ' : ''} `}>
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${!finalStage && !onlyView ? ' и подписать документ' : ''} `}>
             { isOpenContent && expanderContentTSX}
           </ContentExpander>
         </>}

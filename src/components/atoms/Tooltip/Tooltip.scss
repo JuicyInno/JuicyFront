@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-tooltip {
   position: relative;
@@ -21,45 +21,38 @@ $radius: 8px;
 
 .rf-tooltip__inner {
   position: relative;
-  padding: 16px;
+  padding: 12px 16px 12px 16px;
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
   border-radius: $radius;
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-}
+  box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4),0px -2px 4px rgba(138, 150, 168, 0.08);
 
-.rf-tooltip__inner::after {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  display: block;
-  width: 10px;
-  height: 10px;
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-  transform: translate(-50%, -50%) rotate(45deg);
+  .rf-tooltip__content-union--bottom {
+    position: absolute;
+    bottom: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%) rotate(-180deg);
+  }
+  .rf-tooltip__content-union--top {
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%);
+  }
+  .rf-tooltip__content-union--left {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: -7.8px;
+    transform: translate(50%) rotate(-90deg);
+  }
+  .rf-tooltip__content-union--right {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: -8px;
+    transform: translate(-50%) rotate(90deg);
+  }
 }
-
-.rf-tooltip__inner--right::after {
-  top: 50%;
-  left: 0;
-}
-
-.rf-tooltip__inner--left::after {
-  top: 50%;
-  left: 100%;
-}
-
-.rf-tooltip__inner--bottom::after {
-  top: 0;
-  left: 50%;
-}
-
-.rf-tooltip__inner--top::after {
-  top: 100%;
-  left: 50%;
-}
-
 .rf-tooltip__content--default .rf-tooltip__inner,
 .rf-tooltip--default .rf-tooltip__inner {
   background: var(--basic-tertiary);

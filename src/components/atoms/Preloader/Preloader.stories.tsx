@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story } from '@storybook/react';
-
+/* eslint-disable max-len */
 import Preloader from './Preloader';
 import StoryContainer from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';

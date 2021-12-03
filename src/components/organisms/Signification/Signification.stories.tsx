@@ -13,7 +13,7 @@ const file:IRequestAttachment = {
 };
 
 export default {
-  title: 'components/withTest/Подписание документов',
+  title: 'components/withTest/Signification',
   component: Signification,
   decorators: [withDesign],
   argTypes: {
@@ -25,26 +25,6 @@ export default {
 };
 
 
-// /** Изначальный файл*/
-// data:IRequestAttachment
-// /** Дополнительные данные о документе*/
-// documentInfo?:ReactNode
-// /** заголовок*/
-// title?:string
-// /** функция- результат подписания */
-// onSignify?:(result:ISignifyCallback)=>void
-//     /** массив в котором название кнопок для скрытия */
-//     hideButtons?:TButtons[]
-// /** показывать ли спойлер для документа */
-// isSpoiler?:boolean
-// /** открыт или закрыт спойлер для документа */
-// isOpenSpoiler?:boolean
-// /** фильтр сертификатов */
-// filter?: (cert: Certificate) => Promise<boolean>
-// /** кастомные названия кнопок */
-// buttonCustomTexts?:ICustomTexts
-// /** ссылка на pdf если надо открыть в отдельном окне */
-// pdfUrl?:string
 const response = (data:ISignifyCallback) => {
   console.warn('!!!response:', data);
 };
@@ -62,7 +42,7 @@ export const Demo = () => {
           onSignify={response}
           isSpoiler={false}
           hideButtons={['reject']}
-          buttonCustomTexts={{ sign: 'котик приложи лапку' }}
+          buttonCustomTexts={{ sign: 'тут может быть любой текст' }}
           data={file}
           pdfUrl={'yandex.ru'}
           title='Приказ №384848483 от 30.08.2021'/>
@@ -94,12 +74,29 @@ export const Demo = () => {
           title='Счет №SVTB2060_22 от 30.08.2021' />
       </StoryItem>
     </Story>
+    <Story name='Вариант карточки без теней'>
+      <StoryItem>
+        <Signification
+          onSignify={response}
+          data={file}
+          hideButtons={[
+            'manual',
+            'sign',
+            'reject',
+            'rejectManual'
+          ]}
+          documentInfo={docInfo}
+          title='Счет №SVTB2060_22 от 30.08.2021'
+          variant='border'
+        />
+      </StoryItem>
+    </Story>
   </div>;
 };
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18118%3A266418'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=15%3A16731'
   },
   actions: { disabled: true },
   controls: { disabled: true }

@@ -1,61 +1,24 @@
 @import "src/styles/mixins";
 
-.status__wrapper {
+.rf-status {
   display: flex;
-  align-items: center;
 }
-
-.status__icon-wrapper {
+.rf-status__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
 
+  background-color: var(--background-primary);
   border-radius: 50%;
 }
 
-.status__text {
-  @include text-s-14();
+.rf-status__wrapper--size-s,
+.rf-status__wrapper--size-m {
+  border: 3px solid var(--background-primary);
 }
 
-.defaultColorBackground {
-  background-color: var(--special-softBlue);
+.rf-status__wrapper--size-l {
+  border: 4px solid var(--background-primary);
 }
 
-.defaultColorSymbol {
-  color: var(--basic-primary);
-}
 
-.warningColorBackground {
-  background-color: var(--special-softYellow);
-}
-
-.warningColorSymbol {
-  color: var(--status-warn);
-}
-
-.errorColorBackground {
-  background-color: var(--special-softRed);
-}
-
-.errorColorSymbol {
-  color: var(--status-danger);
-}
-
-.successColorBackground {
-  background-color: var(--special-softGreen);
-}
-
-.successColorSymbol {
-  color: var(--status-success);
-}
-
-.noneColorBackground {
-  background-color: var(--background-secondary);
-}
-
-.noneColorSymbol {
-  color: var(--text-secondary);
-}

@@ -1,87 +1,66 @@
-import React, {
-  ReactNode, useLayoutEffect, useRef, useState
-} from 'react';
+import React, { ReactNode, useRef } from 'react';
 import './Badge.scss';
-import { Variant } from '../../../types';
+import { BadgeVariant } from '../../../types';
 
 export interface IBadgeProps {
-  children: ReactNode;
+  /** Контент внутри бейджа*/
+  children?: ReactNode;
+  /** Содержимое бейджа*/
   badgeContent?: ReactNode;
+  /** Имя класса*/
   className?: string;
-  variant?: Variant;
+  /**
+   *  Цвет бейджа
+   * @default 'info'
+   */
+  variant?: BadgeVariant;
+  /**
+   *  Максимальное значение символов отображаемое в бэйдж
+   * @default 99
+  */
   max?: number;
-  position?: 'topRight' | 'topLeft' | 'bottomLeft' | 'bottomRight' | 'text';
+  /**
+   * Показать бейдж
+   * @default true
+  */
   display?: boolean;
-  /** Расположить сбоку на одном уровне*/
+  /**
+   * Расположить сбоку на одном уровне
+   * @default false
+  */
   placeNear?: boolean;
+  /**
+   * Размер badge
+   * @default 's'
+  */
+  size?: 's' | 'm';
 }
-
-type Coordinates = { top: number; right: number };
 
 const Badge: React.FC<IBadgeProps> = ({
   badgeContent,
   children,
   className = '',
-  variant = 'blue',
+  variant = 'info',
   max = 99,
-  position = 'topRight',
   display = true,
-  placeNear = false
+  placeNear = false,
+  size = 'm'
 }: IBadgeProps) => {
   const wrapper = useRef<HTMLDivElement>(null);
 
-  const isDot = badgeContent ? '' : 'rf-badge--dot';
-  const [coordinates, setCoordinates] = useState<Coordinates>({
-    top: 0,
-    right: 0
-  });
+  const isDot = badgeContent ? '' : `rf-badge--dot--${size}`;
 
-  useLayoutEffect(() => {
-    if (badgeContent || placeNear) {
-      return;
-    }
 
-    const child = wrapper.current?.firstElementChild;
-
-    if (child) {
-      const w = child.clientWidth;
-
-      const kX = Math.cos(Math.PI / 3);
-      const kY = Math.sin(Math.PI / 3);
-      const badgeR = 4;
-
-      const coordinates: Record<string, Coordinates> = {
-        bottomRight: {
-          top: w / 2 * (kY + 1) - badgeR,
-          right: w / 2 * (1 - kX) - badgeR
-        },
-        bottomLeft: {
-          top: w / 2 * (kY + 1) - badgeR,
-          right: w / 2 * (kX + 1) + badgeR
-        },
-        topLeft: {
-          top: w / 2 * (1 - kY) + badgeR,
-          right: w / 2 * (kX + 1) + badgeR
-        },
-        topRight: {
-          top: w / 2 * (1 - kY) + badgeR,
-          right: w / 2 * (1 - kX) - badgeR
-        }
-      };
-
-      setCoordinates(coordinates[position]);
-    }
-  }, [children, badgeContent]);
   // -------------------------------------------------------------------------------------------------------------------
 
-  const textClass = typeof children === 'string' || position === 'text' ? 'rf-badge--text' : '';
+  const textClass = typeof children === 'string' ? 'rf-badge--text' : '';
   const placeNearClass = placeNear ? 'rf-badge--near' : '';
 
   return (
     <div className={`rf-badge__wrapper ${className} ${placeNearClass}`} ref={wrapper}>
       {children}
       {display &&
-        <div className={`rf-badge rf-badge--${variant} ${isDot} ${textClass}`} style={coordinates}>
+        <div className={`rf-badge badge-size--${size} rf-badge--${variant} ${isDot} ${textClass}`} >
           {badgeContent ? !isNaN(+badgeContent) && +badgeContent > max ? `${max}+` : badgeContent : null}
         </div>
       }

@@ -10,20 +10,25 @@ import {
 } from '../../../types/projects.types';
 import { formatDate } from '../../../utils/helpers';
 import Button from '../../atoms/Button';
-import Status from '../../atoms/Status';
+import StatusWithText from '../../atoms/StatusWithText';
 import Tooltip from '../../atoms/Tooltip';
 import UserPhoto from '../../atoms/UserPhoto';
 import './History.scss';
 import Chip from '../../atoms/Chip';
 
 export interface IProps {
-    history: IRequestPath[];
-    attachments?: IRequestAttachment[];
-    isUZADO?: boolean;
-    host?: string;
+  history: IRequestPath[];
+  attachments?: IRequestAttachment[];
+  isUZADO?: boolean;
+  host?: string;
+  /** Цвет tooltip */
+  tooltipBackground?: 'white' | 'default'
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin }: IProps) => {
+const History: React.FC<IProps> = ({ history,
+  isUZADO, attachments,
+  host = window.location.origin,
+  tooltipBackground = 'white' }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Показать / Скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -96,7 +101,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
               {(r.user && r.user.length === 1 && r.user[0].fullName) || r.agentName}
             </h4>
             {!(r.user && r.user.length < 2) && (
-              <Tooltip background='white'>
+              <Tooltip background={tooltipBackground}>
                 <div className='rf-history__info-wrapper'>
                   <Info width={18} height={18} />
                 </div>
@@ -105,9 +110,13 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
             )}
           </div>
           <div className='rf-history__details-column'>
-            {r.user.length === 1 && (
+            {r.user.length === 1 ? (
               <p className='rf-history__details-info'>
                 {isUZADO ? r.user[0].position : r.activityText}
+              </p>
+            ) : (
+              <p className='rf-history__details-info'>
+                {r.activityText}
               </p>
             )}
 
@@ -118,7 +127,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
             )}
             {!!r.date && (
               <div className='rf-history__status-wrapper'>
-                <Status statusText={r.statusText} criticality={r.criticality}/>
+                <StatusWithText statusText={r.statusText} criticality={r.criticality} />
               </div>
             )}
           </div>
@@ -152,7 +161,14 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
     <div className='rf-history__attachments-container'>
       {attachments?.map(attachment => (
         <div className='rf-history__attachment' key={attachment.fileName + attachment.id}>
-          <Chip type='secondary' size='s' onClick={() => openDownloadLink(attachment.id)}>{attachment.fileName}</Chip>
+          <Chip
+            type='secondary'
+            size='s'
+            onClick={() => openDownloadLink(attachment.id)}
+            maxLength={30}
+            tooltipBackground={tooltipBackground}>
+            {attachment.fileName}
+          </Chip>
         </div>
       ))}
     </div>
@@ -168,7 +184,7 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
         <Button buttonType={'light'} onClick={onExpand}>
           <div className='rf-history__button-wrapper'>
             <div className='rf-history__icon-wrapper'>
-              <ChevronDown className={expanded ? 'rf-history__expanded' : ''}/>
+              <ChevronDown className={expanded ? 'rf-history__expanded' : ''} />
             </div>
             <p>{expanded ? 'Свернуть' : 'Смотреть все'}</p>
           </div>

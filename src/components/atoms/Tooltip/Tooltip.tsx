@@ -4,15 +4,23 @@ import React, {
 import './Tooltip.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
+import { extractTextFromHTML } from '../../../utils/helpers';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { ArrowTooltipIcon } from './ArrowTooltipIcon';
 
-interface ITooltipContentProps {
+export interface ITooltipContentProps {
   rect: DOMRect;
   children: ReactNode | ReactNode[];
   position: TooltipPosition;
   /** Дополнительный класс */
   className?: string;
   portal: boolean;
-  /** Цвет тултипа */
+
+  /**
+   * Цвет тултипа
+   * @default default
+   *
+   */
   background: 'default' | 'white';
 }
 
@@ -89,6 +97,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
     e.stopPropagation();
   };
 
+
   const tooltip = (
     <div
       className='rf-tooltip__content-wrapper'
@@ -98,7 +107,10 @@ const TooltipContent: FC<ITooltipContentProps> = ({ rect, children, position, cl
         [padding[position]]: '8px'
       }}>
       <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
-        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>{children}</div>
+        <div className={`rf-tooltip__inner rf-tooltip__inner--${position}`}>
+          {children}
+          <ArrowTooltipIcon color={background} position={position} />
+        </div>
       </div>
     </div>
   );
@@ -139,6 +151,7 @@ const Tooltip: FC<ITooltipProps> = ({
     setTooltipRect(null);
   }, []);
 
+
   const addListener = (add: boolean) => {
     if (add) {
       window.addEventListener('mousewheel', onScrollElementScroll);
@@ -160,11 +173,20 @@ const Tooltip: FC<ITooltipProps> = ({
     addListener(false);
     setTooltipRect(null);
   };
-
-  const stopPropagation = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  // todo: отключил тк ломало сертификаты
+  const stopPropagation = (_e: React.MouseEvent) => {
+    // e.stopPropagation();
   };
 
+
+  const text: string = useMemo(() => {
+    try {
+      // @ts-ignore
+      return extractTextFromHTML(renderToStaticMarkup(children[1]));
+    } catch {
+      return '';
+    }
+  }, [children[1]]);
   return (
     <div
       className={`rf-tooltip rf-tooltip--${background}`}
@@ -173,11 +195,12 @@ const Tooltip: FC<ITooltipProps> = ({
       onClick={stopPropagation}
       onMouseUp={stopPropagation}>
       {children[0]}
-      {tooltipRect && isVisible && (
+      {tooltipRect && isVisible && text.length > 0 && (
         <TooltipContent className={className} position={position} rect={tooltipRect} portal={portal} background={background}>
           {children[1]}
         </TooltipContent>
       )}
+
     </div>
   );
 };

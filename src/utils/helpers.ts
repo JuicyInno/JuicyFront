@@ -1,7 +1,10 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IFormattedDate, Size } from '../types';
+import {
+  IFileData, IFormattedDate, Size
+} from '../types';
+import { pdfFile } from '../components/molecules/PDFViewer/pdf';
 
 const months = [
   'январь',
@@ -153,12 +156,27 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xxs': 'rf--xxs',
   'xs': 'rf--xs',
   's': 'rf--s',
   'm': 'rf--m',
   'l': 'rf--l',
   'xl': 'rf--xl',
-  'xxl': 'rf--xxl'
+  'xxl': 'rf--xxl',
+  'xxxl': 'rf--xxxl',
+  'xxxxl': 'rf--xxxxl'
+};
+
+export const iconSize: Record<Size, string> = {
+  'xxs': '16',
+  'xs': '24',
+  's': '32',
+  'm': '40',
+  'l': '48',
+  'xl': '56',
+  'xxl': '64',
+  'xxxl': '72',
+  'xxxxl': '80'
 };
 
 function oDataServ(data:any) {
@@ -194,3 +212,88 @@ export const numberWithSpaces = (x: number, n = 3, s = ' '): string => {
   parts[0] = parts[0].replace(regex, s);
   return parts.join('.');
 };
+
+export const UTCToLocal = (date: Date | number): Date => {
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() + offset * 60000;
+  return new Date(withOffset);
+};
+
+export const LocalToUTC = (date: Date | number): Date => {
+  const offset = -new Date().getTimezoneOffset();
+  const withOffset = new Date(date).getTime() - offset * 60000;
+  return new Date(withOffset);
+};
+
+/** Выделить текст из HTML */
+export const extractTextFromHTML = (element: string): string => {
+  let result = '';
+  let skip = false;
+
+  for (let i = 0; i < element.length; i++) {
+    if (element[i] === '<') {
+      skip = true;
+    }
+
+    if (element[i] === '>') {
+      skip = false;
+      continue;
+    }
+
+    if (skip) {
+      continue;
+    }
+
+    result += element[i];
+  }
+
+  return result;
+};
+
+/** Debounce */
+export function debounce(fn: (...args: any) => any, ms: number) {
+  let timeout: any;
+  return function(...args: any) {
+    // @ts-ignore
+    const fnCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+}
+
+export const initialFiles: IFileData[] = [
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'screenshot1.jpg',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'pdfFile.pdf',
+      webkitRelativePath: '',
+    } as File,
+    base64: pdfFile,
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'quston.png',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+    id: '00505683-c29f-1eec-93d2-5fcd53023f78'
+  },
+  {
+    file: {
+      lastModified: 1633960085077,
+      name: 'word_file.docx',
+      webkitRelativePath: '',
+    } as File,
+    base64: '',
+    id: '00505683-c29f-1eec-9390-0b884bf2ff6f'
+  }
+];

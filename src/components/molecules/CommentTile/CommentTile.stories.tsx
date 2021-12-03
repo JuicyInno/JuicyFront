@@ -7,6 +7,7 @@ import StoryRow from '../../storybook/StoryRow';
 import {
   StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
+import { initialFiles } from '../../../utils/helpers';
 import { variants } from '../../../types';
 
 export default {
@@ -19,25 +20,23 @@ export default {
       defaultValue: 'default'
     }
   },
-  argTypes: { initialFiles: { control: null }, }
+  argTypes: {
+    maxLength: {
+      type: 'number',
+      defaultValue: 255
+    },
+    initialFiles: { control: null },
+  }
 };
 
-const initialFiles = [
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  },
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  }
-];
-const comment = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которо';
+const comment = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. ' +
+    'Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, ' +
+    'а также реальное распределение букв и пробелов в абзацах, которо';
 
 export const Demo: Story = () => {
   return (
     <StoryDocs>
-      <StoryDocsH2>Комментарии и файлы</StoryDocsH2>
+      <StoryDocsH2>CommentTile</StoryDocsH2>
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
@@ -72,6 +71,6 @@ export const Playground: Story<ICommentTileProps> = (args) => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=20799%3A77566',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=31%3A33319',
   },
 };

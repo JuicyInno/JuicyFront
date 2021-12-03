@@ -1,18 +1,20 @@
-import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
+import StoryContainer from '../../storybook/Story';
 import React from 'react';
+
+import { withDesign } from 'storybook-addon-designs';
 import HistoryCardFilter, { IHistoryCardFilterProps, IHistoryCardValues } from './HistoryCardFilter';
 import { IOption } from '../../../types';
 
 
-const opt:IOption[] = [
+const opt: IOption[] = [
   {
     value: 'END',
     label: 'Завершено'
   },
   {
     value: 'DRAFT',
-    label: 'ЧерновиK'
+    label: 'Черновик'
   },
   {
     value: 'IN_PROGRESS',
@@ -22,33 +24,53 @@ const opt:IOption[] = [
 
 const data: IHistoryCardFilterProps = {
   statusOptions: opt,
-  initialValues: { status: 'DRAFT' },
-  onChange: (values:IHistoryCardValues) => {
+  initialValues: {},
+  onChange: (values: IHistoryCardValues) => {
     console.warn(values);
   }
 };
 
 export default {
-  title: 'components/не проверено/HistoryCardFilter',
+  title: 'components/withTest/HistoryCardFilter',
   component: HistoryCardFilter,
   typeArgs: {
     isShowDatePicker: { type: 'boolean' },
     isShowStatusFilter: { type: 'boolean' },
     isShowSearch: { type: 'boolean' }
 
-  }
+  },
+  decorators: [withDesign],
 };
-export const historyCardFilter = (props: IHistoryCardFilterProps) => {
+
+
+const Demo = () => {
+  <StoryContainer name='Fatal Error' description='Стандартный фильтр для истории'>
+    <StoryItem>
+      <HistoryCardFilter onChange={(result) => {
+        console.warn('Значении изменились: ', result);
+      }} />
+    </StoryItem>
+  </StoryContainer>;
+};
+
+export const Playground = (props: IHistoryCardFilterProps) => {
 
   const values = {
     ...data,
     ...props
   };
-  return <Story name='HistoryCardFilter' description='Стандартный фильтр для истории'>
+  return <StoryContainer name='HistoryCardFilter' description='Стандартный фильтр для истории'>
     <StoryItem>
       <HistoryCardFilter {...values} onChange={(result) => {
         console.warn('Значени изменились: ', result);
-      }}/>
+      }} />
     </StoryItem>
-  </Story>;
+  </StoryContainer>;
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18129'
+  },
 };

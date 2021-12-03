@@ -13,6 +13,7 @@ export const notificationsList = () => {
 
     setTimeout(() => {
       sendNotification({
+        title: 'Ошибка',
         message: 'Произошла ошибка. Обратитесь к разработчикам.',
         variant: 'red'
       });
@@ -20,6 +21,7 @@ export const notificationsList = () => {
 
     setTimeout(() => {
       sendNotification({
+        title: 'Предупреждение',
         message: 'Данные не смогут быть восстановлены.',
         variant: 'yellow'
       });
@@ -27,6 +29,7 @@ export const notificationsList = () => {
 
     setTimeout(() => {
       sendNotification({
+        title: 'Успех',
         message: 'Данные удалены.',
         variant: 'green'
       });

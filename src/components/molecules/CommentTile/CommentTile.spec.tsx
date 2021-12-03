@@ -1,21 +1,12 @@
 import React from 'react';
 import {render, screen, fireEvent, waitFor} from '@testing-library/react';
 import {byText} from "testing-library-selector";
-
-import CommentTile  from './CommentTile';
 import userEvent from "@testing-library/user-event";
 
+import CommentTile  from './CommentTile';
+import { initialFiles } from '../../../utils/helpers';
+
 const maxLength = 355;
-const initialFiles = [
-    {
-        base64: '',
-        fileName: 'screenshot1.jpg',
-    },
-    {
-        base64: '',
-        fileName: 'screenshot2.jpg',
-    }
-];
 
 describe('Test <CommentTile/> component', () => {
     it('should render CommentTile component', () => {
@@ -37,19 +28,29 @@ describe('Test <CommentTile/> component', () => {
         expect(container.getElementsByClassName('rf-comment-tile__title')).toHaveLength(1);
     });
 
-    it('should be button', () => {
+    it('should be textarea', () => {
         const { container } = render(<CommentTile />);
         expect(container.getElementsByClassName('rf-textarea__field')).toHaveLength(1);
     });
 
-    it('should be textarea', () => {
+    it('should be button', () => {
         const { container } = render(<CommentTile />);
         expect(container.getElementsByClassName('rf-comment-tile-button')).toHaveLength(1);
+    });
+
+    it('should not be button', () => {
+        const { container } = render(<CommentTile showFieldForFiles={false}/>);
+        expect(container.getElementsByClassName('rf-comment-tile-button')).toHaveLength(0);
     });
 
     it('should be initial comment text', () => {
         render(<CommentTile comment={'comment'}/>);
         expect(byText("comment").get()).toBeInTheDocument();
+    });
+
+    it('should be changed title', () => {
+        render(<CommentTile title={'title'} />);
+        expect(byText(/title/).get()).toBeInTheDocument();
     });
 
     it('should be changed maxLength by text', () => {
@@ -65,7 +66,9 @@ describe('Test <CommentTile/> component', () => {
     it('should be initialFiles in chips', () => {
         render(<CommentTile initialFiles={initialFiles}/>);
         expect(byText("screenshot1.jpg").get()).toBeInTheDocument();
-        expect(byText("screenshot2.jpg").get()).toBeInTheDocument();
+        expect(byText("pdfFile.pdf").get()).toBeInTheDocument();
+        expect(byText("quston.png").get()).toBeInTheDocument();
+        expect(byText("word_file.docx").get()).toBeInTheDocument();
     });
 
     it('should be change textarea and call onDebounce', () => {

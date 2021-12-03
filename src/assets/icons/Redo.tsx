@@ -1,5 +1,5 @@
 import React, { SVGProps } from 'react';
-
+/* eslint-disable max-len */
 export default (props: SVGProps<SVGSVGElement>) => {
 
   return (

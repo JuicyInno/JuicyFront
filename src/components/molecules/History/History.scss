@@ -170,11 +170,9 @@
   margin-top: 16px;
 }
 
-.rf-history__attachment {
-  margin-right: 12px;
-}
-
 .rf-history__attachments-container {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 16px;
+  grid-gap: 12px;
 }

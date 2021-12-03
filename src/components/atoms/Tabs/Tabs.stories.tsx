@@ -18,7 +18,14 @@ export default {
   title: 'navigations/withTest/Tabs',
   component: Tabs,
   argTypes: {
-    showLine: { type: 'boolean' },
+    showLine: {
+      type: 'boolean',
+      defaultValue: true
+    },
+    showMenu: {
+      type: 'boolean',
+      defaultValue: true
+    },
     list: { control: null },
     children: { control: null },
   },

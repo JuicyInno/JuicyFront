@@ -1,15 +1,17 @@
-import React, {
-  FC, ReactNode, useCallback, useEffect, useRef, useState
-} from 'react';
+// eslint-disable-next-line object-curly-newline
+import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
 import './Select.scss';
 
-import { IOption } from '../../../types';
-import useClickOutside from '../../../hooks/useClickOutside';
+import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
+
 import {
   ChevronDown, Close, Preloader
 } from '../../../index';
 import Checkbox from '../Checkbox/Checkbox';
+import { classnames } from '../../../utils/classnames';
+import Dropdown from '../Dropdown';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -18,14 +20,18 @@ export interface ISelectProps {
   onChange: (option: IOption[]) => void;
   /** Значение */
   values: IOption[];
-  /** Поиск внутри селекта */
-  onSearch?: (query: string) => void;
+  /** Поиск внутри селекта
+   * @param query - страка поиска
+   * @param isPagination - указывает что изменилась пагинация
+   */
+  onSearch?: (query: string, isPagination?: boolean) => void;
   /** Множественный выбор */
   multiselect?: boolean;
   /** Плейсхолдер */
   placeholder?: string;
   /** Запрещает вводить текст */
   readOnly?: boolean;
+  /** залочен или нет */
   disabled?: boolean;
   /** Максимальное количество выбранных вариантов при multiselect */
   maxOptions?: number;
@@ -37,12 +43,30 @@ export interface ISelectProps {
   clearOnSelect?: boolean;
   /** Любое изменяемое значение (зависимость). При изменении этого параметра очищается селект */
   clearHook?: any;
+  /** Вид селекта */
   variant?: 'base' | 'tag';
+  /** Переводит селект в невалидный статус */
+  invalid?: boolean;
+  /** Указывает будет ли селект асинхронным
+   * Если значение указано true, тогда нужно передавать infinityScrollProps
+   * @default false
+   */
+  isAsync?: boolean;
+  /** Пропсы для infinityScroll
+   * @requires dataLength текущая длина массива
+   * @requires hasMore стоит ли еще загружать данные
+   */
+  infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
+  /** Расположение */
+  position?: DropdownPosition;
+  /** Ширина */
+  maxWidth?: number | string;
 }
 
 const Select: FC<ISelectProps> = ({
   options,
   onChange,
+  invalid = false,
   onSearch,
   values = [],
   multiselect = false,
@@ -54,27 +78,22 @@ const Select: FC<ISelectProps> = ({
   tagsPosition = 'inside',
   clearOnSelect = false,
   clearHook,
-  variant = 'base'
+  variant = 'base',
+  isAsync,
+  infinityScrollProps,
+  position = 'left',
+  maxWidth,
 }: ISelectProps) => {
-
   const [showDropdown, toggleDropdown] = useState(false);
-  const componentNode = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
+
+  const onClose = useCallback(() => {
+    toggleDropdown(false);
+  }, [toggleDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  /** Клик в сторону */
-  const handleClickOutside = useCallback(() => {
-    if (showDropdown) {
-      toggleDropdown(false);
-    }
-  }, [showDropdown, multiselect]);
-
-  useClickOutside(componentNode, handleClickOutside);
-
-  // -------------------------------------------------------------------------------------------------------------------
-
-  const [inputValue, setInputValue] = useState<string>(() =>
-    values.length > 0 && !multiselect ? values[0].label : '');
+  const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
   const openDropdown = () => {
     toggleDropdown(true);
   };
@@ -135,11 +154,10 @@ const Select: FC<ISelectProps> = ({
     setSelectValues(values);
   }, [values]);
 
-
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!selectValues) {
+    if (!selectValues || selectValues.length === 0) {
       return;
     }
 
@@ -150,7 +168,6 @@ const Select: FC<ISelectProps> = ({
 
     setSelectedMap(map);
     setInputValue(multiselect ? '' : clearOnSelect ? '' : selectValues[0]?.label || '');
-
   }, [selectValues]);
 
   const onValueChange = (option: IOption) => {
@@ -175,6 +192,8 @@ const Select: FC<ISelectProps> = ({
       onChange(result);
     }
   };
+
+  const hasInfinityScroll = typeof onSearch === 'function';
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -207,6 +226,7 @@ const Select: FC<ISelectProps> = ({
 
     let label: ReactNode = o.label;
 
+    // TODO: думаю это можно вынести в отдельный компонент (Highlighter)
     if (inputValue) {
       const indexStart = o.label.toLowerCase().indexOf(inputValue.toLowerCase());
 
@@ -230,14 +250,27 @@ const Select: FC<ISelectProps> = ({
           right += o.label[i];
         }
 
-        label = <>{left}<span title={query} className='rf-select__list-element--query'>{query}</span>{right}</>;
+        label = (
+          <>
+            {left}
+            <span title={query} className='rf-select__list-element--query'>
+              {query}
+            </span>
+            {right}
+          </>
+        );
       }
     }
 
     return (
-      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value }>
-        { multiselect ? <Checkbox titleAtt={o.label} label={label} checked={active} onChange={handleChange} fullWidth/> :
-          <div title={o.label} className='rf-select__list-element-single' onClick={ handleChange }>{label}</div>}
+      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={o.value}>
+        {multiselect ? (
+          <Checkbox titleAtt={o.label} label={label} checked={active} onChange={handleChange} fullWidth />
+        ) : (
+          <div title={o.label} className='rf-select__list-element-single' onClick={handleChange}>
+            {label}
+          </div>
+        )}
       </div>
     );
   });
@@ -249,64 +282,101 @@ const Select: FC<ISelectProps> = ({
   const tagsRef = useRef<HTMLDivElement>(null);
 
   const tagsJSX = multiselect && selectValues.length > 0 && (
-    <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
-      { selectValues.map((t: IOption) => (
-        <div className='rf-select__tag' key={ t.value }>
-          <Chip type='secondary' size='s' onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
-            { t.label }
+    <div className='rf-select__tags' ref={tagsRef} onClick={() => !disabled && toggleDropdown(true)}>
+      {selectValues.map((t: IOption) => (
+        <div className='rf-select__tag' key={t.value}>
+          <Chip type='secondary' size='s' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
+            {t.label}
           </Chip>
         </div>
-      )) }
+      ))}
     </div>
   );
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button type='button' className='rf-select__button' onClick={ onClear }>
-      <Close/>
+    <button type='button' className='rf-select__button' onClick={onClear}>
+      <Close />
     </button>
   );
 
   const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
-    <button type='button' className={`rf-select__button ${showDropdown ? 'rf-select__button--rotate' : ''}`}
-      onClick={ () => toggleDropdown((state: boolean) => !state) }>
-      <ChevronDown/>
+    <button
+      type='button'
+      className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
+      onClick={() => toggleDropdown((state: boolean) => !state)}
+    >
+      <ChevronDown />
     </button>
   );
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const isTagVariant = variant === 'tag';
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
   const multiselectClass = multiselect ? 'rf-select--multi' : '';
-  const tagClass = variant === 'tag' ? 'rf-select__wrapper--tag' : '';
+  const tagClass = isTagVariant ? 'rf-select__wrapper--tag' : '';
+
+  const loader = (
+    <div className='rf-select__preloader'>
+      <Preloader size='m' />
+    </div>
+  );
+
+  const makeLazyFetch = useCallback(() => {
+    if (onSearch && isAsync) {
+      return () => onSearch(inputValue, isAsync);
+    }
+
+    return noop;
+  }, [onSearch, isAsync, inputValue]);
 
   return (
-    <div className={`rf-select ${multiselectClass} ${tagClass}`} ref={ componentNode }>
-      <div className={`rf-select__wrapper ${openClass}`}>
+    <div className={classnames('rf-select', multiselectClass, tagClass)}>
+      <div className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)} ref={toggleRef}>
         <input
           className='rf-select__input'
-          onMouseDown={ openDropdown }
-          onChange={ onSelectSearch }
-          value={ inputValue }
-          disabled={ disabled }
-          readOnly={ readOnly }
-          placeholder={ disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder }/>
-        { closeButton }
-        { chevronButton }
+          onMouseDown={openDropdown}
+          onChange={onSelectSearch}
+          value={inputValue}
+          disabled={disabled}
+          readOnly={readOnly}
+          placeholder={disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder}
+        />
+        {closeButton}
+        {chevronButton}
       </div>
-      {
-        showDropdown && filteredOptions.length > 0 && (
-          <div className='rf-select__list'>
-            { preloader ? (
-              <div className='rf-select__list-preloader'>
-                <Preloader size='m'/>
-              </div>
-            ) : listJSX }
-          </div>
-        )
-      }
-      { tagsJSX }
+
+      <Dropdown
+        show={showDropdown && (!!listJSX.length || preloader)}
+        toggleRef={toggleRef}
+        onClose={onClose}
+        position={position}
+        portal
+        maxWidth={isTagVariant ? 'auto' : maxWidth}
+      >
+        <div className='rf-select__list' id='rf-select-list-scroll'>
+          {hasInfinityScroll ? (
+            <InfiniteScroll
+              dataLength={0}
+              hasMore={false}
+              {...infinityScrollProps}
+              next={makeLazyFetch()}
+              loader={loader}
+              scrollableTarget='rf-select-list-scroll'
+              className='rf-select__infinity-list'
+            >
+              {listJSX}
+            </InfiniteScroll>
+          ) : (
+            <>{preloader ? loader : listJSX}</>
+          )}
+        </div>
+      </Dropdown>
+
+      {/* filteredOptions.length > 0*/}
+      {tagsJSX}
     </div>
   );
 };

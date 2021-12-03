@@ -1,13 +1,32 @@
 .rf-tile {
   padding: 20px;
-  margin-bottom: 16px;
-}
-.rf-tile__background{
-  background: var(--background-card);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
   border-radius: 20px;
 }
 
+.rf-tile--default {
+  box-shadow: var(--shadow-clickable-active);
+}
+
+.rf-tile--clickable-default {
+  box-shadow: var(--shadow-clickable-default);
+}
+
+.rf-tile--non-clickable {
+  box-shadow: var(--shadow-non-clickable);
+}
+
+.rf-tile--clickable-hover {
+  box-shadow: var(--shadow-clickable-hover);
+}
+
+.rf-tile--border {
+  border: 1px solid var(--background-tertiary);
+}
+
+.rf-tile__background {
+  background: var(--background-card);
+}
 
 .rf-tile--stretch {
   padding-top: 40px;

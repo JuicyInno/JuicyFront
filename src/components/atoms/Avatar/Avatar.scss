@@ -6,35 +6,113 @@
   justify-content: center;
   border-radius: 50%;
   flex-shrink: 0;
-  background-color: var(--basic-tertiary);
-  color: var(--text-inversion);
   cursor: default;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.rf-avatar.rf--xxs {
+  @include round(20px);
+  @include caption();
+}
+
 .rf-avatar.rf--xs {
-  @include round(24px)
+  @include round(24px);
+  @include caption();
 }
 
 .rf-avatar.rf--s {
-  @include round(32px)
+  @include round(32px);
+  @include caption();
 }
 
 .rf-avatar.rf--m {
-  @include round(40px)
+  @include round(40px);
+  @include text-m-16();
 }
 
 .rf-avatar.rf--l {
-  @include round(48px)
+  @include round(48px);
+  @include text-m-16();
 }
 
 .rf-avatar.rf--xl {
-  @include round(56px)
+  @include round(56px);
+  @include text-xs-18();
 }
 
 .rf-avatar.rf--xxl {
-  @include round(80px)
+  @include round(64px);
+  @include text-xs-18();
+}
+
+.rf-avatar.rf--xxxl {
+  @include round(72px);
+  @include text-xs-18();
+}
+
+
+.rf-avatar.rf--xxxxl {
+  @include round(80px);
+  @include text-xs-18();
+}
+
+.rf-avatar.rf-avatar__background_default {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+}
+
+.rf-avatar.rf-avatar__background_white {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.rf-avatar.rf-avatar__background_grey {
+  background-color: var(--basic-tertiary);
+  color: var(--text-static-white);
+}
+
+.rf-avatar.rf-avatar__background_black {
+  background-color: var(--background-inversion);
+  color: var(--text-static-white);
+}
+
+.rf-avatar__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--basic-tertiary);
+}
+
+.rf-avatar__icon.rf--xxs,
+.rf-avatar__icon.rf--xs {
+  @include square(16px)
+}
+
+.rf-avatar__icon.rf--s {
+  @include square(20px)
+}
+
+.rf-avatar__icon.rf--m {
+  @include square(24px)
+}
+
+.rf-avatar__icon.rf--l {
+  @include square(28px)
+}
+
+.rf-avatar__icon.rf--xl {
+  @include square(32px)
+}
+
+.rf-avatar__icon.rf--xxl,
+.rf-avatar__icon.rf--xxxl {
+  @include square(40px)
+}
+
+.rf-avatar__icon.rf--xxxxl {
+  @include square(48px)
 }

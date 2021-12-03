@@ -1,13 +1,13 @@
 import React, {
-  ReactNode,
-  useCallback, useRef, useState
+  ReactNode, useRef, useState
 } from 'react';
 import './InputFile.scss';
 import { IFileData } from '../../../types';
 import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
 import { getBase64, validateFile } from './file-utils';
-import Tag from '../Tag';
+import { Chip, download } from '../../../index';
+import { IRequestAttachment } from '../../../types/projects.types';
 
 /**
  * Файловый инпут для небольших файлов, конвертирует файл в base64.
@@ -15,13 +15,19 @@ import Tag from '../Tag';
  *
  */
 export interface IFileInputProps extends Omit<IButtonProps, 'onError'> {
+  /** Имя инпута */
   name?: string;
+  /** Разрешенные типы файлов */
   accept?: string;
+  /** Мултивыбор файлов */
   multiple?: boolean;
+  /** className */
   className?: string;
-  defaultValue?: string;
+  /** Недоступный */
   disabled?: boolean;
+  /** Плейсхолдер */
   placeholder?: string;
+  /** Начальные файлы */
   files?: IFileData[];
   /** Функция возвращает файл в компонент */
   setFile: (file: IFileData[]) => void;
@@ -31,18 +37,21 @@ export interface IFileInputProps extends Omit<IButtonProps, 'onError'> {
   maxSize?: number;
   /** Количество файлов */
   count?: number;
-  /** Сжать изображения */
-  compressImages?: boolean;
+  /** Показывать чипы файлов */
   showChips?: boolean;
+  /** Кастомныый плейсхолдер */
   customPlaceholder?: ReactNode;
+  /** Способ скачивания файлов */
+  customDownloadMethod?: boolean;
+  /** Условие для удаления вложений */
+  showRemoveIcon?: boolean;
 }
 
 const InputFile: React.FC<IFileInputProps> = ({
   name = '',
   accept = '*',
-  multiple = false,
+  multiple = true,
   className = '',
-  defaultValue = '',
   disabled = false,
   placeholder = '',
   files = [],
@@ -52,14 +61,14 @@ const InputFile: React.FC<IFileInputProps> = ({
   count,
   showChips = true,
   customPlaceholder,
+  customDownloadMethod = false,
+  showRemoveIcon = true,
   ...props
 }: IFileInputProps) => {
   /** Файл */
   const [file, uploadFile] = useState<IFileData[]>(() => files);
-
   /** Ссылка на инпут */
   const ref = useRef<HTMLInputElement>(null);
-
   /** Получаем картинку */
   const onChange = () => {
     if (ref.current && ref.current.files) {
@@ -115,24 +124,6 @@ const InputFile: React.FC<IFileInputProps> = ({
     }
   };
 
-  const fileChips = file.map((f: IFileData) => {
-    const id = f.file.name + f.file.lastModified;
-    return (
-      <div key={ id } className='file-input__tag'>
-        <Tag onRemove={ () => onFileRemove(id) }>{ f.file.name }</Tag>
-      </div>
-    );
-  });
-
-  const onFileRemove = useCallback(
-    (id: string) => {
-      const files = file.filter((f: IFileData) => f.file.name + f.file.lastModified !== id);
-      uploadFile(files);
-      setFile(files);
-    },
-    [file]
-  );
-
   /** Программный клик по инпуту */
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -143,31 +134,83 @@ const InputFile: React.FC<IFileInputProps> = ({
     }
   };
 
+
+  // =======================================================================================================================================
+
+  const downloadFile = (currentFile: IFileData) => {
+
+    const file: IRequestAttachment = {
+      id: currentFile.id,
+      fileName: currentFile.file.name,
+      base64: currentFile.base64,
+    };
+
+    download(file);
+  };
+
+  // =======================================================================================================================================
+
+  /** Чип прикрепленного файла */
+  const attachedFileChipTSX = (currentFile: IFileData, index: number, onRemove:()=>void) =>
+    <div className='rf-file-input__chip' key={currentFile.file.name + index}>
+      <Chip
+        onClick={() => downloadFile(currentFile)}
+        size='s'
+        type='outline'
+        maxLength={30}
+        tooltipBackground={'white'}
+        onRemove={showRemoveIcon ? onRemove : undefined}
+      >
+        {currentFile.file.name}
+      </Chip>
+    </div>;
+
+  // =======================================================================================================================================
+  /** Отображение чипов прикрепленных файлов */
+  const fileList = file.map((currentFile: IFileData, index: number) => attachedFileChipTSX(
+    currentFile,
+    index,
+    () => {
+      const newListFile = file;
+      newListFile.splice(index, 1);
+
+      if (!newListFile.length) {
+        uploadFile([]);
+        setFile([]);
+      } else {
+        uploadFile([...newListFile]);
+        setFile([...newListFile]);
+      }
+    }
+  ));
+
+  // =======================================================================================================================================
+
+
   return (
-    <div className='file-input__wrapper'>
+    <div className='rf-file-input__wrapper'>
       <label className={ `${className || ''}` }>
         <input
           ref={ ref }
           type='file'
           name={ name }
           className='rf-input__file-hidden'
-          defaultValue={ defaultValue }
           accept={ accept }
           placeholder={ placeholder || 'Выберите файл' }
           disabled={ disabled }
           onChange={ onChange }
           multiple={ multiple }
         />
-        <Button { ...props } type='button' className='file-input__button' onClick={ onClick } disabled={ disabled }>
+        <Button { ...props } type='button' onClick={ onClick } disabled={ disabled }>
           { customPlaceholder || placeholder }
         </Button>
       </label>
 
       { showChips && file.length > 0 && (
-        <div className='file-input__chips'>
-          { fileChips }
+        <div className='rf-file-input__chip-wrapper'>
+          {fileList}
         </div>
-      ) }
+      )}
     </div>
   );
 };
