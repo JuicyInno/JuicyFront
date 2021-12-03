@@ -54,25 +54,25 @@ const Modal: FC<IModalProps> = ({
   /** Обертка для модалки */
   const modal = (
     <div className='rf-modal' onClick={onClose}>
-      { custom ? (
-        <div onClick={ (e: React.MouseEvent) => e.stopPropagation() }>
+      {custom ? (
+        <div onClick={(e: React.MouseEvent) => e.stopPropagation()}>
           {children}
         </div>
       ) : (
         <div
           className='rf-modal__wrapper'
-          onClick={ (e: React.MouseEvent) => e.stopPropagation() }>
-          { onClose && (
-            <button type='button' className='rf-modal__close-button' onClick={ onClose }>
-              <Close/>
+          onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+          {onClose && (
+            <button type='button' className='rf-modal__close-button' onClick={onClose}>
+              <Close />
             </button>
-          ) }
+          )}
 
-          { header && <div className='rf-modal__header'>{ header }</div> }
+          {header && <div className='rf-modal__header'>{header}</div>}
 
-          <div className='rf-modal__content'>{ children }</div>
+          <div className='rf-modal__content'>{children}</div>
 
-          { footer && <div className='rf-modal__footer'>{ footer }</div> }
+          {footer && <div className='rf-modal__footer'>{footer}</div>}
         </div>
       )
       }

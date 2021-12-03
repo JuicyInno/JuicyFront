@@ -20,13 +20,13 @@ export default {
   }
 };
 
-const ModalFooter = ({ toggle }:any) => (
+const ModalFooter = ({ toggle }: any) => (
   <StoryRow>
     <StoryCol>
-      <Button> Согласен </Button>
+      <Button> Подтвердить </Button>
     </StoryCol>
     <StoryCol>
-      <Button buttonType='ghost' onClick={() => toggle(false)}> Отмена </Button>
+      <Button buttonType='light' onClick={() => toggle(false)}> Отменить </Button>
     </StoryCol>
   </StoryRow>
 );
@@ -37,13 +37,12 @@ export const Demo = () => {
   return (
     <StoryDocs>
       <StoryDocsH1>Modal</StoryDocsH1>
-
       <StoryItem description='Модальное окно открывается поверх страницы.'>
-        <Button onClick={ () => toggle(true) }>Открыть</Button>
+        <Button onClick={() => toggle(true)}>Открыть</Button>
 
-        { show && (
-          <Modal onClose={ () => toggle(false) } header='Header' footer={ <ModalFooter toggle={toggle} /> }>
-            <div style={ { width: '500px' } }>
+        {show && (
+          <Modal onClose={() => toggle(false)} header='Header' footer={<ModalFooter toggle={toggle} />}>
+            <div style={{ width: '500px' }}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur ea laudantium nihil nisi quos
               soluta
               veritatis? Ad aliquid doloribus esse fugiat minus officiis perferendis praesentium, qui quis quos!
@@ -52,7 +51,7 @@ export const Demo = () => {
               dolor hic illum qui sit.
             </div>
           </Modal>
-        ) }
+        )}
       </StoryItem>
     </StoryDocs>
   );
@@ -65,11 +64,11 @@ export const Playground: Story = (args) => {
   return (
     <StoryContainer>
       <StoryItem description='Модальное окно открывается поверх страницы.'>
-        <Button onClick={ () => toggle(true) }>Открыть</Button>
+        <Button onClick={() => toggle(true)}>Открыть</Button>
 
-        { show && (
-          <Modal {...args} header='Header' footer={ <ModalFooter toggle={toggle} /> } onClose={ () => toggle(false) }>
-            <div style={ { width: '500px' } }>
+        {show && (
+          <Modal {...args} header='Header' footer={<ModalFooter toggle={toggle} />} onClose={() => toggle(false)}>
+            <div style={{ width: '500px' }}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur ea laudantium nihil nisi quos
               soluta
               veritatis? Ad aliquid doloribus esse fugiat minus officiis perferendis praesentium, qui quis quos!
@@ -78,7 +77,7 @@ export const Playground: Story = (args) => {
               dolor hic illum qui sit.
             </div>
           </Modal>
-        ) }
+        )}
       </StoryItem>
     </StoryContainer>
   );

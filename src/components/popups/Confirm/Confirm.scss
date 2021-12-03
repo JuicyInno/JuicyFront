@@ -6,7 +6,7 @@
 
 .confirm-popup__title {
   @include h4;
-  margin-top: 32px;
+  margin-top: 22px;
 }
 
 .confirm-popup__text {
@@ -15,14 +15,12 @@
 }
 
 .confirm-popup__footer {
-  padding-top: 18px;
+  padding-top: 24px;
   display: flex;
-  align-items: center;
-  margin: 0 -32px;
-  padding-left: 32px;
-  padding-right: 32px;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
 }
 
-.confirm-popup__footer-button {
+.confirm-popup__footer-button:last-child {
   margin-right: 16px;
 }

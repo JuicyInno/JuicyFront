@@ -19,7 +19,7 @@ export const confirm = () => {
       <Modal>
         <Confirm textAccept='Согласен'
           text='Вы согласны на обработку персональных данных?'
-          onClose={() => {}} onAction={onAction} comment='Комментарий' showComment />
+          onClose={() => { }} onAction={onAction} comment='Комментарий' showComment />
       </Modal>
     </Story>
   );

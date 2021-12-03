@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-modal {
   background: rgba(2, 2, 3, 0.8);
@@ -32,12 +32,12 @@
 }
 
 .rf-modal__content {
-  padding: 0 32px 32px 32px;
+  padding: 0px 24px 20px 24px;
   flex-grow: 1;
 }
 
 .rf-modal__header {
-  padding: 32px 48px 12px 32px;
+  padding: 22px 24px 14px 24px;
   @include h2;
   flex-shrink: 0;
 }
@@ -56,6 +56,24 @@
 
 .rf-modal__footer {
   border-top: 1px solid var(--background-tertiary);
-  padding: 16px 32px 32px 32px;
-  flex-shrink: 0;
+  padding: 22px 24px 20px 24px;
+  display: flex;
+  justify-content: end;
+  .story__row {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 291px;
+    .story__col:first-child {
+      margin: 0;
+      button {
+        width: 150px;
+      }
+    }
+    .story__col:last-child {
+      margin: 0;
+      button {
+        width: 125px;
+      }
+    }
+  }
 }
