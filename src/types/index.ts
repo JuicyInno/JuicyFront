@@ -180,6 +180,8 @@ export interface IButtonGroup {
   label?: ReactNode;
   /** Описание в меню */
   description?: ReactNode;
+  /** Текст при наведении */
+  tooltip?: ReactNode;
   /** Ссылка в меню */
   url?: string;
   /** Клик по кнопке в меню */

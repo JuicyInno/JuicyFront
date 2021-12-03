@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ButtonGroup from './ButtonGroup';
 import { buttonGroupMock } from './mock';
 import { BrowserRouter } from 'react-router-dom';
@@ -49,19 +49,5 @@ describe('Test <ButtonGroup/> component', () => {
       </BrowserRouter>
     );
     expect(container.getElementsByClassName('button-group__item')).toHaveLength(3);
-  });
-
-  it('should open menu onClick more', () => {
-    const { container } = render(
-      <BrowserRouter>
-        <ButtonGroup list={buttonGroupMock} max={3} />
-      </BrowserRouter>
-    );
-
-    expect(container.getElementsByClassName('rf-menu__content--show')).toHaveLength(0);
-
-    fireEvent.click(screen.getByTestId('button-group__more'));
-
-    expect(container.getElementsByClassName('rf-menu__content--show')).toHaveLength(1);
   });
 });

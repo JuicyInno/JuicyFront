@@ -7,7 +7,7 @@ import {
 import Menu from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tooltip from '../../atoms/Tooltip';
-import Tile from '../Tile';
+import Tile from '../../atoms/Tile';
 
 export interface IButtonGroupProps {
   /** Список кнопок */
@@ -16,7 +16,7 @@ export interface IButtonGroupProps {
   max?: number;
 }
 
-const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
+export const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Видимые кнопки */
 
@@ -28,7 +28,10 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   for (let i = 0; i < m; i++) {
     if (list[i].component) {
       buttonsJSX.push(<div className='button-group__item' key={i}>
-        {list[i].component}
+        <Tooltip portal position='bottom'>
+          {list[i].component}
+          {list[i].tooltip}
+        </Tooltip>
       </div>);
     }
   }
@@ -66,11 +69,10 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   }
 
   return (
-    <Tile className='button-group'>
+    <Tile className='button-group' padding='12px' variant='non-clickable'>
       {buttonsJSX}
       {menuJSX.length > 0 && (
         <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
-          {/* TODO: перестает работать onClick в Menu */}
           <Tooltip portal position='bottom'>
             <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
             <>Другие действия</>
