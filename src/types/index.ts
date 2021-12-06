@@ -123,6 +123,7 @@ export const variantsClassic: VariantClassic[] = [
   'yellow',
   'red',
 ];
+
 export const variants: Variant[] = [
   'default',
   'blue',

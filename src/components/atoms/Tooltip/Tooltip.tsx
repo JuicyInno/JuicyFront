@@ -9,11 +9,15 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { ArrowTooltipIcon } from './ArrowTooltipIcon';
 
 export interface ITooltipContentProps {
+  /** Размер tooltip */
   rect: DOMRect;
+  /** Содержимое tooltip */
   children: ReactNode | ReactNode[];
+  /** Позиция tooltip */
   position: TooltipPosition;
   /** Дополнительный класс */
   className?: string;
+  /** Сделать порталом */
   portal: boolean;
 
   /**

@@ -16,6 +16,7 @@ $radius: 8px;
 }
 
 .rf-tooltip__content {
+  display: inline-flex;
   border-radius: $radius;
 }
 
@@ -24,7 +25,7 @@ $radius: 8px;
   padding: 12px 16px 12px 16px;
   font-weight: normal;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 16px;
   border-radius: $radius;
   box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4),0px -2px 4px rgba(138, 150, 168, 0.08);
 
@@ -59,15 +60,22 @@ $radius: 8px;
   color: var(--text-static-white);
 }
 
-.rf-tooltip__content--default .rf-tooltip__inner::after,
-.rf-tooltip--default .rf-tooltip__inner::after {
+.rf-tooltip__content--default .rf-tooltip__inner {
   background: var(--basic-tertiary);
+  color: var(--text-static-white);
+
+  .rf-tooltip__arrow {
+    color: var(--basic-tertiary);
+  }
 }
 
-.rf-tooltip__content--white .rf-tooltip__inner,
-.rf-tooltip--white .rf-tooltip__inner {
+.rf-tooltip__content--white .rf-tooltip__inner {
   background: var(--background-primary);
   color: var(--text-primary);
+
+  .rf-tooltip__arrow {
+    color: var(--background-primary);
+  }
 }
 
 .rf-tooltip__content--white .rf-tooltip__inner::after,
