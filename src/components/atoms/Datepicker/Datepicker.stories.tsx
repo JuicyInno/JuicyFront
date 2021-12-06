@@ -40,16 +40,9 @@ export const Demo = () => {
           <Datepicker min={Date.now() - 7 * 24 * 3600 * 1000} range showDayOfWeek onChange={log} />
         </StoryRow>
       </StoryItem>
-      <StoryItem subtitle='Портал'>
-        <StoryRow>
-          <Datepicker defaultValue={Date.now()} portal>
-            <Button> Открыть календарь </Button>
-          </Datepicker>
-        </StoryRow>
-      </StoryItem>
       <StoryItem subtitle='Кастомная кнопка'>
         <StoryRow>
-          <Datepicker defaultValue={Date.now()}>
+          <Datepicker defaultValue={Date.now()} position='bottom-start'>
             <Button> Открыть календарь </Button>
           </Datepicker>
         </StoryRow>
@@ -67,7 +60,7 @@ export const Playground: Story = () => {
   return (
     <StoryContainer name='Datepicker' description='Выбор даты.' width={280}>
       <StoryRow>
-        <Datepicker readOnly />
+        <Datepicker readOnly position='bottom-start' />
       </StoryRow>
     </StoryContainer>
   );

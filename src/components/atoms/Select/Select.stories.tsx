@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState
+} from 'react';
 import { Story } from '@storybook/react';
 
 import Select from './Select';
@@ -140,7 +142,6 @@ export const Demo = () => {
             values={state1}
             tagsPosition='outside'
             onChange={onChange2}
-            portal
             preloader={loading}
           />
         </StoryItem>
@@ -213,7 +214,6 @@ export const LazySelect: Story = () => {
                 hasMore,
                 dataLength: list.length,
               }}
-              portal
               onSearch={onSearch}
             />
           </form>
@@ -228,7 +228,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} portal {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>

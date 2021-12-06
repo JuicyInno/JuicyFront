@@ -52,7 +52,7 @@ const ActionMenu: React.FC<IActionMenuProps> = ({
       }
       { !listConfig.singleAction && listConfig.actionList.length > 0 && (
         <div className='jf-action-menu__list-button'>
-          <Menu list={ listConfig.actionList } position='right'>
+          <Menu list={ listConfig.actionList } position='top-end'>
             <Button>
               <div className='jf-action-menu__button-inner'>
                 { listConfig.actionLabel || 'Создать' } <ChevronDown className='jf-action-menu__list-button-icon'/>

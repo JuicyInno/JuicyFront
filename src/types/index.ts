@@ -1,4 +1,5 @@
 import { ReactNode, SVGProps } from 'react';
+import { Placement } from '@popperjs/core';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -195,4 +196,4 @@ export interface IIconProps extends SVGProps<SVGSVGElement> {
   size?: Size
 }
 
-export type DropdownPosition = 'left' | 'right' | 'top-left' | 'top-right';
+export type DropdownPosition = Placement;

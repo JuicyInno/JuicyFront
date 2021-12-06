@@ -4,7 +4,7 @@ const useClickOutside = (node: RefObject<HTMLElement>, handler: (event: MouseEve
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = (event: MouseEvent) => {
     /** Если кликнули по элементу или элементам внутри него - ничего не делаем */
-    if (node && node.current && node.current.contains(event.target as HTMLElement)) {
+    if (event.target && node.current && node.current.contains(event.target as HTMLElement)) {
       return;
     }
 
