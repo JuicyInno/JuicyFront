@@ -72,7 +72,7 @@ export const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IBut
     <Tile className='button-group' padding='12px' variant='non-clickable'>
       {buttonsJSX}
       {menuJSX.length > 0 && (
-        <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-left'>
+        <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-start'>
           <Tooltip portal position='bottom'>
             <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
             <>Другие действия</>

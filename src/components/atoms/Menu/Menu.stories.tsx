@@ -82,7 +82,7 @@ export const Demo = () => {
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right'>
+              <Menu list={_listMenu} position='top-start'>
                 <Button buttonType='secondary'>
                   Верхнее меню
                 </Button>
@@ -121,23 +121,23 @@ export const Demo = () => {
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' >
+              <Menu list={_listMenu} position='top-start' >
                 <Button buttonType='secondary'>
-                top-left
+                top-start
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right' >
+              <Menu list={_listMenu} position='top-end' >
                 <Button buttonType='secondary'>
-                top-right
+                top-end
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' content={content}>
+              <Menu list={_listMenu} position='top-start' content={content}>
                 <Button buttonType='secondary'>
-                  top-left custom content
+                  top-start custom content
                 </Button>
               </Menu>
             </StoryCol>

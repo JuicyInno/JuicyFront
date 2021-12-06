@@ -241,7 +241,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, ch
           {hasMenuNav && (
             <Menu
               content={<div className='button-group__menu'>{menuNav}</div>}
-              position='right'
+              position='top-start'
               className={classnames('rf-tabs__menu', isActiveIndexInMenu && 'rf-tabs__menu--active')}
             >
               <Button

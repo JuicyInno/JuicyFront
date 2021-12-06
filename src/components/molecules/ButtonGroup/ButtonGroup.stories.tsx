@@ -20,7 +20,7 @@ export const Demo = () => {
       {/* TODO: удалить */}
       <div
         style={{
-          // maxHeight: '300px',
+          maxHeight: '300px',
           overflow: 'auto',
         }}
       >

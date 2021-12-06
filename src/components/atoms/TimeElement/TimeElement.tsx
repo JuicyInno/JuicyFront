@@ -95,18 +95,22 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
   return (
     <div className='rf-time-element__wrapper'>
       <div className={`rf-time-element__translate ${translate ? 'element__translate--active' : ''}`}>
-        <div className='rf-time-element__column'>
-          <div className='rf-time-element__header-container'>
-            <div className='rf-time-element__name'>Выберите час</div>
+        <div className='rf-time-element__flex'>
+          <div className='rf-time-element__column'>
+            <div className='rf-time-element__header-container'>
+              <div className='rf-time-element__name'>Выберите час</div>
+            </div>
+            {itemsHour}
           </div>
-          {itemsHour}
-        </div>
-        <div className={'rf-time-element__column'}>
-          <div className='rf-time-element__header-container'>
-            <div className='rf-time-element__name'>Выберите минуты</div>
+
+          <div className={'rf-time-element__column'}>
+            <div className='rf-time-element__header-container'>
+              <div className='rf-time-element__name'>Выберите минуты</div>
+            </div>
+            {itemsMinutes}
           </div>
-          {itemsMinutes}
         </div>
+
       </div>
     </div>
   );

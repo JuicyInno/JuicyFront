@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .rf-time-element__item-row {
   display: flex;
@@ -40,6 +40,7 @@
 
 .rf-time-element__wrapper {
   max-width: 308px;
+  overflow: hidden;
 }
 
 .rf-time-element__header-container {
@@ -48,14 +49,30 @@
   padding-bottom: 12px;
 }
 
+.rf-time-element__flex {
+  display: flex;
+}
+
 .rf-time-element__translate {
   width: 200%;
   transition: transform 0.2s ease-in;
-  display: flex;
+
+  .rf-time-element__column:last-child {
+    opacity: 0;
+  }
 }
 
 .element__translate--active {
   transform: translateX(-50%);
+}
+
+.element__translate--active {
+  .rf-time-element__column:first-child {
+    opacity: 0;
+  }
+  .rf-time-element__column:last-child {
+    opacity: 1;
+  }
 }
 
 .rf-time-element__column {

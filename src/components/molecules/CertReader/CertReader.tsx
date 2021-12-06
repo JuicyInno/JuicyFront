@@ -137,7 +137,7 @@ const CertReader: React.FC<ICertReader> = ({
 
   // ===================================================================================================================
   return <>
-    <Menu position={menuPos} maxWidth='500px' list={certs ? getCertsWithTitle(menuBuilder(certs)) : undefined}>
+    <Menu position={menuPos} list={certs ? getCertsWithTitle(menuBuilder(certs)) : undefined}>
       <Button {...btnProps} disabled={!certs}>{buttonTitle}</Button>
     </Menu>
   </>;
