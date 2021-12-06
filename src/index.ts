@@ -54,7 +54,6 @@ import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
 import Status from './components/atoms/Status';
 import StatusWithText from './components/atoms/StatusWithText';
-import ButtonGroup from './components/atoms/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
 import UsersStack from './components/molecules/UsersStack';
@@ -908,6 +907,7 @@ import useUpdateEffect from './hooks/useUpdateEffect';
 import {
   numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform
 } from './utils/helpers';
+import ButtonGroup from './components/molecules/ButtonGroup';
 
 export {
   useClickOutside,
