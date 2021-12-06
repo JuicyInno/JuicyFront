@@ -11,7 +11,7 @@ export interface IConfirmProps {
   /** Текст подтверждения */
   text?: string;
   /** Функция закрытия формы */
-  onClose: () => void;
+  onClose?: () => void;
   /** Комментарий */
   comment?: string;
   /** Показать комментарий */
