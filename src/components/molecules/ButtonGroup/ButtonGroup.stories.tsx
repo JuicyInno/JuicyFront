@@ -11,37 +11,43 @@ import StoryRow from '../../storybook/StoryRow';
 export default {
   title: 'controls/withTest/ButtonGroup',
   component: ButtonGroup,
-  argTypes: { list: { control: null }, }
+  argTypes: { list: { control: null } },
 };
 
 export const Demo = () => {
   return (
     <BrowserRouter>
-      <StoryContainer name='Группировка кнопок'>
-        <StoryItem>
-          <StoryRow>
-            <ButtonGroup list={buttonGroupMock} max={2}/>
-          </StoryRow>
+      {/* TODO: удалить */}
+      <div
+        style={{
+          // maxHeight: '300px',
+          overflow: 'auto',
+        }}
+      >
+        <StoryContainer name='Группировка кнопок'>
+          <StoryItem>
+            <StoryRow>
+              <ButtonGroup list={buttonGroupMock} max={2} />
+            </StoryRow>
 
-          <StoryRow>
-            <ButtonGroup list={buttonGroupMock} max={3} />
-          </StoryRow>
+            <StoryRow>
+              <ButtonGroup list={buttonGroupMock} max={3} />
+            </StoryRow>
 
-          <StoryRow>
-            <ButtonGroup list={buttonGroupMock.filter((_, index) => index <= 1)} />
-          </StoryRow>
+            <StoryRow>
+              <ButtonGroup list={buttonGroupMock.filter((_, index) => index <= 1)} />
+            </StoryRow>
 
-          <StoryRow>
-            <ButtonGroup list={buttonIconGroupMock} max={3} />
-          </StoryRow>
+            <StoryRow>
+              <ButtonGroup list={buttonIconGroupMock} max={3} />
+            </StoryRow>
 
-          <StoryRow>
-            <ButtonGroup list={buttonIconGroupMock.filter((_, index) => index <= 1)} />
-          </StoryRow>
-
-        </StoryItem>
-
-      </StoryContainer>
+            <StoryRow>
+              <ButtonGroup list={buttonIconGroupMock.filter((_, index) => index <= 1)} />
+            </StoryRow>
+          </StoryItem>
+        </StoryContainer>
+      </div>
     </BrowserRouter>
   );
 };
