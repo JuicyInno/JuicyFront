@@ -12,8 +12,8 @@ interface IFindEntitiesUserProps {
   user: IUser;
   isSelected: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-   /** Цвет tooltip */
-   tooltipBackground?: 'white' | 'default';
+  /** Цвет tooltip */
+  tooltipBackground?: 'white' | 'default';
 }
 
 export const FindEntitiesUserEmptyStateIcon = () => (
@@ -45,7 +45,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
   return (
     <div className='rf-find-entities-user' key={ user.id }>
       <Checkbox
-        align='center'
+        align='flex-start'
         value={user.id}
         checked={isSelected}
         onChange={onChange}

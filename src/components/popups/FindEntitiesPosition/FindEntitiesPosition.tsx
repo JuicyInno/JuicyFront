@@ -30,7 +30,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
   return (
     <div key={position.position} className='rf-find-entities-position'>
       <Checkbox
-        align='center'
+        align='flex-start'
         value={position.position}
         checked={isSelected}
         onChange={onChange}
