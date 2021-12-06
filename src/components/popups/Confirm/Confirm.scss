@@ -5,13 +5,13 @@
 }
 
 .confirm-popup__title {
-  @include h4;
-  margin-top: 22px;
+  @include h5;
+  margin-top: 20px;
 }
 
 .confirm-popup__text {
   @include text-m-16();
-  padding: 14px 0 24px 0;
+  padding: 12px 0 24px 0;
 }
 
 .confirm-popup__footer {
@@ -23,4 +23,10 @@
 
 .confirm-popup__footer-button:last-child {
   margin-right: 16px;
+}
+.confirm-popup__cross-button{
+  position: absolute;
+  left:calc(100% - 38px);
+  top:9%;
+  color:var(--basic-tertiary) ;
 }

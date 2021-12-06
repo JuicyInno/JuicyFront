@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Confirm.scss';
-import { Button, FormGroup } from '../../../index';
+import {
+  Button, Cross, FormGroup
+} from '../../../index';
 import Textarea from '../../atoms/Textarea';
 
 export interface IConfirmProps {
@@ -10,6 +12,7 @@ export interface IConfirmProps {
   onAction: (comment?: string) => void;
   /** Текст подтверждения */
   text?: string;
+  /** Функция закрытия формы */
   onClose?: () => void;
   /** Комментарий */
   comment?: string;
@@ -19,6 +22,11 @@ export interface IConfirmProps {
   lang?: string;
   /** Прелоудер */
   preloader?: boolean;
+  /**
+   * Крестик
+   * @default false
+   *  */
+  isCrossCloseButton?: boolean
 }
 
 const Confirm: React.FC<IConfirmProps> = ({
@@ -30,6 +38,7 @@ const Confirm: React.FC<IConfirmProps> = ({
   text,
   lang = 'ru',
   preloader = false,
+  isCrossCloseButton = false
 }: IConfirmProps) => {
 
   const handleSubmit = () => {
@@ -59,6 +68,7 @@ const Confirm: React.FC<IConfirmProps> = ({
     <div className='confirm-popup'>
       <h2 className='confirm-popup__title'>{title}</h2>
       {text && <p className='confirm-popup__text'>{text}</p>}
+      {isCrossCloseButton ? <Cross onClick={onClose} size={14} className='confirm-popup__cross-button' /> : null}
       {
         showComment && (
           <FormGroup label={commentTitle}>
