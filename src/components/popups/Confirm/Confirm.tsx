@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Confirm.scss';
-import {
-  Button, Cross, FormGroup
-} from '../../../index';
+import { Button, FormGroup } from '../../../index';
 import Textarea from '../../atoms/Textarea';
 
 export interface IConfirmProps {
@@ -13,7 +11,7 @@ export interface IConfirmProps {
   /** Текст подтверждения */
   text?: string;
   /** Функция закрытия формы */
-  onClose?: () => void;
+  onClose: () => void;
   /** Комментарий */
   comment?: string;
   /** Показать комментарий */
@@ -22,11 +20,6 @@ export interface IConfirmProps {
   lang?: string;
   /** Прелоудер */
   preloader?: boolean;
-  /**
-   * Крестик
-   * @default false
-   *  */
-  isCrossCloseButton?: boolean
 }
 
 const Confirm: React.FC<IConfirmProps> = ({
@@ -38,7 +31,6 @@ const Confirm: React.FC<IConfirmProps> = ({
   text,
   lang = 'ru',
   preloader = false,
-  isCrossCloseButton = false
 }: IConfirmProps) => {
 
   const handleSubmit = () => {
@@ -59,6 +51,7 @@ const Confirm: React.FC<IConfirmProps> = ({
     e.target && setState((e.target as HTMLTextAreaElement).value);
   };
 
+
   const isRussian = lang?.toLowerCase().includes('ru');
   const declineText = isRussian ? 'Отмена' : 'Cancel';
   const commentTitle = isRussian ? 'Комментарий' : 'Comment';
@@ -68,7 +61,6 @@ const Confirm: React.FC<IConfirmProps> = ({
     <div className='confirm-popup'>
       <h2 className='confirm-popup__title'>{title}</h2>
       {text && <p className='confirm-popup__text'>{text}</p>}
-      {isCrossCloseButton ? <Cross onClick={onClose} size={14} className='confirm-popup__cross-button' /> : null}
       {
         showComment && (
           <FormGroup label={commentTitle}>
