@@ -65,7 +65,7 @@ export const Demo = () => {
 
 export const Playground: Story = () => {
   return (
-    <StoryContainer name='Datepicker' description='Выбор даты.' width={350}>
+    <StoryContainer name='Datepicker' description='Выбор даты.' width={280}>
       <StoryRow>
         <Datepicker readOnly />
       </StoryRow>
