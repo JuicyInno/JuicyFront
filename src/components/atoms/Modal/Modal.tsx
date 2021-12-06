@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import './Modal.scss';
 import { createPortal } from 'react-dom';
-import { Close } from '../../../index';
+import { Cross } from '../../../index';
 
 export interface IModalProps {
   /** Контент модалки */
@@ -66,7 +66,7 @@ const Modal: FC<IModalProps> = ({
           onClick={(e: React.MouseEvent) => e.stopPropagation()}>
           {onClose && (
             <button type='button' className='rf-modal__close-button' onClick={onClose}>
-              <Close />
+              <Cross size={15} />
             </button>
           )}
 
