@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Datepicker from './Datepicker';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
@@ -7,6 +7,7 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
+import { today } from '../../../index';
 
 export default {
   title: 'forms/withTest/Datepicker',
@@ -57,10 +58,21 @@ export const Demo = () => {
 };
 
 export const Playground: Story = () => {
+
+  const [date, setDate] = useState(new Date(2021, 11, 20).getTime());
+
+  const onChange = (date: IDateVariants) => {
+    setDate(date.timestamp.value);
+  };
+
+  useEffect(() => {
+    console.log(date);
+  }, [date]);
+
   return (
     <StoryContainer name='Datepicker' description='Выбор даты.' width={280}>
       <StoryRow>
-        <Datepicker readOnly position='bottom-start' />
+        <Datepicker defaultValue={date} min={today()} onChange={onChange} range/>
       </StoryRow>
     </StoryContainer>
   );
