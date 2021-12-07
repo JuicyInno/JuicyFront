@@ -15,7 +15,7 @@ export interface IButtonGroupProps {
   max?: number;
 }
 
-export const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
+const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Видимые кнопки */
 

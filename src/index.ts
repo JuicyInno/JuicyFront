@@ -72,6 +72,7 @@ import Schedule, {
   ScheduleLegend,
   ScheduleLegendItem,
 } from './components/molecules/Schedule';
+import ButtonGroup from './components/molecules/ButtonGroup';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -907,7 +908,6 @@ import useUpdateEffect from './hooks/useUpdateEffect';
 import {
   numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform
 } from './utils/helpers';
-import ButtonGroup from './components/molecules/ButtonGroup';
 
 export {
   useClickOutside,
