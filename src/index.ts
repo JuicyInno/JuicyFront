@@ -906,7 +906,7 @@ import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import {
-  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform, today
 } from './utils/helpers';
 
 export {
@@ -921,5 +921,6 @@ export {
   LocalToUTC,
   UTCToLocal,
   formatDate,
-  oDataTransform
+  oDataTransform,
+  today
 };
