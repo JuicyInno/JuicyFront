@@ -6,7 +6,6 @@ import {
 } from '../../../index';
 import Menu from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
-import Tooltip from '../../atoms/Tooltip';
 import Tile from '../../atoms/Tile';
 
 export interface IButtonGroupProps {
@@ -28,10 +27,10 @@ export const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IBut
   for (let i = 0; i < m; i++) {
     if (list[i].component) {
       buttonsJSX.push(<div className='button-group__item' key={i}>
-        <Tooltip portal position='bottom'>
-          {list[i].component}
-          {list[i].tooltip}
-        </Tooltip>
+        {/* <Tooltip portal position='bottom'> */}
+        {list[i].component}
+        {/* {list[i].tooltip} */}
+        {/* </Tooltip> */}
       </div>);
     }
   }
@@ -73,10 +72,10 @@ export const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IBut
       {buttonsJSX}
       {menuJSX.length > 0 && (
         <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-start'>
-          <Tooltip portal position='bottom'>
-            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
-            <>Другие действия</>
-          </Tooltip>
+          {/* <Tooltip portal position='bottom'> */}
+          <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+          {/* <>Другие действия</> */}
+          {/* </Tooltip> */}
         </Menu>
       )}
     </Tile>
