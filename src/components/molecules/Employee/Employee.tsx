@@ -60,7 +60,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
     background={tooltipBackground}
   >
     <Info data-testid='icon' className='rf-employee__department-icon' />
-    <Structure departmentsPath={departmentsPath} />
+    <Structure departmentsPath={departmentsPath} background={tooltipBackground} />
   </Tooltip>;
 
   return (
