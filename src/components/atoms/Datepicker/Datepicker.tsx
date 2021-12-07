@@ -265,12 +265,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   useEffect(() => {
-    if (inputValue === '__.__.____ - __.__.____' || inputValue === '') {
-      const result = getReturnValue('', range);
-      onChange && onChange(result, name);
-      fireOnChange();
-    }
-
     if (!inputValue.includes('_') && inputValue !== '') {
       const result = getReturnValue(inputValue, range);
       onChange && onChange(result, name);
@@ -344,6 +338,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const clearDateRangeHandler = () => {
     setInputValue('');
+    const result = getReturnValue('', range);
+    onChange && onChange(result, name);
+    fireOnChange();
   };
 
   // -------------------------------------------------------------------------------------------------------------------
