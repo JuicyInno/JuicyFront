@@ -13,6 +13,8 @@ export interface IFormGroup {
   errorMessage?: string;
   /** Красная подсветка нижнего лейбла*/
   invalid?: boolean;
+  /** disabled состояние верхнего лейбла */
+  disabled?: boolean;
   /** Красная подсветка labelSecondary */
   invalidLabelSecondary?: boolean;
   /** Дополнительный класс */
@@ -29,6 +31,7 @@ const FormGroup: FC<IFormGroup> = ({
   className = '',
   required = false,
   invalid = true,
+  disabled = false,
   invalidLabelSecondary
 }: IFormGroup) => {
   return (
@@ -36,7 +39,10 @@ const FormGroup: FC<IFormGroup> = ({
       <div className='rf-form-group__inner'>
         {label && (
           <p
-            className={classnames('rf-form-group__label')}
+            className={classnames(
+              'rf-form-group__label',
+              disabled && 'rf-form-group__label--disabled',
+            )}
           >
             {label}
             {required && <span className='rf-form-group__required'>*</span>}

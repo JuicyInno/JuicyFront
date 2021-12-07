@@ -46,13 +46,39 @@
 .rf-select__wrapper {
   width: 100%;
   position: relative;
+  display: inline-flex;
   border-radius: 8px;
   box-shadow: 0 0 0 1px var(--background-tertiary);
   background-color: var(--background-primary);
   overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--basic-hover);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 1px var(--basic-press);
+  }
+
 }
 .rf-select__wrapper--invalid {
   box-shadow: 0 0 0 1px var(--status-danger);
+}
+
+.rf-select__wrapper--disabled {
+  box-shadow: 0 0 0 1px var(--background-tertiary);
+  background-color: var(--background-tertiary);
+
+  .rf-select__input {
+    color: var(--text-tertiary);
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--background-tertiary);
+  }
+  &:active {
+    box-shadow: 0 0 0 1px var(--background-tertiary);
+  }
 }
 
 .rf-select__wrapper:hover {

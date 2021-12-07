@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState
+} from 'react';
 import { Story } from '@storybook/react';
 
 import Select from './Select';
@@ -8,6 +10,8 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
 import InputNumber from '../InputNumber';
+import FormGroup from '../FormGroup';
+import Placeholder24 from '../../../assets/icons/Placeholder24';
 
 export default {
   title: 'forms/не проверено/Select',
@@ -62,7 +66,6 @@ export const Demo = () => {
 
   const [state, setState] = useState([list[0]]);
   const [state1, setState1] = useState([list[1]]);
-  const [state2, setState2] = useState(true);
 
   const onChange1 = (options: IOption[]) => {
     console.log(options);
@@ -82,15 +85,63 @@ export const Demo = () => {
   ];
 
   return (
-    <StoryContainer name='Select' description='Select кнопки' width={400}>
+    <StoryContainer name='Select' description='виды Select' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
+        <StoryItem description='Select default'>
+          <FormGroup label={'Label'}>
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select invalid'>
+          <FormGroup label='Label' invalid errorMessage='Error'>
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              invalid
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select disabled'>
+          <FormGroup label='Label' disabled>
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              disabled
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select start adornment'>
+          <FormGroup label='Label' disabled>
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              onChange={onChange2}
+              preloader={loading}
+              startAdornment={<Placeholder24 />}
+            />
+          </FormGroup>
+        </StoryItem>
+
         <StoryItem description='Multiselect'>
           <Select
             placeholder='Выберите значение'
             options={filteredOptions}
             values={values}
             invalid={true}
-            tagsPosition='outside'
+            tagsPosition='inside'
             onChange={onChange}
             onSearch={onSearch}
             multiselect
@@ -102,7 +153,6 @@ export const Demo = () => {
           <Button
             onClick={() => {
               setState([list[1]]);
-              setState2(!state2);
             }}
           >
             Set State
@@ -112,7 +162,6 @@ export const Demo = () => {
             placeholder='Выберите значение'
             options={filteredOptions}
             values={state}
-            invalid={state2}
             tagsPosition='outside'
             onChange={onChange1}
             onSearch={onSearch}
@@ -128,19 +177,6 @@ export const Demo = () => {
             values={state1}
             tagsPosition='outside'
             onChange={onChange2}
-            preloader={loading}
-          />
-        </StoryItem>
-
-        <StoryItem description='Портал'>
-          <Select
-            placeholder='Выберите значение'
-            readOnly
-            options={list}
-            values={state1}
-            tagsPosition='outside'
-            onChange={onChange2}
-            portal
             preloader={loading}
           />
         </StoryItem>
@@ -182,7 +218,7 @@ export const LazySelect: Story = () => {
     return fetch(`https://jsonplaceholder.typicode.com/todos?_start=${offset}&_limit=${limit}`)
       .then((response) => response.json())
       .then((json) => {
-        const resList = json.map((item) => ({
+        const resList = json.map((item: { id: string; title: string; }) => ({
           value: item.id,
           label: item.title,
         }));
@@ -213,7 +249,6 @@ export const LazySelect: Story = () => {
                 hasMore,
                 dataLength: list.length,
               }}
-              portal
               onSearch={onSearch}
             />
           </form>
@@ -228,7 +263,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} portal {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>

@@ -61,6 +61,10 @@ export interface ISelectProps {
   position?: DropdownPosition;
   /** Ширина */
   maxWidth?: number | string;
+  /** Контент для вставки в начало кнопки */
+  startAdornment?: ReactNode;
+  /** Контент для вставки в конец кнопки */
+  endAdornment?: ReactNode;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -83,6 +87,8 @@ const Select: FC<ISelectProps> = ({
   infinityScrollProps,
   position = 'left',
   maxWidth,
+  startAdornment,
+  endAdornment,
 }: ISelectProps) => {
   const [showDropdown, toggleDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -334,7 +340,15 @@ const Select: FC<ISelectProps> = ({
 
   return (
     <div className={classnames('rf-select', multiselectClass, tagClass)}>
-      <div className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)} ref={toggleRef}>
+      <div
+        className={classnames(
+          'rf-select__wrapper',
+          invalid && 'rf-select__wrapper--invalid',
+          disabled && 'rf-select__wrapper--disabled',
+          openClass
+        )}
+        ref={toggleRef}
+      >
         <input
           className='rf-select__input'
           onMouseDown={openDropdown}
