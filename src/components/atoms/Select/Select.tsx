@@ -367,7 +367,10 @@ const Select: FC<ISelectProps> = ({
           toggleRef={toggleRef}
           onClose={onClose}
           position={position}
-          style={{ maxWidth: isTagVariant ? 'auto' : getWidthDropdown() }}
+          style={{
+            maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
+            width: isTagVariant ? 'auto' : '100%'
+          }}
         >
           <div className='rf-select__list' id='rf-select-list-scroll'>
             {hasInfinityScroll ? (

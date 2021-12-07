@@ -160,6 +160,20 @@ export const Demo = () => {
             />
           </div>
         </StoryItem>
+
+        <StoryItem description='Small options'>
+          <Select
+            placeholder='Выберите значение'
+            options={[
+              {
+                value: 'v',
+                label: 'label'
+              }
+            ]}
+            values={[]}
+            onChange={onChange2}
+          />
+        </StoryItem>
       </form>
     </StoryContainer>
   );
