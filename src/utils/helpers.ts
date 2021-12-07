@@ -297,3 +297,13 @@ export const initialFiles: IFileData[] = [
     id: '00505683-c29f-1eec-9390-0b884bf2ff6f'
   }
 ];
+
+/** Сегодня приведенное к 00:00:00 */
+export const today = (): number => {
+  const date = new Date();
+  date.setHours(0);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return date.getTime();
+};

@@ -2,6 +2,7 @@ import {
   DateFormat,
   DateLocale, IDatepickerActivePeriod, IFormattedDate
 } from './datepicker.types';
+import { today } from '../../../../index';
 
 export const weekDays: Record<DateLocale, string[]> = {
   ru: [
@@ -239,7 +240,7 @@ export const addLeadingZeros = (number: number, length = 2) => {
 
 export const formatDate = (date: string | number | undefined, format: DateFormat): IFormattedDate => {
   if (!date) {
-    date = Date.now();
+    date = today();
   }
 
   const tempDate = new Date(date);
