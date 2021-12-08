@@ -1,1 +1,0 @@
-export { StoryDocsDescription } from './StoryDocsDescription';
