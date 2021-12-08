@@ -1,8 +1,8 @@
 const path = require('path');
-const webpack = require('./../webpack');
+const webpack = require('webpack');
 const dotenv = require('dotenv');
 console.log(webpack)
-const ModuleFederationPlugin = require("./webpack/lib/container/ModuleFederationPlugin");
+const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederationPlugin");
 
 
 const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
