@@ -60,6 +60,8 @@ export interface ISelectProps {
   infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
   /** Расположение */
   position?: DropdownPosition;
+  /** Событие скролла для выпадающего списка */
+  onScroll?: (e: React.UIEvent) => void;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -81,6 +83,7 @@ const Select: FC<ISelectProps> = ({
   isAsync,
   infinityScrollProps,
   position = 'bottom-start',
+  onScroll
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -372,7 +375,7 @@ const Select: FC<ISelectProps> = ({
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div className='rf-select__list' id='rf-select-list-scroll'>
+          <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
