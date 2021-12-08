@@ -3,24 +3,23 @@ import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
 import { Story } from '@storybook/react';
-import History from './History';
-import {
-  pathsHistory, attachments, pathsUZADO
-} from './mock';
+import { withDesign } from 'storybook-addon-designs';
+import HistorySidebar from './HistorySidebar';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
+import { attachments, pathsHistory } from '../History/mock';
 
-// export default {
-//   title: 'components/withTest/History',
-//   component: History,
-//   decorators: [withDesign],
-//   argTypes: {
-//     history: { control: null },
-//     attachments: { control: null },
-//     isUZADO: { type: 'boolean' },
-//     host: { type: 'string' }
-//   }
-// };
+export default {
+  title: 'components/withTest/HistorySidebar',
+  component: HistorySidebar,
+  decorators: [withDesign],
+  argTypes: {
+    history: { control: null },
+    attachments: { control: null },
+    isUZADO: { type: 'boolean' },
+    host: { type: 'string' }
+  }
+};
 
 export const Demo: Story = () => {
   return (
@@ -28,13 +27,14 @@ export const Demo: Story = () => {
       <StoryDocsH1>History</StoryDocsH1>
       <StoryDocsH2>История согласования</StoryDocsH2>
       <StoryDocsDescription>Отображение пути согласования, используется во всех сервисах, кроме ЮЗЭДО</StoryDocsDescription>
-      <History history={pathsHistory} attachments={attachments} />
-
-      <StoryDocsH2>История согласования ЮЗЭДО</StoryDocsH2>
-      <StoryDocsDescription>
-          Вместо активности показываем должность, отключаем иконку (i), используется ТОЛЬКО в ЮЗЭДО
-      </StoryDocsDescription>
-      <History history={pathsUZADO} isUZADO />
+      <div style={{
+        display: 'flex',
+        width: 600,
+        height: 'auto',
+        justifyContent: 'flex-end'
+      }}>
+        <HistorySidebar history={pathsHistory} attachments={attachments} />
+      </div>
     </StoryDocs>
   );
 };
@@ -52,7 +52,7 @@ export const Playground: Story = (args: any) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <History { ...args } history={pathsHistory} />
+        <HistorySidebar { ...args } />
       </StoryRow>
     </StoryContainer>
   );
