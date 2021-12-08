@@ -37,6 +37,7 @@ const Tooltip: FC<ITooltipProps> = ({
   return (
     <Manager>
       <div
+        data-testid='rf-tooltip'
         className={`rf-tooltip rf-tooltip--${background}`}
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
