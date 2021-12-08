@@ -1,0 +1,177 @@
+// Неактивное состояние элемента
+@mixin disabled() {
+  cursor: default;
+  pointer-events: none;
+}
+
+// Визуально скрыть
+@mixin hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// ------------------
+
+// Заголовки
+
+@mixin h {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+@mixin h1 {
+  @include h;
+  font-size: 42px;
+  line-height: 52px;
+}
+
+@mixin h2 {
+  @include h;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+@mixin h3 {
+  @include h;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+@mixin h4 {
+  @include h;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+@mixin h5 {
+  @include h;
+  font-size: 22px;
+  line-height: 28px;
+}
+
+@mixin h6 {
+  @include h;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+// Подзаголовки
+
+@mixin s {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+// Caption
+
+@mixin caption {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+// Тексты
+
+@mixin text {
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+@mixin text-l-16 {
+  @include text;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-m-16 {
+  @include text;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin text-s-14 {
+  @include text;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin text-xs-14 {
+  @include text;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+@mixin text-xs-18 {
+  @include text;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@mixin text-l-16-bold {
+  @include text-l-16;
+  font-weight: 500;
+}
+
+@mixin text-s-14-bold {
+  @include text-s-14;
+}
+
+// Кнопки
+
+@mixin button {
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@mixin button-m-16 {
+  @include button;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin button-s-14 {
+  @include button;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+// Прочее
+
+@mixin round($r) {
+  width: $r;
+  height: $r;
+  min-width: $r;
+  min-height: $r;
+  border-radius: 50%;
+}
+
+@mixin square($l) {
+  width: $l;
+  height: $l;
+  min-width: $l;
+  min-height: $l;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}

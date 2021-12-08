@@ -1,0 +1,1 @@
+export { StoryDocsLabel } from './StoryDocsLabel';

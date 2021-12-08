@@ -1,0 +1,169 @@
+:root {
+  --basic-primary: #0d69f2;
+  --basic-secondary: #2b313b;
+  --basic-tertiary: #8a96a8;
+  --basic-hover: #0a54c2;
+  --basic-press: #0949aa;
+  --basic-disable: #c4cad4;
+  --basic-primary-light: #6ea5f7;
+
+  --background-primary: #ffffff;
+  --background-secondary: #f1f2f4;
+  --background-tertiary: #e2e5e9;
+  --background-tertiary-hover: #d3d8de;
+  --background-card: #ffffff;
+  --background-card-hover: #ffffff;
+  --background-inversion: #2b313b;
+  --background-shadow: #8a96a8;
+  --background-header: #0949aa;
+  --background-danger: #fef0f1;
+  --background-warn: #fff7f0;
+  --background-success: #f2fcf5;
+
+  --text-primary: #2b313b;
+  --text-secondary: #626f84;
+  --text-tertiary: #a7b0be;
+  --text-inversion: #ffffff;
+  --text-static-white: #ffffff;
+  --text-static-black: #2b313b;
+
+  --status-warn: #ff8c19;
+  --status-warn-hover: #e57300;
+  --status-warn-press: #cc6600;
+
+  --status-success: #2abb5b;
+  --status-success-hover: #219246;
+  --status-success-press: #1c7d3c;
+
+  --status-danger: #da0b20;
+  --status-danger-hover: #a90919;
+  --status-danger-press: #910815;
+
+  --special-blue: #3f7dfe;
+  --special-softBlue: #e6eeff;
+  --special-lightBlue: #0abbfb;
+  --special-softLightBlue: #e6f8ff;
+  --special-turquoise: #4ad2ca;
+  --special-softTurquoise: #eafaf9;
+  --special-green: #5ecf70;
+  --special-softGreen: #ebf9ee;
+  --special-yellow: #ffaf37;
+  --special-softYellow: #fff5e6;
+  --special-red: #ff525c;
+  --special-softRed: #ffe6e7;
+  --special-magenta: #e052bd;
+  --special-softMagenta: #fbe9f7;
+  --special-purple: #bf67c7;
+  --special-softPurple: #f7ecf8;
+  --special-violet: #8742f0;
+  --special-softViolet: #f0e7fd;
+  --special-gray: #98abcd;
+  --special-softGray: #edf1f8;
+
+  --4: 4px;
+  --8: 8px;
+  --12: 12px;
+  --16: 16px;
+  --20: 20px;
+  --24: 24px;
+  --32: 32px;
+  --shadow-clickable-active: 0px 2px 4px rgba(138, 150, 168, 0.4), 0px -2px 2px rgba(138, 150, 168, 0.08);
+  --shadow-clickable-default: 0px 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 168, 0.08);
+  --shadow-non-clickable: 0px 4px 16px rgba(138, 150, 168, 0.4), 0px 0px 6px rgba(138, 150, 168, 0.08);
+  --shadow-clickable-hover: 0px 8px 16px rgba(138, 150, 168, 0.4), 0px -2px 8px rgba(138, 150, 168, 0.08);
+
+  // старые переменные !!!!! НЕ ИСПОЛЬЗОВАТЬ !!!!!!!!!!!!!
+  --base-000: #ffffff;
+  --base-100: #f7f9fc;
+  --base-150: #f0f4fa;
+  --base-200: #e4e9f2;
+  --base-300: #c5cee0;
+  --base-400: #8f9bb3;
+  --base-500: #5d6a87;
+  --base-600: #2e3a59;
+  --base-700: #222b45;
+  --base-800: #192038;
+  --base-900: #151a30;
+  --base-1000: #000000;
+
+  --accent-100: #f2f6ff;
+  --accent-200: #d9e4ff;
+  --accent-300: #a6c0ff;
+  --accent-400: #5987ff;
+  --accent-500: #3369ff;
+  --accent-600: #274fdb;
+  --accent-700: #1a3ab8;
+  --accent-800: #102894;
+  --accent-900: #091c7a;
+
+  --info-100: #f2f8ff;
+  --info-200: #c7e4ff;
+  --info-300: #94d0ff;
+  --info-400: #42b6ff;
+  --info-500: #00aaff;
+  --info-600: #0081d6;
+  --info-700: #0069c2;
+  --info-800: #0050a8;
+  --info-900: #003785;
+
+  --complement-100: #fff2fa;
+  --complement-200: #ffd9ef;
+  --complement-300: #ffa6da;
+  --complement-400: #ff59ba;
+  --complement-500: #e42896;
+  --complement-600: #ca0075;
+  --complement-700: #af0467;
+  --complement-800: #95075a;
+  --complement-900: #7a094b;
+
+  --faint-100: rgba(93, 106, 135, 0.08);
+  --faint-200: rgba(93, 106, 135, 0.16);
+  --faint-300: rgba(93, 106, 135, 0.24);
+  --faint-400: rgba(93, 106, 135, 0.32);
+  --faint-500: rgba(93, 106, 135, 0.4);
+  --faint-600: rgba(93, 106, 135, 0.48);
+  --faint-900: rgba(2, 2, 3, 0.8);
+
+  --success-100: #f0fff5;
+  --success-200: #ccfce3;
+  --success-300: #8cfac7;
+  --success-400: #2ce59b;
+  --success-500: #00d68f;
+  --success-600: #00b887;
+  --success-700: #00997a;
+  --success-800: #007d6c;
+  --success-900: #004a45;
+
+  --warning-100: #fffdf2;
+  --warning-200: #fff1c2;
+  --warning-300: #ffe59e;
+  --warning-400: #ffc94d;
+  --warning-500: #ffaa00;
+  --warning-600: #db8b00;
+  --warning-700: #b86e00;
+  --warning-800: #945400;
+  --warning-900: #703c00;
+
+  --danger-100: #fff2f2;
+  --danger-200: #ffd6d9;
+  --danger-300: #ffa8b4;
+  --danger-400: #ff708d;
+  --danger-500: #ff3d71;
+  --danger-600: #db2c66;
+  --danger-700: #b81d5b;
+  --danger-800: #94124e;
+  --danger-900: #700940;
+
+  --shadow-strong: 0 15px 30px rgba(0, 2, 82, 0.15);
+  --shadow-weak: 0 2px 4px rgba(0, 2, 82, 0.2);
+  --basic-shadow-long: 0px 2px 16px rgba(25, 59, 104, 0.1), 0px 8px 32px rgba(25, 59, 104, 0.15);
+  --basic-shadow: 0px 0px 32px rgba(0, 40, 130, 0.25);
+}
+
+// Брейкпоинты
+$mobile: 320px;
+$mobileLarge: 700px;
+$tablet: 768px;
+$desktopMin: 1024px;
+$desktopMiddle: 1280px;
+$desktop: 1440px;
