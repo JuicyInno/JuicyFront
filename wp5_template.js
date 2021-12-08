@@ -6,16 +6,16 @@ const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederatio
 
 const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
 const isDev=env === 'development'
-console.log('isDev', isDev)
-const fileEnv = dotenv.config({ path: `./.env.${env}` }).parsed;
 
+const fileEnv = dotenv.config({ path: `../../.env.${env}` }).parsed;
+console.log('fileEnv', fileEnv )
 const envKeys = Object.keys(fileEnv)
   .reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
     return prev;
   }, {});
 
-envKeys['process.env.REACT_APP_V'] = `"${require('./package.json').version}"`;
+envKeys['process.env.REACT_APP_V'] = `"${require('../../package.json').version}"`;
 console.log('REACT_APP_V', envKeys['process.env.REACT_APP_V'] )
 const sourceMap =isDev  ? [new webpack.SourceMapDevToolPlugin({
   filename: "[file].map"
