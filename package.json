@@ -9,7 +9,7 @@
     "build-storybook": "build-storybook",
     "lint": "eslint --fix --ext .ts,.tsx .",
     "test": "jest",
-    "t": " yarn commit && git tag v3 && git push --tags",
+    "t": " yarn commit && git tag v4 && git push --tags",
     "commit": "git add . && node ./node_modules/cz-customizable/standalone.js",
     "wincommit": "node ./node_modules/cz-customizable/standalone.js",
     "build": "rimraf dist && tsc --emitDeclarationOnly&& webpack --config webpack-lib.config.js && yarn copy",

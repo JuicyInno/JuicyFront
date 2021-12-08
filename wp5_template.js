@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-console.log(webpack)
 const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederationPlugin");
 
 
 const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
 const isDev=env === 'development'
+console.log('isDev', isDev)
 const fileEnv = dotenv.config({ path: `./.env.${env}` }).parsed;
 
 const envKeys = Object.keys(fileEnv)
@@ -16,12 +16,20 @@ const envKeys = Object.keys(fileEnv)
   }, {});
 
 envKeys['process.env.REACT_APP_V'] = `"${require('./package.json').version}"`;
-
+console.log('REACT_APP_V', envKeys['process.env.REACT_APP_V'] )
 const sourceMap =isDev  ? [new webpack.SourceMapDevToolPlugin({
   filename: "[file].map"
 })] : [];
 
-function common(){
+function common({
+  port=8000,
+  applicationName,
+  remotes= {},
+  exposes= { './app': "./src/Main" },
+  shared= {}
+
+}){
+  if (!applicationName) console.error('НЕ ЗАДАНО ИМЯ ПРИЛОЖЕНИЯ')
   return  {
 
     output: {
@@ -37,7 +45,7 @@ function common(){
     },
 
     devServer: {
-      port: 8006,
+      port: port,
       historyApiFallback: true,
     },
 
@@ -81,10 +89,6 @@ function common(){
           test: /\.json$/,
           loader: 'json-loader'
         },
-
-
-
-
         {
           test: /\.svg$/,
           use: [
@@ -115,17 +119,14 @@ function common(){
     plugins: [
 
       new ModuleFederationPlugin({
-        name: "juicy_show_structure",
-        library: { type: "var", name: "juicy_show_structure" },
+        name: applicationName,
+        library: { type: "var", name: applicationName },
         filename: "remoteEntry.js",
-        remotes: {},
-        exposes: {
-          './app': "./src/Main"
-        },
-        shared: {}
+        remotes,
+        exposes,
+        shared,
       }),
       ...sourceMap,
-      // new BundleAnalyzerPlugin(),
       new webpack.DefinePlugin(envKeys),
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(env) } }),
 
@@ -133,4 +134,4 @@ function common(){
 
   };
 }
-exports.config = common();
+exports.config = common;
