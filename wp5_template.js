@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+
 const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederationPlugin");
 
 
 const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
 const isDev=env === 'development'
 
-const fileEnv = dotenv.config({ path: `../../.env.${env}` }).parsed;
+const fileEnv = dotenv.config({ path: `./.env.${env}` }).parsed;
 console.log('fileEnv', fileEnv )
 const envKeys = Object.keys(fileEnv)
   .reduce((prev, next) => {
@@ -23,13 +24,13 @@ const sourceMap =isDev  ? [new webpack.SourceMapDevToolPlugin({
 
 function common({
   port=8000,
-  applicationName,
+  applicationName = 'undefined',
   remotes= {},
   exposes= { './app': "./src/Main" },
   shared= {}
 
 }){
-  if (!applicationName) console.error('НЕ ЗАДАНО ИМЯ ПРИЛОЖЕНИЯ')
+  if (applicationName === 'undefined') console.error('НЕ ЗАДАНО ИМЯ ПРИЛОЖЕНИЯ')
   return  {
 
     output: {
