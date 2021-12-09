@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederationPlugin");
 
 
@@ -27,7 +27,9 @@ function common({
   applicationName = 'undefined',
   remotes= {},
   exposes= { './app': "./src/Main" },
-  shared= {}
+  shared= {},
+  baseUrl='/',
+  russianName='Неизвестное приложение'
 
 }){
   if (applicationName === 'undefined') console.error('НЕ ЗАДАНО ИМЯ ПРИЛОЖЕНИЯ')
@@ -130,7 +132,12 @@ function common({
       ...sourceMap,
       new webpack.DefinePlugin(envKeys),
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(env) } }),
-
+      new HtmlWebPackPlugin({
+        template: "./index.html",
+        favicon: "./favicon.ico",
+         baseUrl,
+        russianName
+      })
     ],
 
   };
