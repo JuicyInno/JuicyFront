@@ -13,7 +13,7 @@
     "commit": "git add . && node ./node_modules/cz-customizable/standalone.js",
     "wincommit": "node ./node_modules/cz-customizable/standalone.js",
     "build": "rimraf dist && tsc --emitDeclarationOnly&& webpack --config webpack-lib.config.js && yarn copy",
-    "copy": "shx cp wp5_template.js dist/ && shx cp webpack.config.js dist/ && shx cp .eslintrc.json dist/ &&  shx mkdir dist/styles && shx cp .stylelintrc.json dist/ && shx cp commitlint.config.js dist/ && shx  cp changelog.config.js dist/ && shx  cp .lintstagedrc.json dist/ && shx cp src/styles/mixins.scss dist/styles/ && shx cp src/styles/common.scss dist/styles/ && shx cp src/styles/variables.scss dist/styles/",
+    "copy": "shx cp public/favicon.ico dist/ && shx cp public/index.html dist/ && shx cp wp5_template.js dist/ && shx cp webpack.config.js dist/ && shx cp .eslintrc.json dist/ &&  shx mkdir dist/styles && shx cp .stylelintrc.json dist/ && shx cp commitlint.config.js dist/ && shx  cp changelog.config.js dist/ && shx  cp .lintstagedrc.json dist/ && shx cp src/styles/mixins.scss dist/styles/ && shx cp src/styles/common.scss dist/styles/ && shx cp src/styles/variables.scss dist/styles/",
     "deploy": "yarn build-storybook && firebase deploy",
     "release": "release-it",
     "size": "source-map-explorer dist/index.js --no-border-checks"
