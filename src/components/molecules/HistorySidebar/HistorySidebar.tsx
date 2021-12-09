@@ -51,7 +51,7 @@ const HistorySidebar: FC<IHistory> = ({
   const attachmentsJSX = (
 
     <>
-      <div className={`rf-history-sidebar__attachments-line ${!isOpen && 'open'}`} />
+      <div className={`rf-history-sidebar__attachments-line ${!isOpen ? 'open' : ''}`} />
       {isOpen ? (
         <>
           <p className='rf-history-sidebar__attachments-title'>Приложенные файлы</p>
@@ -71,7 +71,7 @@ const HistorySidebar: FC<IHistory> = ({
   );
 
   return (
-    <div className={`rf-history-sidebar ${isOpen && 'open'}`}>
+    <div className={`rf-history-sidebar ${isOpen ? 'open' : ''}`}>
       <div className='rf-history-sidebar__button-container'>
         <Button
           onClick={() => setIsOpen(!isOpen)}
@@ -82,14 +82,14 @@ const HistorySidebar: FC<IHistory> = ({
           {isOpen ? <ChevronRight /> : <ChevronLeft/>}
         </Button>
       </div>
-      <div className={`rf-history-sidebar__heading ${!isOpen && 'closed'}`}>
+      <div className={`rf-history-sidebar__heading ${!isOpen ? 'closed' : ''}`}>
         История согласования
       </div>
-      <div className={`rf-history-sidebar__paths ${isOpen && 'open'}`}>
+      <div className={`rf-history-sidebar__paths ${isOpen ? 'open' : ''}`}>
         <HistoryPathList path={history} isUZADO={isUZADO} isMinimal={!isOpen} />
       </div>
       {attachments && (
-        <div className={`rf-history-sidebar__attachments ${isOpen && 'open'}`}>
+        <div className={`rf-history-sidebar__attachments ${isOpen ? 'open' : ''}`}>
           {attachmentsJSX}
         </div>
       )}

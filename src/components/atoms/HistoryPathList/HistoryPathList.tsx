@@ -1,14 +1,20 @@
 import React, { FC } from 'react';
+
 import AvatarStatus from '../../molecules/AvatarStatus';
-import { statusValue } from '../../molecules/History/helpers';
-import User from '../../../assets/icons/24px/Account/User';
-import Tooltip from '../Tooltip';
 import InformationAlert from '../../../assets/icons/24px/Alerts/InformationAlert';
-import StatusWithText from '../StatusWithText';
-import { IRequestPath, IUser } from '../../../types/projects.types';
-import Avatar from '../Avatar';
-import { IFormattedDate } from '../../../types';
+import User from '../../../assets/icons/24px/Account/User';
+
+import { statusValue } from '../../molecules/History/helpers';
+import { statusType } from './helpers';
 import { formatDate } from '../../../utils/helpers';
+
+import Avatar from '../Avatar';
+import Tooltip from '../Tooltip';
+import StatusWithText from '../StatusWithText';
+
+import { IRequestPath, IUser } from '../../../types/projects.types';
+import { IFormattedDate } from '../../../types';
+import { IconType } from '../Status/icons/types';
 
 import './HistoryPathList.scss';
 
@@ -64,6 +70,7 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
               size='l'
               photo={r.user[0].photo}
               variant={r.user[0].fullName === 'Вы' ? statusValue['4'] : statusValue[r.criticality]}
+              type={isMinimal ? statusType[r.criticality] as IconType : undefined}
             /> :
             <AvatarStatus
               size='l'
