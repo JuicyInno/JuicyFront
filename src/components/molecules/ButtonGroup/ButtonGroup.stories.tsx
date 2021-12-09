@@ -24,7 +24,7 @@ export const Demo = () => {
           </StoryRow>
 
           <StoryRow>
-            <ButtonGroup list={buttonGroupMock} max={3} />
+            <ButtonGroup list={buttonGroupMock} max={3} closeAfterClick />
           </StoryRow>
 
           <StoryRow>

@@ -81,6 +81,7 @@ const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, positio
             ...style
           }}
           className='rf-dropdown__content'
+          data-testid='rf-dropdown'
         >
           {children}
         </div>

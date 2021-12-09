@@ -144,7 +144,7 @@ export const Demo: Story = () => {
       </div>
       <StoryDocsH2>Hover</StoryDocsH2>
       <StoryDocsDescription>При ховере под аватаром показывается Tooltip с именем пользователя.</StoryDocsDescription>
-      <Tooltip position='top' portal>
+      <Tooltip position='top'>
         <Avatar icon={(props) => <User {...props} />} />
         <div>Андрей Борисов</div>
       </Tooltip>
