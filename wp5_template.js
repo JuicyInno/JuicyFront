@@ -9,7 +9,7 @@ const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
 const isDev=env === 'development'
 
 const fileEnv = dotenv.config({ path: `./.env.${env}` }).parsed;
-console.log('fileEnv', fileEnv )
+
 const envKeys = Object.keys(fileEnv)
   .reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(fileEnv[next]);
@@ -17,7 +17,7 @@ const envKeys = Object.keys(fileEnv)
   }, {});
 
 envKeys['process.env.REACT_APP_V'] = `"${require('../../package.json').version}"`;
-console.log('REACT_APP_V', envKeys['process.env.REACT_APP_V'] )
+
 const sourceMap =isDev  ? [new webpack.SourceMapDevToolPlugin({
   filename: "[file].map"
 })] : [];
@@ -133,9 +133,9 @@ function common({
       new webpack.DefinePlugin(envKeys),
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(env) } }),
       new HtmlWebPackPlugin({
-        template: "./index.html",
-        favicon: "./favicon.ico",
-         baseUrl,
+        template: "./node_modules/juicyfront/index.html",
+        favicon: "./node_modules/juicyfront/favicon.ico",
+        baseUrl,
         russianName
       })
     ],
