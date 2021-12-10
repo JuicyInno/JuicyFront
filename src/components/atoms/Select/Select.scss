@@ -63,6 +63,10 @@
   border-color: var(--basic-hover);
 }
 
+.rf-select__wrapper--disabled {
+  pointer-events: none;
+}
+
 .rf-select__input {
   border: 0;
   outline: 0;
