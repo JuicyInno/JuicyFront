@@ -34,7 +34,7 @@ const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, positio
 
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
+    (event: Event) => {
       if (event.target && toggleRef.current && toggleRef.current.contains(event.target as HTMLElement)) {
         return;
       }
