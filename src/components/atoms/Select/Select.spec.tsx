@@ -24,7 +24,6 @@ describe('Test <Select/> component', () => {
       <Select placeholder='Выберите значение' options={[{ value: 'v', label: 'label' }]} values={[]} onChange={jest.fn} disabled />
     );
 
-    expect(container.getElementsByClassName('rf-select__button')).toHaveLength(0);
     expect(container.getElementsByClassName('rf-select__wrapper--disabled')).toHaveLength(1);
     expect(screen.queryByTestId('rf-dropdown')).not.toBeInTheDocument();
 

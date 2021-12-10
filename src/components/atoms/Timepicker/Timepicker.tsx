@@ -57,7 +57,7 @@ const Timepicker: FC<ITimepickerProps> = ({
   const content = <TimeElement updateTime={updateTime} value={initialValue} min={min} max={max}/>;
 
   return (
-    <div className={`rf-timepicker__wrapper ${className || ''} ${disabled ? 'rf-timepicker__disabled' : ''}`}>
+    <div className={`rf-timepicker__wrapper ${className || ''} ${disabled ? 'rf-timepicker--disabled' : ''}`}>
       <InputMask
         mask={[
           /[0-2]/,
@@ -70,14 +70,15 @@ const Timepicker: FC<ITimepickerProps> = ({
         disabled={disabled}
         alwaysShowMask={true}
         readOnly={props.readOnly}
-        onChange={onChange}>
+        onChange={onChange}
+      >
         <Input {...props} />
       </InputMask>
 
       <div className='rf-timepicker__menu'>
         <Menu position='bottom-start' content={content}>
           <Button buttonType='text' disabled={disabled} >
-            <Time className={'rf-timepicker__icon'}/>
+            <Time className='rf-timepicker__icon' />
           </Button>
         </Menu>
       </div>
