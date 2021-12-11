@@ -81,7 +81,9 @@
 .rf-avatar-status__border.red {
   border: 3px solid var(--status-danger);
 }
-
+.rf-avatar-status__border.white {
+  border: 3px solid var(--background-primary);
+}
 .rf-avatar-status__border.yellow {
   border: 3px solid var(--status-warn);
 }

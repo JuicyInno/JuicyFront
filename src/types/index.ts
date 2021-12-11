@@ -108,7 +108,7 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'white';
 export type Variant =
   | VariantClassic
   | 'blue'
