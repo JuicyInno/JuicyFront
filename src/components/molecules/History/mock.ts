@@ -224,7 +224,7 @@ export const attachments = [
     id: '1',
     attType: '',
     attTypeText: '',
-    fileName: 'myDocksjdfhalkdsjhflkahglkdahglkdsajhflkdsajhgalksgsagdekherliytwreoiytoireuytoiurewytoireytoirewytoirewuytoiurewytoiurewytoirewuytoirewuytoirewytoirewuytoiurewytoirewytoiurewytoirewuytoirewytoirewuytoirewuytoirewuytoirewytoiew.pdf',
+    fileName: 'myDocksjdfhalkdsjhflkahoirewytoirewutoirewytoirewuytoirewuytoirewuytoirewytoiew.pdf',
     base64: '',
     singBase64: '',
     cert: ''

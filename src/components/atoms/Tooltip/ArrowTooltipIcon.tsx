@@ -9,9 +9,9 @@ interface IArrowTooltipIcon {
 
 
 export const ArrowTooltipIcon: React.FC<IArrowTooltipIcon> = ({ color = 'default', position = 'bottom' }: IArrowTooltipIcon) => {
-
   const svgFillColor = color === 'default' ? '#8A96A8' : '#fff';
-  return <div className={`rf-tooltip__content-union--${position} rf-tooltip__content-union--${color} `}>
+
+  return <div className={`rf-tooltip__content-union--${position} rf-tooltip__content-union--${color}`}>
     <svg width='30' height='13' viewBox='0 0 30 13' xmlns='http://www.w3.org/2000/svg'>
       <g filter='url(#filter0_d_1829_24280)'>
         <path d='M27 0H3C3.90829 0 5.3864 0.290891 6.09566 0.824826L13.7506 6.58759C14.481 7.13747 15.519 7.13747 16.2494 6.58759L23.9043 0.824826C24.6136 0.290891 26.0917 0 27 0Z' fill={svgFillColor} />

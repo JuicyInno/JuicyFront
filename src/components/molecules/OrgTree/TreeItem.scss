@@ -88,3 +88,13 @@
 .rf-tree__item--active > .rf-tree__item-label {
   color: var(--basic-primary);
 }
+
+.rf-tree__item--1:last-of-type.rf-tree__item--close > .rf-tree__item--v {
+  display: none;
+}
+
+.rf-tree__item-preloader {
+  position: relative;
+  @include square(20px);
+  margin-left: 24px;
+}

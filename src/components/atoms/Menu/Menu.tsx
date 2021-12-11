@@ -62,7 +62,7 @@ const Menu: React.FC<IListProps> = ({ list, children, content, position, classNa
       }}
     >
       <Manager>
-        <div className={classnames('rf-menu', className)} ref={toggleRef}>
+        <div className={classnames('rf-menu', className)} data-testid='rf-menu' ref={toggleRef}>
           <Reference>
             {(referenceProps) => (
               <div {...referenceProps} className='rf-menu__toggle' onClick={onClick}>

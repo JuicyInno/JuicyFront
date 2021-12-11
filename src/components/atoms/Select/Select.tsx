@@ -93,7 +93,10 @@ const Select: FC<ISelectProps> = ({
   }, [setShowDropdown]);
 
   const onOpen = useCallback(() => {
-    setShowDropdown(true);
+    if (!disabled) {
+      setShowDropdown(true);
+    }
+
   }, [setShowDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -208,7 +211,7 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const listJSX = filteredOptions.map((o: IOption) => {
-    const disabled = o.disabled || false;
+    const optionDisabled = o.disabled || false;
     const active = selectedMap[o.value] || false;
 
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
@@ -223,7 +226,7 @@ const Select: FC<ISelectProps> = ({
       }
     };
 
-    const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
+    const disabledClass = optionDisabled ? 'rf-select__list-element--disabled' : '';
     const activeClass = active ? 'rf-select__list-element--active' : '';
 
     let label: ReactNode = o.label;
@@ -345,7 +348,13 @@ const Select: FC<ISelectProps> = ({
           {(referenceProps) => (
             <div
               {...referenceProps}
-              className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)}
+              data-testid='rf-select'
+              className={classnames(
+                'rf-select__wrapper',
+                invalid && 'rf-select__wrapper--invalid',
+                openClass,
+                disabled && 'rf-select__wrapper--disabled'
+              )}
               onClick={() => onOpen()}
             >
               <input

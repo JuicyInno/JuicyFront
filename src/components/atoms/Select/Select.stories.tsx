@@ -134,15 +134,14 @@ export const Demo = () => {
           />
         </StoryItem>
 
-        <StoryItem description='Портал'>
+        <StoryItem description='Disabled'>
           <Select
             placeholder='Выберите значение'
-            readOnly
             options={list}
             values={state1}
-            tagsPosition='outside'
             onChange={onChange2}
             preloader={loading}
+            disabled
           />
         </StoryItem>
 

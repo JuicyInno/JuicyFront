@@ -10,11 +10,12 @@ export interface IOption {
 }
 
 export interface ITreeOption extends IOption {
-  checked: boolean;
+  checked?: boolean;
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
   variant?: Variant;
+  loading?: boolean;
 }
 
 export interface ICustomOption extends IOption {
