@@ -1,0 +1,84 @@
+@import '../../../styles/mixins';
+
+.rf-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+$radius: 8px;
+
+.rf-tooltip__content-wrapper {
+  z-index: 2200;
+}
+
+.rf-tooltip__content {
+  display: inline-flex;
+  border-radius: $radius;
+}
+
+.rf-tooltip__inner {
+  position: relative;
+  padding: 12px 16px 12px 16px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  border-radius: $radius;
+  box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 168, 0.08);
+
+  .rf-tooltip__content-union--bottom {
+    position: absolute;
+    bottom: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%) rotate(-180deg);
+  }
+
+  .rf-tooltip__content-union--top {
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 50%;
+    transform: translate(50%);
+  }
+
+  .rf-tooltip__content-union--left {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: -7.8px;
+    transform: translate(50%) rotate(-90deg);
+  }
+
+  .rf-tooltip__content-union--right {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: -8px;
+    transform: translate(-50%) rotate(90deg);
+  }
+}
+
+.rf-tooltip__content--default .rf-tooltip__inner,
+.rf-tooltip--default .rf-tooltip__inner {
+  background: var(--basic-tertiary);
+  color: var(--text-static-white);
+}
+
+.rf-tooltip__content--default .rf-tooltip__inner {
+  background: var(--basic-tertiary);
+  color: var(--text-static-white);
+
+  .rf-tooltip__arrow {
+    color: var(--basic-tertiary);
+  }
+}
+
+.rf-tooltip__content--white .rf-tooltip__inner {
+  background: var(--background-primary);
+  color: var(--text-primary);
+
+  .rf-tooltip__arrow {
+    color: var(--background-primary);
+  }
+}
+
+.rf-tooltip__content--white .rf-tooltip__inner::after,
+.rf-tooltip--white .rf-tooltip__inner::after {
+  background: var(--background-primary);
+}
