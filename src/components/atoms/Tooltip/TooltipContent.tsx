@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { Popper } from 'react-popper';
 
-import './Tooltip.scss';
+import './TooltipContent.scss';
 import { createPortal } from 'react-dom';
 import { TooltipPosition } from '../../../types/projects.types';
 import { ArrowTooltipIcon } from './ArrowTooltipIcon';
