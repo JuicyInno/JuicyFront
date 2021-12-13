@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 $size: 32px;
 $margin: 2px;
@@ -29,5 +29,5 @@ $margin: 2px;
 }
 
 .rf-timepicker__icon {
-  color: var(--text-secondary);
+  color: var(--basic-tertiary);
 }
