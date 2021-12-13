@@ -38,7 +38,7 @@ function common({
     output: {
       publicPath:  'auto',
       filename: '[name].[contenthash].js',
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "../../dist"),
       clean: true,
     },
     optimization: { minimize: !isDev },
