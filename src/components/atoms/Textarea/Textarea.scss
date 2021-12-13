@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-textarea {
   width: 100%;
@@ -29,9 +29,11 @@
   }
 
   &--disabled {
+    pointer-events: none;
     background-color: var(--background-tertiary);
 
-    &, &:hover {
+    &,
+    &:hover {
       box-shadow: none;
     }
   }
@@ -71,7 +73,7 @@
 }
 
 .rf-textarea__wrapper--auto-resize::after {
-  content: attr(data-replicated-value) " ";
+  content: attr(data-replicated-value) ' ';
   white-space: pre-wrap;
   visibility: hidden;
   overflow-wrap: anywhere;
@@ -110,7 +112,7 @@
 
 .rf-textarea__field:disabled {
   cursor: default;
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 .rf-textarea__max-length {

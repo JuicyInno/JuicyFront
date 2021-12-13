@@ -46,11 +46,8 @@ export const Demo = () => {
         <FormGroup label={LABEL}>
           <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => {}} />
         </FormGroup>
-        <FormGroup label={LABEL}>
+        <FormGroup label='disabled'>
           <Input placeholder='Введите тип обращения' disabled />
-        </FormGroup>
-        <FormGroup label={LABEL}>
-          <Input defaultValue='Тип обращения' disabled />
         </FormGroup>
         <FormGroup label={LABEL} errorMessage='Additional text'>
           <Input invalid />

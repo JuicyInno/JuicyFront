@@ -306,7 +306,7 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
-  const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
+  const chevronButton = (readOnly || inputValue.length === 0) && (
     <button
       type='button'
       className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
@@ -365,7 +365,7 @@ const Select: FC<ISelectProps> = ({
                 disabled={disabled}
                 readOnly={readOnly}
                 placeholder={
-                  disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
+                  (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
                 }
               />
               {closeButton}
