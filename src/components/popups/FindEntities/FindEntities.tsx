@@ -11,14 +11,14 @@ import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
 
 
-interface IFindEntitiesProps {
+interface IFindEntitiesProps<T> {
   /** Закрытие модального окна. */
   onClose?: () => void;
 
   /** Список уже выбранных сущностей. */
-  value?: any[];
+  value?: T[];
   /** Вернуть выбранные сущности. */
-  onChange?: (data: any[]) => void;
+  onChange?: (data: T[]) => void;
   /** Время дебаунса при поиске. */
   debounce?: number;
 
@@ -26,18 +26,24 @@ interface IFindEntitiesProps {
    * Функция поиска по сущностям.
    * @returns Кортеж с промисом сущностей и опциональной функцией отмены запроса.
    */
-  getEntities: (search: string, filter: string, skip: number) => [Promise<any[]>, (() => void) | null];
+  getEntities: (search: string, filter: string, skip: number) => [Promise<T[]>, (() => void) | null];
   /** Фукция извлечения ID из сущности. */
-  getEntityId: (entity: any) => any;
+  getEntityId: (entity: T) => any;
 
   /** Функция рендера элемента списка. */
   children: (data: { entity: any, isSelected: boolean, onChange: (event: React.ChangeEvent<HTMLInputElement>) => void }) => React.ReactNode;
 
   /** Дополнительные фильтры. */
   filters?: IOption[];
-  /** Множественный выбор. */
+  /**
+   * Множественный выбор.
+   * @default false
+   */
   multiple?: boolean;
-  /** Ленивая подгрузка результатов. */
+  /**
+   * Ленивая подгрузка результатов.
+   * @default false
+   */
   lazy?: boolean;
 
   /** Заголовок. */
@@ -47,7 +53,6 @@ interface IFindEntitiesProps {
 
   /**
    * Иконка для эмпти стейта.
-   * @default <FindEntitiesUserEmptyStateIcon />
    */
   emptyStateIcon?: React.ReactNode;
   /**
@@ -61,7 +66,7 @@ interface IFindEntitiesProps {
   emptyStateInitialText?: string;
 }
 
-export const FindEntities = ({
+export const FindEntities = <T, >({
   onClose,
   value = [],
   onChange,
@@ -77,7 +82,7 @@ export const FindEntities = ({
   emptyStateIcon,
   emptyStateText = 'Измените поисковый запрос',
   emptyStateInitialText
-}: IFindEntitiesProps) => {
+}: IFindEntitiesProps<T>) => {
   const cancelRef = useRef<(() => void) | null>(null);
   const inputRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -101,7 +106,7 @@ export const FindEntities = ({
   /** Выведены все результаты */
   const [isLazyAllLoaded, setLazyAllLoaded] = useState(false);
 
-  const onSeachDebounce = (data: IDebounceResult) => {
+  const onSearchDebounce = (data: IDebounceResult) => {
     setSearch(data.debounceString);
   };
 
@@ -141,10 +146,7 @@ export const FindEntities = ({
         } else {
           setLazyAllLoaded(true);
         }
-
-        setLoading(false);
-        setLazyLoading(false);
-      }).catch(() => {
+      }).finally(() => {
         setLoading(false);
         setLazyLoading(false);
       });
@@ -161,8 +163,7 @@ export const FindEntities = ({
     request.then((response) => {
       setResults(response);
       setLazyAllLoaded(false);
-      setLoading(false);
-    }).catch(() => {
+    }).finally(() => {
       setLoading(false);
     });
 
@@ -205,7 +206,7 @@ export const FindEntities = ({
         }
       }
     });
-  }, []);
+  }, [filter]);
 
   const tabs = filters ? filters.map(({ label, value }) => ({
     label,
@@ -218,7 +219,7 @@ export const FindEntities = ({
       {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
 
       <div className='rf-find-entities__search' ref={ inputRef }>
-        <Search onDebounce={ onSeachDebounce } autoFocus onClear={ onSearchClear } debounce={debounce} />
+        <Search onDebounce={ onSearchDebounce } autoFocus onClear={ onSearchClear } debounce={debounce} />
       </div>
 
       {!!tabs && <div className='rf-find-entities__filters'>
@@ -271,10 +272,10 @@ export const FindEntities = ({
 
       <footer className='rf-find-entities__footer'>
         <div className='rf-find-entities__footer-button'>
-          <Button onClick={onClose} buttonType='light'>Отменить</Button>
+          <Button onClick={onClose} buttonType='light' size='l'>Отменить</Button>
         </div>
         <div className='rf-find-entities__footer-button'>
-          <Button onClick={onSubmit}>Продолжить</Button>
+          <Button onClick={onSubmit} size='l'>Продолжить</Button>
         </div>
       </footer>
     </div>

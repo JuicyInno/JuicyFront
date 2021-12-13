@@ -9,8 +9,11 @@ import {
 import { IUser } from '../../../types/projects.types';
 
 interface IFindEntitiesUserProps {
+  /** Пользователь */
   user: IUser;
+  /** Выбран ли пользователь */
   isSelected: boolean;
+  /** Изменение выбора пользователя */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default';
@@ -60,7 +63,6 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
                 {!!user.departmentsPath && (
                   <Tooltip
                     position='right'
-                    portal
                     background={tooltipBackground}
                   >
                     <div className='rf-find-entities-user__info'>
@@ -78,7 +80,6 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
                 <div className='rf-find-entities-user__copy'>
                   <Tooltip
                     position='right'
-                    portal
                     background={tooltipBackground}
                   >
                     <Copy onClick={onCopy} />

@@ -10,8 +10,11 @@ import InvestmentProducts from '../../../assets/icons/24px/Specific/InvestmentPr
 import { IStructure } from '../../../types/projects.types';
 
 interface IFindEntitiesPositionProps {
+  /** Должность */
   position: { position: string; positionText: string; departmentsPath?: IStructure[] };
+  /** Выбрана ли должность */
   isSelected: boolean;
+  /** Изменение выбора должности */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default';
@@ -46,7 +49,6 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
                 {!!position.departmentsPath && (
                   <Tooltip
                     position='right'
-                    portal
                     background={tooltipBackground}
                   >
                     <div className='rf-find-entities-position__info'>
@@ -61,7 +63,6 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
                 <div className='rf-find-entities-position__copy'>
                   <Tooltip
                     position='right'
-                    portal
                     background={tooltipBackground}
                   >
                     <Copy onClick={onCopy} />

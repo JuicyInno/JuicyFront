@@ -17,7 +17,7 @@ import { IUser } from '../../../types/projects.types';
 import axios from 'axios';
 
 export default {
-  title: 'components/FindEntities',
+  title: 'components/withTest/FindEntities',
   component: FindEntities,
   parameters: {
     design: {
@@ -53,10 +53,10 @@ const getMockedUsers = (search: string, filter: string, skip = 0) => {
 };
 
 export const Users = () => {
-  const [value, setValue] = useState<IPosition[]>([]);
+  const [value, setValue] = useState<IUser[]>([]);
   const [isDialogVisible, setDialogVisible] = useState(false);
 
-  const onChange = (v: IPosition[]) => {
+  const onChange = (v: IUser[]) => {
     setValue(v);
   };
 
@@ -159,10 +159,10 @@ const request = axios.create({ baseURL: 'https://sapd-fes-ap01.vtb24.ru:44310/' 
 const getUsers = findUsers(request);
 
 export const UsersAPI = () => {
-  const [value, setValue] = useState<IPosition[]>([]);
+  const [value, setValue] = useState<IUser[]>([]);
   const [isDialogVisible, setDialogVisible] = useState(false);
 
-  const onChange = (v: IPosition[]) => {
+  const onChange = (v: IUser[]) => {
     setValue(v);
   };
 
