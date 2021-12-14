@@ -51,6 +51,7 @@
   background-color: var(--background-primary);
   overflow: hidden;
 }
+
 .rf-select__wrapper--invalid {
   box-shadow: 0 0 0 1px var(--status-danger);
 }
@@ -64,7 +65,20 @@
 }
 
 .rf-select__wrapper--disabled {
+  background-color: var(--background-tertiary);
   pointer-events: none;
+
+  .rf-select__input {
+    color: var(--text-tertiary);
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+
+  .rf-select__button {
+    color: var(--text-tertiary);
+  }
 }
 
 .rf-select__input {

@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FC, HTMLProps, useEffect, useState, useCallback } from 'react';
+import React, {
+  ChangeEvent, FC, HTMLProps, useEffect, useState, useCallback
+} from 'react';
 import './Timepicker.scss';
 import InputMask from 'react-input-mask';
 
@@ -6,8 +8,9 @@ import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
 import TimeElement, { getTime } from './TimeElement';
 import Menu from '../Menu';
-import { Time } from '../../../index';
 import Close from '../../../assets/icons/Close';
+import { classnames } from '../../../utils/classnames';
+import Pending from '../../../assets/icons/24px/Status/Pending';
 
 export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref'> {
   /** Css класс */
@@ -16,6 +19,10 @@ export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref
    * @default false
    */
   disabled?: boolean;
+  /** Переводит инпут в невалидный статус
+   * @default false
+   */
+  invalid?: boolean;
   /** Начальное значение
    * @example 12:00
    */
@@ -36,6 +43,7 @@ const Timepicker: FC<ITimepickerProps> = ({
   className,
   initialValue = '',
   disabled = false,
+  invalid = false,
   onChangeValue,
   min = '00:00',
   max = '24:00',
@@ -47,21 +55,21 @@ const Timepicker: FC<ITimepickerProps> = ({
     setTime(initialValue);
   }, [initialValue]);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setTime(val);
 
     if (val && !~val.indexOf('_')) {
       onChangeValue && onChangeValue(val, props.id || '');
     }
-  };
+  }, [onChangeValue, props.id]);
 
-  const updateTime = (newTime: string) => {
+  const updateTime = useCallback((newTime: string) => {
     setTime(newTime);
     onChangeValue && onChangeValue(newTime, props.id || '');
-  };
+  }, [onChangeValue, props.id]);
 
-  const onClearValue = () => setTime('');
+  const onClearValue = useCallback(() => setTime(''), []);
 
   const content = <TimeElement updateTime={updateTime} value={time} min={min} max={max} />;
   const emptyValue = !time || time === '' || time === '__:__';
@@ -70,20 +78,28 @@ const Timepicker: FC<ITimepickerProps> = ({
     const [hours] = getTime(time);
     const startsWithTwo = hours?.startsWith('2');
 
-    return [/[0-2]/, startsWithTwo ? /[0-3]/ : /[0-9]/, ':', /[0-5]/, /[0,5,8]/];
+    return [
+      /[0-2]/,
+      startsWithTwo ? /[0-3]/ : /[0-9]/,
+      ':',
+      /[0-5]/,
+      /[0,5,8]/
+    ];
   }, [time]);
 
   return (
-    <div className={`rf-timepicker__wrapper ${className || ''} ${disabled ? 'rf-timepicker__disabled' : ''}`}>
+    <div className={
+      classnames('rf-timepicker__wrapper', className, disabled && 'rf-timepicker--disabled', emptyValue && 'rf-timepicker--empty')
+    }>
       <Menu position='bottom-start' content={content} toggleTagret={false} disabled={disabled}>
         <InputMask mask={getMask()} value={time} disabled={disabled} alwaysShowMask={true} readOnly={props.readOnly} onChange={onChange}>
-          <Input data-testid='rf-timepicker__input' disabled={disabled} {...props} />
+          <Input data-testid='rf-timepicker__input' disabled={disabled} invalid={invalid} {...props} />
         </InputMask>
 
         <div className='rf-timepicker__menu'>
-          <Button buttonType='text' disabled={disabled}>
+          <Button buttonType='text' className='rf-timepicker__btn' disabled={disabled}>
             {emptyValue ? (
-              <Time className='rf-timepicker__icon rf-timepicker__icon-time' />
+              <Pending className='rf-timepicker__icon rf-timepicker__icon-time' />
             ) : (
               <Close className='rf-timepicker__icon rf-timepicker__icon-close' onClick={onClearValue} />
             )}

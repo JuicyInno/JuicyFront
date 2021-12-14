@@ -47,6 +47,7 @@
   }
 
   &--disabled {
+    pointer-events: none;
     background-color: var(--background-tertiary);
 
     &,
@@ -84,6 +85,7 @@
   color: var(--text-primary);
   border: 0;
   height: 24px;
+
   &::placeholder {
     @include text-l-16;
     color: var(--text-secondary);
@@ -92,11 +94,7 @@
   &.disabled,
   &:disabled {
     cursor: default;
-    color: var(--text-primary);
-
-    &::placeholder {
-      color: var(--text-secondary);
-    }
+    color: var(--text-tertiary);
   }
 
   &.rf-input__field--file {
@@ -105,7 +103,7 @@
 }
 
 .rf-input__field:disabled::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 /** [START] file-input */

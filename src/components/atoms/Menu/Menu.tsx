@@ -71,7 +71,7 @@ const Menu: React.FC<IListProps> = ({
         setShow(true);
       }
     },
-    [onToggle]
+    [onToggle, disabled, toggleTagret]
   );
 
   return (

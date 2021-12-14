@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Story } from '@storybook/react';
 import Timepicker from './Timepicker';
 import StoryItem from '../../storybook/StoryItem';
@@ -11,19 +11,17 @@ export default {
 };
 
 export const Demo = () => {
-  const [s, setS] = useState('14:00');
-
   return (
     <StoryDocs>
       <StoryDocsH1>Timepicker</StoryDocsH1>
       <StoryItem description='Выбор времени'>
         <form>
-          <Timepicker name='timepicker' initialValue={s} min='12:30' max='20:15' />
+          <Timepicker name='timepicker' initialValue='12:20' min='08:30' max='20:15' />
         </form>
       </StoryItem>
 
       <StoryItem description='Disabled'>
-        <Timepicker disabled name='timepicker' initialValue={s} min='12:30' max='20:15' />
+        <Timepicker disabled name='timepicker' initialValue='16:00' min='12:30' max='20:15' />
       </StoryItem>
 
       <StoryItem description='Empty'>
