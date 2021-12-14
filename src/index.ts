@@ -76,7 +76,7 @@ import ButtonGroup from './components/molecules/ButtonGroup';
 import { FindEntities } from './components/popups/FindEntities';
 import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
 import {
-  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, findUsers
+  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, createGetUsers
 } from './components/popups/FindEntitiesUser';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
@@ -161,7 +161,7 @@ export {
   FindEntitiesPosition,
   FindEntitiesUser,
   FindEntitiesUserEmptyStateIcon,
-  findUsers
+  createGetUsers
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

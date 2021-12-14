@@ -6,7 +6,7 @@ import { FindEntitiesPosition } from '../FindEntitiesPosition';
 import { positionsMocks, IPosition } from '../FindEntitiesPosition/positions.mocks';
 
 import {
-  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, findUsers
+  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, createGetUsers
 } from '../FindEntitiesUser';
 import { usersMocks } from '../FindEntitiesUser/users.mocks';
 
@@ -75,7 +75,7 @@ export const Users = () => {
               <FindEntities
                 title='Выберите сотрудника'
                 getEntities={getMockedUsers}
-                getEntityId={user => user.id}
+                entityKey='id'
                 value={value}
                 filters={USERS_FILTERS}
                 onChange={onChange}
@@ -135,7 +135,7 @@ export const Positions = () => {
               <FindEntities
                 title='Выберите штатную должность'
                 getEntities={getMockedPositions}
-                getEntityId={position => position.position}
+                entityKey='position'
                 value={value}
                 filters={POSITIONS_FILTERS}
                 onChange={onChange}
@@ -156,7 +156,7 @@ export const Positions = () => {
 };
 
 const request = axios.create({ baseURL: 'https://sapd-fes-ap01.vtb24.ru:44310/' });
-const getUsers = findUsers(request);
+const getUsers = createGetUsers(request);
 
 export const UsersAPI = () => {
   const [value, setValue] = useState<IUser[]>([]);
@@ -181,7 +181,7 @@ export const UsersAPI = () => {
               <FindEntities
                 title='Выберите сотрудника'
                 getEntities={getUsers}
-                getEntityId={user => user.id}
+                entityKey='id'
                 value={value}
                 filters={USERS_FILTERS}
                 onChange={onChange}

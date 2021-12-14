@@ -11,7 +11,7 @@ import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
 
 
-interface IFindEntitiesProps<T> {
+interface IFindEntitiesProps<T extends Record<string, any>> {
   /** Закрытие модального окна. */
   onClose?: () => void;
 
@@ -27,8 +27,10 @@ interface IFindEntitiesProps<T> {
    * @returns Кортеж с промисом сущностей и опциональной функцией отмены запроса.
    */
   getEntities: (search: string, filter: string, skip: number) => [Promise<T[]>, (() => void) | null];
-  /** Фукция извлечения ID из сущности. */
-  getEntityId: (entity: T) => any;
+  /**
+   * Ключ для получения ID из сущности.
+   */
+  entityKey: keyof T;
 
   /** Функция рендера элемента списка. */
   children: (data: { entity: any, isSelected: boolean, onChange: (event: React.ChangeEvent<HTMLInputElement>) => void }) => React.ReactNode;
@@ -72,7 +74,7 @@ export const FindEntities = <T, >({
   onChange,
   debounce,
   getEntities,
-  getEntityId,
+  entityKey,
   children,
   multiple,
   lazy,
@@ -89,9 +91,9 @@ export const FindEntities = <T, >({
 
   /** Список выбранных сущностей */
 
-  const [selected, setSelected] = useState<any[]>(value);
+  const [selected, setSelected] = useState<T[]>(value);
   const selectedMap: Record<string, boolean> = selected.reduce((result: Record<string, boolean>, e) => {
-    result[getEntityId(e)] = true;
+    result[e[entityKey] as unknown as string] = true;
     return result;
   }, {});
 
@@ -183,15 +185,19 @@ export const FindEntities = <T, >({
     onClose && onClose();
   };
 
-  const onSelectChange = (entity: any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSelectChange = (entity: T) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(entity);
+
     if (event.target.checked) {
+      console.log('Checked');
+
       if (multiple) {
         setSelected([...selected, entity]);
       } else {
         setSelected([entity]);
       }
     } else {
-      setSelected(selected.filter((e) => getEntityId(entity) !== getEntityId(e)));
+      setSelected(selected.filter((e) => entity[entityKey] !== e[entityKey]));
     }
   };
 
@@ -233,7 +239,7 @@ export const FindEntities = <T, >({
               <Fragment key={index}>
                 {children({
                   entity,
-                  isSelected: !!selectedMap[getEntityId(entity)],
+                  isSelected: !!selectedMap[entity[entityKey]],
                   onChange: onSelectChange(entity)
                 })}
               </Fragment>

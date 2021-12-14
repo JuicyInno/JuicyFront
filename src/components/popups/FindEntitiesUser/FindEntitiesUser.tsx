@@ -52,6 +52,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
         value={user.id}
         checked={isSelected}
         onChange={onChange}
+        fullWidth
         label={
           <div className='rf-find-entities-user__content'>
             <div className='rf-find-entities-user__avatar'>

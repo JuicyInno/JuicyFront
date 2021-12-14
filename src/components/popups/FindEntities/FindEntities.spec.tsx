@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, RenderResult, screen, fireEvent, act } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 
 import { FindEntities } from './FindEntities';
 
@@ -50,7 +50,7 @@ describe('Test <FindEntities/> component',  () => {
         <FindEntities
           title='Выберите штатную должность'
           getEntities={getMockedPositions}
-          getEntityId={position => position.position}
+          entityKey='position'
           value={[]}
           filters={POSITIONS_FILTERS}
           onChange={onChange}

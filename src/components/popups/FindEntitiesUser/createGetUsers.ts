@@ -7,7 +7,7 @@ const LIMIT = 10;
  * Создание функции для поиска по пользователям в SAP.
  * @param request Экземпляр axios'а для запросов.
  */
-export const findUsers = (request: AxiosInstance) =>
+export const createGetUsers = (request: AxiosInstance) =>
 /**
  * Поиск по пользователям в SAP.
  * @param search Поисковый запрос.
