@@ -75,9 +75,7 @@ import Schedule, {
 import ButtonGroup from './components/molecules/ButtonGroup';
 import { FindEntities } from './components/popups/FindEntities';
 import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
-import {
-  FindEntitiesUser, FindEntitiesUserEmptyStateIcon, createGetUsers
-} from './components/popups/FindEntitiesUser';
+import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntitiesUser';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -160,7 +158,6 @@ export {
   FindEntities,
   FindEntitiesPosition,
   FindEntitiesUser,
-  FindEntitiesUserEmptyStateIcon,
   createGetUsers
 };
 
