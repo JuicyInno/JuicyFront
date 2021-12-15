@@ -12,6 +12,22 @@
   justify-content: center;
 
   &.rf-modal--modal {
+    &.rf-modal--s .rf-modal__wrapper {
+      width: 384px;
+    }
+
+    &.rf-modal--m .rf-modal__wrapper {
+      width: 488px;
+    }
+
+    &.rf-modal--l .rf-modal__wrapper {
+      width: 592px;
+    }
+
+    &.rf-modal--xl .rf-modal__wrapper {
+      width: 844px;
+    }
+
     .rf-modal__header {
       padding: 22px 68px 14px 24px;
       @include h5;
@@ -24,6 +40,7 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
+      overflow: auto;
     }
 
     .rf-modal__wrapper {
@@ -34,7 +51,7 @@
       max-width: 90vw;
       min-height: 72px;
       max-height: 95vh;
-      overflow-y: hidden;
+      overflow: hidden;
     }
 
     .rf-modal__footer {

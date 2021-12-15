@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
-import Modal from './Modal';
+import Modal, { ModalSize } from './Modal';
 import { Button } from '../../../index';
 import StoryContainer from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
@@ -32,11 +32,21 @@ const ModalFooter = ({ toggle }: { toggle: (value: boolean) => void }) => (
   </StoryRow>
 );
 
+const sizes:ModalSize[] = [
+  's',
+  'm',
+  'l',
+  'xl'
+];
+
+
 export const Demo = () => {
   const [show, setShow] = useState(false);
   const [showCustom, setShowCustom] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   const [showDrawerCustom, setShowDrawerCustom] = useState(false);
+  const [showShowSizeModal, setShowSizeModal] = useState<ModalSize | undefined>();
+  console.log('ModalSize', sizes);
 
   return (
     <StoryDocs>
@@ -47,6 +57,7 @@ export const Demo = () => {
           <StoryCol>
             <Button onClick={() => setShow(true)}>Открыть Modal</Button>
           </StoryCol>
+
           <StoryCol>
             <Button onClick={() => setShowCustom(true)}>Открыть Modal (custom)</Button>
           </StoryCol>
@@ -64,9 +75,26 @@ export const Demo = () => {
         </StoryRow>
       </StoryItem>
 
+      <StoryItem description={<>size <strong>modal</strong></>}>
+        <StoryRow>
+          <StoryCol>
+            <Button onClick={() => setShowSizeModal('s')}>Открыть Modal (size S)</Button>
+          </StoryCol>
+          <StoryCol>
+            <Button onClick={() => setShowSizeModal('m')}>Открыть Modal (size M)</Button>
+          </StoryCol>
+          <StoryCol>
+            <Button onClick={() => setShowSizeModal('l')}>Открыть Modal (size L)</Button>
+          </StoryCol>
+          <StoryCol>
+            <Button onClick={() => setShowSizeModal('xl')}>Открыть Modal (size XL)</Button>
+          </StoryCol>
+        </StoryRow>
+      </StoryItem>
+
       {show && (
         <Modal onClose={() => setShow(false)} header='Header' footer={<ModalFooter toggle={setShow} />}>
-          <div style={ { width: '500px' } }>
+          <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur ea laudantium nihil nisi quos
             soluta
             veritatis? Ad aliquid doloribus esse fugiat minus officiis perferendis praesentium, qui quis quos!
@@ -156,6 +184,15 @@ export const Demo = () => {
           </div>
         </Modal>
       )}
+
+
+      {showShowSizeModal !== undefined && (
+        <Modal size={showShowSizeModal} header='header' onClose={() => setShowSizeModal(undefined)}>
+          <div>
+            hello modal size <strong>{showShowSizeModal}</strong>
+          </div>
+        </Modal>
+      )}
     </StoryDocs>
   );
 };
@@ -171,7 +208,7 @@ export const Playground: Story = (args) => {
 
         {show && (
           <Modal {...args} header='Header' footer={ <ModalFooter toggle={toggle} /> } onClose={ () => toggle(false) }>
-            <div style={ { width: '500px' } }>
+            <div>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur ea laudantium nihil nisi quos
               soluta
               veritatis? Ad aliquid doloribus esse fugiat minus officiis perferendis praesentium, qui quis quos!

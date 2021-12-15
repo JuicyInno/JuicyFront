@@ -20,13 +20,31 @@ describe('Test <Modal /> component', () => {
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--modal');
   });
 
+  it('should be size', () => {
+    const { rerender } = render(<Modal size='s'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--s');
+
+    rerender(<Modal size='m'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--m');
+
+    rerender(<Modal size='l'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--l');
+
+    rerender(<Modal size='xl'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--xl');
+  });
+
   it('calls onClose prop when clicked', () => {
     const handleClick = jest.fn();
 
     render(<Modal onClose={handleClick}>Modal</Modal>);
     fireEvent.click(screen.getByRole('button'));
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toBeCalled();
   });
 
   it('should render <Modal /> with header "Header"', () => {

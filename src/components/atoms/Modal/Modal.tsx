@@ -5,6 +5,8 @@ import { Close } from '../../../index';
 import { classnames } from '../../../utils/classnames';
 import Button from '../Button';
 
+export type ModalSize = 's' | 'm' | 'l' | 'xl';
+
 export interface IModalProps {
   /** Контент модалки */
   children: React.ReactNode;
@@ -22,6 +24,10 @@ export interface IModalProps {
    * @default modal
    */
   variant?: 'modal' | 'drawer';
+  /** Ширина Модалки
+   * @default s
+   */
+  size?: ModalSize;
 }
 
 const Modal: FC<IModalProps> = ({
@@ -30,7 +36,8 @@ const Modal: FC<IModalProps> = ({
   header,
   footer,
   custom = false,
-  variant = 'modal'
+  variant = 'modal',
+  size = 's'
 }: IModalProps) => {
   /** При маунте добавляем модалку. При дестрое - удаляем. */
   useEffect(() => {
@@ -53,7 +60,7 @@ const Modal: FC<IModalProps> = ({
 
   /** Обертка для модалки */
   const modal = (
-    <div data-testid='rf-modal' className={classnames('rf-modal', `rf-modal--${variant}`)}>
+    <div data-testid='rf-modal' className={classnames('rf-modal', `rf-modal--${variant}`, `rf-modal--${size}`)}>
       <div className='rf-modal__bg' onClick={onClose} />
       <div className='rf-modal__container'>
         {onClose && (
