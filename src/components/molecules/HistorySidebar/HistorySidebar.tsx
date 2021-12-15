@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useState
+  FC, useCallback, useEffect, useState
 } from 'react';
 import './HistorySidebar.scss';
 import { IHistory } from '../History/History';
@@ -10,6 +10,8 @@ import HistoryPathList from '../../atoms/HistoryPathList';
 import Chip from '../../atoms/Chip';
 import Doc from '../../../assets/icons/40px/Documents/Doc';
 import Badge from '../../atoms/Badge';
+import { sortPaths } from './helpers';
+import { IRequestPath } from '../../../types/projects.types';
 
 const HistorySidebar: FC<IHistory> = ({
   history,
@@ -18,6 +20,7 @@ const HistorySidebar: FC<IHistory> = ({
   host = window.location.origin,
 }: IHistory) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [paths, setPaths] = useState<IRequestPath[]>(sortPaths(history, isOpen));
 
   // -------------------------------------------------------------------------------------------------------------------
   /** Секция приложенных документов */
@@ -49,7 +52,6 @@ const HistorySidebar: FC<IHistory> = ({
   ));
 
   const attachmentsJSX = (
-
     <>
       <div className={`rf-history-sidebar__attachments-line ${!isOpen ? 'open' : ''}`} />
       {isOpen ? (
@@ -59,7 +61,6 @@ const HistorySidebar: FC<IHistory> = ({
             {attachmentElementsJSX}
           </div>
         </>
-
       ) : (
         <Badge badgeContent={attachments && attachments.length}>
           <div className='rf-history-sidebar__attachments-preview'>
@@ -69,6 +70,10 @@ const HistorySidebar: FC<IHistory> = ({
       )}
     </>
   );
+
+  useEffect(() => {
+    setPaths(sortPaths(paths, isOpen));
+  }, [isOpen]);
 
   return (
     <div className={`rf-history-sidebar ${isOpen ? 'open' : ''}`}>
@@ -86,7 +91,7 @@ const HistorySidebar: FC<IHistory> = ({
         История согласования
       </div>
       <div className={`rf-history-sidebar__paths ${isOpen ? 'open' : ''}`}>
-        <HistoryPathList path={history} isUZADO={isUZADO} isMinimal={!isOpen} />
+        <HistoryPathList path={paths} isUZADO={isUZADO} isMinimal={!isOpen} />
       </div>
       {attachments && (
         <div className={`rf-history-sidebar__attachments ${isOpen ? 'open' : ''}`}>
