@@ -6,7 +6,18 @@ describe('Test <Modal /> component', () => {
   it('should render <Modal /> with content "Modal"', () => {
     render(<Modal>Modal</Modal>);
 
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--modal');
     expect(screen.getByText(/Modal/i)).toBeInTheDocument();
+  });
+
+  it('should be variant', () => {
+    const { rerender } = render(<Modal variant='drawer'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--drawer');
+
+    rerender(<Modal variant='modal'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--modal');
   });
 
   it('calls onClose prop when clicked', () => {

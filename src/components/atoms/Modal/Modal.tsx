@@ -1,23 +1,27 @@
-import React, {
-  FC, useEffect, useState
-} from 'react';
+import React, { FC, useEffect } from 'react';
 import './Modal.scss';
 import { createPortal } from 'react-dom';
 import { Close } from '../../../index';
+import { classnames } from '../../../utils/classnames';
+import Button from '../Button';
 
 export interface IModalProps {
   /** Контент модалки */
-  children: React.ReactNode | React.ReactNode[];
+  children: React.ReactNode;
   /** Событие закрытия */
   onClose?: () => void;
   /** Контент для шапки в модальном окне */
   header?: React.ReactNode;
   /** Контент для футера в модальном окне */
   footer?: React.ReactNode;
-  /** На весь экран */
-  fullScreen?: boolean;
-  /** Кастомный компонент вместо */
+  /** Кастомный компонент вместо
+   * @default false
+   */
   custom?: boolean;
+  /** Вид модалки
+   * @default modal
+   */
+  variant?: 'modal' | 'drawer';
 }
 
 const Modal: FC<IModalProps> = ({
@@ -26,10 +30,8 @@ const Modal: FC<IModalProps> = ({
   header,
   footer,
   custom = false,
+  variant = 'modal'
 }: IModalProps) => {
-  /** Создаем контейнер для модалки */
-  const [div] = useState<HTMLDivElement>(document.createElement('div'));
-
   /** При маунте добавляем модалку. При дестрое - удаляем. */
   useEffect(() => {
     /** Закрывает модалку при нажатии на Escape */
@@ -39,47 +41,39 @@ const Modal: FC<IModalProps> = ({
       }
     };
 
-    document.body.appendChild(div);
     document.body.style.overflowY = 'hidden';
     window.addEventListener('keyup', closeOnEscPress);
 
     return () => {
       document.body.style.overflowY = 'auto';
-      document.body.removeChild(div);
       window.removeEventListener('keyup', closeOnEscPress);
     };
-  }, [div]);
+  }, []);
 
 
   /** Обертка для модалки */
   const modal = (
-    <div className='rf-modal' onClick={onClose}>
-      { custom ? (
-        <div onClick={ (e: React.MouseEvent) => e.stopPropagation() }>
-          {children}
-        </div>
-      ) : (
-        <div
-          className='rf-modal__wrapper'
-          onClick={ (e: React.MouseEvent) => e.stopPropagation() }>
-          { onClose && (
-            <button type='button' className='rf-modal__close-button' onClick={ onClose }>
-              <Close/>
-            </button>
-          ) }
+    <div data-testid='rf-modal' className={classnames('rf-modal', `rf-modal--${variant}`)}>
+      <div className='rf-modal__bg' onClick={onClose} />
+      <div className='rf-modal__container'>
+        {onClose && (
+          <Button buttonType='text' startAdornment={<Close />} className='rf-modal__close-button' onClick={onClose} />
+        )}
 
-          { header && <div className='rf-modal__header'>{ header }</div> }
+        {custom ? children : (
+          <div className='rf-modal__wrapper'>
+            {header && <div className='rf-modal__header'>{ header }</div>}
 
-          <div className='rf-modal__content'>{ children }</div>
+            <div className='rf-modal__content'>{ children }</div>
 
-          { footer && <div className='rf-modal__footer'>{ footer }</div> }
-        </div>
-      )
-      }
+            {footer && <div className='rf-modal__footer'>{ footer }</div>}
+          </div>
+        )}
+      </div>
     </div>
   );
 
-  return createPortal(modal, div);
+  return createPortal(modal, document.body);
 };
 
 export default Modal;
