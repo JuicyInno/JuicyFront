@@ -21,6 +21,7 @@
     .rf-modal__content {
       padding: 0 24px 24px 24px;
       flex-grow: 1;
+      min-height: 0;
     }
 
     .rf-modal__wrapper {
