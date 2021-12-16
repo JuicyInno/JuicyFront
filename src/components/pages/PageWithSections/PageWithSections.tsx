@@ -24,16 +24,25 @@ export interface IPageWithSectionsProps {
   actionMenu?: ReactNode;
   /** Всегда отображает панель с кнопками внизу страницы*/
   actionMenuAlwaysBottom?:boolean;
+  /** Показать прелоадер
+   * @default false */
   preloader?: boolean;
+  /** Показать боковое меню заголовков секций
+   * @default true */
   showNavigation?: boolean;
-  /** Отключает  не корректно работающий слайдер навигации*/
+  /** Отключает  не корректно работающий слайдер навигации
+   * @default false */
   showNavigationPosition?: boolean;
   /** Navigation tabs */
   navigation?: ITab[];
+  /** Показать заголовок
+   * @default true */
   showHeader?: boolean;
-  /** Кнопки действий внизу страницы */
+  /** Кнопки действий внизу страницы
+   * @default [] */
   buttonsGroup?: IButtonGroup[];
-  /** количество кнопок для меню */
+  /** Количество кнопок для меню
+   * @default 2 */
   countOfButtonsGroup?:number;
 }
 
@@ -71,33 +80,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  /** Расчет координаты для Aside */
-  useEffect(() => {
-    const calculateRightPosition = () => {
-      // todo нужно проверить
-      const widthDelta = window.innerWidth - 980 - 192;
-
-      if (asideRef.current) {
-        if (widthDelta > 0) {
-          asideRef.current.style.right = `${widthDelta - 120 + 20}px`;
-        }
-      }
-    };
-
-    setTimeout(() => {
-      calculateRightPosition();
-    });
-
-    window.addEventListener('resize', calculateRightPosition);
-
-    return () => {
-      window.removeEventListener('resize', calculateRightPosition);
-    };
-  }, [actionMenu]);
-
-
-  // -------------------------------------------------------------------------------------------------------------------
-
   /** Отображение секций */
   const sectionsJSX = sections?.map((section: IPageSection) => {
     return (
@@ -130,7 +112,11 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
         if (block && pageHeaderRef.current) {
           const top = block.getBoundingClientRect().top + pageYOffset - ADDITIONAL_SCROLL_OFFSET;
-          window.scrollTo(0, top);
+          window.scrollTo({
+            left: 0,
+            top,
+            behavior: 'smooth'
+          });
         }
       };
 
@@ -198,23 +184,24 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         <h2 className='rf-page__sections-title'>{ title }</h2>
       </header>
 
-
-      {navigation && (
-        <div className='rf-page__tabs'>
-          <Tabs list={navigation}/>
-        </div>
-      )}
-
       <div className='rf-page__content--sections'>
 
         {
           preloader ? <Preloader/> : (
             <>
               <div className='rf-page__content-sections' ref={ sectionsRef }>
+                {!!navigation?.length && (
+                  <div className='rf-page__tabs'>
+                    <Tabs list={navigation}/>
+                  </div>
+                )}
+
                 { sectionsJSX }
               </div>
 
-              { asideBlock }
+              <div className='rf-page__aside'>
+                { asideBlock }
+              </div>
             </>
           )
         }

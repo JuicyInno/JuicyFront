@@ -6,6 +6,8 @@ import PageWithSections from './PageWithSections';
 import { IPageSection } from '../../../types/projects.types';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
+import { Employee } from '../../../index';
+import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 export default {
   title: 'pages/не проверено/Page With Sections',
@@ -15,21 +17,22 @@ export default {
 export const pageWithSections = () => {
 
   const sections: IPageSection[] = [
-    // {
-    //   id: 'position',
-    //   title: 'Позиция',
-    //   component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
-    // },
-    // {
-    //   id: 'noname',
-    //   component: <div style={{ height: '100px' }}> Без названия </div>
-    // },
-    // {
-    //   id: 'org',
-    //   title: 'Организационные данные',
-    //   component: <div style={{ height: '300px' }}> Организационные данные </div>,
-    //   hideBackground: true
-    // },
+    {
+      title: 'Организационные данные',
+      id: 'noname',
+      component: <div style={{ height: '100px' }}> Без названия </div>
+    },
+    {
+      id: 'position',
+      title: 'Позиция',
+      component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
+    },
+    {
+      id: 'org',
+      title: 'Организационные данные',
+      component: <div style={{ height: '300px' }}> Организационные данные </div>,
+      hideBackground: true
+    },
     {
       id: 'test1',
       title: 'Раздел 1',

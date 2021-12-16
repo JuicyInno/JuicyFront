@@ -77,11 +77,15 @@
   margin-bottom: 16px;
 }
 
+.rf-page__aside {
+  flex: none;
+  width: max(calc(100% - 880px), 0px);
+}
+
 .rf-page__content-aside {
-  position: fixed;
-  z-index: 1;
-  width: 192px;
-  right: 40px;
+  position: sticky;
+  top: 76px;
+  padding: 0 32px;
 }
 
 @media (max-width: 1280px) {
@@ -102,7 +106,7 @@
   flex-shrink: 1;
 }
 
-$asideLinkHeight: 46px;
+$asideLinkHeight: 56px;
 
 .rf-page__aside-link {
   position: relative;
@@ -120,7 +124,7 @@ $asideLinkHeight: 46px;
   width: 2px;
   flex-shrink: 0;
   background-color: var(--background-tertiary);
-  margin-right: 38px;
+  margin-right: 22px;
   border-radius: 2px;
 }
 
