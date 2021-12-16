@@ -299,11 +299,11 @@ export const initialFiles: IFileData[] = [
 ];
 
 /** Сегодня приведенное к 00:00:00 */
-export const today = (): number => {
+export const today = (utc?: boolean): number => {
   const date = new Date();
   date.setHours(0);
   date.setMinutes(0);
   date.setSeconds(0);
   date.setMilliseconds(0);
-  return date.getTime();
+  return utc ? UTCToLocal(date).getTime() : date.getTime();
 };
