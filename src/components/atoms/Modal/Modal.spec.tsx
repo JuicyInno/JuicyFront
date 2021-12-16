@@ -38,6 +38,20 @@ describe('Test <Modal /> component', () => {
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--xl');
   });
 
+  it('should be showLine', () => {
+    const { rerender } = render(<Modal footer='footer'>Modal</Modal>);
+
+    expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal__footer--line');
+
+    rerender(
+      <Modal footer='footer' showLine={false}>
+        Modal
+      </Modal>
+    );
+
+    expect(screen.getByTestId('rf-modal')).not.toHaveClass('rf-modal__footer--line');
+  });
+
   it('calls onClose prop when clicked', () => {
     const handleClick = jest.fn();
 

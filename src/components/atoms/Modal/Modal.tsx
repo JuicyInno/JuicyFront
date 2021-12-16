@@ -28,6 +28,10 @@ export interface IModalProps {
    * @default s
    */
   size?: ModalSize;
+  /** Показывать разделительную полоску в footer
+   * @default true
+   */
+  showLine?: boolean;
 }
 
 const Modal: FC<IModalProps> = ({
@@ -36,6 +40,7 @@ const Modal: FC<IModalProps> = ({
   header,
   footer,
   custom = false,
+  showLine = true,
   variant = 'modal',
   size = 's'
 }: IModalProps) => {
@@ -60,7 +65,10 @@ const Modal: FC<IModalProps> = ({
 
   /** Обертка для модалки */
   const modal = (
-    <div data-testid='rf-modal' className={classnames('rf-modal', `rf-modal--${variant}`, `rf-modal--${size}`)}>
+    <div
+      data-testid='rf-modal'
+      className={classnames('rf-modal', `rf-modal--${variant}`, `rf-modal--${size}`, showLine && 'rf-modal__footer--line')}
+    >
       <div className='rf-modal__bg' onClick={onClose} />
       <div className='rf-modal__container'>
         {onClose && (
@@ -73,7 +81,7 @@ const Modal: FC<IModalProps> = ({
 
             <div className='rf-modal__content'>{ children }</div>
 
-            {footer && <div className='rf-modal__footer'>{ footer }</div>}
+            {footer && <div className={'rf-modal__footer'}>{ footer }</div>}
           </div>
         )}
       </div>

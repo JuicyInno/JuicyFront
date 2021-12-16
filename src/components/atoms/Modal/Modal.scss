@@ -41,6 +41,7 @@
       display: flex;
       flex-direction: column;
       overflow: auto;
+      color: var(--text-primary);
     }
 
     .rf-modal__wrapper {
@@ -55,7 +56,6 @@
     }
 
     .rf-modal__footer {
-      border-top: 1px solid var(--background-tertiary);
       padding: 16px 24px 20px 24px;
       flex-shrink: 0;
     }
@@ -101,7 +101,6 @@
     .rf-modal__footer {
       margin-top: auto;
       padding: 20px 32px;
-      border-top: 1px solid var(--background-tertiary);
     }
 
     .rf-modal__close-button {
@@ -112,6 +111,12 @@
       background: var(--background-secondary);
       top: 24px;
       left: -64px;
+    }
+  }
+
+  &.rf-modal__footer--line {
+    .rf-modal__footer {
+      border-top: 1px solid var(--background-tertiary);
     }
   }
 }
@@ -130,7 +135,6 @@
   position: relative;
   z-index: 1;
   background: var(--background-primary);
-  box-shadow: var(--shadow-clickable-hover);
   border-radius: 20px;
 }
 

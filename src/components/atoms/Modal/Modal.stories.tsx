@@ -32,21 +32,12 @@ const ModalFooter = ({ toggle }: { toggle: (value: boolean) => void }) => (
   </StoryRow>
 );
 
-const sizes:ModalSize[] = [
-  's',
-  'm',
-  'l',
-  'xl'
-];
-
-
 export const Demo = () => {
   const [show, setShow] = useState(false);
   const [showCustom, setShowCustom] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   const [showDrawerCustom, setShowDrawerCustom] = useState(false);
   const [showShowSizeModal, setShowSizeModal] = useState<ModalSize | undefined>();
-  console.log('ModalSize', sizes);
 
   return (
     <StoryDocs>
