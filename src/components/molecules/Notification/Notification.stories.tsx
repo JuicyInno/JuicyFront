@@ -3,20 +3,11 @@ import { Story } from '@storybook/react';
 import Notification from './Notification';
 import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
-import { variantsClassic, VariantClassic } from '../../../types';
+import { variantsClassic } from '../../../types';
 import StoryContainer from '../../storybook/Story';
 
-export interface IProps {
-  /** Данные уведомление */
-  title: string,
-  message: string,
-  variant: VariantClassic,
-  /** Закрыть уведомление */
-  remove?: (id: number) => void;
-}
-
 export default {
-  title: 'components/withTest/Item',
+  title: 'components/withTest/Notification',
   component: Notification,
   argTypes: {
     variant: {
@@ -41,7 +32,7 @@ export const Demo: Story = () => {
   const frameStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    width: '634px',
+    width: 'fit-content',
     border: '1px dashed #7B61FF',
     borderRadius: 5,
     padding: 32,
@@ -62,6 +53,13 @@ export const Demo: Story = () => {
             title: 'Заголовок уведомления',
             variant: 'default',
             message: 'Краткое описание уведомления'
+          }} />
+        </StoryRow>
+        <StoryRow >
+          <Notification item={{
+            title: 'Заголовок уведомления',
+            variant: 'default',
+            message: 'Длинное описание очень длинное описание уведомления. Длинное описание очень длинное описание уведомления'
           }} />
         </StoryRow>
         <StoryRow >
@@ -106,7 +104,6 @@ Demo.parameters = {
 };
 
 export const Playground: Story = (args: any) => {
-
   return (
     <StoryContainer>
       <StoryRow >
