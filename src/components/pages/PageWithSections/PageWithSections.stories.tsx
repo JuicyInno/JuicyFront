@@ -112,7 +112,7 @@ export const pageWithSections = () => {
 
       <div style={ shellAsideStyle }/>
       <div style={ { marginLeft: '120px' } }>
-        <PageWithSections navigation={ navigation } sections={ sections } preloader={ !loaded }
+        <PageWithSections showNavigationPosition navigation={ navigation } sections={ sections } preloader={ !loaded }
           title='Изменение графика рабочего времени' backUrl='/'/>
       </div>
     </BrowserRouter>

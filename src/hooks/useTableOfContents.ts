@@ -9,11 +9,11 @@ export interface IHeadingData {
 
 export interface IUseTableOfContentsProps {
     container?: React.RefObject<HTMLElement>;
-    /* Селектор для отслеживаемых заголовков/элементов */
+    /** Селектор для отслеживаемых заголовков/элементов */
     selector: string;
-    /* Доп. отступ сверху для активации элемента (помимо отступа контейнера) */
+    /** Доп. отступ сверху для активации элемента (помимо отступа контейнера) */
     additionalOffset?: number;
-    /* Доп. зависимости для запуска парсинга тайтлов */
+    /** Доп. зависимости для запуска парсинга тайтлов */
     deps?: any[];
 }
 
@@ -22,12 +22,23 @@ export interface IActiveTitle {
   activeIndex: number;
 }
 
-const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = [] }: IUseTableOfContentsProps): IActiveTitle => {
+export interface ITableOfContents {
+  activeTitle: IActiveTitle;
+  onClick: (title: IActiveTitle) => void;
+}
+
+const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = [] }: IUseTableOfContentsProps): ITableOfContents => {
   const [activeTitle, setActiveTitle] = useState<IActiveTitle>({
     activeIndex: 0,
     activeTitleId: undefined
   });
   const [titlesNodes, setTitlesNodes] = useState<IHeadingData[]>([]);
+  const [clicked, setClicked] = useState<boolean>(false);
+
+  const onClick = (title: IActiveTitle) => {
+    setActiveTitle(title);
+    setClicked(true);
+  };
 
   const parseTitles = () => {
     const htmlNodes: HTMLElement[] = Array.from(document.querySelectorAll(selector));
@@ -41,11 +52,15 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
   const findActiveNode = () => {
     if (titlesNodes.length) {
 
-      const wrapper = container?.current;
+      if (clicked) {
+        setClicked(false);
+        return;
+      }
+
       const offsets = titlesNodes.map((node) => node.htmlNode.getBoundingClientRect().top);
 
       let activeIndex = offsets.findIndex(offset => {
-        return offset > (wrapper?.offsetTop || 0) + additionalOffset;
+        return offset > (Math.floor(window.innerHeight / 2));
       });
 
       /** Активируем последний заголовок если вся страница проскролена */
@@ -95,10 +110,13 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
     return () => {
       subscription.unsubscribe();
     };
-  }, [titlesNodes]);
+  }, [titlesNodes, clicked]);
 
 
-  return activeTitle;
+  return {
+    activeTitle,
+    onClick
+  };
 };
 
 export default useTableOfContents;

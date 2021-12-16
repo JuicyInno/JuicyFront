@@ -46,6 +46,9 @@ export interface IPageWithSectionsProps {
   countOfButtonsGroup?:number;
 }
 
+/** Дополнительной отступ для активации секции в оглавлении */
+export const ADDITIONAL_SCROLL_OFFSET = 40;
+
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   title,
   backUrl,
@@ -75,9 +78,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   /** Ссылка на шапку страницы */
   const pageHeaderRef = useRef<HTMLDivElement>(null);
 
-  /** Дополнительной отступ для активации секции в оглавлении */
-  const ADDITIONAL_SCROLL_OFFSET = 40;
-
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Отображение секций */
@@ -98,7 +98,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Активная секция при скролле */
-  const { activeIndex } = useTableOfContents({
+  const { activeTitle, onClick } = useTableOfContents({
     selector: '.rf-page__section-title',
     additionalOffset: ADDITIONAL_SCROLL_OFFSET,
     deps: [preloader]
@@ -106,7 +106,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   /** Боковая навигация для секций */
   const asideJSX = sections?.filter((section: IPageSection) => !!section.title)
-    .map((section: IPageSection) => {
+    .map((section: IPageSection, idx: number) => {
       const onNavClick = () => {
         const block = document.getElementById(section.id);
 
@@ -118,6 +118,11 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
             behavior: 'smooth'
           });
         }
+
+        onClick({
+          activeIndex: idx,
+          activeTitleId: section.id
+        });
       };
 
       return (
@@ -133,19 +138,20 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
     setTimeout(() => {
       if (sliderRef.current) {
         const navLinks = document.querySelectorAll('.rf-page__aside-link');
-        const navLink = navLinks[activeIndex >= navLinks.length ? navLinks.length - 1 : activeIndex];
+        const navLink = navLinks[activeTitle.activeIndex >= navLinks.length ? navLinks.length - 1 : activeTitle.activeIndex];
 
         if (asideRef.current && navLink) {
           sliderRef.current.style.top = `${navLink.getBoundingClientRect().top - asideRef.current.getBoundingClientRect().top}px`;
         }
       }
     });
-  }, [activeIndex]);
+  }, [activeTitle?.activeIndex]);
 
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const showAside = !!sections && sections.some((s: IPageSection) => !!s.title);
+  // (pageRef?.current && window.innerHeight < pageRef.current.scrollHeight);
 
   const asideBlock = showNavigation && showAside && (
     <aside className='rf-page__content-aside' ref={ asideRef }>
