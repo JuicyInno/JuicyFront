@@ -6,6 +6,7 @@ import Notification from '../Notification';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { VariantClassic } from '../../../types';
+import { createPortal } from 'react-dom';
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +44,9 @@ export const sendNotification = (message: INotification, delay = 8000) => {
     ...message,
     id: message.id || Date.now()
   });
+
   notifications$$.next(tmp);
+
   setTimeout(() => {
     removeNotification(message.id);
   }, delay);
@@ -106,7 +109,11 @@ const Notifications = () => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  return <div className='rf-notifications__list'>{list}</div>;
+  if (!list.length) {
+    return null;
+  }
+
+  return createPortal(<div data-testid='rf-notifications' className='rf-notifications__list'>{list}</div>, document.body);
 };
 
 export default Notifications;
