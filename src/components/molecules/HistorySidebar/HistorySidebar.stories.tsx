@@ -8,8 +8,8 @@ import HistorySidebar from './HistorySidebar';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import {
-  attachments, pathsHistory, pathsHistory2, pathHistory20, pathsHistory3, pathsHistory4, pathsHistory5, pathHistory6
-} from '../History/mock';
+  attachments, pathsHistory, pathHistory20, pathsHistory3, pathsHistory4, pathsHistory5, pathHistory6, pathsHistory1
+} from '../HistorySidebar/mock';
 
 export default {
   title: 'components/withTest/HistorySidebar',
@@ -29,7 +29,7 @@ export const Demo: Story = () => {
       <StoryDocsH1>History</StoryDocsH1>
       <StoryDocsH2>История согласования</StoryDocsH2>
       {/* <StoryDocsDescription>Отображение пути согласования, используется во всех сервисах, кроме ЮЗЭДО</StoryDocsDescription>*/}
-      <StoryDocsDescription>Обычная история на 5 человек</StoryDocsDescription>
+      <StoryDocsDescription>Обычная история на 4 человека</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,
@@ -39,17 +39,17 @@ export const Demo: Story = () => {
         <HistorySidebar history={pathsHistory} attachments={attachments} />
       </div>
 
-      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, все согласовали - показываем последних 5 пользоавтелей</StoryDocsDescription>
+      <StoryDocsDescription>История на {'>'}4 человек, нет Вы, все согласовали - показываем последних 4 пользоавтелей</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,
         height: 'auto',
         justifyContent: 'flex-end'
       }}>
-        <HistorySidebar history={pathsHistory2} />
+        <HistorySidebar history={pathsHistory1} />
       </div>
 
-      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, никто не согласовал, показываем первых 5</StoryDocsDescription>
+      <StoryDocsDescription>История на {'>'}4 человек, нет Вы, никто не согласовал, показываем первых 4</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,
@@ -59,7 +59,7 @@ export const Demo: Story = () => {
         <HistorySidebar history={pathHistory20} />
       </div>
 
-      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, до - 2 согласовали, после 3 не согласовали</StoryDocsDescription>
+      <StoryDocsDescription>История на {'>'}4 человек, нет Вы, до - 2 согласовали, после 3 не согласовали</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,
@@ -69,7 +69,7 @@ export const Demo: Story = () => {
         <HistorySidebar history={pathsHistory3} />
       </div>
 
-      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, до - 1 согласовал, после 4 не согласовали</StoryDocsDescription>
+      <StoryDocsDescription>История на {'>'}4 человек, нет Вы, не согласовал - предпоследний</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,
@@ -79,7 +79,7 @@ export const Demo: Story = () => {
         <HistorySidebar history={pathsHistory4} />
       </div>
 
-      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, до - 3 согласовал, после 1 не согласовали</StoryDocsDescription>
+      <StoryDocsDescription>История на {'>'}5 человек, нет Вы, не согласовал - последний</StoryDocsDescription>
       <div style={{
         display: 'flex',
         width: 600,

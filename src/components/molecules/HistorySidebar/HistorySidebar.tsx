@@ -72,7 +72,7 @@ const HistorySidebar: FC<IHistory> = ({
   );
 
   useEffect(() => {
-    setPaths(sortPaths(paths, isOpen));
+    setPaths(sortPaths(history, isOpen));
   }, [isOpen]);
 
   return (

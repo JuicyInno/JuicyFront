@@ -76,6 +76,7 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
               size='l'
               icon={User}
               variant={statusValue[r.criticality]}
+              type={isMinimal ? statusType[r.criticality] as IconType : undefined}
               fullName={r.user[0].fullName}
             />
           }
