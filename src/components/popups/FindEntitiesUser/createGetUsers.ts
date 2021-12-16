@@ -41,7 +41,7 @@ export const createGetUsers = (request: AxiosInstance) =>
     }
 
     const signal = axios.CancelToken.source();
-    const promise = request.get(url, { cancelToken: signal.token }).then(response => response.data);
+    const promise = request.get(url, { cancelToken: signal.token }).then(response => response.data.value);
 
     return [promise, signal.cancel] as [Promise<IUser[]>, () => void];
   };
