@@ -299,7 +299,7 @@ export const initialFiles: IFileData[] = [
 ];
 
 /** Сегодня приведенное к 00:00:00 */
-export const today = (utc?: boolean): number => {
+export const today = (utc = true): number => {
   const date = new Date();
   date.setHours(0);
   date.setMinutes(0);
