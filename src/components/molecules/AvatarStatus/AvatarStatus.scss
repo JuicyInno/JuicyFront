@@ -24,6 +24,11 @@
   right: -9px;
 }
 
+.rf-avatar-status.rf--xxxs,
+.rf-avatar-status__border.rf--xxxs {
+  @include round(16px);
+}
+
 .rf-avatar-status.rf--xxs,
 .rf-avatar-status__border.rf--xxs {
   @include round(20px);
