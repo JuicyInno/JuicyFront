@@ -104,7 +104,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     if (container) {
       resizeObserver.observe(container);
     }
-  }, [calculateHeight]);
+  }, [calculateHeight, id]);
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
