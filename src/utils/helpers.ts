@@ -168,7 +168,8 @@ export const sizeClass: Record<Size, string> = {
 };
 
 export const iconSize: Record<Size, string> = {
-  'xxs': '16',
+  'xxxs': '16',
+  'xxs': '20',
   'xs': '24',
   's': '32',
   'm': '40',

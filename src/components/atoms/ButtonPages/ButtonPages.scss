@@ -28,15 +28,6 @@
   color: var(--basic-tertiary);
 }
 
-.rf-button-pages__left, .rf-button-pages__right {
-  width: 20px;
-  height: 20px;
-}
-
-.rf-button-pages__right {
-  transform: rotate(180deg);
-}
-
 .rf-button-pages__value {
   min-width: 28px;
   flex-shrink: 0;
