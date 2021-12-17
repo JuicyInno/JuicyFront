@@ -33,7 +33,7 @@ const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: I
   return (
     <div className='rf-button-pages'>
       <button type='button' className='rf-button-pages__button' disabled={p === 1} onClick={() => onPageChange(-1)}>
-        <ChevronLeft size={'xxs'}/>
+        <ChevronLeft size={'xxs'} />
       </button>
 
       <div className={'rf-button-pages__value'}>
@@ -41,7 +41,7 @@ const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: I
       </div>
 
       <button type='button' className='rf-button-pages__button' disabled={p === max} onClick={() => onPageChange(1)}>
-        <ChevronRight size={'xxs'}/>
+        <ChevronRight size={'xxs'} />
       </button>
 
     </div>
