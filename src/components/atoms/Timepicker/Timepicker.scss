@@ -8,6 +8,10 @@ $margin: 2px;
   position: relative;
   display: inline-flex;
   align-items: center;
+
+  .rf-timepicker__btn {
+    min-width: auto;
+  }
 }
 
 .rf-timepicker--disabled {
@@ -16,6 +20,10 @@ $margin: 2px;
   .rf-timepicker__icon {
     color: var(--text-tertiary);
   }
+}
+
+.rf-timepicker--empty input {
+  color: var(--text-tertiary);
 }
 
 .rf-timepicker__menu {
@@ -29,5 +37,5 @@ $margin: 2px;
 }
 
 .rf-timepicker__icon {
-  color: var(--text-secondary);
+  color: var(--basic-tertiary);
 }
