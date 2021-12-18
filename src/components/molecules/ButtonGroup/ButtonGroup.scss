@@ -56,3 +56,15 @@
   transform: rotate(180deg);
   color: var(--text-tertiary);
 }
+
+.button-group__menu-button--disabled {
+  pointer-events: none;
+
+  .button-group__menu-button-name {
+    color: var(--text-tertiary);
+  }
+
+  .button-group__menu-button-description {
+    color: var(--text-tertiary);
+  }
+}
