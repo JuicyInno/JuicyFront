@@ -62,6 +62,8 @@ export interface ISelectProps {
   position?: DropdownPosition;
   /** Событие скролла для выпадающего списка */
   onScroll?: (e: React.UIEvent) => void;
+  /** Максимальная ширина выпадающего списка */
+  dropdownMaxWidth?: number;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -83,7 +85,8 @@ const Select: FC<ISelectProps> = ({
   isAsync,
   infinityScrollProps,
   position = 'bottom-start',
-  onScroll
+  onScroll,
+  dropdownMaxWidth
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -306,11 +309,17 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
+  const onChevronClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDropdown((state: boolean) => !state);
+  };
+
   const chevronButton = (readOnly || inputValue.length === 0) && (
     <button
       type='button'
+      data-testid='rf-select__chevron'
       className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
-      onClick={() => setShowDropdown((state: boolean) => !state)}
+      onClick={onChevronClick}
     >
       <ChevronDown />
     </button>
@@ -338,8 +347,8 @@ const Select: FC<ISelectProps> = ({
   }, [onSearch, isAsync, inputValue]);
 
   const getWidthDropdown = useCallback(() => {
-    return toggleRef.current?.getBoundingClientRect().width;
-  }, []);
+    return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
+  }, [dropdownMaxWidth]);
 
   return (
     <Manager>
