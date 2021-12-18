@@ -189,6 +189,8 @@ export interface IButtonGroup {
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+  /** неактивное состояние */
+  disabled?: boolean;
 }
 
 /** Пропсы иконки */

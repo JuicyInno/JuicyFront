@@ -51,6 +51,12 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
     if (hasMenuJSX) {
       for (let i = max; i < list.length; i++) {
         const onClick = (e: React.MouseEvent) => {
+          if (list[i].disabled) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+
           if (list[i] && list[i].onClick) {
             e.preventDefault();
             e.stopPropagation();
@@ -64,7 +70,9 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
           }
         };
 
-        menu.push(<Link to={list[i].url || '/'} className='button-group__menu-button' key={i} onClick={onClick}>
+        const disabledClass = list[i].disabled ? 'button-group__menu-button--disabled' : '';
+
+        menu.push(<Link to={list[i].url || '/'} className={`button-group__menu-button ${disabledClass}`} key={i} onClick={onClick}>
           <div className='button-group__menu-button-details'>
             <h4 className='button-group__menu-button-name'>{list[i].label}</h4>
             {list[i].description && <p className='button-group__menu-button-description'>{list[i].description}</p>}
