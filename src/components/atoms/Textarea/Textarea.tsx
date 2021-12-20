@@ -150,10 +150,7 @@ const Textarea: FC<ITextareaProps> = ({
           disabled={disabled}
           ref={textarea}
           rows={initialRowCount}
-          className={`
-          rf-textarea__field
-          ${!autoResize ? 'rf-textarea--scroll' : ''}
-        `}
+          className={classnames('rf-textarea__field', !autoResize && 'rf-textarea--scroll')}
           autoComplete='off'
           onFocus={onInputFocus}
           onBlur={onInputBlur}

@@ -1,9 +1,9 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .rf-input {
   align-items: center;
-  box-shadow: 0 0 0 1px var(--background-tertiary);
+  box-shadow: 0 0 0 1px var(--background-shadow);
   border-radius: 8px;
   display: inline-flex;
   padding: 0 16px;
@@ -30,7 +30,6 @@
     box-shadow: 0 0 0 1px var(--basic-press);
   }
 
-
   &--inline {
     box-shadow: none;
 
@@ -42,16 +41,17 @@
       box-shadow: 0 0 0 1px var(--basic-press);
     }
 
-
     &.rf-input--focused {
       box-shadow: 0 0 0 1px var(--basic-press);
     }
   }
 
   &--disabled {
+    pointer-events: none;
     background-color: var(--background-tertiary);
 
-    &, &:hover {
+    &,
+    &:hover {
       box-shadow: none;
     }
   }
@@ -85,19 +85,16 @@
   color: var(--text-primary);
   border: 0;
   height: 24px;
+
   &::placeholder {
     @include text-l-16;
     color: var(--text-secondary);
-  
   }
 
-  &.disabled, &:disabled {
+  &.disabled,
+  &:disabled {
     cursor: default;
-    color: var(--text-primary);
-
-    &::placeholder {
-      color: var(--text-secondary);
-    }
+    color: var(--text-tertiary);
   }
 
   &.rf-input__field--file {
@@ -106,7 +103,7 @@
 }
 
 .rf-input__field:disabled::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-tertiary);
 }
 
 /** [START] file-input */

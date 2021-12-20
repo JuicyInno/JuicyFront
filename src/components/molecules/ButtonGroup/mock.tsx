@@ -19,7 +19,8 @@ export const buttonGroupMock: IButtonGroup[] = [
   {
     label: 'Перевод',
     description: 'Оформить перевод сотрудника',
-    url: '/transfer'
+    url: '/transfer',
+    disabled: true
   }
 ];
 

@@ -1,7 +1,8 @@
-import { getByText, render } from '@testing-library/react';
+import { getByText, screen, render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
+import Select from '.';
 import { IOption } from '../../../types';
-import Select from './Select';
+
 
 const list: IOption[] = [];
 

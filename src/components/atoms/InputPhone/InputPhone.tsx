@@ -116,7 +116,7 @@ const InputPhone: React.FC<IInputPhoneProps> =
           data-testid='input-display'
           startAdornment={
             <Menu
-              anchorElement={inputElement}
+              position='bottom-start'
               content={
                 countries.length > 1 && <MenuContext.Consumer>
                   {({ onClose }: IMenuContext) => (

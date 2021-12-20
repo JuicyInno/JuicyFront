@@ -21,7 +21,8 @@ export default {
         'green',
         'default',
         'yellow',
-        'red'
+        'red',
+        'white'
       ],
       control: { type: 'select' }
     },

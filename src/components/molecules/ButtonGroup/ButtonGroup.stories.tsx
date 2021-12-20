@@ -11,7 +11,7 @@ import StoryRow from '../../storybook/StoryRow';
 export default {
   title: 'controls/withTest/ButtonGroup',
   component: ButtonGroup,
-  argTypes: { list: { control: null }, }
+  argTypes: { list: { control: null } },
 };
 
 export const Demo = () => {
@@ -20,11 +20,11 @@ export const Demo = () => {
       <StoryContainer name='Группировка кнопок'>
         <StoryItem>
           <StoryRow>
-            <ButtonGroup list={buttonGroupMock} max={2}/>
+            <ButtonGroup list={buttonGroupMock} max={2} />
           </StoryRow>
 
           <StoryRow>
-            <ButtonGroup list={buttonGroupMock} max={3} />
+            <ButtonGroup list={buttonGroupMock} max={3} closeAfterClick />
           </StoryRow>
 
           <StoryRow>
@@ -38,9 +38,7 @@ export const Demo = () => {
           <StoryRow>
             <ButtonGroup list={buttonIconGroupMock.filter((_, index) => index <= 1)} />
           </StoryRow>
-
         </StoryItem>
-
       </StoryContainer>
     </BrowserRouter>
   );

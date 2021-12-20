@@ -2,8 +2,6 @@ import React, {
   useEffect, useRef, useState
 } from 'react';
 import { Story } from '@storybook/react';
-
-import Select from './Select';
 import { IOption } from '../../../types';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
@@ -14,6 +12,7 @@ import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 import { Icon } from '../Status/icons';
 import { Cross } from '../../..';
+import Select from '.';
 
 export default {
   title: 'forms/не проверено/Select',
@@ -92,7 +91,6 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
-              multiselect
               startAdornment={<Cross />}
               placeholder='Placeholder'
               options={list}

@@ -1,6 +1,7 @@
 // eslint-disable-next-line object-curly-newline
 import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
+import { Manager, Reference } from 'react-popper';
 import './Select.scss';
 
 import { DropdownPosition, IOption } from '../../../types';
@@ -59,12 +60,19 @@ export interface ISelectProps {
   infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
   /** Расположение */
   position?: DropdownPosition;
+<<<<<<< HEAD
   /** Ширина */
   maxWidth?: number | string;
   /** Контент для вставки в начало кнопки */
   startAdornment?: ReactNode | undefined;
   /** Контент для вставки в конец кнопки */
   endAdornment?: ReactNode | undefined;
+=======
+  /** Событие скролла для выпадающего списка */
+  onScroll?: (e: React.UIEvent) => void;
+  /** Максимальная ширина выпадающего списка */
+  dropdownMaxWidth?: number;
+>>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
 }
 
 const Select: FC<ISelectProps> = ({
@@ -85,30 +93,40 @@ const Select: FC<ISelectProps> = ({
   variant = 'base',
   isAsync,
   infinityScrollProps,
+<<<<<<< HEAD
   position = 'left',
   maxWidth,
   startAdornment,
   endAdornment,
+=======
+  position = 'bottom-start',
+  onScroll,
+  dropdownMaxWidth
+>>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
 }: ISelectProps) => {
-  const [showDropdown, toggleDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
 
   const onClose = useCallback(() => {
-    toggleDropdown(false);
-  }, [toggleDropdown]);
+    setShowDropdown(false);
+  }, [setShowDropdown]);
+
+  const onOpen = useCallback(() => {
+    if (!disabled) {
+      setShowDropdown(true);
+    }
+
+  }, [setShowDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
-  const openDropdown = () => {
-    toggleDropdown(true);
-  };
 
   /** Очистка селекта */
   const onClear = (e: React.MouseEvent) => {
     e.stopPropagation();
     setInputValue('');
-    toggleDropdown(true);
+    onOpen();
 
     if (!multiselect) {
       setSelectValues([]);
@@ -212,7 +230,7 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const listJSX = filteredOptions.map((o: IOption) => {
-    const disabled = o.disabled || false;
+    const optionDisabled = o.disabled || false;
     const active = selectedMap[o.value] || false;
 
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
@@ -221,13 +239,13 @@ const Select: FC<ISelectProps> = ({
 
       if (!multiselect) {
         setInputValue(clearOnSelect ? '' : o.label);
-        toggleDropdown(false);
+        onClose();
       } else {
         setInputValue('');
       }
     };
 
-    const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
+    const disabledClass = optionDisabled ? 'rf-select__list-element--disabled' : '';
     const activeClass = active ? 'rf-select__list-element--active' : '';
 
     let label: ReactNode = o.label;
@@ -288,7 +306,7 @@ const Select: FC<ISelectProps> = ({
   const tagsRef = useRef<HTMLDivElement>(null);
 
   const tagsJSX = multiselect && selectValues.length > 0 && (
-    <div className='rf-select__tags' ref={tagsRef} onClick={() => !disabled && toggleDropdown(true)}>
+    <div className='rf-select__tags' ref={tagsRef} onClick={() => !disabled && onOpen()}>
       {selectValues.map((t: IOption) => (
         <div className='rf-select__tag' key={t.value}>
           <Chip type='secondary' size='s' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
@@ -307,11 +325,17 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
-  const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
+  const onChevronClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDropdown((state: boolean) => !state);
+  };
+
+  const chevronButton = (readOnly || inputValue.length === 0) && (
     <button
       type='button'
+      data-testid='rf-select__chevron'
       className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
-      onClick={() => toggleDropdown((state: boolean) => !state)}
+      onClick={onChevronClick}
     >
       <ChevronDown />
     </button>
@@ -341,6 +365,7 @@ const Select: FC<ISelectProps> = ({
     return noop;
   }, [onSearch, isAsync, inputValue]);
 
+<<<<<<< HEAD
   return (
     <div className={classnames('rf-select', multiselectClass, tagClass)}>
       <div
@@ -366,37 +391,78 @@ const Select: FC<ISelectProps> = ({
         {closeButton}
         {chevronButton}
       </div>
+=======
+  const getWidthDropdown = useCallback(() => {
+    return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
+  }, [dropdownMaxWidth]);
+>>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
 
-      <Dropdown
-        show={showDropdown && (!!listJSX.length || preloader)}
-        toggleRef={toggleRef}
-        onClose={onClose}
-        position={position}
-        portal
-        maxWidth={isTagVariant ? 'auto' : maxWidth}
-      >
-        <div className='rf-select__list' id='rf-select-list-scroll'>
-          {hasInfinityScroll ? (
-            <InfiniteScroll
-              dataLength={0}
-              hasMore={false}
-              {...infinityScrollProps}
-              next={makeLazyFetch()}
-              loader={loader}
-              scrollableTarget='rf-select-list-scroll'
-              className='rf-select__infinity-list'
+  return (
+    <Manager>
+      <div className={classnames('rf-select', multiselectClass, tagClass)} ref={toggleRef}>
+        <Reference>
+          {(referenceProps) => (
+            <div
+              {...referenceProps}
+              data-testid='rf-select'
+              className={classnames(
+                'rf-select__wrapper',
+                invalid && 'rf-select__wrapper--invalid',
+                openClass,
+                disabled && 'rf-select__wrapper--disabled'
+              )}
+              onClick={() => onOpen()}
             >
-              {listJSX}
-            </InfiniteScroll>
-          ) : (
-            <>{preloader ? loader : listJSX}</>
+              <input
+                className='rf-select__input'
+                // onMouseDown={openDropdown}
+                onChange={onSelectSearch}
+                value={inputValue}
+                disabled={disabled}
+                readOnly={readOnly}
+                placeholder={
+                  (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
+                }
+              />
+              {closeButton}
+              {chevronButton}
+            </div>
           )}
-        </div>
-      </Dropdown>
+        </Reference>
 
-      {/* filteredOptions.length > 0*/}
-      {tagsJSX}
-    </div>
+        <Dropdown
+          show={showDropdown && (!!listJSX.length || preloader)}
+          toggleRef={toggleRef}
+          onClose={onClose}
+          position={position}
+          style={{
+            maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
+            width: isTagVariant ? 'auto' : '100%'
+          }}
+        >
+          <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
+            {hasInfinityScroll ? (
+              <InfiniteScroll
+                dataLength={0}
+                hasMore={false}
+                {...infinityScrollProps}
+                next={makeLazyFetch()}
+                loader={loader}
+                scrollableTarget='rf-select-list-scroll'
+                className='rf-select__infinity-list'
+              >
+                {listJSX}
+              </InfiniteScroll>
+            ) : (
+              <>{preloader ? loader : listJSX}</>
+            )}
+          </div>
+        </Dropdown>
+
+        {/* filteredOptions.length > 0*/}
+        {tagsJSX}
+      </div>
+    </Manager>
   );
 };
 export default Select;

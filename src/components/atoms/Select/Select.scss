@@ -82,6 +82,7 @@
     box-shadow: 0 0 0 1px var(--basic-press);
   }
 }
+
 .rf-select__wrapper--invalid {
   box-shadow: 0 0 0 1px var(--status-danger);
 }
@@ -108,6 +109,23 @@
 
 .rf-select__wrapper--open {
   border-color: var(--basic-hover);
+}
+
+.rf-select__wrapper--disabled {
+  background-color: var(--background-tertiary);
+  pointer-events: none;
+
+  .rf-select__input {
+    color: var(--text-tertiary);
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+
+  .rf-select__button {
+    color: var(--text-tertiary);
+  }
 }
 
 .rf-select__input {

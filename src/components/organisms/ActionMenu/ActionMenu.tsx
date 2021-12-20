@@ -10,12 +10,14 @@ import {
 interface IActionMenuProps {
   type?: 'default' | 'list' | 'action';
   listConfig?: IActionMenuListConfig;
+  component?: ReactNode | ReactNode[];
   children?: ReactNode | ReactNode[];
 }
 
 const ActionMenu: React.FC<IActionMenuProps> = ({
   type = 'default',
   listConfig,
+  component,
   children
 }: IActionMenuProps) => {
 
@@ -33,10 +35,12 @@ const ActionMenu: React.FC<IActionMenuProps> = ({
   const listJSX = listConfig && (
     <div className='jf-action-menu__header'>
       <div className='jf-action-menu__sorting'>
-        { listConfig.sortList.length > 0 && listConfig &&
-        <Select readOnly options={ listConfig.sortList }
-          values={ listConfig.defaultSortValue ? [listConfig.defaultSortValue] : [listConfig.sortList[0]] }
-          onChange={ getSortValue }/> }
+        {component ? component :
+          listConfig.sortList.length > 0 && listConfig &&
+          <Select readOnly options={ listConfig.sortList }
+            values={ listConfig.defaultSortValue ? [listConfig.defaultSortValue] : [listConfig.sortList[0]] }
+            onChange={ getSortValue }/>
+        }
       </div>
       <div className='jf-action-menu__search'>
         <Input onKeyUp={ handleSearch } placeholder='Поиск' onClear={ listConfig.onClear }/>
@@ -52,7 +56,7 @@ const ActionMenu: React.FC<IActionMenuProps> = ({
       }
       { !listConfig.singleAction && listConfig.actionList.length > 0 && (
         <div className='jf-action-menu__list-button'>
-          <Menu list={ listConfig.actionList } position='right'>
+          <Menu list={ listConfig.actionList } position='top-end'>
             <Button>
               <div className='jf-action-menu__button-inner'>
                 { listConfig.actionLabel || 'Создать' } <ChevronDown className='jf-action-menu__list-button-icon'/>
