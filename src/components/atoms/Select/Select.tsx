@@ -62,9 +62,9 @@ export interface ISelectProps {
   /** Ширина */
   maxWidth?: number | string;
   /** Контент для вставки в начало кнопки */
-  startAdornment?: ReactNode;
+  startAdornment?: ReactNode | undefined;
   /** Контент для вставки в конец кнопки */
-  endAdornment?: ReactNode;
+  endAdornment?: ReactNode | undefined;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -283,7 +283,7 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const noop = () => {};
+  const noop = () => { };
 
   const tagsRef = useRef<HTMLDivElement>(null);
 
@@ -317,6 +317,9 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
+  const startAdornmentIcon = startAdornment ? <div className='rf-select__button__icon'>{startAdornment}</div> : null;
+  const endAdornmentIcon = endAdornment ? <div className='rf-select__button__icon--end'>{endAdornment}</div> : null;
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const isTagVariant = variant === 'tag';
@@ -349,8 +352,9 @@ const Select: FC<ISelectProps> = ({
         )}
         ref={toggleRef}
       >
+        {startAdornmentIcon}
         <input
-          className='rf-select__input'
+          className={`rf-select__input ${startAdornmentIcon ? 'rf-select__button__icon--input' : ''} ${endAdornmentIcon ? 'rf-select__button__icon--input--end' : ''} `}
           onMouseDown={openDropdown}
           onChange={onSelectSearch}
           value={inputValue}
@@ -358,6 +362,7 @@ const Select: FC<ISelectProps> = ({
           readOnly={readOnly}
           placeholder={disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder}
         />
+        {endAdornmentIcon}
         {closeButton}
         {chevronButton}
       </div>

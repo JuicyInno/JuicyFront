@@ -12,6 +12,8 @@ import Button from '../Button';
 import InputNumber from '../InputNumber';
 import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
+import { Icon } from '../Status/icons';
+import { Cross } from '../../..';
 
 export default {
   title: 'forms/не проверено/Select',
@@ -90,11 +92,14 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
-              placeholder='Выберите значение'
+              multiselect
+              startAdornment={<Cross />}
+              placeholder='Placeholder'
               options={list}
               values={state1}
               onChange={onChange2}
               preloader={loading}
+              endAdornment={<Icon />}
             />
           </FormGroup>
         </StoryItem>
@@ -243,7 +248,7 @@ export const LazySelect: Story = () => {
               placeholder='Поиск'
               values={[]}
               options={list}
-              onChange={() => {}}
+              onChange={() => { }}
               isAsync
               infinityScrollProps={{
                 hasMore,
@@ -263,7 +268,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => { }} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>
