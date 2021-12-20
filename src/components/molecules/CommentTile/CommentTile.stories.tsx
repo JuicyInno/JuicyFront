@@ -40,17 +40,20 @@ export const Demo: Story = () => {
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
-      <div style={{ 'display': 'flex', }}>
-        <div style={{ marginLeft: '40px' }}>
-          <CommentTile initialFiles={initialFiles}/>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '880px'
+      }}>
+        <div style={{ marginBottom: '40px' }}>
+          <CommentTile name='comment-tile' initialFiles={initialFiles}/>
         </div>
-        <div style={{ marginLeft: '40px' }}>
+
+        <div style={{ marginBottom: '40px' }}>
           <CommentTile />
         </div>
-        <div style={{
-          paddingRight: '40px',
-          marginLeft: '40px'
-        }}>
+
+        <div style={{ marginBottom: '40px' }}>
           <CommentTile autoResize={true} comment={comment}/>
         </div>
       </div>
