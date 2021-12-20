@@ -60,19 +60,12 @@ export interface ISelectProps {
   infinityScrollProps?: Omit<IInfiniteScrollProps, 'children' | 'next' | 'scrollableTarget' | 'loader'>;
   /** Расположение */
   position?: DropdownPosition;
-<<<<<<< HEAD
-  /** Ширина */
-  maxWidth?: number | string;
-  /** Контент для вставки в начало кнопки */
-  startAdornment?: ReactNode | undefined;
-  /** Контент для вставки в конец кнопки */
-  endAdornment?: ReactNode | undefined;
-=======
   /** Событие скролла для выпадающего списка */
   onScroll?: (e: React.UIEvent) => void;
   /** Максимальная ширина выпадающего списка */
   dropdownMaxWidth?: number;
->>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
+  startAdornment?: ReactNode | undefined;
+  endAdornment?: ReactNode | undefined
 }
 
 const Select: FC<ISelectProps> = ({
@@ -93,16 +86,11 @@ const Select: FC<ISelectProps> = ({
   variant = 'base',
   isAsync,
   infinityScrollProps,
-<<<<<<< HEAD
   position = 'left',
-  maxWidth,
-  startAdornment,
   endAdornment,
-=======
-  position = 'bottom-start',
+  startAdornment,
   onScroll,
   dropdownMaxWidth
->>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -365,37 +353,9 @@ const Select: FC<ISelectProps> = ({
     return noop;
   }, [onSearch, isAsync, inputValue]);
 
-<<<<<<< HEAD
-  return (
-    <div className={classnames('rf-select', multiselectClass, tagClass)}>
-      <div
-        className={classnames(
-          'rf-select__wrapper',
-          invalid && 'rf-select__wrapper--invalid',
-          disabled && 'rf-select__wrapper--disabled',
-          openClass
-        )}
-        ref={toggleRef}
-      >
-        {startAdornmentIcon}
-        <input
-          className={`rf-select__input ${startAdornmentIcon ? 'rf-select__button__icon--input' : ''} ${endAdornmentIcon ? 'rf-select__button__icon--input--end' : ''} `}
-          onMouseDown={openDropdown}
-          onChange={onSelectSearch}
-          value={inputValue}
-          disabled={disabled}
-          readOnly={readOnly}
-          placeholder={disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder}
-        />
-        {endAdornmentIcon}
-        {closeButton}
-        {chevronButton}
-      </div>
-=======
   const getWidthDropdown = useCallback(() => {
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
->>>>>>> 1de50770b0909328ea43859a54c7827e4f63691c
 
   return (
     <Manager>
@@ -435,10 +395,7 @@ const Select: FC<ISelectProps> = ({
           toggleRef={toggleRef}
           onClose={onClose}
           position={position}
-          style={{
-            maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
-            width: isTagVariant ? 'auto' : '100%'
-          }}
+
         >
           <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
