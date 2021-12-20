@@ -31,6 +31,7 @@
 
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
+  color: var(--basic-secondary);
 
   .rf-datepicker__calendar-button,
   .rf-datepicker__calendar-chevron {
