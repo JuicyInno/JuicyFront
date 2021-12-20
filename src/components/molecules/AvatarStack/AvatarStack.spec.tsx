@@ -74,4 +74,9 @@ describe('Test <AvatarStack/> component', () => {
       expect(hasProperWidth).toBeTruthy();
     });
   });
+  
+  it('should have clickable class', () => {
+    const { container } = render(<AvatarStack list={usersMocks} onClick={jest.fn()} maxVisible={4} />);
+    expect(container.getElementsByClassName('avatar-stack--clickable')).toHaveLength(5);
+  });
 });
