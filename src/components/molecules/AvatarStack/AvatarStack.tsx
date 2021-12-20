@@ -47,7 +47,10 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
   const GAP = 4;
 
   const handleClick = (user: IUser) => {
-    onClick && onClick(user);
+    if (onClick) {
+      onClick(user);
+      onDropdownClose();
+    }
   };
 
   const clickableClass = onClick ? 'avatar-stack--clickable' : '';
