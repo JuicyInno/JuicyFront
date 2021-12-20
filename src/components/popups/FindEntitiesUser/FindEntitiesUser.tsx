@@ -56,7 +56,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
                     <div className='rf-find-entities-user__info'>
                       <Info />
                     </div>
-                    <Structure departmentsPath={ user.departmentsPath }/>
+                    <Structure departmentsPath={ user.departmentsPath } background={tooltipBackground}/>
                   </Tooltip>
                 )}
               </div>
