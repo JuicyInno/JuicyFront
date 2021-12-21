@@ -53,7 +53,7 @@ const Timepicker: FC<ITimepickerProps> = ({
   onChangeValue,
   min = '00:00',
   max = '24:00',
-  isMinified = true,
+  isMinified = false,
   ...props
 }: ITimepickerProps) => {
   const [time, setTime] = useState(initialValue);
