@@ -10,8 +10,6 @@ import Button from '../Button';
 import InputNumber from '../InputNumber';
 import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
-import { Icon } from '../Status/icons';
-import { Cross } from '../../..';
 import Select from '.';
 
 export default {
@@ -28,6 +26,7 @@ for (let i = 1; i < 15; i++) {
     disabled: i % 6 === 0,
   });
 }
+
 
 export const Demo = () => {
   const [values, setValues] = useState<IOption[]>([]);
@@ -56,6 +55,8 @@ export const Demo = () => {
   };
 
   const onSearch = (query: string) => {
+    console.log(query);
+
     filterWithDelay(query);
   };
 
@@ -66,7 +67,7 @@ export const Demo = () => {
   }, []);
 
   const [state, setState] = useState([list[0]]);
-  const [state1, setState1] = useState([list[1]]);
+  const [state1, setState1] = useState([]);
 
   const onChange1 = (options: IOption[]) => {
     console.log(options);
@@ -91,13 +92,12 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
-              startAdornment={<Cross />}
               placeholder='Placeholder'
               options={list}
-              values={state1}
+              variant='base'
+              values={state}
               onChange={onChange2}
-              preloader={loading}
-              endAdornment={<Icon />}
+
             />
           </FormGroup>
         </StoryItem>

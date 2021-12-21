@@ -86,7 +86,7 @@ const Select: FC<ISelectProps> = ({
   variant = 'base',
   isAsync,
   infinityScrollProps,
-  position = 'left',
+  position = 'right',
   endAdornment,
   startAdornment,
   onScroll,
@@ -329,8 +329,8 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
-  const startAdornmentIcon = startAdornment ? <div className='rf-select__button__icon'>{startAdornment}</div> : null;
-  const endAdornmentIcon = endAdornment ? <div className='rf-select__button__icon--end'>{endAdornment}</div> : null;
+  const startAdornmentIcon = startAdornment && variant !== 'tag' ? <div className='rf-select__button__icon'>{startAdornment}</div> : null;
+  const endAdornmentIcon = endAdornment && variant !== 'tag' ? <div className='rf-select__button__icon--end'>{endAdornment}</div> : null;
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -373,7 +373,9 @@ const Select: FC<ISelectProps> = ({
               )}
               onClick={() => onOpen()}
             >
+              {startAdornmentIcon}
               <input
+                id='rf-select__input'
                 className='rf-select__input'
                 // onMouseDown={openDropdown}
                 onChange={onSelectSearch}
@@ -384,6 +386,7 @@ const Select: FC<ISelectProps> = ({
                   (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
                 }
               />
+              {endAdornmentIcon}
               {closeButton}
               {chevronButton}
             </div>
