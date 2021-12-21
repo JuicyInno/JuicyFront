@@ -1,6 +1,4 @@
 import React, { ReactNode } from 'react';
-import GhostScreen from './GhostScreen';
-import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
 import IL_Empty from '../../../assets/icons/Illustrations/IL_Empty';
@@ -19,15 +17,15 @@ import IL_Broken_Magnifier from '../../../assets/icons/Illustrations/IL_Broken_M
 import IL_Not_Available from '../../../assets/icons/Illustrations/IL_Not_Available';
 import { withDesign } from 'storybook-addon-designs';
 import { Tooltip } from '../../../index';
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
 /* eslint-disable max-len */
 
 export default {
-  title: 'icons,illustrations/withTest/Экран заглушки с приведением',
+  title: 'icons,illustrations/Illustration',
   decorators: [withDesign],
-  component: GhostScreen,
 };
 
-export const ghostScreen = () => {
+export const Demo = () => {
 
   const illustration: any = [
     ['IL_Empty', <IL_Empty/>],
@@ -56,8 +54,9 @@ export const ghostScreen = () => {
   });
 
   return (
-    <Story name='Illustration'>
-      <StoryItem subtitle='Illustration'>
+    <StoryDocs>
+      <StoryDocsH1>Illustration</StoryDocsH1>
+      <StoryItem>
         <StoryRow>
           <div style={{
             display: 'grid',
@@ -68,16 +67,13 @@ export const ghostScreen = () => {
           </div>
         </StoryRow>
       </StoryItem>
-
-      <StoryItem description='Экран заглушки с приведением' subtitle='GhostScreen'>
-        <GhostScreen text={'Не все приведения страшные? Не так ли?'}/>
-      </StoryItem>
-    </Story>
+    </StoryDocs>
   );
 };
-ghostScreen.parameters = {
+
+Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=19060%3A302735'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A29146'
   },
 };

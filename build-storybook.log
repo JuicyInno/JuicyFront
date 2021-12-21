@@ -1,5 +1,5 @@
 info @storybook/react v6.3.9
-info 
+info
 info => Cleaning outputDir: C:\\Users\\Anton\\AppData\\Local\\Temp\\chromatic--11068-7Xc6kvdFQbsf
 info => Loading presets
 info => Compiling preview..
@@ -9,9 +9,9 @@ info => Adding stories defined in "C:\Users\Anton\Desktop\projects\JuicyFront\.s
 info => Using implicit CSS loaders
 info => Loading custom Webpack config (full-control mode).
 <s> [webpack.Progress] 0% compiling
-<s> [webpack.Progress] 10% building 0/0 modules 0 active 
+<s> [webpack.Progress] 10% building 0/0 modules 0 active
 <s> [webpack.Progress] 10% building 0/1 modules 1 active multi C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\core-client\dist\esm\globals\polyfills.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\core-client\dist\esm\globals\globals.js C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\storybook-init-framework-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-docs\dist\esm\frameworks\common\config.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-docs\dist\esm\frameworks\react\config.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-links\dist\esm\preset\addDecorator.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-actions\dist\esm\preset\addDecorator.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-actions\dist\esm\preset\addArgs.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-backgrounds\dist\esm\preset\addDecorator.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-backgrounds\dist\esm\preset\addParameter.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-measure\dist\esm\preset\preview.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\storybook-addon-outline\dist\esm\preset\addDecorator.js-generated-other-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\preview.js-generated-config-entry.js C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\generated-stories-entry.js
-<s> [webpack.Progress] 10% building 1/1 modules 0 active 
+<s> [webpack.Progress] 10% building 1/1 modules 0 active
 (node:14896) DeprecationWarning: Default PostCSS plugins are deprecated. When switching to '@storybook/addon-postcss',
 you will need to add your own plugins, such as 'postcss-flexbugs-fixes' and 'autoprefixer'.
 
@@ -62,7 +62,7 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 12% building 21/24 modules 3 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\generated-stories-entry.js
 <s> [webpack.Progress] 12% building 22/24 modules 2 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\generated-stories-entry.js
 <s> [webpack.Progress] 12% building 23/24 modules 1 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\generated-stories-entry.js
-<s> [webpack.Progress] 12% building 24/24 modules 0 active 
+<s> [webpack.Progress] 12% building 24/24 modules 0 active
 <s> [webpack.Progress] 12% building 24/25 modules 1 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\.storybook\preview.js
 <s> [webpack.Progress] 12% building 24/26 modules 2 active C:\Users\Anton\Desktop\projects\JuicyFront\src\components sync /^\.(?:(?:^|[\\/]|(?:(?:(?!(?:^|[\\/])\.).)*?)[\\/])(?!\.)(?=.)[^\\/]*?\.stories\.mdx)$/
 <s> [webpack.Progress] 12% building 24/27 modules 3 active C:\Users\Anton\Desktop\projects\JuicyFront\src\components sync /^\.(?:(?:^|[\\/]|(?:(?:(?!(?:^|[\\/])\.).)*?)[\\/])(?!\.)(?=.)[^\\/]*?\.stories\.(js|jsx|ts|tsx))$/
@@ -184,7 +184,7 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 19% building 77/90 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-backgrounds\dist\esm\decorators\index.js
 <s> [webpack.Progress] 19% building 78/90 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-backgrounds\dist\esm\decorators\index.js
 <s> [webpack.Progress] 19% building 79/90 modules 11 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-backgrounds\dist\esm\decorators\index.js
-<s> [webpack.Progress] 19% building 79/91 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\source-loader\dist\cjs\index.js??ref--11!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.stories.tsx
+<s> [webpack.Progress] 19% building 79/91 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\source-loader\dist\cjs\index.js??ref--11!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.stories.tsx
 <s> [webpack.Progress] 19% building 79/92 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\source-loader\dist\cjs\index.js??ref--11!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.stories.tsx
 <s> [webpack.Progress] 19% building 80/92 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\source-loader\dist\cjs\index.js??ref--11!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.stories.tsx
 <s> [webpack.Progress] 19% building 81/92 modules 11 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\source-loader\dist\cjs\index.js??ref--11!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.stories.tsx
@@ -538,12 +538,12 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 38% building 237/284 modules 47 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-docs\dist\esm\blocks\SourceContainer.js
 <s> [webpack.Progress] 38% building 237/285 modules 48 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-docs\dist\esm\blocks\Source.js
 <s> [webpack.Progress] 38% building 238/285 modules 47 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\@storybook\addon-docs\dist\esm\blocks\Source.js
-<s> [webpack.Progress] 38% building 238/286 modules 48 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
-<s> [webpack.Progress] 38% building 239/286 modules 47 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
-<s> [webpack.Progress] 38% building 240/286 modules 46 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
-<s> [webpack.Progress] 38% building 241/286 modules 45 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
-<s> [webpack.Progress] 39% building 242/286 modules 44 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
-<s> [webpack.Progress] 39% building 243/286 modules 43 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.tsx
+<s> [webpack.Progress] 38% building 238/286 modules 48 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
+<s> [webpack.Progress] 38% building 239/286 modules 47 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
+<s> [webpack.Progress] 38% building 240/286 modules 46 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
+<s> [webpack.Progress] 38% building 241/286 modules 45 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
+<s> [webpack.Progress] 39% building 242/286 modules 44 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
+<s> [webpack.Progress] 39% building 243/286 modules 43 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.tsx
 <s> [webpack.Progress] 39% building 243/287 modules 44 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.tsx
 <s> [webpack.Progress] 39% building 244/287 modules 43 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.tsx
 <s> [webpack.Progress] 39% building 245/287 modules 42 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Badge\Badge.tsx
@@ -663,9 +663,9 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 48% building 317/329 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\core-js\internals\to-absolute-index.js
 <s> [webpack.Progress] 48% building 318/329 modules 11 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\core-js\internals\to-absolute-index.js
 <s> [webpack.Progress] 48% building 318/330 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\lodash\_getNative.js
-<s> [webpack.Progress] 48% building 318/331 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\style-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.scss?scopeId=e0759b84
+<s> [webpack.Progress] 48% building 318/331 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\style-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.scss?scopeId=e0759b84
 <s> [webpack.Progress] 48% building 319/331 modules 12 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\lodash\_getNative.js
-<s> [webpack.Progress] 48% building 319/332 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\Avatar.scss?scopeId=e0759b84
+<s> [webpack.Progress] 48% building 319/332 modules 13 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\Illustration.scss?scopeId=e0759b84
 <s> [webpack.Progress] 48% building 319/333 modules 14 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\lodash\_baseIsMatch.js
 <s> [webpack.Progress] 48% building 319/334 modules 15 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\lodash\_baseProperty.js
 <s> [webpack.Progress] 48% building 319/335 modules 16 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\lodash\_createBaseFor.js
@@ -3897,12 +3897,12 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 69% building 1926/1954 modules 28 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\core-js\internals\number-parse-int.js
 <s> [webpack.Progress] 69% building 1926/1955 modules 29 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\core-js\internals\is-data-descriptor.js
 <s> [webpack.Progress] 69% building 1926/1956 modules 30 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\ButtonPages\index.ts
-<s> [webpack.Progress] 69% building 1926/1957 modules 31 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
-<s> [webpack.Progress] 69% building 1927/1957 modules 30 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
-<s> [webpack.Progress] 69% building 1928/1957 modules 29 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
-<s> [webpack.Progress] 69% building 1929/1957 modules 28 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
-<s> [webpack.Progress] 69% building 1930/1957 modules 27 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
-<s> [webpack.Progress] 69% building 1931/1957 modules 26 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Avatar\index.ts
+<s> [webpack.Progress] 69% building 1926/1957 modules 31 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
+<s> [webpack.Progress] 69% building 1927/1957 modules 30 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
+<s> [webpack.Progress] 69% building 1928/1957 modules 29 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
+<s> [webpack.Progress] 69% building 1929/1957 modules 28 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
+<s> [webpack.Progress] 69% building 1930/1957 modules 27 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
+<s> [webpack.Progress] 69% building 1931/1957 modules 26 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Illustration\index.ts
 <s> [webpack.Progress] 69% building 1931/1958 modules 27 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\axios\lib\helpers\isAbsoluteURL.js
 <s> [webpack.Progress] 69% building 1931/1959 modules 28 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\axios\lib\helpers\combineURLs.js
 <s> [webpack.Progress] 69% building 1931/1960 modules 29 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\hooks\useUpdateEffect.ts
@@ -3990,12 +3990,12 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 69% building 1985/1988 modules 3 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Menu\List\List.tsx
 <s> [webpack.Progress] 69% building 1986/1988 modules 2 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Menu\List\List.tsx
 <s> [webpack.Progress] 69% building 1987/1988 modules 1 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\babel-loader\lib\index.js??ref--4-0!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Menu\List\List.tsx
-<s> [webpack.Progress] 70% building 1988/1988 modules 0 active 
+<s> [webpack.Progress] 70% building 1988/1988 modules 0 active
 <s> [webpack.Progress] 69% building 1988/1989 modules 1 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\style-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Menu\List\List.scss?scopeId=e0759b84
-<s> [webpack.Progress] 70% building 1989/1989 modules 0 active 
+<s> [webpack.Progress] 70% building 1989/1989 modules 0 active
 <s> [webpack.Progress] 69% building 1989/1990 modules 1 active C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\css-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\node_modules\sass-loader\dist\cjs.js!C:\Users\Anton\Desktop\projects\JuicyFront\src\components\atoms\Menu\List\List.scss?scopeId=e0759b84
-<s> [webpack.Progress] 70% building 1990/1990 modules 0 active 
-<s> [webpack.Progress] 70% building 1990/1990 modules 0 active 
+<s> [webpack.Progress] 70% building 1990/1990 modules 0 active
+<s> [webpack.Progress] 70% building 1990/1990 modules 0 active
 <s> [webpack.Progress] 70% finish module graph
 <s> [webpack.Progress] 70% finish module graph FlagDependencyExportsPlugin
 <s> [webpack.Progress] 70% finish module graph WasmFinalizeExportsPlugin
@@ -4090,7 +4090,7 @@ See https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-d
 <s> [webpack.Progress] 95% emitting HtmlWebpackPlugin
 <s> [webpack.Progress] 98% after emitting
 <s> [webpack.Progress] 98% after emitting SizeLimitsPlugin
-<s> [webpack.Progress] 100% 
+<s> [webpack.Progress] 100%
 
 info => Preview built (33 s)
 WARN ./src/components/atoms/ControlGroup/index.ts 1:0-61
@@ -4174,7 +4174,7 @@ WARN  @ ./.storybook/generated-stories-entry.js
 WARN  @ multi ./node_modules/@storybook/core-client/dist/esm/globals/polyfills.js ./node_modules/@storybook/core-client/dist/esm/globals/globals.js ./.storybook/storybook-init-framework-entry.js ./node_modules/@storybook/addon-docs/dist/esm/frameworks/common/config.js-generated-other-entry.js ./node_modules/@storybook/addon-docs/dist/esm/frameworks/react/config.js-generated-other-entry.js ./node_modules/@storybook/addon-links/dist/esm/preset/addDecorator.js-generated-other-entry.js ./node_modules/@storybook/addon-actions/dist/esm/preset/addDecorator.js-generated-other-entry.js ./node_modules/@storybook/addon-actions/dist/esm/preset/addArgs.js-generated-other-entry.js ./node_modules/@storybook/addon-backgrounds/dist/esm/preset/addDecorator.js-generated-other-entry.js ./node_modules/@storybook/addon-backgrounds/dist/esm/preset/addParameter.js-generated-other-entry.js ./node_modules/@storybook/addon-measure/dist/esm/preset/preview.js-generated-other-entry.js ./node_modules/storybook-addon-outline/dist/esm/preset/addDecorator.js-generated-other-entry.js ./.storybook/preview.js-generated-config-entry.js ./.storybook/generated-stories-entry.js
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
-WARN Assets: 
+WARN Assets:
 WARN   main.96036faa.iframe.bundle.js (1.3 MiB)
 WARN   vendors~main.d1b8cdbc.iframe.bundle.js (3.84 MiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
@@ -4183,5 +4183,5 @@ WARN   main (5.14 MiB)
 WARN       runtime~main.d7c79ff6.iframe.bundle.js
 WARN       vendors~main.d1b8cdbc.iframe.bundle.js
 WARN       main.96036faa.iframe.bundle.js
-WARN 
+WARN
 info => Output directory: C:\\Users\\Anton\\AppData\\Local\\Temp\\chromatic--11068-7Xc6kvdFQbsf
