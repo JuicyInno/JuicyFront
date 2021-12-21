@@ -3,7 +3,7 @@
 
 .rf-input {
   align-items: center;
-  box-shadow: 0 0 0 1px var(--background-shadow);
+  box-shadow: 0 0 0 1px var(--background-shadow) inset;
   border-radius: 8px;
   display: inline-flex;
   padding: 0 16px;
@@ -19,30 +19,30 @@
   }
 
   &--invalid {
-    box-shadow: 0 0 0 1px var(--status-danger);
+    box-shadow: 0 0 0 1px var(--status-danger) inset;
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px var(--basic-hover);
+    box-shadow: 0 0 0 1px var(--basic-hover) inset;
   }
 
   &--focused {
-    box-shadow: 0 0 0 1px var(--basic-press);
+    box-shadow: 0 0 0 1px var(--basic-press) inset;
   }
 
   &--inline {
     box-shadow: none;
 
     &.rf-input--invalid {
-      box-shadow: 0 0 0 2px var(--status-danger);
+      box-shadow: 0 0 0 1px var(--status-danger) inset;
     }
 
     &:hover {
-      box-shadow: 0 0 0 1px var(--basic-press);
+      box-shadow: 0 0 0 1px var(--basic-press) inset;
     }
 
     &.rf-input--focused {
-      box-shadow: 0 0 0 1px var(--basic-press);
+      box-shadow: 0 0 0 1px var(--basic-press) inset;
     }
   }
 
@@ -94,7 +94,7 @@
   &.disabled,
   &:disabled {
     cursor: default;
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
   }
 
   &.rf-input__field--file {
@@ -103,7 +103,7 @@
 }
 
 .rf-input__field:disabled::placeholder {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 /** [START] file-input */
@@ -136,7 +136,7 @@ input[type='file']:disabled + .rf-input__field.rf-input__field--file {
   top: 50%;
   right: 16px;
   transform: translateY(-50%);
-  color: var(--text-tertiary);
+  color: var(--basic-tertiary);
 
   display: flex;
   align-items: center;
