@@ -71,7 +71,7 @@ export const Users = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать сотрудника</Button>
           {isDialogVisible && (
-            <Modal onClose={onDialogToggle}>
+            <Modal size='xl' onClose={onDialogToggle}>
               <FindEntities
                 title='Выберите сотрудника'
                 getEntities={getMockedUsers}
@@ -131,7 +131,7 @@ export const Positions = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать должность</Button>
           {isDialogVisible && (
-            <Modal onClose={onDialogToggle}>
+            <Modal size='xl' onClose={onDialogToggle}>
               <FindEntities
                 title='Выберите штатную должность'
                 getEntities={getMockedPositions}
@@ -177,7 +177,7 @@ export const UsersAPI = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать сотрудника</Button>
           {isDialogVisible && (
-            <Modal onClose={onDialogToggle}>
+            <Modal size='xl' onClose={onDialogToggle}>
               <FindEntities
                 title='Выберите сотрудника'
                 getEntities={getUsers}

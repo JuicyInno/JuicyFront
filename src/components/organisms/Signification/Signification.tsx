@@ -310,7 +310,7 @@ const Signification:FC<IProps> = ({
 
   // =======================================================================================================================================
   const refuseConfirmTSX = refusePopup !== undefined &&
-    <Modal>
+    <Modal size='l'>
       <Confirm
         textAccept='Отклонить документ'
         text='Выбранный документ будет отклонен. Подтвердить отклонение документа?'
@@ -323,7 +323,7 @@ const Signification:FC<IProps> = ({
 
   // =======================================================================================================================================
   const manualPopupTSX = manualPopup &&
-    <Modal>
+    <Modal size='xl'>
       <div className='manual__wrapper'>
         <div className='manual__header'>
           <div>Подписать вручную</div>

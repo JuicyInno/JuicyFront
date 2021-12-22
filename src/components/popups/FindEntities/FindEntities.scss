@@ -1,9 +1,8 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-find-entities {
   margin-top: 19px;
-  width: calc(90vw - 64px);
-  max-width: 832px;
+  width: 780px;
   min-height: 0;
   height: 100%;
   display: flex;
@@ -31,20 +30,20 @@
 
   &__list {
     overflow: auto;
-    margin: 0 -32px;
-    padding: 8px 32px 24px;
+    padding: 8px 0 24px;
     position: relative;
-    height: 100vh;
+    min-height: 0;
   }
 
   &__footer {
     border-top: 1px solid var(--background-tertiary);
-    margin: 0 -32px;
+    margin: 0 -24px;
     margin-bottom: -12px;
-    padding: 20px 32px 0;
+    padding: 20px 24px 10px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-shrink: 0;
   }
 
   &__footer-button {
@@ -62,6 +61,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding: 20px 0;
   }
 
   &__empty-state-icon {
