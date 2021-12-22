@@ -284,14 +284,14 @@ const Signification:FC<IProps> = ({
 
     </>;
   // =======================================================================================================================================
-  const refuseConfirmTSX = refusePopup !== undefined && <Modal>
+  const refuseConfirmTSX = refusePopup !== undefined && <Modal size='l'>
     <Confirm textAccept='Отклонить документ'
       text='Выбранный документ будет отклонен. Подтвердить отклонение документа?'
       onClose={refuseHandlePopupFail}
       onAction={refuseHandlePopupSuccess} comment='' showComment />
   </Modal>;
   // =======================================================================================================================================
-  const manualPopupTSX = manualPopup && <Modal >
+  const manualPopupTSX = manualPopup && <Modal size='xl'>
     <div className='manual__wrapper'>
       <div className='manual__header'>
         <div>Подписать вручную</div>

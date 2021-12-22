@@ -1,11 +1,12 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .find-users__wrapper {
-  padding-top: 32px;
-  width: 832px;
+  padding-top: 18px;
+  width: 780px;
   height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .find-users__title {
@@ -33,12 +34,9 @@
 
 .find-users__list-wrapper {
   flex: 1 auto;
-
-  height: 392px;
+  height: auto;
   overflow: auto;
-  margin: 0 -32px;
-  padding: 8px 32px 24px;
-
+  padding: 8px 24px 24px;
   position: relative;
 }
 
@@ -222,12 +220,11 @@
 
 .find-users__footer {
   border-top: 1px solid var(--background-tertiary);
-  padding-top: 18px;
   display: flex;
   align-items: center;
-  margin: 0 -32px;
-  padding-left: 32px;
-  padding-right: 32px;
+  margin: 0 -24px;
+  margin-bottom: -12px;
+  padding: 20px 24px 12px;
 }
 
 .find-users__footer-button {
