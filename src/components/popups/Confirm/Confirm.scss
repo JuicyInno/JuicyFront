@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .confirm-popup {
   width: 464px;
@@ -24,10 +24,4 @@
 
 .confirm-popup__footer-button:last-child {
   margin-right: 16px;
-}
-.confirm-popup__cross-button{
-  position: absolute;
-  left:calc(100% - 38px);
-  top:9%;
-  color:var(--basic-tertiary) ;
 }

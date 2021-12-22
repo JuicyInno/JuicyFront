@@ -34,7 +34,6 @@ const Modal: FC<IModalProps> = ({
   useEffect(() => {
     /** Закрывает модалку при нажатии на Escape */
     const closeOnEscPress = (e: KeyboardEvent) => {
-      console.log(e, onClose);
 
       if (e.key === 'Escape' && onClose) {
         onClose();

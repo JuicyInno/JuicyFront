@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Confirm from './Confirm';
+import Confirm, { IConfirmProps } from './Confirm';
 import StoryContainer from '../../storybook/Story';
 import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
@@ -13,7 +13,7 @@ import Button from '../../atoms/Button';
 
 
 export default {
-  title: 'popovers/не проверено/Confirm',
+  title: 'popovers/withTest/Confirm',
   component: Confirm,
   decorators: [withDesign],
   argTypes: {
@@ -49,6 +49,8 @@ export default {
       control: { type: 'boolean' },
       defaultValue: false,
     },
+    onAction: { defaultValue: (comment?: string) => { } },
+    onClose: { defaultValue: () => { } }
   },
 };
 
@@ -81,7 +83,9 @@ Demo.parameters = {
 };
 
 
-export const Playground: Story = (args: any) => {
+export const Playground = (args: IConfirmProps) => {
+
+  const [show, toggle] = useState(false);
   const onAction = (comment?: string) => {
     console.log(comment);
   };
@@ -90,9 +94,10 @@ export const Playground: Story = (args: any) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <Modal >
-          <Confirm {...args} onAction={onAction} />
-        </Modal>
+        <Button onClick={() => toggle(true)}>Open modal</Button>
+        {show ? <Modal onClose={() => toggle(false)} >
+          <Confirm {...args} onAction={onAction} onClose={() => toggle(false)} />
+        </Modal> : null}
       </StoryRow>
     </StoryContainer>
   );

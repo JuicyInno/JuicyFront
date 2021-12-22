@@ -71,10 +71,10 @@ const Confirm: React.FC<IConfirmProps> = ({
 
       <footer className='confirm-popup__footer'>
         <div className='confirm-popup__footer-button'>
-          <Button disabled={showComment && state === ''} onClick={handleSubmit} preloader={preloader}>{textAccept}</Button>
+          <Button size='l' disabled={showComment && state === ''} onClick={handleSubmit} preloader={preloader}>{textAccept}</Button>
         </div>
         <div className='confirm-popup__footer-button'>
-          <Button onClick={onClose} buttonType='light'>{declineText}</Button>
+          <Button size='l' onClick={onClose} buttonType='light'>{declineText}</Button>
         </div>
       </footer>
     </div>
