@@ -1,8 +1,9 @@
 import React from 'react';
+import { withDesign } from 'storybook-addon-designs';
+import { Story } from '@storybook/react';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
-import { Story } from '@storybook/react';
 import History from './History';
 import {
   pathsHistory, attachments, pathsUZADO
@@ -10,17 +11,17 @@ import {
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
-// export default {
-//   title: 'components/withTest/History',
-//   component: History,
-//   decorators: [withDesign],
-//   argTypes: {
-//     history: { control: null },
-//     attachments: { control: null },
-//     isUZADO: { type: 'boolean' },
-//     host: { type: 'string' }
-//   }
-// };
+export default {
+  title: 'components/withTest/History',
+  component: History,
+  decorators: [withDesign],
+  argTypes: {
+    history: { control: null },
+    attachments: { control: null },
+    isUZADO: { type: 'boolean' },
+    host: { type: 'string' }
+  }
+};
 
 export const Demo: Story = () => {
   return (

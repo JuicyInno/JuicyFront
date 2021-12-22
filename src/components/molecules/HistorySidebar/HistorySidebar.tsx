@@ -77,7 +77,9 @@ const HistorySidebar: FC<IHistory> = ({
 
   return (
     <div className={`rf-history-sidebar ${isOpen ? 'open' : ''}`}>
-      <div className='rf-history-sidebar__button-container'>
+      <div
+        data-testid='side-history-button'
+        className={`rf-history-sidebar__button-container ${isOpen ? 'open' : ''}`}>
         <Button
           onClick={() => setIsOpen(!isOpen)}
           size='m'
