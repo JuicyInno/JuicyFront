@@ -36,6 +36,7 @@ export const arrayTimeHours = [
     '23:00'
   ]
 ];
+
 export const arrayTimeMinutes = [
   [
     ':00',

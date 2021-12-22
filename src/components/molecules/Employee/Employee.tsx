@@ -16,8 +16,6 @@ export interface IEmployeeProps {
   user: IUser;
   /** Позиция тултипа подсказки */
   position?: TooltipPosition;
-  /** Портал для тултипа */
-  portal?: boolean;
   /** Заголовок карточки */
   title?: string;
   /** Коллбек клика по кнопке. */
@@ -36,7 +34,6 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
   showBoxShadow = true,
   onClick = () => { },
   showActionButton = false,
-  portal = false,
   tooltipBackground = 'default' }: IEmployeeProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -56,7 +53,6 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
 
   const getTooltip = (departmentsPath: IStructure[]) => <Tooltip
     position={position}
-    portal={portal}
     background={tooltipBackground}
   >
     <Info data-testid='icon' className='rf-employee__department-icon' />

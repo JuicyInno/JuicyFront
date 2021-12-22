@@ -62,6 +62,8 @@ export interface ISelectProps {
   position?: DropdownPosition;
   /** Событие скролла для выпадающего списка */
   onScroll?: (e: React.UIEvent) => void;
+  /** Максимальная ширина выпадающего списка */
+  dropdownMaxWidth?: number;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -83,7 +85,8 @@ const Select: FC<ISelectProps> = ({
   isAsync,
   infinityScrollProps,
   position = 'bottom-start',
-  onScroll
+  onScroll,
+  dropdownMaxWidth
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -93,7 +96,10 @@ const Select: FC<ISelectProps> = ({
   }, [setShowDropdown]);
 
   const onOpen = useCallback(() => {
-    setShowDropdown(true);
+    if (!disabled) {
+      setShowDropdown(true);
+    }
+
   }, [setShowDropdown]);
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -208,7 +214,7 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const listJSX = filteredOptions.map((o: IOption) => {
-    const disabled = o.disabled || false;
+    const optionDisabled = o.disabled || false;
     const active = selectedMap[o.value] || false;
 
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
@@ -223,7 +229,7 @@ const Select: FC<ISelectProps> = ({
       }
     };
 
-    const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
+    const disabledClass = optionDisabled ? 'rf-select__list-element--disabled' : '';
     const activeClass = active ? 'rf-select__list-element--active' : '';
 
     let label: ReactNode = o.label;
@@ -303,11 +309,17 @@ const Select: FC<ISelectProps> = ({
     </button>
   );
 
-  const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
+  const onChevronClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowDropdown((state: boolean) => !state);
+  };
+
+  const chevronButton = (readOnly || inputValue.length === 0) && (
     <button
       type='button'
+      data-testid='rf-select__chevron'
       className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
-      onClick={() => setShowDropdown((state: boolean) => !state)}
+      onClick={onChevronClick}
     >
       <ChevronDown />
     </button>
@@ -335,8 +347,8 @@ const Select: FC<ISelectProps> = ({
   }, [onSearch, isAsync, inputValue]);
 
   const getWidthDropdown = useCallback(() => {
-    return toggleRef.current?.getBoundingClientRect().width;
-  }, []);
+    return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
+  }, [dropdownMaxWidth]);
 
   return (
     <Manager>
@@ -345,7 +357,13 @@ const Select: FC<ISelectProps> = ({
           {(referenceProps) => (
             <div
               {...referenceProps}
-              className={classnames('rf-select__wrapper', invalid && 'rf-select__wrapper--invalid', openClass)}
+              data-testid='rf-select'
+              className={classnames(
+                'rf-select__wrapper',
+                invalid && 'rf-select__wrapper--invalid',
+                openClass,
+                disabled && 'rf-select__wrapper--disabled'
+              )}
               onClick={() => onOpen()}
             >
               <input
@@ -356,7 +374,7 @@ const Select: FC<ISelectProps> = ({
                 disabled={disabled}
                 readOnly={readOnly}
                 placeholder={
-                  disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
+                  (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
                 }
               />
               {closeButton}

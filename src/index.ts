@@ -74,6 +74,10 @@ import Schedule, {
   ScheduleLegendItem,
 } from './components/molecules/Schedule';
 import ButtonGroup from './components/molecules/ButtonGroup';
+import { FindEntities } from './components/popups/FindEntities';
+import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
+import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntitiesUser';
+import AvatarStack from './components/molecules/AvatarStack';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -86,6 +90,7 @@ export {
   HistoryCardFilter,
   Avatar,
   AvatarStatus,
+  AvatarStack,
   Badge,
   Button,
   Checkbox,
@@ -153,7 +158,11 @@ export {
   ContentExpander,
   BackdropLoader,
   PopupMaker,
-  Dropdown
+  Dropdown,
+  FindEntities,
+  FindEntitiesPosition,
+  FindEntitiesUser,
+  createGetUsers
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
-import { Button, ChevronLeft, KebabMenu } from '../../../index';
-import Menu from '../../atoms/Menu';
+import {
+  Button, ChevronLeft, KebabMenu
+} from '../../../index';
+import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';
 import Tooltip from '../../atoms/Tooltip';
@@ -12,9 +14,13 @@ export interface IButtonGroupProps {
   list: IButtonGroup[];
   /** Максимальное количество показываемых кнопок */
   max?: number;
+  /** Закрывать меню после клика
+   * @default false
+   */
+  closeAfterClick?: boolean;
 }
 
-const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGroupProps) => {
+const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterClick = false }: IButtonGroupProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Видимые кнопки */
 
@@ -25,44 +31,59 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
 
   for (let i = 0; i < m; i++) {
     if (list[i].component) {
-      buttonsJSX.push(
-        <div className='button-group__item' key={i}>
-          <Tooltip portal position='bottom'>
-            {list[i].component}
-            {list[i].tooltip}
-          </Tooltip>
-        </div>
-      );
+      buttonsJSX.push(<div className='button-group__item' key={i}>
+        <Tooltip position='bottom'>
+          {list[i].component}
+          {list[i].tooltip}
+        </Tooltip>
+      </div>);
     }
   }
 
   // -------------------------------------------------------------------------------------------------------------------
+
   /** Скрытые кнопки */
+  const hasMenuJSX = max < list.length;
 
-  const menuJSX = [];
+  const getMenuJSX = useCallback((onClose: () => void) => {
+    const menu: ReactNode[] = [];
 
-  if (max < list.length) {
-    for (let i = max; i < list.length; i++) {
-      const onClick = (e: React.MouseEvent) => {
-        if (list[i] && list[i].onClick) {
-          e.preventDefault();
-          e.stopPropagation();
-          // @ts-ignore
-          list[i].onClick();
-        }
-      };
+    if (hasMenuJSX) {
+      for (let i = max; i < list.length; i++) {
+        const onClick = (e: React.MouseEvent) => {
+          if (list[i].disabled) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
 
-      menuJSX.push(
-        <Link to={list[i].url || '/'} className='button-group__menu-button' key={i} onClick={onClick}>
+          if (list[i] && list[i].onClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            // @ts-ignore
+            list[i].onClick();
+          }
+
+          /** Закрыть меню после клика */
+          if (closeAfterClick) {
+            onClose();
+          }
+        };
+
+        const disabledClass = list[i].disabled ? 'button-group__menu-button--disabled' : '';
+
+        menu.push(<Link to={list[i].url || '/'} className={`button-group__menu-button ${disabledClass}`} key={i} onClick={onClick}>
           <div className='button-group__menu-button-details'>
             <h4 className='button-group__menu-button-name'>{list[i].label}</h4>
             {list[i].description && <p className='button-group__menu-button-description'>{list[i].description}</p>}
           </div>
           <ChevronLeft className='button-group__menu-button-icon' />
-        </Link>
-      );
+        </Link>);
+      }
     }
-  }
+
+    return menu;
+  }, [list, max, closeAfterClick]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -73,9 +94,14 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2 }: IButtonGrou
   return (
     <Tile className='button-group' padding='12px' variant='non-clickable'>
       {buttonsJSX}
-      {menuJSX.length > 0 && (
-        <Menu content={<div className='button-group__menu'>{menuJSX}</div>} position='top-start'>
-          <Tooltip portal position='bottom'>
+
+      {hasMenuJSX && (
+        <Menu content={
+          <MenuContext.Consumer>
+            {({ onClose }) => <div className='button-group__menu'>{getMenuJSX(onClose)}</div>}
+          </MenuContext.Consumer>
+        } position='top-start'>
+          <Tooltip position='bottom'>
             <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
             <>Другие действия</>
           </Tooltip>

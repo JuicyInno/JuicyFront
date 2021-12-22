@@ -3,7 +3,7 @@ import { ITreeOption } from '../../../types';
 import Tree from './Tree';
 
 interface IOrgTreeProps {
-  /** Уникальный ID */
+  /** Уникальный ID дерева */
   id?: string;
   /** Список */
   list: ITreeOption[];

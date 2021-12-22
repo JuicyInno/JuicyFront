@@ -10,11 +10,12 @@ export interface IOption {
 }
 
 export interface ITreeOption extends IOption {
-  checked: boolean;
+  checked?: boolean;
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
   variant?: Variant;
+  loading?: boolean;
 }
 
 export interface ICustomOption extends IOption {
@@ -107,7 +108,7 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'white';
 export type Variant =
   | VariantClassic
   | 'blue'
@@ -158,7 +159,7 @@ export type BadgeVariant =
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
 
 /** Размер */
-export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
+export type Size = 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';
@@ -188,6 +189,8 @@ export interface IButtonGroup {
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+  /** неактивное состояние */
+  disabled?: boolean;
 }
 
 /** Пропсы иконки */
