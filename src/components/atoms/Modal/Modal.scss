@@ -29,8 +29,15 @@
 }
 
 .rf-modal__content {
+<<<<<<< HEAD
   padding: 0px 24px 20px 24px;
+=======
+  display: flex;
+  flex-direction: column;
+>>>>>>> e2723462837af0c2dcd9cfb2157c16c141164ddd
   flex-grow: 1;
+  padding: 0 32px 32px 32px;
+  min-height: 0;
 }
 
 .rf-modal__header {

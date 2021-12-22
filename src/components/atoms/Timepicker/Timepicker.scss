@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 $size: 32px;
 $margin: 2px;
@@ -8,14 +8,22 @@ $margin: 2px;
   position: relative;
   display: inline-flex;
   align-items: center;
+
+  .rf-timepicker__btn {
+    min-width: auto;
+  }
 }
 
-.rf-timepicker__disabled {
+.rf-timepicker--disabled {
   pointer-events: none;
+
+  .rf-timepicker__icon {
+    color: var(--text-tertiary);
+  }
 }
 
-.rf-timepicker__icon--disabled {
-  color: var(--text-secondary);
+.rf-timepicker--empty input {
+  color: var(--text-tertiary);
 }
 
 .rf-timepicker__menu {
@@ -29,5 +37,5 @@ $margin: 2px;
 }
 
 .rf-timepicker__icon {
-  color: var(--text-secondary);
+  color: var(--basic-tertiary);
 }

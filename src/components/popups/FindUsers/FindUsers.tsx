@@ -273,7 +273,7 @@ const FindUsers: FC<IProps> = ({
             {`${item.lastName} ${item.firstName} ${item.middleName}`}
             {item.id && <span className='list-users__user-id'>({item.id})</span>}
             {item.departmentsPath && (
-              <Tooltip portal background={tooltipBackground}>
+              <Tooltip background={tooltipBackground}>
                 <Info className='list-users__user-info' />
                 <Structure departmentsPath={item.departmentsPath} background={tooltipBackground} />
               </Tooltip>

@@ -47,7 +47,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowDatePicker = true,
   isShowStatusFilter = true,
   isShowSearch = true,
-  searchPlaceholder = 'ID, ФИО, ТН',
+  searchPlaceholder = 'Номер, ФИО, ТН',
   initialValues,
   statusOptions = [
     {

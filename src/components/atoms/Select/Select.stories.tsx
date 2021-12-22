@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState
+} from 'react';
 import { Story } from '@storybook/react';
 
 import Select from './Select';
@@ -132,16 +134,14 @@ export const Demo = () => {
           />
         </StoryItem>
 
-        <StoryItem description='Портал'>
+        <StoryItem description='Disabled'>
           <Select
             placeholder='Выберите значение'
-            readOnly
             options={list}
             values={state1}
-            tagsPosition='outside'
             onChange={onChange2}
-            portal
             preloader={loading}
+            disabled
           />
         </StoryItem>
 
@@ -158,6 +158,20 @@ export const Demo = () => {
               preloader={loading}
             />
           </div>
+        </StoryItem>
+
+        <StoryItem description='Small options'>
+          <Select
+            placeholder='Выберите значение'
+            options={[
+              {
+                value: 'v',
+                label: 'label'
+              }
+            ]}
+            values={[]}
+            onChange={onChange2}
+          />
         </StoryItem>
       </form>
     </StoryContainer>
@@ -213,7 +227,6 @@ export const LazySelect: Story = () => {
                 hasMore,
                 dataLength: list.length,
               }}
-              portal
               onSearch={onSearch}
             />
           </form>
@@ -228,7 +241,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} portal {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>

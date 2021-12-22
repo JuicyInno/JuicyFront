@@ -17,10 +17,6 @@
 
 .button-group__menu {
   width: 376px;
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-  border-radius: 12px;
-  background-color: var(--background-primary);
-  padding: 12px 0;
 }
 
 .button-group__menu-button {
@@ -55,7 +51,20 @@
 }
 
 .button-group__menu-button-icon {
+  flex-shrink: 0;
   margin-left: auto;
   transform: rotate(180deg);
   color: var(--text-tertiary);
+}
+
+.button-group__menu-button--disabled {
+  pointer-events: none;
+
+  .button-group__menu-button-name {
+    color: var(--text-tertiary);
+  }
+
+  .button-group__menu-button-description {
+    color: var(--text-tertiary);
+  }
 }
