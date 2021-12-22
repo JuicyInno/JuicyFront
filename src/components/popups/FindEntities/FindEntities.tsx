@@ -68,7 +68,7 @@ interface IFindEntitiesProps<T extends Record<string, any>> {
   emptyStateInitialText?: string;
 }
 
-export const FindEntities = <T, >({
+export const FindEntities = <T,>({
   onClose,
   value = [],
   onChange,
@@ -186,10 +186,10 @@ export const FindEntities = <T, >({
   };
 
   const onSelectChange = (entity: T) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(entity);
+    /*  console.log(entity); */
 
     if (event.target.checked) {
-      console.log('Checked');
+      /*  console.log('Checked'); */
 
       if (multiple) {
         setSelected([...selected, entity]);
@@ -224,12 +224,12 @@ export const FindEntities = <T, >({
       {!!title && <h4 className='rf-find-entities__title'>{title}</h4>}
       {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
 
-      <div className='rf-find-entities__search' ref={ inputRef }>
-        <Search onDebounce={ onSearchDebounce } autoFocus onClear={ onSearchClear } debounce={debounce} />
+      <div className='rf-find-entities__search' ref={inputRef}>
+        <Search onDebounce={onSearchDebounce} autoFocus onClear={onSearchClear} debounce={debounce} />
       </div>
 
       {!!tabs && <div className='rf-find-entities__filters'>
-        <Tabs list={tabs}/>
+        <Tabs list={tabs} />
       </div>}
 
       <div className='rf-find-entities__list' ref={dropdownRef} onScroll={lazy ? onScroll : undefined}>
@@ -270,7 +270,7 @@ export const FindEntities = <T, >({
         {
           (isLoading && !isLazyLoading) && (
             <div className='rf-find-entities__preloader'>
-              <Preloader size='s'/>
+              <Preloader size='s' />
             </div>
           )
         }

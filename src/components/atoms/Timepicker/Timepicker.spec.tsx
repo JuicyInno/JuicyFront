@@ -61,10 +61,10 @@ describe('Test <Timepicker /> component', () => {
     const { container } = render(<Timepicker disabled />);
 
     expect(container.getElementsByClassName('rf-timepicker--disabled')).toHaveLength(1);
-    fireEvent.click(screen.getByTestId('rf-timepicker__input'));
+    fireEvent.click(container.getElementsByClassName('rf-timepicker--disabled')[0]);
 
     await waitFor(() => {
-      expect(screen.queryByTestId('rf-dropdown')).not.toBeInTheDocument();
+      expect(document.getElementsByClassName('rf-time-element__wrapper').length).toBe(0)
     });
   });
 

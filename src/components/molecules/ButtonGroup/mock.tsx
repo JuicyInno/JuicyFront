@@ -13,14 +13,14 @@ export const buttonGroupMock: IButtonGroup[] = [
     tooltip: 'Описание',
     description: 'Начать подбор сотрудника на позицию',
     onClick: () => {
-      console.log('Подбор');
+      /*       console.log('Подбор'); */
     }
   },
   {
     label: 'Перевод',
     description: 'Оформить перевод сотрудника',
     url: '/transfer',
-    disabled: true
+
   }
 ];
 
@@ -39,7 +39,7 @@ export const buttonIconGroupMock: IButtonGroup[] = [
     label: 'Подбор',
     description: 'Начать подбор сотрудника на позицию',
     onClick: () => {
-      console.log('Подбор');
+      /*     console.log('Подбор'); */
     }
   },
 ];
