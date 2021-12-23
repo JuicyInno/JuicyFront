@@ -1,9 +1,10 @@
 .rf-phone-input {
-  width: 320px;
+  min-width: 300px;
 
   &__country {
     align-items: center;
     display: flex;
+    cursor: pointer;
   }
 
   &__text {

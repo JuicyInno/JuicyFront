@@ -1,24 +1,13 @@
 @import "../../../styles/mixins";
 
 .rf-history {
-  margin-bottom: 20px;
-}
-
-.rf-history__wrapper {
   display: flex;
   flex-direction: column;
 }
 
-
-.rf-history__expanded {
-  transform: rotate(180deg);
-}
-
-.rf-history__button-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--basic-primary)
+.rf-history__button {
+  display: flex;
+  margin-left: 64px;
 }
 
 .rf-history__user-photo {
@@ -28,28 +17,29 @@
   position: relative;
 }
 
-.rf-history__user-line {
-  position: absolute;
-  top: 48px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-right: 2px solid var(--background-tertiary);
-  height: calc(100% - 48px);
+.rf-history__user-line-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
-.rf-history__user-line-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.rf-history__user-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(100%);
+}
+
+.rf-history__user-line.done {
+  border-right: 2px solid var(--background-tertiary);
+}
+
+.rf-history__user-line.incomplete {
+  border-right: 2px dashed var(--background-tertiary);
 }
 
 .rf-history__history-element {
   display: flex;
-}
-
-.rf-history__history-element:last-of-type
-.rf-history__details-row:last-of-type {
-  padding-bottom: 0;
 }
 
 .rf-history__details {
@@ -58,72 +48,80 @@
   width: 100%;
 }
 
-.rf-history__details-row {
+.rf-history__details--last {
+  margin-bottom: 15px;
+}
+
+.rf-history__details-user-name {
   display: flex;
   min-height: 8px;
   align-items: center;
 }
 
-.rf-history__details-row:last-of-type {
+.rf-history__details-user-name:last-of-type {
   padding-bottom: 32px;
 }
 
 .rf-history__fullName {
   @include text-l-16-bold();
+  line-height: 24px;
   color: var(--basic-secondary);
 }
 
 .rf-history__details-date {
+  margin-top: 4px;
   @include text-l-16;
+  line-height: 24px;
   color: var(--basic-tertiary);
 }
 
 .rf-history__details-info {
+  margin-top: 4px;
   @include text-m-16();
   color: var(--basic-tertiary);
-  margin-top: 4px;
+  line-height: 24px;
 }
 
 .rf-history__details-comment {
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 6px;
   padding: 12px;
   background: var(--background-secondary);
   border-radius: 4px 22px 22px 22px;
   @include text-m-16;
 }
 
-.rf-history__info-wrapper {
+.rf-history__icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 8px;
+  margin-left: 6px;
 
   color: var(--basic-tertiary);
   background-color: var(--background-primary);
 }
 
-.rf-history__tooltip-users-wrapper {
+.rf-history__tooltip-users {
   display: flex;
   padding-bottom: 16px;
   min-width: 400px;
 }
 
-.rf-history__tooltip-users-wrapper:last-of-type {
+.rf-history__tooltip-users:last-of-type {
   padding-bottom: 0;
 }
 
-.rf-history__name {
+.rf-history__tooltip-users-name {
   @include text-m-16;
   color: var(--text-primary)
 }
 
-.rf-history__position {
+.rf-history__tooltip-users-position {
   @include text-m-16;
   color: var(--text-secondary);
 }
 
-.process-history-tooltip__wrapper {
+.rf-history__tooltip-wrapper {
   padding: 16px;
 }
 
@@ -136,45 +134,35 @@
   flex-direction: column;
 }
 
-.rf-history__icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 4px;
-  margin-left: -8px;
-}
-
 .rf-history__status-wrapper {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
-.rf-history__details-wrapper {
+.rf-history__details-comment-wrapper {
   display: flex;
 }
 
 .rf-history__attachments {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .rf-history__attachments-line {
   display: flex;
   height: 1px;
   background: var(--background-secondary);
-  margin-top: 20px;
 }
 
 .rf-history__attachments-title {
   @include text-m-16();
   color: var(--basic-tertiary);
-  margin-top: 16px;
-}
-
-.rf-history__attachment {
-  margin-right: 12px;
+  margin-top: 18px;
 }
 
 .rf-history__attachments-container {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 16px;
+  grid-gap: 12px;
 }

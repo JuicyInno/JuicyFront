@@ -67,7 +67,10 @@ export const Demo: Story = () => {
 
       <StoryDocsH4>Состояния</StoryDocsH4>
 
-      <div style={{ marginBottom: '40px' }}>
+      <div style={{
+        marginBottom: '40px',
+        maxWidth: '400px'
+      }}>
         <div style={{ fontSize: '16px' }}>
           <p>Default</p>
           <p> По дефолту стоит флаг России, но можно выбрать <br /> любой другой</p>
@@ -80,7 +83,10 @@ export const Demo: Story = () => {
         </div>
       </div>
 
-      <div style={{ marginBottom: '40px' }}>
+      <div style={{
+        marginBottom: '40px',
+        maxWidth: '400px'
+      }}>
         <div style={{ fontSize: '16px' }}>
           <p>Filled</p>
         </div>
@@ -92,42 +98,53 @@ export const Demo: Story = () => {
         </div>
       </div>
 
-      <div style={{ marginBottom: '40px' }}>
+      <div style={{
+        marginBottom: '40px',
+        maxWidth: '400px'
+      }}>
         <div style={{ fontSize: '16px' }}>
-          <p>Disable</p>
+          <p>disabled</p>
         </div>
 
         <div style={{ marginTop: '20px' }}>
           <FormGroup label='Номер телефона'>
-            <InputPhone disabled name='phone' defaultValue={'7'} countries={COUNTRIES} />
+            <InputPhone name='phone' disabled defaultValue={'+7 926 278 23^&'} countries={COUNTRIES} />
           </FormGroup>
         </div>
       </div>
 
-      <div style={{ marginBottom: '40px' }}>
+      <div style={{
+        marginBottom: '40px',
+        maxWidth: '400px'
+      }}>
         <div style={{ fontSize: '16px' }}>
-          <p>Error</p>
+          <p>DefaultCountry</p>
+        </div>
+
+        <div style={{ marginTop: '20px' }}>
+          <FormGroup label='Номер телефона'>
+            <InputPhone defaultCountry={COUNTRIES[1]} name='phone' countries={COUNTRIES} />
+          </FormGroup>
+        </div>
+      </div>
+
+      <div style={{
+        marginBottom: '40px',
+        maxWidth: '400px'
+      }}>
+        <div style={{ fontSize: '16px' }}>
+          <p>Invalid</p>
         </div>
 
         <div style={{ marginTop: '20px' }}>
           <FormGroup label='Номер телефона' errorMessage='Error text'>
-            <InputPhone name='phone' defaultValue={'+7 926 278 23^&'} countries={COUNTRIES} />
+            <InputPhone name='phone' invalid countries={COUNTRIES} />
           </FormGroup>
         </div>
       </div>
-
-      <div style={{ height: '300px' }}></div>
-    </StoryDocs >
+    </StoryDocs>
   );
 };
-
-Demo.parameters = {
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/Проекты-ВТБ-основной?node-id=18262%3A231291',
-  },
-};
-
 
 export const Playground: Story = (args) => {
   return (
@@ -139,4 +156,11 @@ export const Playground: Story = (args) => {
       </StoryItem>
     </StoryContainer>
   );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A21190',
+  },
 };

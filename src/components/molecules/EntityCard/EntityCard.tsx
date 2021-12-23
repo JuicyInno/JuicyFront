@@ -4,27 +4,29 @@ import UserPhoto from '../../atoms/UserPhoto';
 import Tooltip from '../../atoms/Tooltip';
 import Toast from '../../atoms/Toast';
 
-import Copy from '../../../assets/icons/Copy';
+import Copy from '../../../assets/icons/24px/Account/Copy';
 
 import './EntityCard.scss';
 
 export interface IUserPositions {
-    /** ФИО */
-    fullName: string;
-    /** Ссылка на фото */
-    photo?: string;
-    /** Роль пользователя */
-    role?: string;
-    /** Первый лейбл */
-    firstLabel?: string;
-    /** Значение первого лейбла */
-    valueByFirstLabel?: string;
-    /** Можно скопировать первый лейбл */
-    canCopy?: boolean;
-    /** Второй лейбл */
-    secondLabel?: string;
-    /** Значение второго лейбла */
-    valueBySecondLabel?: string;
+  /** ФИО */
+  fullName: string;
+  /** Ссылка на фото */
+  photo?: string;
+  /** Роль пользователя */
+  role?: string;
+  /** Первый лейбл */
+  firstLabel?: string;
+  /** Значение первого лейбла */
+  valueByFirstLabel?: string;
+  /** Можно скопировать первый лейбл */
+  canCopy?: boolean;
+  /** Второй лейбл */
+  secondLabel?: string;
+  /** Значение второго лейбла */
+  valueBySecondLabel?: string;
+  /** Цвет tooltip */
+  tooltipBackground?: 'white' | 'default'
 }
 
 const EntityCard: FC<IUserPositions> = ({
@@ -36,14 +38,16 @@ const EntityCard: FC<IUserPositions> = ({
   secondLabel = '',
   valueBySecondLabel = '',
   canCopy = false,
+  tooltipBackground = 'default'
 
 }) => {
 
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyHandler = (value: string) => {
+  const onCopy = (event: React.MouseEvent) => {
+    event.stopPropagation();
     setIsCopied(true);
-    navigator.clipboard.writeText(value);
+    navigator.clipboard.writeText(valueByFirstLabel);
   };
 
   return <div className='rf-entity-card'>
@@ -61,8 +65,8 @@ const EntityCard: FC<IUserPositions> = ({
           <div className='rf-entity-card__row'>
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
-              <Tooltip position='bottom'>
-                <Copy onClick={() => copyHandler(valueByFirstLabel)} id='copyIcon'/>
+              <Tooltip background={tooltipBackground} position='bottom'>
+                <Copy onClick={onCopy} id='copyIcon' />
                 <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>
               <Toast isVisible={isCopied} setVisibility={setIsCopied}>
@@ -71,12 +75,12 @@ const EntityCard: FC<IUserPositions> = ({
             </div>
             }
             {secondLabel && valueBySecondLabel &&
-            <>
-              <p className='rf-entity-card__additional'>{secondLabel}</p>
-              <div className='rf-entity-card__row'>
-                <p className='rf-entity-card__accent'>{valueBySecondLabel}</p>
-              </div>
-            </>
+              <>
+                <p className='rf-entity-card__additional'>{secondLabel}</p>
+                <div className='rf-entity-card__row'>
+                  <p className='rf-entity-card__accent'>{valueBySecondLabel}</p>
+                </div>
+              </>
             }
           </div>
         </div>

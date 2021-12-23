@@ -1,72 +1,76 @@
 import React, {
   useCallback, useEffect, useState
 } from 'react';
-import ChevronDown from '../../../assets/icons/ChevronDown';
-import EmptyUser from '../../../assets/icons/EmptyUser';
-import Info from '../../../assets/icons/Info';
+
+import Avatar from '../../atoms/Avatar';
+import AvatarStatus from '../AvatarStatus';
+import Button from '../../atoms/Button';
+import StatusWithText from '../../atoms/StatusWithText';
+import Tooltip from '../../atoms/Tooltip';
+import Chip from '../../atoms/Chip';
+
 import { IFormattedDate } from '../../../types';
 import {
   IRequestAttachment, IRequestPath, IUser
 } from '../../../types/projects.types';
-import { formatDate } from '../../../utils/helpers';
-import Button from '../../atoms/Button';
-import Status from '../../atoms/Status';
-import Tooltip from '../../atoms/Tooltip';
-import UserPhoto from '../../atoms/UserPhoto';
-import './History.scss';
-import Chip from '../../atoms/Chip';
 
-export interface IProps {
-    history: IRequestPath[];
-    attachments?: IRequestAttachment[];
-    isUZADO?: boolean;
-    host?: string;
+import { formatDate } from '../../../utils/helpers';
+import { onPathFilter, statusValue } from './helpers';
+
+import InformationAlert from '../../../assets/icons/24px/Alerts/InformationAlert';
+import User from '../../../assets/icons/24px/Account/User';
+import ChevronDown from '../../../assets/icons/24px/Arrows/ChevronDown';
+import ChevronUp from '../../../assets/icons/24px/Arrows/ChevronUp';
+
+import './History.scss';
+
+export interface IHistory {
+  /** Массив с элементами истории */
+  history: IRequestPath[];
+  /** Документы, приложенные к истории */
+  attachments?: IRequestAttachment[];
+  /** Флаг на особую версию истории для проекта ЮЗЭДО */
+  isUZADO?: boolean;
+  /** Хост
+   * @default window.location.origin
+   * */
+  host?: string;
 }
 
-const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = window.location.origin }: IProps) => {
+const History: React.FC<IHistory> = ({
+  history,
+  isUZADO,
+  attachments,
+  host = window.location.origin,
+}: IHistory) => {
+
   // -------------------------------------------------------------------------------------------------------------------
-  /** Показать / Скрыть историю */
+  /** Локальное состояние компонента */
+  /** Показать / скрыть историю */
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const onExpand = () => {
-    setExpanded(!expanded);
-  };
+  /** Формируем массив истории на основании фильтрации и состояния отображения (открыто / закрыто) */
+  const [path, setPath] = useState(onPathFilter(history, expanded));
 
-  // -------------------------------------------------------------------------------------------------------------------
-
-  /** Фильтруем историю */
-  const onPathFilter = (): IRequestPath[] => {
-    const find = history.findIndex((i: IRequestPath) => {
-      return !i.date;
-    });
-
-    let step;
-
-    if (find === -1) {
-      step = history.length - 1;
-    } else {
-      step = find;
-    }
-
-    return expanded ? history : [history[step]];
-  };
-
-  const [path, setPath] = useState(onPathFilter());
-
+  /** Эффект - отслеживает состояние отображения */
   useEffect(() => {
-    setPath(onPathFilter());
+    setPath(onPathFilter(history, expanded));
   }, [expanded]);
 
+  /** Обработчик события нажатия на кнопку "Смотреть всё / Свернуть" */
+  const handleExpansion = () => setExpanded(!expanded);
+
   // -------------------------------------------------------------------------------------------------------------------
+  /** Массив пользователей для тултипа */
   const users = (users: IUser[] | null) => {
     return users?.map((item, i) => (
       <React.Fragment key={i}>
         {i < 5 ? (
-          <div className='rf-history__tooltip-users-wrapper'>
-            <UserPhoto radius='40px' url={item.photo} />
+          <div className='rf-history__tooltip-users'>
+            <Avatar photo={item.photo} />
             <div className='rf-history__tooltip-users-info'>
-              <p className='rf-history__name'>{item.fullName}</p>
-              <p className='rf-history__position'>{item.department}</p>
+              <p className='rf-history__tooltip-users-name'>{item.fullName}</p>
+              <p className='rf-history__tooltip-users-position'>{item.department}</p>
             </div>
           </div>
         ) : (
@@ -76,34 +80,63 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
     ));
   };
 
+  // -------------------------------------------------------------------------------------------------------------------
+  /** JSX массив пользователей в истории, зависит от локального состояния (фильтрации и отображения) */
   const historyJSX = path.map((r: IRequestPath, i: number) => {
     const d: IFormattedDate | null = r.date ? formatDate(r.date + new Date().getTimezoneOffset() * 60 * 1000) : null;
 
     return (
       <div className='rf-history__history-element' key={r.stepId}>
         <div className='rf-history__user-photo'>
-          {r.user && r.user.length === 1 ? <UserPhoto radius='48px' url={r.user[0].photo} /> : <EmptyUser />}
+          {/** Если в массиве user находится больше одного юзера,
+           * это означает, что согласование производится группой людей,
+           * (впоследствии согласование предоставит один представитель этой группы)
+           * поэтому, при user.length > 1, необходимо ставить иконку кгруппы людей,
+           * а не фото конкретного пользователя из этой группы
+           */}
+          {r.user && r.user.length === 1 ?
+            <AvatarStatus
+              fullName={r.user[0].fullName}
+              size='l'
+              photo={r.user[0].photo}
+              variant={r.user[0].fullName === 'Вы' ? statusValue['4'] : statusValue[r.criticality]}
+            /> :
+            <AvatarStatus
+              size='l'
+              icon={User}
+              variant={statusValue[r.criticality]}
+              fullName={r.user[0].fullName}
+            />
+          }
           {i !== path.length - 1 && (
-            <div className='rf-history__user-line'>
-              <div className='rf-history__user-line-inner' />
+            <div className='rf-history__user-line-wrapper'>
+              {/** Если нет результат согласования слующего шага, рисуем прерывистую линию */}
+              <div className={`rf-history__user-line ${path[i + 1] && path[i + 1].criticality === '0' ?
+                'incomplete' : 'done'}`} />
             </div>
           )}
         </div>
 
-        <div className='rf-history__details'>
-          <div className='rf-history__details-row'>
+        <div className={`rf-history__details ${i === path.length - 1 && 'rf-history__details--last'}`}>
+          <div className='rf-history__details-user-name'>
+            {/** При user.length > 1 вместо имени пользователя необходимо ставить значение поля agentName,
+             * которое означает группу людей в массиве user (напр., этот шаг будет согласован бухгалтерией),
+             * в ином случае ставим имя конкретного человека
+             */}
             <h4 className='rf-history__fullName'>
               {(r.user && r.user.length === 1 && r.user[0].fullName) || r.agentName}
             </h4>
-            {!(r.user && r.user.length < 2) && (
+            {/** Подсказка не используется в проекте ЮЗАДО */}
+            {!(r.user && r.user.length < 2) && !isUZADO && (
               <Tooltip background='white'>
-                <div className='rf-history__info-wrapper'>
-                  <Info width={18} height={18} />
+                <div className='rf-history__icon-wrapper'>
+                  <InformationAlert />
                 </div>
-                <div className='process-history-tooltip__wrapper'>{users(r.user)}</div>
+                <div className='rf-history__tooltip-wrapper'>{users(r.user)}</div>
               </Tooltip>
             )}
           </div>
+          {/** В проекте ЮЗЭДО вместо описания шага необходимо ставить должность согласующего */}
           <div className='rf-history__details-column'>
             {r.user.length === 1 ? (
               <p className='rf-history__details-info'>
@@ -122,21 +155,24 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
             )}
             {!!r.date && (
               <div className='rf-history__status-wrapper'>
-                <Status statusText={r.statusText} criticality={r.criticality}/>
+                <StatusWithText statusText={r.statusText} criticality={r.criticality} />
               </div>
             )}
           </div>
 
-          {!!r.comment && <div className='rf-history__details-wrapper'>
-            <div className='rf-history__details-comment'>{r.comment}</div>
-          </div>}
+          {!!r.comment && (
+            <div className='rf-history__details-comment-wrapper'>
+              <div className='rf-history__details-comment'>{r.comment}</div>
+            </div>
+          )}
         </div>
       </div>
     );
   });
 
   // -------------------------------------------------------------------------------------------------------------------
-
+  /** Секция приложенных документов */
+  /** Обработчик скачивания документа при клике по чипсе */
   const openDownloadLink = useCallback((id: string | undefined) => {
     if (id === undefined) {
       return;
@@ -150,37 +186,45 @@ const History: React.FC<IProps> = ({ history, isUZADO, attachments, host = windo
     window.open(url, '_blank');
   }, []);
 
-  const attachmentsJSX = <div className='rf-history__attachments'>
-    <div className='rf-history__attachments-line' />
-    <p className='rf-history__attachments-title'>Приложенные файлы</p>
-    <div className='rf-history__attachments-container'>
-      {attachments?.map(attachment => (
-        <div className='rf-history__attachment' key={attachment.fileName + attachment.id}>
-          <Chip type='secondary' size='s' onClick={() => openDownloadLink(attachment.id)}>{attachment.fileName}</Chip>
-        </div>
-      ))}
+  /** JSX прикреплённые документы */
+  const attachmentElementsJSX = attachments?.map(attachment => (
+    <Chip
+      key={attachment.fileName + attachment.id}
+      type='secondary'
+      size='s'
+      maxLength={30}
+      onClick={() => openDownloadLink(attachment.id)}
+    >
+      {attachment.fileName}
+    </Chip>
+  ));
+
+  const attachmentsJSX = (
+    <div className='rf-history__attachments'>
+      <div className='rf-history__attachments-line' />
+      <p className='rf-history__attachments-title'>Приложенные файлы</p>
+      <div className='rf-history__attachments-container'>
+        {attachmentElementsJSX}
+      </div>
     </div>
-  </div>;
+  );
 
   // -------------------------------------------------------------------------------------------------------------------
-
+  /** Компонент истории */
   return (
-
-    <div className='rf-history__wrapper'>
-      <div className='rf-history'>{historyJSX}</div>
-      <div>
-        <Button buttonType={'light'} onClick={onExpand}>
-          <div className='rf-history__button-wrapper'>
-            <div className='rf-history__icon-wrapper'>
-              <ChevronDown className={expanded ? 'rf-history__expanded' : ''}/>
-            </div>
-            <p>{expanded ? 'Свернуть' : 'Смотреть все'}</p>
-          </div>
+    <div className='rf-history'>
+      {historyJSX}
+      <div className='rf-history__button'>
+        <Button
+          buttonType='light'
+          onClick={handleExpansion}
+          startAdornment={expanded ? <ChevronUp /> : <ChevronDown />}
+        >
+          {expanded ? 'Свернуть' : 'Смотреть всё'}
         </Button>
       </div>
       {attachments && attachmentsJSX}
     </div>
-
   );
 };
 

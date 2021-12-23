@@ -11,7 +11,7 @@
   right: 0;
 
   min-width: 20px;
-  height: 20px;
+
   padding: 0 6px;
 
   display: flex;
@@ -24,6 +24,18 @@
 
   @include caption;
   cursor: inherit;
+}
+
+.badge-size--m{
+ height: 20px;
+ min-width: 23px;
+  font-size: 14px;
+
+}
+.badge-size--s{
+  height: 16px;
+  min-width: 17px;
+  font-size: 12px;
 }
 
 .rf-badge--text {
@@ -44,57 +56,69 @@
   }
 }
 
-.rf-badge--default {
+.rf-badge--light {
   background-color: var(--background-tertiary);
 }
 
-.rf-badge--blue {
+.rf-badge--info {
   background-color: var(--special-blue);
   color: var(--text-static-white);
 }
-
-.rf-badge--lightBlue {
-  background-color: var(--special-lightBlue);
+.rf-badge--warning {
+  background-color: var(--special-yellow);
   color: var(--text-static-white);
 }
+.rf-badge--success {
+  background-color: var(--special-green);
+  color: var(--text-static-white);
+}
+.rf-badge--error {
+  background-color: var(--status-danger);
+  color: var(--text-static-white);
+}
+.rf-badge--grey {
+  background-color: var(--text-secondary);
+  color: var(--text-static-white);
+}
+.rf-badge--dark {
+  background-color: var(--text-primary);
+  color: var(--text-static-white);
+}
+.rf-badge--light-inactive {
+  background-color: var(--background-tertiary);
+  color: var(--text-secondary);
+}
+.rf-badge--light-disable {
+  background-color: var(--background-tertiary);
+  color: var(--text-tertiary);
+}
+.rf-badge--white {
+  background-color:var(--background-primary);
+  color: var(--text-primary);
+}
+.rf-badge--white-inactive {
+  background-color:var(--background-primary);
+  color: var(--text-secondary);
+}
+.rf-badge--white-disable {
+  background-color:var(--background-primary);
+  color: var(--text-tertiary);
+}
+
 
 .rf-badge--turquoise {
   background-color: var(--special-turquoise);
   color: var(--text-static-white);
 }
 
-.rf-badge--green {
-  background-color: var(--special-green);
-  color: var(--text-static-white);
+.rf-badge--dot--m {
+  @include round(16px);
+  padding: 0;
+  border: 2px solid var(--base-000);
+  box-sizing: content-box;
 }
-
-.rf-badge--yellow {
-  background-color: var(--special-yellow);
-  color: var(--text-static-white);
-}
-
-.rf-badge--red {
-  background-color: var(--special-red);
-  color: var(--text-static-white);
-}
-
-.rf-badge--magenta {
-  background-color: var(--special-magenta);
-  color: var(--text-static-white);
-}
-
-.rf-badge--purple {
-  background-color: var(--special-purple);
-  color: var(--text-static-white);
-}
-
-.rf-badge--violet {
-  background-color: var(--special-violet);
-  color: var(--text-static-white);
-}
-
-.rf-badge--dot {
-  @include round(8px);
+.rf-badge--dot--s {
+  @include round(12px);
   padding: 0;
   border: 2px solid var(--base-000);
   box-sizing: content-box;

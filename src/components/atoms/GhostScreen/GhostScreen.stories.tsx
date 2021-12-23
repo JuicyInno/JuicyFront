@@ -3,6 +3,7 @@ import GhostScreen from './GhostScreen';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import { withDesign } from 'storybook-addon-designs';
+/* eslint-disable max-len */
 
 export default {
   title: 'icons,illustrations/withTest/Экран заглушки с приведением',

@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-select {
   width: 100%;
@@ -8,7 +8,6 @@
     & .rf-select__wrapper {
       position: absolute;
       border: none;
-      background-color: var(--background-tertiary);
       height: 28px;
       max-width: 55px;
       border-radius: 16px;
@@ -47,13 +46,13 @@
 .rf-select__wrapper {
   width: 100%;
   position: relative;
-
-  box-shadow: 0 0 0 1px var(--basic-tertiary);
   border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--background-tertiary);
   background-color: var(--background-primary);
   overflow: hidden;
 }
-.rf-select__wrapper--invalid{
+
+.rf-select__wrapper--invalid {
   box-shadow: 0 0 0 1px var(--status-danger);
 }
 
@@ -63,6 +62,23 @@
 
 .rf-select__wrapper--open {
   border-color: var(--basic-hover);
+}
+
+.rf-select__wrapper--disabled {
+  background-color: var(--background-tertiary);
+  pointer-events: none;
+
+  .rf-select__input {
+    color: var(--text-tertiary);
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+
+  .rf-select__button {
+    color: var(--text-tertiary);
+  }
 }
 
 .rf-select__input {
@@ -76,20 +92,13 @@
 }
 
 .rf-select__list {
-  position: absolute;
   width: 100%;
   max-height: 250px;
-  z-index: 100;
   padding: 8px 0;
-  background-color: var(--background-primary);
-  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
-  border-radius: 12px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  cursor: pointer;
+  overflow: auto;
 }
 
-.rf-select__list-preloader {
+.rf-select__preloader {
   position: relative;
   height: 48px;
   width: 100%;
@@ -150,7 +159,7 @@
 }
 
 .rf-select__button {
-  color: var(--text-secondary);
+  color: var(--basic-tertiary);
   position: absolute;
   width: 24px;
   height: 24px;
@@ -159,10 +168,6 @@
   transform: translateY(-50%);
   cursor: pointer;
   transition: transform 0.3s;
-
-  svg {
-    fill: var(--text-secondary);
-  }
 }
 
 .rf-select__button--rotate {

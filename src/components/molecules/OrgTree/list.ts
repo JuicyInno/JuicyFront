@@ -1,5 +1,5 @@
 import { ITreeOption } from '../../../types';
-
+/* eslint-disable max-len */
 export const list: ITreeOption[] = [
   {
     value: '0',
@@ -10,7 +10,9 @@ export const list: ITreeOption[] = [
         value: '0',
         label: 'Шапка',
         checked: false,
-        children: []
+        children: [],
+        variant: 'red',
+        loading: true
       }
     ]
   },
@@ -23,7 +25,8 @@ export const list: ITreeOption[] = [
         value: '1_1',
         label: 'Шапка',
         children: [],
-        checked: false
+        checked: false,
+        variant: 'green'
       },
       {
         value: '1_2',

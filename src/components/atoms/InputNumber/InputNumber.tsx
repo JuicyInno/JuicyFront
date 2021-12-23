@@ -81,7 +81,9 @@ const InputNumber: React.FC<IInputNumberProps> = ({
       }
 
       const float = +value2;
-      result = isNaN(float) ? numberWithSpaces(integer, groupBy, separator) : [numberWithSpaces(integer, groupBy, separator), value2].join('.');
+      result = isNaN(float) ?
+        numberWithSpaces(integer, groupBy, separator) :
+        [numberWithSpaces(integer, groupBy, separator), value2].join('.');
     }
 
     onInputChange && onInputChange(value);

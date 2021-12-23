@@ -1,5 +1,5 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .rf-button {
   position: relative;
@@ -261,7 +261,6 @@
 .rf-button--icon-round,
 .rf-button--icon-round-active,
 .rf-button--icon {
-
   &.rf-button--s {
     padding: 0;
     width: 32px;
@@ -344,7 +343,6 @@
 // Text
 
 .rf-button--text {
-
   &.rf-button--s,
   &.rf-button--m,
   &.rf-button--l,
@@ -357,15 +355,16 @@
       &:not(:last-child) {
         margin-left: 0;
       }
-  
+
       &:not(:first-child) {
         margin-right: 0;
       }
     }
 
     & .rf-button__text {
-      &:first-child, &:last-child {
-        margin: 0
+      &:first-child,
+      &:last-child {
+        margin: 0;
       }
     }
   }

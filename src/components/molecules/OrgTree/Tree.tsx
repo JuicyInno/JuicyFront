@@ -3,7 +3,7 @@ import { ITreeOption } from '../../../types';
 import TreeItem from './TreeItem';
 
 export interface ITreeProps {
-  /** Уникальный ID */
+  /** Уникальный ID дерева */
   id: string;
   /** Список */
   list: ITreeOption[];

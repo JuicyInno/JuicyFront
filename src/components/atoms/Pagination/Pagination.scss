@@ -1,0 +1,73 @@
+@import "../../../styles/mixins";
+
+.rf-pagination {
+  display: flex;
+  align-items: center;
+  .rf-pagination__input {
+    margin-left: 8px;
+    width: 129px;
+  }
+}
+
+.rf-pagination__chevron-wrapper {
+  color: var(--basic-tertiary);
+}
+
+.rf-pagination__chevron-left {
+  margin-right: 8px;
+}
+
+.rf-pagination__chevron-right {
+  margin-left: 8px;
+}
+
+.rf-pagination__label {
+  @include text-m-16;
+  user-select: none;
+}
+
+.rf-pagination__label,
+.rf-pagination__chevron-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  &:hover {
+    background-color: var(--background-tertiary);
+    color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--background-tertiary);
+    color: var(--basic-press);
+  }
+  &--disabled {
+    cursor: default;
+    color: var(--basic-disable);
+    &:hover {
+      background-color: initial;
+      color: var(--basic-disable);
+    }
+  }
+  &--selected {
+    color: var(--text-static-white);
+    background-color: var(--basic-primary);
+    &:hover {
+      background-color: var(--basic-primary);
+      color: var(--text-static-white);
+    }
+  }
+}
+
+.rf-pagination__ellipsis {
+  width: 40px;
+  height: 40px;
+  @include text-l-16;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+}

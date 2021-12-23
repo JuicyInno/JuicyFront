@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CertReader.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
-import Menu from '../../atoms/Menu';
+import Menu, { IListProps } from '../../atoms/Menu';
 import { Button } from '../../../index';
 import { IListElement } from '../../../types';
 import {
@@ -10,26 +10,26 @@ import {
 import { IButtonProps } from '../../atoms/Button/Button';
 import { mockCerts } from './CertReader.mock';
 
-export interface IProps {
+export interface ICertReader {
   /** входящий файл на подпись*/
   file: IRequestAttachment;
   /** успех*/
   onSuccess:(result:ICertResult)=>void
   /** ошибка в тч и с плагинами*/
-  onError:(e:any)=> void;
+  onError:(e: any) => void;
   /** название кнопки*/
-  buttonTitle?:string
+  buttonTitle?: string
   /** фильтр сертификатов */
   filter?: (cert: Certificate) => Promise<boolean>;
   /** пропсы для кнопки */
   btnProps?: IButtonProps;
   /** позиция для меню сертификатов */
-  menuPos?: 'left' | 'right' | 'top-left' | 'top-right';
+  menuPos?: IListProps['position'];
   /** для тестов */
-  useMock?:boolean
-
+  useMock?: boolean
 }
-export interface IBrowserCert{
+
+export interface IBrowserCert {
   /** имя пользователя*/
   issuerName: string;
   /** название сертификата*/
@@ -43,20 +43,22 @@ export interface IBrowserCert{
 }
 
 export interface ICertResult {
-  data:IRequestAttachment
-  cert:IBrowserCert,
+  data: IRequestAttachment
+  cert: IBrowserCert,
 
 }
-const CertReader: React.FC<IProps> = ({ file,
+const CertReader: React.FC<ICertReader> = ({
+  file,
   onSuccess,
   useMock = false,
   onError,
   buttonTitle = 'Подписать ЭП (электронная подпись)',
   btnProps = {},
   menuPos = 'left',
-  filter = async (_cert: Certificate) => true }: IProps) => {
+  filter = async (_cert: Certificate) => true
+}: ICertReader) => {
   /** все доступные сертификаты*/
-  const [ certs, setCerts ] = useState<null|Certificate[]>(null);
+  const [ certs, setCerts ] = useState<null | Certificate[]>(null);
   // ===================================================================================================================
   /** асинхронное получение серификатов с ключа*/
   useEffect(() => {
@@ -83,15 +85,26 @@ const CertReader: React.FC<IProps> = ({ file,
       getCertificates().then();
     }
   }, []);
+
+  /**  Добавляем в список заголовок */
+  const getCertsWithTitle = (certs: IListElement[]): IListElement[] => [
+    {
+      isTitle: true,
+      label: 'Выберите сертификат'
+    },
+    ...certs
+  ];
+
   // ===================================================================================================================
   /** формирование меню*/
-  const menuBuilder = (certs:Certificate[]):IListElement[] => {
-    return certs.map((item:Certificate) => {
-      const l = `${item.name} (${item.issuerName})`;
+  const menuBuilder = (certs: Certificate[]): IListElement[] => {
+    return [...certs].map((item: Certificate) => {
+      const label = `${item.name} (${item.issuerName})`;
+
       return {
-        label: l.length < 70 ? l : l.slice(0, 70) + '...',
+        label,
         value: item.thumbprint,
-        handler: async() => {
+        handler: async () => {
           try {
             onSuccess({
               data: {
@@ -124,7 +137,7 @@ const CertReader: React.FC<IProps> = ({ file,
 
   // ===================================================================================================================
   return <>
-    <Menu position={menuPos} list={certs ? menuBuilder(certs) : undefined} >
+    <Menu position={menuPos} list={certs ? getCertsWithTitle(menuBuilder(certs)) : undefined}>
       <Button {...btnProps} disabled={!certs}>{buttonTitle}</Button>
     </Menu>
   </>;

@@ -12,10 +12,12 @@ import './Card.scss';
 import EntityCard from '../EntityCard/EntityCard';
 
 export interface ICard {
+  /** id заявки */
+  id?: string;
   /** Дата заявки */
   date?: string;
   /** Обработка заявки */
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent, requestId?: string) => void;
   /** Номер заявки */
   requestNumber?: string;
   /** Цвет статуса заявки */
@@ -30,10 +32,14 @@ export interface ICard {
   showActionButton?: boolean;
   /** Пользователи */
   users?: IUser[];
+  /** Цвет tooltip */
+  tooltipBackground?: 'white' | 'default'
+
 }
 
 const Card: FC<ICard> = ({
   title = '',
+  id = '',
   subTitle = '',
   requestNumber = '',
   date = '',
@@ -41,6 +47,7 @@ const Card: FC<ICard> = ({
   statusColor = 'default',
   users = [],
   showActionButton = false,
+  tooltipBackground = 'default',
   onClick = () => { },
 }) => {
 
@@ -48,25 +55,32 @@ const Card: FC<ICard> = ({
     {...user}
     key={user.id}
     canCopy
+    tooltipBackground={tooltipBackground}
     firstLabel={'Табельный номер'}
     valueByFirstLabel={user.id}
-    secondLabel={ user.position ? 'Должность' : user.period ? 'Период' : ''}
-    valueBySecondLabel={ user.position || user.period || undefined }
+    secondLabel={user.position ? 'Должность' : user.period ? 'Период' : ''}
+    valueBySecondLabel={user.position || user.period || undefined}
   />);
 
-  return <div className='rf-card__wrapper' onClick={onClick}>
-    <Tile className='rf-card__tile'>
-      <div className='rf-card__row rf-card__row_first-row'>
+  const handleClick = (e: React.MouseEvent) => {
+    onClick(e, id);
+  };
+
+  return <div className='rf-card__wrapper' onClick={handleClick} >
+    <Tile className='rf-card__tile' >
+      <div className='rf-card__row rf-card__row_first-row' >
         <div className='rf-card__title-wrapper'>
           <h1 className='rf-card__title'>{`${title} №${requestNumber} от ${date}`}</h1>
           {subTitle && <p className='rf-card__subtitle'>{subTitle}</p>}
         </div>
-        <Tag variant={statusColor} onClick={onClick}>{statusText}</Tag>
+        <Tag variant={statusColor} >{statusText}</Tag>
       </div>
       {listUsers}
       {showActionButton && (
         <div className='rf-card__button-wrapper'>
-          <Button className='rf-card__button' > Обработать </Button>
+          <Button className='rf-card__button'>
+            Обработать
+          </Button>
         </div>
       )}
     </Tile>

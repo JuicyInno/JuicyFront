@@ -2,7 +2,7 @@ import React from 'react';
 import UsersStack from './UsersStack';
 import { IUser } from '../../../types/projects.types';
 import Story from '../../storybook/Story';
-
+/* eslint-disable max-len */
 export default {
   title: 'components/не проверено/UsersStack',
   component: UsersStack
@@ -11,7 +11,7 @@ export default {
 export const usersStack = () => {
   const users: IUser[] = [
     {
-      id: 'vtb4037115',
+      id: 'vtb4037234',
       fullName: 'Симпсон Гомер Абрахамович',
       firstName: 'Гомер',
       lastName: 'Симпсон',

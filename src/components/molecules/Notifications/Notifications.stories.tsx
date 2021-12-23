@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import Notifications, { sendNotification } from './Notifications';
 import Story from '../../storybook/Story';
+import Button from '../../atoms/Button';
 
 export default {
-  title: 'components/не проверено/Notifications',
+  title: 'components/withTest/Notifications',
   component: Notifications
 };
 
-export const notificationsList = () => {
+export const Demo = () => {
   useEffect(() => {
     sendNotification({ message: 'Данные сохранены.' });
 
     setTimeout(() => {
       sendNotification({
+        title: 'Ошибка',
         message: 'Произошла ошибка. Обратитесь к разработчикам.',
         variant: 'red'
       });
@@ -20,6 +22,7 @@ export const notificationsList = () => {
 
     setTimeout(() => {
       sendNotification({
+        title: 'Предупреждение',
         message: 'Данные не смогут быть восстановлены.',
         variant: 'yellow'
       });
@@ -27,6 +30,7 @@ export const notificationsList = () => {
 
     setTimeout(() => {
       sendNotification({
+        title: 'Успех',
         message: 'Данные удалены.',
         variant: 'green'
       });
@@ -35,6 +39,10 @@ export const notificationsList = () => {
 
   return (
     <Story name='Notification (Уведомления)' description='Уведомления для пользователей'>
+      <Button onClick={() => sendNotification({ title: 'Новая нотификация' })}>
+        Добавить нотификацию
+      </Button>
+
       <Notifications />
     </Story>
   );

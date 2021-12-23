@@ -7,6 +7,7 @@ import StoryRow from '../../storybook/StoryRow';
 import {
   StoryDocs, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
+import { initialFiles } from '../../../utils/helpers';
 import { variants } from '../../../types';
 
 export default {
@@ -28,16 +29,6 @@ export default {
   }
 };
 
-const initialFiles = [
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  },
-  {
-    base64: '',
-    fileName: 'screenshot.jpg',
-  }
-];
 const comment = 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. ' +
     'Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, ' +
     'а также реальное распределение букв и пробелов в абзацах, которо';
@@ -49,17 +40,20 @@ export const Demo: Story = () => {
       <StoryDocsDescription>
         С помощью данного элемента можно оставить комментарий и прикрепить сопровождающие файлы.
       </StoryDocsDescription>
-      <div style={{ 'display': 'flex', }}>
-        <div style={{ marginLeft: '40px' }}>
-          <CommentTile initialFiles={initialFiles}/>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '880px'
+      }}>
+        <div style={{ marginBottom: '40px' }}>
+          <CommentTile name='comment-tile' initialFiles={initialFiles}/>
         </div>
-        <div style={{ marginLeft: '40px' }}>
+
+        <div style={{ marginBottom: '40px' }}>
           <CommentTile />
         </div>
-        <div style={{
-          paddingRight: '40px',
-          marginLeft: '40px'
-        }}>
+
+        <div style={{ marginBottom: '40px' }}>
           <CommentTile autoResize={true} comment={comment}/>
         </div>
       </div>

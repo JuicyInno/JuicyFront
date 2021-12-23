@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
+import { Placement } from '@popperjs/core';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -9,10 +10,12 @@ export interface IOption {
 }
 
 export interface ITreeOption extends IOption {
-  checked: boolean;
+  checked?: boolean;
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
+  variant?: Variant;
+  loading?: boolean;
 }
 
 export interface ICustomOption extends IOption {
@@ -35,6 +38,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Точность url */
+  exact?: boolean;
   /** Иконка вкладки */
   icon?: ReactNode;
   /** Действие при клике на вкладку */
@@ -55,6 +60,8 @@ export interface IListElement {
   disabled?: boolean;
   /** Отделение линией */
   separated?: boolean;
+  /** Указывает что это заголовок раздела */
+  isTitle?: boolean;
 }
 
 /** Контекст меню */
@@ -68,6 +75,7 @@ export interface IFileData {
   file: File;
   base64: string;
   base64Compressed?: string;
+  id?: string;
 }
 
 /** Чипсы */
@@ -100,17 +108,24 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
-export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'white';
+export type Variant =
+  | VariantClassic
+  | 'blue'
+  | 'lightBlue'
+  | 'turquoise'
+  | 'magenta'
+  | 'purple'
+  | 'violet';
 
 export const variantsClassic: VariantClassic[] = [
   'default',
-
+  'blue',
   'green',
   'yellow',
-  'red'
-
+  'red',
 ];
+
 export const variants: Variant[] = [
   'default',
   'blue',
@@ -121,14 +136,30 @@ export const variants: Variant[] = [
   'red',
   'magenta',
   'purple',
-  'violet'
+  'violet',
 ];
+
+
+export type BadgeVariant =
+  'light' |
+  'info' |
+  'warning' |
+  'success' |
+  'error' |
+  'grey' |
+  'dark' |
+  'light-inactive' |
+  'light-disable' |
+  'white' |
+  'white-inactive' |
+  'white-disable';
+
 
 /** Цвет фона аватара */
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
 
 /** Размер */
-export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
+export type Size = 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';
@@ -152,8 +183,20 @@ export interface IButtonGroup {
   label?: ReactNode;
   /** Описание в меню */
   description?: ReactNode;
+  /** Текст при наведении */
+  tooltip?: ReactNode;
   /** Ссылка в меню */
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+  /** неактивное состояние */
+  disabled?: boolean;
 }
+
+/** Пропсы иконки */
+export interface IIconProps extends SVGProps<SVGSVGElement> {
+  /** размер */
+  size?: Size
+}
+
+export type DropdownPosition = Placement;

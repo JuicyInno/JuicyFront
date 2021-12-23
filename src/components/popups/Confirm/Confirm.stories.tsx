@@ -16,7 +16,7 @@ export const confirm = () => {
 
   return (
     <Story name='Изображение пользователя'>
-      <Modal>
+      <Modal size='l'>
         <Confirm textAccept='Согласен'
           text='Вы согласны на обработку персональных данных?'
           onClose={() => {}} onAction={onAction} comment='Комментарий' showComment />

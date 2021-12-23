@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-search {
   height: 40px;
@@ -42,6 +42,20 @@
 }
 
 .rf-search__close-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  color: var(--basic-tertiary);
+  cursor: pointer;
+}
+
+.rf-search__close-withEndAdornment {
+  right: 40px;
+}
+
+.rf-search__endAdornment {
+  display: flex;
   position: absolute;
   top: 50%;
   right: 14px;

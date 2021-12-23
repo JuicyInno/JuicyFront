@@ -1,8 +1,9 @@
 import React, {
-  useCallback, useEffect, useMemo, useState
+  useCallback, useEffect, useState
 } from 'react';
 import './ButtonPages.scss';
-import { ChevronLeft } from '../../../index';
+import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
+import ChevronRight from '../../../assets/icons/24px/Arrows/ChevronRight';
 
 export interface IButtonPagesProps {
   /** Количество страниц */
@@ -29,29 +30,18 @@ const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: I
     onChange(nextPage);
   }, [p]);
 
-  const className = useMemo(() => {
-    if (max < 10) {
-      return '';
-    }
-
-    if (max < 100) {
-      return 'large';
-    }
-  }, [max]);
-
-
   return (
     <div className='rf-button-pages'>
       <button type='button' className='rf-button-pages__button' disabled={p === 1} onClick={() => onPageChange(-1)}>
-        <ChevronLeft className='rf-button-pages__left'/>
+        <ChevronLeft size={'xxs'} />
       </button>
 
-      <div className={`rf-button-pages__value ${className}`}>
+      <div className={'rf-button-pages__value'}>
         {p} / {max}
       </div>
 
       <button type='button' className='rf-button-pages__button' disabled={p === max} onClick={() => onPageChange(1)}>
-        <ChevronLeft className='rf-button-pages__right'/>
+        <ChevronRight size={'xxs'} />
       </button>
 
     </div>

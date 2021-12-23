@@ -1,9 +1,9 @@
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .rf-input {
   align-items: center;
-  background-color: var(--background-primary);
+  box-shadow: 0 0 0 1px var(--background-shadow) inset;
   border-radius: 8px;
   display: inline-flex;
   padding: 0 16px;
@@ -12,42 +12,46 @@
   vertical-align: top;
   width: 100%;
   height: 40px;
-  box-shadow: 0 0 0 1px var(--basic-tertiary);
+  box-sizing: border-box;
+
+  &--filled {
+    background-color: var(--background-primary);
+  }
 
   &--invalid {
-    box-shadow: 0 0 0 1px var(--status-danger);
+    box-shadow: 0 0 0 1px var(--status-danger) inset;
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px var(--basic-press);
+    box-shadow: 0 0 0 1px var(--basic-hover) inset;
   }
 
   &--focused {
-    box-shadow: 0 0 0 1px var(--basic-press);
+    box-shadow: 0 0 0 1px var(--basic-press) inset;
   }
-
 
   &--inline {
     box-shadow: none;
 
     &.rf-input--invalid {
-      box-shadow: 0 0 0 2px var(--status-danger);
+      box-shadow: 0 0 0 1px var(--status-danger) inset;
     }
 
     &:hover {
-      box-shadow: 0 0 0 1px var(--basic-press);
+      box-shadow: 0 0 0 1px var(--basic-press) inset;
     }
 
-
     &.rf-input--focused {
-      box-shadow: 0 0 0 1px var(--basic-press);
+      box-shadow: 0 0 0 1px var(--basic-press) inset;
     }
   }
 
   &--disabled {
+    pointer-events: none;
     background-color: var(--background-tertiary);
 
-    &, &:hover {
+    &,
+    &:hover {
       box-shadow: none;
     }
   }
@@ -74,24 +78,23 @@
 .rf-input__field {
   @include text-l-16;
   width: 100%;
+  display: flex;
+  align-items: center;
   transition: 0.15s ease-in;
   background: transparent;
   color: var(--text-primary);
   border: 0;
-  height: 100%;
+  height: 24px;
 
   &::placeholder {
     @include text-l-16;
     color: var(--text-secondary);
   }
 
-  &.disabled, &:disabled {
+  &.disabled,
+  &:disabled {
     cursor: default;
-    color: var(--text-primary);
-
-    &::placeholder {
-      color: var(--text-secondary);
-    }
+    color: var(--text-secondary);
   }
 
   &.rf-input__field--file {
@@ -133,7 +136,7 @@ input[type='file']:disabled + .rf-input__field.rf-input__field--file {
   top: 50%;
   right: 16px;
   transform: translateY(-50%);
-  color: var(--text-tertiary);
+  color: var(--basic-tertiary);
 
   display: flex;
   align-items: center;

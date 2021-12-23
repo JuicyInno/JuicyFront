@@ -1,58 +1,30 @@
-import Menu, { MenuContext, IListProps } from './Menu';
+import Menu, { MenuContext } from './Menu';
 import React from 'react';
-import { IListElement, IMenuContext } from '../../../types';
+import { Story } from '@storybook/react';
+
+import { IMenuContext } from '../../../types';
 import { Button } from '../../../index';
-import Story from '../../storybook/Story';
+import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryCol from '../../storybook/StoryCol';
 import StoryItem from '../../storybook/StoryItem';
 import { BrowserRouter } from 'react-router-dom';
+import { _listMenu, _listMenuWithTile } from './mock';
 
 export default {
-  title: 'controls/не проверено/Menu',
+  title: 'controls/withTest/Menu',
   component: Menu,
   argTypes: {
     children: { control: null },
     list: { control: null },
     content: { control: null },
     className: { control: null },
-    position: { control: null },
-    relativeBlock: { control: null }
+    relativeBlock: { control: null },
+    anchorElement: { control: null },
   }
 };
 
-export const menu = ({ portal }: IListProps) => {
-  const list: IListElement[] = [
-    {
-      value: '1',
-      label: 'Значение 1',
-      url: '/test'
-    },
-    {
-      value: '2',
-      label: 'Значение 2'
-    },
-    {
-      value: '3',
-      label: 'Неактивное значение 3',
-      disabled: true
-    },
-    {
-      value: '4',
-      label: 'Значение 4',
-      separated: true
-    },
-    {
-      value: '5',
-      label: 'Значение 5'
-    },
-    {
-      value: '6',
-      label: 'Значение 6',
-      separated: true
-    }
-  ];
-
+export const Demo = () => {
   const content = (
     <MenuContext.Consumer>
       {({ onClose }: IMenuContext) => (
@@ -83,11 +55,11 @@ export const menu = ({ portal }: IListProps) => {
 
   return (
     <BrowserRouter>
-      <Story name='Menu (Меню 🙄)'>
+      <StoryContainer name='Menu (Меню 🙄)'>
         <StoryItem description='Выпадающий список с действиями'>
           <StoryRow>
             <StoryCol>
-              <Menu list={list} position='right' portal={portal}>
+              <Menu list={_listMenu} position='right'>
                 <Button buttonType='secondary'>
                   Правое меню слева
                 </Button>
@@ -95,7 +67,7 @@ export const menu = ({ portal }: IListProps) => {
             </StoryCol>
 
             <StoryCol>
-              <Menu list={list} portal={portal}>
+              <Menu list={_listMenu}>
                 <Button buttonType='secondary'>
                   Левое меню
                 </Button>
@@ -103,21 +75,21 @@ export const menu = ({ portal }: IListProps) => {
             </StoryCol>
 
             <StoryCol>
-              <Menu position='right' list={list} portal={portal}>
+              <Menu position='right' list={_listMenu}>
                 <Button buttonType='secondary'>
                   Правое меню
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-right' portal={portal}>
+              <Menu list={_listMenu} position='top-start'>
                 <Button buttonType='secondary'>
                   Верхнее меню
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='left' portal={portal}>
+              <Menu list={_listMenu} position='left'>
                 <Button buttonType='secondary'>
                   Левое меню справа
                 </Button>
@@ -125,41 +97,52 @@ export const menu = ({ portal }: IListProps) => {
             </StoryCol>
           </StoryRow>
         </StoryItem>
-        <StoryItem description='Выпадающий список с произвольным контентом'>
+        <StoryItem description='Выпадающий список с произвольным контентом в портале'>
           <StoryRow>
             <StoryCol>
-              <Menu position='right' content={content} portal={portal}>
+              <Menu position='right' content={content}>
                 <Button buttonType='secondary'>
                   Тут контент 😏
                 </Button>
               </Menu>
             </StoryCol>
           </StoryRow>
+
+          <StoryRow>
+            <StoryCol>
+              <Menu position='right' list={_listMenuWithTile}>
+                <Button buttonType='secondary'>
+                  Меню с заголовком
+                </Button>
+              </Menu>
+            </StoryCol>
+          </StoryRow>
+
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
-              <Menu list={list} position='top-left' portal={portal}>
+              <Menu list={_listMenu} position='top-start' >
                 <Button buttonType='secondary'>
-                top-left
+                top-start
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-right' portal={portal}>
+              <Menu list={_listMenu} position='top-end' >
                 <Button buttonType='secondary'>
-                top-right
+                top-end
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-left' content={content} portal={portal}>
+              <Menu list={_listMenu} position='top-start' content={content}>
                 <Button buttonType='secondary'>
-                top-left custom content
+                  top-start custom content
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='left' portal={portal}>
+              <Menu list={_listMenu} position='left'>
                 <Button buttonType='secondary'>
                   Левое меню
                 </Button>
@@ -167,7 +150,38 @@ export const menu = ({ portal }: IListProps) => {
             </StoryCol>
           </StoryRow>
         </StoryItem>
-      </Story>
+      </StoryContainer>
     </BrowserRouter>
   );
+};
+
+export const Playground: Story = (args) => {
+  return (
+    <BrowserRouter>
+      <StoryContainer>
+        <div style={{
+          width: '100%',
+          minHeight: '100vh',
+          display: 'flex',
+        }}>
+          <div style={{ margin: 'auto' }}>
+            <Menu list={_listMenu} {...args}>
+              <Button buttonType='secondary'>
+                Меню
+              </Button>
+            </Menu>
+          </div>
+
+        </div>
+
+      </StoryContainer>
+    </BrowserRouter>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15727',
+  },
 };

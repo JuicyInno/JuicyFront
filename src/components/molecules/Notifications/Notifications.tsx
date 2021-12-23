@@ -6,6 +6,7 @@ import Notification from '../Notification';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { VariantClassic } from '../../../types';
+import { createPortal } from 'react-dom';
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +44,9 @@ export const sendNotification = (message: INotification, delay = 8000) => {
     ...message,
     id: message.id || Date.now()
   });
+
   notifications$$.next(tmp);
+
   setTimeout(() => {
     removeNotification(message.id);
   }, delay);
@@ -52,22 +55,18 @@ export const sendNotification = (message: INotification, delay = 8000) => {
 // ----Компонент--------------------------------------------------------------------------------------------------------
 
 export interface INotification {
+  /** Заголовок сообщения */
+  title?: string;
   /** Текст сообщения */
-  message: string;
+  message?: string;
   /** ID сообщения */
   id?: number;
   /** Тип сообщения */
   variant?: VariantClassic;
-  /** Обратный отсчет для уведомлений о повторном подключении*/
-  countdown?: number[];
-  /** Функция для повторного подключения */
-  retryAction?: () => void;
-  /** Отменить повторение подключения */
-  cancelRetry?: () => void;
 }
 
 const Notifications = () => {
-  /** Флаг по которому оставновить подписку */
+  /** Флаг по которому остановить подписку */
   const obstacle = useRef<Subject<boolean>>(new Subject());
 
   const [sub, setSub] = useState<BehaviorSubject<INotification[]> | null>(null);
@@ -110,7 +109,11 @@ const Notifications = () => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  return <div className='rf-notifications__list'>{list}</div>;
+  if (!list.length) {
+    return null;
+  }
+
+  return createPortal(<div data-testid='rf-notifications' className='rf-notifications__list'>{list}</div>, document.body);
 };
 
 export default Notifications;

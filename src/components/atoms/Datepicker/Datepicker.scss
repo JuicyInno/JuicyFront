@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-datepicker {
   position: relative;
@@ -6,32 +6,36 @@
 }
 
 .rf-datepicker__input-wrapper {
-  position: relative;
   cursor: pointer;
+  height: 40px;
+
+  svg {
+    color: var(--text-tertiary);
+  }
 }
 
 .rf-datepicker__calendar-button {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%) rotate(0);
   transition: 0.35s;
-  color: var(--base-500);
+  color: var(--text-secondary);
   cursor: pointer;
   pointer-events: none;
 
   svg {
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
   }
+}
+
+.rf-datepicker__calendar-chevron {
+  color: var(--basic-tertiary);
 }
 
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
+  color: var(--basic-secondary);
 
-  .rf-datepicker__calendar-button {
-    color: var(--text-tertiary);
+  .rf-datepicker__calendar-button,
+  .rf-datepicker__calendar-chevron {
+    color: var(--basic-tertiary);
   }
 }
 

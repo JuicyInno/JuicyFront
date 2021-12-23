@@ -13,11 +13,10 @@ export default {
 
 export const statusPicker = (args: IPickerProps) => {
 
-  const [arrayData, setArrayData] = useState(Array(4).fill(['', '', '']));
+  const [arrayData, setArrayData] = useState(Array(3).fill(['', '', '']));
 
   const statusHandler = (value: number, array: string[][]) => {
     setArrayData(array);
-    console.log(value);
   };
 
 

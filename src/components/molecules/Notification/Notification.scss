@@ -1,17 +1,18 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-notification {
-  margin-top: 15px;
+  margin-top: 16px;
   position: relative;
-  width: 640px;
-  padding: 16px 24px;
+  width: 440px;
+  padding: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  background-color: var(--background-inversion);
   cursor: default;
-  border-radius: 8px;
   overflow: hidden;
+  background-color: var(--background-primary);
+  box-shadow: var(--shadow-non-clickable);
+  border-radius: 16px;
 }
 
 .rf-notification::before {
@@ -24,33 +25,55 @@
   background-color: transparent;
 }
 
-.rf-notification--green::before {
-  background-color: var(--special-green);
+.rf-notification__icon {
+  flex-shrink: 0;
 }
 
-.rf-notification--yellow::before {
-  background-color: var(--special-yellow);
+.rf-notification--default {
+  color: var(--basic-primary);
 }
 
-.rf-notification--red::before {
-  background-color: var(--special-red);
+.rf-notification--blue {
+  color: var(--basic-primary);
+}
+
+.rf-notification--green {
+  color: var(--status-success);
+}
+
+.rf-notification--yellow {
+  color: var(--special-yellow);
+}
+
+.rf-notification--red {
+  color: var(--status-danger);
+}
+
+.rf-notification__wrap {
+  margin-left: 12px;
+}
+
+.rf-notification__title {
+  width: 100%;
+  @include text-l-16-bold;
+  white-space: normal;
 }
 
 .rf-notification__message {
   width: 100%;
-  @include text-m-16;
-  color: var(--text-static-white);
+  @include text-s-14;
   white-space: normal;
+  color: var(--text-secondary);
 }
 
 .rf-notification__close {
   flex-grow: 0;
   margin-left: auto;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   min-width: 32px;
   background-color: transparent;
   border: 0;
   outline: none;
-  color: var(--basic-tertiary);
+  color: var(--text-tertiary);
 }

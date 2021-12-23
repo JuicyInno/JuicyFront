@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-textarea {
   width: 100%;
@@ -14,9 +14,10 @@
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--basic-tertiary);
   border-radius: 8px;
+  background-color: var(--background-primary);
 
   &--invalid {
-    box-shadow: 0 0 0 2px var(--status-danger);
+    box-shadow: 0 0 0 1px var(--status-danger);
   }
 
   &:hover {
@@ -28,9 +29,11 @@
   }
 
   &--disabled {
+    pointer-events: none;
     background-color: var(--background-tertiary);
 
-    &, &:hover {
+    &,
+    &:hover {
       box-shadow: none;
     }
   }
@@ -70,7 +73,7 @@
 }
 
 .rf-textarea__wrapper--auto-resize::after {
-  content: attr(data-replicated-value) " ";
+  content: attr(data-replicated-value) ' ';
   white-space: pre-wrap;
   visibility: hidden;
   overflow-wrap: anywhere;
@@ -97,6 +100,7 @@
   border-radius: 8px;
   border: 0;
   box-sizing: border-box;
+  background: none;
 
   @include text-m-16;
 }
