@@ -62,7 +62,7 @@ const HistorySidebar: FC<IHistory> = ({
           </div>
         </>
       ) : (
-        <Badge badgeContent={attachments && attachments.length}>
+        <Badge badgeContent={attachments && attachments.length} >
           <div className='rf-history-sidebar__attachments-preview'>
             <Doc />
           </div>
@@ -86,7 +86,9 @@ const HistorySidebar: FC<IHistory> = ({
           buttonType='icon-round'
           className='rf-history-sidebar__button'
         >
-          {isOpen ? <ChevronRight /> : <ChevronLeft/>}
+          <div className='rf-history-sidebar__button-icon'>
+            {isOpen ? <ChevronRight /> : <ChevronLeft />}
+          </div>
         </Button>
       </div>
       <div className={`rf-history-sidebar__heading ${!isOpen ? 'closed' : ''}`}>

@@ -30,6 +30,10 @@
   box-shadow: 0 4px 8px rgba(138, 150, 168, 0.4), 0px -2px 4px rgba(138, 150, 168, 0.08);
 }
 
+.rf-history-sidebar__button-icon {
+  color: var(--basic-tertiary);
+}
+
 .rf-history-sidebar__heading {
   @include h6();
   line-height: 24px;
