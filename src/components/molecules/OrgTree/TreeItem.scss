@@ -32,6 +32,10 @@
   align-items: flex-start;
 }
 
+.rf-tree__item-label-text--clickable {
+  cursor: pointer;
+}
+
 .rf-tree__item-label--default {
   color: var(--text-primary);
 }

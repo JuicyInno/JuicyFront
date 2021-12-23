@@ -11,6 +11,7 @@ import {
   Circle, Preloader, Up
 } from '../../../index';
 import Checkbox from '../../atoms/Checkbox';
+import { classnames } from '../../../utils/classnames';
 
 interface IFolderItemProps {
   id: string;
@@ -136,7 +137,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
             <Up className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
-        <label className='rf-tree__item-label-text'>
+        <label className={classnames('rf-tree__item-label-text', (onCheck || onChange) && 'rf-tree__item-label-text--clickable')}>
           {!!onCheck && (
             <div className='rf-tree__checkbox' >
               <Checkbox checked={item.checked} onChange={onCheckboxChange} onClick={onCheckboxClick} />
