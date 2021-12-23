@@ -10,6 +10,7 @@ import HLine from './lines/hline';
 import {
   Circle, Preloader, Up
 } from '../../../index';
+import Checkbox from '../../atoms/Checkbox';
 
 interface IFolderItemProps {
   id: string;
@@ -20,12 +21,15 @@ interface IFolderItemProps {
   onChange?: (o: ITreeOption) => void;
   activeItem: ITreeOption | undefined;
   last?: boolean;
+  /** Изменение состояния чекбокса. */
+  onCheck?: (option: ITreeOption) => void;
 }
 
 const FolderItem: React.FC<IFolderItemProps> = ({
   id,
   item,
   onChange,
+  onCheck,
   depth,
   open,
   activeItem,
@@ -106,6 +110,16 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     }
   }, [calculateHeight, id]);
 
+  const onCheckboxClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
+  const onCheckboxChange = () => {
+    if (onCheck) {
+      onCheck(item);
+    }
+  };
+
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
@@ -122,7 +136,14 @@ const FolderItem: React.FC<IFolderItemProps> = ({
             <Up className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
-        { item.label }
+        <label className='rf-tree__item-label-text'>
+          {!!onCheck && (
+            <div className='rf-tree__checkbox' >
+              <Checkbox checked={item.checked} onChange={onCheckboxChange} onClick={onCheckboxClick} />
+            </div>
+          )}
+          { item.label }
+        </label>
       </div>
 
       { item.loading && (
@@ -134,7 +155,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
       { item.children && item.children.length > 0 && (
         <div className={ `rf-tree__item-folder ${showFolderClass}` } ref={ folder }>
           <Tree id={ id } list={ item.children } onChange={ onChange } parent={ item } depth={ depth } open={ open }
-            activeItem={ activeItem }/>
+            activeItem={ activeItem } onCheck={onCheck} />
         </div>
       ) }
     </div>

@@ -27,6 +27,11 @@
   position: relative;
 }
 
+.rf-tree__item-label-text {
+  display: flex;
+  align-items: flex-start;
+}
+
 .rf-tree__item-label--default {
   color: var(--text-primary);
 }
@@ -97,4 +102,9 @@
   position: relative;
   @include square(20px);
   margin-left: 24px;
+}
+
+.rf-tree__checkbox {
+  display: flex;
+  margin-right: 8px;
 }

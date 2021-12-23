@@ -1,6 +1,7 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 import './Checkbox.scss';
-import { Reduce, Success } from '../../../index';
+import Reduce from '../../../assets/icons/Reduce';
+import Success from '../../../assets/icons/Success';
 
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
