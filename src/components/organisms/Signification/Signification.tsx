@@ -47,6 +47,8 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
   title?: string;
   /** функция- результат подписания */
   onSignify?: (result: ISignifyCallback) => void;
+  /** функция- обработка удаления подписанного файла */
+  onSignCancel?: () => void;
   /** массив в котором название кнопок для скрытия */
   hideButtons?: TButtons[];
   /** показывать ли спойлер для документа
@@ -70,6 +72,7 @@ const Signification:FC<IProps> = ({
   data,
   pdfUrl,
   onSignify = () => {},
+  onSignCancel = undefined,
   title = '',
   isSpoiler = true,
   isOpenSpoiler = false,
@@ -162,7 +165,7 @@ const Signification:FC<IProps> = ({
     setValue(initialFile.current);
     setCurrentCert(undefined);
     onSignify({ file: initialFile.current });
-
+    onSignCancel && onSignCancel();
   };
   //* ************************************************
   const manualSignHandler = () => {
