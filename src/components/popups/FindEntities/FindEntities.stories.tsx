@@ -7,9 +7,7 @@ import { positionsMocks, IPosition } from '../FindEntitiesPosition/positions.moc
 
 import { FindEntitiesUser, createGetUsers } from '../FindEntitiesUser';
 import { usersMocks } from '../FindEntitiesUser/users.mocks';
-import {
-  Button, Modal, People
-} from '../../../index';
+import { Button, People } from '../../../index';
 
 import { BrowserRouter } from 'react-router-dom';
 import { IUser } from '../../../types/projects.types';
@@ -71,25 +69,23 @@ export const Users = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать сотрудника</Button>
           {isDialogVisible && (
-            <Modal size='xl' onClose={onDialogToggle}>
-              <FindEntities
-                title='Выберите сотрудника'
-                getEntities={getMockedUsers}
-                entityKey='id'
-                value={value}
-                filters={USERS_FILTERS}
-                onChange={onChange}
-                onClose={onDialogToggle}
-                lazy
-                multiple
-                emptyStateIcon={<People />}
-                emptyStateInitialText='Найдите нужных вам сотрудников'
-              >
-                {({ entity, isSelected, onChange }) => (
-                  <FindEntitiesUser user={entity} isSelected={isSelected} onChange={onChange} />
-                )}
-              </FindEntities>
-            </Modal>
+            <FindEntities
+              title='Выберите сотрудника'
+              getEntities={getMockedUsers}
+              entityKey='id'
+              value={value}
+              filters={USERS_FILTERS}
+              onChange={onChange}
+              onClose={onDialogToggle}
+              lazy
+              multiple
+              emptyStateIcon={<People />}
+              emptyStateInitialText='Найдите нужных вам сотрудников'
+            >
+              {({ entity, isSelected, onChange }) => (
+                <FindEntitiesUser user={entity} isSelected={isSelected} onChange={onChange} />
+              )}
+            </FindEntities>
           )}
         </BrowserRouter>
       </div>
@@ -131,23 +127,21 @@ export const Positions = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать должность</Button>
           {isDialogVisible && (
-            <Modal size='xl' onClose={onDialogToggle}>
-              <FindEntities
-                title='Выберите штатную должность'
-                getEntities={getMockedPositions}
-                entityKey='position'
-                value={value}
-                filters={POSITIONS_FILTERS}
-                onChange={onChange}
-                onClose={onDialogToggle}
-                emptyStateIcon={<People />}
-                emptyStateInitialText='Найдите нужную вам должность'
-              >
-                {({ entity, isSelected, onChange }) => (
-                  <FindEntitiesPosition position={entity} isSelected={isSelected} onChange={onChange} />
-                )}
-              </FindEntities>
-            </Modal>
+            <FindEntities
+              title='Выберите штатную должность'
+              getEntities={getMockedPositions}
+              entityKey='position'
+              value={value}
+              filters={POSITIONS_FILTERS}
+              onChange={onChange}
+              onClose={onDialogToggle}
+              emptyStateIcon={<People />}
+              emptyStateInitialText='Найдите нужную вам должность'
+            >
+              {({ entity, isSelected, onChange }) => (
+                <FindEntitiesPosition position={entity} isSelected={isSelected} onChange={onChange} />
+              )}
+            </FindEntities>
           )}
         </BrowserRouter>
       </div>
@@ -177,24 +171,22 @@ export const UsersAPI = () => {
         <BrowserRouter>
           <Button onClick={onDialogToggle}>Выбрать сотрудника</Button>
           {isDialogVisible && (
-            <Modal size='xl' onClose={onDialogToggle}>
-              <FindEntities
-                title='Выберите сотрудника'
-                getEntities={getUsers}
-                entityKey='id'
-                value={value}
-                filters={USERS_FILTERS}
-                onChange={onChange}
-                onClose={onDialogToggle}
-                lazy
-                emptyStateIcon={<People />}
-                emptyStateInitialText='Найдите нужных вам сотрудников'
-              >
-                {({ entity, isSelected, onChange }) => (
-                  <FindEntitiesUser user={entity} isSelected={isSelected} onChange={onChange} />
-                )}
-              </FindEntities>
-            </Modal>
+            <FindEntities
+              title='Выберите сотрудника'
+              getEntities={getUsers}
+              entityKey='id'
+              value={value}
+              filters={USERS_FILTERS}
+              onChange={onChange}
+              onClose={onDialogToggle}
+              lazy
+              emptyStateIcon={<People />}
+              emptyStateInitialText='Найдите нужных вам сотрудников'
+            >
+              {({ entity, isSelected, onChange }) => (
+                <FindEntitiesUser user={entity} isSelected={isSelected} onChange={onChange} />
+              )}
+            </FindEntities>
           )}
         </BrowserRouter>
       </div>
