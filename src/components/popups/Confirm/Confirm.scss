@@ -1,8 +1,7 @@
 @import 'src/styles/mixins';
 
 .confirm-popup__title {
-  @include h4;
-  margin-top: 32px;
+  @include h5;
 }
 
 .confirm-popup__text {
@@ -11,11 +10,12 @@
 }
 
 .confirm-popup__footer {
-  padding-top: 18px;
+  padding-top: 24px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .confirm-popup__footer-button {
-  margin-right: 16px;
+  margin-left: 16px;
 }

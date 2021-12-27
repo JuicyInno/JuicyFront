@@ -59,6 +59,7 @@ const Confirm: React.FC<IConfirmProps> = ({
     <div className='confirm-popup'>
       <h2 className='confirm-popup__title'>{title}</h2>
       {text && <p className='confirm-popup__text'>{text}</p>}
+
       {
         showComment && (
           <FormGroup label={commentTitle}>
@@ -69,10 +70,10 @@ const Confirm: React.FC<IConfirmProps> = ({
 
       <footer className='confirm-popup__footer'>
         <div className='confirm-popup__footer-button'>
-          <Button disabled={showComment && state === ''} onClick={handleSubmit} preloader={preloader}>{textAccept}</Button>
+          <Button disabled={showComment && state === ''} onClick={handleSubmit} preloader={preloader} size='l'>{textAccept}</Button>
         </div>
         <div className='confirm-popup__footer-button'>
-          <Button onClick={onClose} buttonType='light'>{declineText}</Button>
+          <Button onClick={onClose} buttonType='light' size='l'>{declineText}</Button>
         </div>
       </footer>
     </div>
