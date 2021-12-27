@@ -8,23 +8,22 @@ import { Modal } from '../../../index';
 
 export default {
   title: 'popovers/withTest/Confirm',
-  component: Confirm
+  component: Confirm,
 };
 
 export const Demo = () => {
-
   const onAction = (comment?: string) => {
     console.log(comment);
   };
 
   return (
     <StoryContainer name='Изображение пользователя'>
-      <Modal size='l'>
+      <Modal size='l' onClose={() => {}}>
         <Confirm
           textAccept='Согласен'
           text='Вы согласны на обработку персональных данных?'
-          onClose={() => {}}
-          onAction={() => {}}
+          onClose={() => console.log('hello')}
+          onAction={onAction}
           comment='Комментарий'
           showComment
         />
@@ -37,16 +36,8 @@ export const Playground: Story = (args) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <Modal size='l'>
-          <Confirm
-            textAccept='Согласен'
-            text='Вы согласны на обработку персональных данных?'
-            onClose={() => {}}
-            onAction={() => {}}
-            comment='Комментарий'
-            showComment
-            {...args}
-          />
+        <Modal size='l' onClose={() => {}}>
+          <Confirm showComment textAccept='Подтвердить' text='Message' {...args} onClose={() => {}} onAction={() => {}} />
         </Modal>
       </StoryRow>
     </StoryContainer>
