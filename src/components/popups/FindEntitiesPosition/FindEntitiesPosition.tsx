@@ -16,11 +16,13 @@ interface IFindEntitiesPositionProps {
   isSelected: boolean;
   /** Изменение выбора должности */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Дизейбл чекбокса */
+  disabled?: boolean;
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default';
 }
 
-export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, tooltipBackground }) => {
+export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, disabled, tooltipBackground }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const onCopy = (event: React.MouseEvent) => {
@@ -36,6 +38,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
         align='flex-start'
         value={position.position}
         checked={isSelected}
+        disabled={disabled}
         onChange={onChange}
         fullWidth
         label={
