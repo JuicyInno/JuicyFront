@@ -55,7 +55,7 @@ const HistorySidebar: FC<IHistory> = ({
 
   const attachmentsJSX = (
     <>
-      <div className={`rf-history-sidebar__attachments-line ${!isOpen ? 'open' : ''}`} />
+      <div className='rf-history-sidebar__attachments-line' />
       {isOpen ? (
         <>
           <p className='rf-history-sidebar__attachments-title'>Приложенные файлы</p>
@@ -64,7 +64,7 @@ const HistorySidebar: FC<IHistory> = ({
           </div>
         </>
       ) : (
-        <Badge badgeContent={attachments && attachments.length} >
+        <Badge badgeContent={attachments && attachments.length}>
           <div className='rf-history-sidebar__attachments-preview'>
             <Doc />
           </div>
@@ -77,7 +77,7 @@ const HistorySidebar: FC<IHistory> = ({
     <div className={`rf-history-sidebar ${isOpen ? 'open' : ''}`}>
       <div
         data-testid='side-history-button'
-        className={`rf-history-sidebar__button-container ${isOpen ? 'open' : ''}`}>
+        className='rf-history-sidebar__button-container'>
         <Button
           onClick={() => setIsOpen(!isOpen)}
           size='m'
@@ -92,11 +92,11 @@ const HistorySidebar: FC<IHistory> = ({
       <div className={`rf-history-sidebar__heading ${!isOpen ? 'closed' : ''}`}>
         История согласования
       </div>
-      <div className={`rf-history-sidebar__paths ${isOpen ? 'open' : ''}`}>
+      <div className='rf-history-sidebar__paths'>
         <HistoryPathList path={paths} isUZADO={isUZADO} isMinimal={!isOpen} />
       </div>
       {attachments && (
-        <div className={`rf-history-sidebar__attachments ${isOpen ? 'open' : ''}`}>
+        <div className='rf-history-sidebar__attachments'>
           {attachmentsJSX}
         </div>
       )}
