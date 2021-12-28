@@ -1,5 +1,5 @@
-import { IRequestPath } from '../../../../types/projects.types';
-import { usersMocks } from '../../organisms/FindUsers/users.mocks';
+import { IRequestPath } from '../../../types/projects.types';
+import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 export const historyMocks: IRequestPath[] = [
   {

@@ -7,7 +7,9 @@ import {
 import HistorySidebar from './HistorySidebar';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import { attachments, pathsHistory } from '../HistorySidebar/mock';
+import {
+  attachments, pathsHistory, pathsHistory1
+} from '../HistorySidebar/mock';
 
 export default {
   title: 'components/withTest/HistorySidebar',
@@ -33,7 +35,7 @@ export const Demo: Story = () => {
         height: 'auto',
         justifyContent: 'flex-end'
       }}>
-        <HistorySidebar history={pathsHistory} attachments={attachments} />
+        <HistorySidebar history={pathsHistory1} attachments={attachments} />
       </div>
     </StoryDocs>
   );

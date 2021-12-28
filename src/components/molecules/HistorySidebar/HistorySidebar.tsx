@@ -1,17 +1,20 @@
 import React, {
-  FC, useCallback, useEffect, useState
+  FC, useCallback, useState
 } from 'react';
-import './HistorySidebar.scss';
-import { IHistory } from '../History/History';
+
 import Button from '../../atoms/Button';
-import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
-import ChevronRight from '../../../assets/icons/24px/Arrows/ChevronRight';
 import HistoryPathList from '../../atoms/HistoryPathList';
 import Chip from '../../atoms/Chip';
 import Doc from '../../../assets/icons/40px/Documents/Doc';
 import Badge from '../../atoms/Badge';
-import { sortPaths } from './helpers';
-import { IRequestPath } from '../../../types/projects.types';
+import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
+import ChevronRight from '../../../assets/icons/24px/Arrows/ChevronRight';
+
+import { useSortPaths } from './helpers';
+
+import { IHistory } from '../History/History';
+
+import './HistorySidebar.scss';
 
 const HistorySidebar: FC<IHistory> = ({
   history,
@@ -20,8 +23,7 @@ const HistorySidebar: FC<IHistory> = ({
   host = window.location.origin,
 }: IHistory) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [paths, setPaths] = useState<IRequestPath[]>(sortPaths(history, isOpen));
-
+  const paths = useSortPaths(history, isOpen);
   // -------------------------------------------------------------------------------------------------------------------
   /** Секция приложенных документов */
   /** Обработчик скачивания документа при клике по чипсе */
@@ -70,10 +72,6 @@ const HistorySidebar: FC<IHistory> = ({
       )}
     </>
   );
-
-  useEffect(() => {
-    setPaths(sortPaths(history, isOpen));
-  }, [isOpen]);
 
   return (
     <div className={`rf-history-sidebar ${isOpen ? 'open' : ''}`}>

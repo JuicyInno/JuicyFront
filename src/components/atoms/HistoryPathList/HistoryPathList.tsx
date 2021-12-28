@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ReactNode } from 'react';
 
 import AvatarStatus from '../../molecules/AvatarStatus';
 import InformationAlert from '../../../assets/icons/24px/Alerts/InformationAlert';
@@ -21,13 +21,19 @@ import './HistoryPathList.scss';
 export interface IHistoryStepList {
   /** Элемент истории */
   path: IRequestPath[];
-  /** Флаг на особую версию истории для проекта ЮЗЭДО */
+  /** Флаг на особую версию истории для проекта ЮЗЭДО
+   * @default false
+   */
   isUZADO?: boolean;
-  /** Флаг на свёрнутое состояние элементов компонента */
+  /** Флаг на свёрнутое состояние элементов компонента
+   * @default false
+  */
   isMinimal?: boolean;
 }
 
-const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => {
+const HistoryPathList: ({ path, isUZADO, isMinimal }: IHistoryStepList) => JSX.Element = ({ path,
+  isUZADO = false,
+  isMinimal = false }) => {
   /** Массив пользователей для тултипа */
   const users = (users: IUser[] | null) => {
     return users?.map((item, i) => (
@@ -47,16 +53,16 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
     ));
   };
 
-  const historyPathListJSX: any = path.map((r: IRequestPath, i: number) => {
+  const historyPathListJSX: ReactNode = path.map((pathItem: IRequestPath, pathNumber: number) => {
     /** Если есть дата, форматируем */
-    const date: IFormattedDate | null = r.date ? formatDate(r.date + new Date().getTimezoneOffset() * 60 * 1000) : null;
+    const date: IFormattedDate | null = pathItem.date ? formatDate(pathItem.date + new Date().getTimezoneOffset() * 60 * 1000) : null;
     /** Определяем последний элемент - рисовать после него маршрутную черту или нет */
-    const isLastElement = i !== path.length - 1;
+    const isLastElement = pathNumber !== path.length - 1;
     /** Определяем есть ли решение по шагу - рисовать сплошную или прерывистую черту */
-    const isReconciled = path[i + 1] && path[i + 1].criticality === '0';
+    const isReconciled = path[pathNumber + 1] && path[pathNumber + 1].criticality === '0';
 
     return (
-      <div className='rf-history-path-list__history-element' key={r.stepId}>
+      <div className='rf-history-path-list__history-element' key={pathItem.stepId}>
         <div className='rf-history-path-list__user-photo'>
           {/** Если в массиве user находится больше одного юзера,
              * это означает, что согласование производится группой людей,
@@ -64,20 +70,20 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
              * поэтому, при user.length > 1, необходимо ставить иконку кгруппы людей,
              * а не фото конкретного пользователя из этой группы
              */}
-          {r.user && r.user.length === 1 ?
+          {pathItem.user && pathItem.user.length === 1 ?
             <AvatarStatus
-              fullName={r.user[0].fullName}
+              fullName={pathItem.user[0].fullName}
               size='l'
-              photo={r.user[0].photo}
-              variant={r.user[0].fullName === 'Вы' ? statusValue['4'] : statusValue[r.criticality]}
-              type={isMinimal ? statusType[r.criticality] as IconType : undefined}
+              photo={pathItem.user[0].photo}
+              variant={pathItem.user[0].fullName === 'Вы' ? statusValue['4'] : statusValue[pathItem.criticality]}
+              type={isMinimal ? statusType[pathItem.criticality] as IconType : undefined}
             /> :
             <AvatarStatus
               size='l'
               icon={User}
-              variant={statusValue[r.criticality]}
-              type={isMinimal ? statusType[r.criticality] as IconType : undefined}
-              fullName={r.user[0].fullName}
+              variant={statusValue[pathItem.criticality]}
+              type={isMinimal ? statusType[pathItem.criticality] as IconType : undefined}
+              fullName={pathItem.user[0].fullName}
             />
           }
           {isLastElement && (
@@ -96,27 +102,27 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
                  * в ином случае ставим имя конкретного человека
                  */}
               <h4 className='rf-history-path-list__fullName'>
-                {(r.user && r.user.length === 1 && r.user[0].fullName) || r.agentName}
+                {(pathItem.user && pathItem.user.length === 1 && pathItem.user[0].fullName) || pathItem.agentName}
               </h4>
               {/** Подсказка не используется в проекте ЮЗАДО */}
-              {!(r.user && r.user.length < 2) && !isUZADO && (
+              {!(pathItem.user && pathItem.user.length < 2) && !isUZADO && (
                 <Tooltip background='white'>
                   <div className='rf-history-path-list__icon-wrapper'>
                     <InformationAlert />
                   </div>
-                  <div className='rf-history-path-list__tooltip-wrapper'>{users(r.user)}</div>
+                  <div className='rf-history-path-list__tooltip-wrapper'>{users(pathItem.user)}</div>
                 </Tooltip>
               )}
             </div>
             {/** В проекте ЮЗЭДО вместо описания шага необходимо ставить должность согласующего */}
             <div className='rf-history-path-list__details-column'>
-              {r.user.length === 1 ? (
+              {pathItem.user.length === 1 ? (
                 <p className='rf-history-path-list__details-info'>
-                  {isUZADO ? r.user[0].position : r.activityText}
+                  {isUZADO ? pathItem.user[0].position : pathItem.activityText}
                 </p>
               ) : (
                 <p className='rf-history-path-list__details-info'>
-                  {r.activityText}
+                  {pathItem.activityText}
                 </p>
               )}
 
@@ -125,16 +131,16 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
                   {date.dayOfMonth} {date.monthShort} {date.year} в {date.hour}:{date.minutes}
                 </span>
               )}
-              {!!r.date && (
+              {!!pathItem.date && (
                 <div className='rf-history-path-list__status-wrapper'>
-                  <StatusWithText statusText={r.statusText} criticality={r.criticality} />
+                  <StatusWithText statusText={pathItem.statusText} criticality={pathItem.criticality} />
                 </div>
               )}
             </div>
 
-            {!!r.comment && (
+            {!!pathItem.comment && (
               <div className='rf-history-path-list__details-comment-wrapper'>
-                <div className='rf-history-path-list__details-comment'>{r.comment}</div>
+                <div className='rf-history-path-list__details-comment'>{pathItem.comment}</div>
               </div>
             )}
           </div>
@@ -142,7 +148,7 @@ const HistoryPathList: FC<IHistoryStepList> = ({ path, isUZADO, isMinimal }) => 
       </div>);
   });
 
-  return historyPathListJSX;
+  return <>{historyPathListJSX}</>;
 };
 
 export default HistoryPathList;

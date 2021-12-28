@@ -25,7 +25,7 @@ describe('Test <HistorySidebar/> component', () => {
 
   it('should render HistorySidebar with last 4 steps when all done', () => {
     const {container} = render(<HistorySidebar history={pathsHistory1} />);
-    expect(container.getElementsByClassName('rf-history-path-list__history-element')).toHaveLength(4);
+    expect(container.querySelectorAll('.rf-history-path-list__history-element')).toHaveLength(4);
   })
 
   it('should render HistorySidebar with first 4 steps in the beginning', () => {
