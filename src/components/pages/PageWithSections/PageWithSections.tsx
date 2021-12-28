@@ -1,6 +1,4 @@
-import React, {
-  ReactNode, useEffect, useRef
-} from 'react';
+import React, { ReactNode, useRef } from 'react';
 import './PageWithSections.scss';
 import { IPageSection } from '../../../types/projects.types';
 import { IButtonGroup, ITab } from '../../../types';
@@ -69,10 +67,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const asideRef = useRef<HTMLDivElement>(null);
   /** Ссылка на секции */
   const sectionsRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на ползунок */
-  const sliderRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на линию */
-  const lineRef = useRef<HTMLDivElement>(null);
   /** Ссылка на страницу */
   const pageRef = useRef<HTMLDivElement>(null);
   /** Ссылка на шапку страницы */
@@ -125,28 +119,13 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         });
       };
 
+      const activeClass = showNavigationPosition && activeTitle.activeTitleId === section.id ? 'rf-page__aside-link--active' : '';
       return (
-        <div key={ section.id } className='rf-page__aside-link' onClick={ onNavClick }>
+        <div key={ section.id } className={`rf-page__aside-link ${activeClass}`} onClick={ onNavClick }>
           { section.title }
         </div>
       );
     });
-
-  /** Передвигаем слайдер к активной секции */
-  useEffect(() => {
-    showNavigationPosition &&
-    setTimeout(() => {
-      if (sliderRef.current) {
-        const navLinks = document.querySelectorAll('.rf-page__aside-link');
-        const navLink = navLinks[activeTitle.activeIndex >= navLinks.length ? navLinks.length - 1 : activeTitle.activeIndex];
-
-        if (asideRef.current && navLink) {
-          sliderRef.current.style.top = `${navLink.getBoundingClientRect().top - asideRef.current.getBoundingClientRect().top}px`;
-        }
-      }
-    });
-  }, [activeTitle?.activeIndex]);
-
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -156,11 +135,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const asideBlock = showNavigation && showAside && (
     <aside className='rf-page__content-aside' ref={ asideRef }>
       <div className='rf-page__aside-inner'>
-        {showNavigationPosition &&
-        <div className='rf-page__aside-bar' ref={lineRef}>
-          <div className='rf-page__aside-slider' ref={sliderRef}/>
-        </div>
-        }
         <nav className='rf-page__aside-nav'>
           { asideJSX }
         </nav>

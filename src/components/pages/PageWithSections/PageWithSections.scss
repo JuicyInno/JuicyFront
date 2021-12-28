@@ -106,7 +106,7 @@
   flex-shrink: 1;
 }
 
-$asideLinkHeight: 56px;
+$asideLinkHeight: 32px;
 
 .rf-page__aside-link {
   position: relative;
@@ -115,8 +115,15 @@ $asideLinkHeight: 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @include text-m-16();
+  @include text-s-14();
+  color: var(--text-secondary);
   cursor: pointer;
+
+  &--active {
+    @include text-s-14-bold();
+    color: var(--basic-primary);
+    font-weight: 500;
+  }
 }
 
 .rf-page__aside-bar {

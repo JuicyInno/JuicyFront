@@ -10,7 +10,7 @@ import { Employee } from '../../../index';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 
 export default {
-  title: 'pages/не проверено/Page With Sections',
+  title: 'pages/withTest/Page With Sections',
   component: PageWithSections
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import PageWithSections from './PageWithSections';
@@ -51,7 +51,7 @@ describe('Test <PageWithSections /> component', () => {
     rerender(<PageWithSections title={'testTitle'} navigation={[{ label: 'tab'}]} />)
     expect(container.getElementsByClassName('rf-page__tabs')).toHaveLength(1);
 
-    rerender(<PageWithSections title={'testTitle'} />)
+    rerender(<PageWithSections title={'testTitle'} />);
     expect(container.getElementsByClassName('rf-page__tabs')).toHaveLength(0);
   });
 
@@ -71,16 +71,16 @@ describe('Test <PageWithSections /> component', () => {
     const { container, rerender } = render(<PageWithSections sections={[section]} />, { wrapper: BrowserRouter });
     expect(container.getElementsByClassName('rf-page__content-aside')).toHaveLength(1);
 
-    rerender(<PageWithSections showNavigation={false} sections={[section]} />)
+    rerender(<PageWithSections showNavigation={false} sections={[section]} />);
     expect(container.getElementsByClassName('rf-page__content-aside')).toHaveLength(0);
 
-    rerender(<PageWithSections sections={[emptySection]} />)
+    rerender(<PageWithSections sections={[emptySection]} />);
     expect(container.getElementsByClassName('rf-page__content-aside')).toHaveLength(0);
 
-    rerender(<PageWithSections />)
+    rerender(<PageWithSections />);
     expect(container.getElementsByClassName('rf-page__content-aside')).toHaveLength(0);
 
-    rerender(<PageWithSections sections={[section, emptySection]} />)
+    rerender(<PageWithSections sections={[section, emptySection]} />);
     expect(container.getElementsByClassName('rf-page__content-aside')).toHaveLength(1);
 
   });
@@ -101,8 +101,28 @@ describe('Test <PageWithSections /> component', () => {
     expect(container.getElementsByClassName('rf-page__aside-link')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-page__aside-link')[0]).toHaveTextContent('sectionTitle');
 
-    rerender(<PageWithSections sections={[section, emptySection]} />)
+    rerender(<PageWithSections sections={[section, emptySection]} />);
     expect(container.getElementsByClassName('rf-page__aside-link')).toHaveLength(1);
+
+  });
+
+  it('Should render aside position only with showNavigationPosition', () => {
+    const section: IPageSection = {
+      component: <div>section content</div>,
+      id: '1',
+      title: 'sectionTitle'
+    };
+
+    window.scrollTo = jest.fn();
+
+    const { container, rerender } = render(<PageWithSections sections={[section]} />, { wrapper: BrowserRouter });
+    expect(container.getElementsByClassName('rf-page__aside-link')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-page__aside-link--active')).toHaveLength(0);
+
+    rerender(<PageWithSections sections={[section]} showNavigationPosition />);
+    expect(container.getElementsByClassName('rf-page__aside-link')).toHaveLength(1);
+    fireEvent.click(container.getElementsByClassName('rf-page__aside-link')[0]);
+    expect(container.getElementsByClassName('rf-page__aside-link--active')).toHaveLength(1);
 
   });
 
@@ -125,7 +145,7 @@ describe('Test <PageWithSections /> component', () => {
     const { container, rerender } = render(<PageWithSections />, { wrapper: BrowserRouter });
     expect(container.getElementsByClassName('rf-page__buttons-group')).toHaveLength(0);
 
-    rerender(<PageWithSections buttonsGroup={btns} />)
+    rerender(<PageWithSections buttonsGroup={btns} />);
     expect(container.getElementsByClassName('rf-page__buttons-group')).toHaveLength(1);
 
   });
