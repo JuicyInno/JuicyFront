@@ -17,7 +17,7 @@ import Search from '../../../assets/icons/Search';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'forms/Input',
+  title: 'forms/withTest/Input',
   decorators: [withDesign],
   component: Input,
   argTypes: {
