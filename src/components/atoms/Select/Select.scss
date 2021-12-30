@@ -93,6 +93,9 @@
 
   .rf-select__input {
     color: var(--text-tertiary);
+    &::placeholder {
+      color: var(--text-secondary);
+    }
   }
 
   &:hover {
@@ -101,6 +104,10 @@
   &:active {
     box-shadow: 0 0 0 1px var(--background-tertiary);
   }
+}
+
+.rf-select__input::placeholder {
+  color: var(--text-secondary);
 }
 
 .rf-select__wrapper:hover {
@@ -119,7 +126,7 @@
     color: var(--text-tertiary);
 
     &::placeholder {
-      color: var(--text-tertiary);
+      color: var(--text-secondary);
     }
   }
 

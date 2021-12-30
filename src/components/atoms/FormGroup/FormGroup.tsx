@@ -47,14 +47,14 @@ const FormGroup: FC<IFormGroup> = ({
             {label}
             {required && <span className='rf-form-group__required'>*</span>}
             {!!labelSecondary &&
-            <span
-              className={classnames(
-                'rf-form-group__label-secondary',
-                invalidLabelSecondary && 'rf-form-group__message_no_invalidd'
-              )}
-            >
-              {labelSecondary}
-            </span>
+              <span
+                className={classnames(
+                  'rf-form-group__label-secondary',
+                  invalidLabelSecondary && 'rf-form-group__message_no_invalidd'
+                )}
+              >
+                {labelSecondary}
+              </span>
             }
           </p>
         )}

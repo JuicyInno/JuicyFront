@@ -7,7 +7,7 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
 import './story.scss';
 import { withDesign } from 'storybook-addon-designs';
-const file:IRequestAttachment = {
+const file: IRequestAttachment = {
   fileName: 'test',
   base64: pdfFile
 };
@@ -25,7 +25,7 @@ export default {
 };
 
 
-const response = (data:ISignifyCallback) => {
+const response = (data: ISignifyCallback) => {
   console.warn('!!!response:', data);
 };
 const docInfo = <div className='doc__wrapper'>
@@ -45,7 +45,7 @@ export const Demo = () => {
           buttonCustomTexts={{ sign: 'тут может быть любой текст' }}
           data={file}
           pdfUrl={'yandex.ru'}
-          title='Приказ №384848483 от 30.08.2021'/>
+          title='Приказ №384848483 от 30.08.2021' />
       </StoryItem>
     </Story>
     <Story name='Подписание счетов' description='Подписание счетов с использованием цифровой (КЭП) подписи.

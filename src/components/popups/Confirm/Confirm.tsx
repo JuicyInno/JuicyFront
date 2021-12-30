@@ -62,7 +62,7 @@ const Confirm: React.FC<IConfirmProps> = ({
       {
         showComment && (
           <FormGroup label={commentTitle}>
-            <Textarea defaultValue={state} onDebounce={onChange}/>
+            <Textarea defaultValue={state} onDebounce={onChange} />
           </FormGroup>
         )
       }

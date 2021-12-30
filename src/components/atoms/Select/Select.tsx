@@ -86,7 +86,7 @@ const Select: FC<ISelectProps> = ({
   variant = 'base',
   isAsync,
   infinityScrollProps,
-  position = 'right',
+  position = 'bottom',
   endAdornment,
   startAdornment,
   onScroll,
@@ -356,6 +356,10 @@ const Select: FC<ISelectProps> = ({
   const getWidthDropdown = useCallback(() => {
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
+
+
+  console.log(selectValues);
+
 
   return (
     <Manager>

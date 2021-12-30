@@ -114,7 +114,7 @@ export const Demo = () => {
           </FormGroup>
         </StoryItem>
         <StoryItem description='Select disabled'>
-          <FormGroup label='Label' disabled>
+          <FormGroup label='Label' >
             <Select
               placeholder='Выберите значение'
               options={list}
@@ -126,7 +126,7 @@ export const Demo = () => {
           </FormGroup>
         </StoryItem>
         <StoryItem description='Select start adornment'>
-          <FormGroup label='Label' disabled>
+          <FormGroup label='Label' >
             <Select
               placeholder='Выберите значение'
               options={list}
@@ -141,7 +141,8 @@ export const Demo = () => {
         <StoryItem description='Multiselect'>
           <Select
             placeholder='Выберите значение'
-            options={filteredOptions}
+            options={list}
+
             values={values}
             invalid={true}
             tagsPosition='inside'
@@ -163,7 +164,7 @@ export const Demo = () => {
           <div style={{ height: '20px' }} />
           <Select
             placeholder='Выберите значение'
-            options={filteredOptions}
+            options={list}
             values={state}
             tagsPosition='outside'
             onChange={onChange1}
