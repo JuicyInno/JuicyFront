@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
-import { Close } from '../../../index';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
+import Close from '../../../assets/icons/Close';
 
 export interface ITagProps {
   /** Текст */
@@ -66,7 +66,6 @@ const Chip: React.FC<ITagProps> = ({
 
   return (
     <Tooltip background={tooltipBackground} position={'bottom'} isVisible={overMaxLength}>
-
       <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
         onClick={handleClick}>
         {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
