@@ -66,6 +66,11 @@ export const Playground = (props: IHistoryCardFilterProps) => {
   };
   return <StoryContainer name='HistoryCardFilter' description='Стандартный фильтр для истории'>
     <StoryItem>
+      <HistoryCardFilter {...values} onChange={(result) => {
+        console.warn('Значени изменились: ', result);
+      }} />
+    </StoryItem>
+    <StoryItem>
       <HistoryCardFilter endAdornment={buttonComponent} {...values} onChange={(result) => {
         console.warn('Значени изменились: ', result);
       }} />
