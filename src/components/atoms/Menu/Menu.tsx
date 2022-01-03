@@ -4,14 +4,13 @@ import React, {
 import { Manager, Reference } from 'react-popper';
 
 import './Menu.scss';
-import {
-  IListElement, IMenuContext, DropdownPosition
-} from '../../../types';
+import { IListElement, IMenuContext } from '../../../types';
 import List from './List';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
+import { IDropdownProps } from '../Dropdown/Dropdown';
 
-export interface IListProps {
+export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 'offset'> {
   /** Кнопка открытия меню */
   children: ReactNode;
   /** Элементы меню */
@@ -20,8 +19,6 @@ export interface IListProps {
   content?: ReactNode;
   /** Класс */
   className?: string;
-  /** Положение выпадающего меню */
-  position?: DropdownPosition;
   /** При клике на элемент (children) переключать открытие/скрытие меню
    * Если false то при клике на элемент меню только показывать
    * @default true
@@ -40,7 +37,13 @@ export const MenuContext = React.createContext<IMenuContext>({
 });
 
 const Menu: React.FC<IListProps> = ({
-  list, children, content, position, className = '', toggleTagret = true, disabled = false
+  list,
+  children,
+  content,
+  className = '',
+  toggleTagret = true,
+  disabled = false,
+  ...props
 }: IListProps) => {
   const toggleRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +94,7 @@ const Menu: React.FC<IListProps> = ({
             )}
           </Reference>
 
-          <Dropdown show={show} toggleRef={toggleRef} position={position} onClose={onClose}>
+          <Dropdown {...props} show={show} toggleRef={toggleRef} onClose={onClose}>
             {content ? content : list && list.length > 0 && <List list={list} />}
           </Dropdown>
         </div>

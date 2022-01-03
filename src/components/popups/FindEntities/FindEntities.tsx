@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 
 import {
-  Button, Preloader, Search, Tabs
+  Button, Modal, Preloader, Search, Tabs
 } from '../../../index';
 import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
@@ -158,6 +158,10 @@ export const FindEntities = <T, >({
   /** Запросы */
 
   useEffect(() => {
+    setResults([]);
+  }, [filter]);
+
+  useEffect(() => {
     setLoading(true);
     const [request, cancel] = getEntities(search, filter, 0);
     cancelRef.current = cancel;
@@ -186,11 +190,7 @@ export const FindEntities = <T, >({
   };
 
   const onSelectChange = (entity: T) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(entity);
-
     if (event.target.checked) {
-      console.log('Checked');
-
       if (multiple) {
         setSelected([...selected, entity]);
       } else {
@@ -220,70 +220,72 @@ export const FindEntities = <T, >({
   })) : null;
 
   return (
-    <div className='rf-find-entities'>
-      {!!title && <h4 className='rf-find-entities__title'>{title}</h4>}
-      {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
+    <Modal size='xl' onClose={onClose} custom>
+      <div className='rf-find-entities'>
+        {!!title && <h4 className='rf-find-entities__title'>{title}</h4>}
+        {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
 
-      <div className='rf-find-entities__search' ref={ inputRef }>
-        <Search onDebounce={ onSearchDebounce } autoFocus onClear={ onSearchClear } debounce={debounce} />
-      </div>
+        <div className='rf-find-entities__search' ref={ inputRef }>
+          <Search onDebounce={ onSearchDebounce } autoFocus onClear={ onSearchClear } debounce={debounce} />
+        </div>
 
-      {!!tabs && <div className='rf-find-entities__filters'>
-        <Tabs list={tabs}/>
-      </div>}
+        {!!tabs && <div className='rf-find-entities__filters'>
+          <Tabs list={tabs}/>
+        </div>}
 
-      <div className='rf-find-entities__list' ref={dropdownRef} onScroll={lazy ? onScroll : undefined}>
-        {
-          results.length > 0 ? (
-            results.map((entity, index) => (
-              <Fragment key={index}>
-                {children({
-                  entity,
-                  isSelected: !!selectedMap[entity[entityKey]],
-                  onChange: onSelectChange(entity)
-                })}
-              </Fragment>
-            ))
-          ) : (
-            !isLoading && (
-              <div className='rf-find-entities__empty-state'>
-                {!!emptyStateIcon && <div className='rf-find-entities__empty-state-icon'>
-                  {emptyStateIcon}
-                </div>}
-                <div className='rf-find-entities__empty-state-title'>
-                  {search === '' ? 'Начните поиск' : 'Нет результатов'}
+        <div className='rf-find-entities__list' ref={dropdownRef} onScroll={lazy ? onScroll : undefined}>
+          {
+            results.length > 0 ? (
+              results.map((entity, index) => (
+                <Fragment key={index}>
+                  {children({
+                    entity,
+                    isSelected: !!selectedMap[entity[entityKey]],
+                    onChange: onSelectChange(entity)
+                  })}
+                </Fragment>
+              ))
+            ) : (
+              !isLoading && (
+                <div className='rf-find-entities__empty-state'>
+                  {!!emptyStateIcon && <div className='rf-find-entities__empty-state-icon'>
+                    {emptyStateIcon}
+                  </div>}
+                  <div className='rf-find-entities__empty-state-title'>
+                    {search === '' ? 'Начните поиск' : 'Нет результатов'}
+                  </div>
+                  {search === '' && !!emptyStateInitialText && (
+                    <p className='rf-find-entities__empty-state-subtitle'>
+                      {emptyStateInitialText}
+                    </p>
+                  )}
+                  {search !== '' && (
+                    <p className='rf-find-entities__empty-state-subtitle'>
+                      {emptyStateText}
+                    </p>
+                  )}
                 </div>
-                {search === '' && !!emptyStateInitialText && (
-                  <p className='rf-find-entities__empty-state-subtitle'>
-                    {emptyStateInitialText}
-                  </p>
-                )}
-                {search !== '' && (
-                  <p className='rf-find-entities__empty-state-subtitle'>
-                    {emptyStateText}
-                  </p>
-                )}
+              )
+            )
+          }
+          {
+            (isLoading && !isLazyLoading) && (
+              <div className='rf-find-entities__preloader'>
+                <Preloader size='s'/>
               </div>
             )
-          )
-        }
-        {
-          (isLoading && !isLazyLoading) && (
-            <div className='rf-find-entities__preloader'>
-              <Preloader size='s'/>
-            </div>
-          )
-        }
-      </div>
+          }
+        </div>
 
-      <footer className='rf-find-entities__footer'>
-        <div className='rf-find-entities__footer-button'>
-          <Button onClick={onClose} buttonType='light' size='l'>Отменить</Button>
-        </div>
-        <div className='rf-find-entities__footer-button'>
-          <Button onClick={onSubmit} size='l'>Продолжить</Button>
-        </div>
-      </footer>
-    </div>
+        <footer className='rf-find-entities__footer'>
+          <div className='rf-find-entities__footer-button'>
+            <Button onClick={onClose} buttonType='light' size='l'>Отменить</Button>
+          </div>
+          <div className='rf-find-entities__footer-button'>
+            <Button onClick={onSubmit} size='l'>Продолжить</Button>
+          </div>
+        </footer>
+      </div>
+    </Modal>
   );
 };

@@ -6,6 +6,15 @@
   padding: var(--16);
   display: flex;
   position: relative;
+
+  .rf-hint__button {
+    display: inline-flex;
+    margin-top: 8px;
+
+    .rf-button {
+      border: 0px;
+    }
+  }
 }
 
 .rf-hint__title-text {
@@ -123,8 +132,4 @@
   &:before {
     background-color: var(--status-danger);
   }
-}
-
-.rf-hint__button {
-  margin-top: 8px;
 }

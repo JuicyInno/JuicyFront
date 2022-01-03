@@ -1,8 +1,4 @@
-@import "src/styles/mixins";
-
-.confirm-popup {
-  width: 464px;
-}
+@import 'src/styles/mixins';
 
 .confirm-popup__title {
   @include h4;
@@ -18,9 +14,6 @@
   padding-top: 18px;
   display: flex;
   align-items: center;
-  margin: 0 -32px;
-  padding-left: 32px;
-  padding-right: 32px;
 }
 
 .confirm-popup__footer-button {

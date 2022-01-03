@@ -97,14 +97,14 @@ const Select: FC<ISelectProps> = ({
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
-  }, [setShowDropdown]);
+  }, []);
 
   const onOpen = useCallback(() => {
     if (!disabled) {
       setShowDropdown(true);
     }
 
-  }, [setShowDropdown]);
+  }, [disabled]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
