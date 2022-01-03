@@ -1,5 +1,5 @@
 import React, {
-  FC, useEffect, useState
+  FC, ReactNode, useEffect, useState
 } from 'react';
 
 import Tile from '../../atoms/Tile';
@@ -37,7 +37,9 @@ export interface IHistoryCardFilterProps {
   /** Начальные значения*/
   initialValues?: IHistoryCardValues,
   /** Плэйсхолдер для поиска*/
-  searchPlaceholder?: string
+  searchPlaceholder?: string,
+  /** Дополнительный компонент JSX*/
+  endAdornment?: ReactNode,
   /** Срабатывает при изменении значения*/
   onChange?: (values: IHistoryCardValues) => void
 }
@@ -55,6 +57,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       value: 'f'
     }
   ],
+  endAdornment = null,
   onChange = () => { }
 }: IHistoryCardFilterProps) => {
   // текущие состояние фильтров
@@ -136,14 +139,27 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
     <div className='card-filter__search'>
       <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} />
     </div>;
+
   // =======================================================================================================================================
+
+
+  const endAdornmentComponent = endAdornment ? endAdornment : null;
+
   return <div className='filter__wrapper' >
     <Tile>
-      <div className='card-filter__wrapper' >
+      {!endAdornment ? <div className='card-filter__wrapper' >
         {dateTSX}
         {statusTSX}
         {searchTSX}
-      </div>
+      </div> :
+        <div className='card-filter__wrapper-end-adornment'>
+          {searchTSX}
+          <div className='card-filter__end-adornment--wrapper'>
+            {statusTSX}
+            {endAdornmentComponent}
+          </div>
+        </div>
+      }
     </Tile>
   </div>;
 

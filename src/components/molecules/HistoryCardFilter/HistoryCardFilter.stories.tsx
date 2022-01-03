@@ -5,6 +5,7 @@ import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 import HistoryCardFilter, { IHistoryCardFilterProps, IHistoryCardValues } from './HistoryCardFilter';
 import { IOption } from '../../../types';
+import { Button } from '../../..';
 
 
 const opt: IOption[] = [
@@ -42,6 +43,10 @@ export default {
   decorators: [withDesign],
 };
 
+const buttonComponent = <Button buttonType='primary' onClick={() => {
+  alert('CLICK');
+}} >Создать</Button >;
+
 
 const Demo = () => {
   <StoryContainer name='Fatal Error' description='Стандартный фильтр для истории'>
@@ -61,7 +66,7 @@ export const Playground = (props: IHistoryCardFilterProps) => {
   };
   return <StoryContainer name='HistoryCardFilter' description='Стандартный фильтр для истории'>
     <StoryItem>
-      <HistoryCardFilter {...values} onChange={(result) => {
+      <HistoryCardFilter endAdornment={buttonComponent} {...values} onChange={(result) => {
         console.warn('Значени изменились: ', result);
       }} />
     </StoryItem>
@@ -71,6 +76,6 @@ export const Playground = (props: IHistoryCardFilterProps) => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18129'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18191'
   },
 };

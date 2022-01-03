@@ -2,6 +2,7 @@ import React from 'react';
 import HistoryCardFilter from './HistoryCardFilter'
 import { render } from '@testing-library/react';
 import { IOption } from '../../../types';
+import { Button } from '../../..';
 
 describe('HistoryCardFilter default render', () => {
   it('should be render error screen with default Error text', () => {
@@ -28,5 +29,13 @@ describe('HistoryCardFilter default render', () => {
     const { container } = render(<HistoryCardFilter initialValues={{}} statusOptions={testOptions} />)
     const testOpt = container.getElementsByClassName('card-filter__status-picker')
     expect(testOpt.length).toBe(1)
+  })
+
+  it('should be render with endAdornment', () => {
+    const { container } = render(<HistoryCardFilter initialValues={{}} endAdornment={<Button  >TEST</Button>} />)
+    const endAdornmentClass = container.getElementsByClassName('card-filter__wrapper-end-adornment')
+    const datePickertClass = container.getElementsByClassName('card-filter__datepicker')
+    expect(endAdornmentClass.length).toBe(1);
+    expect(datePickertClass.length).toBe(0)
   })
 })
