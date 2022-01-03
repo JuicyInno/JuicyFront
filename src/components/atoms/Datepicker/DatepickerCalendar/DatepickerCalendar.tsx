@@ -1,5 +1,5 @@
 import React, {
-  Dispatch, ReactNode, RefObject, SetStateAction, useCallback, useEffect, useRef, useState
+  Dispatch, ReactNode, SetStateAction, useCallback, useEffect, useRef, useState
 } from 'react';
 import './DatepickerCalendar.scss';
 import {
@@ -12,43 +12,51 @@ import {
 } from './datepicker.types';
 import { ChevronLeft } from '../../../../index';
 import Tooltip from '../../Tooltip';
-import { DropdownPosition } from '../../../../types';
 
 interface IDatepickerCalendarProps {
+  /** Значение */
   value: string;
+  /** Функция измекнения значения */
   setInputValue: (value: string) => void;
-  showCalendar: boolean;
+  /** Функция скрытия календаря */
   toggleCalendar: Dispatch<SetStateAction<boolean>>;
+  /** Минимальное значение */
   minDate?: Date;
+  /** Максимальное значение */
   maxDate?: Date;
-  toggleRef: RefObject<HTMLDivElement>
-  range: boolean;
-  showTodayButton: boolean;
-  locale: 'ru' | 'en';
-  position: DropdownPosition;
-  format: DateFormat;
-  separator: string;
-  disableWeekDays: number[];
+  /** Диапазон
+   * @default false
+  */
+  range?: boolean;
+  /** Локализация
+   * @default ru
+   */
+  locale?: 'ru' | 'en';
+  /** Формат даты
+   * @default dd.mm.yyyy
+   */
+  format?: DateFormat;
+  /** Разделяющий элемент */
+  separator?: string;
+  /** Массив неактиыных дней */
+  disableWeekDays?: number[];
+  /** Цвет тултипа */
   tooltipBackground?: 'white' | 'default';
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   value,
   setInputValue,
-  showCalendar,
   toggleCalendar,
   minDate,
   maxDate,
-  toggleRef,
   range,
-  locale,
-  position,
-  format,
-  separator,
-  disableWeekDays,
+  locale = 'ru',
+  format = 'dd.mm.yyyy',
+  separator = '-',
+  disableWeekDays = [],
   tooltipBackground = 'default'
 }: IDatepickerCalendarProps) => {
-
   const contentRef = useRef<HTMLDivElement>(null);
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -82,60 +90,6 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
       setCurrentDate(setCurrent());
     }
   }, [value, range]);
-
-  // -------------------------------------------------------------------------------------------------------------------
-
-  const [coordinates, setCoordinates] = useState({
-    top: '-99999px',
-    left: 'auto',
-    right: '0px'
-  });
-
-  const rearrangePosition = () => {
-    if (contentRef.current && toggleRef.current) {
-      const toggleRect: DOMRect = toggleRef.current.getBoundingClientRect();
-      const listRect: DOMRect = contentRef.current.getBoundingClientRect();
-
-      let left = '0px';
-      let right = '0px';
-      let top: number = toggleRect.height;
-      const minGap = 10;
-
-      if (toggleRect.height + toggleRect.top + listRect.height > document.body.offsetHeight) {
-        top =
-          toggleRect.height -
-          (toggleRect.height + toggleRect.top + listRect.height - document.body.offsetHeight) -
-          minGap;
-      }
-
-      if (position === 'left') {
-        if (toggleRect.left + listRect.width > document.body.offsetWidth) {
-          left = `${document.body.offsetWidth - listRect.width - toggleRect.left - minGap}px`;
-        }
-
-        right = 'auto';
-      } else {
-        if (listRect.left < 0) {
-          right = `${listRect.left - minGap}px`;
-        }
-
-        left = 'auto';
-      }
-
-
-      setCoordinates({
-        left,
-        right,
-        top: `${top}px`
-      });
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      rearrangePosition();
-    });
-  }, [showCalendar]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -254,11 +208,13 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
         key={date.getTime()}
         type='button'
         className={`rf-datepicker__calendar-tile rf-datepicker__calendar-date rf-datepicker__calendar-day
-        ${periodClass}
-         ${currentDayClass}
-         ${disabledClass} ${fromDateClass}
-          ${toDateClass} ${inRangeClass}
-          `}
+          ${periodClass}
+          ${currentDayClass}
+          ${disabledClass} 
+          ${fromDateClass}
+          ${toDateClass} 
+          ${inRangeClass}
+        `}
         onClick={() => onDayClick(date)}
         onBlur={() => onBlur(i === array.length - 1)}
       >
@@ -433,60 +389,64 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   const today = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   const disabledMin = !!minDate && minDate.getTime() > today.getTime();
   const disabledMax = !!maxDate && maxDate.getTime() < today.getTime();
-  const todayDisabled: boolean = disabledMin || disabledMax;
 
   // -------------------------------------------------------------------------------------------------------------------
 
-
-  const ButtonWithTooltip = (period: IDatepickerPeriodType, tipText: string) => {
-
-    return (
-      <Tooltip
-        background={tooltipBackground}
-        className='rf-datepicker-calendar__tooltip'
-      >
-        <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
-          onClick={onPeriodTypeChange(period)}>
-          <span className='rf-datepicker__calendar-label'>
-            {periodTypeLabel[period === 'month' ? 'day' : 'month']}
-          </span>
-        </button>
-        <div>{tipText}</div>
-      </Tooltip>
-    );
-  };
+  const getButtonWithTooltip = (period: IDatepickerPeriodType, tipText: string) => (
+    <Tooltip
+      background={tooltipBackground}
+      className='rf-datepicker-calendar__tooltip'
+    >
+      <button type='button' className='rf-datepicker-calendar__button rf-datepicker-calendar__label-button'
+        onClick={onPeriodTypeChange(period)}>
+        <span className='rf-datepicker__calendar-label'>
+          {periodTypeLabel[period === 'month' ? 'day' : 'month']}
+        </span>
+      </button>
+      <div>{tipText}</div>
+    </Tooltip>
+  );
 
 
   return (
-    <div className='rf-datepicker__calendar' ref={contentRef} style={coordinates}>
+    <div className='rf-datepicker__calendar' ref={contentRef}>
       <header className='rf-datepicker__calendar-header'>
         <div className='rf-datepicker-calendar__control'>
-          <button type='button'
+          <button
+            type='button'
             className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-prev'
-            disabled={prevArrowDisabled} onClick={() => onPeriodChange(-1)}>
+            disabled={prevArrowDisabled}
+            onClick={() => onPeriodChange(-1)}
+          >
             <span className='rf-datepicker__calendar-left'>
               <ChevronLeft />
             </span>
           </button>
+
           <div className='rf-datepicker-calendar__control__button-section'>
-            {ButtonWithTooltip('month', 'Выбор месяца')}
-            {ButtonWithTooltip('year', 'Выбор года')}
+            {getButtonWithTooltip('month', 'Выбор месяца')}
+            {getButtonWithTooltip('year', 'Выбор года')}
           </div>
-          <button type='button'
+
+          <button
+            type='button'
             className='rf-datepicker-calendar__button rf-datepicker-calendar__button--arrow rf-datepicker-calendar__button-next'
-            disabled={nextArrowDisabled} onClick={() => onPeriodChange(1)}>
+            disabled={nextArrowDisabled}
+            onClick={() => onPeriodChange(1)}
+          >
             <span className='rf-datepicker__calendar-right'>
               <ChevronLeft />
             </span>
           </button>
         </div>
-
       </header>
+
       <div>
         {periodType === 'day' && (
           <div className='rf-datepicker__calendar-week'>
-            {weekDays[locale].map((d: string) => <div
-              className='rf-datepicker__calendar-tile rf-datepicker__calendar-week-day' key={d}>{d}</div>)}
+            {weekDays[locale].map((d: string) =>
+              <div className='rf-datepicker__calendar-tile rf-datepicker__calendar-week-day' key={d}>{d}</div>)
+            }
           </div>
         )}
 
@@ -498,7 +458,6 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
           <div className='rf-datepicker__calendar-periods-year'>
             {periodType === 'year' && yearsJSX}
           </div>
-
         </div>
       </div>
     </div >
