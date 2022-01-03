@@ -35,6 +35,12 @@ export const Demo = () => {
     console.log(options);
   };
 
+  const onChangeMultiselect = (options: IOption[]) => {
+
+    setValues(options);
+
+  };
+
   const [filteredOptions, setFilteredOptions] = useState<IOption[]>(list);
   const [loading, setLoading] = useState<boolean>(false);
   const timer = useRef<any>(undefined);
@@ -66,7 +72,7 @@ export const Demo = () => {
     }, 1000);
   }, []);
 
-  const [state, setState] = useState([list[0]]);
+  const [state, setState] = useState([]);
   const [state1, setState1] = useState([]);
 
   const onChange1 = (options: IOption[]) => {
@@ -87,6 +93,7 @@ export const Demo = () => {
   ];
 
   const [disabled, setDisabled] = useState(true);
+
 
   return (
     <StoryContainer name='Select' description='виды Select' width={400}>
@@ -142,13 +149,10 @@ export const Demo = () => {
 
         <StoryItem description='Multiselect'>
           <Select
-            placeholder='Выберите значение'
+            placeholder={state.reduce((val: string, item: IOption) => `${val + item.label}`, '')}
             options={list}
-
-            values={values}
-            invalid={true}
-            tagsPosition='inside'
-            onChange={onChange}
+            values={state}
+            onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
             preloader={loading}
@@ -191,7 +195,7 @@ export const Demo = () => {
           <Select
             placeholder='Выберите значение'
             options={list}
-            values={state1}
+            values={state}
             onChange={onChange2}
             preloader={loading}
             disabled={disabled}

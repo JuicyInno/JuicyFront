@@ -169,9 +169,9 @@ const Select: FC<ISelectProps> = ({
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!selectValues || selectValues.length === 0) {
+    /*     if (!selectValues || selectValues.length === 0) {
       return;
-    }
+    } */
 
     const map: Record<string, boolean> = selectValues.reduce((acc: Record<string, boolean>, o: IOption) => {
       acc[o.value] = true;
@@ -216,14 +216,17 @@ const Select: FC<ISelectProps> = ({
   }, [options]);
 
   // -------------------------------------------------------------------------------------------------------------------
+  console.log(selectedMap);
 
   const listJSX = filteredOptions.map((o: IOption) => {
     const optionDisabled = o.disabled || false;
     const active = selectedMap[o.value] || false;
 
+
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
       e.stopPropagation();
       onValueChange(o);
+      console.log(active);
 
       if (!multiselect) {
         setInputValue(clearOnSelect ? '' : o.label);
@@ -297,7 +300,7 @@ const Select: FC<ISelectProps> = ({
     <div className='rf-select__tags' ref={tagsRef} onClick={() => !disabled && onOpen()}>
       {selectValues.map((t: IOption) => (
         <div className='rf-select__tag' key={t.value}>
-          <Chip type='secondary' size='s' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
+          <Chip maxLength={8} type='secondary' size='s' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
             {t.label}
           </Chip>
         </div>
@@ -357,16 +360,13 @@ const Select: FC<ISelectProps> = ({
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
 
-
-  console.log(selectValues);
-
-
   return (
     <Manager>
       <div className={classnames('rf-select', multiselectClass, tagClass)} ref={toggleRef}>
         <Reference>
           {(referenceProps) => (
             <div
+
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
@@ -377,22 +377,23 @@ const Select: FC<ISelectProps> = ({
               )}
               onClick={() => onOpen()}
             >
+              {tagsJSX}
               {startAdornmentIcon}
               <input
                 id='rf-select__input'
                 className='rf-select__input'
-                // onMouseDown={openDropdown}
                 onChange={onSelectSearch}
                 value={inputValue}
                 disabled={disabled}
                 readOnly={readOnly}
                 placeholder={
-                  (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
+                  (multiselect && selectValues.length === maxOptions) ? '' : placeholder
                 }
               />
               {endAdornmentIcon}
               {closeButton}
               {chevronButton}
+
             </div>
           )}
         </Reference>
@@ -424,7 +425,7 @@ const Select: FC<ISelectProps> = ({
         </Dropdown>
 
         {/* filteredOptions.length > 0*/}
-        {tagsJSX}
+
       </div>
     </Manager>
   );

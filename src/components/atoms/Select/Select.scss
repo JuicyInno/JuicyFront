@@ -201,7 +201,6 @@
 .rf-select__tags {
   display: flex;
   flex-wrap: wrap;
-  padding: 8px 0;
 }
 
 .rf-select__tag {
@@ -227,4 +226,11 @@
 
 .rf-select__button--rotate {
   transform: translateY(-50%) rotate(180deg);
+}
+.rf-select__tag--label {
+  text-overflow: clip;
+  height: 32px;
+  background-color: var(--background-secondary);
+  border-color: var(--background-secondary);
+  color: var(--text-secondary);
 }
