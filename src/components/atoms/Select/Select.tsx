@@ -424,7 +424,7 @@ const Select: FC<ISelectProps> = ({
         </Dropdown>
 
         {/* filteredOptions.length > 0*/}
-        {tagsJSX}
+        {/*        {tagsJSX} */}
       </div>
     </Manager>
   );
