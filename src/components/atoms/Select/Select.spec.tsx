@@ -118,7 +118,6 @@ describe('Test <Select/> component', () => {
     })
   })
 
-<<<<<<< HEAD
   it('should be render in invalid status', () => {
     render(<Select
       options={list}
@@ -157,57 +156,5 @@ describe('Test <Select/> component', () => {
 
     expect(document.getElementsByClassName('rf-select__button__icon--end')!.length).toBe(1);
     expect(document.getElementsByClassName('rf-select__button__icon')!.length).toBe(1)
-=======
-    await waitFor(() => {
-      expect(screen.queryByTestId('rf-dropdown')).not.toBeInTheDocument();
-    });
-  });
-
-  it('should have dropdown width of 600px', async () => {
-    const { container } = render(
-      <Select dropdownMaxWidth={600} placeholder='Выберите значение' options={[{ value: 'v', label: 'label' }]} values={[]} onChange={jest.fn} />
-    );
-
-    fireEvent.click(screen.getByTestId('rf-select'));
-
-    await waitFor(() => {
-      const dropdown = screen.getByTestId('rf-dropdown');
-      const styleAttribute = dropdown.getAttribute('style');
-      const hasProperWidth = styleAttribute ? styleAttribute.includes('max-width: 600px') : false;
-      expect(hasProperWidth).toBeTruthy();
-    });
-  });
-
-  it('should close dropdown on chevron click', async () => {
-    const { container } = render(
-      <Select options={[{ value: 'v', label: 'label' }]} values={[]} onChange={jest.fn} />
-    );
-
-    fireEvent.click(screen.getByTestId('rf-select__chevron'));
-
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-dropdown')).toBeInTheDocument();
-    });
-
-    fireEvent.click(screen.getByTestId('rf-select__chevron'));
-
-    await waitFor(() => {
-      expect(screen.queryByTestId('rf-dropdown')).not.toBeInTheDocument();
-    });
-  });
-
-  it('should open dropdown after disabled props change', async () => {
-    const { container, rerender } = render(
-      <Select options={[{ value: 'v', label: 'label' }]} values={[]} disabled={true} onChange={jest.fn} />
-    );
-
-    rerender(<Select options={[{ value: 'v', label: 'label' }]} values={[]} disabled={false} onChange={jest.fn} />)
-    fireEvent.click(screen.getByTestId('rf-select'));
-
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-dropdown')).toBeInTheDocument();
-    });
-
->>>>>>> b09115763c62ddc23e43b4a0afe676b3ff7d7ce9
   })
 });
