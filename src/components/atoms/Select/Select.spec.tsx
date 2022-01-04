@@ -46,7 +46,7 @@ describe('Test <Select/> component', () => {
     />)
     expect(container.querySelectorAll('.rf-select__tag').length).toBe(3)
   })
-  it('should be render with correct placeholder', () => {
+  it('should be render without correct placeholder', () => {
 
     const { container } = render(<Select
       options={list}
@@ -55,7 +55,7 @@ describe('Test <Select/> component', () => {
       placeholder='Placeholder'
       multiselect
     />)
-    expect(container.querySelector('input')!.getAttribute('placeholder')).toBe('Placeholder')
+    expect(container.querySelector('input')!.getAttribute('placeholder')).toBe('')
   })
 
   it('should be render readOnly and diabled', () => {
