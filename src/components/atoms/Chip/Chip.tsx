@@ -15,7 +15,7 @@ export interface ITagProps {
   /** залочен или нет */
   disabled?: boolean;
   /** размер */
-  size?: 's' | 'm';
+  size?: 'xs' | 's' | 'm';
   /** Вариант отображения */
   type?: 'primary' | 'secondary' | 'outline';
   /** Иконка */

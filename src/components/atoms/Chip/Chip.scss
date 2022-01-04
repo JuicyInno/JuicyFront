@@ -8,6 +8,12 @@
   cursor: default;
 }
 
+.rf-chip.rf--xs {
+  @include caption;
+  height: 24px;
+  padding: 4px 8px;
+}
+
 .rf-chip.rf--s {
   @include text-s-14;
   height: 32px;

@@ -19,6 +19,70 @@ export default {
 
 const list: IOption[] = [];
 
+const list2: IOption[] = [
+  {
+    value: '0',
+    label: 'Москва'
+  },
+  {
+    value: '1',
+    label: 'Санкт-Петербург'
+  },
+  {
+    value: '2',
+    label: 'Новосибирск'
+  },
+  {
+    value: '3',
+    label: 'Екатеринбург'
+  },
+  {
+    value: '4',
+    label: 'Казань'
+  },
+  {
+    value: '5',
+    label: 'Нижний Новгород'
+  },
+  {
+    value: '6',
+    label: 'Челябинск'
+  },
+  {
+    value: '7',
+    label: 'Самара'
+  },
+  {
+    value: '8',
+    label: 'Омск'
+  },
+  {
+    value: '9',
+    label: 'Ростов-на-Дону'
+  },
+  {
+    value: '10',
+    label: 'Уфа'
+  },
+  {
+    value: '11',
+    label: 'Красноярск'
+  },
+  {
+    value: '12',
+    label: 'Воронеж'
+  },
+  {
+    value: '13',
+    label: 'Пермь'
+  },
+  {
+    value: '14',
+    label: 'Волгоград'
+  },
+
+];
+
 for (let i = 1; i < 15; i++) {
   list.push({
     value: `${i}`,
@@ -37,7 +101,7 @@ export const Demo = () => {
 
   const onChangeMultiselect = (options: IOption[]) => {
 
-    setValues(options);
+    setCities(options);
 
   };
 
@@ -47,22 +111,20 @@ export const Demo = () => {
 
   const filterWithDelay = (query: string) => {
     if (query === '') {
-      setFilteredOptions(list);
+      setFilteredOptions(list2);
       return;
     }
 
     setLoading(true);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      const filtered = list.filter((o: IOption) => o.label.toLowerCase().includes(query.toLowerCase()));
+      const filtered = list2.filter((o: IOption) => o.label.toLowerCase().includes(query.toLowerCase()));
       setFilteredOptions(filtered);
       setLoading(false);
     }, 1000);
   };
 
   const onSearch = (query: string) => {
-    console.log(query);
-
     filterWithDelay(query);
   };
 
@@ -74,14 +136,13 @@ export const Demo = () => {
 
   const [state, setState] = useState([]);
   const [state1, setState1] = useState([]);
+  const [cities, setCities] = useState<IOption[]>([]);
 
   const onChange1 = (options: IOption[]) => {
-    console.log(options);
     setState(options);
   };
 
   const onChange2 = (options: IOption[]) => {
-    console.log(options);
     setState1(options);
   };
 
@@ -149,9 +210,9 @@ export const Demo = () => {
 
         <StoryItem description='Multiselect'>
           <Select
-            placeholder={state.reduce((val: string, item: IOption) => `${val + item.label}`, '')}
-            options={list}
-            values={state}
+            placeholder='Выберите город'
+            options={filteredOptions}
+            values={cities}
             onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
@@ -172,7 +233,6 @@ export const Demo = () => {
             placeholder='Выберите значение'
             options={list}
             values={state}
-            tagsPosition='outside'
             onChange={onChange1}
             onSearch={onSearch}
             preloader={loading}
@@ -185,7 +245,6 @@ export const Demo = () => {
             readOnly
             options={list}
             values={state1}
-            tagsPosition='outside'
             onChange={onChange2}
             preloader={loading}
           />
@@ -234,6 +293,9 @@ export const LazySelect: Story = () => {
       return;
     }
 
+    console.log(query);
+
+
     const offset = isPagination ? list.length : 0;
 
     setIsLoading(true);
@@ -245,6 +307,7 @@ export const LazySelect: Story = () => {
           value: item.id,
           label: item.title,
         }));
+        console.log(resList);
 
         setList((prevList) => (isPagination ? [...prevList, ...resList] : resList));
 
