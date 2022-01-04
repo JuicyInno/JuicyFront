@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import Confirm, { IConfirmProps } from './Confirm';
-import StoryContainer from '../../storybook/Story';
-import { Story } from '@storybook/react';
-import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 import { withDesign } from 'storybook-addon-designs';
 import {
@@ -10,6 +7,7 @@ import {
 } from '../../storybook';
 import Modal from '../../atoms/Modal';
 import Button from '../../atoms/Button';
+import Story from '../../storybook/Story';
 
 
 export default {
@@ -55,7 +53,7 @@ export default {
 };
 
 
-export const Demo: Story = (args: any) => {
+export const Demo = (args: any) => {
   const [show, toggle] = useState(false);
   const onAction = (comment?: string) => {
     console.log(comment);
@@ -92,13 +90,12 @@ export const Playground = (args: IConfirmProps) => {
 
 
   return (
-    <StoryContainer>
-      <StoryRow>
-        <Button onClick={() => toggle(true)}>Open modal</Button>
-        {show ? <Modal onClose={() => toggle(false)} >
-          <Confirm {...args} onAction={onAction} onClose={() => toggle(false)} />
-        </Modal> : null}
-      </StoryRow>
-    </StoryContainer>
+    <Story name='Изображение пользователя'>
+      <Modal size='l'>
+        <Confirm textAccept='Согласен'
+          text='Вы согласны на обработку персональных данных?'
+          onClose={() => { }} onAction={onAction} comment='Комментарий' showComment />
+      </Modal>
+    </Story>
   );
 };

@@ -3,7 +3,7 @@ import './StoryItem.scss';
 
 interface IProps {
   subtitle?: string;
-  description?: string;
+  description?: ReactNode;
   children: ReactNode | ReactNode[];
 }
 
