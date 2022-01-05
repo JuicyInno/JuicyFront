@@ -3,6 +3,7 @@ import Pagination, { IPaginationProps } from './Pagination';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
+import { Story } from '@storybook/react';
 
 export default {
   title: 'navigations/withTest/Pagination',
@@ -11,6 +12,10 @@ export default {
     count: { defaultValue: 7 },
     getCurrentPage: { control: null },
     disabledPages: { defaultValue: [] },
+    disabled: {
+      defaultValue: false,
+      control: 'boolean',
+    }
   }
 };
 
@@ -48,7 +53,9 @@ Demo.parameters = {
   },
 };
 
-export const Playground = (args: IPaginationProps) => {
+export const Playground: Story<IPaginationProps> = (args: IPaginationProps) => {
+  console.log(args);
+
   return (
     <StoryContainer>
       <StoryRow>

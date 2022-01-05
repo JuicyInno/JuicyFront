@@ -25,6 +25,12 @@
       color: var(--basic-disable);
     }
   }
+  .rf-pagination__ellipsis {
+    color: var(--basic-disable);
+  }
+  .rf-pagination__input {
+    display: none;
+  }
 }
 
 .rf-pagination__chevron-wrapper {
