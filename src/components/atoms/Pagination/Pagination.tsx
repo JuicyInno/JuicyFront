@@ -44,8 +44,10 @@ const Pagination: React.FC<IPaginationProps> = ({
   /** клик по номеру страницы */
   const handleClickByPage = (newPage: number) => () => {
     if (!disabledPages.includes(newPage)) {
-      setCurrentPage(newPage);
-      getCurrentPage(newPage);
+      if (!disabled) {
+        setCurrentPage(newPage);
+        getCurrentPage(newPage);
+      }
     }
   };
 
@@ -57,8 +59,10 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
 
     if (newPage >= MIN_PAGE_NUMBER) {
-      setCurrentPage(newPage);
-      getCurrentPage(newPage);
+      if (!disabled) {
+        setCurrentPage(newPage);
+        getCurrentPage(newPage);
+      }
     }
   };
 
@@ -70,8 +74,10 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
 
     if (newPage <= count) {
-      setCurrentPage(newPage);
-      getCurrentPage(newPage);
+      if (!disabled) {
+        setCurrentPage(newPage);
+        getCurrentPage(newPage);
+      }
     }
   };
 
@@ -80,13 +86,17 @@ const Pagination: React.FC<IPaginationProps> = ({
     const page = Number(result.debounceString);
 
     if (!page) {
-      setCurrentPage(MIN_PAGE_NUMBER);
-      getCurrentPage(MIN_PAGE_NUMBER);
+      if (!disabled) {
+        setCurrentPage(MIN_PAGE_NUMBER);
+        getCurrentPage(MIN_PAGE_NUMBER);
+      }
     }
 
     if (page >= MIN_PAGE_NUMBER && page <= count) {
-      setCurrentPage(page);
-      getCurrentPage(page);
+      if (!disabled) {
+        setCurrentPage(page);
+        getCurrentPage(page);
+      }
     }
   };
 
