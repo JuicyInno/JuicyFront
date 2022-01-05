@@ -20,8 +20,6 @@ export interface IProps {
 }
 
 const Toast: FC<IProps> = ({ children, isVisible = false, setVisibility, duration = 2000 }) => {
-  console.log(isVisible);
-
   useEffect(() => {
     setTimeout(() => {
       setVisibility(false);
