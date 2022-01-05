@@ -28,10 +28,11 @@ export const Demo = () => {
         flexDirection: 'column',
         gap: '16px',
       }}>
-        <Pagination count={7} getCurrentPage={getCurrentPage}/>
-        <Pagination count={16} getCurrentPage={getCurrentPage}/>
-        <Pagination count={21} getCurrentPage={getCurrentPage}/>
-        <Pagination disabledPages={[3]} count={7} getCurrentPage={getCurrentPage}/>
+        <Pagination count={7} getCurrentPage={getCurrentPage} />
+        <Pagination count={16} getCurrentPage={getCurrentPage} />
+        <Pagination count={21} getCurrentPage={getCurrentPage} />
+        <Pagination disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
+        <Pagination disabled count={7} getCurrentPage={getCurrentPage} />
       </div>
     </StoryDocs>
 
