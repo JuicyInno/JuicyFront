@@ -11,7 +11,8 @@ export const list: ITreeOption[] = [
         label: 'Шапка',
         checked: false,
         children: [],
-        variant: 'red'
+        variant: 'red',
+        loading: true
       }
     ]
   },

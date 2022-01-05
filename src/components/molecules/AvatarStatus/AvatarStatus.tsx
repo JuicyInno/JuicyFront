@@ -23,7 +23,7 @@ const AvatarStatus: FC<IAvatarStatus> = ({
     <div className={`rf-avatar-status ${sizeClass[size]}`}>
       <Avatar {...props} size={size} />
       {variant && <div className={`rf-avatar-status__border ${sizeClass[size]} ${variant}`}/>}
-      {type && (size !== 'xxs' && size !== 'xs') && variant !== 'default' && (
+      {type && (size !== 'xxxs' && size !== 'xxs' && size !== 'xs') && variant !== 'default' && (
         <div className={size === 's' ? 'rf-avatar-status__sticker--size-s' : 'rf-avatar-status__sticker'}>
           <Status size={statusSize[size] as StatusIconSize} type={type} />
         </div>

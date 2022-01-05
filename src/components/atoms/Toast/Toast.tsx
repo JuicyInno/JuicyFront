@@ -1,61 +1,42 @@
 import React, {
-  FC, ReactNode, useEffect, useMemo, useRef
+  FC, ReactNode, useEffect
 } from 'react';
 import { createPortal } from 'react-dom';
 
 import './Toast.scss';
 
-export interface IProps {
-  /** Содержимое toast */
+export interface IToastProps {
+  /** Контент */
   children: ReactNode;
-  /** Поаказать toast */
-  isVisible: boolean;
-  /**
-   * Длитиельность показа в мс
-   * @default 2000
-   *  */
-  duration?: number
-  /** Функция отображения toast */
+  /** Показывать компонент
+   * @default false
+   */
+  isVisible?: boolean;
+  /** Функция открытия/закрытия компонента */
   setVisibility: (mode: boolean) => void;
 }
 
-const Toast: FC<IProps> = ({ children, isVisible = false, setVisibility, duration = 2000 }) => {
+const Toast: FC<IToastProps> = ({ children, isVisible = false, setVisibility }) => {
   useEffect(() => {
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setVisibility(false);
-    }, duration);
-
-  }, [isVisible]);
-
-  const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
-
-
-  /** При маунте добавляем модалку. При дестрое - удаляем. */
-  useEffect(() => {
-    /** Контейнер для модалки */
-    document.body.appendChild(div);
+    }, 2000);
 
     return () => {
-      document.body.removeChild(div);
+      clearTimeout(id);
     };
-  }, [div]);
+  }, [isVisible]);
 
-  const toastEl = useRef<HTMLDivElement>(null);
+  if (!isVisible) {
+    return null;
+  }
 
-  const position = {
-    top: '20px',
-    right: `${window.innerWidth / 2 - (toastEl.current?.clientWidth ? toastEl.current?.clientWidth / 2 : 0)}px`,
-  };
+  const toast =
+    <div data-testid='rf-toast' className='rf-toast'>
+      {children}
+    </div>;
 
-  const toast = <div
-    ref={toastEl}
-    style={position}
-    className={`rf-toast ${isVisible ? 'visible' : 'not-visible'}`}
-  >
-    {children}
-  </div>;
-
-  return createPortal(toast, div);
+  return createPortal(toast, document.body);
 };
 
 export default Toast;

@@ -9,15 +9,15 @@ import {
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
+import Success from '../../../assets/icons/24px/Arrows/Success';
 import Calendar from '../../../assets/icons/Calendar';
 import ChevronDown from '../../../assets/icons/ChevronDown';
 import Info from '../../../assets/icons/Info';
 import Search from '../../../assets/icons/Search';
-import Success from '../../../assets/icons/Success';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'forms/Input',
+  title: 'forms/withTest/Input',
   decorators: [withDesign],
   component: Input,
   argTypes: {
@@ -46,11 +46,8 @@ export const Demo = () => {
         <FormGroup label={LABEL}>
           <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => {}} />
         </FormGroup>
-        <FormGroup label={LABEL}>
+        <FormGroup label='disabled'>
           <Input placeholder='Введите тип обращения' disabled />
-        </FormGroup>
-        <FormGroup label={LABEL}>
-          <Input defaultValue='Тип обращения' disabled />
         </FormGroup>
         <FormGroup label={LABEL} errorMessage='Additional text'>
           <Input invalid />
@@ -68,16 +65,16 @@ export const Demo = () => {
         maxWidth: 400
       }}>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Search style={{ color: 'var(--basic-primary)' }}/>}/>
+          <Input endAdornment={<Search style={{ color: 'var(--basic-primary)' }}/>} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Calendar style={{ color: 'var(--text-tertiary)' }} />}/>
+          <Input endAdornment={<Calendar style={{ color: 'var(--text-tertiary)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input endAdornment={<ChevronDown />}/>
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Success style={{ color: 'var(--status-success)' }}/>}/>
+          <Input endAdornment={<Success style={{ color: 'var(--status-success)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input endAdornment={<Info />}/>

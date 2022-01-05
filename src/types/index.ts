@@ -1,4 +1,5 @@
 import { ReactNode, SVGProps } from 'react';
+import { Placement } from '@popperjs/core';
 
 /** Элемент списка для Radio, Checkbox и Select */
 export interface IOption {
@@ -9,11 +10,12 @@ export interface IOption {
 }
 
 export interface ITreeOption extends IOption {
-  checked: boolean;
+  checked?: boolean;
   hasCheckedChild?: boolean;
   parent?: ITreeOption;
   children?: ITreeOption[];
   variant?: Variant;
+  loading?: boolean;
 }
 
 export interface ICustomOption extends IOption {
@@ -106,7 +108,7 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red';
+export type VariantClassic = 'default' | 'blue' | 'green' | 'yellow' | 'red' | 'white';
 export type Variant =
   | VariantClassic
   | 'blue'
@@ -123,6 +125,7 @@ export const variantsClassic: VariantClassic[] = [
   'yellow',
   'red',
 ];
+
 export const variants: Variant[] = [
   'default',
   'blue',
@@ -156,7 +159,7 @@ export type BadgeVariant =
 export type AvatarColor = 'default' | 'white' | 'grey' | 'black';
 
 /** Размер */
-export type Size = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
+export type Size = 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';
@@ -180,10 +183,14 @@ export interface IButtonGroup {
   label?: ReactNode;
   /** Описание в меню */
   description?: ReactNode;
+  /** Текст при наведении */
+  tooltip?: ReactNode;
   /** Ссылка в меню */
   url?: string;
   /** Клик по кнопке в меню */
   onClick?: () => void;
+  /** неактивное состояние */
+  disabled?: boolean;
 }
 
 /** Пропсы иконки */
@@ -192,4 +199,4 @@ export interface IIconProps extends SVGProps<SVGSVGElement> {
   size?: Size
 }
 
-export type DropdownPosition = 'left' | 'right' | 'top-left' | 'top-right';
+export type DropdownPosition = Placement;

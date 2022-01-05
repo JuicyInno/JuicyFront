@@ -1,32 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Story } from '@storybook/react';
 import Timepicker from './Timepicker';
-import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
 
 export default {
-  title: 'forms/не проверено/Timepicker',
+  title: 'forms/withTest/Timepicker',
   component: Timepicker
 };
 
-export const timepicker = () => {
-  const [s, setS] = useState('14:00');
-
-  useEffect(() => {
-    setTimeout(() => {
-      setS('16:00');
-    }, 1000);
-  }, []);
-
+export const Demo = () => {
   return (
-    <Story name='Timepicker' height={600}>
+    <StoryDocs>
+      <StoryDocsH1>Timepicker</StoryDocsH1>
       <StoryItem description='Выбор времени'>
-        <form>        <Timepicker name='timepicker' initialValue={s} min='12:30' max='20:15' />
+        <form>
+          <Timepicker name='timepicker' initialValue='12:20' min='08:30' max='20:15' />
         </form>
       </StoryItem>
 
       <StoryItem description='Disabled'>
-        <Timepicker disabled name='timepicker' initialValue={s} min='12:30' max='20:15' />
+        <Timepicker disabled name='timepicker' initialValue='16:00' min='12:30' max='20:15' />
       </StoryItem>
-    </Story>
+
+      <StoryItem description='Empty'>
+        <Timepicker name='timepicker' />
+      </StoryItem>
+    </StoryDocs>
   );
+};
+
+export const Playground: Story = (args) => {
+  return (
+    <StoryContainer>
+      <StoryItem>
+        <Timepicker name='timepicker' {...args} />
+      </StoryItem>
+    </StoryContainer>
+  );
+};
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=6%3A37232',
+  },
 };

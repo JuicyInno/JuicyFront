@@ -82,7 +82,7 @@ export const Demo = () => {
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right'>
+              <Menu list={_listMenu} position='top-start'>
                 <Button buttonType='secondary'>
                   Верхнее меню
                 </Button>
@@ -100,7 +100,7 @@ export const Demo = () => {
         <StoryItem description='Выпадающий список с произвольным контентом в портале'>
           <StoryRow>
             <StoryCol>
-              <Menu position='right' portal content={content}>
+              <Menu position='right' content={content}>
                 <Button buttonType='secondary'>
                   Тут контент 😏
                 </Button>
@@ -110,7 +110,7 @@ export const Demo = () => {
 
           <StoryRow>
             <StoryCol>
-              <Menu position='right' list={_listMenuWithTile} portal>
+              <Menu position='right' list={_listMenuWithTile}>
                 <Button buttonType='secondary'>
                   Меню с заголовком
                 </Button>
@@ -121,23 +121,23 @@ export const Demo = () => {
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' >
+              <Menu list={_listMenu} position='top-start' >
                 <Button buttonType='secondary'>
-                top-left
+                top-start
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-right' >
+              <Menu list={_listMenu} position='top-end' >
                 <Button buttonType='secondary'>
-                top-right
+                top-end
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={_listMenu} position='top-left' content={content}>
+              <Menu list={_listMenu} position='top-start' content={content}>
                 <Button buttonType='secondary'>
-                  top-left custom content
+                  top-start custom content
                 </Button>
               </Menu>
             </StoryCol>

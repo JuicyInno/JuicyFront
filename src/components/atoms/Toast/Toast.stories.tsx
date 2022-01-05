@@ -1,46 +1,39 @@
 import React, { useState } from 'react';
 import { Story } from '@storybook/react';
+
+
 import Toast from '../../atoms/Toast';
 import Button from '../Button';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import { withDesign } from 'storybook-addon-designs';
-import {
-  StoryDocs, StoryDocsDescription, StoryDocsH1
-} from '../../storybook';
-import StoryItem from '../../storybook/StoryItem';
 
 
 export default {
   title: 'popovers/withTest/Toast',
   component: Toast,
-  decorators: [withDesign],
-  argTypes: {
-    duration: {
-      control: { type: 'number' },
-      default: 2000,
-    },
-
-  }
+  argTypes: { children: { control: null }, },
 };
 
-export const Demo: Story = (props: any) => {
+export const Demo = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  return <StoryContainer name='Toast' description='Мини-нотификация'>
+    <Toast isVisible={isVisible} setVisibility={setIsVisible}>
+      <p>Текст уведомления</p>
+    </Toast>
+    <Button onClick={() => setIsVisible(true)}>Показать уведомление</Button>
+  </StoryContainer>;
+};
+
+export const Playground: Story = (args) => {
   return (
-    <StoryDocs>
-      <StoryDocsH1>Toast</StoryDocsH1>
-      <StoryDocsDescription>Мини-нотификация</StoryDocsDescription>
-      <StoryItem>
-        <Toast {...props} isVisible={isVisible} setVisibility={setIsVisible} >
+    <StoryContainer>
+      <StoryRow>
+        <Toast isVisible {...args} setVisibility={() => { }}>
           <p>Текст уведомления</p>
         </Toast>
-        <Button onClick={() => setIsVisible(true)}>Показать уведомление</Button>
-      </StoryItem>
-      <StoryItem>
-
-
-      </StoryItem>
-    </StoryDocs>
+      </StoryRow>
+    </StoryContainer>
   );
 };
 
@@ -49,19 +42,4 @@ Demo.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=1887%3A25249',
   },
-};
-
-
-export const Playground: Story = (props: any) => {
-  const [isVisible, setIsVisible] = useState(false);
-  return (
-    <StoryContainer>
-      <StoryRow>
-        <Toast {...props} isVisible={isVisible} setVisibility={setIsVisible} >
-          <p>Текст уведомления</p>
-        </Toast>
-        <Button onClick={() => setIsVisible(true)}>Показать уведомление</Button>
-      </StoryRow>
-    </StoryContainer>
-  );
 };

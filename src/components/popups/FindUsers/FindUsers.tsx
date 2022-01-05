@@ -273,7 +273,7 @@ const FindUsers: FC<IProps> = ({
             {`${item.lastName} ${item.firstName} ${item.middleName}`}
             {item.id && <span className='list-users__user-id'>({item.id})</span>}
             {item.departmentsPath && (
-              <Tooltip portal background={tooltipBackground}>
+              <Tooltip background={tooltipBackground}>
                 <Info className='list-users__user-info' />
                 <Structure departmentsPath={item.departmentsPath} background={tooltipBackground} />
               </Tooltip>
@@ -418,10 +418,10 @@ const FindUsers: FC<IProps> = ({
 
       <footer className='find-users__footer'>
         <div className='find-users__footer-button'>
-          <Button disabled={disabled} onClick={onSubmit}>Добавить</Button>
+          <Button disabled={disabled} onClick={onSubmit} size='l'>Добавить</Button>
         </div>
         <div className='find-users__footer-button'>
-          <Button onClick={onClose} buttonType='light'>Отмена</Button>
+          <Button onClick={onClose} buttonType='light' size='l'>Отмена</Button>
         </div>
       </footer>
     </div>

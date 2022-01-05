@@ -1,20 +1,8 @@
 .rf-dropdown__content {
-  position: absolute;
-  top: 100%;
-  left: 0;
   z-index: 1001;
-  width: 100%;
   background-color: var(--background-primary);
-  box-shadow: 0 4px 16px rgba(138, 150, 168, 0.4), 0 0 6px rgba(138, 150, 168, 0.08);
-  border-radius: 12px;
-  overflow: hidden;
-  display: none;
-}
-
-.rf-dropdown__content--show {
-  display: block;
-}
-
-.rf-dropdown__content--portal {
-  position: absolute;
+  box-shadow: var(--shadow-non-clickable);
+  border-radius: 8px;
+  max-width: inherit;
+  width: auto;
 }

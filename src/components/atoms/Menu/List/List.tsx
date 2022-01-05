@@ -43,7 +43,7 @@ const List: React.FC<IListProps> = ({ list, tooltipBackground = 'default' }: ILi
 
   const renderLabel = (index: number, label: ReactNode) => {
     return checkOverflow(index) ?
-      <Tooltip background={tooltipBackground} portal position='bottom'><span>{label}</span><>{label}</></Tooltip> : <>{label}</>;
+      <Tooltip background={tooltipBackground} position='bottom'><span>{label}</span><>{label}</></Tooltip> : <>{label}</>;
   };
 
   const listElementJSX =
@@ -84,7 +84,7 @@ const List: React.FC<IListProps> = ({ list, tooltipBackground = 'default' }: ILi
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  return <ul className='rf-list'>{listElementJSX}</ul>;
+  return <ul className='rf-list' data-testid='rf-list'>{listElementJSX}</ul>;
 };
 
 export default List;

@@ -29,7 +29,7 @@ interface IDatepickerCalendarProps {
   format: DateFormat;
   separator: string;
   disableWeekDays: number[];
-  tooltipBackground?: 'white' | 'default'
+  tooltipBackground?: 'white' | 'default';
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({

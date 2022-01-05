@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from './Tooltip';
+import Tooltip, { ITooltipProps } from './Tooltip';
 import Button from '../Button';
 import StoryContainer from '../../storybook/Story';
 import { Story } from '@storybook/react';
@@ -9,10 +9,9 @@ import { withDesign } from 'storybook-addon-designs';
 import {
   StoryDocs, StoryDocsDescription, StoryDocsH1
 } from '../../storybook';
-import { IBadgeProps } from '../Badge/Badge';
 
 export default {
-  title: 'popovers/не проверено/Tooltip',
+  title: 'popovers/withTest/Tooltip',
   component: Tooltip,
   decorators: [withDesign],
   argTypes: {
@@ -40,7 +39,7 @@ export const Demo: Story = (props: any) => {
       <StoryDocsH1>Tooltip</StoryDocsH1>
       <StoryDocsDescription>Компонент tooltip</StoryDocsDescription>
       <StoryItem subtitle={`${props.position} ${props.background} tooltip `}>
-        <Tooltip {...props} >
+        <Tooltip {...props}>
           <Button>
             Button
           </Button>
@@ -59,7 +58,7 @@ Demo.parameters = {
 };
 
 
-export const Playground: Story = (args: IBadgeProps) => {
+export const Playground: Story = (args: ITooltipProps) => {
   return (
     <StoryContainer>
       <StoryRow>

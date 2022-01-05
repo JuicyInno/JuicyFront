@@ -35,9 +35,12 @@ function hashPlugin({ types: t }) {
         path.node.source.value = `${path.node.source.value}?scopeId=${hash}`
       },
       JSXElement(path, stats) {
-        if (!this.hasScopedCss || path.node.openingElement.name.type === 'JSXMemberExpression') {
+        const isFragment = path.node.openingElement.name.name === 'Fragment';
+
+        if (!this.hasScopedCss || path.node.openingElement.name.type === 'JSXMemberExpression' || isFragment) {
           return
         }
+
         path.node.openingElement.attributes.push(
           t.jsxAttribute(
             t.jsxIdentifier(`data-v-${hash}`),

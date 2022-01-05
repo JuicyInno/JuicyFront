@@ -52,9 +52,9 @@ import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
 import History from './components/molecules/History';
+import HistorySidebar from './components/molecules/HistorySidebar';
 import Status from './components/atoms/Status';
 import StatusWithText from './components/atoms/StatusWithText';
-import ButtonGroup from './components/atoms/ButtonGroup';
 import ActionMenu from './components/organisms/ActionMenu';
 import PageWithList from './components/pages/PageWithList';
 import UsersStack from './components/molecules/UsersStack';
@@ -73,6 +73,11 @@ import Schedule, {
   ScheduleLegend,
   ScheduleLegendItem,
 } from './components/molecules/Schedule';
+import ButtonGroup from './components/molecules/ButtonGroup';
+import { FindEntities } from './components/popups/FindEntities';
+import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
+import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntitiesUser';
+import AvatarStack from './components/molecules/AvatarStack';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -85,6 +90,7 @@ export {
   HistoryCardFilter,
   Avatar,
   AvatarStatus,
+  AvatarStack,
   Badge,
   Button,
   Checkbox,
@@ -138,6 +144,7 @@ export {
   EntityCard,
   Toast,
   History,
+  HistorySidebar,
   Status,
   StatusWithText,
   ButtonGroup,
@@ -151,7 +158,11 @@ export {
   ContentExpander,
   BackdropLoader,
   PopupMaker,
-  Dropdown
+  Dropdown,
+  FindEntities,
+  FindEntitiesPosition,
+  FindEntitiesUser,
+  createGetUsers
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -906,7 +917,7 @@ import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
 import {
-  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform
+  numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform, today
 } from './utils/helpers';
 
 export {
@@ -921,5 +932,6 @@ export {
   LocalToUTC,
   UTCToLocal,
   formatDate,
-  oDataTransform
+  oDataTransform,
+  today
 };

@@ -2,6 +2,7 @@ import React, {
   ReactNode,
   useCallback, useEffect, useRef, useState
 } from 'react';
+import { Manager, Reference } from 'react-popper';
 import './Datepicker.scss';
 import DatepickerCalendar from './DatepickerCalendar';
 import {
@@ -15,7 +16,6 @@ import { classnames } from '../../../utils/classnames';
 import Cross from '../../../assets/icons/Cross';
 import { DropdownPosition } from '../../../types';
 import Dropdown from '../Dropdown';
-
 
 export interface IDatepickerProps {
   /** Имя поля */
@@ -42,6 +42,7 @@ export interface IDatepickerProps {
   locale?: 'ru' | 'en';
   /** Кнопка Сегодня */
   showTodayButton?: boolean;
+  /** Положение выпадающего меню */
   position?: DropdownPosition;
   /** Формат даты */
   format?: DateFormat;
@@ -57,10 +58,7 @@ export interface IDatepickerProps {
    */
   filled?: boolean;
   /** Цвет tooltip */
-
   tooltipBackground?: 'default' | 'white'
-  /** Использовать портал */
-  portal?: boolean;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -78,16 +76,13 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   range = false,
   showDayOfWeek = false,
   showTodayButton = true,
-  position = 'left',
+  position = 'bottom-start',
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
   children,
   tooltipBackground = 'default',
-  portal = false
-
 }: IDatepickerProps) => {
   const separator = format[2];
-
 
   const [dayOfWeek, setDayOfWeek] = useState<string[]>([]);
 
@@ -270,12 +265,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   };
 
   useEffect(() => {
-    if (inputValue === '__.__.____ - __.__.____' || inputValue === '') {
-      const result = getReturnValue('', range);
-      onChange && onChange(result, name);
-      fireOnChange();
-    }
-
     if (!inputValue.includes('_') && inputValue !== '') {
       const result = getReturnValue(inputValue, range);
       onChange && onChange(result, name);
@@ -349,8 +338,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const clearDateRangeHandler = () => {
     setInputValue('');
+    const result = getReturnValue('', range);
+    onChange && onChange(result, name);
+    fireOnChange();
   };
-
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -360,70 +351,85 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const isCrossChevronPicker = inputValue.split('-').length === 2 && inputValue.split('-')[1].trim() !== '__.__.____';
 
-
   return (
-    <div className='rf-datepicker' ref={datepickerRef}>
-      <div
-        className={classnames({
-          'rf-datepicker__input-wrapper': true,
-          'rf-datepicker__input-wrapper--disabled': disabled,
-          'rf-datepicker__input-wrapper--readonly': readOnly
-        })}
-        ref={inputRef}
-        onClick={() => toggleCalendar(true)}
-      >
-        {
-          children || (
-            <InputMask
-              mask={mask}
-              name={name}
-              placeholder={placeholder}
-              value={inputValue}
-              disabled={disabled}
-              readOnly={readOnly}
-              onKeyPress={onKeyPress}
-              onChange={onDatepickerChange}
+    <Manager>
+      <div className='rf-datepicker' ref={datepickerRef}>
+        <Reference>
+          {(referenceProps) => (
+            <div
+              {...referenceProps}
+              className={classnames({
+                'rf-datepicker__input-wrapper': true,
+                'rf-datepicker__input-wrapper--disabled': disabled,
+                'rf-datepicker__input-wrapper--readonly': readOnly
+              })}
+              onClick={() => toggleCalendar(true)}
             >
-              <Input
-                invalid={invalid}
-                filled={filled}
-                startAdornment={
-                  <button type='button' className='rf-datepicker__calendar-button'>
-                    <Calendar />
-                  </button>
-                }
-                endAdornment={
-                  <div className='rf-datepicker__calendar-chevron'>
-                    {isCrossChevronPicker ?
-                      <Cross onClick={clearDateRangeHandler} /> :
-                      <ChevronDown />}
-                  </div>
-                }
-              />
-            </InputMask>
-          )
-        }
-      </div>
-      <Dropdown show={showCalendar} toggleRef={inputRef} onClose={onClose} portal={portal} position={position}>
-        <DatepickerCalendar
-          value={inputValue}
-          minDate={minDate}
-          maxDate={maxDate}
-          toggleRef={inputRef}
-          setInputValue={setValue}
-          range={range}
-          locale={locale}
-          showCalendar={showCalendar}
-          toggleCalendar={toggleCalendar}
-          showTodayButton={showTodayButton}
+              {
+                children || (
+                  <InputMask
+                    mask={mask}
+                    name={name}
+                    placeholder={placeholder}
+                    value={inputValue}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    onKeyPress={onKeyPress}
+                    onChange={onDatepickerChange}
+                  >
+                    <Input
+                      invalid={invalid}
+                      filled={filled}
+                      startAdornment={
+                        <button type='button' className='rf-datepicker__calendar-button'>
+                          <Calendar />
+                        </button>
+                      }
+                      endAdornment={
+                        <div className='rf-datepicker__calendar-chevron'>
+                          {isCrossChevronPicker ?
+                            <Cross onClick={clearDateRangeHandler} /> :
+                            <ChevronDown />}
+                        </div>
+                      }
+                    />
+                  </InputMask>
+                )
+              }
+            </div>
+          )}
+        </Reference>
+
+        <Dropdown
+          show={showCalendar}
+          toggleRef={datepickerRef}
+          onClose={onClose}
           position={position}
-          separator={separator}
-          format={format}
-          disableWeekDays={disableWeekDays || []}
-          tooltipBackground={tooltipBackground}
-        />
-      </Dropdown>
-    </div>
+          style={{
+            maxWidth: 'auto',
+            width: 'auto'
+          }}
+        >
+          <DatepickerCalendar
+            value={inputValue}
+            minDate={minDate}
+            maxDate={maxDate}
+            toggleRef={inputRef}
+            setInputValue={setValue}
+            range={range}
+            locale={locale}
+            showCalendar={showCalendar}
+            toggleCalendar={toggleCalendar}
+            showTodayButton={showTodayButton}
+            position={position}
+            separator={separator}
+            format={format}
+            disableWeekDays={disableWeekDays || []}
+            tooltipBackground={tooltipBackground}
+          />
+        </Dropdown>
+      </div>
+    </Manager>
   );
 };
 

@@ -24,6 +24,11 @@
   right: -9px;
 }
 
+.rf-avatar-status.rf--xxxs,
+.rf-avatar-status__border.rf--xxxs {
+  @include round(16px);
+}
+
 .rf-avatar-status.rf--xxs,
 .rf-avatar-status__border.rf--xxs {
   @include round(20px);
@@ -81,7 +86,9 @@
 .rf-avatar-status__border.red {
   border: 3px solid var(--status-danger);
 }
-
+.rf-avatar-status__border.white {
+  border: 3px solid var(--background-primary);
+}
 .rf-avatar-status__border.yellow {
   border: 3px solid var(--status-warn);
 }

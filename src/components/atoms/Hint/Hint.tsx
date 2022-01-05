@@ -26,7 +26,6 @@ const Hint: React.FC<IHintProps> = ({
   title,
   maxWidth = '648px',
 }: IHintProps) => {
-
   return (
     <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant}`}>
       {icon === 'info' &&
