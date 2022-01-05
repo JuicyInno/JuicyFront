@@ -39,7 +39,7 @@ export const Demo = () => {
   const [showCustom, setShowCustom] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   const [showDrawerCustom, setShowDrawerCustom] = useState(false);
-  const [showShowSizeModal, setShowSizeModal] = useState<ModalSize>();
+  const [showShowSizeModal, setShowSizeModal] = useState<ModalSize | undefined>();
 
   return (
     <StoryDocs>
