@@ -4,18 +4,19 @@ import React, {
 } from 'react';
 import { Manager, Reference } from 'react-popper';
 import './Datepicker.scss';
-import DatepickerCalendar from './DatepickerCalendar';
+import DatepickerCalendar from './DatepickerCalendar/index';
 import {
   formatDate, generateMask, getWeekDay, parseToFormat, stringToDate
 } from './DatepickerCalendar/datepicker.utils';
 import Input from '../Input';
 import InputMask from 'react-input-mask';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import { Calendar, ChevronDown } from '../../../index';
-import { classnames } from '../../../utils/classnames';
 import Cross from '../../../assets/icons/Cross';
-import { DropdownPosition } from '../../../types';
+import Calendar from '../../../assets/icons/Calendar';
 import Dropdown from '../Dropdown';
+import ChevronDown from '../../../assets/icons/ChevronDown';
+import { DropdownPosition } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 export interface IDatepickerProps {
   /** Имя поля */

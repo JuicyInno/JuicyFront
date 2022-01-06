@@ -1,15 +1,12 @@
 import React, {
   FC, useEffect, useState
 } from 'react';
-
 import Tile from '../../atoms/Tile';
-
-
 import './HistoryCardFilter.scss';
 import { IOption } from '../../../types';
-import {
-  Datepicker, Search, Select
-} from '../../../index';
+import Select from '../../atoms/Select';
+import Search from '../../atoms/Search';
+import Datepicker from '../../atoms/Datepicker';
 import { IDateVariants, IDebounceResult } from '../../../types/projects.types';
 
 export interface IHistoryCardValues {
