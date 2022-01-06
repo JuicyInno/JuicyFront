@@ -36,7 +36,11 @@
     padding: 8px 32px 24px;
     position: relative;
     min-height: 0;
-    height: 100vh;
+  }
+
+  &__empty-state {
+    padding: 8px 32px 24px;
+    position: relative;
   }
 
   &__footer {
@@ -87,5 +91,15 @@
   &__empty-state-subtitle {
     @include text-m-16;
     color: var(--basic-tertiary);
+  }
+
+  &__preloader-wrap {
+    padding: 40px 0;
+  }
+
+  .rf-find-entities__preloader {
+    position: relative;
+    flex-shrink: 0;
+    min-height: 60px;
   }
 }

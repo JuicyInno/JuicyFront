@@ -1,7 +1,7 @@
 import './FindEntities.scss';
 
 import React, {
-  ReactNode, Fragment, useEffect, useRef, useState
+  ReactNode, Fragment, useEffect, useRef, useState, useCallback
 } from 'react';
 
 import {
@@ -9,19 +9,18 @@ import {
 } from '../../../index';
 import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { classnames } from '../../../utils/classnames';
 
 interface IFindEntitiesProps<T extends Record<string, any>> {
   /** Закрытие модального окна. */
   onClose?: () => void;
-
   /** Список уже выбранных сущностей. */
   value?: T[];
   /** Вернуть выбранные сущности. */
   onChange?: (data: T[]) => void;
   /** Время дебаунса при поиске. */
   debounce?: number;
-
   /**
    * Функция поиска по сущностям.
    * @returns Кортеж с промисом сущностей и опциональной функцией отмены запроса.
@@ -42,17 +41,10 @@ interface IFindEntitiesProps<T extends Record<string, any>> {
    * @default false
    */
   multiple?: boolean;
-  /**
-   * Ленивая подгрузка результатов.
-   * @default false
-   */
-  lazy?: boolean;
-
   /** Заголовок. */
   title?: ReactNode;
   /** Подзаголовок. */
   subtitle?: ReactNode;
-
   /**
    * Иконка для эмпти стейта.
    */
@@ -77,7 +69,6 @@ export const FindEntities = <T, >({
   entityKey,
   children,
   multiple,
-  lazy,
   filters,
   title,
   subtitle,
@@ -87,10 +78,8 @@ export const FindEntities = <T, >({
 }: IFindEntitiesProps<T>) => {
   const cancelRef = useRef<(() => void) | null>(null);
   const inputRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   /** Список выбранных сущностей */
-
   const [selected, setSelected] = useState<T[]>(value);
   const selectedMap: Record<string, boolean> = selected.reduce((result: Record<string, boolean>, e) => {
     result[e[entityKey] as unknown as string] = true;
@@ -98,13 +87,11 @@ export const FindEntities = <T, >({
   }, {});
 
   /** Поиск */
-
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState(filters ? filters[0].value : '');
   const [results, setResults] = useState<any[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [isLazyLoading, setLazyLoading] = useState(false);
   /** Выведены все результаты */
   const [isLazyAllLoaded, setLazyAllLoaded] = useState(false);
 
@@ -120,67 +107,11 @@ export const FindEntities = <T, >({
     setFilter(value);
   };
 
-  /** Прогрузка */
-
-  const onScroll = () => {
-    if (!dropdownRef.current) {
-      return;
-    }
-
-    const { scrollTop, scrollHeight, offsetHeight } = dropdownRef.current;
-    const scrollInPercent = Math.round((100 * scrollTop) / (scrollHeight - offsetHeight));
-
-    if (scrollInPercent > 90 && !isLoading && !isLazyAllLoaded) {
-      if (cancelRef.current) {
-        cancelRef.current();
-        cancelRef.current = null;
-      }
-
-      setLoading(true);
-      setLazyLoading(true);
-
-      const [request, cancel] = getEntities(search, filter, results.length);
-      cancelRef.current = cancel;
-
-      request.then((response) => {
-        if (response.length) {
-          setResults(results.concat(response));
-        } else {
-          setLazyAllLoaded(true);
-        }
-      }).finally(() => {
-        setLoading(false);
-        setLazyLoading(false);
-      });
-    }
-  };
-
-  /** Запросы */
-
+  /** После изенения поиска или фильтра очищаем список */
   useEffect(() => {
     setResults([]);
-  }, [filter]);
-
-  useEffect(() => {
-    setLoading(true);
-    const [request, cancel] = getEntities(search, filter, 0);
-    cancelRef.current = cancel;
-
-    request.then((response) => {
-      setResults(response);
-      setLazyAllLoaded(false);
-    }).finally(() => {
-      setLoading(false);
-    });
-
-    return () => {
-      if (cancelRef.current) {
-        cancelRef.current();
-        cancelRef.current = null;
-      }
-    };
-  }, [getEntities, search, filter]);
-
+    setLazyAllLoaded(false);
+  }, [search, filter]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -201,7 +132,6 @@ export const FindEntities = <T, >({
     }
   };
 
-
   useEffect(() => {
     setTimeout(() => {
       if (inputRef.current) {
@@ -214,10 +144,48 @@ export const FindEntities = <T, >({
     });
   }, [filter]);
 
+  const onFetch = useCallback(async (skip: number) => {
+    setIsLoading(true);
+
+    if (cancelRef.current) {
+      cancelRef.current();
+      cancelRef.current = null;
+    }
+
+    const [request, cancel] = getEntities(search, filter, skip);
+    cancelRef.current = cancel;
+
+    return request
+      .then((res) => {
+        if (res.length) {
+          setResults(prevRes => [...prevRes, ...res]);
+        } else {
+          setLazyAllLoaded(true);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [search, filter, results.length]);
+
+  /** При изменении фильтра или поиска, загрузка начинается с 0 */
+  useEffect(() => {
+    onFetch(0);
+
+    return () => {
+      if (cancelRef.current) {
+        cancelRef.current();
+        cancelRef.current = null;
+      }
+    };
+  }, [filter, search]);
+
   const tabs = filters ? filters.map(({ label, value }) => ({
     label,
     handler: onFilterChange(value)
   })) : null;
+
+  const hasMore = !isLoading && !isLazyAllLoaded;
 
   return (
     <Modal size='xl' onClose={onClose} custom>
@@ -233,10 +201,20 @@ export const FindEntities = <T, >({
           <Tabs list={tabs}/>
         </div>}
 
-        <div className='rf-find-entities__list' ref={dropdownRef} onScroll={lazy ? onScroll : undefined}>
-          {
-            results.length > 0 ? (
-              results.map((entity, index) => (
+        <div className='rf-find-entities__list' id='rf-find-entities-scroll'>
+          <InfiniteScroll
+            hasMore={hasMore}
+            dataLength={results?.length}
+            next={() => onFetch(results?.length)}
+            loader={
+              <div className='rf-find-entities__preloader'>
+                <Preloader />
+              </div>
+            }
+            scrollableTarget='rf-find-entities-scroll'
+          >
+            {
+              results?.map((entity, index) => (
                 <Fragment key={index}>
                   {children({
                     entity,
@@ -245,37 +223,37 @@ export const FindEntities = <T, >({
                   })}
                 </Fragment>
               ))
-            ) : (
-              !isLoading && (
-                <div className='rf-find-entities__empty-state'>
-                  {!!emptyStateIcon && <div className='rf-find-entities__empty-state-icon'>
-                    {emptyStateIcon}
-                  </div>}
-                  <div className='rf-find-entities__empty-state-title'>
-                    {search === '' ? 'Начните поиск' : 'Нет результатов'}
-                  </div>
-                  {search === '' && !!emptyStateInitialText && (
-                    <p className='rf-find-entities__empty-state-subtitle'>
-                      {emptyStateInitialText}
-                    </p>
-                  )}
-                  {search !== '' && (
-                    <p className='rf-find-entities__empty-state-subtitle'>
-                      {emptyStateText}
-                    </p>
-                  )}
+            }
+            {
+              isLoading && (
+                <div className={classnames('rf-find-entities__preloader', !results.length && 'rf-find-entities__preloader-wrap')}>
+                  <Preloader />
                 </div>
               )
-            )
-          }
-          {
-            (isLoading && !isLazyLoading) && (
-              <div className='rf-find-entities__preloader'>
-                <Preloader size='s'/>
-              </div>
-            )
-          }
+            }
+          </InfiniteScroll>
         </div>
+
+        {!results.length && !isLoading && (
+          <div className='rf-find-entities__empty-state'>
+            {!!emptyStateIcon && <div className='rf-find-entities__empty-state-icon'>
+              {emptyStateIcon}
+            </div>}
+            <div className='rf-find-entities__empty-state-title'>
+              {search === '' ? 'Начните поиск' : 'Нет результатов'}
+            </div>
+            {search === '' && !!emptyStateInitialText && (
+              <p className='rf-find-entities__empty-state-subtitle'>
+                {emptyStateInitialText}
+              </p>
+            )}
+            {search !== '' && (
+              <p className='rf-find-entities__empty-state-subtitle'>
+                {emptyStateText}
+              </p>
+            )}
+          </div>
+        )}
 
         <footer className='rf-find-entities__footer'>
           <div className='rf-find-entities__footer-button'>
@@ -289,3 +267,5 @@ export const FindEntities = <T, >({
     </Modal>
   );
 };
+
+export default FindEntities;
