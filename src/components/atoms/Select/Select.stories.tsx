@@ -262,20 +262,18 @@ export const Demo = () => {
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
         </StoryItem>
 
-        {/* <StoryItem description='Tag Select'>
+        <StoryItem description='Tag Select'>
           <div style={{ position: 'relative' }}>
-            <InputNumber defaultValue={'1200.60'} floatPoints={2} />
             <Select
-              placeholder='Выберите значение'
-              readOnly
-              variant='tag'
-              options={currencies}
-              values={state1}
-              onChange={onChange2}
-              preloader={loading}
+              options={list}
+              values={[list[1], list[2], list[3]]}
+              onChange={() => { }}
+              placeholder='Placeholder'
+              multiselect
+              maxOptions={3}
             />
           </div>
-        </StoryItem> */}
+        </StoryItem>
       </form>
     </StoryContainer>
   );

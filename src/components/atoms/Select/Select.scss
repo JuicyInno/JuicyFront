@@ -255,7 +255,8 @@
   height: 24px;
   margin-bottom: 4px;
 }
-.rf-select__tag {
+.rf-select__tag,
+.rf-select__input--multiselect {
   margin: 2px 0px;
 }
 .rf-select--multiselect--fixed {

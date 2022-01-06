@@ -34,6 +34,8 @@ describe('Test <Select/> component', () => {
       onChange={() => { }}
       placeholder='Placeholder'
     />)
+
+
     expect(container.querySelector('input')!.value.trim()).toBe('Вариант 2')
   })
   it('should be render multiselect with 3 selected values', () => {
@@ -85,7 +87,7 @@ describe('Test <Select/> component', () => {
     const button = screen.getByTestId('rf-select__chevron');
     fireEvent.click(button)
     await waitFor(() => {
-      expect(document.querySelectorAll('.rf-select__list-element--active').length).toBe(3)
+      expect(document.querySelectorAll('.rf-select__list .rf-select__list-element--active').length).toBe(3)
     })
 
     fireEvent.click(button)

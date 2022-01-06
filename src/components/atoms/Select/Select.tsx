@@ -332,7 +332,7 @@ const Select: FC<ISelectProps> = ({
           </Chip>
         </div>
       ))}
-      <div className={classnames('rf-select__tag', 'rf-select__input--multiselect')}>
+      <div className={classnames('rf-select__input--multiselect')}>
         {inputElement}
       </div>
     </div>
@@ -412,7 +412,7 @@ const Select: FC<ISelectProps> = ({
               {startAdornmentIcon}
               <div className={classnames(multiselect && selectValues.length ? 'rf-select__wrapper--input' : '', !showDropdown && multiselect && selectValues.length ? 'rf-select--multiselect--fixed' : '')}>
                 {tagsJSX}
-                {selectValues.length < 1 ? inputElement : null}
+                {multiselect ? selectValues.length < 1 ? inputElement : null : inputElement}
               </div>
               {endAdornmentIcon}
               {closeButton}
