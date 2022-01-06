@@ -7,7 +7,6 @@ import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
-import InputNumber from '../InputNumber';
 import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 import Select from '.';
@@ -263,7 +262,7 @@ export const Demo = () => {
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
         </StoryItem>
 
-        <StoryItem description='Tag Select'>
+        {/* <StoryItem description='Tag Select'>
           <div style={{ position: 'relative' }}>
             <InputNumber defaultValue={'1200.60'} floatPoints={2} />
             <Select
@@ -276,7 +275,7 @@ export const Demo = () => {
               preloader={loading}
             />
           </div>
-        </StoryItem>
+        </StoryItem> */}
       </form>
     </StoryContainer>
   );

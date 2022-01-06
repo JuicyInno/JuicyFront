@@ -35,7 +35,7 @@ export interface ISelectProps {
   /** залочен или нет */
   disabled?: boolean;
   /** Максимальное количество выбранных вариантов при multiselect */
-  maxOptions?: number;
+  maxOptions?: number | undefined;
   /** Прелоудер при ленивой загрузке */
   preloader?: boolean;
   /** Очистить селект при выборе значения */
@@ -76,7 +76,7 @@ const Select: FC<ISelectProps> = ({
   placeholder = '',
   disabled = false,
   readOnly = false,
-  maxOptions = options.length,
+  maxOptions = undefined,
   preloader = false,
   clearOnSelect = false,
   clearHook,
@@ -193,12 +193,15 @@ const Select: FC<ISelectProps> = ({
     let result = undefined;
 
     if (multiselect) {
+      console.log(selectValues, maxOptions);
+
       const index = selectValues.findIndex((o: IOption) => option.value === o.value);
+      console.log(index);
 
       if (index >= 0) {
         result = selectValues.filter((_: IOption, i: number) => i !== index);
       } else {
-        if (selectValues.length < maxOptions) {
+        if (typeof maxOptions === 'number' ? selectValues.length < maxOptions : true) {
           result = [...selectValues, option];
         }
       }
@@ -233,6 +236,7 @@ const Select: FC<ISelectProps> = ({
 
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
 
+      console.log(e, o);
 
       e.stopPropagation();
       onValueChange(o);
@@ -301,10 +305,26 @@ const Select: FC<ISelectProps> = ({
 
   const noop = () => { };
 
+  const inputElement = <input
+    autoSave='false'
+
+    autoComplete='off'
+    id='rf-select__input'
+    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
+    onChange={onSelectSearch}
+    value={inputValue}
+    disabled={disabled}
+    readOnly={readOnly}
+    placeholder={
+      multiselect && selectValues.length ? '' : placeholder
+    }
+  />;
+
   const tagsRef = useRef<HTMLDivElement>(null);
 
   const tagsJSX = multiselect && selectValues.length > 0 && (
     <div className='rf-select__tags' onClick={() => !disabled && onOpen()}>
+
       {selectValues.map((t: IOption) => (
         <div ref={tagsRef} className={classnames('rf-select__tag')} key={t.value}>
           <Chip type='secondary' size='xs' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
@@ -312,8 +332,12 @@ const Select: FC<ISelectProps> = ({
           </Chip>
         </div>
       ))}
+      <div className={classnames('rf-select__tag', 'rf-select__input--multiselect')}>
+        {inputElement}
+      </div>
     </div>
   );
+
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -388,17 +412,7 @@ const Select: FC<ISelectProps> = ({
               {startAdornmentIcon}
               <div className={classnames(multiselect && selectValues.length ? 'rf-select__wrapper--input' : '', !showDropdown && multiselect && selectValues.length ? 'rf-select--multiselect--fixed' : '')}>
                 {tagsJSX}
-                <input
-                  id='rf-select__input'
-                  className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
-                  onChange={onSelectSearch}
-                  value={inputValue}
-                  disabled={disabled}
-                  readOnly={readOnly}
-                  placeholder={
-                    multiselect && selectValues.length ? '' : placeholder
-                  }
-                />
+                {selectValues.length < 1 ? inputElement : null}
               </div>
               {endAdornmentIcon}
               {closeButton}
