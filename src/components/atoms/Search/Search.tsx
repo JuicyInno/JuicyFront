@@ -2,8 +2,8 @@ import React, {
   HTMLProps, useEffect, useRef, useState, ReactNode
 } from 'react';
 import './Search.scss';
-import { Close, SearchIcon } from '../../../index';
-
+import Close from '../../../assets/icons/Close';
+import SearchIcon from '../../../assets/icons/Search';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IDebounceResult } from '../../../types/projects.types';
@@ -75,22 +75,22 @@ const Search: React.FC<ISearchProps> = ({
 
   return (
     <div className='rf-search'>
-      <input { ...props }
-        ref={ ref }
+      <input {...props}
+        ref={ref}
         type='text'
         className='rf-search__input'
-        placeholder={ props.placeholder || 'Поиск' }
-        value={ value }
+        placeholder={props.placeholder || 'Поиск'}
+        value={value}
         data-testid='search-test-id'
-        onChange={ onChangeHandler }
+        onChange={onChangeHandler}
       />
-      <SearchIcon className='rf-search__search-icon'/>
+      <SearchIcon className='rf-search__search-icon' />
 
-      { value.length > 0 && showClear &&
-      <Close data-testid='search-clear-test-id'
-        className={ classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment') }
-        onClick={ onClearClickHandler }/> }
-      { endAdornment && <div className='rf-search__endAdornment'>{ endAdornment }</div> }
+      {value.length > 0 && showClear &&
+        <Close data-testid='search-clear-test-id'
+          className={classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment')}
+          onClick={onClearClickHandler} />}
+      {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 
     </div>
