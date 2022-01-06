@@ -44,7 +44,7 @@ const Pagination: React.FC<IPaginationProps> = ({
   /** клик по номеру страницы */
   const handleClickByPage = (newPage: number) => () => {
     if (!disabledPages.includes(newPage)) {
-      if (disabled) {
+      if (!disabled) {
         setCurrentPage(newPage);
         getCurrentPage(newPage);
       }
@@ -59,7 +59,7 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
 
     if (newPage >= MIN_PAGE_NUMBER) {
-      if (disabled) {
+      if (!disabled) {
         setCurrentPage(newPage);
         getCurrentPage(newPage);
       }
@@ -74,7 +74,7 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
 
     if (newPage <= count) {
-      if (disabled) {
+      if (!disabled) {
         setCurrentPage(newPage);
         getCurrentPage(newPage);
       }
@@ -86,14 +86,14 @@ const Pagination: React.FC<IPaginationProps> = ({
     const page = Number(result.debounceString);
 
     if (!page) {
-      if (disabled) {
+      if (!disabled) {
         setCurrentPage(MIN_PAGE_NUMBER);
         getCurrentPage(MIN_PAGE_NUMBER);
       }
     }
 
     if (page >= MIN_PAGE_NUMBER && page <= count) {
-      if (disabled) {
+      if (!disabled) {
         setCurrentPage(page);
         getCurrentPage(page);
       }
