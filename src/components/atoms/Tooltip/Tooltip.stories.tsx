@@ -45,7 +45,22 @@ export const Demo: Story = (props: any) => {
           </Button>
           <div>Tooltip</div>
         </Tooltip>
-      </StoryItem>
+        <Tooltip {...props}>
+          <Button>
+            Button
+          </Button>
+          <div>Tooltip</div>
+        </Tooltip> <Tooltip {...props}>
+          <Button>
+            Button
+          </Button>
+          <div>Tooltip</div>
+        </Tooltip> <Tooltip {...props}>
+          <Button>
+            Button
+          </Button>
+          <div>Tooltip</div>
+        </Tooltip></StoryItem>
     </StoryDocs>
   );
 };
