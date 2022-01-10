@@ -48,6 +48,46 @@
 .rf-pagination__label {
   @include text-m-16;
   user-select: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.rf-pagination__label-simple {
+  width: 16px;
+  height: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-tertiary);
+  margin: 0px 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--basic-press);
+  }
+  &--disabled {
+    cursor: default;
+    color: var(--basic-disable);
+    &:hover {
+      background-color: initial;
+      color: var(--basic-disable);
+    }
+  }
+  &--selected {
+    color: var(--text-static-white);
+    background-color: var(--basic-primary);
+    &:hover {
+      background-color: var(--basic-hover);
+      color: var(--text-static-white);
+    }
+  }
 }
 
 .rf-pagination__label,
@@ -94,11 +134,4 @@
   justify-content: center;
   align-items: center;
   color: var(--text-primary);
-}
-.rf-pagination__label-simple {
-  width: 16px;
-  height: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

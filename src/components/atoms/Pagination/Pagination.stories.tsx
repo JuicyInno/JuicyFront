@@ -1,6 +1,8 @@
 import React from 'react';
 import Pagination, { IPaginationProps } from './Pagination';
-import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2
+} from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { Story } from '@storybook/react';
@@ -11,11 +13,16 @@ export default {
   argTypes: {
     count: { defaultValue: 7 },
     getCurrentPage: { control: null },
-    disabledPages: { defaultValue: [] },
+
+    isSimple: {
+      control: 'boolean',
+      defaultValue: false,
+    },
     disabled: {
       defaultValue: false,
       control: 'boolean',
-    }
+    },
+    disabledPages: { defaultValue: [] },
   }
 };
 
@@ -38,8 +45,10 @@ export const Demo = () => {
         <Pagination count={21} getCurrentPage={getCurrentPage} />
         <Pagination disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
         <Pagination disabled count={7} getCurrentPage={getCurrentPage} />
-        <Pagination isSimple disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
+
       </div>
+      <StoryDocsH2>Pagination simple</StoryDocsH2>
+      <Pagination isSimple count={7} getCurrentPage={getCurrentPage} />
     </StoryDocs>
 
   );
