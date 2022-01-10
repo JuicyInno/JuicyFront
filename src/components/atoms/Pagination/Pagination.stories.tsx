@@ -68,6 +68,8 @@ export const Playground: Story<IPaginationProps> = (args: IPaginationProps) => {
 
   return (
     <StoryContainer>
+      <StoryDocsH1>Pagination</StoryDocsH1>
+      <StoryDocsH2>Pagination {args.isSimple ? 'simple' : ''}</StoryDocsH2>
       <StoryRow>
         <Pagination {...args} />
       </StoryRow>
