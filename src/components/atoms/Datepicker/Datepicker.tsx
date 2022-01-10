@@ -8,14 +8,16 @@ import DatepickerCalendar from './DatepickerCalendar';
 import {
   formatDate, generateMask, getWeekDay, parseToFormat, stringToDate
 } from './DatepickerCalendar/datepicker.utils';
-import Input from '../Input';
+
 import InputMask from 'react-input-mask';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
-import Cross from '../../../assets/icons/Cross';
 import { DropdownPosition } from '../../../types';
 import Dropdown from '../Dropdown';
+import Input from '../Input';
+import Calendar from '../../../assets/icons/Calendar';
+import ChevronDown from '../../../assets/icons/ChevronDown';
+import Cross from '../../../assets/icons/Cross';
 
 export interface IDatepickerProps {
   /** Имя поля */
@@ -386,19 +388,19 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                         </button>
                       }
                       endAdornment={
-                        <div className='rf-datepicker__calendar-chevron'>
+                        < div className='rf-datepicker__calendar-chevron' >
                           {isCrossChevronPicker ?
                             <Cross onClick={clearDateRangeHandler} /> :
                             <ChevronDown />}
-                        </div>
+                        </ div>
                       }
                     />
-                  </InputMask>
+                  </InputMask >
                 )
               }
-            </div>
+            </div >
           )}
-        </Reference>
+        </Reference >
 
         <Dropdown
           show={showCalendar}
@@ -428,8 +430,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             tooltipBackground={tooltipBackground}
           />
         </Dropdown>
-      </div>
-    </Manager>
+      </div >
+    </Manager >
   );
 };
 

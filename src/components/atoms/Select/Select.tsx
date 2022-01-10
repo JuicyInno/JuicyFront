@@ -6,13 +6,12 @@ import './Select.scss';
 
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
-
-import {
-  ChevronDown, Close, Preloader
-} from '../../../index';
+import ChevronDown from '../../../assets/icons/ChevronDown';
+import Close from '../../../assets/icons/Close';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
+import Preloader from '../Preloader';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -285,7 +284,7 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const noop = () => {};
+  const noop = () => { };
 
   const tagsRef = useRef<HTMLDivElement>(null);
 

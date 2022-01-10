@@ -29,7 +29,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   /** Контент для вставки в конец инпута */
   endAdornment?: ReactNode;
   /** обработка нажатий с эффектом debounce */
-  onDebounce?:(result:IDebounceResult)=>void;
+  onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
   ref?: Ref<HTMLLabelElement>;
 }
@@ -86,7 +86,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
     return () => {
       sub && sub.unsubscribe();
     };
-  }, [ debounce, onDebounce]);
+  }, [debounce, onDebounce]);
 
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */
@@ -101,8 +101,8 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
 
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
-    <button type='button' className='rf-input__action' onClick={ clearInput } aria-label='Сбросить'>
-      <Close/>
+    <button type='button' className='rf-input__action' onClick={clearInput} aria-label='Сбросить'>
+      <Close />
     </button>
   );
 
@@ -144,17 +144,17 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
     >
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}
       <input
-        { ...props }
-        ref={ inputRef }
+        {...props}
+        ref={inputRef}
         className={'rf-input__field'}
         autoComplete='off'
-        type={ props.type || 'text' }
+        type={props.type || 'text'}
         disabled={disabled}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
       />
       {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
-      { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
+      {icon ? <button type='button' className='rf-input__action'>{icon}</button> : closeButton}
     </label>
   );
 });

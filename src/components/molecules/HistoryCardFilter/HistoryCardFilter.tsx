@@ -3,8 +3,6 @@ import React, {
 } from 'react';
 
 import Tile from '../../atoms/Tile';
-
-
 import './HistoryCardFilter.scss';
 import { IOption } from '../../../types';
 import {

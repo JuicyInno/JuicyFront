@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
-import { Close } from '../../../index';
+import Close from '../../../assets/icons/Close';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
 
