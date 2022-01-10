@@ -16,11 +16,14 @@ export interface IPaginationProps extends HTMLProps<HTMLInputElement> {
   disabledPages?: number[];
   /** Disable пагинацию  */
   disabled?: boolean;
+  /** Простая пагинацию  */
+  isSimple?: boolean
 }
 
 const Pagination: React.FC<IPaginationProps> = ({
   count,
   disabled = false,
+  isSimple = false,
   getCurrentPage = () => { },
   disabledPages = [],
 }: IPaginationProps) => {
@@ -104,16 +107,16 @@ const Pagination: React.FC<IPaginationProps> = ({
   const getPageLabel = (label: number) => (
     <div
       className={classnames(
-        'rf-pagination__label',
+        isSimple ? 'rf-pagination__label-simple' : 'rf-pagination__label',
         label === currentPage && 'rf-pagination__label--selected',
         disabledPages.includes(label) && 'rf-pagination__label--disabled'
       )}
       key={label}
       onClick={handleClickByPage(label)}
     >
-      <span className='rf-pagination__label-text' >
+      {isSimple ? null : <span className='rf-pagination__label-text' >
         {label}
-      </span>
+      </span>}
     </div>
   );
 

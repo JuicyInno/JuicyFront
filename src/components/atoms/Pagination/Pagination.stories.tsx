@@ -38,6 +38,7 @@ export const Demo = () => {
         <Pagination count={21} getCurrentPage={getCurrentPage} />
         <Pagination disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
         <Pagination disabled count={7} getCurrentPage={getCurrentPage} />
+        <Pagination isSimple disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
       </div>
     </StoryDocs>
 
