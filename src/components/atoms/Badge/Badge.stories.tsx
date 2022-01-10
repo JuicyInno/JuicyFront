@@ -75,7 +75,7 @@ export const Demo: Story = (props: IBadgeProps) => {
       </StoryItem>
       <StoryItem subtitle='Простой значок  S'>
 
-        <Badge size='s' placeNear={true} badgeContent='1' >
+        <Badge size='s' placeNear={true} badgeContent='5' >
           <p>  Заголовок</p>
         </Badge>
       </StoryItem>
