@@ -57,4 +57,9 @@ describe('Test <Pagination/> component', () => {
         expect(container.getElementsByClassName('rf-pagination--disabled')).toHaveLength(1);
     });
 
+    it('should be simple ', () => {
+        const { container } = render(<Pagination isSimple count={PAGES_WITHOUT_DOTS} />);
+        expect(container.getElementsByClassName('rf-pagination__simple')).toHaveLength(1);
+    });
+
 });

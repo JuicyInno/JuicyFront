@@ -169,7 +169,7 @@ const Pagination: React.FC<IPaginationProps> = ({
   };
 
   return (
-    <div className={`rf-pagination${disabled ? '--disabled' : ''}`}>
+    <div className={`rf-pagination${disabled ? '--disabled' : ''} ${isSimple && 'rf-pagination__simple'}`}>
       {isSimple ? null : <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
