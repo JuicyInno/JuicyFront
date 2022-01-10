@@ -1,16 +1,15 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 
 .rf-employee {
   cursor: default;
 }
 
 .rf-employee__tile {
-  box-shadow: 0px 2px 6px 0px #193B6826;
+  box-shadow: 0px 2px 6px 0px #193b6826;
   border-radius: 20px;
 }
-.rf-employee__tile--disable-shadow{
+.rf-employee__tile--disable-shadow {
   box-shadow: none;
-  padding:0
 }
 
 .rf-employee__title {
@@ -64,4 +63,7 @@
   &:hover {
     cursor: pointer;
   }
+}
+.rf-employee__tile--disabledShadow {
+  padding: 20px 20px 20px 0px;
 }
