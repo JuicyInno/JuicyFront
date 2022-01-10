@@ -31,7 +31,7 @@ export interface IBadgeProps {
   placeNear?: boolean;
   /**
    * Размер badge
-   * @default 's'
+   * @default 'm'
   */
   size?: 's' | 'm';
 }
@@ -50,6 +50,7 @@ const Badge: React.FC<IBadgeProps> = ({
 
   const isDot = badgeContent ? '' : `rf-badge--dot--${size}`;
 
+  console.log(size);
 
   // -------------------------------------------------------------------------------------------------------------------
 
