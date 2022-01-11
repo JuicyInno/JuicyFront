@@ -156,6 +156,7 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xxxs': 'rf--xxxs',
   'xxs': 'rf--xxs',
   'xs': 'rf--xs',
   's': 'rf--s',
@@ -168,7 +169,8 @@ export const sizeClass: Record<Size, string> = {
 };
 
 export const iconSize: Record<Size, string> = {
-  'xxs': '16',
+  'xxxs': '16',
+  'xxs': '20',
   'xs': '24',
   's': '32',
   'm': '40',
@@ -297,3 +299,13 @@ export const initialFiles: IFileData[] = [
     id: '00505683-c29f-1eec-9390-0b884bf2ff6f'
   }
 ];
+
+/** Сегодня приведенное к 00:00:00 */
+export const today = (utc = true): number => {
+  const date = new Date();
+  date.setHours(0);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return utc ? UTCToLocal(date).getTime() : date.getTime();
+};

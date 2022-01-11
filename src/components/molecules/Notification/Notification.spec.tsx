@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Notification from './Notification';
 
 describe('Test <Notification/> component', () => {
@@ -23,7 +23,7 @@ describe('Test <Notification/> component', () => {
     const { container } = render(<Notification item={{ title: 'title', variant: 'green' }} />);
     expect(container.getElementsByClassName('rf-notification--green')).toHaveLength(1);
   });
-  
+
   it('should render Notification blue', () => {
     const { container } = render(<Notification item={{ title: 'title', variant: 'blue' }} />);
     expect(container.getElementsByClassName('rf-notification--blue')).toHaveLength(1);
@@ -37,5 +37,21 @@ describe('Test <Notification/> component', () => {
   it('should render Notification red', () => {
     const { container } = render(<Notification item={{ title: 'title', variant: 'red' }} />);
     expect(container.getElementsByClassName('rf-notification--red')).toHaveLength(1);
+  });
+
+  it('should be call remove', () => {
+    const onRemove = jest.fn();
+    const { rerender } = render(<Notification item={{ title: 'title', id: 1 }} remove={onRemove} />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(onRemove).toBeCalled();
+
+    // Если нету id, то remove не вызывается
+    rerender(<Notification item={{ title: 'title' }} remove={onRemove} />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(onRemove).toHaveBeenCalledTimes(1);
   });
 });

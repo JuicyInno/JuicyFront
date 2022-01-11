@@ -27,6 +27,15 @@
   position: relative;
 }
 
+.rf-tree__item-label-text {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rf-tree__item-label-text--clickable {
+  cursor: pointer;
+}
+
 .rf-tree__item-label--default {
   color: var(--text-primary);
 }
@@ -87,4 +96,19 @@
 
 .rf-tree__item--active > .rf-tree__item-label {
   color: var(--basic-primary);
+}
+
+.rf-tree__item--1:last-of-type.rf-tree__item--close > .rf-tree__item--v {
+  display: none;
+}
+
+.rf-tree__item-preloader {
+  position: relative;
+  @include square(20px);
+  margin-left: 24px;
+}
+
+.rf-tree__checkbox {
+  display: flex;
+  margin-right: 8px;
 }

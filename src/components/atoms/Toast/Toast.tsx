@@ -1,53 +1,42 @@
 import React, {
-  FC, ReactNode, useEffect, useMemo, useRef
+  FC, ReactNode, useEffect
 } from 'react';
 import { createPortal } from 'react-dom';
 
 import './Toast.scss';
 
-export interface IProps {
+export interface IToastProps {
+  /** Контент */
   children: ReactNode;
-  isVisible: boolean;
+  /** Показывать компонент
+   * @default false
+   */
+  isVisible?: boolean;
+  /** Функция открытия/закрытия компонента */
   setVisibility: (mode: boolean) => void;
 }
 
-const Toast: FC<IProps> = ({ children, isVisible, setVisibility }) => {
+const Toast: FC<IToastProps> = ({ children, isVisible = false, setVisibility }) => {
   useEffect(() => {
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setVisibility(false);
     }, 2000);
 
+    return () => {
+      clearTimeout(id);
+    };
   }, [isVisible]);
 
-  const div = useMemo<HTMLDivElement>(() => document.createElement('div'), []);
+  if (!isVisible) {
+    return null;
+  }
 
+  const toast =
+    <div data-testid='rf-toast' className='rf-toast'>
+      {children}
+    </div>;
 
-  /** При маунте добавляем модалку. При дестрое - удаляем. */
-  useEffect(() => {
-    /** Контейнер для модалки */
-    document.body.appendChild(div);
-
-    return () => {
-      document.body.removeChild(div);
-    };
-  }, [div]);
-
-  const toastEl = useRef<HTMLDivElement>(null);
-
-  const position = {
-    top: '20px',
-    right: `${window.innerWidth / 2 - (toastEl.current?.clientWidth ? toastEl.current?.clientWidth / 2 : 0)}px`,
-  };
-
-  const toast = <div
-    ref={toastEl}
-    style={position}
-    className={`rf-toast ${isVisible ? 'visible' : 'not-visible'}`}
-  >
-    {children}
-  </div>;
-
-  return createPortal(toast, div);
+  return createPortal(toast, document.body);
 };
 
 export default Toast;

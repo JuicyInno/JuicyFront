@@ -7,7 +7,11 @@ import './TreeItem.scss';
 import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
 import HLine from './lines/hline';
-import { Circle, Up } from '../../../index';
+import {
+  Circle, Preloader, Up
+} from '../../../index';
+import Checkbox from '../../atoms/Checkbox';
+import { classnames } from '../../../utils/classnames';
 
 interface IFolderItemProps {
   id: string;
@@ -18,12 +22,15 @@ interface IFolderItemProps {
   onChange?: (o: ITreeOption) => void;
   activeItem: ITreeOption | undefined;
   last?: boolean;
+  /** Изменение состояния чекбокса. */
+  onCheck?: (option: ITreeOption) => void;
 }
 
 const FolderItem: React.FC<IFolderItemProps> = ({
   id,
   item,
   onChange,
+  onCheck,
   depth,
   open,
   activeItem,
@@ -31,6 +38,8 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 }: IFolderItemProps) => {
 
   const itemRef = useRef<HTMLDivElement>(null);
+  const vLine = useRef<HTMLDivElement>(null);
+  const folder = useRef<HTMLDivElement>(null);
   const [showFolder, toggleFolder] = useState<boolean>(open);
 
   useEffect(() => {
@@ -41,98 +50,58 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openClass = showFolder && item.children && item.children.length > 0 ? 'rf-tree__item--open' : 'rf-tree__item--close';
   const showFolderClass = showFolder ? '' : 'rf-tree__item-folder--hidden';
-  const rotateIconClass = showFolder ? '' : 'rf-tree__item-label-icon--rotate';
+  const rotateIconClass = item.children && item.children.length > 0 && showFolder ? '' : 'rf-tree__item-label-icon--rotate';
   const itemChildrenClass = item.children && item.children.length > 0 ? '' : 'rf-tree__item--no-children';
   const activeClass = activeItem?.value === item.value ? 'rf-tree__item--active' : '';
   const firstLevelClass = depth === 1 ? 'rf-tree__item--1' : '';
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
-  const handleChange = (e: React.MouseEvent) => {
+  const openFolder = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleFolder((f: boolean) => !f);
+  }, [toggleFolder]);
+
+  const handleChange = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onChange && onChange(item);
-  };
 
-  const openFolder = () => {
-    toggleFolder(!showFolder);
-  };
+    if (item.children || item.hasChildren) {
+      toggleFolder(true);
+    }
+  }, [onChange, toggleFolder, item]);
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
-  const calculateHeight = () => {
-    if (itemRef.current && last && depth > 2) {
-      const current = itemRef.current;
-      let parent = current.parentElement;
+  const calculateHeight = useCallback((vLine: HTMLDivElement, folder: HTMLDivElement) => {
 
-      while (parent) {
-        if (parent.classList.contains('rf-tree__item')) {
-          break;
-        }
+    const treeItem = folder.firstElementChild;
 
-        parent = parent.parentElement;
-      }
-
-      if (!parent) {
-        return;
-      }
-
-      const dashes = parent.querySelectorAll<HTMLDivElement>(`[data-id="d-${depth}"]`);
-      const lastDash = dashes[dashes.length - 1];
-
-      if (!lastDash) {
-        return;
-      }
-
-      const ICON_HEIGHT = 20;
-      const height = lastDash.getBoundingClientRect().y - parent.getBoundingClientRect().y - ICON_HEIGHT;
-
-      if (parent.firstElementChild) {
-        // @ts-ignore
-        parent.firstElementChild.style.height = `${height}px`;
-      }
-    }
-  };
-
-  const resizeLastV = useCallback(() => {
-    if (depth !== 1 || !itemRef.current) {
+    if (!treeItem) {
       return;
     }
 
-    const root = document.getElementById(id);
+    const lastTreeItem = treeItem.children[treeItem.children.length - 1];
 
-    if (!root) {
+    if (!lastTreeItem) {
       return;
     }
 
-    const lastDash: HTMLDivElement | null = root.querySelector('.rf-tree__item--1:last-of-type > .rf-tree__item--v');
+    const firstLabelItem = lastTreeItem.children[1];
 
-    if (!lastDash) {
-      return;
-    }
+    const vLineParentNextItem = vLine.parentElement?.nextElementSibling;
 
-    if (itemRef.current.classList.contains('rf-tree__item--close')) {
-      lastDash.style.height = '0px';
-      return;
-    }
-
-    const s = '.rf-tree__item--1:last-of-type > ' +
-      '.rf-tree__item-folder .rf-tree > .rf-tree__item:last-child > ' +
-      '.rf-tree__item-label .rf-tree__item-label-icon';
-    const lastChildItem = root.querySelector<HTMLDivElement>(s);
-
-    if (!lastChildItem) {
-      return;
-    }
-
-    const ICON_GAP = 2;
-    const height = lastChildItem.getBoundingClientRect().y - lastDash.getBoundingClientRect().y + ICON_GAP;
-    lastDash.style.height = `${height}px`;
-  }, [depth, open]);
+    const y = depth === 1 && vLineParentNextItem ?
+      vLineParentNextItem.getBoundingClientRect().y : firstLabelItem.getBoundingClientRect().y;
+    const height = y - vLine.getBoundingClientRect().y + 1;
+    vLine.style.height = height + 'px';
+  }, [depth]);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
-      calculateHeight();
-      resizeLastV();
+      if (vLine.current && folder.current) {
+        calculateHeight(vLine.current, folder.current);
+      }
     });
 
     const container = document.getElementById(id);
@@ -140,29 +109,56 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     if (container) {
       resizeObserver.observe(container);
     }
-  }, [resizeLastV]);
+  }, [calculateHeight, id]);
+
+  const onCheckboxClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
+  const onCheckboxChange = () => {
+    if (onCheck) {
+      onCheck(item);
+    }
+  };
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className={`rf-tree__item ${openClass} ${itemChildrenClass} ${activeClass} ${firstLevelClass}`} ref={itemRef}>
+    <div className={ `rf-tree__item ${openClass} ${itemChildrenClass} ${activeClass} ${firstLevelClass}` }
+      ref={ itemRef }>
 
-      <div className='rf-tree__item--v'/>
+      <div className='rf-tree__item--v' ref={ vLine }/>
 
-      <div className={`rf-tree__item-label rf-tree__item-label--${item.variant || 'default'}`} onClick={handleChange}>
-        <HLine className='rf-tree__item--h' data-id={`d-${depth}`}/>
-        {/* <div className='rf-tree__item--h' data-id={`d-${depth}`}/>*/}
+      <div className={ `rf-tree__item-label rf-tree__item-label--${item.variant || 'default'}` }
+        onClick={ handleChange }>
+        <HLine className='rf-tree__item--h' data-id={ `d-${depth}` }/>
         {
-          item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`} onClick={openFolder}/> :
+          item.hasChildren || (item.children && item.children.length > 0) ?
+            <Up className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
-        { item.label }
+        <label className={classnames('rf-tree__item-label-text', (onCheck || onChange) && 'rf-tree__item-label-text--clickable')}>
+          {!!onCheck && (
+            <div className='rf-tree__checkbox' >
+              <Checkbox checked={item.checked} onChange={onCheckboxChange} onClick={onCheckboxClick} />
+            </div>
+          )}
+          { item.label }
+        </label>
       </div>
-      {item.children && item.children.length > 0 && (
-        <div className={`rf-tree__item-folder ${showFolderClass}`}>
-          <Tree id={id} list={item.children} onChange={onChange} parent={item} depth={depth} open={open} activeItem={activeItem}/>
+
+      { item.loading && (
+        <div className='rf-tree__item-preloader'>
+          <Preloader size='s'/>
         </div>
-      )}
+      ) }
+
+      { item.children && item.children.length > 0 && (
+        <div className={ `rf-tree__item-folder ${showFolderClass}` } ref={ folder }>
+          <Tree id={ id } list={ item.children } onChange={ onChange } parent={ item } depth={ depth } open={ open }
+            activeItem={ activeItem } onCheck={onCheck} />
+        </div>
+      ) }
     </div>
   );
 };

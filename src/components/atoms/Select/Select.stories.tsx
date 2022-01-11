@@ -83,6 +83,8 @@ export const Demo = () => {
     },
   ];
 
+  const [disabled, setDisabled] = useState(true);
+
   return (
     <StoryContainer name='Select' description='Select кнопки' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
@@ -134,16 +136,17 @@ export const Demo = () => {
           />
         </StoryItem>
 
-        <StoryItem description='Портал'>
+        <StoryItem description='Disabled'>
           <Select
             placeholder='Выберите значение'
-            readOnly
             options={list}
             values={state1}
-            tagsPosition='outside'
             onChange={onChange2}
             preloader={loading}
+            disabled={disabled}
           />
+          <br />
+          <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
         </StoryItem>
 
         <StoryItem description='Tag Select'>
@@ -197,7 +200,7 @@ export const LazySelect: Story = () => {
     return fetch(`https://jsonplaceholder.typicode.com/todos?_start=${offset}&_limit=${limit}`)
       .then((response) => response.json())
       .then((json) => {
-        const resList = json.map((item) => ({
+        const resList = json.map((item: any) => ({
           value: item.id,
           label: item.title,
         }));

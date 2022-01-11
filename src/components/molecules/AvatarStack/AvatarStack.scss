@@ -1,0 +1,40 @@
+@import "src/styles/mixins";
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.avatar-stack__item {
+  position: relative;
+  border: 2px solid var(--background-primary);
+  border-radius: 100%;
+  user-select: none;
+}
+
+.avatar-stack__menu {
+  padding: 8px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.avatar-stack__menu-item {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.avatar-stack__menu-label{
+  @include text-l-16;
+  margin-left: 8px;
+}
+
+.avatar-stack--clickable {
+  cursor: pointer;
+
+  .rf-avatar {
+    cursor: pointer;
+  }
+}

@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import Tile from '../../atoms/Tile';
 import FormGroup from '../../atoms/FormGroup';
-import Textarea from '../../atoms/Textarea';
+import Textarea, { ITextareaProps } from '../../atoms/Textarea';
 
 import { IDebounceCommentResult, IRequestAttachment } from '../../../types/projects.types';
 
@@ -12,25 +12,31 @@ import { InputFile } from '../../../index';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 
-export interface ICommentTileProps {
-    /** Начальный комментарий */
-    comment?: string;
-    /** Заголовок */
-    title?: string;
-    /** Автоматическое изменение высоты */
-    autoResize?: boolean;
-    /** Возможность прикрепить файл */
-    showFieldForFiles?: boolean;
-    /** Прикрепленные файлы */
-    initialFiles?: IFileData[];
-    /** Максимальная длина комментария */
-    maxLength?: number;
-    /** Срабатывает при изменении значения*/
-    onDebounce?: (result: IDebounceCommentResult) => void,
-    /** Ограничение по типам файлов*/
-    accept?:string
-    /** Максимальный размер файлов*/
-    maxSize?:number
+export interface ICommentTileProps extends Omit<ITextareaProps, 'onDebounce' | 'autoResize'> {
+  /** Начальный комментарий */
+  comment?: string;
+  /** Заголовок */
+  title?: string;
+  /** Автоматическое изменение высоты
+   * @default false
+   */
+  autoResize?: boolean;
+  /** Возможность прикрепить файл
+   * @default true
+   */
+  showFieldForFiles?: boolean;
+  /** Прикрепленные файлы */
+  initialFiles?: IFileData[];
+  /** Максимальная длина комментария
+   * @default 255
+   */
+  maxLength?: number;
+  /** Срабатывает при изменении значения*/
+  onDebounce?: (result: IDebounceCommentResult) => void,
+  /** Ограничение по типам файлов*/
+  accept?: string
+  /** Максимальный размер файлов*/
+  maxSize?: number
 }
 
 const CommentTile: FC<ICommentTileProps> = ({
@@ -42,7 +48,8 @@ const CommentTile: FC<ICommentTileProps> = ({
   showFieldForFiles = true,
   onDebounce = () => {},
   accept = '*',
-  maxSize = undefined
+  maxSize = undefined,
+  ...props
 }: ICommentTileProps) => {
   const [value, setValue] = useState<string>(comment);
 
@@ -97,7 +104,8 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   return <div className='rf-comment-tile__wrapper'>
     <Tile className='rf-comment-tile'>
-      <h1 className='rf-comment-tile__title'>{title}</h1>
+      <h3 className='rf-comment-tile__title'>{title}</h3>
+
       <FormGroup
         className={classnames(
           'rf-comment-tile__input-wrapper',
@@ -106,25 +114,27 @@ const CommentTile: FC<ICommentTileProps> = ({
         label={'Комментарий'}
         labelSecondary={`(${value.length > maxLength ? maxLength : value.length}/${maxLength})`}
       >
-        <Textarea autoResize={autoResize}
+        <Textarea
+          autoResize={autoResize}
           onDebounce={getResultByComment}
           onChange={onChange}
           value={value}
-          placeholder='Оставить комментарий' />
+          placeholder='Оставить комментарий'
+          {...props}
+        />
       </FormGroup>
-      { !!showFieldForFiles &&
-            <>
-              <InputFile
-                className='rf-comment-tile-button'
-                showChips={true}
-                setFile={setFileHandler}
-                buttonType='light'
-                placeholder='Прикрепить файл'
-                accept = {accept}
-                maxSize = {maxSize}
-                files={initialFiles}
-              />
-            </>
+
+      {!!showFieldForFiles &&
+        <InputFile
+          className='rf-comment-tile-button'
+          showChips={true}
+          setFile={setFileHandler}
+          buttonType='light'
+          placeholder='Прикрепить файл'
+          accept={accept}
+          maxSize={maxSize}
+          files={initialFiles}
+        />
       }
     </Tile>
   </div>;

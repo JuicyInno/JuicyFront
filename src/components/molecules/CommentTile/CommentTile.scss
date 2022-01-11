@@ -1,13 +1,14 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-comment-tile__wrapper {
   display: flex;
+  width: 100%;
 }
 
 .rf-comment-tile {
-  box-shadow: 0px 2px 6px 0px #193B6826;
+  box-shadow: 0px 2px 6px 0px #193b6826;
   border-radius: 20px;
-  width: 880px;
+  width: 100%;
 }
 
 .rf-comment-tile__title {
@@ -17,11 +18,12 @@
 .rf-comment-tile__input-wrapper {
   margin-top: 20px;
   color: var(--text-secondary);
-  width: 648px;
+  max-width: 648px;
 
   & .rf-form-group__label {
     @include text-xs-14();
     color: var(--text-secondary);
+
     & .rf-form-group__label-secondary {
       @include caption();
       color: var(--text-secondary);
@@ -31,7 +33,7 @@
 
 .rf-comment-tile__input-wrapper--scroll {
   & .rf-textarea__wrapper,
-  .rf-textarea__field{
+  .rf-textarea__field {
     height: 88px;
   }
 }
@@ -54,7 +56,6 @@
   color: var(--basic-primary);
   display: flex;
   align-items: center;
-
 }
 
 .rf-comment-tile-chip-button {

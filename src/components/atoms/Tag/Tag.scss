@@ -8,6 +8,7 @@
   cursor: default;
   height: 24px;
   @include text-xs-14;
+  white-space: nowrap;
 }
 
 .rf-tag--clickable {
