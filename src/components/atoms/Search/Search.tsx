@@ -53,7 +53,7 @@ const Search: React.FC<ISearchProps> = ({
       }));
 
     return () => sub && sub.unsubscribe();
-  }, [debounce, onDebounce]);
+  }, [debounce, onDebounce, onClear]);
 
 
   useEffect(() => {
@@ -67,6 +67,8 @@ const Search: React.FC<ISearchProps> = ({
 
   //* ***************
   const onClearClickHandler = () => {
+    console.log('Clear click');
+
     setValue('');
     onClear && onClear();
     onDebounce({ debounceString: '' });
@@ -75,22 +77,22 @@ const Search: React.FC<ISearchProps> = ({
 
   return (
     <div className='rf-search'>
-      <input { ...props }
-        ref={ ref }
+      <input {...props}
+        ref={ref}
         type='text'
         className='rf-search__input'
-        placeholder={ props.placeholder || 'Поиск' }
-        value={ value }
+        placeholder={props.placeholder || 'Поиск'}
+        value={value}
         data-testid='search-test-id'
-        onChange={ onChangeHandler }
+        onChange={onChangeHandler}
       />
-      <SearchIcon className='rf-search__search-icon'/>
+      <SearchIcon className='rf-search__search-icon' />
 
-      { value.length > 0 && showClear &&
-      <Close data-testid='search-clear-test-id'
-        className={ classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment') }
-        onClick={ onClearClickHandler }/> }
-      { endAdornment && <div className='rf-search__endAdornment'>{ endAdornment }</div> }
+      {value.length > 0 && showClear &&
+        <Close data-testid='search-clear-test-id'
+          className={classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment')}
+          onMouseDown={onClearClickHandler} />}
+      {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 
     </div>

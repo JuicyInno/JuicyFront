@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {
+  useCallback, useMemo, useState
+} from 'react';
 import Search from './Search';
-import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import './Search.scss';
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH3
+} from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { Microphone } from '../../../index';
@@ -21,6 +26,7 @@ export const Demo = () => {
     borderRadius: 5,
     padding: 16,
   };
+  const [expandSearch, setExpandSearch] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log('Change event', e.target.value);
@@ -34,6 +40,20 @@ export const Demo = () => {
     console.log('Очистка');
   };
 
+
+  const onSearchFocus = useCallback(() => {
+    console.log('focus');
+
+    setExpandSearch(true);
+  }, [setExpandSearch]);
+
+  const onSearchBlur = useCallback(() => {
+    console.log('blur');
+    setExpandSearch(false);
+  }, [setExpandSearch]);
+
+  const expandSearchClass = useMemo(() => expandSearch ? 'expand' : '', [expandSearch]);
+
   return (
     <StoryDocs>
       <StoryDocsH1>Search</StoryDocsH1>
@@ -41,6 +61,17 @@ export const Demo = () => {
         <Search endAdornment={<Microphone />} />
         <Search value='Приве' onChange={onChange} onDebounce={onDebounce} onClear={onClear} />
         <Search onClear={onClear} />
+        <StoryDocsH3>Search expandable</StoryDocsH3>
+        <div className={`task-panel__search ${expandSearchClass}`}>
+          <Search
+            value=''
+            onChange={onChange}
+            onClear={onClear}
+            onDebounce={onDebounce}
+            onBlur={onSearchBlur}
+            onFocus={onSearchFocus} />
+        </div>
+
       </div>
 
     </StoryDocs>
