@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback } from 'react';
 import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
-import {
-  Button, ChevronLeft, KebabMenu
-} from '../../../index';
+import { Button } from '../../../index';
+
+import { ChevronLeft, KebabMenu } from '../../../indexIcon';
 import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';

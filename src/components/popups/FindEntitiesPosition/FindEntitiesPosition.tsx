@@ -3,8 +3,10 @@ import './FindEntitiesPosition.scss';
 import React, { FC, useState } from 'react';
 
 import {
-  Avatar, Checkbox, Copy, Info, Structure, Toast, Tooltip
+  Avatar, Checkbox, Structure, Toast, Tooltip
 } from '../../../index';
+import { Copy, Info } from '../../../indexIcon';
+
 import InvestmentProducts from '../../../assets/icons/24px/Specific/InvestmentProducts';
 
 import { IStructure } from '../../../types/projects.types';
