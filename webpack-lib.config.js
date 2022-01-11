@@ -9,7 +9,7 @@ module.exports = {
     // publicPath: '',
 
     path: __dirname + '/dist',
-    // libraryTarget: 'commonjs'
+     libraryTarget: 'commonjs'
   },
   resolve: {
     extensions: [
