@@ -66,7 +66,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     e.stopPropagation();
     onChange && onChange(item);
 
-    if (item.children) {
+    if (item.children || item.hasChildren) {
       toggleFolder(true);
     }
   }, [onChange, toggleFolder, item]);
