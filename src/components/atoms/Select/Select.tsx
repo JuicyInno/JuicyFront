@@ -6,12 +6,13 @@ import './Select.scss';
 
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
-import ChevronDown from '../../../assets/icons/ChevronDown';
-import Close from '../../../assets/icons/Close';
+
+import { Preloader } from '../../../index';
+import { ChevronDown, Close } from '../../../indexIcon';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
-import Preloader from '../Preloader';
+
 
 export interface ISelectProps {
   /** Варианты выбора */
