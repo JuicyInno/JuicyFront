@@ -10,7 +10,7 @@ import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
-import { ChevronLeft } from '../../../../index';
+import { ChevronLeft } from '../../../../indexIcon';
 import Tooltip from '../../Tooltip';
 import { DropdownPosition } from '../../../../types';
 

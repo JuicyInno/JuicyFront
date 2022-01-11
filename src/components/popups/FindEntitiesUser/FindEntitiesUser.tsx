@@ -3,8 +3,9 @@ import './FindEntitiesUser.scss';
 import React, { useState } from 'react';
 
 import {
-  Checkbox, Avatar, Tooltip, Info, Structure, Copy, Toast
+  Checkbox, Avatar, Tooltip, Structure, Toast
 } from '../../../index';
+import { Info, Copy } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
 
