@@ -341,7 +341,7 @@ export const generateMask = (
 
   const ddTo = [/[0-3]/, inputValue[dayFirst ? 13 : 16] === '3' ? /[0,1]/ : inputValue[dayFirst ? 13 : 16] === '0' ? /[1-9]/ : /[0-9]/];
 
-  const mmTo = [/[0,1]/, inputValue[dayFirst ? 16 : 13] === '0' ? /[1-9]/ : /[0-2]/, ];
+  const mmTo = [/[0,1]/, inputValue[dayFirst ? 16 : 13] === '0' ? /[1-9]/ : /[0-2]/,];
 
   const first = dayFirst ? dd : mm;
   const second = dayFirst ? mm : dd;
