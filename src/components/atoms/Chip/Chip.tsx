@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
-import Close from '../../../assets/icons/Close';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
+import Close from '../../../assets/icons/Close';
 
 export interface ITagProps {
   /** Текст */

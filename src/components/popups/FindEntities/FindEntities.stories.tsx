@@ -50,6 +50,24 @@ const getMockedUsers = (search: string, filter: string, skip = 0) => {
   return [promise, null] as [Promise<IUser[]>, null];
 };
 
+const getAsyncEntries = (search: string, filter: string, skip = 0) => {
+  const LIMIT = 10;
+
+  const req = fetch(`https://jsonplaceholder.typicode.com/todos?_start=${skip}&_limit=${LIMIT}`)
+    .then((response) => response.json())
+    .then((json) => {
+      const resList = json.map((item: any) => ({
+        id: item.id,
+        fullName: item.title,
+        department: item.title
+      }));
+
+      return resList;
+    });
+
+  return [req, null] as [Promise<IUser[]>, null];
+};
+
 export const Users = () => {
   const [value, setValue] = useState<IUser[]>([]);
   const [isDialogVisible, setDialogVisible] = useState(false);
@@ -72,6 +90,49 @@ export const Users = () => {
             <FindEntities
               title='Выберите сотрудника'
               getEntities={getMockedUsers}
+              entityKey='id'
+              value={value}
+              filters={USERS_FILTERS}
+              onChange={onChange}
+              onClose={onDialogToggle}
+              lazy
+              multiple
+              emptyStateIcon={<People />}
+              emptyStateInitialText='Найдите нужных вам сотрудников'
+            >
+              {({ entity, isSelected, onChange }) => (
+                <FindEntitiesUser user={entity} isSelected={isSelected} onChange={onChange} />
+              )}
+            </FindEntities>
+          )}
+        </BrowserRouter>
+      </div>
+    </StoryDocs>
+  );
+};
+
+export const Async = () => {
+  const [value, setValue] = useState<IUser[]>([]);
+  const [isDialogVisible, setDialogVisible] = useState(false);
+
+  const onChange = (v: IUser[]) => {
+    setValue(v);
+  };
+
+  const onDialogToggle = () => {
+    setDialogVisible(!isDialogVisible);
+  };
+
+  return (
+    <StoryDocs>
+      <StoryDocsH1>Пагинация с Jsonplaceholder</StoryDocsH1>
+      <div>
+        <BrowserRouter>
+          <Button onClick={onDialogToggle}>Выбрать сотрудника</Button>
+          {isDialogVisible && (
+            <FindEntities
+              title='Выберите сотрудника'
+              getEntities={getAsyncEntries}
               entityKey='id'
               value={value}
               filters={USERS_FILTERS}
