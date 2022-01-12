@@ -13,6 +13,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 
+
 export interface ISelectProps {
   /** Варианты выбора */
   options: IOption[];
@@ -34,9 +35,11 @@ export interface ISelectProps {
   /** залочен или нет */
   disabled?: boolean;
   /** Максимальное количество выбранных вариантов при multiselect */
-  maxOptions?: number | undefined;
+  maxOptions?: number;
   /** Прелоудер при ленивой загрузке */
   preloader?: boolean;
+  /** Положение тегов - внутри инпута или под селектом */
+  tagsPosition?: 'inside' | 'outside';
   /** Очистить селект при выборе значения */
   clearOnSelect?: boolean;
   /** Любое изменяемое значение (зависимость). При изменении этого параметра очищается селект */
@@ -61,8 +64,6 @@ export interface ISelectProps {
   onScroll?: (e: React.UIEvent) => void;
   /** Максимальная ширина выпадающего списка */
   dropdownMaxWidth?: number;
-  startAdornment?: ReactNode | undefined;
-  endAdornment?: ReactNode | undefined
 }
 
 const Select: FC<ISelectProps> = ({
@@ -75,22 +76,20 @@ const Select: FC<ISelectProps> = ({
   placeholder = '',
   disabled = false,
   readOnly = false,
-  maxOptions = undefined,
+  maxOptions = options.length,
   preloader = false,
+  tagsPosition = 'inside',
   clearOnSelect = false,
   clearHook,
   variant = 'base',
   isAsync,
   infinityScrollProps,
-  position = 'bottom',
-  endAdornment,
-  startAdornment,
+  position = 'bottom-start',
   onScroll,
   dropdownMaxWidth
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const firstElementPosition = useRef<number>(0);
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
@@ -102,7 +101,6 @@ const Select: FC<ISelectProps> = ({
     }
 
   }, [disabled]);
-
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -167,9 +165,9 @@ const Select: FC<ISelectProps> = ({
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    /*     if (!selectValues || selectValues.length === 0) {
+    if (!selectValues || selectValues.length === 0) {
       return;
-    } */
+    }
 
     const map: Record<string, boolean> = selectValues.reduce((acc: Record<string, boolean>, o: IOption) => {
       acc[o.value] = true;
@@ -177,30 +175,19 @@ const Select: FC<ISelectProps> = ({
     }, {});
 
     setSelectedMap(map);
-
-    if (clearOnSelect) {
-      setInputValue('');
-    }
-
-
-    if (multiselect && selectValues.length === 1) {
-      toggleRef.current!.getBoundingClientRect().y = firstElementPosition.current;
-    }
+    setInputValue(multiselect ? '' : clearOnSelect ? '' : selectValues[0]?.label || '');
   }, [selectValues]);
 
   const onValueChange = (option: IOption) => {
     let result = undefined;
 
     if (multiselect) {
-      console.log(selectValues, maxOptions);
-
       const index = selectValues.findIndex((o: IOption) => option.value === o.value);
-      console.log(index);
 
       if (index >= 0) {
         result = selectValues.filter((_: IOption, i: number) => i !== index);
       } else {
-        if (typeof maxOptions === 'number' ? selectValues.length < maxOptions : true) {
+        if (selectValues.length < maxOptions) {
           result = [...selectValues, option];
         }
       }
@@ -211,7 +198,6 @@ const Select: FC<ISelectProps> = ({
     if (result) {
       setSelectValues(result);
       onChange(result);
-
     }
   };
 
@@ -227,22 +213,19 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-
   const listJSX = filteredOptions.map((o: IOption) => {
     const optionDisabled = o.disabled || false;
     const active = selectedMap[o.value] || false;
 
-
     const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
-
-      console.log(e, o);
-
       e.stopPropagation();
       onValueChange(o);
 
       if (!multiselect) {
         setInputValue(clearOnSelect ? '' : o.label);
         onClose();
+      } else {
+        setInputValue('');
       }
     };
 
@@ -304,44 +287,24 @@ const Select: FC<ISelectProps> = ({
 
   const noop = () => { };
 
-  const inputElement = <input
-    autoSave='false'
-
-    autoComplete='off'
-    id='rf-select__input'
-    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
-    onChange={onSelectSearch}
-    value={inputValue}
-    disabled={disabled}
-    readOnly={readOnly}
-    placeholder={
-      multiselect && selectValues.length ? '' : placeholder
-    }
-  />;
-
   const tagsRef = useRef<HTMLDivElement>(null);
 
   const tagsJSX = multiselect && selectValues.length > 0 && (
-    <div className='rf-select__tags' onClick={() => !disabled && onOpen()}>
-
+    <div className='rf-select__tags' ref={tagsRef} onClick={() => !disabled && onOpen()}>
       {selectValues.map((t: IOption) => (
-        <div ref={tagsRef} className={classnames('rf-select__tag')} key={t.value}>
-          <Chip type='secondary' size='xs' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
+        <div className='rf-select__tag' key={t.value}>
+          <Chip type='secondary' size='s' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
             {t.label}
           </Chip>
         </div>
       ))}
-      <div className={classnames('rf-select__input--multiselect')}>
-        {inputElement}
-      </div>
     </div>
   );
-
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onClear}>
+    <button type='button' className='rf-select__button' onClick={onClear}>
       <Close />
     </button>
   );
@@ -351,24 +314,22 @@ const Select: FC<ISelectProps> = ({
     setShowDropdown((state: boolean) => !state);
   };
 
-  const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) && (
+  const chevronButton = (readOnly || inputValue.length === 0) && (
     <button
       type='button'
       data-testid='rf-select__chevron'
-      className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
+      className={classnames('rf-select__button', showDropdown && 'rf-select__button--rotate')}
       onClick={onChevronClick}
     >
       <ChevronDown />
     </button>
   );
 
-  const startAdornmentIcon = startAdornment && variant !== 'tag' ? <div className='rf-select__button__icon'>{startAdornment}</div> : null;
-  const endAdornmentIcon = endAdornment && variant !== 'tag' ? <div className='rf-select__button__icon--end'>{endAdornment}</div> : null;
-
   // -------------------------------------------------------------------------------------------------------------------
 
   const isTagVariant = variant === 'tag';
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
+  const multiselectClass = multiselect ? 'rf-select--multi' : '';
   const tagClass = isTagVariant ? 'rf-select__wrapper--tag' : '';
 
   const loader = (
@@ -389,14 +350,12 @@ const Select: FC<ISelectProps> = ({
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
 
-
   return (
     <Manager>
-      <div className={classnames('rf-select', tagClass)} ref={toggleRef}>
+      <div className={classnames('rf-select', multiselectClass, tagClass)} ref={toggleRef}>
         <Reference>
           {(referenceProps) => (
             <div
-
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
@@ -407,16 +366,19 @@ const Select: FC<ISelectProps> = ({
               )}
               onClick={() => onOpen()}
             >
-
-              {startAdornmentIcon}
-              <div className={classnames(multiselect && selectValues.length ? 'rf-select__wrapper--input' : '', !showDropdown && multiselect && selectValues.length ? 'rf-select--multiselect--fixed' : '')}>
-                {tagsJSX}
-                {multiselect ? selectValues.length < 1 ? inputElement : null : inputElement}
-              </div>
-              {endAdornmentIcon}
+              <input
+                className='rf-select__input'
+                // onMouseDown={openDropdown}
+                onChange={onSelectSearch}
+                value={inputValue}
+                disabled={disabled}
+                readOnly={readOnly}
+                placeholder={
+                  (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder
+                }
+              />
               {closeButton}
               {chevronButton}
-
             </div>
           )}
         </Reference>
@@ -426,7 +388,10 @@ const Select: FC<ISelectProps> = ({
           toggleRef={toggleRef}
           onClose={onClose}
           position={position}
-
+          style={{
+            maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
+            width: isTagVariant ? 'auto' : '100%'
+          }}
         >
           <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
@@ -448,7 +413,7 @@ const Select: FC<ISelectProps> = ({
         </Dropdown>
 
         {/* filteredOptions.length > 0*/}
-
+        {tagsJSX}
       </div>
     </Manager>
   );
