@@ -2,7 +2,6 @@ import React, {
   ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
-
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import { DropdownPosition } from '../../../types';
 import {
@@ -355,6 +354,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const isCrossChevronPicker = inputValue.split('-').length === 2 && inputValue.split('-')[1].trim() !== '__.__.____';
 
+
   return (
     <Manager>
       <div className='rf-datepicker' ref={datepickerRef}>
@@ -372,7 +372,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
               {
                 children || (
                   <InputMask
-                    mask={''}
+                    mask={mask}
                     name={name}
                     placeholder={placeholder}
                     value={inputValue}
@@ -390,19 +390,19 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                         </button>
                       }
                       endAdornment={
-                        <div className='rf-datepicker__calendar-chevron'>
+                        < div className='rf-datepicker__calendar-chevron' >
                           {isCrossChevronPicker ?
                             <Cross onClick={clearDateRangeHandler} /> :
                             <ChevronDown />}
-                        </div>
+                        </ div>
                       }
                     />
-                  </InputMask>
+                  </InputMask >
                 )
               }
-            </div>
+            </div >
           )}
-        </Reference>
+        </Reference >
 
         <Dropdown
           show={showCalendar}
@@ -428,8 +428,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             tooltipBackground={tooltipBackground}
           />
         </Dropdown>
-      </div>
-    </Manager>
+      </div >
+    </Manager >
   );
 };
 
