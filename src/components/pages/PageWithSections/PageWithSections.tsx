@@ -6,8 +6,11 @@ import { IPageSection } from '../../../types/projects.types';
 import { IButtonGroup, ITab } from '../../../types';
 import {
   ButtonGroup,
-  ChevronLeft, Preloader, Tabs
+  Preloader, Tabs
 } from '../../../index';
+
+import { ChevronLeft } from '../../../indexIcon';
+
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';
 import useTableOfContents from '../../../hooks/useTableOfContents';
