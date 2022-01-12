@@ -12,6 +12,7 @@ export const weekDays: Record<DateLocale, string[]> = {
     'чт',
     'пт',
     'сб',
+    'сб',
     'вс'
   ],
   en: [

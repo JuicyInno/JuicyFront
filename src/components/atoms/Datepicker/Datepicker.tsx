@@ -1,24 +1,23 @@
 import React, {
-  ReactNode,
-  useCallback, useEffect, useRef, useState
+  ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
-import { Manager, Reference } from 'react-popper';
 import './Datepicker.scss';
-import DatepickerCalendar from './DatepickerCalendar';
+
+import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
+import { DropdownPosition } from '../../../types';
 import {
   formatDate, generateMask, getWeekDay, parseToFormat, stringToDate
-} from './DatepickerCalendar/datepicker.utils';
-
-import InputMask from 'react-input-mask';
-import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
+} from '../../../utils/helpersDatePicker';
+import { Manager, Reference } from 'react-popper';
 import {
   Calendar, ChevronDown, Cross
 } from '../../../indexIcon';
-import { classnames } from '../../../utils/classnames';
-import { DropdownPosition } from '../../../types';
-
-import Dropdown from '../Dropdown';
 import Input from '../Input';
+import InputMask from 'react-input-mask';
+import { classnames } from '../../../utils/classnames';
+import Dropdown from '../Dropdown';
+import DatepickerCalendar from './DatepickerCalendar';
+
 
 export interface IDatepickerProps {
   /** Имя поля */
@@ -373,7 +372,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
               {
                 children || (
                   <InputMask
-                    mask={mask}
+                    mask={''}
                     name={name}
                     placeholder={placeholder}
                     value={inputValue}
