@@ -7,9 +7,8 @@ import './Select.scss';
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
 
-import {
-  ChevronDown, Close, Preloader
-} from '../../../index';
+import { Preloader } from '../../../index';
+import { ChevronDown, Close } from '../../../indexIcon';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
@@ -93,14 +92,14 @@ const Select: FC<ISelectProps> = ({
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
-  }, [setShowDropdown]);
+  }, []);
 
   const onOpen = useCallback(() => {
     if (!disabled) {
       setShowDropdown(true);
     }
 
-  }, [setShowDropdown]);
+  }, [disabled]);
 
   // -------------------------------------------------------------------------------------------------------------------
 

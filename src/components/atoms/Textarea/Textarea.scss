@@ -17,7 +17,7 @@
   background-color: var(--background-primary);
 
   &--invalid {
-    box-shadow: 0 0 0 2px var(--status-danger);
+    box-shadow: 0 0 0 1px var(--status-danger);
   }
 
   &:hover {
@@ -112,7 +112,7 @@
 
 .rf-textarea__field:disabled {
   cursor: default;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .rf-textarea__max-length {

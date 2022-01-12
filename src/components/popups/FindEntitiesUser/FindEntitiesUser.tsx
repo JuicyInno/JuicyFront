@@ -3,8 +3,9 @@ import './FindEntitiesUser.scss';
 import React, { useState } from 'react';
 
 import {
-  Checkbox, Avatar, Tooltip, Info, Structure, Copy, Toast
+  Checkbox, Avatar, Tooltip, Structure, Toast
 } from '../../../index';
+import { Info, Copy } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
 
@@ -15,11 +16,13 @@ interface IFindEntitiesUserProps {
   isSelected: boolean;
   /** Изменение выбора пользователя */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Дизейбл чекбокса */
+  disabled?: boolean;
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default';
 }
 
-export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSelected, onChange, tooltipBackground }) => {
+export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSelected, onChange, disabled, tooltipBackground }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const onCopy = (event: React.MouseEvent) => {
@@ -38,6 +41,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
         align='flex-start'
         value={user.id}
         checked={isSelected}
+        disabled={disabled}
         onChange={onChange}
         fullWidth
         label={

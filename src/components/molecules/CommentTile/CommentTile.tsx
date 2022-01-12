@@ -104,7 +104,7 @@ const CommentTile: FC<ICommentTileProps> = ({
 
   return <div className='rf-comment-tile__wrapper'>
     <Tile className='rf-comment-tile'>
-      <h1 className='rf-comment-tile__title'>{title}</h1>
+      <h3 className='rf-comment-tile__title'>{title}</h3>
 
       <FormGroup
         className={classnames(
