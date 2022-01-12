@@ -13,8 +13,8 @@ import Axios, {
 } from 'axios';
 import { IUser } from '../../../types/projects.types';
 import {
-  Avatar, Button, Info, Preloader, Search, Tabs, Tooltip
-} from '../../../index';
+  Avatar, Button, Preloader, Search, Tabs, Tooltip
+} from '../../../index'; import { Info, } from '../../../indexIcon';
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';

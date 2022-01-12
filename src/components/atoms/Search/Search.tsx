@@ -2,8 +2,8 @@ import React, {
   HTMLProps, useEffect, useRef, useState, ReactNode
 } from 'react';
 import './Search.scss';
-import Close from '../../../assets/icons/Close';
-import SearchIcon from '../../../assets/icons/Search';
+import { Close, SearchIcon } from '../../../indexIcon';
+
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IDebounceResult } from '../../../types/projects.types';

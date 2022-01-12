@@ -8,13 +8,6 @@ import { DropdownPosition } from '../../../types';
 import { createPortal } from 'react-dom';
 import { Options } from '@popperjs/core/lib/modifiers/offset';
 
-export interface ICoordinates {
-  top: string;
-  right: string;
-  bottom: string;
-  left: string;
-}
-
 export interface IDropdownProps {
   /** Контент */
   children: ReactNode | ReactNode[];
