@@ -1,7 +1,9 @@
 import React from 'react';
 import Datepicker from './Datepicker';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { formatDate } from './DatepickerCalendar/datepicker.utils';
+import {
+  formatDate
+} from '../../../utils/helpersDatePicker';
 
 describe('Test <Datepicker/> component', () => {
   it('should be render', () => {
