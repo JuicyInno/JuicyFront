@@ -1,7 +1,6 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 import './Checkbox.scss';
-import Reduce from '../../../assets/icons/Reduce';
-import Success from '../../../assets/icons/Success';
+import { Success, Reduce } from '../../../indexIcon';
 
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -61,7 +60,7 @@ const Checkbox: FC<ICheckboxProps> = ({
 
       {!!icon && <span className={`rf-checkbox__check ${roundClass}`}>
         <span className='rf-checkbox__mark'>
-          {halfChecked ? <Reduce/> : <Success/>}
+          {halfChecked ? <Reduce /> : <Success />}
         </span>
       </span>}
 

@@ -3,7 +3,7 @@ import { Story } from '@storybook/react';
 
 import Chip from './Chip';
 import StoryItem from '../../storybook/StoryItem';
-import Download from '../../../assets/icons/Download';
+import { Download } from '../../../indexIcon';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';

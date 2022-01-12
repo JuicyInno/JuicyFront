@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input from './Input';
-import ChevronDown from '../../../assets/icons/ChevronDown';
+import { ChevronDown } from '../../../indexIcon';
 
 describe('Test <Input/> component', () => {
   it('should be render', () => {

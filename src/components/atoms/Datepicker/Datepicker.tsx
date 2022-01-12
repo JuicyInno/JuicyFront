@@ -11,12 +11,14 @@ import {
 
 import InputMask from 'react-input-mask';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import { Calendar, ChevronDown } from '../../../indexIcon';
+import {
+  Calendar, ChevronDown, Cross
+} from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import { DropdownPosition } from '../../../types';
+
 import Dropdown from '../Dropdown';
 import Input from '../Input';
-import Cross from '../../../assets/icons/Cross';
 
 export interface IDatepickerProps {
   /** Имя поля */
