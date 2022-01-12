@@ -2,16 +2,22 @@ import React, {
   Dispatch, ReactNode, SetStateAction, useCallback, useEffect, useRef, useState
 } from 'react';
 import './DatepickerCalendar.scss';
-import {
-  compareMonths, formatDate,
-  getDaysForMonth, isCurrentDay, isCurrentMonth, months, stringToDate, weekDays
-} from './datepicker.utils';
+
 import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
 import { ChevronLeft } from '../../../../indexIcon';
 import Tooltip from '../../Tooltip';
+import {
+  compareMonths,
+  formatDate,
+  getDaysForMonth,
+  isCurrentDay,
+  isCurrentMonth, months,
+  stringToDate, weekDays
+} from '../../../../utils/helpersDatePicker';
+
 
 interface IDatepickerCalendarProps {
   /** Значение */
