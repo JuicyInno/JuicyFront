@@ -5,8 +5,14 @@ import React, {
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import {
-  Button, CertReader, Chip, CircleConfirm, CircleReject, Close, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
+  Button, CertReader, Chip, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
 } from '../../../index';
+
+import {
+  CircleConfirm, CircleReject, Close
+} from '../../../indexIcon';
+
+
 import Document from '../../../assets/icons/Documents';
 import { IBrowserCert, ICertResult } from '../../molecules/CertReader/CertReader';
 import ContentExpander from '../../molecules/ContentExpander';
