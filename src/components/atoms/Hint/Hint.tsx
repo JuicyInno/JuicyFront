@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Hint.scss';
 import { VariantClassic } from '../../../types';
-import { Info } from '../../../index';
+import { Info } from '../../../indexIcon';
 
 export interface IHintProps {
   /** Основное сообщение*/

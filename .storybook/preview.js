@@ -12,12 +12,12 @@ cssVars({
 // In config.js
 // The order for the headers
 const headers = [
-  'controls',
-  'navigations',
-  'forms',
-  'popovers',
   'components',
+  'controls',
+  'forms',
   'icons,illustrations',
+  'navigations',
+  'popovers',
   'pages'
 ];
 
