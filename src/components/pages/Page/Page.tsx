@@ -2,9 +2,8 @@ import React, { ReactNode } from 'react';
 import './Page.scss';
 import { Link } from 'react-router-dom';
 import { ITab } from '../../../types';
-import {
-  ChevronLeft, Preloader, Tabs
-} from '../../../index';
+import { Preloader, Tabs } from '../../../index';
+import { ChevronLeft } from '../../../indexIcon';
 
 
 export interface IPageProps {

@@ -1,21 +1,23 @@
 import React, {
-  ReactNode,
-  useCallback, useEffect, useRef, useState
+  ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
-import { Manager, Reference } from 'react-popper';
 import './Datepicker.scss';
-import DatepickerCalendar from './DatepickerCalendar';
+
+import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
+import { DropdownPosition } from '../../../types';
 import {
   formatDate, generateMask, getWeekDay, parseToFormat, stringToDate
-} from './DatepickerCalendar/datepicker.utils';
+} from '../../../utils/helpersDatePicker';
+import { Manager, Reference } from 'react-popper';
+import {
+  Calendar, ChevronDown, Cross
+} from '../../../indexIcon';
 import Input from '../Input';
 import InputMask from 'react-input-mask';
-import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
-import Cross from '../../../assets/icons/Cross';
-import { DropdownPosition } from '../../../types';
 import Dropdown from '../Dropdown';
+import DatepickerCalendar from './DatepickerCalendar';
+
 
 export interface IDatepickerProps {
   /** Имя поля */
@@ -34,14 +36,18 @@ export interface IDatepickerProps {
   max?: Date | string | number;
   /** Функция измекнения значения даты */
   onChange?: (value: IDateVariants, name?: string) => void;
-  /** Диапазон */
+  /** Диапазон
+   * @default false
+  */
   range?: boolean;
-  /** Показывать день недели в инпуте */
+  /** Показывать день недели в инпуте
+   * @default false
+  */
   showDayOfWeek?: boolean;
-  /** Локализация */
+  /** Локализация
+   * @default ru
+   */
   locale?: 'ru' | 'en';
-  /** Кнопка Сегодня */
-  showTodayButton?: boolean;
   /** Положение выпадающего меню */
   position?: DropdownPosition;
   /** Формат даты */
@@ -58,7 +64,7 @@ export interface IDatepickerProps {
    */
   filled?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'default' | 'white'
+  tooltipBackground?: 'default' | 'white';
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -75,7 +81,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   onChange,
   range = false,
   showDayOfWeek = false,
-  showTodayButton = true,
   position = 'bottom-start',
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
@@ -190,7 +195,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
     if (!inputValue.includes('_')) {
       inputValue = validate(parseToFormat(format, defaultValue).string);
-
     }
 
     setInputValue(inputValue);
@@ -358,17 +362,17 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           {(referenceProps) => (
             <div
               {...referenceProps}
-              className={classnames({
-                'rf-datepicker__input-wrapper': true,
+              className={classnames('rf-datepicker__input-wrapper', {
                 'rf-datepicker__input-wrapper--disabled': disabled,
-                'rf-datepicker__input-wrapper--readonly': readOnly
+                'rf-datepicker__input-wrapper--readonly': readOnly,
+                'rf-datepicker__input-wrapper--range': range,
               })}
               onClick={() => toggleCalendar(true)}
             >
               {
                 children || (
                   <InputMask
-                    mask={mask}
+                    mask={''}
                     name={name}
                     placeholder={placeholder}
                     value={inputValue}
@@ -414,14 +418,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             value={inputValue}
             minDate={minDate}
             maxDate={maxDate}
-            toggleRef={inputRef}
             setInputValue={setValue}
             range={range}
             locale={locale}
-            showCalendar={showCalendar}
             toggleCalendar={toggleCalendar}
-            showTodayButton={showTodayButton}
-            position={position}
             separator={separator}
             format={format}
             disableWeekDays={disableWeekDays || []}

@@ -3,7 +3,7 @@ import Search from './Search';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import { Microphone } from '../../../index';
+import { Microphone } from '../../../indexIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 
 export default {

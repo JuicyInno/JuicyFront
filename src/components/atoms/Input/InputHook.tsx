@@ -6,7 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
-import { Close } from '../../../index';
+import { Close } from '../../../indexIcon';
 
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
