@@ -353,7 +353,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const isCrossChevronPicker = inputValue.split('-').length === 2 && inputValue.split('-')[1].trim() !== '__.__.____';
-  console.log(dayOfWeek, showDayOfWeek);
+
 
   return (
     <Manager>
