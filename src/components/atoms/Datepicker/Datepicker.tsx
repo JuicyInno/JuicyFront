@@ -2,7 +2,6 @@ import React, {
   ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
-
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import { DropdownPosition } from '../../../types';
 import {
