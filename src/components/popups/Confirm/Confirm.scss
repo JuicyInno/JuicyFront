@@ -1,34 +1,28 @@
-@import 'src/styles/mixins';
+@import "src/styles/mixins";
 
 .confirm-popup {
-  padding-top: 20px;
-  margin-bottom: -4px;
+  width: 464px;
 }
 
 .confirm-popup__title {
-  @include h5;
-  margin-bottom: 14px;
+  @include h4;
+  margin-top: 32px;
 }
 
 .confirm-popup__text {
   @include text-m-16();
-  margin-bottom: 24px;
+  padding: 14px 0 24px 0;
 }
 
 .confirm-popup__footer {
-  padding-top: 24px;
+  padding-top: 18px;
   display: flex;
   align-items: center;
+  margin: 0 -32px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 .confirm-popup__footer-button {
-  margin-left: 16px;
-}
-
-.confirm-popup__footer-button:first-child {
-  margin-left: 0;
-}
-
-.confirm-popup__footer-button.confirm-popup__footer-left {
-  margin-left: auto;
+  margin-right: 16px;
 }

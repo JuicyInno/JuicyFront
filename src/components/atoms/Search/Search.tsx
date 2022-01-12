@@ -2,7 +2,7 @@ import React, {
   HTMLProps, useEffect, useRef, useState, ReactNode
 } from 'react';
 import './Search.scss';
-import { Close, SearchIcon } from '../../../indexIcon';
+import { Close, SearchIcon } from '../../../index';
 
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';

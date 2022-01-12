@@ -1,9 +1,9 @@
 import React from 'react';
-import { withDesign } from 'storybook-addon-designs';
-import { Story } from '@storybook/react';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsDescription
 } from '../../storybook';
+import { Story } from '@storybook/react';
+import { withDesign } from 'storybook-addon-designs';
 import History from './History';
 import {
   pathsHistory, attachments, pathsUZADO

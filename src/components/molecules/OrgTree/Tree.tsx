@@ -15,13 +15,11 @@ export interface ITreeProps {
   parent?: ITreeOption;
   /** Обновление структуры */
   onChange?: (o: ITreeOption) => void;
-  /** Изменение состояния чекбокса. */
-  onCheck?: (option: ITreeOption) => void;
   /** Активная запись */
   activeItem?: ITreeOption | undefined;
 }
 
-const Folder: React.FC<ITreeProps> = ({ id, list, onChange, onCheck, depth = 0, open = true, activeItem }: ITreeProps) => {
+const Folder: React.FC<ITreeProps> = ({ id, list, onChange, depth = 0, open = true, activeItem }: ITreeProps) => {
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +31,7 @@ const Folder: React.FC<ITreeProps> = ({ id, list, onChange, onCheck, depth = 0, 
 
   const listJSX = list.map((item: ITreeOption, i: number) => {
     return (
-      <TreeItem id={id} key={item.value + '_' + depth + '_' + i} item={item} onChange={onChange} onCheck={onCheck}
+      <TreeItem id={id} key={item.value + '_' + depth + '_' + i} item={item} onChange={onChange}
         depth={depth + 1} open={open} activeItem={activeItem} last={i === list.length - 1}/>
     );
   });

@@ -2,7 +2,6 @@
 
 .rf-comment-tile__wrapper {
   display: flex;
-  width: 100%;
 }
 
 .rf-comment-tile {
@@ -18,7 +17,7 @@
 .rf-comment-tile__input-wrapper {
   margin-top: 20px;
   color: var(--text-secondary);
-  max-width: 648px;
+  width: 648px;
 
   & .rf-form-group__label {
     @include text-xs-14();

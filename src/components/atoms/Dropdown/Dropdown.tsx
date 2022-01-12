@@ -6,7 +6,13 @@ import './Dropdown.scss';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { DropdownPosition } from '../../../types';
 import { createPortal } from 'react-dom';
-import { Options } from '@popperjs/core/lib/modifiers/offset';
+
+export interface ICoordinates {
+  top: string;
+  right: string;
+  bottom: string;
+  left: string;
+}
 
 export interface IDropdownProps {
   /** Контент */
@@ -21,11 +27,9 @@ export interface IDropdownProps {
   position?: DropdownPosition;
   /** Стили */
   style?: React.CSSProperties;
-  /** Расстояние по оси X и Y */
-  offset?: Options['offset'];
 }
 
-const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, position, style, offset, onClose }: IDropdownProps) => {
+const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, position, style, onClose }: IDropdownProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   /** Функция для отслеживания клика вне элемента */
@@ -52,7 +56,7 @@ const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, positio
       modifiers={[
         {
           name: 'offset',
-          options: { offset: offset || [0, 8] },
+          options: { offset: [0, 8] },
         },
         {
           name: 'flip',

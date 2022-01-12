@@ -19,23 +19,21 @@ const COUNTRIES: IInputPhoneCountry[] = [
 ];
 
 describe('Test <InputPhone/> component', () => {
-  it('should format value and copy value in the hidden input', () => {
-    render(<InputPhone name='phone' />);
+  it('should format value and copy value in the hidden input', async () => {
+    render(<InputPhone />);
 
-    fireEvent.change(screen.getByTestId('input-display'), {
-      target: { value: '+79999999999' },
+    fireEvent.change(screen.getByTestId('input-display'), { target: { value: '+79999999999' } });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('input-display')).toHaveValue('+7 (999) 999 - 99 - 99');
+      expect(screen.getByTestId('input')).toHaveValue('+79999999999');
     });
-    expect(screen.getByTestId('input-display')).toHaveValue('+7 999 999 99 99');
-    expect(screen.getByTestId('input')).toHaveValue('+79999999999');
   });
 
   it('should render countries menu', async () => {
-    render(<InputPhone name='phone' countries={COUNTRIES} />);
+    render(<InputPhone countries={COUNTRIES} />);
 
     fireEvent.click(screen.getByLabelText('Выбрать страну'));
-
-    expect(screen.queryByText('Россия')).toBeInTheDocument();
-    expect(screen.queryByText('Великобритания')).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.queryByText('Россия')).toBeInTheDocument();
@@ -43,13 +41,8 @@ describe('Test <InputPhone/> component', () => {
     });
   });
 
-  it('should render with disabled', () => {
-    const { container } = render(<InputPhone name='phone' disabled />);
-    expect(container.getElementsByClassName('rf-input--disabled ')).toHaveLength(1);
-  });
-
   it('should change country', () => {
-    render(<InputPhone name='phone' countries={COUNTRIES} />);
+    render(<InputPhone countries={COUNTRIES} />);
     const inputDisplay = screen.getByTestId('input-display');
 
     fireEvent.change(inputDisplay, { target: { value: '+79999999999' } });
@@ -57,9 +50,9 @@ describe('Test <InputPhone/> component', () => {
 
     fireEvent.click(screen.getByText('Великобритания'));
 
-    expect(inputDisplay).toHaveValue('+44 999 999 99 99');
+    expect(inputDisplay).toHaveValue('');
 
     fireEvent.change(inputDisplay, { target: { value: '+449999999999' } });
-    expect(inputDisplay).toHaveValue('+44 999 999 99 99');
+    expect(inputDisplay).toHaveValue('+44 (999) 999 - 99 - 99');
   });
 });

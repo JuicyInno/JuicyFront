@@ -14,7 +14,7 @@ import { Button } from '../../../index';
 import { Page, Document } from 'react-pdf';
 // @ts-ignore
 import { PDFPageProxy } from 'pdfjs-dist';
-import Send from '../../../assets/icons/24px/Account/Send';
+import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
 
 export interface IProps {
@@ -78,7 +78,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
 
   return (
     <>
-      {file &&
+      { file &&
         <div ref={pdfWrapper} className='pdf-document'>
           <Document file={ file.base64 } onLoadSuccess={ onDocumentLoadSuccess }>
             <Page width={pageWidth} pageNumber={ currentPage } onLoadSuccess={calculatePageWidth} />
@@ -91,8 +91,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
                 buttonType='white'
                 size='s'
                 onClick={onClickOpen}
-                endAdornment={<Send className='pdf-document__icon'/>}
-              >
+                endAdornment={<OpenNewTab className='pdf-document__icon'/>}>
                 Просмотреть
               </Button>
             </div>

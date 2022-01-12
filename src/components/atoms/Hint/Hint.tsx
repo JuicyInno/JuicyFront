@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Hint.scss';
 import { VariantClassic } from '../../../types';
-import { Info } from '../../../indexIcon';
+import { Info } from '../../../index';
 
 export interface IHintProps {
   /** Основное сообщение*/
@@ -26,6 +26,7 @@ const Hint: React.FC<IHintProps> = ({
   title,
   maxWidth = '648px',
 }: IHintProps) => {
+
   return (
     <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant}`}>
       {icon === 'info' &&

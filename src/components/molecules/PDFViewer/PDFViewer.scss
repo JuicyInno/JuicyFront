@@ -1,4 +1,4 @@
-@import '../../../styles/mixins';
+@import "../../../styles/mixins";
 
 .pdf-document {
   display: flex;
@@ -6,7 +6,7 @@
   background: var(--background-tertiary);
   padding: 8px 0;
   border-radius: 8px;
-  margin-top: 20px;
+  margin-top: 24px;
   position: relative;
 }
 
@@ -41,6 +41,7 @@
 
 .pdf-document__pager-text {
   @include button-m-16;
+
 }
 
 .pdf-document__pager-button--active {
@@ -49,6 +50,6 @@
 }
 
 .pdf-document__pager-button {
-  color: var(--basic-tertiary);
+  color: var( --basic-tertiary);
   padding-top: var(--4);
 }

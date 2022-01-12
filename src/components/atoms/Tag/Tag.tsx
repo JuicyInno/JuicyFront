@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Tag.scss';
 import { Variant } from '../../../types';
-import { Close } from '../../../indexIcon';
+import { Close } from '../../../index';
 
 export interface ITagProps {
   /** Цвет тега. */

@@ -27,12 +27,10 @@
 
 .rf-datepicker__calendar-chevron {
   color: var(--basic-tertiary);
-  cursor: pointer;
 }
 
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
-  color: var(--basic-secondary);
 
   .rf-datepicker__calendar-button,
   .rf-datepicker__calendar-chevron {

@@ -1,14 +1,12 @@
-@import '../../../styles/mixins';
-.doc__wrapper {
-  margin-bottom: 16px;
+@import "../../../styles/mixins";
+.doc__wrapper{
+  padding-bottom: 16px;
 }
-
-.doc__title {
+.doc__title{
   @include text-m-16;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
+  color:var(--text-secondary);
+  padding-bottom: 4px;
 }
-
-.story-sign__wrapper {
+.story-sign__wrapper{
   background-color: var(--background-secondary);
 }

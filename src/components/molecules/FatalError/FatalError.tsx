@@ -14,7 +14,7 @@ export interface IFatalErrorProps {
 
 
 const FatalError: FC<IFatalErrorProps> =
-  ({ description = 'Что-то пошло не так. Пожалуйста, обновите страницу.',
+  ({ description = 'Что-то пошло не так, Пожалуйста, обновите страницу.',
     icon = <FatalErrorIcon />,
     title = 'Ошибка' }: IFatalErrorProps) => {
 

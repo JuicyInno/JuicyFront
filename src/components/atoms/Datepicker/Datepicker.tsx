@@ -11,7 +11,7 @@ import {
 import Input from '../Input';
 import InputMask from 'react-input-mask';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
-import { Calendar, ChevronDown } from '../../../indexIcon';
+import { Calendar, ChevronDown } from '../../../index';
 import { classnames } from '../../../utils/classnames';
 import Cross from '../../../assets/icons/Cross';
 import { DropdownPosition } from '../../../types';
@@ -34,18 +34,14 @@ export interface IDatepickerProps {
   max?: Date | string | number;
   /** Функция измекнения значения даты */
   onChange?: (value: IDateVariants, name?: string) => void;
-  /** Диапазон
-   * @default false
-  */
+  /** Диапазон */
   range?: boolean;
-  /** Показывать день недели в инпуте
-   * @default false
-  */
+  /** Показывать день недели в инпуте */
   showDayOfWeek?: boolean;
-  /** Локализация
-   * @default ru
-   */
+  /** Локализация */
   locale?: 'ru' | 'en';
+  /** Кнопка Сегодня */
+  showTodayButton?: boolean;
   /** Положение выпадающего меню */
   position?: DropdownPosition;
   /** Формат даты */
@@ -62,7 +58,7 @@ export interface IDatepickerProps {
    */
   filled?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'default' | 'white';
+  tooltipBackground?: 'default' | 'white'
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -79,6 +75,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   onChange,
   range = false,
   showDayOfWeek = false,
+  showTodayButton = true,
   position = 'bottom-start',
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
@@ -193,6 +190,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
     if (!inputValue.includes('_')) {
       inputValue = validate(parseToFormat(format, defaultValue).string);
+
     }
 
     setInputValue(inputValue);
@@ -360,10 +358,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           {(referenceProps) => (
             <div
               {...referenceProps}
-              className={classnames('rf-datepicker__input-wrapper', {
+              className={classnames({
+                'rf-datepicker__input-wrapper': true,
                 'rf-datepicker__input-wrapper--disabled': disabled,
-                'rf-datepicker__input-wrapper--readonly': readOnly,
-                'rf-datepicker__input-wrapper--range': range,
+                'rf-datepicker__input-wrapper--readonly': readOnly
               })}
               onClick={() => toggleCalendar(true)}
             >
@@ -416,10 +414,14 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             value={inputValue}
             minDate={minDate}
             maxDate={maxDate}
+            toggleRef={inputRef}
             setInputValue={setValue}
             range={range}
             locale={locale}
+            showCalendar={showCalendar}
             toggleCalendar={toggleCalendar}
+            showTodayButton={showTodayButton}
+            position={position}
             separator={separator}
             format={format}
             disableWeekDays={disableWeekDays || []}

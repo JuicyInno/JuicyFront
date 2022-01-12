@@ -3,8 +3,8 @@ import { TooltipPosition } from '../../../types/projects.types';
 import React from 'react';
 
 interface IArrowTooltipIcon {
-  color: 'default' | 'white';
-  position: TooltipPosition;
+  color: 'default' | 'white',
+  position: TooltipPosition
 }
 
 

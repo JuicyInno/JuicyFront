@@ -19,7 +19,7 @@ import { ITab, IMenuContext } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import Menu, { MenuContext } from '../Menu';
 import Button from '../Button';
-import { KebabMenu } from '../../../indexIcon';
+import { KebabMenu } from '../../..';
 
 export interface ITabsProps {
   /** Список вкладок */

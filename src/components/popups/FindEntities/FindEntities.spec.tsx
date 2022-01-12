@@ -97,7 +97,7 @@ describe('Test <FindEntities/> component',  () => {
   });
 
   it('should call onChange', async () => {
-    const { baseElement } = result;
+    const { container, baseElement } = result;
 
     act(() => {
       const input = screen.getByPlaceholderText('Поиск');

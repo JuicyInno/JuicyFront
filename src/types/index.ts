@@ -16,7 +16,6 @@ export interface ITreeOption extends IOption {
   children?: ITreeOption[];
   variant?: Variant;
   loading?: boolean;
-  hasChildren?: boolean;
 }
 
 export interface ICustomOption extends IOption {

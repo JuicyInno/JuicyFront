@@ -30,7 +30,7 @@ export const findUsers = () => {
         <StoryItem description='Модальное окно'>
           <Button onClick={() => toggle(true)}>Найти сотрудника</Button>
           {show && (
-            <Modal size='xl' onClose={() => toggle(false)}>
+            <Modal onClose={() => toggle(false)}>
               <FindUsers
                 getUsers={getUsers}
                 users={selected}
@@ -47,7 +47,7 @@ export const findUsers = () => {
         <StoryItem description='Модальное окно'>
           <Button onClick={() => toggle1(true)}>Найти сотрудника</Button>
           {show1 && (
-            <Modal size='xl' onClose={() => toggle1(false)}>
+            <Modal onClose={() => toggle1(false)}>
               <FindUsers
                 getUsers={getUsers}
                 users={selected}

@@ -1,15 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // =========================================================================
 module.exports = {
-  entry: {index:'./src/index.ts',indexIcon:'./src/indexIcon.ts'},
+  entry: ['./src/index.ts'],
   output: {
-    filename: '[name].js',
-    // publicPath: '',
-
-    path: __dirname + '/dist',
-     libraryTarget: 'commonjs'
+    filename: 'index.js',
+    publicPath: '',
+    path: path.join(__dirname, 'dist'),
+    libraryTarget: 'commonjs'
   },
   resolve: {
     extensions: [

@@ -1,27 +1,11 @@
 .rf-phone-input {
-  min-width: 300px;
-
   &__country {
     align-items: center;
     display: flex;
-    cursor: pointer;
   }
-
-  &__text {
-    &-disabled {
-      .rf-input__field:disabled {
-        cursor: not-allowed;
-        color: var(--text-tertiary);
-      }
-    }
-  }
-
+  
   &__flag {
     color: var(--text-tertiary);
-
-    &-disabled {
-      opacity: 0.5;
-    }
   }
 
   &__button {
@@ -29,28 +13,21 @@
     margin-left: 4px;
 
     &:disabled {
-      color: var(--text-tertiary);
-      cursor: not-allowed;
+      color: var(--text-tertiary)
     }
 
     &--rotate {
       transform: rotate(180deg);
-      color: var(--basic-primary);
     }
-  }
-
-  &__list {
-    padding: 12px 0;
   }
 
   &__option {
     display: flex;
     width: 100%;
-    padding: 8px 16px;
   }
 
   &__option-flag {
-    margin-right: 8px;
+    margin-right: 8px;;
   }
 
   &__option-text {

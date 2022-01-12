@@ -59,7 +59,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
         <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
           <div className={`rf-tooltip__inner rf-tooltip__inner--${placement}`}>
             {children}
-            <div className={`rf-tooltip__content-union--${placement} rf-tooltip__content-union--${background}`}>
+            <div className={`rf-tooltip__content-union--${position} rf-tooltip__content-union--${background}`}>
               <ArrowTooltipIcon color={background} position={placement as TooltipPosition} />
             </div>
           </div>
