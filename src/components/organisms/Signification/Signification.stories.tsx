@@ -8,7 +8,7 @@ import { pdfFile } from '../../molecules/PDFViewer/pdf';
 import './story.scss';
 import { withDesign } from 'storybook-addon-designs';
 
-const file:IRequestAttachment = {
+const file: IRequestAttachment = {
   fileName: 'test',
   base64: pdfFile
 };
@@ -26,7 +26,7 @@ export default {
 };
 
 
-const response = (data:ISignifyCallback) => {
+const response = (data: ISignifyCallback) => {
   console.warn('!!!response:', data);
 };
 
@@ -50,7 +50,7 @@ export const Demo = () => {
           }}
           data={file}
           pdfUrl={'yandex.ru'}
-          title='Приказ №384848483 от 30.08.2021'/>
+          title='Приказ №384848483 от 30.08.2021' />
       </StoryItem>
     </Story>
     <Story name='Подписание счетов' description='Подписание счетов с использованием цифровой (КЭП) подписи.

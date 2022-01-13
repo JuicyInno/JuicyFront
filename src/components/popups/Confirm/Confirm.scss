@@ -1,21 +1,34 @@
 @import 'src/styles/mixins';
 
+.confirm-popup {
+  padding-top: 20px;
+  margin-bottom: -4px;
+}
+
 .confirm-popup__title {
-  @include h4;
-  margin-top: 32px;
+  @include h5;
+  margin-bottom: 14px;
 }
 
 .confirm-popup__text {
   @include text-m-16();
-  padding: 14px 0 24px 0;
+  margin-bottom: 24px;
 }
 
 .confirm-popup__footer {
-  padding-top: 18px;
+  padding-top: 24px;
   display: flex;
   align-items: center;
 }
 
 .confirm-popup__footer-button {
-  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.confirm-popup__footer-button:first-child {
+  margin-left: 0;
+}
+
+.confirm-popup__footer-button.confirm-popup__footer-left {
+  margin-left: auto;
 }

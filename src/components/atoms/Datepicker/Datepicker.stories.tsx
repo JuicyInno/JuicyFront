@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Datepicker from './Datepicker';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
@@ -8,11 +8,14 @@ import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
 import { today } from '../../../index';
+import Chip from '../Chip';
+import { Calendar } from '../../../indexIcon';
 
 export default {
   title: 'forms/withTest/Datepicker',
   component: Datepicker
 };
+
 const log = (res: IDateVariants) => {
   console.log(res);
 };
@@ -31,7 +34,7 @@ export const Demo = () => {
           <Datepicker min={Date.now()} max={Date.now() + 30 * 24 * 3600 * 1000} disableWeekDays={[0, 6]} />
         </StoryRow>
       </StoryItem>
-      <StoryItem subtitle='Может показывать день недели'>
+      <StoryItem subtitle='Может показывать день недели (showDayOfWeek)'>
         <StoryRow>
           <Datepicker defaultValue={Date.now()} showDayOfWeek />
         </StoryRow>
@@ -53,26 +56,33 @@ export const Demo = () => {
           <Datepicker disabled defaultValue={Date.now()} />
         </StoryRow>
       </StoryItem>
+      <StoryItem subtitle='Bubbling'>
+
+        <StoryRow>
+
+          <Datepicker defaultValue={Date.now()} position='top-start'>
+            <Chip onClick={() => { }} isBubble icon={<Calendar />} iconPosition={'left'} type='secondary' size='s'>
+              Выбрать дату
+            </Chip>
+          </Datepicker>
+        </StoryRow>
+      </StoryItem>
+
     </StoryContainer>
   </StoryDocs>;
 };
 
-export const Playground: Story = () => {
-
-  const [date, setDate] = useState(new Date(2021, 11, 20).getTime());
+export const Playground: Story = (args) => {
+  const [date, setDate] = useState<number | string>('20.12.2021 - 21.12.2021');
 
   const onChange = (date: IDateVariants) => {
     setDate(date.timestamp.value);
   };
 
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
-
   return (
-    <StoryContainer name='Datepicker' description='Выбор даты.' width={280}>
+    <StoryContainer name='Datepicker' description='Выбор даты.' width={320}>
       <StoryRow>
-        <Datepicker defaultValue={date} min={today()} onChange={onChange} range/>
+        <Datepicker defaultValue={date} min={today()} {...args} onChange={onChange} />
       </StoryRow>
     </StoryContainer>
   );

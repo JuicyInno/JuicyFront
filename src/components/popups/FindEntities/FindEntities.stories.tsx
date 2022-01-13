@@ -7,8 +7,8 @@ import { positionsMocks, IPosition } from '../FindEntitiesPosition/positions.moc
 
 import { FindEntitiesUser, createGetUsers } from '../FindEntitiesUser';
 import { usersMocks } from '../FindEntitiesUser/users.mocks';
-import { Button, People } from '../../../index';
-
+import { Button } from '../../../index';
+import { People } from '../../../indexIcon';
 import { BrowserRouter } from 'react-router-dom';
 import { IUser } from '../../../types/projects.types';
 

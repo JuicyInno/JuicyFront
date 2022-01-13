@@ -1,8 +1,12 @@
 import React, { ReactNode, ReactElement } from 'react';
 import './CompletePopup.scss';
+import { Button } from '../../../index';
+
 import {
-  Button, CircleReject, CircleConfirm, CircleReturn, CircleRefresh, CircleTrash
-} from '../../../index';
+  CircleReject, CircleConfirm, CircleReturn, CircleRefresh, CircleTrash
+} from '../../../indexIcon';
+
+
 import { classnames } from '../../../utils/classnames';
 import Tile from '../../atoms/Tile';
 

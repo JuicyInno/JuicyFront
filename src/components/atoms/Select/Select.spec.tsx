@@ -1,5 +1,6 @@
 import { getByText, screen, render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
+import { noop } from 'rxjs';
 import Select from './Select';
 
 describe('Test <Select/> component', () => {
@@ -34,21 +35,6 @@ describe('Test <Select/> component', () => {
     });
   });
 
-  it('should have dropdown width of 600px', async () => {
-    const { container } = render(
-      <Select dropdownMaxWidth={600} placeholder='Выберите значение' options={[{ value: 'v', label: 'label' }]} values={[]} onChange={jest.fn} />
-    );
-
-    fireEvent.click(screen.getByTestId('rf-select'));
-
-    await waitFor(() => {
-      const dropdown = screen.getByTestId('rf-dropdown');
-      const styleAttribute = dropdown.getAttribute('style');
-      const hasProperWidth = styleAttribute ? styleAttribute.includes('max-width: 600px') : false;
-      expect(hasProperWidth).toBeTruthy();
-    });
-  });
-
   it('should close dropdown on chevron click', async () => {
     const { container } = render(
       <Select options={[{ value: 'v', label: 'label' }]} values={[]} onChange={jest.fn} />
@@ -80,4 +66,56 @@ describe('Test <Select/> component', () => {
     });
 
   })
+
+  it('should be call onChange ', async () => {
+    const onChange = jest.fn();
+    render(<Select
+      options={[{ value: 'v', label: 'label' }]}
+      values={[]}
+      onChange={onChange}
+    />);
+
+
+    fireEvent.click(screen.getByTestId('rf-select'));
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByTestId('rf-select'));
+      waitFor(() => {
+        fireEvent.click(screen.getByTestId(('rf-select__list-element-1')));
+        expect(onChange).toBeCalled();
+      });
+    });
+
+  })
+
+
+  it('should be call multiselect ', async () => {
+    render(<Select
+      options={[{ value: 'v', label: 'label' }]}
+      values={[]}
+      multiselect
+      onChange={noop}
+    />);
+    fireEvent.click(screen.getByTestId('rf-select'));
+    await waitFor(() => {
+      fireEvent.click(screen.getByTestId('rf-select'));
+      waitFor(() => {
+        fireEvent.click(screen.getByTestId(('rf-select__list-element-1')));
+        expect(document.getElementsByClassName('rf-select__tags')[0]).toBeInTheDocument()
+      });
+    });
+  })
+
+  /*   it('should be render with placeholder ', async () => {
+      const { container } = render(<Select
+        options={[{ value: 'v', label: 'label' }]}
+        values={[]}
+        onChange={noop}
+        placeholder='TEST'
+      />);
+  
+      expect(document.getElementById('rf-select__input')!.attributes['placeholder']).toBe('TEST')
+  
+    }) */
+
 });
