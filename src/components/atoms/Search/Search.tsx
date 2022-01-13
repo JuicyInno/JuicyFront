@@ -78,11 +78,7 @@ const Search: React.FC<ISearchProps> = ({
       <input {...props}
         ref={ref}
         type='text'
-<<<<<<< HEAD
         className={classnames(endAdornment ? 'rf-search__input-endAdornment' : 'rf-search__input')}
-=======
-        className='rf-search__input'
->>>>>>> a64374e17177371ca00d1e049ed14ecb41bd3d95
         placeholder={props.placeholder || 'Поиск'}
         value={value}
         data-testid='search-test-id'
@@ -93,11 +89,7 @@ const Search: React.FC<ISearchProps> = ({
       {value.length > 0 && showClear &&
         <Close data-testid='search-clear-test-id'
           className={classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment')}
-<<<<<<< HEAD
           onMouseDown={onClearClickHandler} />}
-=======
-          onClick={onClearClickHandler} />}
->>>>>>> a64374e17177371ca00d1e049ed14ecb41bd3d95
       {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 
