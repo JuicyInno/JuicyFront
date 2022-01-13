@@ -1,0 +1,51 @@
+@import '../../../styles/mixins';
+
+.rf-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .rf-accordion__item-wrap {
+    border-bottom: 1px solid var(--background-tertiary-hover);
+
+    &.rf-accordion__item--opened {
+      .rf-accordion__panel {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+        transition: all 0.1s;
+        padding: 10px 16px 15px;
+      }
+
+      .rf-accordion__item-icon {
+        transform: rotate(-180deg);
+      }
+    }
+
+    .rf-accordion__panel {
+      visibility: hidden;
+      opacity: 0;
+      height: 0px;
+      padding: 0px 16px;
+      transition: all 0.1s;
+    }
+
+    &:first-child .rf-accordion__item {
+      border-top: 1px solid var(--background-tertiary-hover);
+    }
+  }
+
+  .rf-accordion__item-icon {
+    color: var(--basic-tertiary);
+    transition: 0.2s ease-in-out;
+  }
+
+  .rf-accordion__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 16px;
+    cursor: pointer;
+    @include text-l-16-bold;
+  }
+}
