@@ -8,6 +8,8 @@ import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
 import { today } from '../../../index';
+import Chip from '../Chip';
+import { Calendar } from '../../../indexIcon';
 
 export default {
   title: 'forms/withTest/Datepicker',
@@ -54,6 +56,18 @@ export const Demo = () => {
           <Datepicker disabled defaultValue={Date.now()} />
         </StoryRow>
       </StoryItem>
+      <StoryItem subtitle='Bubbling'>
+
+        <StoryRow>
+
+          <Datepicker defaultValue={Date.now()} position='top-start'>
+            <Chip onClick={() => { }} isBubble icon={<Calendar />} iconPosition={'left'} type='secondary' size='s'>
+              Выбрать дату
+            </Chip>
+          </Datepicker>
+        </StoryRow>
+      </StoryItem>
+
     </StoryContainer>
   </StoryDocs>;
 };
