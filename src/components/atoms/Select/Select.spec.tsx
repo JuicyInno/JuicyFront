@@ -113,9 +113,21 @@ describe('Test <Select/> component', () => {
       onChange={noop}
       placeholder='TEST'
     />);
+    console.log(document.getElementById('rf-select__input')!.getAttribute('placeholder'));
 
-    expect(document.getElementById('rf-select__input')!.attributes['placeholder']).toBe('TEST')
+    expect(document.getElementById('rf-select__input')!.getAttribute('placeholder')).toBe('TEST')
 
   })
+  it('should be readOnly ', async () => {
+    const { container } = render(<Select
+      options={[{ value: 'v', label: 'label' }]}
+      values={[]}
+      onChange={noop}
+      placeholder='TEST'
+    />);
+    console.log(document.getElementById('rf-select__input')!.getAttribute('placeholder'));
 
+    expect(document.getElementById('rf-select__input')!.getAttribute('placeholder')).toBe('TEST')
+
+  })
 });
