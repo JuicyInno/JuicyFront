@@ -10,6 +10,7 @@ import Button from '../Button';
 import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 import Select from '.';
+import { Calendar, Cross } from '../../../indexIcon';
 
 export default {
   title: 'forms/withTest/Select',
@@ -161,7 +162,7 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
-              dropdownMaxWidth={600}
+
               placeholder='Placeholder'
               options={list}
               variant='base'
@@ -216,6 +217,7 @@ export const Demo = () => {
             onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
+            maxOptions={2}
             preloader={loading}
           />
         </StoryItem>
@@ -261,6 +263,15 @@ export const Demo = () => {
           />
           <br />
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
+        </StoryItem>
+        <StoryItem description='Test'>
+          <Select
+            options={list}
+            values={state}
+            onChange={onChange2}
+            startAdornment={<Calendar />}
+            endAdornment={<Cross />}
+          />
         </StoryItem>
       </form>
     </StoryContainer>
