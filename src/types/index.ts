@@ -192,6 +192,8 @@ export interface IButtonGroup {
   onClick?: () => void;
   /** неактивное состояние */
   disabled?: boolean;
+  /** лоудер */
+  preloader?: boolean;
 }
 
 /** Пропсы иконки */

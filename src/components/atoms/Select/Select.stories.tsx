@@ -2,21 +2,85 @@ import React, {
   useEffect, useRef, useState
 } from 'react';
 import { Story } from '@storybook/react';
-
-import Select from './Select';
 import { IOption } from '../../../types';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
-import InputNumber from '../InputNumber';
+import FormGroup from '../FormGroup';
+import Placeholder24 from '../../../assets/icons/Placeholder24';
+import Select from '.';
 
 export default {
-  title: 'forms/не проверено/Select',
+  title: 'forms/withTest/Select',
   component: Select,
 };
 
 const list: IOption[] = [];
+
+const list2: IOption[] = [
+  {
+    value: '0',
+    label: 'Москва'
+  },
+  {
+    value: '1',
+    label: 'Санкт-Петербург'
+  },
+  {
+    value: '2',
+    label: 'Новосибирск'
+  },
+  {
+    value: '3',
+    label: 'Екатеринбург'
+  },
+  {
+    value: '4',
+    label: 'Казань'
+  },
+  {
+    value: '5',
+    label: 'Нижний Новгород'
+  },
+  {
+    value: '6',
+    label: 'Челябинск'
+  },
+  {
+    value: '7',
+    label: 'Самара'
+  },
+  {
+    value: '8',
+    label: 'Омск'
+  },
+  {
+    value: '9',
+    label: 'Ростов-на-Дону'
+  },
+  {
+    value: '10',
+    label: 'Уфа'
+  },
+  {
+    value: '11',
+    label: 'Красноярск'
+  },
+  {
+    value: '12',
+    label: 'Воронеж'
+  },
+  {
+    value: '13',
+    label: 'Пермь'
+  },
+  {
+    value: '14',
+    label: 'Волгоград'
+  },
+
+];
 
 for (let i = 1; i < 15; i++) {
   list.push({
@@ -26,11 +90,18 @@ for (let i = 1; i < 15; i++) {
   });
 }
 
+
 export const Demo = () => {
   const [values, setValues] = useState<IOption[]>([]);
 
   const onChange = (options: IOption[]) => {
     console.log(options);
+  };
+
+  const onChangeMultiselect = (options: IOption[]) => {
+
+    setCities(options);
+
   };
 
   const [filteredOptions, setFilteredOptions] = useState<IOption[]>(list);
@@ -39,14 +110,14 @@ export const Demo = () => {
 
   const filterWithDelay = (query: string) => {
     if (query === '') {
-      setFilteredOptions(list);
+      setFilteredOptions(list2);
       return;
     }
 
     setLoading(true);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      const filtered = list.filter((o: IOption) => o.label.toLowerCase().includes(query.toLowerCase()));
+      const filtered = list2.filter((o: IOption) => o.label.toLowerCase().includes(query.toLowerCase()));
       setFilteredOptions(filtered);
       setLoading(false);
     }, 1000);
@@ -62,17 +133,15 @@ export const Demo = () => {
     }, 1000);
   }, []);
 
-  const [state, setState] = useState([list[0]]);
-  const [state1, setState1] = useState([list[1]]);
-  const [state2, setState2] = useState(true);
+  const [state, setState] = useState([]);
+  const [state1, setState1] = useState([]);
+  const [cities, setCities] = useState<IOption[]>([]);
 
   const onChange1 = (options: IOption[]) => {
-    console.log(options);
     setState(options);
   };
 
   const onChange2 = (options: IOption[]) => {
-    console.log(options);
     setState1(options);
   };
 
@@ -85,17 +154,65 @@ export const Demo = () => {
 
   const [disabled, setDisabled] = useState(true);
 
+
   return (
-    <StoryContainer name='Select' description='Select кнопки' width={400}>
+    <StoryContainer name='Select' description='виды Select' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
+        <StoryItem description='Select default'>
+          <FormGroup label={'Label'}>
+            <Select
+              placeholder='Placeholder'
+              options={list}
+              variant='base'
+              values={state}
+              onChange={onChange2}
+
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select invalid'>
+          <FormGroup label='Label' invalid errorMessage='Error'>
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              invalid
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select disabled'>
+          <FormGroup label='Label' >
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              disabled
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select start adornment'>
+          <FormGroup label='Label' >
+            <Select
+              placeholder='Выберите значение'
+              options={list}
+              values={state1}
+              onChange={onChange2}
+              preloader={loading}
+              startAdornment={<Placeholder24 />}
+            />
+          </FormGroup>
+        </StoryItem>
+
         <StoryItem description='Multiselect'>
           <Select
-            placeholder='Выберите значение'
+            placeholder='Выберите город'
             options={filteredOptions}
-            values={values}
-            invalid={true}
-            tagsPosition='outside'
-            onChange={onChange}
+            values={cities}
+            onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
             preloader={loading}
@@ -106,7 +223,6 @@ export const Demo = () => {
           <Button
             onClick={() => {
               setState([list[1]]);
-              setState2(!state2);
             }}
           >
             Set State
@@ -114,10 +230,8 @@ export const Demo = () => {
           <div style={{ height: '20px' }} />
           <Select
             placeholder='Выберите значение'
-            options={filteredOptions}
+            options={list}
             values={state}
-            invalid={state2}
-            tagsPosition='outside'
             onChange={onChange1}
             onSearch={onSearch}
             preloader={loading}
@@ -130,7 +244,6 @@ export const Demo = () => {
             readOnly
             options={list}
             values={state1}
-            tagsPosition='outside'
             onChange={onChange2}
             preloader={loading}
           />
@@ -140,42 +253,13 @@ export const Demo = () => {
           <Select
             placeholder='Выберите значение'
             options={list}
-            values={state1}
+            values={state}
             onChange={onChange2}
             preloader={loading}
             disabled={disabled}
           />
           <br />
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
-        </StoryItem>
-
-        <StoryItem description='Tag Select'>
-          <div style={{ position: 'relative' }}>
-            <InputNumber defaultValue={'1200.60'} floatPoints={2} />
-            <Select
-              placeholder='Выберите значение'
-              readOnly
-              variant='tag'
-              options={currencies}
-              values={state1}
-              onChange={onChange2}
-              preloader={loading}
-            />
-          </div>
-        </StoryItem>
-
-        <StoryItem description='Small options'>
-          <Select
-            placeholder='Выберите значение'
-            options={[
-              {
-                value: 'v',
-                label: 'label'
-              }
-            ]}
-            values={[]}
-            onChange={onChange2}
-          />
         </StoryItem>
       </form>
     </StoryContainer>
@@ -225,7 +309,7 @@ export const LazySelect: Story = () => {
               placeholder='Поиск'
               values={[]}
               options={list}
-              onChange={() => {}}
+              onChange={() => { }}
               isAsync
               infinityScrollProps={{
                 hasMore,
@@ -245,7 +329,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => {}} {...args} />
+          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => { }} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>
