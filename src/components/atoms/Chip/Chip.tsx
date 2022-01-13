@@ -14,8 +14,11 @@ export interface ITagProps {
   onRemove?: () => void;
   /** залочен или нет */
   disabled?: boolean;
-  /** размер */
-  size?: 's' | 'm';
+  /**
+   * размер
+   * @default 'm'
+   *  */
+  size?: 'xs' | 's' | 'm';
   /** Вариант отображения */
   type?: 'primary' | 'secondary' | 'outline';
   /** Иконка */
@@ -28,7 +31,12 @@ export interface ITagProps {
    * Цвет tooltip
    * @default 'default'
    */
-  tooltipBackground?: 'default' | 'white'
+  tooltipBackground?: 'default' | 'white',
+  /**
+   * Цвет tooltip
+   * @default false
+   */
+  isBubble?: boolean
 }
 
 const Chip: React.FC<ITagProps> = ({
@@ -41,11 +49,12 @@ const Chip: React.FC<ITagProps> = ({
   iconPosition,
   disabled,
   maxLength = 32,
-  tooltipBackground = 'default'
+  tooltipBackground = 'default',
+  isBubble = false
 }: ITagProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
+    !isBubble && e.stopPropagation();
     onClick && onClick();
   };
 
@@ -66,7 +75,6 @@ const Chip: React.FC<ITagProps> = ({
 
   return (
     <Tooltip background={tooltipBackground} position={'bottom'} isVisible={overMaxLength}>
-
       <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
         onClick={handleClick}>
         {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
