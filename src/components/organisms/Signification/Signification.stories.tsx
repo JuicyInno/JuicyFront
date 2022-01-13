@@ -92,7 +92,7 @@ export const Demo = () => {
             'rejectManual'
           ]}
           documentInfo={docInfo}
-          title='Счет №SVTB2060_22 от 30.08.2021'
+          title='Счет №SVTB2060_22 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021'
           variant='border'
         />
       </StoryItem>

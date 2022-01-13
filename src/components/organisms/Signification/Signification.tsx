@@ -416,7 +416,7 @@ const Signification:FC<IProps> = ({
   return <div className='signification__wrapper'>
     <Tile variant={variant}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
-        <Document color1={onlyView ? '#F1F2F4' : undefined}/>
+        <Document color1={onlyView ? '#F1F2F4' : undefined} className='signification__title-icon'/>
         <div className='signification__title-text'>{title}</div>
       </div>
 
