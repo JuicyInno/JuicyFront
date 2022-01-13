@@ -12,7 +12,7 @@ import Placeholder24 from '../../../assets/icons/Placeholder24';
 import Select from '.';
 
 export default {
-  title: 'forms/не проверено/Select',
+  title: 'forms/withTest/Select',
   component: Select,
 };
 
@@ -161,6 +161,7 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
+              dropdownMaxWidth={600}
               placeholder='Placeholder'
               options={list}
               variant='base'
@@ -277,9 +278,6 @@ export const LazySelect: Story = () => {
       return;
     }
 
-    console.log(query);
-
-
     const offset = isPagination ? list.length : 0;
 
     setIsLoading(true);
@@ -291,7 +289,6 @@ export const LazySelect: Story = () => {
           value: item.id,
           label: item.title,
         }));
-        console.log(resList);
 
         setList((prevList) => (isPagination ? [...prevList, ...resList] : resList));
 

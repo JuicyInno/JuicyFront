@@ -14,7 +14,10 @@ export interface ITagProps {
   onRemove?: () => void;
   /** залочен или нет */
   disabled?: boolean;
-  /** размер */
+  /**
+   * размер
+   * @default 'm'
+   *  */
   size?: 'xs' | 's' | 'm';
   /** Вариант отображения */
   type?: 'primary' | 'secondary' | 'outline';
