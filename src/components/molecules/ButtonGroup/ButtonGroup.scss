@@ -52,9 +52,19 @@
 
 .button-group__menu-button-icon {
   flex-shrink: 0;
+  height: 24px;
+  width: 24px;
   margin-left: auto;
   transform: rotate(180deg);
   color: var(--text-tertiary);
+}
+
+.button-group__menu-button-loader {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .button-group__menu-button--disabled {

@@ -128,7 +128,6 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
         readOnly
         options={statusOptions}
         values={statusOptions?.filter(i => i.value === filterStatus.status)}
-        tagsPosition='outside'
         onChange={changeSelectHandler} />
     </div>;
   //* *****************************************

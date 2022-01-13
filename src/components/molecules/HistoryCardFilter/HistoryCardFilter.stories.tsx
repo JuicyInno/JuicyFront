@@ -5,7 +5,12 @@ import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 import HistoryCardFilter, { IHistoryCardFilterProps, IHistoryCardValues } from './HistoryCardFilter';
 import { IOption } from '../../../types';
-import { Button } from '../../..';
+import {
+  StoryDocs,
+  StoryDocsDescription, StoryDocsH1, StoryDocsH2
+} from '../../storybook';
+import { Button } from '../../../index';
+import { Story } from '@storybook/react';
 
 
 const opt: IOption[] = [
@@ -48,34 +53,19 @@ const buttonComponent = <Button buttonType='primary' onClick={() => {
 }} >Создать</Button >;
 
 
-const Demo = () => {
-  <StoryContainer name='Fatal Error' description='Стандартный фильтр для истории'>
-    <StoryItem>
-      <HistoryCardFilter onChange={(result) => {
-        console.warn('Значении изменились: ', result);
-      }} />
-    </StoryItem>
-  </StoryContainer>;
-};
-
-export const Playground = (props: IHistoryCardFilterProps) => {
-
-  const values = {
-    ...data,
-    ...props
-  };
-  return <StoryContainer name='HistoryCardFilter' description='Стандартный фильтр для истории'>
-    <StoryItem>
-      <HistoryCardFilter {...values} onChange={(result) => {
-        console.warn('Значени изменились: ', result);
-      }} />
-    </StoryItem>
-    <StoryItem>
-      <HistoryCardFilter endAdornment={buttonComponent} {...values} onChange={(result) => {
-        console.warn('Значени изменились: ', result);
-      }} />
-    </StoryItem>
-  </StoryContainer>;
+export const Demo: Story = () => {
+  return (
+    <StoryContainer name='Fatal Error' description='Стандартный фильтр для истории'>
+      <StoryDocsH1>History Card Filter</StoryDocsH1>
+      <StoryDocsH2>Компонент фильтров</StoryDocsH2>
+      <StoryDocsDescription>Отображение комопнента фильров для сортировки и фильтрации</StoryDocsDescription>
+      <StoryItem>
+        <HistoryCardFilter onChange={(result) => {
+          console.warn('Значении изменились: ', result);
+        }} />
+      </StoryItem>
+    </StoryContainer>
+  );
 };
 
 Demo.parameters = {
@@ -83,4 +73,23 @@ Demo.parameters = {
     type: 'figma',
     url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18191'
   },
+  actions: { disabled: true },
+  controls: { disabled: true }
+};
+
+
+export const Playground: Story = (props: IHistoryCardFilterProps) => {
+
+  const values = {
+    ...data,
+    ...props
+  };
+  return (
+    <StoryContainer name='HistoryCardFilter' description='Стандартный фильтр для истории'>
+      <StoryDocs>
+        <HistoryCardFilter {...values} onChange={(result) => {
+          console.warn('Значени изменились: ', result);
+        }} />
+      </StoryDocs>
+    </StoryContainer>);
 };

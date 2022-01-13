@@ -59,28 +59,34 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
     <Structure departmentsPath={departmentsPath} background={tooltipBackground} />
   </Tooltip>;
 
+  const employeeComponent = <>
+    {title && <h6 className='rf-employee__title'> {title} </h6>}
+    <div className={'rf-employee__details-wrapper'}>
+      <Avatar photo={user.photo} fullName={user.fullName} size='xxxl' />
+      <div className='rf-employee__details'>
+        <div className='rf-employee__name-container'>
+          <h3 className='rf-employee__name'>{user.fullName}</h3>
+          {user.departmentsPath && getTooltip(user.departmentsPath)}
+        </div>
+        <div className='rf-employee__info'> {user.position} </div>
+        <div className='rf-employee__info rf-employee__info-department'>
+          {department}
+        </div>
+        <div className='rf-employee__info rf-employee__info-id'>
+          TH: {user.id}
+        </div>
+      </div>
+    </div>
+    {showActionButton && getButton()}
+  </>;
+
   return (
     <div className='rf-employee'>
-      <Tile className={showBoxShadow ? 'rf-employee__tile' : 'rf-employee__tile--disable-shadow'} >
-        {title && <h6 className='rf-employee__title'> {title} </h6>}
-        <div className={'rf-employee__details-wrapper'}>
-          <Avatar photo={user.photo} fullName={user.fullName} size='xxxl' />
-          <div className='rf-employee__details'>
-            <div className='rf-employee__name-container'>
-              <h3 className='rf-employee__name'>{user.fullName}</h3>
-              {user.departmentsPath && getTooltip(user.departmentsPath)}
-            </div>
-            <div className='rf-employee__info'> {user.position} </div>
-            <div className='rf-employee__info rf-employee__info-department'>
-              {department}
-            </div>
-            <div className='rf-employee__info rf-employee__info-id'>
-              TH: {user.id}
-            </div>
-          </div>
-        </div>
-        {showActionButton && getButton()}
-      </Tile>
+      {showBoxShadow ?
+        <Tile className='rf-employee__tile' >
+          {employeeComponent}
+        </Tile> : <div className='rf-employee__tile--disabledShadow'>{employeeComponent}</div>
+      }
     </div >
   );
 };
