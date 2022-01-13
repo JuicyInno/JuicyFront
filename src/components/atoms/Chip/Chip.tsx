@@ -14,9 +14,13 @@ export interface ITagProps {
   onRemove?: () => void;
   /** залочен или нет */
   disabled?: boolean;
-  /** размер */
-  size?: 's' | 'm';
-  /** Вариант отображения */
+  /** размер
+   * @default m
+   */
+  size?: 'xs' | 's' | 'm';
+  /** Вариант отображения
+   * @default primary
+   */
   type?: 'primary' | 'secondary' | 'outline';
   /** Иконка */
   icon?: ReactNode;
@@ -66,17 +70,16 @@ const Chip: React.FC<ITagProps> = ({
 
   return (
     <Tooltip background={tooltipBackground} position={'bottom'} isVisible={overMaxLength}>
-
       <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
         onClick={handleClick}>
-        {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon'>{icon}</div>}
+        {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon rf-chip__icon'>{icon}</div>}
         {overMaxLength ? children.slice(0, maxLength) + '...' : children}
         {onRemove && (
-          <div className={classnames('rf-chip__right-icon', disabled && 'rf-chip__not-clickable')} onClick={handleRemove}>
+          <div className={classnames('rf-chip__right-icon', 'rf-chip__icon', disabled && 'rf-chip__not-clickable')} onClick={handleRemove}>
             <Close />
           </div>
         )}
-        {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon'>{icon}</div>}
+        {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon rf-chip__icon'>{icon}</div>}
       </div>
       {children}
     </Tooltip>

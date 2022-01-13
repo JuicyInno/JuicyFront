@@ -8,16 +8,37 @@
   cursor: default;
 }
 
+.rf-chip.rf--m {
+  @include text-l-16;
+  height: 40px;
+  padding: 8px 12px;
+}
+
 .rf-chip.rf--s {
   @include text-s-14;
   height: 32px;
   padding: 6px 12px;
 }
 
-.rf-chip.rf--m {
-  @include text-l-16;
-  height: 40px;
-  padding: 8px 12px;
+.rf-chip.rf--xs {
+  @include text-s-14;
+  font-size: 12px;
+  height: 24px;
+  padding: 4px 8px;
+
+  .rf-chip__icon,
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .rf-chip__right-icon {
+    margin-left: 6px;
+  }
+
+  .rf-chip__left-icon {
+    margin-right: 6px;
+  }
 }
 
 .rf-chip.rf-chip--primary {
@@ -30,6 +51,16 @@
   background-color: var(--background-secondary);
   border-color: var(--background-secondary);
   color: var(--text-secondary);
+
+  .rf-chip__icon {
+    color: var(--basic-tertiary);
+  }
+}
+
+.rf-chip__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .rf-chip.rf-chip--outline {
@@ -48,12 +79,11 @@
 }
 
 .rf-chip__right-icon {
-  margin-left: 6px;
+  margin-left: 8px;
   color: inherit;
   cursor: pointer;
   width: 24px;
   height: 24px;
-  flex-shrink: 0;
 }
 
 .rf-chip__not-clickable {
@@ -61,15 +91,15 @@
 }
 
 .rf-chip__left-icon {
-  margin-right: 6px;
+  margin-right: 8px;
   color: inherit;
   width: 24px;
   height: 24px;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
-.rf-chip.rf--s,
-.rf-chip.rf--xs {
+.rf-chip.rf--s {
   .rf-chip__right-icon,
   svg {
     width: 20px;
