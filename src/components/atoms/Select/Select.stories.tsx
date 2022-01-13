@@ -161,7 +161,6 @@ export const Demo = () => {
         <StoryItem description='Select default'>
           <FormGroup label={'Label'}>
             <Select
-              dropdownMaxWidth={600}
               placeholder='Placeholder'
               options={list}
               variant='base'
