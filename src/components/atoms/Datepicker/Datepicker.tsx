@@ -392,8 +392,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                       endAdornment={
                         < div className='rf-datepicker__calendar-chevron' >
                           {isCrossChevronPicker ?
-                            <Cross onClick={clearDateRangeHandler} /> :
-                            <ChevronDown />}
+                            <Cross style={{ color: '#8A96A8' }} onClick={clearDateRangeHandler} /> :
+                            <ChevronDown style={{ color: '#8A96A8' }} />}
                         </ div>
                       }
                     />
