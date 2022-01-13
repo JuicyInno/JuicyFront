@@ -67,8 +67,6 @@ const Search: React.FC<ISearchProps> = ({
 
   //* ***************
   const onClearClickHandler = () => {
-    console.log('Clear click');
-
     setValue('');
     onClear && onClear();
     onDebounce({ debounceString: '' });
@@ -80,7 +78,7 @@ const Search: React.FC<ISearchProps> = ({
       <input {...props}
         ref={ref}
         type='text'
-        className='rf-search__input'
+        className={classnames(endAdornment ? 'rf-search__input-endAdornment' : 'rf-search__input')}
         placeholder={props.placeholder || 'Поиск'}
         value={value}
         data-testid='search-test-id'
