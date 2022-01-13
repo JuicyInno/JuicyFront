@@ -21,8 +21,7 @@
 }
 
 .rf-chip.rf--xs {
-  @include text-s-14;
-  font-size: 12px;
+  @include caption;
   height: 24px;
   padding: 4px 8px;
 
@@ -93,8 +92,6 @@
 .rf-chip__left-icon {
   margin-right: 8px;
   color: inherit;
-  width: 24px;
-  height: 24px;
   display: flex;
   align-items: center;
 }

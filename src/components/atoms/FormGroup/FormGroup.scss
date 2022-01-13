@@ -16,6 +16,10 @@
   transition: 0.15s ease-in;
 }
 
+.rf-form-group__label--disabled {
+  color: var(--text-tertiary);
+}
+
 .rf-form-group__label-secondary {
   float: right;
   margin-left: 8px;
