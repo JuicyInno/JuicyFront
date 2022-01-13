@@ -93,6 +93,7 @@ describe('Test <Select/> component', () => {
     expect(document.getElementsByClassName('rf-select__tags')[0]).toBeInTheDocument()
   });
 
+<<<<<<< HEAD
   it('should be render with placeholder ', () => {
     render(<Select
       options={[{ value: 'v', label: 'label' }]}
@@ -187,6 +188,19 @@ describe('Test <Select/> component', () => {
     fireEvent.click(screen.getByLabelText('label1'));
     expect(document.getElementsByClassName('rf-select__wrapper--invalid')).toBeTruthy()
   });
+=======
+  /*   it('should be render with placeholder ', async () => {
+      const { container } = render(<Select
+        options={[{ value: 'v', label: 'label' }]}
+        values={[]}
+        onChange={noop}
+        placeholder='TEST'
+      />);
+  
+      expect(document.getElementById('rf-select__input')!.attributes['placeholder']).toBe('TEST')
+  
+    }) */
+>>>>>>> a64374e17177371ca00d1e049ed14ecb41bd3d95
 
   it('should be scroll dropdown', () => {
     const onScroll = jest.fn();

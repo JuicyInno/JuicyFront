@@ -31,7 +31,12 @@ export interface ITagProps {
    * Цвет tooltip
    * @default 'default'
    */
-  tooltipBackground?: 'default' | 'white'
+  tooltipBackground?: 'default' | 'white',
+  /**
+   * Цвет tooltip
+   * @default false
+   */
+  isBubble?: boolean
 }
 
 const Chip: React.FC<ITagProps> = ({
@@ -44,11 +49,12 @@ const Chip: React.FC<ITagProps> = ({
   iconPosition,
   disabled,
   maxLength = 32,
-  tooltipBackground = 'default'
+  tooltipBackground = 'default',
+  isBubble = false
 }: ITagProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
+    !isBubble && e.stopPropagation();
     onClick && onClick();
   };
 
