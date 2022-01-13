@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from './Tooltip';
+import Tooltip, { ITooltipProps } from './Tooltip';
 import Button from '../Button';
 import StoryContainer from '../../storybook/Story';
 import { Story } from '@storybook/react';
@@ -33,7 +33,7 @@ export default {
   }
 };
 
-export const Demo: Story = (props: any) => {
+export const Demo: Story<ITooltipProps> = (props: ITooltipProps) => {
   return (
     <StoryDocs>
       <StoryDocsH1>Tooltip</StoryDocsH1>
@@ -58,7 +58,7 @@ Demo.parameters = {
 };
 
 
-export const Playground: Story = (args: any) => {
+export const Playground: Story<ITooltipProps> = (args: ITooltipProps) => {
   return (
     <StoryContainer>
       <StoryRow>
