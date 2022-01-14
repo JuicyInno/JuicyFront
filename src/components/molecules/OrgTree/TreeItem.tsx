@@ -7,9 +7,10 @@ import './TreeItem.scss';
 import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
 import HLine from './lines/hline';
-import {
-  Circle, Preloader, Up
-} from '../../../index';
+import { Preloader } from '../../../index';
+import { Circle, Up } from '../../../indexIcon';
+import Checkbox from '../../atoms/Checkbox';
+import { classnames } from '../../../utils/classnames';
 
 interface IFolderItemProps {
   id: string;
@@ -20,12 +21,15 @@ interface IFolderItemProps {
   onChange?: (o: ITreeOption) => void;
   activeItem: ITreeOption | undefined;
   last?: boolean;
+  /** Изменение состояния чекбокса. */
+  onCheck?: (option: ITreeOption) => void;
 }
 
 const FolderItem: React.FC<IFolderItemProps> = ({
   id,
   item,
   onChange,
+  onCheck,
   depth,
   open,
   activeItem,
@@ -45,7 +49,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openClass = showFolder && item.children && item.children.length > 0 ? 'rf-tree__item--open' : 'rf-tree__item--close';
   const showFolderClass = showFolder ? '' : 'rf-tree__item-folder--hidden';
-  const rotateIconClass = showFolder ? '' : 'rf-tree__item-label-icon--rotate';
+  const rotateIconClass = (item.children && item.children.length === 0 && item.hasChildren === true) || !showFolder ? 'rf-tree__item-label-icon--rotate' : '';
   const itemChildrenClass = item.children && item.children.length > 0 ? '' : 'rf-tree__item--no-children';
   const activeClass = activeItem?.value === item.value ? 'rf-tree__item--active' : '';
   const firstLevelClass = depth === 1 ? 'rf-tree__item--1' : '';
@@ -61,7 +65,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     e.stopPropagation();
     onChange && onChange(item);
 
-    if (item.children) {
+    if (item.children || item.hasChildren) {
       toggleFolder(true);
     }
   }, [onChange, toggleFolder, item]);
@@ -106,6 +110,16 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     }
   }, [calculateHeight, id]);
 
+  const onCheckboxClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
+  const onCheckboxChange = () => {
+    if (onCheck) {
+      onCheck(item);
+    }
+  };
+
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
@@ -118,11 +132,18 @@ const FolderItem: React.FC<IFolderItemProps> = ({
         onClick={ handleChange }>
         <HLine className='rf-tree__item--h' data-id={ `d-${depth}` }/>
         {
-          item.children && item.children.length > 0 ?
+          item.hasChildren || (item.children && item.children.length > 0) ?
             <Up className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
-        { item.label }
+        <label className={classnames('rf-tree__item-label-text', (onCheck || onChange) && 'rf-tree__item-label-text--clickable')}>
+          {!!onCheck && (
+            <div className='rf-tree__checkbox' >
+              <Checkbox checked={item.checked} onChange={onCheckboxChange} onClick={onCheckboxClick} />
+            </div>
+          )}
+          { item.label }
+        </label>
       </div>
 
       { item.loading && (
@@ -134,7 +155,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
       { item.children && item.children.length > 0 && (
         <div className={ `rf-tree__item-folder ${showFolderClass}` } ref={ folder }>
           <Tree id={ id } list={ item.children } onChange={ onChange } parent={ item } depth={ depth } open={ open }
-            activeItem={ activeItem }/>
+            activeItem={ activeItem } onCheck={onCheck} />
         </div>
       ) }
     </div>

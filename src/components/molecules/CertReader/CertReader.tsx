@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState
+} from 'react';
 import './CertReader.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import Menu, { IListProps } from '../../atoms/Menu';
@@ -9,6 +11,7 @@ import {
 } from 'crypto-pro';
 import { IButtonProps } from '../../atoms/Button/Button';
 import { mockCerts } from './CertReader.mock';
+import Modal from '../../atoms/Modal';
 
 export interface ICertReader {
   /** входящий файл на подпись*/
@@ -26,10 +29,12 @@ export interface ICertReader {
   /** позиция для меню сертификатов */
   menuPos?: IListProps['position'];
   /** для тестов */
-  useMock?: boolean
+  useMock?: boolean;
+  /** Render-prop для контента попапа начала подписи */
+  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment) => React.ReactNode;
 }
 
-export interface IBrowserCert {
+export interface IBrowserCert extends Certificate {
   /** имя пользователя*/
   issuerName: string;
   /** название сертификата*/
@@ -55,10 +60,20 @@ const CertReader: React.FC<ICertReader> = ({
   buttonTitle = 'Подписать ЭП (электронная подпись)',
   btnProps = {},
   menuPos = 'left',
-  filter = async (_cert: Certificate) => true
+  filter = async (_cert: Certificate) => true,
+  confirmContent
 }: ICertReader) => {
-  /** все доступные сертификаты*/
-  const [ certs, setCerts ] = useState<null | Certificate[]>(null);
+  /** Все доступные сертификаты */
+  const [certs, setCerts] = useState<null | Certificate[]>(null);
+  /** Выбранный сертификат */
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const [openConfirmPopup, setOpenConfirmPopup] = useState(false);
+
+  const closePopup = useCallback(() => {
+    setSelectedCert(null);
+    setOpenConfirmPopup(false);
+  }, []);
+
   // ===================================================================================================================
   /** асинхронное получение серификатов с ключа*/
   useEffect(() => {
@@ -104,42 +119,70 @@ const CertReader: React.FC<ICertReader> = ({
       return {
         label,
         value: item.thumbprint,
-        handler: async () => {
-          try {
-            onSuccess({
-              data: {
-                ...file,
-                singBase64: (await createSignature(item.thumbprint, file.base64.split('base64,')[1])).replace(/[\r\n]+/g, ''),
-                cert: item.thumbprint
-              },
-              cert: item
-            });
-          } catch (e) {
-            if (useMock) {
-              onSuccess({
-                data: {
-                  ...file,
-                  singBase64: 'подписанный файл',
-                  cert: item.thumbprint
-                },
-                cert: item
-              });
-
-            } else {
-              onError(e);
-            }
-          }
+        handler: () => {
+          setSelectedCert(item);
+          setOpenConfirmPopup(true);
         }
       };
     });
   };
 
+  // ===================================================================================================================
+
+  const signFile = async (cert: Certificate) => {
+    try {
+      onSuccess({
+        data: {
+          ...file,
+          singBase64: (await createSignature(cert.thumbprint, file.base64.split('base64,')[1])).replace(/[\r\n]+/g, ''),
+          cert: cert.thumbprint
+        },
+        cert
+      });
+    } catch (e) {
+      if (useMock) {
+        onSuccess({
+          data: {
+            ...file,
+            singBase64: 'подписанный файл',
+            cert: cert.thumbprint
+          },
+          cert
+        });
+
+      } else {
+        onError(e);
+      }
+    } finally {
+      closePopup();
+    }
+  };
 
   // ===================================================================================================================
+
   return <>
     <Menu position={menuPos} list={certs ? getCertsWithTitle(menuBuilder(certs)) : undefined}>
       <Button {...btnProps} disabled={!certs}>{buttonTitle}</Button>
     </Menu>
+
+    {openConfirmPopup &&
+      <Modal size='l' header={<h5>Подтверждение</h5>} onClose={closePopup}>
+
+        {confirmContent ? !!selectedCert && confirmContent(selectedCert, file) : <>
+          <p className='cert-reader__confirm-text'>Перейти к подписанию документа?</p>
+          {!!selectedCert && <p className='cert-reader__certificate'>
+            Сертификат: {`${selectedCert.name} (${selectedCert.issuerName})`}
+          </p>}
+        </>}
+
+
+        <div className='cert-reader__confirm-actions'>
+          <Button size='l' buttonType='light' onClick={closePopup}>Отменить</Button>
+          <Button size='l' disabled={!selectedCert} onClick={() => selectedCert && signFile(selectedCert)}>
+            Подтвердить
+          </Button>
+        </div>
+      </Modal>}
   </>;
 };
 

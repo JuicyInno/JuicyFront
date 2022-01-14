@@ -1,7 +1,8 @@
 import { IButtonGroup } from '../../../types';
+import { Button } from '../../../index';
 import {
-  Button, Time, Copy, Help
-} from '../../../index';
+  Time, Copy, Help
+} from '../../../indexIcon';
 import React from 'react';
 
 export const buttonGroupMock: IButtonGroup[] = [

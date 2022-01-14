@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
-import { Microphone } from '../../../index';
+import { Microphone } from '../../../indexIcon';
 import Search from './Search';
 import { IDebounceResult } from '../../../types/projects.types';
 import { byTestId } from 'testing-library-selector';

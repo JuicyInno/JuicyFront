@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback } from 'react';
 import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
-import {
-  Button, ChevronLeft, KebabMenu
-} from '../../../index';
+import { Button, Preloader } from '../../../index';
+
+import { ChevronLeft, KebabMenu } from '../../../indexIcon';
 import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';
@@ -77,7 +77,15 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
             <h4 className='button-group__menu-button-name'>{list[i].label}</h4>
             {list[i].description && <p className='button-group__menu-button-description'>{list[i].description}</p>}
           </div>
-          <ChevronLeft className='button-group__menu-button-icon' />
+          {
+            list[i].preloader ? (
+              <div className='button-group__menu-button-loader'>
+                <Preloader size='m'/>
+              </div>
+            ) : (
+              <ChevronLeft className='button-group__menu-button-icon' />
+            )
+          }
         </Link>);
       }
     }

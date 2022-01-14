@@ -16,6 +16,7 @@ export interface ITreeOption extends IOption {
   children?: ITreeOption[];
   variant?: Variant;
   loading?: boolean;
+  hasChildren?: boolean;
 }
 
 export interface ICustomOption extends IOption {
@@ -191,6 +192,8 @@ export interface IButtonGroup {
   onClick?: () => void;
   /** неактивное состояние */
   disabled?: boolean;
+  /** лоудер */
+  preloader?: boolean;
 }
 
 /** Пропсы иконки */

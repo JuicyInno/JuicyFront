@@ -10,15 +10,21 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 export default {
   title: 'components/withTest/Employee',
   component: Employee,
-  argTypes: { user: { control: null }, }
+  argTypes: {
+    user: { control: null },
+    showBoxShadow: {
+      control: 'boolean',
+      defaultValue: false
+    }
+  }
 };
 
-export const Demo: Story = () => {
+export const Demo: Story = (args) => {
   return (
     <StoryDocs>
       <StoryDocsH1>Employee</StoryDocsH1>
       <div style={{ width: '880px', }}>
-        <Employee tooltipBackground='white' user={usersMocks[0]} title={'Сотрудник'} />
+        <Employee showBoxShadow={false} tooltipBackground='white' user={usersMocks[0]} title={'Сотрудник'} {...args} />
       </div>
     </StoryDocs >
   );
@@ -29,7 +35,7 @@ export const Playground: Story<IEmployeeProps> = (args) => {
     <StoryContainer>
       <StoryRow>
         <div style={{ width: '880px', }}>
-          <Employee title={'Сотрудник'} {...args} user={usersMocks[0]} />
+          <Employee title={'Сотрудник'} user={usersMocks[0]} {...args} />
         </div>
       </StoryRow>
     </StoryContainer>

@@ -56,12 +56,11 @@ const ContentExpander: React.FC<IContentExpanderProps> = ({
           <div className='expander__button-wrapper'>
             <Angle className={`expander__icon ${expanded || innerExpanded ? 'expander__icon--rotate' : ''}`} />
             <span className='expander__title-text'>{!innerExpanded ? title : titleOpen || title}</span>
-
           </div>
         </Button>
       </h3>
 
-      <div className={`expander__content ${onExpand || innerExpanded ? 'expander__content--active' : ''}`}>
+      <div className={`expander__content ${expanded || innerExpanded ? 'expander__content--active' : ''}`}>
         {children}
       </div>
     </div>

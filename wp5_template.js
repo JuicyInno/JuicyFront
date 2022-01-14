@@ -42,15 +42,17 @@ function common({
       clean: true,
     },
     optimization: { minimize: !isDev },
-    devtool: env === 'development' ? 'source-map' : undefined,
+    devtool: isDev ? 'source-map' : undefined,
     resolve: {
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },
 
-    devServer: {
-      port: port,
+    devServer: isDev? {
+      port: 8000,
+      client: false,
+      webSocketServer: false,
       historyApiFallback: true,
-    },
+    }:{},
 
     module: {
       rules: [

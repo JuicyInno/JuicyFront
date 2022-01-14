@@ -1,4 +1,4 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
 .rf-checkbox {
   display: inline-flex;
@@ -66,7 +66,8 @@
 }
 
 .rf-checkbox__label {
-  width: 100%;
+  width: auto;
+  overflow-x: hidden;
   margin-left: 8px;
   @include text-m-16;
   transition: 0.15s ease-in;
@@ -94,13 +95,16 @@
 }
 
 // Hover
-.rf-checkbox:not(.disabled):hover > .rf-checkbox__input:not(:checked) ~ .rf-checkbox__check {
+.rf-checkbox:not(.disabled):hover
+  > .rf-checkbox__input:not(:checked)
+  ~ .rf-checkbox__check {
   background-color: var(--background-secondary);
   border-color: var(--basic-hover);
 }
 
 .rf-checkbox:not(.disabled):hover {
-  & > .rf-checkbox__input:checked, & > .rf-checkbox__input.rf-checkbox__input--half-checked {
+  & > .rf-checkbox__input:checked,
+  & > .rf-checkbox__input.rf-checkbox__input--half-checked {
     & ~ .rf-checkbox__check {
       background-color: var(--basic-press);
       border-color: var(--basic-press);
@@ -113,8 +117,9 @@
     background-color: var(--background-secondary);
     border-color: var(--basic-hover);
   }
-  
-  &:checked, &.rf-checkbox__input--half-checked {
+
+  &:checked,
+  &.rf-checkbox__input--half-checked {
     & ~ .rf-checkbox__check {
       background-color: var(--basic-press);
       border-color: var(--basic-press);
@@ -124,7 +129,8 @@
 
 // Checked
 
-.rf-checkbox__input:checked, .rf-checkbox__input--half-checked {
+.rf-checkbox__input:checked,
+.rf-checkbox__input--half-checked {
   & + .rf-checkbox__check {
     background-color: var(--basic-primary);
     border-color: var(--basic-primary);
@@ -155,7 +161,8 @@
 }
 
 .rf-checkbox__input:disabled {
-  &:checked, &.rf-checkbox__input--half-checked {
+  &:checked,
+  &.rf-checkbox__input--half-checked {
     & + .rf-checkbox__check {
       background-color: var(--basic-disable);
       border-color: var(--basic-disable);

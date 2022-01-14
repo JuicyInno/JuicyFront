@@ -2,12 +2,17 @@ import React, {
   FC, ReactNode, useEffect, useRef, useState
 } from 'react';
 
-
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import {
-  Button, CertReader, Chip, CircleConfirm, CircleReject, Close, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
+  Button, CertReader, Chip, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
 } from '../../../index';
+
+import {
+  CircleConfirm, CircleReject, Close
+} from '../../../indexIcon';
+
+
 import Document from '../../../assets/icons/Documents';
 import { IBrowserCert, ICertResult } from '../../molecules/CertReader/CertReader';
 import ContentExpander from '../../molecules/ContentExpander';
@@ -17,17 +22,17 @@ import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import { ITileProps } from '../../atoms/Tile/Tile';
 
+export type TButtons = 'sign' | 'manual' | 'reject' | 'rejectManual';
 
-export type TButtons = 'sign'|'manual'|'reject'|'rejectManual'
 export type ICustomTexts = {
   [key in TButtons]?: string;
 };
 
-export interface ISignifyCallback{
-  file:IRequestAttachment,
-  success?:TButtons,
-  comment?:string,
-  currentCert?:IBrowserCert
+export interface ISignifyCallback {
+  file: IRequestAttachment,
+  success?: TButtons,
+  comment?: string,
+  currentCert?: IBrowserCert
 }
 
 
@@ -41,25 +46,33 @@ const buttonNamesDefault:ICustomTexts = {
 
 export interface IProps extends Pick<ITileProps, 'variant'> {
   /** Изначальный файл*/
-  data:IRequestAttachment
+  data: IRequestAttachment;
   /** Дополнительные данные о документе*/
-  documentInfo?:ReactNode
+  documentInfo?: ReactNode;
   /** заголовок*/
-  title?:string
+  title?: string;
   /** функция- результат подписания */
-  onSignify?:(result:ISignifyCallback)=>void
+  onSignify?: (result: ISignifyCallback) => void;
+  /** функция- обработка удаления подписанного файла */
+  onSignCancel?: () => void;
   /** массив в котором название кнопок для скрытия */
-  hideButtons?:TButtons[]
-  /** показывать ли спойлер для документа */
-  isSpoiler?:boolean
-  /** открыт или закрыт спойлер для документа */
-  isOpenSpoiler?:boolean
+  hideButtons?: TButtons[];
+  /** показывать ли спойлер для документа
+   * @default true
+   */
+  isSpoiler?: boolean;
+  /** открыт или закрыт спойлер для документа
+   * @default false
+   */
+  isOpenSpoiler?: boolean;
   /** фильтр сертификатов */
-  filter?: (cert: Certificate) => Promise<boolean>
+  filter?: (cert: Certificate) => Promise<boolean>;
   /** кастомные названия кнопок */
-  buttonCustomTexts?:ICustomTexts
+  buttonCustomTexts?: ICustomTexts;
   /** ссылка на pdf если надо открыть в отдельном окне */
-  pdfUrl?: string
+  pdfUrl?: string;
+  /** Render-prop для контента попапа начала подписи */
+  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment) => React.ReactNode;
 }
 
 
@@ -67,6 +80,7 @@ const Signification:FC<IProps> = ({
   data,
   pdfUrl,
   onSignify = () => {},
+  onSignCancel = undefined,
   title = '',
   isSpoiler = true,
   isOpenSpoiler = false,
@@ -74,7 +88,8 @@ const Signification:FC<IProps> = ({
   variant = 'default',
   hideButtons = [],
   buttonCustomTexts = {},
-  filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
+  filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb'),
+  confirmContent
 }:IProps) => {
   /** тексты для кнопок*/
   const [textButtons, _] = useState<ICustomTexts>({
@@ -159,7 +174,7 @@ const Signification:FC<IProps> = ({
     setValue(initialFile.current);
     setCurrentCert(undefined);
     onSignify({ file: initialFile.current });
-
+    onSignCancel && onSignCancel();
   };
   //* ************************************************
   const manualSignHandler = () => {
@@ -191,41 +206,58 @@ const Signification:FC<IProps> = ({
     finalStage === 'manual' ?
       'Документ будет подписан ручной подписью' :
       'Документ будет отклонен';
+
   // =======================================================================================================================================
-  const buttonsTSX = !finalStage &&
+  const hasButtons =
+    !hideButtons?.includes('sign') ||
+    !hideButtons?.includes('manual') ||
+    !hideButtons?.includes('reject') ||
+    !hideButtons?.includes('rejectManual');
+
+  const buttonsTSX = !finalStage && hasButtons &&
     <div className='buttons__wrapper'>
       {!hideButtons?.includes('sign') &&
-      <div className='button__item'>
-        <CertReader
-          buttonTitle={textButtons.sign}
-          filter={filter}
-          file={data} onSuccess={successHandle} onError={errorHandle}/>
-      </div>
+        <div className='button__item'>
+          <CertReader
+            buttonTitle={textButtons.sign}
+            filter={filter}
+            file={data}
+            onSuccess={successHandle}
+            onError={errorHandle}
+            confirmContent={confirmContent}
+          />
+        </div>
       }
+
       {!hideButtons?.includes('manual') &&
-      <div className='button__item'>
-        <Button buttonType='light' onClick={() => setManualPopup(true)}>{textButtons.manual}</Button>
-      </div>
+        <div className='button__item'>
+          <Button buttonType='light' onClick={() => setManualPopup(true)}>{textButtons.manual}</Button>
+        </div>
       }
+
       {!hideButtons?.includes('reject') &&
-      <div className='button__item'>
-        <CertReader
-          buttonTitle={textButtons.reject}
-          btnProps={{ buttonType: 'danger' }}
-          filter={filter}
-          file={data} onSuccess={refuseHandle} onError={errorHandle}/>
-      </div>
+        <div className='button__item'>
+          <CertReader
+            buttonTitle={textButtons.reject}
+            btnProps={{ buttonType: 'danger' }}
+            filter={filter}
+            file={data}
+            onSuccess={refuseHandle}
+            onError={errorHandle}
+            confirmContent={confirmContent}
+          />
+        </div>
       }
 
       {!hideButtons?.includes('rejectManual') &&
-      <div className='button__item'>
-        <Button buttonType='danger' onClick={() => setRefusePopup(null)}>{textButtons.rejectManual}</Button>
-      </div>
+        <div className='button__item'>
+          <Button buttonType='danger' onClick={() => setRefusePopup(null)}>{textButtons.rejectManual}</Button>
+        </div>
       }
-
     </div>;
+
   // =======================================================================================================================================
-  const manualFileChipTSX = (name:string, onClick:(e:any)=>void) =>
+  const manualFileChipTSX = (name: string, onClick:(e:any) => void) =>
     <div className='manual__chip-wrapper'>
       <Chip onClick={() => manualFile && download(manualFile)} size='s' type='outline'>
         <div className='manual__chip-text'>
@@ -241,28 +273,33 @@ const Signification:FC<IProps> = ({
 
   const finalCardTSX = finalStage &&
     <>
-      <div style={{ alignItems: status === 'success' ? 'center' : 'start' }}
-        className={`info-block__wrapper info-block__wrapper--${status}`}>
+      <div
+        style={{ alignItems: status === 'success' ? 'center' : 'start' }}
+        className={`info-block__wrapper info-block__wrapper--${status}`}
+      >
         <div className='info-block__icon'>
           {finalStage === 'reject' ?
             <CircleReject width='40px' height='40px' color1='#DA0B20' color2='#FFFFFF'/> :
             <CircleConfirm width='40px' height='40px' color1='#2ABB5B' color2='#FFFFFF'/>
           }
         </div>
+
         <div className='info-block__text-wrapper'>
           <div className={`info-block__main-text info-block__main-text--${status}`}>
             {finalText}
           </div>
-          { ['auto', 'reject'].includes(finalStage) &&
-            <>{
-              currentCert &&
-              <div className='info-block__text '>{`${currentCert?.name} ${currentCert?.issuerName}`.slice(0, 100)}</div>
-            }
-            {
-              comment &&
-              <div className='info-block__comment'>
-                {comment}
-              </div>}
+
+          {['auto', 'reject'].includes(finalStage) &&
+            <>
+              {
+                currentCert &&
+                <div className='info-block__text '>{`${currentCert?.name} ${currentCert?.issuerName}`.slice(0, 100)}</div>
+              }
+              {
+                comment &&
+                <div className='info-block__comment'>
+                  {comment}
+                </div>}
             </>
           }
         </div>
@@ -274,6 +311,7 @@ const Signification:FC<IProps> = ({
           </Button>
         </div>
       </div>
+
       {finalStage === 'manual' && manualFileChipTSX(
         value.fileName,
         (e:Event) => {
@@ -283,92 +321,128 @@ const Signification:FC<IProps> = ({
       )}
 
     </>;
+
   // =======================================================================================================================================
-  const refuseConfirmTSX = refusePopup !== undefined && <Modal>
-    <Confirm textAccept='Отклонить документ'
-      text='Выбранный документ будет отклонен. Подтвердить отклонение документа?'
-      onClose={refuseHandlePopupFail}
-      onAction={refuseHandlePopupSuccess} comment='' showComment />
-  </Modal>;
+  const refuseConfirmTSX = refusePopup !== undefined &&
+    <Modal size='l'>
+      <Confirm
+        textAccept='Отклонить документ'
+        text='Выбранный документ будет отклонен. Подтвердить отклонение документа?'
+        onClose={refuseHandlePopupFail}
+        onAction={refuseHandlePopupSuccess}
+        comment=''
+        showComment
+      />
+    </Modal>;
+
   // =======================================================================================================================================
-  const manualPopupTSX = manualPopup && <Modal >
-    <div className='manual__wrapper'>
-      <div className='manual__header'>
-        <div>Подписать вручную</div>
-        <div className='manual__close' onClick={() => setManualPopup(false)}>
-          <Close/>
+  const manualPopupTSX = manualPopup &&
+    <Modal size='xl'>
+      <div className='manual__wrapper'>
+        <div className='manual__header'>
+          <div>Подписать вручную</div>
+          <div className='manual__close' onClick={() => setManualPopup(false)}>
+            <Close/>
+          </div>
+        </div>
+        <div className='manual__hint-wrapper'>
+          <Hint
+            button={
+              <Button
+                onClick={() => download(value)}
+                buttonType='text'
+                startAdornment={<Download/>}
+              >
+                  Скачать
+              </Button>
+            }
+            icon='info'
+            maxWidth='648px'
+            variant='blue'>
+            Скачайте и подпишите документ. После прикрепите подписанный файл
+          </Hint>
+        </div>
+
+        {manualFile && manualFileChipTSX(manualFile.fileName, (e:Event) => {
+          e.stopPropagation();
+          setManualFile(undefined);
+        })}
+
+        <div className='modal_buttons'>
+          <div className='modal_button'>
+            <InputFile showChips={false} multiple={false} setFile={setFileHandler} buttonType='light' placeholder='Прикрепить файл'/>
+          </div>
+          <div className='modal_button'>
+            <Button onClick={manualSignHandler} disabled={!manualFile}>Подписать</Button>
+          </div>
         </div>
       </div>
-      <div className='manual__hint-wrapper'>
-        <Hint button={<Button
-          onClick={() => download(value)}
-          buttonType='text'
-          startAdornment={<Download/>} >Скачать</Button>}
-        icon='info'
-        maxWidth='648px'
-        title='Название'
-        variant='default'>
-        Скачайте и подпишите документ. После прикрепите подписанный файл
-        </Hint>
-      </div>
-      {manualFile && manualFileChipTSX(manualFile.fileName, (e:Event) => {
-        e.stopPropagation();
-        setManualFile(undefined);
-      })}
-      <div className='modal_buttons'>
-        <div className='modal_button'>
-          <InputFile showChips={false} multiple={false} setFile={setFileHandler} buttonType='light' placeholder='Прикрепить файл'/>
-        </div>
-        <div className='modal_button'>
-          <Button onClick={manualSignHandler} disabled={!manualFile}>Подписать</Button>
-        </div>
-      </div>
-    </div>
-  </Modal>;
+    </Modal>;
+
   // =======================================================================================================================================
   const certErrorTSX = certError && !finalStage &&
    <div data-testid='error' className='cert-error__wrapper'>
-     <Hint button={<Button
-       onClick={() => window.open('https://intranet.vtb.com/podrazdeleniya/pik/dppsis/support/Pages/default.aspx')}
-       buttonType='text'
-       textColor='red'
-       startAdornment={<Download/>} >Инструкция</Button>}
-     icon='info'
-     maxWidth='648px'
-     title='Не найден сертификат, который осуществляет подпись'
-     variant='red'>
-       Для получения сертификата ЭП (электронная подпись) ознакомьтесь, пожалуйста, с инструкцией
+     <Hint
+       button={
+         <Button
+           onClick={() => window.open('https://intranet.vtb.com/podrazdeleniya/pik/dppsis/support/Pages/default.aspx')}
+           buttonType='text'
+           textColor='red'
+           startAdornment={<Download/>}
+         >
+          Инструкция
+         </Button>
+       }
+       icon='info'
+       maxWidth='648px'
+       title='Не найден сертификат, который осуществляет подпись'
+       variant='red'
+     >
+        Для получения сертификата ЭП (электронная подпись) ознакомьтесь, пожалуйста, с инструкцией
      </Hint>
    </div>;
+
   // =======================================================================================================================================
   const expanderContentTSX = <>
-    { buttonsTSX}
-    {(!finalStage || isSpoiler) && <PDFViewer url={pdfUrl} file={data}/>}
+    {buttonsTSX}
+    {(!finalStage || isSpoiler) &&
+      <PDFViewer
+        url={pdfUrl}
+        file={data}
+      />
+    }
   </>;
 
   return <div className='signification__wrapper'>
     <Tile variant={variant}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
-        <Document color1={onlyView ? '#F1F2F4' : undefined}/>
+        <Document color1={onlyView ? '#F1F2F4' : undefined} className='signification__title-icon'/>
         <div className='signification__title-text'>{title}</div>
       </div>
-      {documentInfo && documentInfo}
-      { finalCardTSX}
-      { certErrorTSX}
-      { !isSpoiler && expanderContentTSX}
+
+      {documentInfo && <div className='signification__doc-info'>{documentInfo}</div>}
+      {finalCardTSX}
+      {certErrorTSX}
+      {!isSpoiler && expanderContentTSX}
 
       {isSpoiler &&
         <>
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${!finalStage && !onlyView ? ' и подписать документ' : ''} `}>
-            { isOpenContent && expanderContentTSX}
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${!finalStage && !onlyView ? ' и подписать документ' : ''} `}
+          >
+            {isOpenContent &&
+              <div className={classnames(hasButtons && 'signification__expander-content')}>
+                {expanderContentTSX}
+              </div>
+            }
           </ContentExpander>
         </>}
     </Tile>
-    { manualPopupTSX }
-    { refuseConfirmTSX }
+
+    {manualPopupTSX}
+    {refuseConfirmTSX}
   </div>;
 };
 

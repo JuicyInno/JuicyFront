@@ -3,8 +3,10 @@ import './FindEntitiesPosition.scss';
 import React, { FC, useState } from 'react';
 
 import {
-  Avatar, Checkbox, Copy, Info, Structure, Toast, Tooltip
+  Avatar, Checkbox, Structure, Toast, Tooltip
 } from '../../../index';
+import { Copy, Info } from '../../../indexIcon';
+
 import InvestmentProducts from '../../../assets/icons/24px/Specific/InvestmentProducts';
 
 import { IStructure } from '../../../types/projects.types';
@@ -16,11 +18,13 @@ interface IFindEntitiesPositionProps {
   isSelected: boolean;
   /** Изменение выбора должности */
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Дизейбл чекбокса */
+  disabled?: boolean;
   /** Цвет tooltip */
   tooltipBackground?: 'white' | 'default';
 }
 
-export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, tooltipBackground }) => {
+export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, disabled, tooltipBackground }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const onCopy = (event: React.MouseEvent) => {
@@ -36,6 +40,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
         align='flex-start'
         value={position.position}
         checked={isSelected}
+        disabled={disabled}
         onChange={onChange}
         fullWidth
         label={
