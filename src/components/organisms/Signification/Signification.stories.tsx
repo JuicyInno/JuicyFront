@@ -7,8 +7,9 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
 import './story.scss';
 import { withDesign } from 'storybook-addon-designs';
+import Avatar from "../../atoms/Avatar";
 
-const file:IRequestAttachment = {
+const file: IRequestAttachment = {
   fileName: 'test',
   base64: pdfFile
 };
@@ -26,7 +27,7 @@ export default {
 };
 
 
-const response = (data:ISignifyCallback) => {
+const response = (data: ISignifyCallback) => {
   console.warn('!!!response:', data);
 };
 
@@ -50,7 +51,7 @@ export const Demo = () => {
           }}
           data={file}
           pdfUrl={'yandex.ru'}
-          title='Приказ №384848483 от 30.08.2021'/>
+          title='Приказ №384848483 от 30.08.2021' />
       </StoryItem>
     </Story>
     <Story name='Подписание счетов' description='Подписание счетов с использованием цифровой (КЭП) подписи.
@@ -61,6 +62,18 @@ export const Demo = () => {
           data={file}
           hideButtons={['manual']}
           documentInfo={docInfo}
+          title='Счет №SVTB2060_22 от 30.08.2021'
+        />
+      </StoryItem>
+    </Story>
+    <Story name='Кастомное содержание попапа подтверждения' description='Перед подписанием можно использовать данные сертификата и файла.'>
+      <StoryItem>
+        <Signification
+          onSignify={response}
+          data={file}
+          hideButtons={['manual']}
+          documentInfo={docInfo}
+          confirmContent={(cert, file) => <div>Свое описание с сертификатом {cert.name} и файлом {file.fileName}<div><Avatar /> - любой контент</div></div>}
           title='Счет №SVTB2060_22 от 30.08.2021'
         />
       </StoryItem>
@@ -92,7 +105,7 @@ export const Demo = () => {
             'rejectManual'
           ]}
           documentInfo={docInfo}
-          title='Счет №SVTB2060_22 от 30.08.2021'
+          title='Счет №SVTB2060_22 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021'
           variant='border'
         />
       </StoryItem>

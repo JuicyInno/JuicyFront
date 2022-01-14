@@ -9,19 +9,40 @@ export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
   /** Значение */
   value?: string;
-  /** Отображение иконки */
+  /**
+   * Отображение иконки
+   * @default true
+   *  */
   icon?: boolean;
-  /** Вертикальное выравнивание */
+  /**
+   * Вертикальное выравнивание
+   * @default 'flex-start'
+   *  */
   align?: 'flex-start' | 'center' | 'flex-end';
-  /** Если дочерние чекбоксы чекнуты, флаг равен true */
+  /**
+   * Если дочерние чекбоксы чекнуты, флаг равен true
+   * @default false
+   *  */
   halfChecked?: boolean;
-  /** Положение чекбокса */
+  /**
+   * Положение чекбокса
+   *  @default 'left'
+   * */
   position?: 'left' | 'right';
-  /** Круглый чекбокс */
+  /**
+   * Круглый чекбокс
+   * @default false
+   */
   round?: boolean;
-  /** 100% ширины */
+  /**
+   *  100% ширины
+   * @default false
+   *  */
   fullWidth?: boolean;
-  /** Лейбл - текст */
+  /**
+   * Лейбл - текст
+   * @default '''
+   *  */
   titleAtt?: string;
 }
 
@@ -61,7 +82,7 @@ const Checkbox: FC<ICheckboxProps> = ({
 
       {!!icon && <span className={`rf-checkbox__check ${roundClass}`}>
         <span className='rf-checkbox__mark'>
-          {halfChecked ? <Reduce/> : <Success/>}
+          {halfChecked ? <Reduce /> : <Success />}
         </span>
       </span>}
 

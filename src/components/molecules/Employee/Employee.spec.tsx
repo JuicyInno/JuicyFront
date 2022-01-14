@@ -86,4 +86,11 @@ describe('Test <Employee/> component', () => {
     fireEvent.click(container.getElementsByClassName('rf-employee__button')[0]);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+
+  it('should be render without tile', () => {
+    const { container } = render(<Employee user={user} showBoxShadow={false} />);
+
+    expect(container.getElementsByClassName('rf-tile')).toHaveLength(0);
+  });
+
 });
