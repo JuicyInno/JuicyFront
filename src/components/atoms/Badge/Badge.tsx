@@ -50,7 +50,6 @@ const Badge: React.FC<IBadgeProps> = ({
 
   const isDot = badgeContent ? '' : `rf-badge--dot--${size}`;
 
-  console.log(size);
 
   // -------------------------------------------------------------------------------------------------------------------
 
