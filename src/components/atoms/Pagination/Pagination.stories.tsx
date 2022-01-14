@@ -1,8 +1,11 @@
 import React from 'react';
 import Pagination, { IPaginationProps } from './Pagination';
-import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2
+} from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
+import { Story } from '@storybook/react';
 
 export default {
   title: 'navigations/withTest/Pagination',
@@ -10,6 +13,15 @@ export default {
   argTypes: {
     count: { defaultValue: 7 },
     getCurrentPage: { control: null },
+
+    isSimple: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    disabled: {
+      defaultValue: false,
+      control: 'boolean',
+    },
     disabledPages: { defaultValue: [] },
   }
 };
@@ -28,11 +40,15 @@ export const Demo = () => {
         flexDirection: 'column',
         gap: '16px',
       }}>
-        <Pagination count={7} getCurrentPage={getCurrentPage}/>
-        <Pagination count={16} getCurrentPage={getCurrentPage}/>
-        <Pagination count={21} getCurrentPage={getCurrentPage}/>
-        <Pagination disabledPages={[3]} count={7} getCurrentPage={getCurrentPage}/>
+        <Pagination count={7} getCurrentPage={getCurrentPage} />
+        <Pagination count={16} getCurrentPage={getCurrentPage} />
+        <Pagination count={21} getCurrentPage={getCurrentPage} />
+        <Pagination disabledPages={[1, 2, 3]} count={7} getCurrentPage={getCurrentPage} />
+        <Pagination disabled count={7} getCurrentPage={getCurrentPage} />
+
       </div>
+      <StoryDocsH2>Pagination simple</StoryDocsH2>
+      <Pagination isSimple count={7} getCurrentPage={getCurrentPage} />
     </StoryDocs>
 
   );
@@ -47,9 +63,13 @@ Demo.parameters = {
   },
 };
 
-export const Playground = (args: IPaginationProps) => {
+export const Playground: Story<IPaginationProps> = (args: IPaginationProps) => {
+  console.log(args);
+
   return (
     <StoryContainer>
+      <StoryDocsH1>Pagination</StoryDocsH1>
+      <StoryDocsH2>Pagination {args.isSimple ? 'simple' : ''}</StoryDocsH2>
       <StoryRow>
         <Pagination {...args} />
       </StoryRow>

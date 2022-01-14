@@ -1,7 +1,7 @@
 import React from 'react';
-import {render, screen, fireEvent} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
-import Pagination  from './Pagination';
+import Pagination from './Pagination';
 
 const PAGES_WITHOUT_DOTS = 7;
 const PAGES_WITH_NUMBER_SELECT = 21;
@@ -50,6 +50,16 @@ describe('Test <Pagination/> component', () => {
     it('should be disabledPages ', () => {
         const { container } = render(<Pagination disabledPages={[3]} count={PAGES_WITHOUT_DOTS} />);
         expect(container.getElementsByClassName('rf-pagination__label--disabled')).toHaveLength(1);
+    });
+
+    it('should be disabled all Pagination ', () => {
+        const { container } = render(<Pagination disabled count={PAGES_WITHOUT_DOTS} />);
+        expect(container.getElementsByClassName('rf-pagination--disabled')).toHaveLength(1);
+    });
+
+    it('should be simple ', () => {
+        const { container } = render(<Pagination isSimple count={PAGES_WITHOUT_DOTS} />);
+        expect(container.getElementsByClassName('rf-pagination__simple')).toHaveLength(1);
     });
 
 });
