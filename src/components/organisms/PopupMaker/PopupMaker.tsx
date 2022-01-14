@@ -4,7 +4,7 @@ import React, {
 import './PopupMaker.scss';
 import { BehaviorSubject } from 'rxjs';
 import { Modal } from '../../../index';
-import { ModalSize } from '../../atoms/Modal/Modal';
+import { IModalProps } from '../../atoms/Modal/Modal';
 
 /** Стак попапов */
 export let popups$$ = new BehaviorSubject<ReactNode[]>([]);
@@ -15,9 +15,9 @@ const onClose = (): void => {
 };
 
 /** Основная функция добавления попапа в стек */
-export const openPopup = (component: ReactElement, modalSize: ModalSize = 'm') => {
+export const openPopup = (component: ReactElement, modalProps: IModalProps) => {
   const componentModal: ReactNode = (
-    <Modal size={modalSize} key={popups$$.getValue().length} onClose={onClose}>
+    <Modal key={popups$$.getValue().length} onClose={onClose} {...modalProps}>
       {React.cloneElement(component, { onClose }, [])}
     </Modal>
   );
