@@ -7,6 +7,7 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
 import './story.scss';
 import { withDesign } from 'storybook-addon-designs';
+import Avatar from "../../atoms/Avatar";
 
 const file: IRequestAttachment = {
   fileName: 'test',
@@ -65,6 +66,18 @@ export const Demo = () => {
         />
       </StoryItem>
     </Story>
+    <Story name='Кастомное содержание попапа подтверждения' description='Перед подписанием можно использовать данные сертификата и файла.'>
+      <StoryItem>
+        <Signification
+          onSignify={response}
+          data={file}
+          hideButtons={['manual']}
+          documentInfo={docInfo}
+          confirmContent={(cert, file) => <div>Свое описание с сертификатом {cert.name} и файлом {file.fileName}<div><Avatar /> - любой контент</div></div>}
+          title='Счет №SVTB2060_22 от 30.08.2021'
+        />
+      </StoryItem>
+    </Story>
     <Story name='Прочий документ' description='Без подписания'>
       <StoryItem>
         <Signification
@@ -92,7 +105,7 @@ export const Demo = () => {
             'rejectManual'
           ]}
           documentInfo={docInfo}
-          title='Счет №SVTB2060_22 от 30.08.2021'
+          title='Счет №SVTB2060_22 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021 Приказ №384848483 от 30.08.2021'
           variant='border'
         />
       </StoryItem>

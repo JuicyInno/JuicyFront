@@ -33,7 +33,7 @@ export default {
   }
 };
 
-export const Demo: Story = (props: any) => {
+export const Demo: Story<ITooltipProps> = (props: ITooltipProps) => {
   return (
     <StoryDocs>
       <StoryDocsH1>Tooltip</StoryDocsH1>
@@ -58,7 +58,7 @@ Demo.parameters = {
 };
 
 
-export const Playground: Story = (args: ITooltipProps) => {
+export const Playground: Story<ITooltipProps> = (args: ITooltipProps) => {
   return (
     <StoryContainer>
       <StoryRow>
