@@ -4,6 +4,10 @@ import React, {
 import './PopupMaker.scss';
 import { BehaviorSubject } from 'rxjs';
 import { Modal } from '../../../index';
+import { IModalProps } from '../../atoms/Modal/Modal';
+
+
+type ModalPropsType = Omit<IModalProps, 'children'>
 
 /** Стак попапов */
 export let popups$$ = new BehaviorSubject<ReactNode[]>([]);
@@ -14,10 +18,10 @@ const onClose = (): void => {
 };
 
 /** Основная функция добавления попапа в стек */
-export const openPopup = (component: ReactElement, modalClass = '') => {
+export const openPopup = (component: ReactElement, modalProps: ModalPropsType) => {
   const componentModal: ReactNode = (
-    <Modal key={ popups$$.getValue().length } onClose={ onClose }>
-      { React.cloneElement(component, { onClose }, []) }
+    <Modal key={popups$$.getValue().length} onClose={onClose} {...modalProps}>
+      {React.cloneElement(component, { onClose }, [])}
     </Modal>
   );
   popups$$.next(popups$$.getValue().concat([componentModal]));
@@ -37,7 +41,7 @@ const PopupMaker: React.FC = () => {
     });
     return () => popups$$.unsubscribe();
   }, []);
-  return <>{ modalComponent }</>;
+  return <>{modalComponent}</>;
 };
 
 export default PopupMaker;

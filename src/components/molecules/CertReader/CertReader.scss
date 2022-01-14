@@ -16,3 +16,20 @@
 .cert__wrapper .rf-menu {
   padding-bottom: 24px;
 }
+
+.cert-reader__confirm-text {
+  @include text-m-16();
+}
+
+.cert-reader__certificate {
+  @include text-s-14();
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+.cert-reader__confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  gap: 16px;
+}

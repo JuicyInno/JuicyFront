@@ -71,6 +71,8 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
   buttonCustomTexts?: ICustomTexts;
   /** ссылка на pdf если надо открыть в отдельном окне */
   pdfUrl?: string;
+  /** Render-prop для контента попапа начала подписи */
+  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment) => React.ReactNode;
 }
 
 
@@ -86,7 +88,8 @@ const Signification:FC<IProps> = ({
   variant = 'default',
   hideButtons = [],
   buttonCustomTexts = {},
-  filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
+  filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb'),
+  confirmContent
 }:IProps) => {
   /** тексты для кнопок*/
   const [textButtons, _] = useState<ICustomTexts>({
@@ -221,6 +224,7 @@ const Signification:FC<IProps> = ({
             file={data}
             onSuccess={successHandle}
             onError={errorHandle}
+            confirmContent={confirmContent}
           />
         </div>
       }
@@ -240,6 +244,7 @@ const Signification:FC<IProps> = ({
             file={data}
             onSuccess={refuseHandle}
             onError={errorHandle}
+            confirmContent={confirmContent}
           />
         </div>
       }
@@ -353,9 +358,7 @@ const Signification:FC<IProps> = ({
             }
             icon='info'
             maxWidth='648px'
-            title='Название'
-            variant='default'
-          >
+            variant='blue'>
             Скачайте и подпишите документ. После прикрепите подписанный файл
           </Hint>
         </div>
@@ -413,7 +416,7 @@ const Signification:FC<IProps> = ({
   return <div className='signification__wrapper'>
     <Tile variant={variant}>
       <div className={classnames('signification__title-row', onlyView && 'signification__title-row--onlyView')}>
-        <Document color1={onlyView ? '#F1F2F4' : undefined}/>
+        <Document color1={onlyView ? '#F1F2F4' : undefined} className='signification__title-icon'/>
         <div className='signification__title-text'>{title}</div>
       </div>
 

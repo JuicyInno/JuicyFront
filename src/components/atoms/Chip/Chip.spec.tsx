@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Chip from './Chip';
 import Download from '../../../assets/icons/Download';
 
@@ -19,9 +19,15 @@ describe('Test <Chip/> component', () => {
     expect(container.getElementsByClassName('rf-chip--outline')).toHaveLength(1);
   });
 
-  it('should be s size', () => {
-    const { container } = render(<Chip size='s'> Button </Chip>);
+  it('should be pass size', () => {
+    const { container, rerender } = render(<Chip> Button </Chip>);
+    expect(container.getElementsByClassName('rf--m')).toHaveLength(1);
+
+    rerender(<Chip size='s'> Button </Chip>);
     expect(container.getElementsByClassName('rf--s')).toHaveLength(1);
+
+    rerender(<Chip size='xs'> Button </Chip>);
+    expect(container.getElementsByClassName('rf--xs')).toHaveLength(1);
   });
 
   it('should have close button', () => {

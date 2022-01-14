@@ -15,6 +15,10 @@
   color: var(--text-secondary);
 }
 
+.signification__title-icon {
+  flex-shrink: 0;
+}
+
 .signification__title-text {
   padding-left: 16px;
   @include h6;
@@ -88,7 +92,7 @@
   color: var(--text-secondary);
 }
 .manual__wrapper {
-  padding-top: 26px;
+  padding-top: 24px;
   min-width: 700px;
 }
 .manual__header {
