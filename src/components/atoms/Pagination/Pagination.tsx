@@ -47,11 +47,9 @@ const Pagination: React.FC<IPaginationProps> = ({
 
   /** клик по номеру страницы */
   const handleClickByPage = (newPage: number) => () => {
-    if (!disabledPages.includes(newPage)) {
-      if (!disabled) {
-        setCurrentPage(newPage);
-        getCurrentPage(newPage);
-      }
+    if (!disabledPages.includes(newPage) && !disabled) {
+      setCurrentPage(newPage);
+      getCurrentPage(newPage);
     }
   };
 
@@ -62,11 +60,11 @@ const Pagination: React.FC<IPaginationProps> = ({
       newPage -= STEP;
     }
 
-    if (newPage >= MIN_PAGE_NUMBER) {
-      if (!disabled) {
-        setCurrentPage(newPage);
-        getCurrentPage(newPage);
-      }
+    if (newPage >= MIN_PAGE_NUMBER && !disabled) {
+
+      setCurrentPage(newPage);
+      getCurrentPage(newPage);
+
     }
   };
 
@@ -77,11 +75,11 @@ const Pagination: React.FC<IPaginationProps> = ({
       newPage += STEP;
     }
 
-    if (newPage <= count) {
-      if (!disabled) {
-        setCurrentPage(newPage);
-        getCurrentPage(newPage);
-      }
+    if (newPage <= count && !disabled) {
+
+      setCurrentPage(newPage);
+      getCurrentPage(newPage);
+
     }
   };
 
@@ -89,18 +87,18 @@ const Pagination: React.FC<IPaginationProps> = ({
   const handleInsertPage = (result: IDebounceResult) => {
     const page = Number(result.debounceString);
 
-    if (!page) {
-      if (!disabled) {
-        setCurrentPage(MIN_PAGE_NUMBER);
-        getCurrentPage(MIN_PAGE_NUMBER);
-      }
+    if (!page && !disabled) {
+
+      setCurrentPage(MIN_PAGE_NUMBER);
+      getCurrentPage(MIN_PAGE_NUMBER);
+
     }
 
     if (page >= MIN_PAGE_NUMBER && page <= count) {
-      if (!disabled) {
-        setCurrentPage(page);
-        getCurrentPage(page);
-      }
+
+      setCurrentPage(page);
+      getCurrentPage(page);
+
     }
   };
 
@@ -170,7 +168,7 @@ const Pagination: React.FC<IPaginationProps> = ({
 
   return (
     <div className={`rf-pagination${disabled ? '--disabled' : ''} ${isSimple && 'rf-pagination__simple'}`}>
-      {isSimple ? null : <div
+      {!isSimple && <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
           'rf-pagination__chevron-left',
@@ -189,7 +187,7 @@ const Pagination: React.FC<IPaginationProps> = ({
           {getPageLabel(count)}
         </>)
       }
-      {isSimple ? null : <div
+      {!isSimple && <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
           'rf-pagination__chevron-right',
