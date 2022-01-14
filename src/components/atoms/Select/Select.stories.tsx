@@ -215,6 +215,7 @@ export const Demo = () => {
             onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
+            maxOptions={2}
             preloader={loading}
           />
         </StoryItem>

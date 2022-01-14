@@ -454,7 +454,7 @@ const Select: FC<ISelectProps> = ({
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
+          <div data-testid='rf-select-list-scroll' className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
