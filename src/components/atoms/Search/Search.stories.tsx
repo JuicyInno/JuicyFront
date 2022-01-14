@@ -42,13 +42,10 @@ export const Demo = () => {
 
 
   const onSearchFocus = useCallback(() => {
-    console.log('focus');
-
     setExpandSearch(true);
   }, [setExpandSearch]);
 
   const onSearchBlur = useCallback(() => {
-    console.log('blur');
     setExpandSearch(false);
   }, [setExpandSearch]);
 
