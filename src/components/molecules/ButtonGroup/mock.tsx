@@ -14,7 +14,7 @@ export const buttonGroupMock: IButtonGroup[] = [
     tooltip: 'Описание',
     description: 'Начать подбор сотрудника на позицию',
     onClick: () => {
-      /*       console.log('Подбор'); */
+      console.log('Подбор');
     }
   },
   {
