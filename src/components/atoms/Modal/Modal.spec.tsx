@@ -5,7 +5,6 @@ import Modal from './Modal';
 describe('Test <Modal /> component', () => {
   it('should render <Modal /> with content "Modal"', () => {
     render(<Modal>Modal</Modal>);
-
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--modal');
     expect(screen.getByText(/Modal/i)).toBeInTheDocument();
   });
