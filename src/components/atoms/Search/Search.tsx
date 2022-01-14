@@ -53,7 +53,7 @@ const Search: React.FC<ISearchProps> = ({
       }));
 
     return () => sub && sub.unsubscribe();
-  }, [debounce, onDebounce]);
+  }, [debounce, onDebounce, onClear]);
 
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const Search: React.FC<ISearchProps> = ({
       <input {...props}
         ref={ref}
         type='text'
-        className='rf-search__input'
+        className={classnames(endAdornment ? 'rf-search__input-endAdornment' : 'rf-search__input')}
         placeholder={props.placeholder || 'Поиск'}
         value={value}
         data-testid='search-test-id'
@@ -89,7 +89,7 @@ const Search: React.FC<ISearchProps> = ({
       {value.length > 0 && showClear &&
         <Close data-testid='search-clear-test-id'
           className={classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment')}
-          onClick={onClearClickHandler} />}
+          onMouseDown={onClearClickHandler} />}
       {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}
 
 
