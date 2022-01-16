@@ -61,6 +61,8 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
     if (item.hasChildren && (!item.children || item.children.length === 0)) {
       onChange && onChange(item);
+      toggleFolder(true);
+      return;
     }
 
     toggleFolder((f: boolean) => !f);
