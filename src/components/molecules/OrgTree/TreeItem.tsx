@@ -66,7 +66,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
     }
 
     toggleFolder((f: boolean) => !f);
-  }, [toggleFolder]);
+  }, [onChange, toggleFolder, item]);
 
   const handleChange = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
