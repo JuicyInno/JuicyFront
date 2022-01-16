@@ -13,6 +13,13 @@ export const list: ITreeOption[] = [
         children: [],
         variant: 'red',
         loading: true,
+      },
+      {
+        value: '0_1',
+        label: 'Рубашка',
+        checked: false,
+        children: [],
+        hasChildren: true
       }
     ]
   },

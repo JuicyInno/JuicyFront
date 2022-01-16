@@ -84,7 +84,9 @@ export interface ISelectProps {
   /** Событие скролла для выпадающего списка */
   onScroll?: (e: React.UIEvent) => void;
   startAdornment?: ReactNode | undefined;
-  endAdornment?: ReactNode | undefined
+  endAdornment?: ReactNode | undefined;
+  /** Максимальная ширина выпадающего меню  */
+  dropdownMaxWidth?: number | string;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -108,6 +110,7 @@ const Select: FC<ISelectProps> = ({
   endAdornment,
   startAdornment,
   onScroll,
+  dropdownMaxWidth
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -402,6 +405,9 @@ const Select: FC<ISelectProps> = ({
     return noop;
   }, [onSearch, isAsync, inputValue]);
 
+  const getWidthDropdown = useCallback(() => {
+    return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
+  }, [dropdownMaxWidth]);
 
   return (
     <Manager>
@@ -443,9 +449,12 @@ const Select: FC<ISelectProps> = ({
           toggleRef={toggleRef}
           onClose={onClose}
           position={position}
-
+          style={{
+            maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
+            width: isTagVariant ? 'auto' : '100%'
+          }}
         >
-          <div className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
+          <div data-testid='rf-select-list-scroll' className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}

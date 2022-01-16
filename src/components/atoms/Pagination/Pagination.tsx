@@ -8,17 +8,23 @@ import { IDebounceResult } from '../../../types/projects.types';
 
 
 export interface IPaginationProps extends HTMLProps<HTMLInputElement> {
-    /** Количество страниц */
-    count: number;
-    /** Функция получения текущей страницы */
-    getCurrentPage?: (page: number) => void;
-    /** Недоступные страницы */
-    disabledPages?: number[];
+  /** Количество страниц */
+  count: number;
+  /** Функция получения текущей страницы */
+  getCurrentPage?: (page: number) => void;
+  /** Недоступные страницы */
+  disabledPages?: number[];
+  /** Disable пагинацию  */
+  disabled?: boolean;
+  /** Простая пагинацию  */
+  isSimple?: boolean
 }
 
 const Pagination: React.FC<IPaginationProps> = ({
   count,
-  getCurrentPage = () => {},
+  disabled = false,
+  isSimple = false,
+  getCurrentPage = () => { },
   disabledPages = [],
 }: IPaginationProps) => {
   const FIRST_PAGE_LABEL = 1;
@@ -35,12 +41,13 @@ const Pagination: React.FC<IPaginationProps> = ({
     }
     return initialPage;
   });
+
   const firstEllipsisCondition = currentPage > STEP_BEFORE_SHOWING_DOTS;
   const secondEllipsisCondition = currentPage <= count - STEP_BEFORE_SHOWING_DOTS;
 
   /** клик по номеру страницы */
   const handleClickByPage = (newPage: number) => () => {
-    if (!disabledPages.includes(newPage)) {
+    if (!disabledPages.includes(newPage) && !disabled) {
       setCurrentPage(newPage);
       getCurrentPage(newPage);
     }
@@ -53,9 +60,11 @@ const Pagination: React.FC<IPaginationProps> = ({
       newPage -= STEP;
     }
 
-    if (newPage >= MIN_PAGE_NUMBER) {
+    if (newPage >= MIN_PAGE_NUMBER && !disabled) {
+
       setCurrentPage(newPage);
       getCurrentPage(newPage);
+
     }
   };
 
@@ -66,24 +75,30 @@ const Pagination: React.FC<IPaginationProps> = ({
       newPage += STEP;
     }
 
-    if (newPage <= count) {
+    if (newPage <= count && !disabled) {
+
       setCurrentPage(newPage);
       getCurrentPage(newPage);
+
     }
   };
 
   /** ввод страницы вручную */
-  const handleInsertPage = (result:IDebounceResult) => {
+  const handleInsertPage = (result: IDebounceResult) => {
     const page = Number(result.debounceString);
 
-    if (!page) {
+    if (!page && !disabled) {
+
       setCurrentPage(MIN_PAGE_NUMBER);
       getCurrentPage(MIN_PAGE_NUMBER);
+
     }
 
-    if (page >= MIN_PAGE_NUMBER && page <= count ) {
+    if (page >= MIN_PAGE_NUMBER && page <= count) {
+
       setCurrentPage(page);
       getCurrentPage(page);
+
     }
   };
 
@@ -91,16 +106,16 @@ const Pagination: React.FC<IPaginationProps> = ({
   const getPageLabel = (label: number) => (
     <div
       className={classnames(
-        'rf-pagination__label',
-        label === currentPage && 'rf-pagination__label--selected',
+        isSimple ? 'rf-pagination__label-simple' : 'rf-pagination__label',
+        label === currentPage && `rf-pagination__label${isSimple ? '-simple' : ''}--selected`,
         disabledPages.includes(label) && 'rf-pagination__label--disabled'
       )}
       key={label}
       onClick={handleClickByPage(label)}
     >
-      <span className='rf-pagination__label-text' >
+      {isSimple ? null : <span className='rf-pagination__label-text' >
         {label}
-      </span>
+      </span>}
     </div>
   );
 
@@ -152,8 +167,8 @@ const Pagination: React.FC<IPaginationProps> = ({
   };
 
   return (
-    <div className='rf-pagination'>
-      <div
+    <div className={`rf-pagination${disabled ? '--disabled' : ''} ${isSimple && 'rf-pagination__simple'}`}>
+      {!isSimple && <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
           'rf-pagination__chevron-left',
@@ -161,18 +176,18 @@ const Pagination: React.FC<IPaginationProps> = ({
         )}
         onClick={handleClickByLeftChevron} >
         <ChevronLeft />
-      </div>
-      { count <= PAGES_WITHOUT_DOTS ?
+      </div>}
+      {count <= PAGES_WITHOUT_DOTS ?
         Array.from({ length: count }, (item, index: number) => getPageLabel(index + 1)) :
         (<>
           {getPageLabel(FIRST_PAGE_LABEL)}
-          { firstEllipsisCondition ? getEllipsis() : getPageLabel(FIRST_PAGE_LABEL + STEP)}
+          {firstEllipsisCondition ? getEllipsis() : getPageLabel(FIRST_PAGE_LABEL + STEP)}
           {getMiddleNumbers()}
-          { secondEllipsisCondition ? getEllipsis() : getPageLabel(count - STEP) }
+          {secondEllipsisCondition ? getEllipsis() : getPageLabel(count - STEP)}
           {getPageLabel(count)}
         </>)
       }
-      <div
+      {!isSimple && <div
         className={classnames(
           'rf-pagination__chevron-wrapper',
           'rf-pagination__chevron-right',
@@ -181,9 +196,9 @@ const Pagination: React.FC<IPaginationProps> = ({
         onClick={handleClickByRightChevron}
       >
         <ChevronRight />
-      </div>
+      </div>}
       {count > PAGES_WITHOUT_NUMBER_SELECT &&
-        <Input className={'rf-pagination__input'} placeholder='№ страницы' onDebounce={handleInsertPage}/>
+        <Input className={'rf-pagination__input'} placeholder='№ страницы' onDebounce={handleInsertPage} />
       }
     </div>
   );

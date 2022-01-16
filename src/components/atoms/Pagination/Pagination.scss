@@ -1,11 +1,35 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 
-.rf-pagination {
+.rf-pagination,
+.rf-pagination--disabled {
   display: flex;
   align-items: center;
   .rf-pagination__input {
     margin-left: 8px;
     width: 129px;
+  }
+}
+.rf-pagination--disabled {
+  cursor: not-allowed;
+}
+.rf-pagination--disabled {
+  cursor: not-allowed;
+  .rf-pagination__label,
+  .rf-pagination__label--selected,
+  .rf-pagination__chevron-wrapper {
+    cursor: not-allowed;
+    color: var(--basic-disable);
+    background-color: transparent;
+    &:hover {
+      background-color: transparent;
+      color: var(--basic-disable);
+    }
+  }
+  .rf-pagination__ellipsis {
+    color: var(--basic-disable);
+  }
+  .rf-pagination__input {
+    display: none;
   }
 }
 
@@ -24,6 +48,47 @@
 .rf-pagination__label {
   @include text-m-16;
   user-select: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.rf-pagination__label-simple {
+  width: 16px;
+  height: 4px;
+  display: flex;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-tertiary);
+  margin: 0px 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--basic-press);
+  }
+  &--disabled {
+    cursor: default;
+    color: var(--basic-disable);
+    &:hover {
+      background-color: initial;
+      color: var(--basic-disable);
+    }
+  }
+  &--selected {
+    color: var(--text-static-white);
+    background-color: var(--basic-primary);
+    &:hover {
+      background-color: var(--basic-hover);
+      color: var(--text-static-white);
+    }
+  }
 }
 
 .rf-pagination__label,
