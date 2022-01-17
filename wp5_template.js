@@ -23,6 +23,7 @@ const sourceMap = isDev ? [new webpack.SourceMapDevToolPlugin({
 })] : [];
 
 function common({
+  port = 8000,
   applicationName = 'undefined',
   remotes = {},
   exposes = { './app': "./src/Main" },
@@ -47,6 +48,7 @@ function common({
     },
 
     devServer: isDev ? {
+      port,
       client: false,
       webSocketServer: false,
       historyApiFallback: true,
