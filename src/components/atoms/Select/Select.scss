@@ -10,8 +10,9 @@
       border: none;
       max-width: 55px;
       border-radius: 16px;
-      right: 8px;
+      right: 12px;
       bottom: 6px;
+      box-shadow: none;
     }
 
     & .rf-select__button {
@@ -19,6 +20,8 @@
     }
 
     & .rf-select__input {
+      @include text-s-14();
+      height: 28px;
       padding: 0 10px;
       background-color: var(--background-tertiary);
       text-align: center;
