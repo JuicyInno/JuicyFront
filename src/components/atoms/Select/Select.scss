@@ -66,7 +66,7 @@
 .rf-select__wrapper {
   width: 100%;
   position: relative;
-  display: inline-flex;
+  display: flex;
   border-radius: 8px;
   box-shadow: 0 0 0 1px var(--background-tertiary);
   background-color: var(--background-primary);
@@ -255,4 +255,7 @@
 .rf-select__tag,
 .rf-select__input--multiselect {
   margin: 2px 0px;
+}
+.rf-select-input__container {
+  display: contents;
 }

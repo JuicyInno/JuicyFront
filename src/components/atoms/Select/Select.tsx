@@ -430,7 +430,7 @@ const Select: FC<ISelectProps> = ({
               {startAdornmentIcon}
               <div className={classnames(
                 multiselect && selectValues.length ?
-                  'rf-select__wrapper--input' : '',
+                  'rf-select__wrapper--input' : 'rf-select-input__container',
                 !showDropdown && multiselect && selectValues.length ? 'rf-select--multiselect--fixed' : ''
               )}>
                 {tagsJSX}
