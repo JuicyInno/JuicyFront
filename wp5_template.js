@@ -6,7 +6,7 @@ const ModuleFederationPlugin = require("../webpack/lib/container/ModuleFederatio
 
 
 const env = process.argv[process.argv.indexOf('--mode') + 1] || 'development';
-const isDev=env === 'development'
+const isDev = env === 'development'
 
 const fileEnv = dotenv.config({ path: `./.env.${env}` }).parsed;
 
@@ -18,25 +18,24 @@ const envKeys = Object.keys(fileEnv)
 
 envKeys['process.env.REACT_APP_V'] = `"${require('../../package.json').version}"`;
 
-const sourceMap =isDev  ? [new webpack.SourceMapDevToolPlugin({
+const sourceMap = isDev ? [new webpack.SourceMapDevToolPlugin({
   filename: "[file].map"
 })] : [];
 
 function common({
-  port=8000,
   applicationName = 'undefined',
-  remotes= {},
-  exposes= { './app': "./src/Main" },
-  shared= {},
-  baseUrl='/',
-  russianName='Неизвестное приложение'
+  remotes = {},
+  exposes = { './app': "./src/Main" },
+  shared = {},
+  baseUrl = '/',
+  russianName = 'Неизвестное приложение'
 
-}){
+}) {
   if (applicationName === 'undefined') console.error('НЕ ЗАДАНО ИМЯ ПРИЛОЖЕНИЯ')
-  return  {
+  return {
 
     output: {
-      publicPath:  'auto',
+      publicPath: 'auto',
       filename: '[name].[hash].js',
       path: path.resolve(__dirname, "../../dist"),
       clean: true,
@@ -47,12 +46,11 @@ function common({
       extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     },
 
-    devServer: isDev? {
-      port: 8000,
+    devServer: isDev ? {
       client: false,
       webSocketServer: false,
       historyApiFallback: true,
-    }:{},
+    } : {},
 
     module: {
       rules: [
@@ -73,15 +71,15 @@ function common({
           use: [{
             loader: 'style-loader'
           },
-            {
-              loader: 'css-loader'
-            },
-            ...(env === 'development' ? [] : [{
-              loader: 'scoped-css-loader'
-            }]),
-            {
-              loader: 'sass-loader'
-            }],
+          {
+            loader: 'css-loader'
+          },
+          ...(env === 'development' ? [] : [{
+            loader: 'scoped-css-loader'
+          }]),
+          {
+            loader: 'sass-loader'
+          }],
         },
         {
           test: /\.(ts|tsx|js|jsx)$/,
