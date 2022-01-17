@@ -1,5 +1,5 @@
 import React, {
-  HTMLProps, useEffect, useRef, useState, ReactNode
+  HTMLProps, useEffect, useRef, useState, useMemo, ReactNode
 } from 'react';
 import './Search.scss';
 import { Close, SearchIcon } from '../../../indexIcon';
@@ -19,19 +19,40 @@ export interface ISearchProps extends HTMLProps<HTMLInputElement> {
   debounce?: number;
   /** Иконка в конце поля */
   endAdornment?: ReactNode;
-  /** обработка нажатий с эффектом debounce */
+  /** Обработка нажатий с эффектом debounce */
   onDebounce?: (result: IDebounceResult) => void;
+  /**
+   * Проверять ввод в соответствии с регулярным выражением
+   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+   */
+  pattern?: string;
 }
 
 const Search: React.FC<ISearchProps> = ({
-  onClear, showClear = true, debounce = 500, endAdornment, onDebounce = () => {
-  }, ...props
+  onClear,
+  showClear = true,
+  debounce = 500,
+  endAdornment,
+  onDebounce = () => {},
+  pattern,
+  ...props
 }: ISearchProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 
   const [value, setValue] = useState<string>(props.value ? props.value.toString() : '');
   const ref = useRef<HTMLInputElement>(null);
+
+  // Регулярное выражение для проверки ввода
+  const regexp = useMemo(() => {
+    if (pattern) {
+      return new RegExp(pattern);
+    }
+
+    return null;
+  }, [pattern]);
+
+
   // =======================
 
   useEffect(() => {
@@ -60,7 +81,14 @@ const Search: React.FC<ISearchProps> = ({
     setValue(props.value ? props.value.toString() : '');
   }, [props.value]);
   // -------------------------------------------------------------------------------------------------------------------
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (regexp && !regexp.test(e.target.value)) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
     setValue(e.target.value);
     props.onChange && props.onChange(e);
   };
@@ -83,6 +111,7 @@ const Search: React.FC<ISearchProps> = ({
         value={value}
         data-testid='search-test-id'
         onChange={onChangeHandler}
+        pattern={pattern}
       />
       <SearchIcon className='rf-search__search-icon' />
 
