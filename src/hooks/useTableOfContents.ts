@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { debounceTime, map } from 'rxjs/operators';
+import { map, throttleTime } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 
 export interface IHeadingData {
@@ -103,7 +103,10 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
     }
 
     const subscription = fromEvent(window, 'scroll').pipe(
-      debounceTime( 300),
+      throttleTime(300, undefined, {
+        leading: true,
+        trailing: true
+      }),
       map(() => findActiveNode())
     ).subscribe();
 
