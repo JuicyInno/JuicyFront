@@ -8,10 +8,12 @@ import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 import { Employee } from '../../../index';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
   title: 'pages/withTest/Page With Sections',
-  component: PageWithSections
+  component: PageWithSections,
+  decorators: [withDesign],
 };
 
 export const pageWithSections = () => {
@@ -117,4 +119,11 @@ export const pageWithSections = () => {
       </div>
     </BrowserRouter>
   );
+};
+
+pageWithSections.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=22111%3A116342',
+  },
 };
