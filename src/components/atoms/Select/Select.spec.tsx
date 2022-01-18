@@ -1,7 +1,8 @@
 import { getByText, screen, render, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { noop } from 'rxjs';
 import { Calendar, Cross } from '../../../indexIcon';
+import { IOption } from '../../../types';
 import Select from './Select';
 
 describe('Test <Select/> component', () => {
@@ -221,5 +222,38 @@ describe('Test <Select/> component', () => {
     fireEvent.click(screen.getByTestId('rf-select'));
     expect(document.getElementsByClassName('rf-select__button__icon')).toBeTruthy()
     expect(document.getElementsByClassName('rf-select__button__icon-end')).toBeTruthy()
+  });
+
+  it('should be change value after async delay', async () => {
+
+    let values: IOption[] = []
+
+    const { container, rerender } = render(<Select
+      options={[
+        { value: '1', label: 'label1' },
+      ]}
+      values={values}
+      onChange={noop}
+    />);
+    expect(container.getElementsByClassName('rf-select__input')[0].getAttribute('value')).toBeFalsy();
+
+    await waitFor(() => values = [
+      {
+        value: 'test',
+        label: 'test'
+      }
+    ], {
+      timeout: 0
+    })
+
+    rerender(<Select
+      options={[
+        { value: '1', label: 'label1' },
+      ]}
+      values={values}
+      onChange={noop}
+    />);
+
+    expect(container.getElementsByClassName('rf-select__input')[0].getAttribute('value')).toBeTruthy();
   });
 });

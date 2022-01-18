@@ -265,7 +265,7 @@ export const Demo = () => {
         </StoryItem>
         <StoryItem description='Tag select'>
           <FormGroup label={'Tag select'}>
-            <Input placeholder={'Это текстовый инпут'}/>
+            <Input placeholder={'Это текстовый инпут'} />
 
             <Select
               variant={'tag'}
@@ -343,11 +343,41 @@ export const LazySelect: Story = () => {
 };
 
 export const Playground: Story = (args) => {
+
+
+  const [values, setValues] = useState<IOption[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('effect 2 sec');
+      setValues([
+        {
+          value: 'test',
+          label: 'test'
+        }
+      ]);
+    }, 2000);
+
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('effect 5 sec');
+      setValues([
+        {
+          value: 'test2',
+          label: 'test2'
+        }
+      ]);
+    }, 5000);
+
+  }, []);
+
   return (
     <StoryContainer>
       <StoryRow>
         <StoryItem description='Select'>
-          <Select placeholder='Выберите значение' values={[]} options={list} onChange={() => { }} {...args} />
+          <Select placeholder='Выберите значение' values={values} options={list} onChange={() => { }} {...args} />
         </StoryItem>
       </StoryRow>
     </StoryContainer>
