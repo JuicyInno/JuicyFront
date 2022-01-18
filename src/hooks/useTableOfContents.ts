@@ -85,7 +85,7 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
         activeIndex
       });
     }
-  }, [titlesNodes, clicked]);
+  }, [titlesNodes]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -112,7 +112,7 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
     return () => {
       subscription.unsubscribe();
     };
-  }, [titlesNodes, clicked]);
+  }, [titlesNodes]);
 
 
   return {
