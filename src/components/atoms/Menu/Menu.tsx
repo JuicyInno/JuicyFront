@@ -32,7 +32,7 @@ export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 
 
 /** Контекст для передачи функций работы с меню. */
 export const MenuContext = React.createContext<IMenuContext>({
-  onClose: () => {},
+  onClose: () => { },
   show: false,
 });
 

@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, useCallback, useEffect, useRef, useState
+  ReactNode, RefObject, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
@@ -17,8 +17,7 @@ import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import DatepickerCalendar from './DatepickerCalendar';
 
-
-export interface IDatepickerProps {
+export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   /** Имя поля */
   name?: string;
   /** Текст Placeholder */
@@ -64,6 +63,8 @@ export interface IDatepickerProps {
   filled?: boolean;
   /** Цвет tooltip */
   tooltipBackground?: 'default' | 'white';
+  /** Сыылка на контейнер портала */
+  parentNode?: RefObject<T>;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -85,6 +86,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   disableWeekDays = [0, 6],
   children,
   tooltipBackground = 'default',
+  parentNode,
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -354,7 +356,6 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const isCrossChevronPicker = inputValue.split('-').length === 2 && inputValue.split('-')[1].trim() !== '__.__.____';
 
-
   return (
     <Manager>
       <div className='rf-datepicker' ref={datepickerRef}>
@@ -402,7 +403,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
               }
             </div >
           )}
-        </Reference >
+        </Reference>
 
         <Dropdown
           show={showCalendar}
@@ -413,6 +414,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             maxWidth: 'auto',
             width: 'auto'
           }}
+          parentNode={parentNode}
         >
           <DatepickerCalendar
             value={inputValue}

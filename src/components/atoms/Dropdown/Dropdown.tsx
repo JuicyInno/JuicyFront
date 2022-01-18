@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, useCallback, useRef, RefObject
+  ReactNode, useCallback, useRef, RefObject, useState, useEffect
 } from 'react';
 import { Popper } from 'react-popper';
 import './Dropdown.scss';
@@ -8,7 +8,7 @@ import { DropdownPosition } from '../../../types';
 import { createPortal } from 'react-dom';
 import { Options } from '@popperjs/core/lib/modifiers/offset';
 
-export interface IDropdownProps {
+export interface IDropdownProps<T extends HTMLElement = HTMLDivElement> {
   /** Контент */
   children: ReactNode | ReactNode[];
   /** Флаг отображения */
@@ -23,10 +23,22 @@ export interface IDropdownProps {
   style?: React.CSSProperties;
   /** Расстояние по оси X и Y */
   offset?: Options['offset'];
+  /** Сыылка на контейнер портала */
+  parentNode?: RefObject<T>;
 }
 
-const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, position, style, offset, onClose }: IDropdownProps) => {
+const Dropdown: React.FC<IDropdownProps> = ({
+  children, show, toggleRef, position, style, offset, parentNode, onClose
+}: IDropdownProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [container, setContainer] = useState(parentNode?.current || document.body);
+
+  useEffect(() => {
+    if (parentNode?.current) {
+      setContainer(parentNode.current);
+    }
+
+  }, [parentNode?.current]);
 
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = useCallback(
@@ -46,45 +58,44 @@ const Dropdown: React.FC<IDropdownProps> = ({ children, show, toggleRef, positio
     return null;
   }
 
-  return createPortal(
-    <Popper
-      placement={position}
-      modifiers={[
-        {
-          name: 'offset',
-          options: { offset: offset || [0, 8] },
+  const content = <Popper
+    placement={position}
+    modifiers={[
+      {
+        name: 'offset',
+        options: { offset: offset || [0, 8] },
+      },
+      {
+        name: 'flip',
+        options: {
+          allowedAutoPlacements: [
+            'right',
+            'left',
+            'top',
+            'bottom'
+          ],
+          rootBoundary: 'viewport',
         },
-        {
-          name: 'flip',
-          options: {
-            allowedAutoPlacements: [
-              'right',
-              'left',
-              'top',
-              'bottom'
-            ],
-            rootBoundary: 'viewport',
-          },
-        },
-      ]}
-      innerRef={contentRef}
-    >
-      {({ ref, style: dropdownStyle }) => (
-        <div
-          ref={ref}
-          style={{
-            ...dropdownStyle,
-            ...style
-          }}
-          className='rf-dropdown__content'
-          data-testid='rf-dropdown'
-        >
-          {children}
-        </div>
-      )}
-    </Popper>,
-    document.body
-  );
+      },
+    ]}
+    innerRef={contentRef}
+  >
+    {({ ref, style: dropdownStyle }) => (
+      <div
+        ref={ref}
+        style={{
+          ...dropdownStyle,
+          ...style
+        }}
+        className='rf-dropdown__content'
+        data-testid='rf-dropdown'
+      >
+        {children}
+      </div>
+    )}
+  </Popper>;
+
+  return createPortal(content, container);
 };
 
 export default Dropdown;
