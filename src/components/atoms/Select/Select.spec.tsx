@@ -253,7 +253,6 @@ describe('Test <Select/> component', () => {
       values={values}
       onChange={noop}
     />);
-
     expect(container.getElementsByClassName('rf-select__input')[0].getAttribute('value')).toBeTruthy();
   });
 });
