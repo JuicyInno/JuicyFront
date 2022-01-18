@@ -94,7 +94,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   /** Активная секция при скролле */
   const { activeTitle, onClick } = useTableOfContents({
     selector: '.rf-page__section-title',
-    additionalOffset: ADDITIONAL_SCROLL_OFFSET,
     deps: [preloader]
   });
 
