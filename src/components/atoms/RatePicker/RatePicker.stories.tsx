@@ -33,12 +33,12 @@ export const Demo = (args: IPickerProps) => {
         <StoryRow>
           <RatePicker getRate={(e) => {
             console.log(e);
-          }} isStarPicker={true} {...args} />
+          }} isStarPicker {...args} />
 
         </StoryRow>
         <StoryRow >
 
-          <RatePicker isStarPicker={true} isActive={false} defaultPickedValue={2} />
+          <RatePicker isStarPicker isActive={false} defaultPickedValue={2} />
         </StoryRow>
       </StoryItem>
     </StoryContainer>
