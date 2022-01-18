@@ -106,10 +106,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
         if (block && pageHeaderRef.current) {
           const top = block.getBoundingClientRect().top + pageYOffset - ADDITIONAL_SCROLL_OFFSET;
-          window.scrollTo({
-            left: 0,
-            top
-          });
+          window.scrollTo(0, top);
         }
 
         onClick({

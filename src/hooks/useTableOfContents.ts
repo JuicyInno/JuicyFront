@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useRef, useState
+} from 'react';
 import { map, throttleTime } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 
@@ -33,11 +35,11 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
     activeTitleId: undefined
   });
   const [titlesNodes, setTitlesNodes] = useState<IHeadingData[]>([]);
-  const [clicked, setClicked] = useState<boolean>(false);
+  const clicked = useRef<boolean>(false);
 
   const onClick = (title: IActiveTitle) => {
     setActiveTitle(title);
-    setClicked(true);
+    clicked.current = true;
   };
 
   const parseTitles = () => {
@@ -49,11 +51,11 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
     }));
   };
 
-  const findActiveNode = () => {
+  const findActiveNode = useCallback(() => {
     if (titlesNodes.length) {
 
-      if (clicked) {
-        setClicked(false);
+      if (clicked.current) {
+        clicked.current = false;
         return;
       }
 
@@ -86,7 +88,7 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
         activeIndex
       });
     }
-  };
+  }, [titlesNodes, clicked]);
 
   useEffect(() => {
     setTimeout(() => {
