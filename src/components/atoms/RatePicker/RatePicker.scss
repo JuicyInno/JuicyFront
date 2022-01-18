@@ -26,6 +26,13 @@
     border: 1px solid var(--background-secondary);
     box-sizing: border-box;
     cursor: pointer;
+    &:hover {
+      background-color: var(--basic-hover);
+      color: var(--text-inversion);
+    }
+    &:active {
+      background-color: var(--basic-press);
+    }
   }
 }
 .rate-picker__item--left {
@@ -56,6 +63,14 @@
   width: auto;
   height: auto;
   border: none;
+  &:hover {
+    background-color: transparent;
+    color: var(--basic-hover);
+  }
+  &:active {
+    background-color: transparent;
+    color: var(--basic-press);
+  }
 }
 .star-picker {
   background-color: transparent;
