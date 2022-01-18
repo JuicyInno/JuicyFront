@@ -48,13 +48,12 @@ const Page: React.FC<IPageProps> = ({
         </div>
       </header>
 
-      {navigation && (
-        <div className='rf-page__tabs'>
-          <Tabs list={navigation}/>
-        </div>
-      )}
-
       <div className='rf-page__content'>
+        {!!navigation?.length && (
+          <div className='rf-page__tabs'>
+            <Tabs list={navigation}/>
+          </div>
+        )}
         {preloader ? <Preloader/> : children}
       </div>
     </div>
