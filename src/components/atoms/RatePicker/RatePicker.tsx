@@ -1,6 +1,8 @@
 import React, {
   FC, useState, useEffect, InputHTMLAttributes
 } from 'react';
+import { Star } from '../../../indexIcon';
+import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
 
@@ -20,6 +22,8 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 
   /** Реверсировать поярдок диапазона*/
   isReverse?: boolean
+  /** Вид зведочки*/
+  isStarPicker: boolean
   /** Получить значение оценки*/
   getRate?: (value: string) => number | void
 }
@@ -31,7 +35,9 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   sizePicker = 10,
   textContent = '',
   isUnderline = true,
-  isReverse = false, ...props }: IPickerProps) => {
+  isReverse = false,
+  isStarPicker = false,
+  ...props }: IPickerProps) => {
 
   const [rating, setRating] = useState(defaultPickedValue);
 
@@ -45,9 +51,26 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   }
 
   const clickRateHandler = (e: React.MouseEvent<HTMLLabelElement>) => {
+
+
     if (typeof e?.currentTarget?.textContent === 'string') {
       isActive && setRating(+e.currentTarget.textContent);
+      console.log(e.currentTarget.textContent);
+
       getRate(e.currentTarget.textContent);
+    } else {
+      setRating(0);
+    }
+  };
+
+
+  const clickRateStarHandler = (value: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+
+
+    if (typeof e?.currentTarget?.textContent === 'string') {
+      isActive && setRating(value);
+      console.log(value);
+      getRate(value.toString());
     } else {
       setRating(0);
     }
@@ -59,7 +82,8 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     rates = rates.reverse();
   }
 
-  const rateComponent = rates.map((item) => {
+
+  const rateComponent = rates.map((item, index) => {
 
     const labelClassName = +rating >= item && !isReverse ?
       `rate-picker__label_picked_${isActive ?
@@ -83,13 +107,16 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         type='radio'
         id={`input-${item}`}
         value={item} />
-      <label
-        className={labelClassName}
+      {isStarPicker ? <label
+        onClick={clickRateStarHandler(index + 1)}
+        className={classnames(labelClassName, 'star-picker')}
+      ><Star size='m' /></label> : <label
+        className={classnames(labelClassName)}
         onClick={clickRateHandler}
         htmlFor={`input-${item}`}
         {...props}>
         {item}
-      </label>
+      </label>}
     </div >;
   });
 
