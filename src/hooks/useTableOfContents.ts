@@ -1,4 +1,4 @@
-import React, {
+import {
   useCallback, useEffect, useRef, useState
 } from 'react';
 import { map, throttleTime } from 'rxjs/operators';
@@ -10,11 +10,8 @@ export interface IHeadingData {
 }
 
 export interface IUseTableOfContentsProps {
-    container?: React.RefObject<HTMLElement>;
     /** Селектор для отслеживаемых заголовков/элементов */
     selector: string;
-    /** Доп. отступ сверху для активации элемента (помимо отступа контейнера) */
-    additionalOffset?: number;
     /** Доп. зависимости для запуска парсинга тайтлов */
     deps?: any[];
 }
@@ -29,7 +26,7 @@ export interface ITableOfContents {
   onClick: (title: IActiveTitle) => void;
 }
 
-const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = [] }: IUseTableOfContentsProps): ITableOfContents => {
+const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): ITableOfContents => {
   const [activeTitle, setActiveTitle] = useState<IActiveTitle>({
     activeIndex: 0,
     activeTitleId: undefined
