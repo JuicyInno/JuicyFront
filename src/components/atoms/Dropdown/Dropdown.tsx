@@ -24,21 +24,21 @@ export interface IDropdownProps<T extends HTMLElement = HTMLDivElement> {
   /** Расстояние по оси X и Y */
   offset?: Options['offset'];
   /** Сыылка на контейнер портала */
-  parentNode?: RefObject<T>;
+  containerRef?: RefObject<T>;
 }
 
 const Dropdown: React.FC<IDropdownProps> = ({
-  children, show, toggleRef, position, style, offset, parentNode, onClose
+  children, show, toggleRef, position, style, offset, containerRef, onClose
 }: IDropdownProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const [container, setContainer] = useState(parentNode?.current || document.body);
+  const [container, setContainer] = useState(containerRef?.current || document.body);
 
   useEffect(() => {
-    if (parentNode?.current) {
-      setContainer(parentNode.current);
+    if (containerRef?.current) {
+      setContainer(containerRef.current);
     }
 
-  }, [parentNode?.current]);
+  }, [containerRef?.current]);
 
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = useCallback(

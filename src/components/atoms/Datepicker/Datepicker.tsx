@@ -64,7 +64,7 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   /** Цвет tooltip */
   tooltipBackground?: 'default' | 'white';
   /** Сыылка на контейнер портала */
-  parentNode?: RefObject<T>;
+  containerRef?: RefObject<T>;
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -86,7 +86,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   disableWeekDays = [0, 6],
   children,
   tooltipBackground = 'default',
-  parentNode,
+  containerRef,
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -414,7 +414,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
             maxWidth: 'auto',
             width: 'auto'
           }}
-          parentNode={parentNode}
+          containerRef={containerRef}
         >
           <DatepickerCalendar
             value={inputValue}

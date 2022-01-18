@@ -10,7 +10,7 @@ import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import { IDropdownProps } from '../Dropdown/Dropdown';
 
-export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 'offset'> {
+export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 'offset' | 'containerRef'> {
   /** Кнопка открытия меню */
   children: ReactNode;
   /** Элементы меню */

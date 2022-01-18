@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Datepicker from './Datepicker';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
@@ -7,7 +7,6 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import { Story } from '@storybook/react';
 import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
-import Menu from '../Menu';
 import { today } from '../../../index';
 import Chip from '../Chip';
 import { Calendar } from '../../../indexIcon';
@@ -86,31 +85,6 @@ export const Playground: Story = (args) => {
         <Datepicker defaultValue={date} min={today()} {...args} onChange={onChange} />
       </StoryRow>
     </StoryContainer>
-  );
-};
-
-export const Test = () => {
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const list = [];
-
-  for (let i = 1; i < 15; i++) {
-    list.push({
-      value: `${i}`,
-      label: `Вариант ${i} Изменяемое значение извне Изменяемое значение извне Изменяемое значение извне`,
-      disabled: i % 6 === 0,
-    });
-  }
-
-  return (
-    <div>
-      <Menu
-        content={<div style={{ padding: '20px' }} ref={menuRef}>{<Datepicker range parentNode={menuRef} />}</div>}
-        position='top-start'
-      >
-        <div>Datepicker</div>
-      </Menu>
-    </div>
   );
 };
 
