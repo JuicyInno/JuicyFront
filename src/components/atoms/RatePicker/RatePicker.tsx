@@ -8,35 +8,49 @@ import './RatePicker.scss';
 
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 
-  /** Величина диапазона*/
+  /**
+   *  Величина диапазона
+   * */
   sizePicker?: number
   /** Заданное значение выбранного диапазона*/
   defaultPickedValue?: number
-  /** Включить диапазон*/
+  /**
+   *  Включить диапазон
+   * @default true
+   * */
   isActive?: boolean
 
   /** Текст контента диапазона*/
   textContent?: string,
-  /** Нижнее подчеркивание*/
+  /**
+   *  Нижнее подчеркивание
+   * @default true
+   * */
   isUnderline?: boolean
 
-  /** Реверсировать поярдок диапазона*/
+  /**
+   * Реверсировать поярдок диапазона
+   * @default false
+   * */
   isReverse?: boolean
-  /** Вид зведочки*/
-  isStarPicker: boolean
+  /**
+   *  Вид зведочки
+   * @default false
+   * */
+  isStarPicker?: boolean
   /** Получить значение оценки*/
   getRate?: (value: string) => number | void
 }
 
 
 const RatePicker: FC<IPickerProps> = ({ isActive = true,
+  isStarPicker = false,
   defaultPickedValue = 0,
   getRate = () => { },
-  sizePicker = 10,
+  sizePicker = 5,
   textContent = '',
   isUnderline = true,
   isReverse = false,
-  isStarPicker = false,
   ...props }: IPickerProps) => {
 
   const [rating, setRating] = useState(defaultPickedValue);
@@ -110,7 +124,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
       {isStarPicker ? <label
         onClick={clickRateStarHandler(index + 1)}
         className={classnames(labelClassName, 'star-picker')}
-      ><Star size='m' /></label> : <label
+      ><Star size={isActive ? 'm' : 'xxs'} /></label> : <label
         className={classnames(labelClassName)}
         onClick={clickRateHandler}
         htmlFor={`input-${item}`}

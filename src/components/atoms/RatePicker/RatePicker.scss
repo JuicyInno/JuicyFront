@@ -51,14 +51,15 @@
   background-color: var(--background-tertiary);
 }
 .rate-picker__container label[class='star-picker'],
-.rate-picker__label_picked_primary.star-picker {
-  width: 40px;
-  height: 40px;
+.rate-picker__label_picked_primary.star-picker,
+.rate-picker__label_picked_tertiary label[class='star-picker'] {
+  width: auto;
+  height: auto;
   border: none;
 }
 .star-picker {
   background-color: transparent;
-  color: var(--text-tertiary);
+  color: var(--background-tertiary);
 }
 .rate-picker__label_picked_primary label[class='star-picker'] {
   border-top-right-radius: none;
@@ -69,6 +70,13 @@
   border-bottom-left-radius: none;
 }
 .rate-picker__label_picked_primary.star-picker {
+  background-color: transparent;
+  color: var(--basic-primary);
+}
+.rate-picker__label_picked_tertiary.star-picker {
+  width: auto;
+  height: auto;
+  border: none;
   background-color: transparent;
   color: var(--basic-primary);
 }
