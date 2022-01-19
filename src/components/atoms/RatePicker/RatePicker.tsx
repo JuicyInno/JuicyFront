@@ -55,6 +55,8 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
 
   const [rating, setRating] = useState(defaultPickedValue);
 
+  const [hover, setHover] = useState(0);
+
   useEffect(() => {
     setRating(defaultPickedValue);
   }, [defaultPickedValue, isActive]);
@@ -69,12 +71,17 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
 
     if (typeof e?.currentTarget?.textContent === 'string') {
       isActive && setRating(+e.currentTarget.textContent);
-      console.log(e.currentTarget.textContent);
-
       getRate(e.currentTarget.textContent);
     } else {
       setRating(0);
     }
+  };
+
+  const onMoveMouseHandler = (item: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+    setHover(item);
+  };
+  const onMoveMouseLeaveHandler = () => {
+    setHover(0);
   };
 
 
@@ -122,15 +129,21 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         id={`input-${item}`}
         value={item} />
       {isStarPicker ? <label
+        onMouseMove={onMoveMouseHandler(item)}
+        onMouseLeave={onMoveMouseLeaveHandler}
         onClick={clickRateStarHandler(index + 1)}
-        className={classnames(labelClassName, 'star-picker')}
-      ><Star size={isActive ? 'm' : 'xxs'} /></label> : <label
-        className={classnames(labelClassName)}
-        onClick={clickRateHandler}
-        htmlFor={`input-${item}`}
-        {...props}>
-        {item}
-      </label>}
+        className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star')}
+      ><Star size={isActive ? 'm' : 'xxs'} /></label> :
+        <label
+          className={classnames(labelClassName, isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
+          onClick={clickRateHandler}
+          onMouseMove={onMoveMouseHandler(item)}
+          onMouseLeave={onMoveMouseLeaveHandler}
+          htmlFor={`input-${item}`}
+          {...props}>
+          {item}
+        </label>
+      }
     </div >;
   });
 
