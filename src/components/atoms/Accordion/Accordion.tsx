@@ -11,8 +11,14 @@ export type IAccordion = {
   title: ReactNode;
   /** Контент */
   content: ReactNode;
-  /** Открыт по умолчанию  */
+  /** Открыт по умолчанию
+   * @default false
+  */
   defaultOpened?: boolean;
+  /** Заблокирован выбор или нет
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 export interface IAccordionProps {
@@ -21,13 +27,13 @@ export interface IAccordionProps {
   /** Позволяет разворачивать сразу несколько элементов
    * @default false
    */
-  isMultiple?: boolean;
+  expanded?: boolean;
 }
 
-const Accordion: React.FC<IAccordionProps> = ({ data = [], isMultiple = false }: IAccordionProps) => {
+const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false }: IAccordionProps) => {
   const getDefaultOpenedIndexes = useCallback(() => data.reduce((acc: number[], curr: IAccordion, index: number) => {
     if (curr.defaultOpened) {
-      if (isMultiple || !acc.length) {
+      if (expanded || !acc.length) {
         acc.push(index);
       }
 
@@ -35,7 +41,7 @@ const Accordion: React.FC<IAccordionProps> = ({ data = [], isMultiple = false }:
     }
 
     return acc;
-  }, []), [data.length, isMultiple]);
+  }, []), [data.length, expanded]);
 
   const [openedIndexes, setOpenedIndexes] = useState<number[]>(() => getDefaultOpenedIndexes());
 
@@ -44,7 +50,7 @@ const Accordion: React.FC<IAccordionProps> = ({ data = [], isMultiple = false }:
   const handleOpen = useCallback((index: number) => () => {
     const oepend = isOpened(index);
 
-    if (isMultiple) {
+    if (expanded) {
       if (oepend) {
         setOpenedIndexes(prevIndex => prevIndex.filter((i: number) => i !== index));
       } else {
@@ -54,17 +60,23 @@ const Accordion: React.FC<IAccordionProps> = ({ data = [], isMultiple = false }:
       setOpenedIndexes(oepend ? [] : [index]);
     }
 
-  }, [isOpened, isMultiple]);
+  }, [isOpened, expanded]);
 
   return (
     <div className='rf-accordion'>
       {data.map((item: IAccordion, index: number) => {
         const opened = isOpened(index);
-        const openedClassName = opened ? 'rf-accordion__item--opened' : '';
 
         return (
-          <div key={index} className={classnames('rf-accordion__item-wrap', openedClassName)}>
-            <AccordionItem onClick={handleOpen(index)}>
+          <div
+            key={index}
+            className={classnames(
+              'rf-accordion__item-wrap',
+              opened && 'rf-accordion__item-wrap--opened',
+              item.disabled && 'rf-accordion__item-wrap--disabled'
+            )}
+          >
+            <AccordionItem opened={opened} disabled={item.disabled} onClick={handleOpen(index)}>
               {item.title}
             </AccordionItem>
 

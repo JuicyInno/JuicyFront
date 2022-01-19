@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import ChevronDown from '../../../assets/icons/ChevronDown';
+import { Add, Reduce } from '../../../indexIcon';
 import './Accordion.scss';
 
 export interface IAccordionItemProps {
@@ -8,14 +8,26 @@ export interface IAccordionItemProps {
   children: ReactNode;
   /** Функция клика */
   onClick: () => void;
+  /** Открыт/закрыт */
+  opened: boolean;
+  /** Заблокирован выбор или нет
+   * @default false
+   */
+  disabled?: boolean;
 }
 
-const AccordionItem: React.FC<IAccordionItemProps> = ({ children, onClick }: IAccordionItemProps) => {
-  return <div className='rf-accordion__item' aria-expanded='true' onClick={onClick}>
-    {children}
+const AccordionItem: React.FC<IAccordionItemProps> = ({ children, opened, disabled, onClick }: IAccordionItemProps) => (
+  <div
+    className='rf-accordion__item'
+    aria-expanded='true'
+    onClick={!disabled ? onClick : () => { }}
+  >
+    <div className='rf-accordion__item-inner'>
+      {children}
 
-    <ChevronDown className='rf-accordion__item-icon' />
-  </div>;
-};
+      {opened ? <Reduce className='rf-accordion__item-icon' /> : <Add className='rf-accordion__item-icon' />}
+    </div>
+  </div>
+);
 
 export default AccordionItem;

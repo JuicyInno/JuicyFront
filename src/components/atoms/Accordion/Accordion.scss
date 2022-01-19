@@ -6,19 +6,56 @@
   width: 100%;
 
   .rf-accordion__item-wrap {
-    border-bottom: 1px solid var(--background-tertiary-hover);
+    border-radius: 12px;
+    @include text-l-16;
+    transition: 0.2s ease-in-out;
 
-    &.rf-accordion__item--opened {
+    &:first-child .rf-accordion__item-inner {
+      border-top: 1px solid transparent;
+    }
+
+    &:last-child .rf-accordion__item-inner {
+      border-bottom: 1px solid var(--background-tertiary);
+    }
+
+    &:last-child:hover .rf-accordion__item-inner {
+      border-bottom: 1px solid transparent;
+    }
+
+    &:hover:not(.rf-accordion__item--disabled) {
+      background-color: var(--background-secondary);
+
+      & + .rf-accordion__item-wrap {
+        .rf-accordion__item-inner {
+          border-top: 1px solid transparent;
+        }
+      }
+
+      .rf-accordion__item-inner {
+        border-top: 1px solid transparent;
+      }
+    }
+
+    &.rf-accordion__item-wrap--opened {
       .rf-accordion__panel {
         visibility: visible;
         opacity: 1;
         height: auto;
         transition: all 0.1s;
-        padding: 10px 16px 15px;
+        padding: 0px 20px 16px;
+        overflow: auto;
       }
 
+      .rf-accordion__item-inner {
+        border-top: 1px solid transparent;
+      }
+    }
+
+    &.rf-accordion__item-wrap--disabled {
+      pointer-events: none;
+
       .rf-accordion__item-icon {
-        transform: rotate(-180deg);
+        color: var(--basic-disable)
       }
     }
 
@@ -26,13 +63,21 @@
       visibility: hidden;
       opacity: 0;
       height: 0px;
-      padding: 0px 16px;
-      transition: all 0.1s;
+      padding: 0px 20px;
+      transition: 0.1s ease-in-out;
+      color: var(--text-secondary);
+      overflow: hidden;
     }
+  }
 
-    &:first-child .rf-accordion__item {
-      border-top: 1px solid var(--background-tertiary-hover);
-    }
+  .rf-accordion__item-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--background-tertiary);
+    padding: 16px 0;
+    transition: 0.2s ease-in-out;
   }
 
   .rf-accordion__item-icon {
@@ -42,10 +87,9 @@
 
   .rf-accordion__item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 16px;
+    width: 100%;
+    padding: 0 20px;
+    max-height: 56px;
     cursor: pointer;
-    @include text-l-16-bold;
   }
 }

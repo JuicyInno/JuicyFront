@@ -11,7 +11,7 @@ import data from './mock';
 export default {
   title: 'components/withTest/Accordion',
   component: Accordion,
-  argTypes: {}
+  argTypes: { data: { control: null } }
 };
 
 export const Demo: Story = () => {
@@ -24,7 +24,7 @@ export const Demo: Story = () => {
 
       <div>
         <StoryDocsH3>isMiltiple</StoryDocsH3>
-        <Accordion data={data} isMultiple />
+        <Accordion data={data} expanded />
       </div>
 
       <div>
