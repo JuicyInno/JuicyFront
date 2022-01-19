@@ -265,7 +265,7 @@ export const Demo = () => {
         </StoryItem>
         <StoryItem description='Tag select'>
           <FormGroup label={'Tag select'}>
-            <Input placeholder={'Это текстовый инпут'}/>
+            <Input placeholder={'Это текстовый инпут'} />
 
             <Select
               variant={'tag'}
@@ -343,6 +343,8 @@ export const LazySelect: Story = () => {
 };
 
 export const Playground: Story = (args) => {
+
+
   return (
     <StoryContainer>
       <StoryRow>
