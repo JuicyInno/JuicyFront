@@ -28,7 +28,10 @@ export interface IPageWithSectionsProps {
   /** Показать боковое меню заголовков секций
    * @default true */
   showNavigation?: boolean;
-  /** Отключает  не корректно работающий слайдер навигации
+  /** Доп. отступ скролла при клике бокового меню (px)
+   * @default 40 */
+  additionalScrollOffset?: number;
+  /** Отключает подсветку активного элемента меню
    * @default false */
   showNavigationPosition?: boolean;
   /** Navigation tabs */
@@ -44,9 +47,6 @@ export interface IPageWithSectionsProps {
   countOfButtonsGroup?:number;
 }
 
-/** Дополнительной отступ для активации секции в оглавлении */
-export const ADDITIONAL_SCROLL_OFFSET = 40;
-
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   title,
   backUrl,
@@ -59,6 +59,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   showHeader = true,
   actionMenuAlwaysBottom = false,
   showNavigationPosition = false,
+  additionalScrollOffset = 40,
   countOfButtonsGroup = 2,
   buttonsGroup = []
 }: IPageWithSectionsProps) => {
@@ -104,7 +105,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         const block = document.getElementById(section.id);
 
         if (block && pageHeaderRef.current) {
-          const top = block.getBoundingClientRect().top + pageYOffset - ADDITIONAL_SCROLL_OFFSET;
+          const top = block.getBoundingClientRect().top + pageYOffset - additionalScrollOffset;
           window.scrollTo(0, top);
         }
 
