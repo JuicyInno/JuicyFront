@@ -10,7 +10,7 @@ import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import { IDropdownProps } from '../Dropdown/Dropdown';
 
-export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 'offset'> {
+export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 'offset' | 'containerRef'> {
   /** Кнопка открытия меню */
   children: ReactNode;
   /** Элементы меню */
@@ -32,7 +32,7 @@ export interface IListProps extends Pick<IDropdownProps, 'position' | 'style' | 
 
 /** Контекст для передачи функций работы с меню. */
 export const MenuContext = React.createContext<IMenuContext>({
-  onClose: () => {},
+  onClose: () => { },
   show: false,
 });
 

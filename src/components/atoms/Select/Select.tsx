@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import React, { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
 import { Manager, Reference } from 'react-popper';
 import './Select.scss';
@@ -13,7 +13,7 @@ import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import Preloader from '../Preloader';
 
-export interface ISelectProps {
+export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   /** Варианты выбора */
   options: IOption[];
   /** Изменение значения */
@@ -87,6 +87,8 @@ export interface ISelectProps {
   endAdornment?: ReactNode | undefined;
   /** Максимальная ширина выпадающего меню  */
   dropdownMaxWidth?: number | string;
+  /** Сыылка на контейнер портала */
+  containerRef?: RefObject<T>;
 }
 
 const Select: FC<ISelectProps> = ({
@@ -110,7 +112,8 @@ const Select: FC<ISelectProps> = ({
   endAdornment,
   startAdornment,
   onScroll,
-  dropdownMaxWidth
+  dropdownMaxWidth,
+  containerRef
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -447,6 +450,7 @@ const Select: FC<ISelectProps> = ({
         <Dropdown
           show={showDropdown && (!!listJSX.length || preloader)}
           toggleRef={toggleRef}
+          containerRef={containerRef}
           onClose={onClose}
           position={position}
           style={{
