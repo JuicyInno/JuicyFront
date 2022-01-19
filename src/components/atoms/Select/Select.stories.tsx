@@ -10,6 +10,7 @@ import Button from '../Button';
 import FormGroup from '../FormGroup';
 import Placeholder24 from '../../../assets/icons/Placeholder24';
 import Select from '.';
+import Input from '../Input';
 
 export default {
   title: 'forms/withTest/Select',
@@ -259,6 +260,22 @@ export const Demo = () => {
             preloader={loading}
             disabled={disabled}
           />
+          <br />
+          <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
+        </StoryItem>
+        <StoryItem description='Tag select'>
+          <FormGroup label={'Tag select'}>
+            <Input placeholder={'Это текстовый инпут'}/>
+
+            <Select
+              variant={'tag'}
+              placeholder='$'
+              options={list}
+              values={state}
+              onChange={onChange2}
+              preloader={loading}
+            />
+          </FormGroup>
           <br />
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
         </StoryItem>

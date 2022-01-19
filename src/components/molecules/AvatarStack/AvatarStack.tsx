@@ -58,40 +58,40 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
   const usersJSX = visibleUsers.map((u: IUser, i: number) => (
     <div
       className={`avatar-stack__item ${clickableClass}`}
-      key={ u.id }
-      onClick={ () => handleClick(u) }
-      style={ {
+      key={u.id}
+      onClick={() => handleClick(u)}
+      style={{
         transform: `translateX(-${GAP * i}px)`,
         zIndex: list.length + i
-      } }>
-      <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+      }}>
+      <Avatar photo={u.photo} fullName={u.fullName} size={size} />
     </div>
   ));
 
   return (
     <Manager>
-      <div className='avatar-stack' ref={ toggleRef }>
-        { usersJSX }
-        { maxVisible < list.length && (
+      <div className='avatar-stack' ref={toggleRef}>
+        {usersJSX}
+        {maxVisible < list.length && (
           <>
             <Reference>
               {(referenceProps) => (
                 <div
-                  { ...referenceProps }
+                  {...referenceProps}
                   data-testid='avatar-stack__toggle'
                   className='avatar-stack__item avatar-stack--clickable'
-                  style={ {
+                  style={{
                     transform: `translateX(-${GAP * maxVisible}px)`,
                     zIndex: list.length + maxVisible
-                  } }
-                  onClick={ () => setShowDropdown((f: boolean) => !f) }
+                  }}
+                  onClick={() => setShowDropdown((f: boolean) => !f)}
                 >
-                  <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
+                  <Avatar size={size} fullName={`+${list.length - maxVisible}`} />
                 </div>
               )}
             </Reference>
 
-            <Dropdown show={ showDropdown } toggleRef={ toggleRef } onClose={ onDropdownClose } position={ position }
+            <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onDropdownClose} position={position}
               style={{
                 maxWidth: dropdownMaxWidth || 'auto',
                 width: dropdownMaxWidth ? '100%' : 'auto'
@@ -99,16 +99,16 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
               <div className='avatar-stack__menu' data-testid='avatar-stack__menu'>
                 {
                   hiddenUsers.map((u: IUser) => (
-                    <div className={`avatar-stack__menu-item ${clickableClass}`} key={ u.id } onClick={ () => handleClick(u) }>
-                      <Avatar size='xs' photo={ u.photo } fullName={ u.fullName }/>
-                      <span className='avatar-stack__menu-label'>{ u.fullName }</span>
+                    <div className={`avatar-stack__menu-item ${clickableClass}`} key={u.id} onClick={() => handleClick(u)}>
+                      <Avatar size='xs' photo={u.photo} fullName={u.fullName} />
+                      <span className='avatar-stack__menu-label'>{u.fullName}</span>
                     </div>
                   ))
                 }
               </div>
             </Dropdown>
           </>
-        ) }
+        )}
       </div>
     </Manager>
   );

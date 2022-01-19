@@ -8,7 +8,7 @@ import { IPageSection } from '../../../types/projects.types';
 import { Button } from '../../../index';
 
 export default {
-  title: 'pages/не проверено/Page',
+  title: 'pages/withTest/Page',
   component: Page,
 };
 

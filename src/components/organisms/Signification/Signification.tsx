@@ -72,7 +72,7 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
   /** ссылка на pdf если надо открыть в отдельном окне */
   pdfUrl?: string;
   /** Render-prop для контента попапа начала подписи */
-  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment) => React.ReactNode;
+  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment, onConfirm: () => void, onCancel: () => void) => React.ReactNode;
 }
 
 
