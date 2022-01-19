@@ -58,10 +58,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
     }
 
     if (pickedValues[position][currentIndex] === '0') {
-
-
       const newArr = pickedValues.map((pv, index) => {
-
         return pv.map((p, index) => {
           if (index === currentIndex) {
             return p = '';
@@ -72,9 +69,6 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
 
 
       });
-      console.log(newArr);
-
-
       getRate(res, newArr, position);
     }
 
