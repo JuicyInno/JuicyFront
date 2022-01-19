@@ -23,10 +23,18 @@ export const Demo = (args: IPickerProps) => {
         <StoryRow>
           <RatePicker {...args} />
         </StoryRow>
+        <StoryRow>
+          <RatePicker isActive={false} defaultPickedValue={2} />
+        </StoryRow>
       </StoryItem>
       <StoryItem subtitle='Star Picker rate picker' description='Обычный star picker '>
         <StoryRow>
           <RatePicker isStarPicker={true} {...args} />
+
+        </StoryRow>
+        <StoryRow >
+
+          <RatePicker isStarPicker={true} isActive={false} defaultPickedValue={2} />
         </StoryRow>
       </StoryItem>
     </StoryContainer>

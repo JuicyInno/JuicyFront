@@ -97,11 +97,13 @@
 }
 
 .disabled-star {
+  cursor: inherit !important;
   &:active {
     background-color: transparent !important;
   }
 }
 .disabled-picker {
+  cursor: inherit !important;
   &:active {
     background-color: inherit !important;
   }
