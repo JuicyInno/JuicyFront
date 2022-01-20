@@ -40,4 +40,25 @@ describe('Test <RatePicker/> component', () => {
     fireEvent.click(container.getElementsByClassName('star-picker')[0]);
     expect(getRateEvent).toBeCalled();
   })
+
+  it('should be abort rating after click StarPicker', () => {
+    let rating = 0
+    const { container } = render(<RatePicker getRate={(val) => { rating = +val }} isStarPicker />);
+    expect(rating).toBe(0);
+    fireEvent.click(container.getElementsByClassName('star-picker')[0]);
+    expect(rating).toBe(1);
+    fireEvent.click(container.getElementsByClassName('star-picker')[0]);
+    expect(rating).toBe(0);
+
+  })
+  it('should be abort rating after click RatePicker', () => {
+    let rating = 0
+    const { container } = render(<RatePicker getRate={(val) => { rating = +val }} />);
+    expect(rating).toBe(0);
+    fireEvent.click(container.getElementsByClassName('rate-picker__label')[0]);
+    expect(rating).toBe(1);
+    fireEvent.click(container.getElementsByClassName('rate-picker__label')[0]);
+    expect(rating).toBe(0);
+
+  })
 })

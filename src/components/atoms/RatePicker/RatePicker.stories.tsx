@@ -21,7 +21,9 @@ export const Demo = (args: IPickerProps) => {
     <StoryContainer>
       <StoryItem subtitle='Default rate picker' description='Обычный rate picker'>
         <StoryRow>
-          <RatePicker {...args} />
+          <RatePicker getRate={(e) => {
+            console.log(e);
+          }} {...args} />
         </StoryRow>
         <StoryRow>
           <RatePicker isActive={false} defaultPickedValue={2} />
@@ -29,7 +31,9 @@ export const Demo = (args: IPickerProps) => {
       </StoryItem>
       <StoryItem subtitle='Star Picker rate picker' description='Обычный star picker '>
         <StoryRow>
-          <RatePicker isStarPicker={true} {...args} />
+          <RatePicker getRate={(e) => {
+            console.log(e);
+          }} isStarPicker={true} {...args} />
 
         </StoryRow>
         <StoryRow >

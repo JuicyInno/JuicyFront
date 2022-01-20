@@ -1,3 +1,5 @@
+@import 'src/styles/mixins';
+
 .rate-picker {
   border-bottom: 1px solid var(--background-secondary);
 }
@@ -9,7 +11,12 @@
   box-sizing: border-box;
 }
 
+label {
+  color: var(--text-primary);
+}
+
 .rate-picker__container {
+  @include text-s-14;
   display: flex;
   padding-left: 4px;
   margin-bottom: 16px;
@@ -23,7 +30,9 @@
     justify-content: center;
     width: 56px;
     height: 40px;
-    border: 1px solid var(--background-secondary);
+    border: 1px solid var(--background-tertiary);
+    border-left: 0.5px solid var(--background-tertiary);
+    border-right: 0.5px solid var(--background-tertiary);
     box-sizing: border-box;
     cursor: pointer;
     &:active {
@@ -33,6 +42,7 @@
 }
 .rate-picker__item--left {
   label {
+    border-left: 1px solid var(--background-tertiary);
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
   }
@@ -40,6 +50,7 @@
 
 .rate-picker__item--right {
   label {
+    border-right: 1px solid var(--background-tertiary);
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
   }
@@ -112,4 +123,14 @@
   &:active {
     background-color: var(--background-tertiary) !important;
   }
+}
+.rate-picker__container .star-picker {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.rate-picker__container .rate-picker__item--left .star-picker {
+  padding-left: 0px;
+}
+.rate-picker__container .rate-picker__item--right .star-picker {
+  padding-right: 0px;
 }

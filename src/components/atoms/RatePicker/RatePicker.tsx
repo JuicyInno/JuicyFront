@@ -67,14 +67,16 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   }
 
   const clickRateHandler = (e: React.MouseEvent<HTMLLabelElement>) => {
-
-
-    if (typeof e?.currentTarget?.textContent === 'string') {
+    if (rating === +e.currentTarget.textContent!) {
+      setRating(0);
+      getRate('0');
+    } else if (typeof e?.currentTarget?.textContent === 'string') {
       isActive && setRating(+e.currentTarget.textContent);
       getRate(e.currentTarget.textContent);
     } else {
       setRating(0);
     }
+
   };
 
   const onMoveMouseHandler = (item: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
@@ -86,9 +88,10 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
 
 
   const clickRateStarHandler = (value: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
-
-
-    if (typeof e?.currentTarget?.textContent === 'string') {
+    if (rating === value) {
+      setRating(0);
+      getRate('0');
+    } else if (typeof e?.currentTarget?.textContent === 'string') {
       isActive && setRating(value);
       console.log(value);
       getRate(value.toString());
@@ -132,10 +135,10 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         onMouseMove={onMoveMouseHandler(item)}
         onMouseLeave={onMoveMouseLeaveHandler}
         onClick={clickRateStarHandler(index + 1)}
-        className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star')}
+        className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
       ><Star size={isActive ? 'm' : 'xxs'} /></label> :
         <label
-          className={classnames(labelClassName, isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
+          className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
           onClick={clickRateHandler}
           onMouseMove={onMoveMouseHandler(item)}
           onMouseLeave={onMoveMouseLeaveHandler}
