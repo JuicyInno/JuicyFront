@@ -30,9 +30,11 @@ label {
     justify-content: center;
     width: 56px;
     height: 40px;
-    border: 1px solid var(--background-tertiary);
-    border-left: 0.5px solid var(--background-tertiary);
-    border-right: 0.5px solid var(--background-tertiary);
+    border-color: var(--background-tertiary);
+    border-width: 0.5px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-style: solid;
     box-sizing: border-box;
     cursor: pointer;
     &:active {
