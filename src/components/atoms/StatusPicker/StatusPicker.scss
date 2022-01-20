@@ -1,3 +1,5 @@
+@import 'src/styles/mixins';
+
 .status-picker__container {
   display: flex;
   padding-left: 4px;
@@ -7,12 +9,17 @@
     display: none;
   }
   label {
+    @include text-s-14;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90px;
     height: 40px;
-    border: 1px solid var(--background-secondary);
+    border-color: var(--background-tertiary);
+    border-width: 0.5px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-style: solid;
     box-sizing: border-box;
     cursor: pointer;
     &:hover {
@@ -22,12 +29,14 @@
 }
 .status-picker__items:first-child {
   label {
+    border-left-width: 1px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
   }
 }
 .status-picker__items:last-child {
   label {
+    border-right-width: 1px;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
   }
@@ -35,18 +44,18 @@
 
 .status-picker__label--low {
   background-color: var(--special-softGreen);
-  color: var(--status-success);
+  color: var(--status-success) !important;
 }
 .status-picker__label--medium {
-  color: var(--status-warn);
+  color: var(--status-warn) !important ;
   background-color: var(--special-softYellow);
 }
 .status-picker__label--high {
-  color: var(--status-danger);
+  color: var(--status-danger) !important ;
   background-color: #ffe5e7;
 }
 
 .status-picker__label--disabled {
-  color: var(--text-tertiary);
+  color: var(--text-tertiary) !important;
   background-color: var(--background-secondary);
 }
