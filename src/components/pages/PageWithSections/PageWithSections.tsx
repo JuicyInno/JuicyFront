@@ -45,8 +45,8 @@ export interface IPageWithSectionsProps {
   /** Количество кнопок для меню
    * @default 2 */
   countOfButtonsGroup?:number;
-  /** Количество кнопок для меню
-   * @default 2 */
+  /** Элемент со скроллом
+   * @default undefined */
   parentScroll?: HTMLElement;
 }
 

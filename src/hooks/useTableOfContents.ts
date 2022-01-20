@@ -14,6 +14,7 @@ export interface IUseTableOfContentsProps {
     selector: string;
     /** Доп. зависимости для запуска парсинга тайтлов */
     deps?: any[];
+  /** Блок со скроллом - по-умочанию window */
     parent?: HTMLElement;
 }
 
