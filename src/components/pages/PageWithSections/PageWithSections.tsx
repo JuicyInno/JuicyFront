@@ -45,6 +45,9 @@ export interface IPageWithSectionsProps {
   /** Количество кнопок для меню
    * @default 2 */
   countOfButtonsGroup?:number;
+  /** Количество кнопок для меню
+   * @default 2 */
+  parentScroll?: HTMLElement;
 }
 
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
@@ -61,7 +64,8 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   showNavigationPosition = false,
   additionalScrollOffset = 40,
   countOfButtonsGroup = 2,
-  buttonsGroup = []
+  buttonsGroup = [],
+  parentScroll
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
@@ -95,6 +99,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   /** Активная секция при скролле */
   const { activeTitle, onClick } = useTableOfContents({
     selector: '.rf-page__section-title',
+    parent: parentScroll,
     deps: [preloader]
   });
 
@@ -106,7 +111,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
         if (block && pageHeaderRef.current) {
           const top = block.getBoundingClientRect().top + pageYOffset - additionalScrollOffset;
-          window.scrollTo(0, top);
+          (parentScroll ? parentScroll : window).scrollTo(0, top);
         }
 
         onClick({
