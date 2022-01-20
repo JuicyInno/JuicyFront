@@ -110,7 +110,8 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         const block = document.getElementById(section.id);
 
         if (block && pageHeaderRef.current) {
-          const top = block.getBoundingClientRect().top + pageYOffset - additionalScrollOffset;
+          const top = block.getBoundingClientRect().top + (parentScroll ? parentScroll.scrollTop : window.scrollY) - additionalScrollOffset;
+
           (parentScroll ? parentScroll : window).scrollTo(0, top);
         }
 
