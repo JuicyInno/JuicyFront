@@ -25,16 +25,17 @@ label {
     display: none;
   }
   label {
+    border-color: var(--background-tertiary);
+    border-style: solid;
+    border-width: 0.5px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 56px;
     height: 40px;
-    border-color: var(--background-tertiary);
-    border-width: 0.5px;
-    border-bottom-width: 1px;
-    border-top-width: 1px;
-    border-style: solid;
+
     box-sizing: border-box;
     cursor: pointer;
     &:active {
@@ -44,7 +45,7 @@ label {
 }
 .rate-picker__item--left {
   label {
-    border-left: 1px solid var(--background-tertiary);
+    border-left-width: 1px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
   }
@@ -52,7 +53,7 @@ label {
 
 .rate-picker__item--right {
   label {
-    border-right: 1px solid var(--background-tertiary);
+    border-right-width: 1px;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
   }
