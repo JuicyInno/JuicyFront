@@ -8,9 +8,10 @@
 
 .rf-search.rf-search-hcf {
   border: 1px solid transparent;
+  box-sizing: content-box;
   border-radius: 20px;
   &:hover {
-    border: 2px solid var(--basic-hover);
+    border: 1px solid var(--basic-hover);
   }
 }
 .rf-search.rf-search-hcf .rf-search__input,
