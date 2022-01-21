@@ -5,6 +5,7 @@ import StoryItem from '../../storybook/StoryItem';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import { withDesign } from 'storybook-addon-designs';
+import Button from '../Button';
 
 export default {
   title: 'forms/withTest/Timepicker',
@@ -30,6 +31,12 @@ export const Demo = (args) => {
   return (
     <StoryDocs>
       <StoryDocsH1>Timepicker</StoryDocsH1>
+
+
+      <StoryItem description='Disabled'>
+        <Timepicker {...args} name='timepicker' initialValue='16:00' min='12:30' max='20:15' ><Button >click</Button></Timepicker>
+      </StoryItem>
+
       <StoryItem description='Выбор времени'>
         <form>
           <Timepicker {...args} name='timepicker' initialValue='12:20' min='08:30' max='20:15' />
