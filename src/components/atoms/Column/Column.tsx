@@ -19,8 +19,8 @@ export interface IColumn {
 }
 
 const Column: FC<IColumn> = ({
-  children, sm, md, lg, gap, align, className = ''
-}) => {
+  children, sm, md, lg, gap, align, className = '', ...props
+}: IColumn) => {
   /** Класс для выравнивания колонки в контейнере */
   let alignClass = '';
   switch (align) {
@@ -44,12 +44,13 @@ const Column: FC<IColumn> = ({
 
   return (
     <div
-      className={`rf-col ${smClass} ${mdClass} ${lgClass} ${alignClass} ${className}`}
-      style={{
+      { ...props }
+      className={ `rf-col ${smClass} ${mdClass} ${lgClass} ${alignClass} ${className}` }
+      style={ {
         paddingLeft: `${gap}px`,
         paddingRight: `${gap}px`
-      }}>
-      {children}
+      } }>
+      { children }
     </div>
   );
 };
