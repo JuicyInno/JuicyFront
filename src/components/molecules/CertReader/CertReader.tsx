@@ -31,7 +31,7 @@ export interface ICertReader {
   /** для тестов */
   useMock?: boolean;
   /** Render-prop для контента попапа начала подписи */
-  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment) => React.ReactNode;
+  confirmContent?: (cert: IBrowserCert, file: IRequestAttachment, onConfirm: () => void, onCancel: () => void) => React.ReactNode;
 }
 
 export interface IBrowserCert extends Certificate {
@@ -158,6 +158,10 @@ const CertReader: React.FC<ICertReader> = ({
     }
   };
 
+  const confirmSign = useCallback(() => {
+    selectedCert && signFile(selectedCert);
+  }, [selectedCert]);
+
   // ===================================================================================================================
 
   return <>
@@ -166,23 +170,22 @@ const CertReader: React.FC<ICertReader> = ({
     </Menu>
 
     {openConfirmPopup &&
-      <Modal size='l' header={<h5>Подтверждение</h5>} onClose={closePopup}>
-
-        {confirmContent ? !!selectedCert && confirmContent(selectedCert, file) : <>
-          <p className='cert-reader__confirm-text'>Перейти к подписанию документа?</p>
-          {!!selectedCert && <p className='cert-reader__certificate'>
+      <>
+        {confirmContent ? !!selectedCert && confirmContent(selectedCert, file, confirmSign, closePopup) :
+          <Modal size='l' header={<h5>Подтверждение</h5>} onClose={closePopup}>
+            <p className='cert-reader__confirm-text'>Перейти к подписанию документа?</p>
+            {!!selectedCert && <p className='cert-reader__certificate'>
             Сертификат: {`${selectedCert.name} (${selectedCert.issuerName})`}
-          </p>}
-        </>}
+            </p>}
 
-
-        <div className='cert-reader__confirm-actions'>
-          <Button size='l' buttonType='light' onClick={closePopup}>Отменить</Button>
-          <Button size='l' disabled={!selectedCert} onClick={() => selectedCert && signFile(selectedCert)}>
-            Подтвердить
-          </Button>
-        </div>
-      </Modal>}
+            <div className='cert-reader__confirm-actions'>
+              <Button size='l' buttonType='light' onClick={closePopup}>Отменить</Button>
+              <Button size='l' disabled={!selectedCert} onClick={() => selectedCert && signFile(selectedCert)}>
+              Подтвердить
+              </Button>
+            </div>
+          </Modal>}
+      </>}
   </>;
 };
 

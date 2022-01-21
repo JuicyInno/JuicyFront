@@ -63,6 +63,11 @@ interface IFindEntitiesProps<T extends Record<string, any>> {
    * @default false
    */
   lazy?: boolean;
+  /**
+   * Проверять ввод в соответствии с регулярным выражением
+   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+   */
+  pattern?: string;
 }
 
 export const FindEntities = <T, Q>({
@@ -81,6 +86,7 @@ export const FindEntities = <T, Q>({
   emptyStateIcon,
   emptyStateText = 'Измените поисковый запрос',
   emptyStateInitialText,
+  pattern
 }: IFindEntitiesProps<T>) => {
   const cancelRef = useRef<(() => void) | null>(null);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -205,7 +211,7 @@ export const FindEntities = <T, Q>({
         {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
 
         <div className='rf-find-entities__search' ref={inputRef}>
-          <Search onDebounce={onSearchDebounce} autoFocus onClear={onSearchClear} debounce={debounce} />
+          <Search onDebounce={onSearchDebounce} autoFocus onClear={onSearchClear} debounce={debounce} pattern={pattern} />
         </div>
 
         {!!tabs && (

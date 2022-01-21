@@ -5,7 +5,7 @@ import { Close } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import Button from '../Button';
 
-export type ModalSize = 's' | 'm' | 'l' | 'xl';
+export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 export interface IModalProps {
   /** Контент модалки */
@@ -42,7 +42,7 @@ const Modal: FC<IModalProps> = ({
   custom = false,
   showLine = true,
   variant = 'modal',
-  size = 's'
+  size = 'xxl'
 }: IModalProps) => {
   /** При маунте добавляем модалку. При дестрое - удаляем. */
   useEffect(() => {
@@ -77,11 +77,11 @@ const Modal: FC<IModalProps> = ({
 
         {custom ? children : (
           <div className='rf-modal__wrapper'>
-            {header && <div className='rf-modal__header'>{ header }</div>}
+            {header && <div className='rf-modal__header'>{header}</div>}
 
-            <div className='rf-modal__content'>{ children }</div>
+            <div className='rf-modal__content'>{children}</div>
 
-            {footer && <div className={'rf-modal__footer'}>{ footer }</div>}
+            {footer && <div className={'rf-modal__footer'}>{footer}</div>}
           </div>
         )}
       </div>

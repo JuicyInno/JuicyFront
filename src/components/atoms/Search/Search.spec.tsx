@@ -49,13 +49,19 @@ describe('Test <Search/> component', () => {
   });
 
   it('should call onClear function', () => {
-    let cleared = false;
-    const onClear = () => {
-      cleared = true;
-    };
+    const onClear = jest.fn();
 
     render(<Search value='test' onClear={onClear} />);
     userEvent.click(byTestId('search-clear-test-id').get());
-    expect(cleared).toBe(true);
+    expect(onClear).toBeCalled();
+  });
+
+  it('should use pattern for input', () => {
+    render(<Search pattern="^[\da-zA-Zа-яА-Я]*$" />);
+
+    const input = screen.getByTestId('search-test-id');
+
+    userEvent.type(input, '123q_QйЙ!@#t');
+    expect(input).toHaveDisplayValue('123qQйЙt');
   });
 });

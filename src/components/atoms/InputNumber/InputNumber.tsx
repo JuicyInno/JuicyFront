@@ -26,8 +26,10 @@ const InputNumber: React.FC<IInputNumberProps> = ({
 
   const input = useRef<HTMLInputElement | null>(null);
 
+  const defaultVal = floatPoints === 0 ? defaultValue.toString().split('.')[0] : defaultValue;
+
   const [inputValue, setInputValue] = useState<string>('');
-  const [value, setValue] = useState<string | number>(defaultValue);
+  const [value, setValue] = useState<string | number>(defaultVal);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -86,7 +88,7 @@ const InputNumber: React.FC<IInputNumberProps> = ({
         [numberWithSpaces(integer, groupBy, separator), value2].join('.');
     }
 
-    onInputChange && onInputChange(value);
+    onInputChange && onInputChange(result);
     setValue(result);
   };
 
@@ -105,14 +107,15 @@ const InputNumber: React.FC<IInputNumberProps> = ({
   };
 
   useEffect(() => {
-    if (defaultValue) {
-      handleDefault(defaultValue);
+    if (defaultVal) {
+      handleDefault(defaultVal);
     }
-  }, [defaultValue]);
+  }, [defaultVal]);
 
   useEffect(() => {
     if (max && +value.toString().replace(/\s/g, '') > max) {
-      handleDefault(max);
+      const floatMax = floatPoints === 0 ? max.toString().split('.')[0] : max;
+      handleDefault(floatMax);
     }
   }, [value]);
 

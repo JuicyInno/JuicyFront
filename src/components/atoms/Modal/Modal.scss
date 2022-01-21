@@ -28,6 +28,10 @@
       width: 844px;
     }
 
+    &.rf-modal--xxl .rf-modal__wrapper {
+      width: 888px;
+    }
+
     .rf-modal__header {
       padding: 22px 68px 14px 24px;
       @include h5;
