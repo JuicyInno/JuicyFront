@@ -14,6 +14,8 @@ export interface IUseTableOfContentsProps {
     selector: string;
     /** Доп. зависимости для запуска парсинга тайтлов */
     deps?: any[];
+  /** Блок со скроллом - по-умочанию window */
+    parent?: HTMLElement;
 }
 
 export interface IActiveTitle {
@@ -26,7 +28,7 @@ export interface ITableOfContents {
   onClick: (title: IActiveTitle) => void;
 }
 
-const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): ITableOfContents => {
+const useTableOfContents = ({ selector, deps = [], parent }: IUseTableOfContentsProps): ITableOfContents => {
   const [activeTitle, setActiveTitle] = useState<IActiveTitle>({
     activeIndex: 0,
     activeTitleId: undefined
@@ -59,11 +61,13 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
       const offsets = titlesNodes.map((node) => node.htmlNode.getBoundingClientRect().top);
 
       let activeIndex = offsets.findIndex(offset => {
-        return offset > (Math.floor(window.innerHeight / 2));
+        return offset > (Math.floor((parent ? parent.offsetHeight : window.innerHeight) / 2));
       });
 
       /** Активируем последний заголовок если вся страница проскролена */
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight) {
+      const globalScroll = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
+
+      if (parent ? parent.offsetHeight + parent.scrollTop >= parent.scrollHeight : globalScroll) {
         activeIndex = titlesNodes.length - 1;
 
         setActiveTitle({
@@ -85,7 +89,7 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
         activeIndex
       });
     }
-  }, [titlesNodes]);
+  }, [titlesNodes, parent]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -101,7 +105,7 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
       });
     }
 
-    const subscription = fromEvent(window, 'scroll').pipe(
+    const subscription = fromEvent(parent ? parent : window, 'scroll').pipe(
       throttleTime(300, undefined, {
         leading: true,
         trailing: true
@@ -112,7 +116,7 @@ const useTableOfContents = ({ selector, deps = [] }: IUseTableOfContentsProps): 
     return () => {
       subscription.unsubscribe();
     };
-  }, [titlesNodes]);
+  }, [findActiveNode]);
 
 
   return {

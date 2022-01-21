@@ -6,15 +6,36 @@ import Angle from '../../../assets/icons/ChevronDown';
 import { Button } from '../../../index';
 
 export interface IContentExpanderProps {
+  /** Заголовок */
   title: ReactNode;
+  /** Заголовок при открытом контенте */
   titleOpen?: ReactNode;
+  /** Показывать заголовок
+   * @default true
+   */
   showTitle?: boolean;
+  /** Контент */
   children: ReactNode | ReactNode[];
+  /** Недоступный
+  * @default false
+  */
   disabled?: boolean;
+  /** Значение по умолчанию (открыт/закрыт)
+   * @default false
+   */
   defaultValue?: boolean;
+  /** Функиця открытия/закрытия контента */
   onExpand?: () => void;
+  /** Значение открыт/закрыт конент
+   * Контролируемое состояние. Используется вместе с onExpand
+  */
   expanded?: boolean;
+  /**
+   * Прижать заголовок к левому краю
+   * @default false
+   */
   stickArrow?: boolean;
+  /** Класс */
   className?: string;
 }
 
@@ -29,10 +50,10 @@ const ContentExpander: React.FC<IContentExpanderProps> = ({
   stickArrow = false,
   showTitle = true,
   titleOpen = ''
-
 }: IContentExpanderProps) => {
   /** Раскрыть / Скрыть */
-  const [innerExpanded, setInnerExpanded] = useState<boolean>(false);
+  const [innerExpanded, setInnerExpanded] = useState<boolean>(defaultValue);
+
   useEffect(() => {
     defaultValue && setInnerExpanded(defaultValue);
   }, [defaultValue]);

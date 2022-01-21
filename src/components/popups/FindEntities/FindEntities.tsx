@@ -1,8 +1,12 @@
 import './FindEntities.scss';
 
-import React, { ReactNode, Fragment, useEffect, useRef, useState, useCallback } from 'react';
+import React, {
+  ReactNode, Fragment, useEffect, useRef, useState, useCallback
+} from 'react';
 
-import { Button, Modal, Preloader, Search, Tabs } from '../../../index';
+import {
+  Button, Modal, Preloader, Search, Tabs
+} from '../../../index';
 import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -59,9 +63,14 @@ interface IFindEntitiesProps<T extends Record<string, any>> {
    * @default false
    */
   lazy?: boolean;
+  /**
+   * Проверять ввод в соответствии с регулярным выражением
+   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+   */
+  pattern?: string;
 }
 
-export const FindEntities = <T,>({
+export const FindEntities = <T, >({
   onClose,
   value = [],
   onChange,
@@ -77,6 +86,7 @@ export const FindEntities = <T,>({
   emptyStateIcon,
   emptyStateText = 'Измените поисковый запрос',
   emptyStateInitialText,
+  pattern
 }: IFindEntitiesProps<T>) => {
   const cancelRef = useRef<(() => void) | null>(null);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -185,12 +195,12 @@ export const FindEntities = <T,>({
     };
   }, [filter, search]);
 
-  const tabs = filters
-    ? filters.map(({ label, value }) => ({
-        label,
-        handler: onFilterChange(value),
-      }))
-    : null;
+  const tabs = filters ?
+    filters.map(({ label, value }) => ({
+      label,
+      handler: onFilterChange(value),
+    })) :
+    null;
 
   const hasMore = !isLoading && lazy && !isLazyAllLoaded;
 
@@ -201,7 +211,7 @@ export const FindEntities = <T,>({
         {!!subtitle && <p className='rf-find-entities__subtitle'>{subtitle}</p>}
 
         <div className='rf-find-entities__search' ref={inputRef}>
-          <Search onDebounce={onSearchDebounce} autoFocus onClear={onSearchClear} debounce={debounce} />
+          <Search onDebounce={onSearchDebounce} autoFocus onClear={onSearchClear} debounce={debounce} pattern={pattern} />
         </div>
 
         {!!tabs && (
