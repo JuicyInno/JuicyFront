@@ -27,7 +27,8 @@ label {
   label {
     border-color: var(--background-tertiary);
     border-style: solid;
-    border-width: 0.5px;
+    border-left-width: 0px;
+    border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
     display: flex;
@@ -46,6 +47,7 @@ label {
 .rate-picker__item--left {
   label {
     border-left-width: 1px;
+    border-right-width: 1px;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
   }
@@ -54,6 +56,7 @@ label {
 .rate-picker__item--right {
   label {
     border-right-width: 1px;
+    border-left-width: 0px;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
   }
