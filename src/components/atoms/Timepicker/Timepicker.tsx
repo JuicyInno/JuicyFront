@@ -98,7 +98,7 @@ const Timepicker: FC<ITimepickerProps> = ({
     <div className={
       classnames('rf-timepicker__wrapper', className, disabled && 'rf-timepicker--disabled', emptyValue && 'rf-timepicker--empty', isMinified && 'rf-timepicker-minified')
     }>
-      <Menu position='right' content={content} >
+      <Menu position='bottom' content={content} >
         <InputMask mask={getMask()} value={time} disabled={disabled} alwaysShowMask={true} readOnly={props.readOnly} onChange={onChange}>
           <Input isBorder={!isMinified} data-testid='rf-timepicker__input' disabled={disabled} invalid={invalid} {...props} />
         </InputMask>
