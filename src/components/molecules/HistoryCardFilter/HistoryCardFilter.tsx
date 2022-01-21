@@ -124,7 +124,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const dateTSX = isShowDatePicker &&
     <div className='card-filter__datepicker'>
-      <Datepicker onChange={changeDateHandler} placeholder='Выбрать период' range />
+      <Datepicker isFocusBorder onChange={changeDateHandler} placeholder='Выбрать период' range />
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
@@ -139,7 +139,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} pattern={pattern} />
+      <Search isCardFilter onDebounce={changeSearchHandler} placeholder={searchPlaceholder} pattern={pattern} />
     </div>;
 
   // =======================================================================================================================================

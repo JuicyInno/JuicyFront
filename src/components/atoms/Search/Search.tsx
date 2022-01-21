@@ -26,6 +26,8 @@ export interface ISearchProps extends HTMLProps<HTMLInputElement> {
    * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
    */
   pattern?: string;
+  /**  */
+  isCardFilter?: boolean;
 }
 
 const Search: React.FC<ISearchProps> = ({
@@ -33,8 +35,9 @@ const Search: React.FC<ISearchProps> = ({
   showClear = true,
   debounce = 500,
   endAdornment,
-  onDebounce = () => {},
+  onDebounce = () => { },
   pattern,
+  isCardFilter = false,
   ...props
 }: ISearchProps) => {
 
@@ -102,7 +105,7 @@ const Search: React.FC<ISearchProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className='rf-search'>
+    <div className={classnames('rf-search', isCardFilter && 'rf-search-hcf')}>
       <input {...props}
         ref={ref}
         type='text'

@@ -65,6 +65,11 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   tooltipBackground?: 'default' | 'white';
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
+  /**
+   *  Сыылка на контейнер портала
+   * @default false
+   *  */
+  isFocusBorder?: boolean
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -87,6 +92,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   children,
   tooltipBackground = 'default',
   containerRef,
+  isFocusBorder = false
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -358,7 +364,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   return (
     <Manager>
-      <div className='rf-datepicker' ref={datepickerRef}>
+      <div className={classnames('rf-datepicker', isFocusBorder && 'rf-datepicker__focus-border')} ref={datepickerRef}>
         <Reference>
           {(referenceProps) => (
             <div

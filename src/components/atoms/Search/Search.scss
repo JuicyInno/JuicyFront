@@ -6,6 +6,19 @@
   position: relative;
 }
 
+.rf-search.rf-search-hcf {
+  border: 1px solid transparent;
+  border-radius: 20px;
+  &:hover {
+    border: 1px solid var(--basic-hover);
+  }
+}
+.rf-search.rf-search-hcf .rf-search__input,
+.rf-search__input-endAdornment:focus {
+  border-color: transparent !important;
+  background-color: var(--background-secondary) !important;
+}
+
 .rf-search__input,
 .rf-search__input-endAdornment {
   width: 100%;
