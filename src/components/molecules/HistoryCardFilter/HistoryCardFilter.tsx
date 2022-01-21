@@ -20,7 +20,6 @@ export interface IHistoryCardValues {
   search?: string,
   /** Начальное значение id статуса*/
   status?: string
-
 }
 
 export interface IHistoryCardFilterProps {
@@ -39,7 +38,12 @@ export interface IHistoryCardFilterProps {
   /** Дополнительный компонент JSX*/
   endAdornment?: ReactNode,
   /** Срабатывает при изменении значения*/
-  onChange?: (values: IHistoryCardValues) => void
+  onChange?: (values: IHistoryCardValues) => void;
+  /**
+   * Проверять ввод в соответствии с регулярным выражением
+   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+   */
+  pattern?: string;
 }
 
 
@@ -55,8 +59,9 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       value: 'f'
     }
   ],
-  endAdornment = null,
-  onChange = () => { }
+  onChange = () => {
+  },
+  pattern
 }: IHistoryCardFilterProps) => {
   // текущие состояние фильтров
   const [filterStatus, setStatus] = useState<IHistoryCardValues>({});
@@ -123,7 +128,7 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
-    <div className='card-filter__status-picker' >
+    <div className='card-filter__status-picker'>
       <Select placeholder='Статус'
         readOnly
         options={statusOptions}
@@ -134,29 +139,17 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} />
+      <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} pattern={pattern} />
     </div>;
 
   // =======================================================================================================================================
-
-
-  const endAdornmentComponent = endAdornment ? endAdornment : null;
-
-  return <div className='filter__wrapper' >
+  return <div className='filter__wrapper'>
     <Tile>
-      {!endAdornment ? <div className='card-filter__wrapper' >
+      <div className='card-filter__wrapper'>
         {dateTSX}
         {statusTSX}
         {searchTSX}
-      </div> :
-        <div className='card-filter__wrapper-end-adornment'>
-          {searchTSX}
-          <div className='card-filter__end-adornment--wrapper'>
-            {statusTSX}
-            {endAdornmentComponent}
-          </div>
-        </div>
-      }
+      </div>
     </Tile>
   </div>;
 

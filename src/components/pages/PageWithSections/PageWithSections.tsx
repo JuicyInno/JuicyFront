@@ -1,6 +1,4 @@
-import React, {
-  ReactNode, useEffect, useRef
-} from 'react';
+import React, { ReactNode, useRef } from 'react';
 import './PageWithSections.scss';
 import { IPageSection } from '../../../types/projects.types';
 import { IButtonGroup, ITab } from '../../../types';
@@ -24,17 +22,32 @@ export interface IPageWithSectionsProps {
   actionMenu?: ReactNode;
   /** Всегда отображает панель с кнопками внизу страницы*/
   actionMenuAlwaysBottom?:boolean;
+  /** Показать прелоадер
+   * @default false */
   preloader?: boolean;
+  /** Показать боковое меню заголовков секций
+   * @default true */
   showNavigation?: boolean;
-  /** Отключает  не корректно работающий слайдер навигации*/
+  /** Доп. отступ скролла при клике бокового меню (px)
+   * @default 40 */
+  additionalScrollOffset?: number;
+  /** Отключает подсветку активного элемента меню
+   * @default false */
   showNavigationPosition?: boolean;
   /** Navigation tabs */
   navigation?: ITab[];
+  /** Показать заголовок
+   * @default true */
   showHeader?: boolean;
-  /** Кнопки действий внизу страницы */
+  /** Кнопки действий внизу страницы
+   * @default [] */
   buttonsGroup?: IButtonGroup[];
-  /** количество кнопок для меню */
+  /** Количество кнопок для меню
+   * @default 2 */
   countOfButtonsGroup?:number;
+  /** Элемент со скроллом
+   * @default undefined */
+  parentScroll?: HTMLElement;
 }
 
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
@@ -49,52 +62,20 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   showHeader = true,
   actionMenuAlwaysBottom = false,
   showNavigationPosition = false,
+  additionalScrollOffset = 40,
   countOfButtonsGroup = 2,
-  buttonsGroup = []
+  buttonsGroup = [],
+  parentScroll
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
   const asideRef = useRef<HTMLDivElement>(null);
   /** Ссылка на секции */
   const sectionsRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на ползунок */
-  const sliderRef = useRef<HTMLDivElement>(null);
-  /** Ссылка на линию */
-  const lineRef = useRef<HTMLDivElement>(null);
   /** Ссылка на страницу */
   const pageRef = useRef<HTMLDivElement>(null);
   /** Ссылка на шапку страницы */
   const pageHeaderRef = useRef<HTMLDivElement>(null);
-
-  /** Дополнительной отступ для активации секции в оглавлении */
-  const ADDITIONAL_SCROLL_OFFSET = 40;
-
-  // -------------------------------------------------------------------------------------------------------------------
-
-  /** Расчет координаты для Aside */
-  useEffect(() => {
-    const calculateRightPosition = () => {
-      // todo нужно проверить
-      const widthDelta = window.innerWidth - 980 - 192;
-
-      if (asideRef.current) {
-        if (widthDelta > 0) {
-          asideRef.current.style.right = `${widthDelta - 120 + 20}px`;
-        }
-      }
-    };
-
-    setTimeout(() => {
-      calculateRightPosition();
-    });
-
-    window.addEventListener('resize', calculateRightPosition);
-
-    return () => {
-      window.removeEventListener('resize', calculateRightPosition);
-    };
-  }, [actionMenu]);
-
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -116,59 +97,46 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Активная секция при скролле */
-  const { activeIndex } = useTableOfContents({
+  const { activeTitle, onClick } = useTableOfContents({
     selector: '.rf-page__section-title',
-    additionalOffset: ADDITIONAL_SCROLL_OFFSET,
+    parent: parentScroll,
     deps: [preloader]
   });
 
   /** Боковая навигация для секций */
   const asideJSX = sections?.filter((section: IPageSection) => !!section.title)
-    .map((section: IPageSection) => {
+    .map((section: IPageSection, idx: number) => {
       const onNavClick = () => {
         const block = document.getElementById(section.id);
 
         if (block && pageHeaderRef.current) {
-          const top = block.getBoundingClientRect().top + pageYOffset - ADDITIONAL_SCROLL_OFFSET;
-          window.scrollTo(0, top);
+          const top = block.getBoundingClientRect().top + (parentScroll ? parentScroll.scrollTop : window.scrollY) - additionalScrollOffset;
+
+          (parentScroll ? parentScroll : window).scrollTo(0, top);
         }
+
+        onClick({
+          activeIndex: idx,
+          activeTitleId: section.id
+        });
       };
 
+      const activeClass = showNavigationPosition && activeTitle.activeTitleId === section.id ? 'rf-page__aside-link--active' : '';
       return (
-        <div key={ section.id } className='rf-page__aside-link' onClick={ onNavClick }>
+        <div key={ section.id } className={`rf-page__aside-link ${activeClass}`} onClick={ onNavClick }>
           { section.title }
         </div>
       );
     });
 
-  /** Передвигаем слайдер к активной секции */
-  useEffect(() => {
-    showNavigationPosition &&
-    setTimeout(() => {
-      if (sliderRef.current) {
-        const navLinks = document.querySelectorAll('.rf-page__aside-link');
-        const navLink = navLinks[activeIndex >= navLinks.length ? navLinks.length - 1 : activeIndex];
-
-        if (asideRef.current && navLink) {
-          sliderRef.current.style.top = `${navLink.getBoundingClientRect().top - asideRef.current.getBoundingClientRect().top}px`;
-        }
-      }
-    });
-  }, [activeIndex]);
-
-
   // -------------------------------------------------------------------------------------------------------------------
 
   const showAside = !!sections && sections.some((s: IPageSection) => !!s.title);
+  // (pageRef?.current && window.innerHeight < pageRef.current.scrollHeight);
 
   const asideBlock = showNavigation && showAside && (
     <aside className='rf-page__content-aside' ref={ asideRef }>
       <div className='rf-page__aside-inner'>
-        {showNavigationPosition &&
-        <div className='rf-page__aside-bar' ref={lineRef}>
-          <div className='rf-page__aside-slider' ref={sliderRef}/>
-        </div>
-        }
         <nav className='rf-page__aside-nav'>
           { asideJSX }
         </nav>
@@ -198,23 +166,24 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         <h2 className='rf-page__sections-title'>{ title }</h2>
       </header>
 
-
-      {navigation && (
-        <div className='rf-page__tabs'>
-          <Tabs list={navigation}/>
-        </div>
-      )}
-
       <div className='rf-page__content--sections'>
 
         {
           preloader ? <Preloader/> : (
             <>
               <div className='rf-page__content-sections' ref={ sectionsRef }>
+                {!!navigation?.length && (
+                  <div className='rf-page__tabs'>
+                    <Tabs list={navigation}/>
+                  </div>
+                )}
+
                 { sectionsJSX }
               </div>
 
-              { asideBlock }
+              <div className='rf-page__aside'>
+                { asideBlock }
+              </div>
             </>
           )
         }

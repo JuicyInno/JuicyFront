@@ -6,30 +6,35 @@ import PageWithSections from './PageWithSections';
 import { IPageSection } from '../../../types/projects.types';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
+import { Employee } from '../../../index';
+import { usersMocks } from '../../popups/FindUsers/users.mocks';
+import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'pages/не проверено/Page With Sections',
-  component: PageWithSections
+  title: 'pages/withTest/Page With Sections',
+  component: PageWithSections,
+  decorators: [withDesign],
 };
 
 export const pageWithSections = () => {
 
   const sections: IPageSection[] = [
-    // {
-    //   id: 'position',
-    //   title: 'Позиция',
-    //   component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
-    // },
-    // {
-    //   id: 'noname',
-    //   component: <div style={{ height: '100px' }}> Без названия </div>
-    // },
-    // {
-    //   id: 'org',
-    //   title: 'Организационные данные',
-    //   component: <div style={{ height: '300px' }}> Организационные данные </div>,
-    //   hideBackground: true
-    // },
+    {
+      title: 'Организационные данные',
+      id: 'noname',
+      component: <div style={{ height: '100px' }}> Без названия </div>
+    },
+    {
+      id: 'position',
+      title: 'Позиция',
+      component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
+    },
+    {
+      id: 'org',
+      title: 'Организационные данные',
+      component: <div style={{ height: '300px' }}> Организационные данные </div>,
+      hideBackground: true
+    },
     {
       id: 'test1',
       title: 'Раздел 1',
@@ -109,9 +114,16 @@ export const pageWithSections = () => {
 
       <div style={ shellAsideStyle }/>
       <div style={ { marginLeft: '120px' } }>
-        <PageWithSections navigation={ navigation } sections={ sections } preloader={ !loaded }
+        <PageWithSections showNavigationPosition navigation={ navigation } sections={ sections } preloader={ !loaded }
           title='Изменение графика рабочего времени' backUrl='/'/>
       </div>
     </BrowserRouter>
   );
+};
+
+pageWithSections.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/gDl8sDPM8Zmh5ol4ywzLrj/Design-System-VTB-Home?node-id=22111%3A116342',
+  },
 };

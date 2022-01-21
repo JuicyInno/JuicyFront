@@ -1,56 +1,118 @@
 import React from 'react';
 import ContentExpander from './ContentExpander';
-import { fireEvent, getByText, render, screen } from '@testing-library/react'
-import RatePicker from "../../atoms/RatePicker";
+import { fireEvent, render, screen } from '@testing-library/react';
 
+describe('Test <ContentExpander /> component', () => {
+  it('should be render', () => {
+    const { container } = render(
+      <ContentExpander title='Title' titleOpen='TitleOpen'>
+        Message
+      </ContentExpander>
+    );
 
-describe('Test <ContentExpander/> component', () => {
-  it('should have title "Title"', () => {
-    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
-    expect(getByText(container, 'Title')).toBeTruthy();
-  });
+    expect(screen.getByText('Title')).toBeInTheDocument();
+    expect(screen.getByText('Message')).toBeInTheDocument();
 
-  it('should have content "Message"', () => {
-    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
-    expect(getByText(container, 'Message')).toBeTruthy();
+    expect(screen.queryByText('TitleOpen')).not.toBeInTheDocument();
 
-  });
-
-  it('should be expanded', () => {
-    const { container } = render(<ContentExpander title='Title' defaultValue={true}>
-      Message
-    </ContentExpander>);
-    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
-    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
-
-  });
-
-  it('should not be expanded', () => {
-    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
     expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
     expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
-  });
 
-  it('should expand on click', () => {
-    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
-    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
-    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
     fireEvent.click(screen.getByText('Title'));
+
     expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
     expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
-
   });
 
-  it('should shrink on click', () => {
-    const { container } = render(<ContentExpander title='Title' defaultValue={true}>
-      Message
-    </ContentExpander>);
+  it('should be pass className', () => {
+    const { container } = render(
+      <ContentExpander title='Title' className='content-expander-class-name'>
+        Message
+      </ContentExpander>
+    );
 
+    expect(container.getElementsByClassName('content-expander-class-name')).toHaveLength(1);
+  });
+
+  it('should be disabled', () => {
+    const { container } = render(
+      <ContentExpander title='Title' disabled>
+        Message
+      </ContentExpander>
+    );
+
+    expect(container.getElementsByClassName('expander--disabled')).toHaveLength(1);
+
+    fireEvent.click(screen.getByText('Title'));
+
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
+  });
+
+  it('should be pass stickArrow', () => {
+    const { container } = render(
+      <ContentExpander title='Title' stickArrow>
+        Message
+      </ContentExpander>
+    );
+
+    expect(container.getElementsByClassName('expander--arrow-stick')).toHaveLength(1);
+  });
+
+  it('should be pass showTitle', () => {
+    const { container } = render(
+      <ContentExpander title='Title' showTitle={false}>
+        Message
+      </ContentExpander>
+    );
+
+    expect(container.getElementsByClassName('expander__title--hidden')).toHaveLength(1);
+  });
+
+  it('should be pass defaultValue = true', () => {
+    const { container } = render(
+      <ContentExpander title='Title' defaultValue={true}>
+        Message
+      </ContentExpander>
+    );
 
     expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
     expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
-    fireEvent.click(screen.getByText('Title'));
+  });
+
+  it('should be pass expanded = true', () => {
+    const { container } = render(
+      <ContentExpander title='Title' expanded={true}>
+        Message
+      </ContentExpander>
+    );
+
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
+  });
+
+  it('should expand on click title', () => {
+    const { container } = render(<ContentExpander title='Title'>Message</ContentExpander>);
+
     expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(0);
     expect(container.getElementsByClassName('expander__content--active')).toHaveLength(0);
+
+    fireEvent.click(screen.getByText('Title'));
+
+    expect(container.getElementsByClassName('expander__icon--rotate')).toHaveLength(1);
+    expect(container.getElementsByClassName('expander__content--active')).toHaveLength(1);
+  });
+
+  it('should be call onExpand', () => {
+    const onExpand = jest.fn();
+    render(
+      <ContentExpander title='Title' onExpand={onExpand}>
+        Message
+      </ContentExpander>
+    );
+
+    fireEvent.click(screen.getByText('Title'));
+
+    expect(onExpand).toBeCalled();
   });
 });

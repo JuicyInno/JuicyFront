@@ -1,5 +1,5 @@
 import React, {
-  HTMLProps, ReactNode, useEffect, useRef, useState, forwardRef, Ref
+  HTMLProps, ReactNode, useEffect, useRef, useState, forwardRef, Ref, useMemo
 } from 'react';
 import './Input.scss';
 
@@ -32,6 +32,11 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
   ref?: Ref<HTMLLabelElement>;
+  /**
+  * Проверять ввод в соответствии с регулярным выражением
+  * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+  */
+  pattern?: string;
 }
 
 const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
@@ -47,16 +52,36 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   filled = true,
   onFocus,
   onBlur,
+  onChange,
   onDebounce,
+  pattern,
+  defaultValue,
+  value,
   ...props
 }: IInputProps, ref) => {
   /** Ref */
   const inputRef = useRef<HTMLInputElement>(null);
 
   /** Значение поля */
-  const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
+  const [internalValue, setInternalValue] = useState<string>(defaultValue?.toString() || value?.toString() || '');
   /** Находится ли инпут в состоянии фокуса */
   const [isFocused, setFocused] = useState(false);
+
+  // Регулярное выражение для проверки ввода
+  const regexp = useMemo(() => {
+    if (pattern) {
+      return new RegExp(pattern);
+    }
+
+    return null;
+  }, [pattern]);
+
+  useEffect(() => {
+    // Controlled component
+    if (value !== undefined) {
+      setInternalValue(value.toString());
+    }
+  }, [value]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +97,6 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         )
         .subscribe((e: Event) => {
           const debounceString = (e.target as HTMLInputElement).value;
-          setValue(debounceString);
 
           if (onDebounce) {
             onDebounce({
@@ -91,16 +115,13 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */
   const clearInput = () => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-      setValue('');
-      onDebounce && onDebounce({ debounceString: '' });
-      onClear && onClear();
-    }
+    setInternalValue('');
+    onDebounce && onDebounce({ debounceString: '' });
+    onClear && onClear();
   };
 
   /** Кнопка поиска и сброса */
-  const closeButton = onClear && value.length > 0 && (
+  const closeButton = onClear && internalValue.length > 0 && (
     <button type='button' className='rf-input__action' onClick={clearInput} aria-label='Сбросить'>
       <Close />
     </button>
@@ -121,6 +142,23 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
 
     if (onBlur) {
       onBlur(event);
+    }
+  };
+
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (regexp && !regexp.test(event.target.value)) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    // Uncontrolled component
+    if (value === undefined) {
+      setInternalValue(event.target.value);
+    }
+
+    if (onChange) {
+      onChange(event);
     }
   };
 
@@ -145,13 +183,16 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}
       <input
         {...props}
+        value={value === undefined ? internalValue : value}
         ref={inputRef}
         className={'rf-input__field'}
         autoComplete='off'
         type={props.type || 'text'}
         disabled={disabled}
+        onChange={onInputChange}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
+        pattern={pattern}
       />
       {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
       {icon ? <button type='button' className='rf-input__action'>{icon}</button> : closeButton}

@@ -5,7 +5,6 @@ import Modal from './Modal';
 describe('Test <Modal /> component', () => {
   it('should render <Modal /> with content "Modal"', () => {
     render(<Modal>Modal</Modal>);
-
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--modal');
     expect(screen.getByText(/Modal/i)).toBeInTheDocument();
   });
@@ -24,17 +23,11 @@ describe('Test <Modal /> component', () => {
     const { rerender } = render(<Modal size='s'>Modal</Modal>);
 
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--s');
-
     rerender(<Modal size='m'>Modal</Modal>);
-
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--m');
-
     rerender(<Modal size='l'>Modal</Modal>);
-
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--l');
-
     rerender(<Modal size='xl'>Modal</Modal>);
-
     expect(screen.getByTestId('rf-modal')).toHaveClass('rf-modal--xl');
   });
 

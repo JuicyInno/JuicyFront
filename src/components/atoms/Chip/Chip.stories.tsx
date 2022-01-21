@@ -144,6 +144,54 @@ export const Demo = () => {
         </div>
       </StoryItem>
 
+      <StoryItem subtitle='Chips 24'>
+        <div style={{ display: 'flex' }}>
+          <div style={frameStyle}>
+            <div style={elementStyle}>
+              <Chip type='secondary' size='xs' onRemove={onRemove}>Size 24</Chip>
+            </div>
+            <div style={elementStyle}>
+              <Chip type='outline' size='xs' onRemove={onRemove}>Size 24</Chip>
+            </div>
+            <div style={{
+              ...elementStyle,
+              marginBottom: 0
+            }}>
+              <Chip type='primary' size='xs' onRemove={onRemove}>Size 24</Chip>
+            </div>
+          </div>
+          <div style={frameStyle}>
+            <div style={elementStyle}>
+              <Chip type='secondary' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+            </div>
+            <div style={elementStyle}>
+              <Chip type='outline' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+            </div>
+            <div style={{
+              ...elementStyle,
+              marginBottom: 0
+            }}>
+              <Chip type='primary' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+            </div>
+          </div>
+
+          <div style={frameStyle}>
+            <div style={elementStyle}>
+              <Chip type='secondary' size='xs' onClick={onClick}>Text 24</Chip>
+            </div>
+            <div style={elementStyle}>
+              <Chip type='outline' size='xs' onClick={onClick}>Tag text</Chip>
+            </div>
+            <div style={{
+              ...elementStyle,
+              marginBottom: 0
+            }}>
+              <Chip type='primary' size='xs' onClick={onClick}>Tag text</Chip>
+            </div>
+          </div>
+        </div>
+      </StoryItem>
+
       <StoryItem subtitle='Chips max length'>
         <div style={{ display: 'flex' }}>
           <div style={frameStyle}>

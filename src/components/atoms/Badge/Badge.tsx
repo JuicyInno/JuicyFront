@@ -31,7 +31,7 @@ export interface IBadgeProps {
   placeNear?: boolean;
   /**
    * Размер badge
-   * @default 's'
+   * @default 'm'
   */
   size?: 's' | 'm';
 }
