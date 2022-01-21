@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import Timepicker from './Timepicker';
+import Button from '../Button';
 
 describe('Test <Timepicker /> component', () => {
   it('should be render Timepicker component', () => {
@@ -132,5 +133,23 @@ describe('Test <Timepicker /> component', () => {
 
     expect(screen.getByTestId('rf-time-element')).not.toHaveClass('element__translate--active');
 
+  });
+  it('should with button like children', async () => {
+    render(<Timepicker ><Button>Click</Button></Timepicker>);
+
+    expect(screen.getByTestId('rf-button__content')).toHaveClass('rf-button__content');
+
+  });
+  it('should open time picker menu and close it', async () => {
+    render(<Timepicker ><Button>Click</Button></Timepicker>);
+
+    fireEvent.click(screen.getByTestId('rf-button__content'));
+    expect(screen.getByTestId('rf-time-element')).toBeInTheDocument()
+    fireEvent.click(screen.getByTestId('rf-button__content'));
+    expect(document.getElementsByClassName('rf-time-element__translate ').length).toBe(0)
+  });
+  it('should be minified', async () => {
+    render(<Timepicker isMinified />);
+    expect(document.getElementsByClassName('rf-input--non-border').length).toBe(1)
   });
 });

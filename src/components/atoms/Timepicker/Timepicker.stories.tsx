@@ -33,10 +33,6 @@ export const Demo = (args) => {
       <StoryDocsH1>Timepicker</StoryDocsH1>
 
 
-      <StoryItem description='Disabled'>
-        <Timepicker {...args} name='timepicker' initialValue='16:00' min='12:30' max='20:15' ><Button >click</Button></Timepicker>
-      </StoryItem>
-
       <StoryItem description='Выбор времени'>
         <form>
           <Timepicker {...args} name='timepicker' initialValue='12:20' min='08:30' max='20:15' />
@@ -50,6 +46,11 @@ export const Demo = (args) => {
       <StoryItem description='Empty'>
         <Timepicker {...args} name='timepicker' />
       </StoryItem>
+
+      <StoryItem description='With button active'>
+        <Timepicker {...args} name='timepicker' initialValue='16:00' min='12:30' max='20:15' ><Button >Выберите время</Button></Timepicker>
+      </StoryItem>
+
     </StoryDocs>
   );
 };
