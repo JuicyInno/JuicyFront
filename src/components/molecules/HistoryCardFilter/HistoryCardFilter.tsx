@@ -19,7 +19,6 @@ export interface IHistoryCardValues {
   search?: string,
   /** Начальное значение id статуса*/
   status?: string
-
 }
 
 export interface IHistoryCardFilterProps {
@@ -36,7 +35,12 @@ export interface IHistoryCardFilterProps {
   /** Плэйсхолдер для поиска*/
   searchPlaceholder?: string
   /** Срабатывает при изменении значения*/
-  onChange?: (values: IHistoryCardValues) => void
+  onChange?: (values: IHistoryCardValues) => void;
+  /**
+   * Проверять ввод в соответствии с регулярным выражением
+   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+   */
+  pattern?: string;
 }
 
 
@@ -52,7 +56,9 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
       value: 'f'
     }
   ],
-  onChange = () => { }
+  onChange = () => {
+  },
+  pattern
 }: IHistoryCardFilterProps) => {
   // текущие состояние фильтров
   const [filterStatus, setStatus] = useState<IHistoryCardValues>({});
@@ -115,30 +121,30 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const dateTSX = isShowDatePicker &&
     <div className='card-filter__datepicker'>
-      <Datepicker onChange={changeDateHandler} placeholder='Выбрать период' range />
+      <Datepicker onChange={ changeDateHandler } placeholder='Выбрать период' range/>
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
-    <div className='card-filter__status-picker' >
+    <div className='card-filter__status-picker'>
       <Select placeholder='Статус'
         readOnly
-        options={statusOptions}
-        values={statusOptions?.filter(i => i.value === filterStatus.status)}
-        onChange={changeSelectHandler} />
+        options={ statusOptions }
+        values={ statusOptions?.filter(i => i.value === filterStatus.status) }
+        onChange={ changeSelectHandler }/>
     </div>;
   //* *****************************************
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={changeSearchHandler} placeholder={searchPlaceholder} />
+      <Search onDebounce={ changeSearchHandler } placeholder={ searchPlaceholder } pattern={ pattern }/>
     </div>;
   // =======================================================================================================================================
-  return <div className='filter__wrapper' >
+  return <div className='filter__wrapper'>
     <Tile>
-      <div className='card-filter__wrapper' >
-        {dateTSX}
-        {statusTSX}
-        {searchTSX}
+      <div className='card-filter__wrapper'>
+        { dateTSX }
+        { statusTSX }
+        { searchTSX }
       </div>
     </Tile>
   </div>;

@@ -5,8 +5,7 @@
   flex-direction: column;
   width: calc(100vw - 64px);
   max-width: 844px;
-  height: 100%;
-  max-height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
   padding-top: 20px;
 
   &__title {
@@ -36,6 +35,7 @@
     padding: 8px 32px 24px;
     position: relative;
     min-height: 0;
+    flex: 1 auto;
   }
 
   &__empty-state {

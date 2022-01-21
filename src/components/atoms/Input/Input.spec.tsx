@@ -6,6 +6,26 @@ import Input from './Input';
 import ChevronDown from '../../../assets/icons/ChevronDown';
 
 describe('Test <Input/> component', () => {
+  it('should work as uncontrolled component', () => {
+    render(<Input defaultValue='Hello' />);
+
+    const input = screen.getByRole('textbox');
+    userEvent.type(input, ' World');
+
+    expect(input).toHaveDisplayValue('Hello World');
+  });
+
+  it('should work as controlled component', () => {
+    const onChange = jest.fn();
+    render(<Input value='Hello' onChange={onChange} />);
+
+    const input = screen.getByRole('textbox');
+    userEvent.type(input, ' World');
+
+    expect(input).toHaveDisplayValue('Hello');
+    expect(onChange).toHaveBeenCalledTimes(' World'.length);
+  });
+
   it('should be render', () => {
     const { container } = render(<Input />);
 
@@ -108,5 +128,14 @@ describe('Test <Input/> component', () => {
     await waitFor(() => {
       expect(onDebounce).toHaveBeenCalled();
     });
+  });
+
+  it('should use pattern for input', () => {
+    render(<Input pattern="^[\da-zA-Zа-яА-Я]*$" />);
+
+    const input = screen.getByRole('textbox');
+    
+    userEvent.type(input, '123q_QйЙ!@#t');
+    expect(input).toHaveDisplayValue('123qQйЙt');
   });
 });

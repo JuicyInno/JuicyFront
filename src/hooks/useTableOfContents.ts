@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { debounceTime, map } from 'rxjs/operators';
+import {
+  useCallback, useEffect, useRef, useState
+} from 'react';
+import { map, throttleTime } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
 
 export interface IHeadingData {
@@ -8,13 +10,12 @@ export interface IHeadingData {
 }
 
 export interface IUseTableOfContentsProps {
-    container?: React.RefObject<HTMLElement>;
-    /* Селектор для отслеживаемых заголовков/элементов */
+    /** Селектор для отслеживаемых заголовков/элементов */
     selector: string;
-    /* Доп. отступ сверху для активации элемента (помимо отступа контейнера) */
-    additionalOffset?: number;
-    /* Доп. зависимости для запуска парсинга тайтлов */
+    /** Доп. зависимости для запуска парсинга тайтлов */
     deps?: any[];
+  /** Блок со скроллом - по-умочанию window */
+    parent?: HTMLElement;
 }
 
 export interface IActiveTitle {
@@ -22,12 +23,23 @@ export interface IActiveTitle {
   activeIndex: number;
 }
 
-const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = [] }: IUseTableOfContentsProps): IActiveTitle => {
+export interface ITableOfContents {
+  activeTitle: IActiveTitle;
+  onClick: (title: IActiveTitle) => void;
+}
+
+const useTableOfContents = ({ selector, deps = [], parent }: IUseTableOfContentsProps): ITableOfContents => {
   const [activeTitle, setActiveTitle] = useState<IActiveTitle>({
     activeIndex: 0,
     activeTitleId: undefined
   });
   const [titlesNodes, setTitlesNodes] = useState<IHeadingData[]>([]);
+  const clicked = useRef<boolean>(false);
+
+  const onClick = (title: IActiveTitle) => {
+    setActiveTitle(title);
+    clicked.current = true;
+  };
 
   const parseTitles = () => {
     const htmlNodes: HTMLElement[] = Array.from(document.querySelectorAll(selector));
@@ -38,18 +50,24 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
     }));
   };
 
-  const findActiveNode = () => {
+  const findActiveNode = useCallback(() => {
     if (titlesNodes.length) {
 
-      const wrapper = container?.current;
+      if (clicked.current) {
+        clicked.current = false;
+        return;
+      }
+
       const offsets = titlesNodes.map((node) => node.htmlNode.getBoundingClientRect().top);
 
       let activeIndex = offsets.findIndex(offset => {
-        return offset > (wrapper?.offsetTop || 0) + additionalOffset;
+        return offset > (Math.floor((parent ? parent.offsetHeight : window.innerHeight) / 2));
       });
 
       /** Активируем последний заголовок если вся страница проскролена */
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight) {
+      const globalScroll = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
+
+      if (parent ? parent.offsetHeight + parent.scrollTop >= parent.scrollHeight : globalScroll) {
         activeIndex = titlesNodes.length - 1;
 
         setActiveTitle({
@@ -71,7 +89,7 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
         activeIndex
       });
     }
-  };
+  }, [titlesNodes, parent]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -87,18 +105,24 @@ const useTableOfContents = ({ container, selector, additionalOffset = 0, deps = 
       });
     }
 
-    const subscription = fromEvent(window, 'scroll').pipe(
-      debounceTime( 300),
+    const subscription = fromEvent(parent ? parent : window, 'scroll').pipe(
+      throttleTime(300, undefined, {
+        leading: true,
+        trailing: true
+      }),
       map(() => findActiveNode())
     ).subscribe();
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [titlesNodes]);
+  }, [findActiveNode]);
 
 
-  return activeTitle;
+  return {
+    activeTitle,
+    onClick
+  };
 };
 
 export default useTableOfContents;
