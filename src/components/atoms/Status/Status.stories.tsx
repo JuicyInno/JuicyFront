@@ -16,6 +16,7 @@ const iconTypes: IconType[] = [
   'load',
   'in',
   'out',
+  'withdrawStaff',
   'vacation',
   'birthday',
   'disease',

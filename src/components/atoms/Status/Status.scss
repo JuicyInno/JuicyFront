@@ -3,6 +3,7 @@
 .rf-status {
   display: flex;
 }
+
 .rf-status__wrapper {
   display: flex;
   align-items: center;
@@ -10,6 +11,49 @@
 
   background-color: var(--background-primary);
   border-radius: 50%;
+
+  &--type {
+    &-online,
+    &-icon,
+    &-in {
+      color: var(--status-success);
+    }
+
+    &-decline,
+    &-out {
+      color: var(--status-danger);
+    }
+
+    &-load,
+    &-withdrawStaff {
+      color: var(--status-warn);
+    }
+
+    &-vacation,
+    &-birthday {
+      color: var(--special-violet);
+    }
+
+    &-disease {
+      color: var(--special-turquoise);
+    }
+
+    &-businessTrip {
+      color: var(--special-purple);
+    }
+
+    &-remoteWork {
+      color: var(--special-lightBlue);
+    }
+
+    &-decree {
+      color: var(--special-magenta);
+    }
+
+    &-boss {
+      color: var(--special-blue);
+    }
+  }
 }
 
 .rf-status__wrapper--size-s,
