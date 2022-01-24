@@ -1,7 +1,6 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, { forwardRef, InputHTMLAttributes } from 'react';
 import './Checkbox.scss';
 import { Success, Reduce } from '../../../indexIcon';
-
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Лейбл */
@@ -45,7 +44,7 @@ export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   titleAtt?: string;
 }
 
-const Checkbox: FC<ICheckboxProps> = ({
+const Checkbox = forwardRef<HTMLLabelElement | null, ICheckboxProps>(({
   label,
   value,
   icon = true,
@@ -56,8 +55,7 @@ const Checkbox: FC<ICheckboxProps> = ({
   fullWidth = false,
   titleAtt = '',
   ...props
-}: ICheckboxProps) => {
-
+}: ICheckboxProps, ref) => {
   const roundClass = round ? 'rf-checkbox__check--round' : '';
   const fullWidthClass = fullWidth ? 'rf-checkbox__check--fullWidth' : '';
 
@@ -71,7 +69,10 @@ const Checkbox: FC<ICheckboxProps> = ({
   const positionClass = position === 'left' ? 'rf-checkbox--left' : 'rf-checkbox--right';
 
   return (
-    <label className={`rf-checkbox ${props.className || ''} ${disabledClass} ${alignClass[align]} ${positionClass} ${fullWidthClass}`}>
+    <label
+      ref={ref}
+      className={`rf-checkbox ${props.className || ''} ${disabledClass} ${alignClass[align]} ${positionClass} ${fullWidthClass}`}
+    >
       <input
         {...props}
         type='checkbox'
@@ -88,6 +89,6 @@ const Checkbox: FC<ICheckboxProps> = ({
       {label && <div title={titleAtt} className={`rf-checkbox__label ${showIconClass}`} tabIndex={-1}>{label}</div>}
     </label>
   );
-};
+});
 
 export default Checkbox;
