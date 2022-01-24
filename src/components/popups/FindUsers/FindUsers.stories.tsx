@@ -7,10 +7,10 @@ import StoryItem from '../../storybook/StoryItem';
 import { Button, Modal } from '../../../index';
 import { BrowserRouter } from 'react-router-dom';
 
-export default {
-  title: 'components/не проверено/FindUsers',
-  component: FindUsers
-};
+// export default {
+//   title: 'components/не проверено/FindUsers',
+//   component: FindUsers
+// };
 
 export const findUsers = () => {
 
