@@ -32,9 +32,10 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
     const { htmlFor } = e.target as HTMLLabelElement;
     const res = +htmlFor;
 
+
     if (pickedValues[position][currentIndex] === '') {
       let newArr = [...pickedValues];
-      console.log('here');
+
 
       if (pickedValues[position].find(i => i === '0')) {
         pickedValues.map((pv, index) => {
@@ -106,6 +107,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
         id={item.value.toString()}
         value={item.value} />
       <label
+        data-testid={`${(position + 1).toString() + index}`}
         className={statusComponentLabelClass}
         onClick={clickStatusHandler(position, index)}
         htmlFor={item.value.toString()}

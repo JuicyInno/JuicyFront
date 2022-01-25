@@ -8,14 +8,15 @@ import StatusPicker, { IPickerProps } from './StatusPicker';
 
 
 export default {
-  title: 'forms/не проверено/Status Picker',
+  title: 'forms/withTests/Status Picker',
   component: StatusPicker,
 };
 
 export const Demo = () => {
   const [arrayData, setArrayData] = useState(Array(3).fill(['', '', '']));
 
-  const statusHandler = (value: number, array: string[][]) => {
+  const statusHandler = (value: number, array: string[][], pos: number) => {
+    console.log(value, pos, array);
     setArrayData(array);
   };
   return <StoryContainer>
@@ -41,6 +42,8 @@ export const Playground: Story<IPickerProps> = (args: IPickerProps) => {
   const [arrayData, setArrayData] = useState(Array(3).fill(['', '', '']));
 
   const statusHandler = (value: number, array: string[][]) => {
+
+
     setArrayData(array);
   };
 
