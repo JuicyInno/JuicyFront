@@ -12,7 +12,7 @@ import { IDebounceResult } from '../../../types/projects.types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { classnames } from '../../../utils/classnames';
 
-interface IFindEntitiesProps<T extends Record<string, any>> {
+export interface IFindEntitiesProps<T extends Record<string, any>> {
   /** Закрытие модального окна. */
   onClose?: () => void;
   /** Список уже выбранных сущностей. */
@@ -70,7 +70,7 @@ interface IFindEntitiesProps<T extends Record<string, any>> {
   pattern?: string;
 }
 
-export const FindEntities = <T, >({
+export const FindEntities = <T,>({
   onClose,
   value = [],
   onChange,
