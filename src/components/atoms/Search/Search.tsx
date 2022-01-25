@@ -26,7 +26,10 @@ export interface ISearchProps extends HTMLProps<HTMLInputElement> {
    * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
    */
   pattern?: string;
-  /**  */
+  /**
+   * Является ли Search компонентом HistoryCardFilter
+   * @default false
+   */
   isCardFilter?: boolean;
 }
 
