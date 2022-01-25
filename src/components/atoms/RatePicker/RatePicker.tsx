@@ -139,7 +139,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
       ><Star size={isActive ? 'm' : 'xxs'} /></label> :
         <label
           className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
-          onClick={clickRateHandler}
+          onClick={isActive ? clickRateHandler : () => { }}
           onMouseMove={onMoveMouseHandler(item)}
           onMouseLeave={onMoveMouseLeaveHandler}
           htmlFor={`input-${item}`}

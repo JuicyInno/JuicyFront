@@ -9,10 +9,9 @@
   margin-bottom: 16px;
   width: 648px;
   box-sizing: border-box;
-}
-
-label {
-  color: var(--text-primary);
+  label {
+    color: var(--text-primary);
+  }
 }
 
 .rate-picker__container {
@@ -41,6 +40,16 @@ label {
     cursor: pointer;
     &:active {
       background-color: var(--basic-press);
+    }
+  }
+  label.rate-picker__label.disabled-picker.rate-picker__label_picked_tertiary {
+    &:active {
+      background-color: var(--background-tertiary);
+    }
+  }
+  label.rate-picker__label.disabled-picker {
+    &:active {
+      background-color: transparent;
     }
   }
 }
