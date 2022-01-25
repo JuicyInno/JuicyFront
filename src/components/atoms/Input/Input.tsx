@@ -32,7 +32,10 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
   ref?: Ref<HTMLLabelElement>;
-  /** Добавить рамку */
+  /**
+   * Добавить рамку
+   * @default true
+   *  */
   isBorder?: boolean
   /**
   * Проверять ввод в соответствии с регулярным выражением
