@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, RefObject, useCallback, useEffect, useRef, useState
+  ReactNode, RefObject, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
@@ -116,9 +116,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
 
   const [showCalendar, toggleCalendar] = useState<boolean>(false);
 
-  const onClose = useCallback(() => {
-    toggleCalendar(false);
-  }, [toggleCalendar]);
+  const onClose = () => toggleCalendar(false);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -374,7 +372,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 'rf-datepicker__input-wrapper--readonly': readOnly,
                 'rf-datepicker__input-wrapper--range': range,
               })}
-              onClick={() => toggleCalendar(true)}
+              onClick={() => toggleCalendar(prev => !prev)}
             >
               {
                 children || (
@@ -392,16 +390,16 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                       invalid={invalid}
                       filled={filled}
                       startAdornment={
-                        <button type='button' className='rf-datepicker__calendar-button'>
+                        <button onClick={e => e.stopPropagation()} type='button' className='rf-datepicker__calendar-button'>
                           <Calendar />
                         </button>
                       }
                       endAdornment={
-                        < div className='rf-datepicker__calendar-chevron' >
+                        <div className={classnames('rf-datepicker__calendar-chevron', isCrossChevronPicker && 'rf-datepicker__calendar-cross')}>
                           {isCrossChevronPicker ?
                             <Cross onClick={clearDateRangeHandler} /> :
-                            <ChevronDown />}
-                        </ div>
+                            <ChevronDown onClick={e => e.stopPropagation()} />}
+                        </div>
                       }
                     />
                   </InputMask >

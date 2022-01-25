@@ -38,9 +38,11 @@
 .rf-datepicker__calendar-chevron {
   color: var(--basic-tertiary);
   cursor: pointer;
-  svg {
-    color: var(--basic-tertiary);
-  }
+  pointer-events: none;
+}
+
+.rf-datepicker__calendar-chevron.rf-datepicker__calendar-cross {
+  pointer-events: auto;
 }
 
 .rf-datepicker__input-wrapper--disabled {
