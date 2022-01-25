@@ -75,6 +75,13 @@
   }
 }
 
+.rf-input--non-border {
+  box-shadow: none;
+  input {
+    margin-left: 81px;
+  }
+}
+
 .rf-input__field {
   @include text-l-16;
   width: 100%;

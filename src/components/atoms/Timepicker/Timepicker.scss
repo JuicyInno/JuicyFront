@@ -14,6 +14,21 @@ $margin: 2px;
   }
 }
 
+.rf-timepicker-minified {
+  width: 184px;
+  & .rf-menu__toggle {
+    label {
+      height: 48px;
+      &.rf-input {
+        border-radius: 0px;
+      }
+    }
+    .rf-timepicker__menu {
+      bottom: 8px;
+    }
+  }
+}
+
 .rf-timepicker--disabled {
   pointer-events: none;
 

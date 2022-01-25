@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import Timepicker from './Timepicker';
+import Button from '../Button';
 
 describe('Test <Timepicker /> component', () => {
   it('should be render Timepicker component', () => {
@@ -34,10 +35,10 @@ describe('Test <Timepicker /> component', () => {
 
     fireEvent.click(screen.getByTestId('rf-timepicker__input'));
 
-    await waitFor(() => {
-      expect(screen.queryByText('10:00')).toBeDisabled();
-      expect(screen.queryByText('11:00')).not.toBeDisabled();
-    });
+
+    expect(screen.queryByText('10:00')).toBeDisabled();
+    expect(screen.queryByText('11:00')).not.toBeDisabled();
+
   });
 
   it('should be have max = 14:00', async () => {
@@ -45,10 +46,9 @@ describe('Test <Timepicker /> component', () => {
 
     fireEvent.click(screen.getByTestId('rf-timepicker__input'));
 
-    await waitFor(() => {
-      expect(screen.queryByText('15:00')).toBeDisabled();
-      expect(screen.queryByText('14:00')).not.toBeDisabled();
-    });
+    expect(screen.queryByText('15:00')).toBeDisabled();
+    expect(screen.queryByText('14:00')).not.toBeDisabled();
+
   });
 
   it('should be invalid', async () => {
@@ -61,11 +61,10 @@ describe('Test <Timepicker /> component', () => {
     const { container } = render(<Timepicker disabled />);
 
     expect(container.getElementsByClassName('rf-timepicker--disabled')).toHaveLength(1);
-    fireEvent.click(screen.getByTestId('rf-timepicker__input'));
+    fireEvent.click(container.getElementsByClassName('rf-timepicker--disabled')[0]);
 
-    await waitFor(() => {
-      expect(screen.queryByTestId('rf-dropdown')).not.toBeInTheDocument();
-    });
+    expect(document.getElementsByClassName('rf-time-element__wrapper').length).toBe(0)
+
   });
 
   it('should be call onChangeValue', async () => {
@@ -85,12 +84,12 @@ describe('Test <Timepicker /> component', () => {
 
     fireEvent.click(container.getElementsByClassName('rf-timepicker__icon-close')[0]);
 
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('__:__');
 
-      expect(container.getElementsByClassName('rf-timepicker__icon-time')).toHaveLength(1);
-      expect(container.getElementsByClassName('rf-timepicker__icon-close')).toHaveLength(0);
-    });
+    expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('__:__');
+
+    expect(container.getElementsByClassName('rf-timepicker__icon-time')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-timepicker__icon-close')).toHaveLength(0);
+
   });
 
   it('should be use mask', async () => {
@@ -103,17 +102,17 @@ describe('Test <Timepicker /> component', () => {
 
     fireEvent.change(screen.getByTestId('rf-timepicker__input'), { target: { value: '15:99' } });
 
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('15:__');
-    });
+
+    expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('15:__');
+
 
     fireEvent.click(container.getElementsByClassName('rf-timepicker__icon-close')[0]);
 
     fireEvent.change(screen.getByTestId('rf-timepicker__input'), { target: { value: '99:90000' } });
 
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('00:00');
-    });
+
+    expect(screen.getByTestId('rf-timepicker__input')).toHaveValue('00:00');
+
   });
 
   it('should be show time select when hours introduced', async () => {
@@ -122,17 +121,35 @@ describe('Test <Timepicker /> component', () => {
     fireEvent.click(screen.getByTestId('rf-timepicker__input'));
     fireEvent.change(screen.getByTestId('rf-timepicker__input'), { target: { value: '12' } });
 
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-time-element')).toHaveClass('element__translate--active');
-    });
+
+    expect(screen.getByTestId('rf-time-element')).toHaveClass('element__translate--active');
+
 
     fireEvent.click(container.getElementsByClassName('rf-timepicker__icon-close')[0]);
 
     fireEvent.click(screen.getByTestId('rf-timepicker__input'));
     fireEvent.change(screen.getByTestId('rf-timepicker__input'), { target: { value: '1' } });
 
-    await waitFor(() => {
-      expect(screen.getByTestId('rf-time-element')).not.toHaveClass('element__translate--active');
-    });
+
+    expect(screen.getByTestId('rf-time-element')).not.toHaveClass('element__translate--active');
+
+  });
+  it('should with button like children', async () => {
+    render(<Timepicker ><Button>Click</Button></Timepicker>);
+
+    expect(screen.getByTestId('rf-button__content')).toHaveClass('rf-button__content');
+
+  });
+  it('should open time picker menu and close it', async () => {
+    render(<Timepicker ><Button>Click</Button></Timepicker>);
+
+    fireEvent.click(screen.getByTestId('rf-button__content'));
+    expect(screen.getByTestId('rf-time-element')).toBeInTheDocument()
+    fireEvent.click(screen.getByTestId('rf-button__content'));
+    expect(document.getElementsByClassName('rf-time-element__translate ').length).toBe(0)
+  });
+  it('should be minified', async () => {
+    render(<Timepicker isMinified />);
+    expect(document.getElementsByClassName('rf-input--non-border').length).toBe(1)
   });
 });

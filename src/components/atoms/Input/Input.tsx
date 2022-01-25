@@ -33,6 +33,11 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   /** ref контейнера инпута */
   ref?: Ref<HTMLLabelElement>;
   /**
+   * Добавить рамку
+   * @default true
+   *  */
+  isBorder?: boolean
+  /**
   * Проверять ввод в соответствии с регулярным выражением
   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
   */
@@ -54,6 +59,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   onBlur,
   onChange,
   onDebounce,
+  isBorder = true,
   pattern,
   defaultValue,
   value,
@@ -177,7 +183,9 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         ${isFocused ? 'rf-input--focused' : ''} 
         ${isInvalid ? 'rf-input--invalid' : ''} 
         ${filled ? 'rf-input--filled' : ''}
-        ${className || ''}`
+        ${className || ''}
+        ${isBorder ? '' : 'rf-input--non-border'}
+        `
       }
     >
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}

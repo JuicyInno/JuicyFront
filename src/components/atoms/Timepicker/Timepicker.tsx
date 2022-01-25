@@ -1,5 +1,5 @@
 import React, {
-  ChangeEvent, FC, HTMLProps, useEffect, useState, useCallback
+  ChangeEvent, FC, HTMLProps, useEffect, useState, useCallback, ReactNode
 } from 'react';
 import './Timepicker.scss';
 import InputMask from 'react-input-mask';
@@ -37,6 +37,14 @@ export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref
    * @default 24:00
    */
   max?: string;
+  /**
+   *  Безрамочный укороченый вариант
+   * @default false
+   */
+  isMinified?: boolean
+
+  children?: ReactNode | ReactNode[]
+
 }
 
 const Timepicker: FC<ITimepickerProps> = ({
@@ -47,6 +55,8 @@ const Timepicker: FC<ITimepickerProps> = ({
   onChangeValue,
   min = '00:00',
   max = '24:00',
+  isMinified = false,
+  children = null,
   ...props
 }: ITimepickerProps) => {
   const [time, setTime] = useState(initialValue);
@@ -89,14 +99,14 @@ const Timepicker: FC<ITimepickerProps> = ({
 
   return (
     <div className={
-      classnames('rf-timepicker__wrapper', className, disabled && 'rf-timepicker--disabled', emptyValue && 'rf-timepicker--empty')
+      classnames('rf-timepicker__wrapper', className, disabled && 'rf-timepicker--disabled', emptyValue && 'rf-timepicker--empty', isMinified && 'rf-timepicker-minified')
     }>
-      <Menu position='bottom-start' content={content} toggleTagret={false} disabled={disabled}>
-        <InputMask mask={getMask()} value={time} disabled={disabled} alwaysShowMask={true} readOnly={props.readOnly} onChange={onChange}>
-          <Input data-testid='rf-timepicker__input' disabled={disabled} invalid={invalid} {...props} />
-        </InputMask>
+      <Menu position='bottom' content={content} >
+        {!children && <InputMask mask={getMask()} value={time} disabled={disabled} alwaysShowMask={true} readOnly={props.readOnly} onChange={onChange}>
+          <Input isBorder={!isMinified} data-testid='rf-timepicker__input' disabled={disabled} invalid={invalid} {...props} />
+        </InputMask>}
 
-        <div className='rf-timepicker__menu'>
+        {children || <div className='rf-timepicker__menu'>
           <Button buttonType='text' className='rf-timepicker__btn' disabled={disabled}>
             {emptyValue ? (
               <Pending className='rf-timepicker__icon rf-timepicker__icon-time' />
@@ -104,7 +114,7 @@ const Timepicker: FC<ITimepickerProps> = ({
               <Close className='rf-timepicker__icon rf-timepicker__icon-close' onClick={onClearValue} />
             )}
           </Button>
-        </div>
+        </div>}
       </Menu>
     </div>
   );

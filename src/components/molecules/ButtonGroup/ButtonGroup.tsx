@@ -80,7 +80,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
           {
             list[i].preloader ? (
               <div className='button-group__menu-button-loader'>
-                <Preloader size='m'/>
+                <Preloader size='m' />
               </div>
             ) : (
               <ChevronLeft className='button-group__menu-button-icon' />
