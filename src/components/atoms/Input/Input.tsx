@@ -6,7 +6,7 @@ import './Input.scss';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import Close from '../../../assets/icons/Close';
+import { Close } from '../../../indexIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'ref'> {

@@ -6,11 +6,24 @@
   position: relative;
 }
 
+.rf-search.rf-search-hcf {
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 20px;
+  &:hover {
+    border: 1px solid var(--basic-hover);
+  }
+}
+.rf-search.rf-search-hcf .rf-search__input,
+.rf-search__input-endAdornment:hover {
+  border-color: transparent !important;
+  background-color: var(--background-secondary) !important;
+}
+
 .rf-search__input,
 .rf-search__input-endAdornment {
   width: 100%;
-  height: 100%;
-  padding: 8px 36px 8px 46px;
+  padding: 5px 36px 5px 46px;
   @include text-l-16;
   border: 2px solid var(--background-secondary);
   outline: 0;

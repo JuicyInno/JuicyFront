@@ -1,13 +1,14 @@
 import React, {
-  FC, useEffect, useState
+  FC, ReactNode, useEffect, useState
 } from 'react';
-import Tile from '../../atoms/Tile';
 import './HistoryCardFilter.scss';
 import { IOption } from '../../../types';
-import Select from '../../atoms/Select';
-import Search from '../../atoms/Search';
-import Datepicker from '../../atoms/Datepicker';
 import { IDateVariants, IDebounceResult } from '../../../types/projects.types';
+import Tile from '../../atoms/Tile';
+import Datepicker from '../../atoms/Datepicker';
+import Search from '../../atoms/Search';
+import Select from '../../atoms/Select';
+
 
 export interface IHistoryCardValues {
   /** Выбранный период*/
@@ -33,7 +34,9 @@ export interface IHistoryCardFilterProps {
   /** Начальные значения*/
   initialValues?: IHistoryCardValues,
   /** Плэйсхолдер для поиска*/
-  searchPlaceholder?: string
+  searchPlaceholder?: string,
+  /** Дополнительный компонент JSX*/
+  endAdornment?: ReactNode,
   /** Срабатывает при изменении значения*/
   onChange?: (values: IHistoryCardValues) => void;
   /**
@@ -121,30 +124,31 @@ const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
 
   const dateTSX = isShowDatePicker &&
     <div className='card-filter__datepicker'>
-      <Datepicker onChange={ changeDateHandler } placeholder='Выбрать период' range/>
+      <Datepicker isFocusBorder onChange={changeDateHandler} placeholder='Выбрать период' range />
     </div>;
   //* *****************************************
   const statusTSX = isShowStatusFilter &&
     <div className='card-filter__status-picker'>
       <Select placeholder='Статус'
         readOnly
-        options={ statusOptions }
-        values={ statusOptions?.filter(i => i.value === filterStatus.status) }
-        onChange={ changeSelectHandler }/>
+        options={statusOptions}
+        values={statusOptions?.filter(i => i.value === filterStatus.status)}
+        onChange={changeSelectHandler} />
     </div>;
   //* *****************************************
 
   const searchTSX = isShowSearch &&
     <div className='card-filter__search'>
-      <Search onDebounce={ changeSearchHandler } placeholder={ searchPlaceholder } pattern={ pattern }/>
+      <Search isCardFilter onDebounce={changeSearchHandler} placeholder={searchPlaceholder} pattern={pattern} />
     </div>;
+
   // =======================================================================================================================================
   return <div className='filter__wrapper'>
     <Tile>
       <div className='card-filter__wrapper'>
-        { dateTSX }
-        { statusTSX }
-        { searchTSX }
+        {dateTSX}
+        {statusTSX}
+        {searchTSX}
       </div>
     </Tile>
   </div>;

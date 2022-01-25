@@ -1,32 +1,32 @@
-@import "../../../styles/mixins";
+@import '../../../styles/mixins';
 .filter__wrapper {
   width: 100%;
   box-shadow: 0px -2px 2px 0px rgba(138, 150, 168, 0.08);
   border-radius: 20px;
-  .rf-input__field{
-    padding-left: 29px;
-    &::placeholder{
+  .rf-input__field {
+    padding-left: 3px;
+    &::placeholder {
       font-family: 400 !important;
     }
   }
   .rf-search {
     width: 282px;
-    border: none;
   }
-  .rf-input{
+  .rf-input {
     background-color: var(--background-secondary);
     border: none;
-  } 
+    box-shadow: none;
+  }
 }
 
-.card-filter__status-picker{
-  width:200px;
-  .rf-select  {
+.card-filter__status-picker {
+  width: 200px;
+  .rf-select {
     box-shadow: none;
   }
   .rf-select__input {
     background-color: var(--background-secondary);
-    &::placeholder{
+    &::placeholder {
       color: var(--text-secondary);
     }
     .rf-select__list {
@@ -35,19 +35,38 @@
     }
   }
 }
-.card-filter__wrapper {
+.card-filter__wrapper,
+.card-filter__wrapper-end-adornment {
   display: flex;
   height: 40px;
+}
+.card-filter__wrapper-end-adornment {
+  justify-content: space-between;
+  .card-filter__search {
+    .rf-search {
+      width: 100%;
+    }
+    width: 320px;
+    margin-left: 0;
+    left: 20px;
+  }
+  .card-filter__status-picker {
+    justify-self: end;
+  }
+}
+.card-filter__end-adornment--wrapper {
+  width: 315px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-filter__datepicker {
   width: 288px;
   box-sizing: content-box;
-  padding-right: 12px;
+  margin-right: 12px;
 }
 
-.card-filter__search{
+.card-filter__search {
   margin-left: auto;
-  left:20px
+  left: 20px;
 }
-

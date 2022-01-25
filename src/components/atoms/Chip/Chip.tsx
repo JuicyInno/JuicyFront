@@ -3,7 +3,7 @@ import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
-import Close from '../../../assets/icons/Close';
+import { Close } from '../../../indexIcon';
 
 export interface ITagProps {
   /** Текст */

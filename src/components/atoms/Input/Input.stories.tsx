@@ -10,11 +10,11 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
 import Success from '../../../assets/icons/24px/Arrows/Success';
-import Calendar from '../../../assets/icons/Calendar';
-import ChevronDown from '../../../assets/icons/ChevronDown';
-import Info from '../../../assets/icons/Info';
-import Search from '../../../assets/icons/Search';
+import {
+  Info, ChevronDown, Calendar,
+} from '../../../indexIcon';
 import { withDesign } from 'storybook-addon-designs';
+import Search from '../../../assets/icons/24px/Account/Search';
 
 export default {
   title: 'forms/withTest/Input',
@@ -41,10 +41,10 @@ export const Demo = () => {
         maxWidth: 400
       }}>
         <FormGroup label={LABEL}>
-          <Input placeholder='Введите тип обращения' onClear={() => {}} />
+          <Input placeholder='Введите тип обращения' onClear={() => { }} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => {}} />
+          <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => { }} />
         </FormGroup>
         <FormGroup label='disabled'>
           <Input placeholder='Введите тип обращения' disabled />
@@ -65,22 +65,22 @@ export const Demo = () => {
         maxWidth: 400
       }}>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Search style={{ color: 'var(--basic-primary)' }}/>} />
+          <Input endAdornment={<Search style={{ color: 'var(--basic-primary)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input endAdornment={<Calendar style={{ color: 'var(--text-tertiary)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<ChevronDown />}/>
+          <Input endAdornment={<ChevronDown />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input endAdornment={<Success style={{ color: 'var(--status-success)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Info />}/>
+          <Input endAdornment={<Info />} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input startAdornment={<Info />}/>
+          <Input startAdornment={<Info />} />
         </FormGroup>
       </div>
     </StoryDocs>
@@ -94,7 +94,7 @@ export const Playground: Story = (args) => {
     <StoryContainer>
       <StoryRow>
         <FormGroup label={LABEL}>
-          <Input placeholder='Введите тип обращения' onClear={() => {}} {...args} />
+          <Input placeholder='Введите тип обращения' onClear={() => { }} {...args} />
         </FormGroup>
       </StoryRow>
       <StoryRow>

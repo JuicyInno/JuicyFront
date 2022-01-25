@@ -66,7 +66,7 @@ export const Demo: Story = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18129'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=18%3A18191'
   },
   actions: { disabled: true },
   controls: { disabled: true }

@@ -2,6 +2,7 @@ import React from 'react';
 import HistoryCardFilter from './HistoryCardFilter'
 import { render } from '@testing-library/react';
 import { IOption } from '../../../types';
+import { Button } from '../../..';
 
 describe('HistoryCardFilter default render', () => {
   it('should be render error screen with default Error text', () => {
@@ -29,4 +30,5 @@ describe('HistoryCardFilter default render', () => {
     const testOpt = container.getElementsByClassName('card-filter__status-picker')
     expect(testOpt.length).toBe(1)
   })
+
 })
