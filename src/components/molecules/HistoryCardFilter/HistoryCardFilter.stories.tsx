@@ -9,7 +9,6 @@ import {
   StoryDocs,
   StoryDocsDescription, StoryDocsH1, StoryDocsH2
 } from '../../storybook';
-import { Button } from '../../../index';
 import { Story } from '@storybook/react';
 
 
@@ -47,10 +46,6 @@ export default {
   },
   decorators: [withDesign],
 };
-
-const buttonComponent = <Button buttonType='primary' onClick={() => {
-  alert('CLICK');
-}} >Создать</Button >;
 
 
 export const Demo: Story = () => {

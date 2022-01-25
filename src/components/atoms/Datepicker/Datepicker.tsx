@@ -66,7 +66,7 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
   /**
-   *  Сыылка на контейнер портала
+   *  Добавлять фокус при выборе дат
    * @default false
    *  */
   isFocusBorder?: boolean
