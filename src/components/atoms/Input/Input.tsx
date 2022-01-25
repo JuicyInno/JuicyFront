@@ -29,13 +29,13 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   /** Контент для вставки в конец инпута */
   endAdornment?: ReactNode;
   /** обработка нажатий с эффектом debounce */
-  onDebounce?:(result:IDebounceResult)=>void;
+  onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
   ref?: Ref<HTMLLabelElement>;
-   /**
-   * Проверять ввод в соответствии с регулярным выражением
-   * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
-   */
+  /**
+  * Проверять ввод в соответствии с регулярным выражением
+  * @example Для проверки на отсутствие спецсимволов в строке можно использовать `'^[\da-zA-Zа-яА-Я]*$'`
+  */
   pattern?: string;
 }
 
@@ -110,7 +110,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
     return () => {
       sub && sub.unsubscribe();
     };
-  }, [ debounce, onDebounce]);
+  }, [debounce, onDebounce]);
 
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */
@@ -122,8 +122,8 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
 
   /** Кнопка поиска и сброса */
   const closeButton = onClear && internalValue.length > 0 && (
-    <button type='button' className='rf-input__action' onClick={ clearInput } aria-label='Сбросить'>
-      <Close/>
+    <button type='button' className='rf-input__action' onClick={clearInput} aria-label='Сбросить'>
+      <Close />
     </button>
   );
 
@@ -182,12 +182,12 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
     >
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}
       <input
-        { ...props }
+        {...props}
         value={value === undefined ? internalValue : value}
-        ref={ inputRef }
+        ref={inputRef}
         className={'rf-input__field'}
         autoComplete='off'
-        type={ props.type || 'text' }
+        type={props.type || 'text'}
         disabled={disabled}
         onChange={onInputChange}
         onFocus={onInputFocus}
@@ -195,7 +195,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         pattern={pattern}
       />
       {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
-      { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
+      {icon ? <button type='button' className='rf-input__action'>{icon}</button> : closeButton}
     </label>
   );
 });
