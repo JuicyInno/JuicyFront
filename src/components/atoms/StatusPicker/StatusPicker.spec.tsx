@@ -8,7 +8,6 @@ describe('Test <RatePicker/> component', () => {
   })
 
   it('should be render RatePicker component', () => {
-
     const pv = [["", "", ""], ["", "", ""], ["", "", ""]]
     let pickedStatus = 0;
     let pickedPosition = 0;
