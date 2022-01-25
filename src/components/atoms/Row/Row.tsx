@@ -22,7 +22,8 @@ const Row: FC<IRowProps> = ({
   mb = 0,
   align = 'top',
   justify = 'left',
-  className = ''
+  className = '',
+  ...props
 }: IRowProps) => {
   let alignClass = '';
   switch (align) {
@@ -61,7 +62,7 @@ const Row: FC<IRowProps> = ({
   }
 
   return (
-    <div className={`rf-row ${alignClass} ${justifyClass} ${className}`} style={{ margin: `0 -${gap}px ${mb}px` }}>
+    <div {...props} className={`rf-row ${alignClass} ${justifyClass} ${className}`} style={{ margin: `0 -${gap}px ${mb}px` }}>
       {children}
     </div>
   );

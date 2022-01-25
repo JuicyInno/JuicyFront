@@ -135,6 +135,11 @@ const Select: FC<ISelectProps> = ({
 
   const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
 
+  useEffect(() => {
+
+    setInputValue(values.length > 0 && !multiselect ? values[0].label : '');
+  }, [values]);
+
   /** Очистка селекта */
   const onClear = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -188,8 +193,11 @@ const Select: FC<ISelectProps> = ({
   const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
 
   useEffect(() => {
+
     setSelectValues(values);
+
   }, [values]);
+
 
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
@@ -200,7 +208,6 @@ const Select: FC<ISelectProps> = ({
       acc[o.value] = true;
       return acc;
     }, {});
-
     setSelectedMap(map);
 
     if (clearOnSelect) {
@@ -266,6 +273,8 @@ const Select: FC<ISelectProps> = ({
       if (!multiselect) {
         setInputValue(clearOnSelect ? '' : o.label);
         onClose();
+      } else {
+        setInputValue('');
       }
     };
 
@@ -329,7 +338,6 @@ const Select: FC<ISelectProps> = ({
 
   const inputElement = <input
     autoSave='false'
-
     autoComplete='off'
     id='rf-select__input'
     className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
@@ -345,8 +353,9 @@ const Select: FC<ISelectProps> = ({
   const tagsRef = useRef<HTMLDivElement>(null);
 
   const tagsJSX = multiselect && selectValues.length > 0 && (
-    <div className='rf-select__tags' onClick={() => !disabled && onOpen()}>
 
+
+    <div className='rf-select__tags' onClick={() => !disabled && onOpen()}>
       {selectValues.map((t: IOption) => (
         <div ref={tagsRef} className={classnames('rf-select__tag')} key={t.value}>
           <Chip type='secondary' size='xs' onRemove={() => onValueChange(t)} onClick={noop} disabled={disabled}>
@@ -374,16 +383,17 @@ const Select: FC<ISelectProps> = ({
     setShowDropdown((state: boolean) => !state);
   };
 
-  const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) && (
-    <button
-      type='button'
-      data-testid='rf-select__chevron'
-      className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
-      onClick={onChevronClick}
-    >
-      <ChevronDown />
-    </button>
-  );
+  const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) &&
+    (
+      <button
+        type='button'
+        data-testid='rf-select__chevron'
+        className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
+        onClick={onChevronClick}
+      >
+        <ChevronDown />
+      </button>
+    );
 
   const startAdornmentIcon = startAdornment && variant !== 'tag' ? <div className='rf-select__button__icon'>{startAdornment}</div> : null;
   const endAdornmentIcon = endAdornment && variant !== 'tag' ? <div className='rf-select__button__icon--end'>{endAdornment}</div> : null;
