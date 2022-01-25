@@ -11,7 +11,9 @@ import {
   Disease,
   BusinessTrip,
   RemoteWork,
-  Boss, Decree
+  Boss,
+  Decree,
+  WithdrawStaff
 } from './icons';
 import { IconType, StatusIconSize } from './icons/types';
 
@@ -36,6 +38,7 @@ const iconTypes = {
   load: Load,
   in: In,
   out: Out,
+  withdrawStaff: WithdrawStaff,
   vacation: Vacation,
   birthday: Birthday,
   disease: Disease,
@@ -49,7 +52,7 @@ const Status: FC<IStatus> = ({ type = 'online', size = 'm' }) => {
   const TargetIconTag = iconTypes[type];
   return (
     <div className='rf-status'>
-      <div className={`rf-status__wrapper rf-status__wrapper--size-${size}`}>
+      <div className={`rf-status__wrapper rf-status__wrapper--size-${size} rf-status__wrapper--type-${type}`}>
         <TargetIconTag size={size}/>
       </div>
     </div>

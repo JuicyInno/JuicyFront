@@ -11,6 +11,7 @@ import Load from './Load';
 import Disease from './Disease';
 import Icon from './Icon';
 import Vacation from './Vacation';
+import WithdrawStaff from './WithdrawStaff';
 
 export {
   Birthday,
@@ -25,5 +26,6 @@ export {
   Online,
   Out,
   RemoteWork,
-  Vacation
+  Vacation,
+  WithdrawStaff,
 };
