@@ -1,39 +1,61 @@
 import React, {
   FC, useState, useEffect, InputHTMLAttributes
 } from 'react';
+import { Star } from '../../../indexIcon';
+import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
 
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 
-  /** Величина диапазона*/
+  /**
+   *  Величина диапазона
+   * */
   sizePicker?: number
   /** Заданное значение выбранного диапазона*/
   defaultPickedValue?: number
-  /** Включить диапазон*/
+  /**
+   *  Включить диапазон
+   * @default true
+   * */
   isActive?: boolean
 
   /** Текст контента диапазона*/
   textContent?: string,
-  /** Нижнее подчеркивание*/
+  /**
+   *  Нижнее подчеркивание
+   * @default true
+   * */
   isUnderline?: boolean
 
-  /** Реверсировать поярдок диапазона*/
+  /**
+   * Реверсировать поярдок диапазона
+   * @default false
+   * */
   isReverse?: boolean
+  /**
+   *  Вид зведочки
+   * @default false
+   * */
+  isStarPicker?: boolean
   /** Получить значение оценки*/
   getRate?: (value: string) => number | void
 }
 
 
 const RatePicker: FC<IPickerProps> = ({ isActive = true,
+  isStarPicker = false,
   defaultPickedValue = 0,
   getRate = () => { },
-  sizePicker = 10,
+  sizePicker = 5,
   textContent = '',
   isUnderline = true,
-  isReverse = false, ...props }: IPickerProps) => {
+  isReverse = false,
+  ...props }: IPickerProps) => {
 
   const [rating, setRating] = useState(defaultPickedValue);
+
+  const [hover, setHover] = useState(0);
 
   useEffect(() => {
     setRating(defaultPickedValue);
@@ -45,9 +67,34 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   }
 
   const clickRateHandler = (e: React.MouseEvent<HTMLLabelElement>) => {
-    if (typeof e?.currentTarget?.textContent === 'string') {
+    if (rating === +e.currentTarget.textContent!) {
+      setRating(0);
+      getRate('0');
+    } else if (typeof e?.currentTarget?.textContent === 'string') {
       isActive && setRating(+e.currentTarget.textContent);
       getRate(e.currentTarget.textContent);
+    } else {
+      setRating(0);
+    }
+
+  };
+
+  const onMoveMouseHandler = (item: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+    setHover(item);
+  };
+  const onMoveMouseLeaveHandler = () => {
+    setHover(0);
+  };
+
+
+  const clickRateStarHandler = (value: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+    if (rating === value) {
+      setRating(0);
+      getRate('0');
+    } else if (typeof e?.currentTarget?.textContent === 'string') {
+      isActive && setRating(value);
+      console.log(value);
+      getRate(value.toString());
     } else {
       setRating(0);
     }
@@ -59,7 +106,8 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     rates = rates.reverse();
   }
 
-  const rateComponent = rates.map((item) => {
+
+  const rateComponent = rates.map((item, index) => {
 
     const labelClassName = +rating >= item && !isReverse ?
       `rate-picker__label_picked_${isActive ?
@@ -83,13 +131,22 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         type='radio'
         id={`input-${item}`}
         value={item} />
-      <label
-        className={labelClassName}
-        onClick={clickRateHandler}
-        htmlFor={`input-${item}`}
-        {...props}>
-        {item}
-      </label>
+      {isStarPicker ? <label
+        onMouseMove={onMoveMouseHandler(item)}
+        onMouseLeave={onMoveMouseLeaveHandler}
+        onClick={clickRateStarHandler(index + 1)}
+        className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
+      ><Star size={isActive ? 'm' : 'xxs'} /></label> :
+        <label
+          className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
+          onClick={isActive ? clickRateHandler : () => { }}
+          onMouseMove={onMoveMouseHandler(item)}
+          onMouseLeave={onMoveMouseLeaveHandler}
+          htmlFor={`input-${item}`}
+          {...props}>
+          {item}
+        </label>
+      }
     </div >;
   });
 
