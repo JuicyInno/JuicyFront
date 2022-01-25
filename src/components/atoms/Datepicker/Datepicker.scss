@@ -1,6 +1,7 @@
 @import 'src/styles/mixins';
 
 .rf-datepicker {
+  cursor: pointer;
   position: relative;
   width: 100%;
   height: 40px;
@@ -31,14 +32,16 @@
   pointer-events: none;
 
   svg {
-    color: var(--text-tertiary);
+    color: var(--basic-tertiary);
   }
 }
 
 .rf-datepicker__calendar-chevron {
-  color: var(--basic-tertiary);
   cursor: pointer;
   pointer-events: none;
+  svg {
+    color: var(--basic-tertiary);
+  }
 }
 
 .rf-datepicker__calendar-chevron.rf-datepicker__calendar-cross {
@@ -52,7 +55,6 @@
   .rf-datepicker__calendar-button,
   .rf-datepicker__calendar-chevron {
     cursor: pointer;
-    color: var(--basic-tertiary);
   }
 }
 
