@@ -1,6 +1,7 @@
 import './styles/index.scss';
 
 // ------------------------ Компоненты ---------------------------------------------------------------------------
+import Accordion from './components/atoms/Accordion';
 import Avatar from './components/atoms/Avatar';
 import AvatarStatus from './components/molecules/AvatarStatus';
 import Badge from './components/atoms/Badge';
@@ -88,6 +89,7 @@ export {
   Signification,
   GhostScreen,
   HistoryCardFilter,
+  Accordion,
   Avatar,
   AvatarStatus,
   AvatarStack,
