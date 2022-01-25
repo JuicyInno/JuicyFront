@@ -48,6 +48,9 @@ export interface IProps {
   tooltipBackground?: 'default' | 'white';
 }
 
+/**
+ * @deprecated На замену пришел универсальный `FindEntities`
+ */
 const FindUsers: FC<IProps> = ({
   onClose,
   users = [],
