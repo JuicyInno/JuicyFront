@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useRef, useState
+  forwardRef, useEffect, useRef, useState
 } from 'react';
 import './InputNumber.scss';
 import Input, { IInputProps } from '../Input/Input';
@@ -14,7 +14,7 @@ export interface IInputNumberProps extends IInputProps {
   onInputChange?: (value: string) => void;
 }
 
-const InputNumber: React.FC<IInputNumberProps> = ({
+const InputNumber = forwardRef<HTMLLabelElement | null, IInputNumberProps>(({
   max,
   defaultValue = '',
   separator = ' ',
@@ -22,7 +22,7 @@ const InputNumber: React.FC<IInputNumberProps> = ({
   groupBy = 3,
   onInputChange,
   ...props
-}: IInputNumberProps) => {
+}: IInputNumberProps, ref) => {
 
   const input = useRef<HTMLInputElement | null>(null);
 
@@ -155,18 +155,26 @@ const InputNumber: React.FC<IInputNumberProps> = ({
   return (
     <>
       <Input
-        { ...props }
-        value={ value }
-        placeholder={ props.placeholder }
-        disabled={ props.disabled }
-        readOnly={ props.readOnly }
-        onChange={ onChange }
-        onKeyPress={ onKeyPress }
+        ref={ref}
+        {...props}
+        value={value}
+        placeholder={props.placeholder}
+        disabled={props.disabled}
+        readOnly={props.readOnly}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
       />
-      <input type='text' className='rf-number-input__hidden' name={ props.name } value={ inputValue } ref={ input }
-        readOnly/>
+
+      <input
+        type='text'
+        className='rf-number-input__hidden'
+        name={props.name}
+        value={inputValue}
+        ref={input}
+        readOnly
+      />
     </>
   );
-};
+});
 
 export default InputNumber;

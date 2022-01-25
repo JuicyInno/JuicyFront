@@ -3,7 +3,7 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import InputNumber from './InputNumber';
 
-describe('Test <InputNumber/> component', () => {
+describe('Test <InputNumber /> component', () => {
   it('should pass defaultValue = 99', () => {
     render(<InputNumber aria-label='input-number' defaultValue='99' />);
     const input = screen.getByLabelText('input-number');
