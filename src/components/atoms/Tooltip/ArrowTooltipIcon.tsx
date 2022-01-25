@@ -1,14 +1,12 @@
 /* eslint-disable max-len */
-import { TooltipPosition } from '../../../types/projects.types';
 import React from 'react';
 
 interface IArrowTooltipIcon {
   color: 'default' | 'white';
-  position: TooltipPosition;
 }
 
 
-export const ArrowTooltipIcon: React.FC<IArrowTooltipIcon> = ({ color = 'default', position = 'bottom' }: IArrowTooltipIcon) => {
+export const ArrowTooltipIcon: React.FC<IArrowTooltipIcon> = ({ color = 'default' }: IArrowTooltipIcon) => {
   const svgFillColor = color === 'default' ? '#8A96A8' : '#fff';
 
   return <svg width='30' height='13' viewBox='0 0 30 13' xmlns='http://www.w3.org/2000/svg'>

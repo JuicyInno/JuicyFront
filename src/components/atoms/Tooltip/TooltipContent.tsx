@@ -48,9 +48,13 @@ const TooltipContent: FC<ITooltipContentProps> = ({
           ],
         },
       },
+      {
+        name: 'arrow',
+        options: { padding: 9 }
+      }
     ]}
   >
-    {({ ref, style: dropdownStyle, placement }) => (
+    {({ ref, style: dropdownStyle, placement, arrowProps }) => (
       <div
         ref={ref}
         className='rf-tooltip__content-wrapper'
@@ -59,8 +63,12 @@ const TooltipContent: FC<ITooltipContentProps> = ({
         <div className={`rf-tooltip__content rf-tooltip__content--${background} ${className}`}>
           <div className={`rf-tooltip__inner rf-tooltip__inner--${placement}`}>
             {children}
-            <div className={`rf-tooltip__content-union--${placement} rf-tooltip__content-union--${background}`}>
-              <ArrowTooltipIcon color={background} position={placement as TooltipPosition} />
+            <div
+              className={`rf-tooltip__content-union rf-tooltip__content-union--${placement} rf-tooltip__content-union--${background}`}
+              ref={arrowProps.ref}
+              style={arrowProps.style}
+            >
+              <ArrowTooltipIcon color={background} />
             </div>
           </div>
         </div>
