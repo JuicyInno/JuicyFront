@@ -16,6 +16,8 @@ export interface IHintProps {
   icon?: 'info';
   /** Максимальная ширина */
   maxWidth?: string;
+  /** Класс */
+  className?: string;
 }
 
 const Hint: React.FC<IHintProps> = ({
@@ -25,9 +27,10 @@ const Hint: React.FC<IHintProps> = ({
   icon,
   title,
   maxWidth = '648px',
+  className = ''
 }: IHintProps) => {
   return (
-    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant}`}>
+    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant} ${className}`}>
       {icon === 'info' &&
         <div className='rf-hint__icon'>
           <Info />
