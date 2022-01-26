@@ -255,4 +255,17 @@ describe('Test <Select/> component', () => {
     />);
     expect(container.getElementsByClassName('rf-select__input')[0].getAttribute('value')).toBeTruthy();
   });
+
+  it('should be render with gray background', () => {
+    render(<Select
+      options={[
+        { value: '1', label: 'label1' },
+      ]}
+      values={[]}
+      backgroundColor='gray'
+      onChange={noop}
+    />);
+
+    expect(document.getElementsByClassName('rf-select__background-gray').length).toBe(1)
+  });
 });

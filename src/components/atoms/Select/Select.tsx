@@ -89,6 +89,11 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   dropdownMaxWidth?: number | string;
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
+  /**
+   * Цвет селекта
+   * @default 'white'
+   * */
+  backgroundColor?: 'white' | 'gray'
 }
 
 const Select: FC<ISelectProps> = ({
@@ -113,7 +118,8 @@ const Select: FC<ISelectProps> = ({
   startAdornment,
   onScroll,
   dropdownMaxWidth,
-  containerRef
+  containerRef,
+  backgroundColor = 'white'
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -424,7 +430,7 @@ const Select: FC<ISelectProps> = ({
 
   return (
     <Manager>
-      <div className={classnames('rf-select', tagClass)} ref={toggleRef}>
+      <div className={classnames('rf-select', tagClass, backgroundColor === 'gray' && 'rf-select__background-gray')} ref={toggleRef}>
         <Reference>
           {(referenceProps) => (
             <div
