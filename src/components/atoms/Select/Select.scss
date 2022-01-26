@@ -44,6 +44,17 @@
   }
 }
 
+.rf-select.rf-select__background-gray {
+  .rf-select__wrapper {
+    box-shadow: none;
+    .rf-select-input__container {
+      .rf-select__input {
+        background-color: var(--background-secondary);
+      }
+    }
+  }
+}
+
 .rf-select__button__icon {
   display: flex;
   align-items: center;
