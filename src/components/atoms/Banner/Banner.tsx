@@ -7,9 +7,9 @@ export interface IBannerProps {
   /** Иконка/иллюстрация */
   icon?: React.ReactNode;
   /** Текст заголовка */
-  heading?: string;
+  heading?: React.ReactNode;
   /** Текст подзаголовка */
-  subheading?: string;
+  subheading?: React.ReactNode;
 
   /** Текст основной кнопки */
   primaryText?: string;
@@ -22,11 +22,16 @@ export interface IBannerProps {
   onSecondaryClick?: () => void;
 }
 
+/**
+ * @example
+ * import illustration form 'juicyfront/assets/illustrations/default.png'
+ * <Banner icon={<BannerImage src={illustration} />} heading="Заголовок" />
+ */
 export const Banner = ({ icon, heading, subheading, primaryText, onPrimaryClick, secondaryText, onSecondaryClick }: IBannerProps) => {
   return (
     <div className='banner'>
       {!!icon && (
-        <div>
+        <div className='banner__icon'>
           {icon}
         </div>
       )}

@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import {Banner} from './Banner';
+import { Banner, BannerImage } from '.';
 
 describe('Test <Banner/> component', () => {
   it('should render icon, heading and subheading', () => {
-    render(<Banner icon={<i>icon</i>} heading="heading" subheading="subheading" />);
-    expect(screen.getByText('icon')).toBeInTheDocument();
+    render(<Banner icon={<BannerImage alt="icon" />} heading="heading" subheading="subheading" />);
+    expect(screen.getByAltText('icon')).toBeInTheDocument();
     expect(screen.getByText('heading')).toBeInTheDocument();
     expect(screen.getByText('subheading')).toBeInTheDocument();
   });
