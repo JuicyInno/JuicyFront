@@ -70,7 +70,7 @@ $radius: 8px;
   background: var(--basic-tertiary);
   color: var(--text-static-white);
 
-  .rf-tooltip__arrow {
+  .rf-tooltip__content-union {
     color: var(--basic-tertiary);
   }
 }
@@ -79,7 +79,7 @@ $radius: 8px;
   background: var(--background-primary);
   color: var(--text-primary);
 
-  .rf-tooltip__arrow {
+  .rf-tooltip__content-union {
     color: var(--background-primary);
   }
 }
