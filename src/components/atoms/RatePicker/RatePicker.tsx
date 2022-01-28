@@ -119,7 +119,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
 
     return <div
       key={item.toString()}
-      className={containerClassName} >
+      className={classnames(containerClassName)} >
       <input
         type='radio'
         id={`input-${item}`}
@@ -148,7 +148,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   }
 
   return (
-    <div className={'rate-picker'}>
+    <div className={classnames('rate-picker', !isActive ? 'disabled' : '')}>
       {textContent && <p className='rate-picker__content'>{textContent}</p>}
 
       <div className='rate-picker__container'>

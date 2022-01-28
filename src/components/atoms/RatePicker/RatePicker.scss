@@ -1,7 +1,11 @@
 @import 'src/styles/mixins';
 
-.rate-picker {
-
+.rate-picker.disabled {
+  height: 20px;
+  .rate-picker__container {
+    margin-bottom: 0px;
+    padding-left: 0px;
+  }
 }
 
 .rate-picker__content {
