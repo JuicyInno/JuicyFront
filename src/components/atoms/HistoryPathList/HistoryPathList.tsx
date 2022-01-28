@@ -83,7 +83,6 @@ const HistoryPathList: ({ path, isUZADO, isMinimal }: IHistoryStepList) => JSX.E
               icon={User}
               variant={statusValue[pathItem.criticality]}
               type={isMinimal ? statusType[pathItem.criticality] as IconType : undefined}
-              fullName={pathItem.user[0].fullName}
             />
           }
           {isLastElement && (
