@@ -1,8 +1,8 @@
 import AccountProtection from './assets/newIcons/resultDir/AccountProtection';
 export { AccountProtection };
 
-import Airplain from './assets/newIcons/resultDir/Airplain';
-export { Airplain };
+import Airplane from './assets/newIcons/resultDir/Airplane';
+export { Airplane };
 
 import AllAdd from './assets/newIcons/resultDir/AllAdd';
 export { AllAdd };
@@ -12,9 +12,6 @@ export { AllAlternative };
 
 import AllArchive from './assets/newIcons/resultDir/AllArchive';
 export { AllArchive };
-
-import AllAttach from './assets/newIcons/resultDir/AllAttach';
-export { AllAttach };
 
 import AllAutoPayment from './assets/newIcons/resultDir/AllAutoPayment';
 export { AllAutoPayment };
@@ -31,8 +28,8 @@ export { AllCalendar };
 import AllCancel from './assets/newIcons/resultDir/AllCancel';
 export { AllCancel };
 
-import AllCardRecomend from './assets/newIcons/resultDir/AllCardRecomend';
-export { AllCardRecomend };
+import AllCardRecommend from './assets/newIcons/resultDir/AllCardRecommend';
+export { AllCardRecommend };
 
 import AllCash from './assets/newIcons/resultDir/AllCash';
 export { AllCash };
@@ -55,14 +52,17 @@ export { AllCoin };
 import AllCopy from './assets/newIcons/resultDir/AllCopy';
 export { AllCopy };
 
+import AllCourier from './assets/newIcons/resultDir/AllCourier';
+export { AllCourier };
+
 import AllDarkModeFill from './assets/newIcons/resultDir/AllDarkModeFill';
 export { AllDarkModeFill };
 
 import AllDarkModeStroke from './assets/newIcons/resultDir/AllDarkModeStroke';
 export { AllDarkModeStroke };
 
-import AllDiagramm from './assets/newIcons/resultDir/AllDiagramm';
-export { AllDiagramm };
+import AllDiagram from './assets/newIcons/resultDir/AllDiagram';
+export { AllDiagram };
 
 import AllDialog from './assets/newIcons/resultDir/AllDialog';
 export { AllDialog };
@@ -72,6 +72,9 @@ export { AllDigitalCard };
 
 import AllDoc from './assets/newIcons/resultDir/AllDoc';
 export { AllDoc };
+
+import AllDocuments from './assets/newIcons/resultDir/AllDocuments';
+export { AllDocuments };
 
 import AllDownload from './assets/newIcons/resultDir/AllDownload';
 export { AllDownload };
@@ -97,6 +100,9 @@ export { AllGosuslygi };
 import AllHolidays from './assets/newIcons/resultDir/AllHolidays';
 export { AllHolidays };
 
+import AllIconPlace from './assets/newIcons/resultDir/AllIconPlace';
+export { AllIconPlace };
+
 import AllInfoStatus from './assets/newIcons/resultDir/AllInfoStatus';
 export { AllInfoStatus };
 
@@ -106,8 +112,8 @@ export { AllInternetShops };
 import AllInvestmentProducts from './assets/newIcons/resultDir/AllInvestmentProducts';
 export { AllInvestmentProducts };
 
-import AllLightbulb from './assets/newIcons/resultDir/AllLightbulb';
-export { AllLightbulb };
+import AllLightBulb from './assets/newIcons/resultDir/AllLightBulb';
+export { AllLightBulb };
 
 import AllLightModeFill from './assets/newIcons/resultDir/AllLightModeFill';
 export { AllLightModeFill };
@@ -123,6 +129,9 @@ export { AllLocation };
 
 import AllLock from './assets/newIcons/resultDir/AllLock';
 export { AllLock };
+
+import AllMenu from './assets/newIcons/resultDir/AllMenu';
+export { AllMenu };
 
 import AllMenuHorizontal from './assets/newIcons/resultDir/AllMenuHorizontal';
 export { AllMenuHorizontal };
@@ -165,9 +174,6 @@ export { AllReduce };
 
 import AllRefresh from './assets/newIcons/resultDir/AllRefresh';
 export { AllRefresh };
-
-import AllRenew from './assets/newIcons/resultDir/AllRenew';
-export { AllRenew };
 
 import AllRepeat from './assets/newIcons/resultDir/AllRepeat';
 export { AllRepeat };
@@ -214,9 +220,6 @@ export { AllUser };
 import AllWarning from './assets/newIcons/resultDir/AllWarning';
 export { AllWarning };
 
-import AllСourier from './assets/newIcons/resultDir/AllСourier';
-export { AllСourier };
-
 import AnotherCard from './assets/newIcons/resultDir/AnotherCard';
 export { AnotherCard };
 
@@ -226,8 +229,8 @@ export { AnotherViolation };
 import ArrowsArrowDown from './assets/newIcons/resultDir/ArrowsArrowDown';
 export { ArrowsArrowDown };
 
-import ArrowsArrowleft from './assets/newIcons/resultDir/ArrowsArrowleft';
-export { ArrowsArrowleft };
+import ArrowsArrowLeft from './assets/newIcons/resultDir/ArrowsArrowLeft';
+export { ArrowsArrowLeft };
 
 import ArrowsArrowRight from './assets/newIcons/resultDir/ArrowsArrowRight';
 export { ArrowsArrowRight };
@@ -253,6 +256,12 @@ export { ArrowsDown };
 import ArrowsExchange from './assets/newIcons/resultDir/ArrowsExchange';
 export { ArrowsExchange };
 
+import ArrowsRedo from './assets/newIcons/resultDir/ArrowsRedo';
+export { ArrowsRedo };
+
+import ArrowsRenew from './assets/newIcons/resultDir/ArrowsRenew';
+export { ArrowsRenew };
+
 import ArrowsSort from './assets/newIcons/resultDir/ArrowsSort';
 export { ArrowsSort };
 
@@ -262,17 +271,20 @@ export { ArrowsSubdirectoryRight };
 import ArrowsTransfer from './assets/newIcons/resultDir/ArrowsTransfer';
 export { ArrowsTransfer };
 
+import ArrowsUndo from './assets/newIcons/resultDir/ArrowsUndo';
+export { ArrowsUndo };
+
 import ArrowsUp from './assets/newIcons/resultDir/ArrowsUp';
 export { ArrowsUp };
 
 import ATMOperation from './assets/newIcons/resultDir/ATMOperation';
 export { ATMOperation };
 
-import Autocredit from './assets/newIcons/resultDir/Autocredit';
-export { Autocredit };
+import Authorization from './assets/newIcons/resultDir/Authorization';
+export { Authorization };
 
-import Autorization from './assets/newIcons/resultDir/Autorization';
-export { Autorization };
+import AutoCredit from './assets/newIcons/resultDir/AutoCredit';
+export { AutoCredit };
 
 import AvailableFunds from './assets/newIcons/resultDir/AvailableFunds';
 export { AvailableFunds };
@@ -283,14 +295,14 @@ export { BackCall };
 import Baggage from './assets/newIcons/resultDir/Baggage';
 export { Baggage };
 
-import BetweenAccoucts from './assets/newIcons/resultDir/BetweenAccoucts';
-export { BetweenAccoucts };
+import BetweenAccounts from './assets/newIcons/resultDir/BetweenAccounts';
+export { BetweenAccounts };
 
 import Borrower from './assets/newIcons/resultDir/Borrower';
 export { Borrower };
 
-import Brocker2 from './assets/newIcons/resultDir/Brocker2';
-export { Brocker2 };
+import Broker from './assets/newIcons/resultDir/Broker';
+export { Broker };
 
 import CarAccident from './assets/newIcons/resultDir/CarAccident';
 export { CarAccident };
@@ -309,6 +321,9 @@ export { CashWithdrawal };
 
 import Charity from './assets/newIcons/resultDir/Charity';
 export { Charity };
+
+import Chat from './assets/newIcons/resultDir/Chat';
+export { Chat };
 
 import ChildProtection from './assets/newIcons/resultDir/ChildProtection';
 export { ChildProtection };
@@ -331,20 +346,17 @@ export { Concierge };
 import Credit from './assets/newIcons/resultDir/Credit';
 export { Credit };
 
-import Credit1 from './assets/newIcons/resultDir/Credit1';
-export { Credit1 };
-
-import CreditCard from './assets/newIcons/resultDir/CreditCard';
-export { CreditCard };
-
-import CreditCard1 from './assets/newIcons/resultDir/CreditCard1';
-export { CreditCard1 };
+import CreditCardLarge from './assets/newIcons/resultDir/CreditCardLarge';
+export { CreditCardLarge };
 
 import CreditCardRefinancing from './assets/newIcons/resultDir/CreditCardRefinancing';
 export { CreditCardRefinancing };
 
 import CreditCash from './assets/newIcons/resultDir/CreditCash';
 export { CreditCash };
+
+import CreditLarge from './assets/newIcons/resultDir/CreditLarge';
+export { CreditLarge };
 
 import Credits from './assets/newIcons/resultDir/Credits';
 export { Credits };
@@ -421,8 +433,8 @@ export { Gift };
 import Gosuslugi from './assets/newIcons/resultDir/Gosuslugi';
 export { Gosuslugi };
 
-import GovermentServices from './assets/newIcons/resultDir/GovermentServices';
-export { GovermentServices };
+import Government from './assets/newIcons/resultDir/Government';
+export { Government };
 
 import HearingImpairment from './assets/newIcons/resultDir/HearingImpairment';
 export { HearingImpairment };
@@ -433,11 +445,11 @@ export { Home };
 import HomeInsurance from './assets/newIcons/resultDir/HomeInsurance';
 export { HomeInsurance };
 
+import HomeLarge from './assets/newIcons/resultDir/HomeLarge';
+export { HomeLarge };
+
 import Hospital from './assets/newIcons/resultDir/Hospital';
 export { Hospital };
-
-import IconPlace from './assets/newIcons/resultDir/IconPlace';
-export { IconPlace };
 
 import IIS2 from './assets/newIcons/resultDir/IIS2';
 export { IIS2 };
@@ -481,6 +493,9 @@ export { LandTax };
 import Lawyer from './assets/newIcons/resultDir/Lawyer';
 export { Lawyer };
 
+import LightBulb from './assets/newIcons/resultDir/LightBulb';
+export { LightBulb };
+
 import Limits from './assets/newIcons/resultDir/Limits';
 export { Limits };
 
@@ -499,8 +514,8 @@ export { Maintenance };
 import MetalAccount from './assets/newIcons/resultDir/MetalAccount';
 export { MetalAccount };
 
-import Microinvestments from './assets/newIcons/resultDir/Microinvestments';
-export { Microinvestments };
+import MicroInvestments from './assets/newIcons/resultDir/MicroInvestments';
+export { MicroInvestments };
 
 import MobileConnection from './assets/newIcons/resultDir/MobileConnection';
 export { MobileConnection };
@@ -607,14 +622,17 @@ export { Salary };
 import SaveMoney from './assets/newIcons/resultDir/SaveMoney';
 export { SaveMoney };
 
-import Savings from './assets/newIcons/resultDir/Savings';
-export { Savings };
-
 import SavingsAccountBanknote from './assets/newIcons/resultDir/SavingsAccountBanknote';
 export { SavingsAccountBanknote };
 
 import SavingsAccountMoneyBox from './assets/newIcons/resultDir/SavingsAccountMoneyBox';
 export { SavingsAccountMoneyBox };
+
+import Services from './assets/newIcons/resultDir/Services';
+export { Services };
+
+import Setting from './assets/newIcons/resultDir/Setting';
+export { Setting };
 
 import SocialAndroid from './assets/newIcons/resultDir/SocialAndroid';
 export { SocialAndroid };
@@ -676,9 +694,6 @@ export { StatusInfoOutline };
 import StatusInformation from './assets/newIcons/resultDir/StatusInformation';
 export { StatusInformation };
 
-import StatusInformationAlert from './assets/newIcons/resultDir/StatusInformationAlert';
-export { StatusInformationAlert };
-
 import StatusLoader from './assets/newIcons/resultDir/StatusLoader';
 export { StatusLoader };
 
@@ -723,6 +738,36 @@ export { STS };
 
 import SWIFT from './assets/newIcons/resultDir/SWIFT';
 export { SWIFT };
+
+import TextAddRow from './assets/newIcons/resultDir/TextAddRow';
+export { TextAddRow };
+
+import TextAdd_Column from './assets/newIcons/resultDir/TextAdd_Column';
+export { TextAdd_Column };
+
+import TextBold from './assets/newIcons/resultDir/TextBold';
+export { TextBold };
+
+import TextBulletList from './assets/newIcons/resultDir/TextBulletList';
+export { TextBulletList };
+
+import TextChevronDoubleLeft from './assets/newIcons/resultDir/TextChevronDoubleLeft';
+export { TextChevronDoubleLeft };
+
+import TextChevronDoubleRight from './assets/newIcons/resultDir/TextChevronDoubleRight';
+export { TextChevronDoubleRight };
+
+import TextFootnote from './assets/newIcons/resultDir/TextFootnote';
+export { TextFootnote };
+
+import TextItalic from './assets/newIcons/resultDir/TextItalic';
+export { TextItalic };
+
+import TextNumberList from './assets/newIcons/resultDir/TextNumberList';
+export { TextNumberList };
+
+import TextUnderline from './assets/newIcons/resultDir/TextUnderline';
+export { TextUnderline };
 
 import TireService from './assets/newIcons/resultDir/TireService';
 export { TireService };
@@ -777,7 +822,4 @@ export { WebsiteCall };
 
 import World from './assets/newIcons/resultDir/World';
 export { World };
-
-import СivilLiability from './assets/newIcons/resultDir/СivilLiability';
-export { СivilLiability };
 

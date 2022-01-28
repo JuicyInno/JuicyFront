@@ -2,11 +2,13 @@ import fs from 'fs';
 
 // константы имён папок и файлов
 import {
-  RESULTDIR, ICONDATA, INDEXICON
+  RESULTDIR, ICONDATA, INDEXICON, STORYPATH
 } from './constants';
 
 // Функция форматирования содержимого файла, создания индекса иконок
-import { formatContent, makeImportExportIcon } from './utils';
+import {
+  formatContent, makeIconStory, makeImportExportIcon
+} from './utils';
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Шаг 1. Создаём .tsx файлы со компонентами иконок
@@ -74,3 +76,18 @@ const makeIndexIcon = (content: fs.PathLike) => {
 };
 
 makeIndexIcon(RESULTDIR);
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Шаг 3. Создаём стори с иконками
+// Проверяем наличие файла со стори, и удаляем его
+if (fs.existsSync(STORYPATH)) {
+  // Удаляем файл во избежание ошибок
+  fs.rmdirSync(STORYPATH, { recursive: true } );
+}
+
+// Создаём файл для стори с иконками
+fs.appendFileSync(STORYPATH, '', 'utf8');
+
+// Функция, которая заполняет стори с иконками
+makeIconStory(RESULTDIR);
