@@ -7,11 +7,6 @@ describe('Test <RatePicker/> component', () => {
     render(<RatePicker />)
   })
 
-  it('should be render with underline class name', () => {
-    const { container } = render(<RatePicker isUnderline={true} />);
-    expect(container.getElementsByClassName('rate-picker')).toHaveLength(1);
-  })
-
   it('should be render with 0 picked class names', () => {
     const { container } = render(<RatePicker />);
     expect(container.getElementsByClassName('rate-picked-primary')).toHaveLength(0);

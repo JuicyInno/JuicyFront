@@ -1,14 +1,14 @@
 @import 'src/styles/mixins';
 
 .rate-picker {
-  border-bottom: 1px solid var(--background-secondary);
+
 }
 
 .rate-picker__content {
   display: inline-block;
   margin-bottom: 16px;
-  width: 648px;
   box-sizing: border-box;
+
   label {
     color: var(--text-primary);
   }

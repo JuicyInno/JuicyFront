@@ -23,12 +23,6 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   /** Текст контента диапазона*/
   textContent?: string,
   /**
-   *  Нижнее подчеркивание
-   * @default true
-   * */
-  isUnderline?: boolean
-
-  /**
    * Реверсировать поярдок диапазона
    * @default false
    * */
@@ -49,7 +43,6 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   getRate = () => { },
   sizePicker = 5,
   textContent = '',
-  isUnderline = true,
   isReverse = false,
   ...props }: IPickerProps) => {
 
@@ -154,14 +147,14 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     rates.reverse();
   }
 
-
   return (
-    <div className={isUnderline ? 'rate-picker' : ''} >
-      <p className='rate-picker__content'>{textContent}</p>
+    <div className={'rate-picker'}>
+      {textContent && <p className='rate-picker__content'>{textContent}</p>}
+
       <div className='rate-picker__container'>
         {rateComponent}
       </div>
-    </div >
+    </div>
   );
 };
 export default RatePicker;

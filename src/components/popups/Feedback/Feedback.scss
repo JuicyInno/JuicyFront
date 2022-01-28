@@ -1,0 +1,73 @@
+@import "src/styles/mixins";
+
+.feedback-modal {
+  padding: 24px 32px;
+  width: 640px;
+}
+
+.feedback-modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-modal__title {
+  @include h5;
+  font-size: 20px;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+.feedback-modal__description {
+  @include text-l-16;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.feedback-modal__link {
+  color: var(--basic-primary);
+}
+
+.feedback-modal__group {
+  margin-bottom: 4px;
+}
+
+.feedback-modal__buttons {
+  position: relative;
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .feedback-modal__btn:last-child {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+}
+
+.feedback-modal__chip {
+  @include text-s-14;
+  color: var(--basic-primary);
+  margin-top: 16px;
+}
+
+.feedback-modal__chip-text {
+  display: flex;
+  align-items: center;
+}
+
+.feedback-modal__chip-btn {
+  padding-left: 8px;
+  padding-top: 4px;
+  cursor: pointer;
+}
+
+.feedback-modal__btn-file {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.feedback-modal__btn {
+  margin-left: auto;
+  margin-right: 16px;
+}
