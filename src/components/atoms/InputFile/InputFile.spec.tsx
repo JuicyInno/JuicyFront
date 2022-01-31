@@ -26,14 +26,9 @@ describe('Test <InputFile/> component', () => {
         expect(container.getElementsByClassName('rf-input__file-hidden')).toHaveLength(1);
     });
 
-    it('should be chips', () => {
-        const { container } = render(<InputFile files={initialFiles} setFile={() => {}} />);
-        expect(container.getElementsByClassName('rf-file-input__chip-wrapper')).toHaveLength(1);
-    });
-
     it('should not be chips', () => {
         const { container } = render(<InputFile showChips={false} setFile={() => {}} />);
-        expect(container.getElementsByClassName('rf-file-input__chip-wrapper')).toHaveLength(0);
+        expect(container.getElementsByClassName('rf-file-input__attachments')).toHaveLength(0);
     });
 
     it('should be initialFiles in chips', () => {

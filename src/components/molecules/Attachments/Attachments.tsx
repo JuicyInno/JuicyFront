@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Chip, Preloader } from '../../..';
 import { IFileData } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 import { sendNotification } from '../Notifications';
 
 import './Attachments.scss';
@@ -14,6 +15,8 @@ export interface IAttachmentsProps {
   showRemoveIcon?: boolean;
   /** Функция удаления файла */
   onRemove?: (index: number) => void;
+  /** Ксласс */
+  className?: string;
 }
 
 const defaultID = '00000000-0000-0000-0000-000000000000';
@@ -65,7 +68,7 @@ export const onDownload = ({ file, base64, id }: IFileData, setLoading: (f: bool
     });
 };
 
-const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove }: IAttachmentsProps) => {
+const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove, className }: IAttachmentsProps) => {
   const [loadingIndexes, setLoadingIndexes] = useState<Record<number, boolean>>({});
 
   if (!attachments?.length) {
@@ -77,7 +80,7 @@ const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove }: IAtt
     [index]: value
   }));
 
-  return <div className='rf-attachments'>
+  return <div className={classnames('rf-attachments', className)}>
     {attachments.map((attachment, index) => (
       <div className='rf-attachments__chip' key={attachment.file.name + index}>
         <Chip

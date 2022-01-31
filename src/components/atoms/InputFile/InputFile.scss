@@ -5,36 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  .rf-file-input__attachments {
+    margin-top: 20px;
+  }
 }
 
 .file-input__wrapper .rf-input {
   width: auto;
   flex-shrink: 0;
-}
-
-.file-input__chips {
-  margin-left: 32px;
-  width: 100%;
-}
-
-.file-input__tag {
-  margin-right: 8px;
-  margin-bottom: 8px;
-  display: inline-flex;
-}
-
-.rf-file-input__chip-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-
-.rf-file-input__chip {
-  margin: 12px 12px 0px 0px;
-}
-
-.rf-file-input__chip-button {
-  padding-left: 8px;
-  padding-top: 4px;
-  cursor: pointer;
 }

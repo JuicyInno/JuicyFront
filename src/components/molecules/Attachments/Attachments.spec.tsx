@@ -18,6 +18,12 @@ describe('Test <Attachments /> component', () => {
     expect(byText("word_file.docx").get()).toBeInTheDocument();
   });
 
+  it('should pass className', () => {
+    const { container } = render(<Attachments attachments={initialFiles} className="className" />);
+
+    expect(container.getElementsByClassName('className')).toHaveLength(1);
+  });
+
   it('should pass showRemoveIcon = false', () => {
     const { container } = render(<Attachments attachments={initialFiles} showRemoveIcon={false} />);
 
