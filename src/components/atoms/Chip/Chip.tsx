@@ -32,12 +32,12 @@ export interface ITagProps {
    * Цвет tooltip
    * @default 'default'
    */
-  tooltipBackground?: 'default' | 'white',
+  tooltipBackground?: 'default' | 'white';
   /**
    * Цвет tooltip
    * @default false
    */
-  isBubble?: boolean
+  isBubble?: boolean;
 }
 
 const Chip: React.FC<ITagProps> = ({
@@ -76,8 +76,10 @@ const Chip: React.FC<ITagProps> = ({
 
   return (
     <Tooltip background={tooltipBackground} position={'bottom'} isVisible={overMaxLength}>
-      <div className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
-        onClick={handleClick}>
+      <div
+        className={classnames('rf-chip', `rf-chip--${disabled ? 'secondary' : type}`, sizeClass[size], clickableClass)}
+        onClick={handleClick}
+      >
         {icon && iconPosition && iconPosition === 'left' && <div className='rf-chip__left-icon rf-chip__icon'>{icon}</div>}
         {overMaxLength ? children.slice(0, maxLength) + '...' : children}
         {onRemove && (
@@ -87,6 +89,7 @@ const Chip: React.FC<ITagProps> = ({
         )}
         {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon rf-chip__icon'>{icon}</div>}
       </div>
+
       {children}
     </Tooltip>
   );
