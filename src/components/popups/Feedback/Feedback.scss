@@ -44,21 +44,9 @@
   }
 }
 
-.feedback-modal__chip {
-  @include text-s-14;
-  color: var(--basic-primary);
-  margin-top: 16px;
-}
-
-.feedback-modal__chip-text {
-  display: flex;
-  align-items: center;
-}
-
-.feedback-modal__chip-btn {
-  padding-left: 8px;
-  padding-top: 4px;
-  cursor: pointer;
+.feedback-modal__attachments {
+  margin-top: 20px;
+  margin-bottom: -12px;
 }
 
 .feedback-modal__btn-file {

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Chip, Preloader } from '../../..';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
+import { IChipProps } from '../../atoms/Chip/Chip';
 import { sendNotification } from '../Notifications';
 
 import './Attachments.scss';
 
-export interface IAttachmentsProps {
+export interface IAttachmentsProps extends Omit<IChipProps, 'children' | 'onRemove'> {
   /** Список вложенных файлов */
   attachments?: IFileData[];
   /** Показывать иконку удаления
@@ -68,7 +69,7 @@ export const onDownload = ({ file, base64, id }: IFileData, setLoading: (f: bool
     });
 };
 
-const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove, className }: IAttachmentsProps) => {
+const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove, className, ...props }: IAttachmentsProps) => {
   const [loadingIndexes, setLoadingIndexes] = useState<Record<number, boolean>>({});
 
   if (!attachments?.length) {
@@ -92,6 +93,7 @@ const Attachments = ({ attachments = [], showRemoveIcon = true, onRemove, classN
           onRemove={!loadingIndexes[index] && showRemoveIcon ? (() => onRemove?.(index)) : undefined}
           iconPosition='right'
           icon={loadingIndexes[index] && <div className='rf-attachments__loader'><Preloader size='s' /></div>}
+          {...props}
         >
           {attachment.file.name}
         </Chip>

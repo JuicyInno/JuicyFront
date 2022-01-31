@@ -1,4 +1,4 @@
-@import '../../../styles/mixins';
+@import "../../../styles/mixins";
 
 .signification__wrapper {
   max-width: 880px;
@@ -101,23 +101,9 @@
   padding-bottom: 26px;
 }
 
-.manual__wrapper .manual__chip-wrapper,
 .manual__hint-wrapper,
 .cert-error__wrapper {
   padding-bottom: 20px;
-}
-
-.manual__chip-text {
-  @include text-s-14;
-  color: var(--basic-primary);
-  display: flex;
-  align-items: center;
-}
-
-.manual__chip-button {
-  padding-left: 8px;
-  padding-top: 4px;
-  cursor: pointer;
 }
 
 .manual__close {

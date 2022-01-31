@@ -5,7 +5,7 @@ import React, {
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import {
-  Button, CertReader, Chip, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
+  Button, CertReader, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile, Attachments
 } from '../../../index';
 
 import {
@@ -74,7 +74,6 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
   /** Render-prop для контента попапа начала подписи */
   confirmContent?: (cert: IBrowserCert, file: IRequestAttachment, onConfirm: () => void, onCancel: () => void) => React.ReactNode;
 }
-
 
 const Signification:FC<IProps> = ({
   data,
@@ -257,19 +256,6 @@ const Signification:FC<IProps> = ({
     </div>;
 
   // =======================================================================================================================================
-  const manualFileChipTSX = (name: string, onClick:(e:any) => void) =>
-    <div className='manual__chip-wrapper'>
-      <Chip onClick={() => manualFile && download(manualFile)} size='s' type='outline'>
-        <div className='manual__chip-text'>
-          {name}
-          <div className='manual__chip-button' onClick={onClick}>
-            <Close/>
-          </div>
-        </div>
-      </Chip>
-    </div>;
-
-  // =======================================================================================================================================
 
   const finalCardTSX = finalStage &&
     <>
@@ -312,14 +298,17 @@ const Signification:FC<IProps> = ({
         </div>
       </div>
 
-      {finalStage === 'manual' && manualFileChipTSX(
-        value.fileName,
-        (e:Event) => {
-          e.stopPropagation();
-          cancelSign();
-        }
-      )}
-
+      {finalStage === 'manual' && <Attachments
+        maxLength={100}
+        attachments={manualFile ? [
+          {
+            id: manualFile.id,
+            file: new File([manualFile.base64], value.fileName),
+            base64: manualFile.base64
+          }
+        ] : []}
+        onRemove={cancelSign}
+      />}
     </>;
 
   // =======================================================================================================================================
@@ -363,10 +352,17 @@ const Signification:FC<IProps> = ({
           </Hint>
         </div>
 
-        {manualFile && manualFileChipTSX(manualFile.fileName, (e:Event) => {
-          e.stopPropagation();
-          setManualFile(undefined);
-        })}
+        <Attachments
+          maxLength={100}
+          attachments={manualFile ? [
+            {
+              id: manualFile.id,
+              file: new File([manualFile.base64], manualFile.fileName),
+              base64: manualFile.base64
+            }
+          ] : []}
+          onRemove={() => setManualFile(undefined)}
+        />
 
         <div className='modal_buttons'>
           <div className='modal_button'>

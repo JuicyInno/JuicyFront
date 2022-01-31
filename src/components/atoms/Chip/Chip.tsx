@@ -5,7 +5,7 @@ import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
 import { Close } from '../../../indexIcon';
 
-export interface ITagProps {
+export interface IChipProps {
   /** Текст */
   children: ReactNode | ReactNode[];
   /** Функция вызываемая при изменении значения */
@@ -40,7 +40,7 @@ export interface ITagProps {
   isBubble?: boolean;
 }
 
-const Chip: React.FC<ITagProps> = ({
+const Chip: React.FC<IChipProps> = ({
   children,
   onClick,
   onRemove,
@@ -52,7 +52,7 @@ const Chip: React.FC<ITagProps> = ({
   maxLength = 32,
   tooltipBackground = 'default',
   isBubble = false
-}: ITagProps) => {
+}: IChipProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     !isBubble && e.stopPropagation();
