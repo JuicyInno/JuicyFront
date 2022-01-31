@@ -1,0 +1,40 @@
+.iconsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+}
+
+.container  {
+  display: flex;
+  align-items: center;
+  width: 33%;
+  padding: 15px;
+
+  &:hover {
+    .copyStyle {
+      display: flex;
+    }
+  }
+};
+
+.iconContainer  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+};
+
+.copyStyle {
+  display: none;
+  margin-left: 4px;
+  cursor: pointer;
+
+};
+
+.titleWrapper {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

@@ -37,3 +37,5 @@ yarn-error.log*
 .firebase
 firebase.json
 storybook-static
+
+src/assets/newIcons/icons
