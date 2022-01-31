@@ -1,10 +1,8 @@
-import React, {
-  FC, useCallback, useState
-} from 'react';
+import React, { FC, useState } from 'react';
 
 import Button from '../../atoms/Button';
+import Attachments from '../Attachments';
 import HistoryPathList from '../../atoms/HistoryPathList';
-import Chip from '../../atoms/Chip';
 import Doc from '../../../assets/icons/40px/Documents/Doc';
 import Badge from '../../atoms/Badge';
 import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
@@ -26,41 +24,25 @@ const HistorySidebar: FC<IHistory> = ({
   const paths = useSortPaths(history, isOpen);
   // -------------------------------------------------------------------------------------------------------------------
   /** Секция приложенных документов */
-  /** Обработчик скачивания документа при клике по чипсе */
-  const openDownloadLink = useCallback((id: string | undefined) => {
-    if (id === undefined) {
-      return;
-    }
-
-    if (host.includes('127.0.0')) {
-      host = 'https://sapd-fes-ap01.vtb24.ru:44310';
-    }
-
-    const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${id})/content`;
-    window.open(url, '_blank');
-  }, []);
-
-  /** JSX прикреплённые документы */
-  const attachmentElementsJSX = attachments?.map(attachment => (
-    <Chip
-      key={attachment.fileName + attachment.id}
-      type='secondary'
-      size='s'
-      maxLength={30}
-      onClick={() => openDownloadLink(attachment.id)}
-    >
-      {attachment.fileName}
-    </Chip>
-  ));
-
   const attachmentsJSX = (
     <>
       <div className='rf-history-sidebar__attachments-line' />
       {isOpen ? (
         <>
           <p className='rf-history-sidebar__attachments-title'>Приложенные файлы</p>
+
           <div className='rf-history-sidebar__attachments-container'>
-            {attachmentElementsJSX}
+            <Attachments
+              attachments={attachments?.map((file) => ({
+                id: file.id,
+                name: file.fileName,
+                file: new File([file.base64], file.fileName),
+                base64: file.base64
+              }))}
+              type='secondary'
+              showRemoveIcon={false}
+              tooltipBackground='default'
+            />
           </div>
         </>
       ) : (
