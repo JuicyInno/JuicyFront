@@ -35,7 +35,7 @@ export const Demo = () => {
           <Segment list={_segmentList} value={_segmentList[1]} onChange={onChange} />
         </StoryRow>
         <StoryRow>
-          <Segment list={_segmentList2} value={_segmentList2[1]} onChange={onChange} />
+          <Segment list={_segmentList2} value={_segmentList2[0]} onChange={onChange} />
         </StoryRow>
       </StoryItem>
     </StoryContainer>
