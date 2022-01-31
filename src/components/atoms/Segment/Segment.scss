@@ -19,7 +19,7 @@
     width: 100%;
   }
 
-  &:hover {
+  &:hover:enabled {
     background-color: var(--background-tertiary);
   }
 }

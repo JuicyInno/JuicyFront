@@ -7,7 +7,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
 import { IOption } from '../../../types';
-import { _segmentList } from './mock';
+import { _segmentList, _segmentList2 } from './mock';
 
 export default {
   title: 'navigations/withTest/Segment',
@@ -33,6 +33,9 @@ export const Demo = () => {
         </StoryRow>
         <StoryRow>
           <Segment list={_segmentList} value={_segmentList[1]} onChange={onChange} />
+        </StoryRow>
+        <StoryRow>
+          <Segment list={_segmentList2} value={_segmentList2[1]} onChange={onChange} />
         </StoryRow>
       </StoryItem>
     </StoryContainer>

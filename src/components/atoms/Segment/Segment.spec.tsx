@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Segment from './Segment';
-import { _segmentList } from './mock';
+import {_segmentList} from './mock';
 
 describe('Test <Segment /> component', () => {
   it('should be render', () => {
