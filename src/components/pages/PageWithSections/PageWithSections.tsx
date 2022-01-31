@@ -1,4 +1,6 @@
-import React, { ReactNode, useRef } from 'react';
+import React, {
+  ReactNode, useMemo, useRef
+} from 'react';
 import './PageWithSections.scss';
 import { IPageSection } from '../../../types/projects.types';
 import { IButtonGroup, ITab } from '../../../types';
@@ -62,18 +64,18 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   showHeader = true,
   actionMenuAlwaysBottom = false,
   showNavigationPosition = false,
-  additionalScrollOffset = 40,
+  additionalScrollOffset = 0,
   countOfButtonsGroup = 2,
   buttonsGroup = [],
-  parentScroll
+  parentScroll,
 }: IPageWithSectionsProps) => {
 
   /** Ссылка на навигацию */
-  const asideRef = useRef<HTMLDivElement>(null);
+  // const asideRef = useRef<HTMLDivElement>(null);
   /** Ссылка на секции */
-  const sectionsRef = useRef<HTMLDivElement>(null);
+  // const sectionsRef = useRef<HTMLDivElement>(null);
   /** Ссылка на страницу */
-  const pageRef = useRef<HTMLDivElement>(null);
+  // const pageRef = useRef<HTMLDivElement>(null);
   /** Ссылка на шапку страницы */
   const pageHeaderRef = useRef<HTMLDivElement>(null);
 
@@ -82,11 +84,11 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   /** Отображение секций */
   const sectionsJSX = sections?.map((section: IPageSection) => {
     return (
-      <section key={ section.id } className='rf-page__section-block'>
+      <section key={ section.id } id={ section.id } className='rf-page__section-block' >
         {section.withoutTileWrapper ?
           <> { section.component }</> :
           <Tile hideBackground={section.hideBackground}>
-            { section.title && <h2 className='rf-page__section-title' id={ section.id }>{ section.title }</h2> }
+            { section.title && <h2 className='rf-page__section-title'>{ section.title }</h2> }
             { section.component }
           </Tile>}
 
@@ -98,7 +100,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
 
   /** Активная секция при скролле */
   const { activeTitle, onClick } = useTableOfContents({
-    selector: '.rf-page__section-title',
+    selector: '.rf-page__section-block',
     parent: parentScroll,
     deps: [preloader]
   });
@@ -132,10 +134,10 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const showAside = !!sections && sections.some((s: IPageSection) => !!s.title);
-  // (pageRef?.current && window.innerHeight < pageRef.current.scrollHeight);
+  const styleAsideBlock = useMemo(() => ({ marginTop: navigation?.length ? '70px' : 0 }), [navigation?.length]);
 
   const asideBlock = showNavigation && showAside && (
-    <aside className='rf-page__content-aside' ref={ asideRef }>
+    <aside className='rf-page__content-aside' style={styleAsideBlock}>
       <div className='rf-page__aside-inner'>
         <nav className='rf-page__aside-nav'>
           { asideJSX }
@@ -156,7 +158,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div className='rf-sections-page' ref={ pageRef }>
+    <div className='rf-sections-page'>
       <header className={`rf-page__sections-header ${showHeader ? '' : 'rf-page__sections-header--hidden'}`} ref={ pageHeaderRef }>
         { backUrl && (
           <Link to={ backUrl } onClick={ onBackClick } className='rf-page__sections-header-back'>
@@ -171,7 +173,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
         {
           preloader ? <Preloader/> : (
             <>
-              <div className='rf-page__content-sections' ref={ sectionsRef }>
+              <div className='rf-page__content-sections'>
                 {!!navigation?.length && (
                   <div className='rf-page__tabs'>
                     <Tabs list={navigation}/>
