@@ -4,10 +4,10 @@ import React, {
 import './Search.scss';
 import { Close, SearchIcon } from '../../../indexIcon';
 
-import { fromEvent, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { IDebounceResult } from '../../../types/projects.types';
 import { classnames } from '../../../utils/classnames';
+
+import { useDebounce } from '../../../hooks/useDebounce';
 
 
 export interface ISearchProps extends HTMLProps<HTMLInputElement> {
@@ -61,31 +61,16 @@ const Search: React.FC<ISearchProps> = ({
 
   // =======================
 
-  useEffect(() => {
-    /** Подписываемся на ввод текста */
-    let sub: Subscription;
-
-    ref.current && (sub = fromEvent<Event>(ref.current, 'keyup')
-      .pipe(
-        debounceTime(debounce),
-        distinctUntilChanged()
-      )
-      .subscribe((e: Event) => {
-        const debounceString = (e.target as HTMLInputElement).value;
-        setValue(debounceString);
-        onDebounce({
-          event: e,
-          debounceString
-        });
-      }));
-
-    return () => sub && sub.unsubscribe();
-  }, [debounce, onDebounce, onClear]);
-
+  useDebounce(value, debounce, (v) => {
+    if (onDebounce) {
+      onDebounce({ debounceString: v.toString() });
+    }
+  });
 
   useEffect(() => {
     setValue(props.value ? props.value.toString() : '');
   }, [props.value]);
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +88,7 @@ const Search: React.FC<ISearchProps> = ({
   const onClearClickHandler = () => {
     setValue('');
     onClear && onClear();
-    onDebounce({ debounceString: '' });
+    onDebounce && onDebounce({ debounceString: '' });
   };
   // -------------------------------------------------------------------------------------------------------------------
 
