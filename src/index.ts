@@ -79,6 +79,7 @@ import { FindEntities } from './components/popups/FindEntities';
 import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
 import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntitiesUser';
 import AvatarStack from './components/molecules/AvatarStack';
+import { Banner, BannerImage } from './components/atoms/Banner';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -164,7 +165,9 @@ export {
   FindEntities,
   FindEntitiesPosition,
   FindEntitiesUser,
-  createGetUsers
+  createGetUsers,
+  Banner,
+  BannerImage
 };
 
 

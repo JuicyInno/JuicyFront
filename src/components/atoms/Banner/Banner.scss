@@ -1,0 +1,45 @@
+@import "src/styles/mixins";
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__icon {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    > * {
+      display: block;
+    }
+  }
+
+  &__heading {
+    @include h5();
+    color: var(--text-primary);
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__subheading {
+    @include text-m-16();
+    color: var(--text-secondary);
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__action {
+    min-width: 114px;
+    flex-grow: 1;
+  }
+}
