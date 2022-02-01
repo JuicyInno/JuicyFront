@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Button from '../../atoms/Button';
+import Attachment from '../Attachment';
 import HistoryPathList from '../../atoms/HistoryPathList';
 
 import { IRequestAttachment, IRequestPath } from '../../../types/projects.types';
@@ -11,7 +12,6 @@ import ChevronDown from '../../../assets/icons/24px/Arrows/ChevronDown';
 import ChevronUp from '../../../assets/icons/24px/Arrows/ChevronUp';
 
 import './History.scss';
-import Attachments from '../Attachments';
 
 export interface IHistory {
   /** Массив с элементами истории */
@@ -29,7 +29,7 @@ export interface IHistory {
 const History: React.FC<IHistory> = ({
   history,
   isUZADO,
-  attachments,
+  attachments = [],
   host = window.location.origin,
 }: IHistory) => {
 
@@ -55,18 +55,21 @@ const History: React.FC<IHistory> = ({
     <div className='rf-history__attachments'>
       <div className='rf-history__attachments-line' />
       <p className='rf-history__attachments-title'>Приложенные файлы</p>
+
       <div className='rf-history__attachments-container'>
-        <Attachments
-          attachments={attachments?.map((file) => ({
-            id: file.id,
-            name: file.fileName,
-            file: new File([file.base64], file.fileName),
-            base64: file.base64
-          }))}
-          type='secondary'
-          showRemoveIcon={false}
-          tooltipBackground='default'
-        />
+        {attachments?.map((attachment, index) => (
+          <Attachment
+            key={index}
+            attachment={{
+              id: attachment.id,
+              file: new File([attachment.base64], attachment.fileName),
+              base64: attachment.base64
+            }}
+            type='secondary'
+            showRemoveIcon={false}
+            tooltipBackground='default'
+          />
+        ))}
       </div>
     </div>
   );

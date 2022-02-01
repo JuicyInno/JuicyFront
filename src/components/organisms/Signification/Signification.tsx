@@ -5,7 +5,7 @@ import React, {
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import {
-  Button, CertReader, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile, Attachments
+  Button, CertReader, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile, Attachment
 } from '../../../index';
 
 import {
@@ -298,17 +298,17 @@ const Signification:FC<IProps> = ({
         </div>
       </div>
 
-      {finalStage === 'manual' && <Attachments
-        maxLength={100}
-        attachments={manualFile ? [
-          {
+      {finalStage === 'manual' &&
+        <Attachment
+          attachment={manualFile && {
             id: manualFile.id,
-            file: new File([manualFile.base64], value.fileName),
+            file: new File([manualFile.base64], manualFile.fileName),
             base64: manualFile.base64
-          }
-        ] : []}
-        onRemove={cancelSign}
-      />}
+          }}
+          maxLength={100}
+          onRemove={cancelSign}
+        />
+      }
     </>;
 
   // =======================================================================================================================================
@@ -352,16 +352,15 @@ const Signification:FC<IProps> = ({
           </Hint>
         </div>
 
-        <Attachments
+        <Attachment
+          attachment={manualFile && {
+            id: manualFile.id,
+            file: new File([manualFile.base64], manualFile.fileName),
+            base64: manualFile.base64
+          }}
           maxLength={100}
-          attachments={manualFile ? [
-            {
-              id: manualFile.id,
-              file: new File([manualFile.base64], manualFile.fileName),
-              base64: manualFile.base64
-            }
-          ] : []}
           onRemove={() => setManualFile(undefined)}
+          className='signification__attachment'
         />
 
         <div className='modal_buttons'>

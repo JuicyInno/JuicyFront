@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import Button from '../../atoms/Button';
-import Attachments from '../Attachments';
+import Attachment from '../Attachment';
 import HistoryPathList from '../../atoms/HistoryPathList';
 import Doc from '../../../assets/icons/40px/Documents/Doc';
 import Badge from '../../atoms/Badge';
@@ -32,17 +32,19 @@ const HistorySidebar: FC<IHistory> = ({
           <p className='rf-history-sidebar__attachments-title'>Приложенные файлы</p>
 
           <div className='rf-history-sidebar__attachments-container'>
-            <Attachments
-              attachments={attachments?.map((file) => ({
-                id: file.id,
-                name: file.fileName,
-                file: new File([file.base64], file.fileName),
-                base64: file.base64
-              }))}
-              type='secondary'
-              showRemoveIcon={false}
-              tooltipBackground='default'
-            />
+            {attachments?.map((attachment, index) => (
+              <Attachment
+                key={index}
+                attachment={{
+                  id: attachment.id,
+                  file: new File([attachment.base64], attachment.fileName),
+                  base64: attachment.base64
+                }}
+                type='secondary'
+                showRemoveIcon={false}
+                tooltipBackground='default'
+              />
+            ))}
           </div>
         </>
       ) : (

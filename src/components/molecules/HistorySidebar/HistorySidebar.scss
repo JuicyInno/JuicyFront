@@ -98,4 +98,7 @@
 
 .rf-history-sidebar__attachments-container {
   margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 12px;
 }

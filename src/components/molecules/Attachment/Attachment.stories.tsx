@@ -7,13 +7,13 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { withDesign } from 'storybook-addon-designs';
 
-import Attachments from './Attachments';
+import Attachment from './Attachment';
 import { initialFiles } from '../../../utils/helpers';
 import Notifications from '../Notifications';
 
 export default {
-  title: 'components/withTest/Attachments',
-  component: Attachments,
+  title: 'components/withTest/Attachment',
+  component: Attachment,
   decorators: [withDesign],
   argTypes: {}
 };
@@ -21,12 +21,12 @@ export default {
 export const Demo: Story = () => {
   return (
     <StoryDocs>
-      <StoryDocsH1>Attachments</StoryDocsH1>
+      <StoryDocsH1>Attachment</StoryDocsH1>
       <StoryDocsDescription>
         Вложенные файлы
       </StoryDocsDescription>
 
-      <Attachments attachments={initialFiles} />
+      <Attachment attachment={initialFiles[0]} />
 
       <Notifications />
     </StoryDocs>
@@ -36,7 +36,7 @@ export const Demo: Story = () => {
 Demo.parameters = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=3130%3A38020',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=3162%3A37697',
   },
   actions: { disabled: true },
   controls: { disabled: true }
@@ -46,7 +46,7 @@ export const Playground: Story = (args: any) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <Attachments attachments={initialFiles} {...args} />
+        <Attachment attachment={initialFiles[0]} {...args} />
       </StoryRow>
     </StoryContainer>
   );

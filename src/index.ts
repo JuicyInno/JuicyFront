@@ -80,11 +80,11 @@ import { FindEntitiesPosition } from './components/popups/FindEntitiesPosition';
 import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntitiesUser';
 import AvatarStack from './components/molecules/AvatarStack';
 import { Banner, BannerImage } from './components/atoms/Banner';
-import Attachments from './components/molecules/Attachments';
+import Attachment from './components/molecules/Attachment';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
-import { download } from './utils/download';
+import { download, downloadWithLoading } from './utils/download';
 
 export {
   CommentTile,
@@ -95,7 +95,7 @@ export {
   Avatar,
   AvatarStatus,
   AvatarStack,
-  Attachments,
+  Attachment,
   Badge,
   Button,
   Checkbox,
@@ -173,7 +173,9 @@ export {
 };
 
 
-export { variables, download };
+export {
+  variables, download, downloadWithLoading
+};
 
 // --------------------------Функции------------------------------------------------------------------------------------
 

@@ -6,7 +6,7 @@ import { IFileData } from '../../../types';
 import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
 import { getBase64, validateFile } from './file-utils';
-import Attachments from '../../molecules/Attachments';
+import Attachment from '../../molecules/Attachment';
 
 /**
  * Файловый инпут для небольших файлов, конвертирует файл в base64.
@@ -170,12 +170,11 @@ const InputFile: React.FC<IFileInputProps> = ({
       </label>
 
       {showChips &&
-        <Attachments
-          attachments={file}
-          showRemoveIcon={showRemoveIcon}
-          onRemove={onRemove}
-          className='rf-file-input__attachments'
-        />
+        <div className='rf-file-input__attachments'>
+          {file.map((attachment, index) => (
+            <Attachment key={index} attachment={attachment} showRemoveIcon={showRemoveIcon} onRemove={() => onRemove(index)} />
+          ))}
+        </div>
       }
     </div>
   );

@@ -4,7 +4,7 @@ import React, {
 import { Link } from 'react-router-dom';
 
 import {
-  Button, FormGroup, InputFile, Textarea, Modal, RatePicker, Attachments
+  Button, FormGroup, InputFile, Textarea, Modal, RatePicker, Attachment
 } from '../../..';
 import { IFileData } from '../../../types';
 import { IModalProps } from '../../atoms/Modal/Modal';
@@ -128,11 +128,11 @@ export const Feedback = ({
             <Textarea onChange={onChange} value={text} placeholder={textareaPlaceholder} />
           </FormGroup>
 
-          <Attachments
-            attachments={attachedFile ? [attachedFile] : []}
-            onRemove={() => setAttachedFile(undefined)}
+          <Attachment
+            attachment={attachedFile}
             maxLength={100}
-            className='feedback-modal__attachments'
+            className='feedback-modal__attachment'
+            onRemove={() => setAttachedFile(undefined)}
           />
 
           <div className='feedback-modal__buttons'>
