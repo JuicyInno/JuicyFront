@@ -39,4 +39,14 @@ describe('Test <Switch/> component', () => {
     const { container } = render( <Switch label='Text' size={'s'} helperText='Add text' />);
     expect(container.getElementsByClassName('rf-switch--s')).toHaveLength(1);
   })
+
+  it('should be reverse', () => {
+    const { container } = render(<Switch label='Text' reverse />);
+    expect(container.getElementsByClassName('rf-switch--reverse')).toHaveLength(1);
+  });
+
+  it('should be between', () => {
+    const { container } = render(<Switch label='Text' between />);
+    expect(container.getElementsByClassName('rf-switch--between')).toHaveLength(1);
+  });
 });

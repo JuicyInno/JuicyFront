@@ -5,6 +5,27 @@
   flex-wrap: wrap;
   align-items: center;
   cursor: pointer;
+
+  .rf-switch__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 8px;
+  }
+
+  &.rf-switch--reverse {
+    flex-direction: row-reverse;
+
+    .rf-switch__content {
+      margin-left: 0px;
+      margin-right: 8px;
+    }
+  }
+
+  &.rf-switch--between {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .rf-switch__toggle {
@@ -56,20 +77,17 @@
 }
 
 .rf-switch__label {
-  margin-left: 8px;
   @include text-m-16;
   user-select: none;
 }
 
 .rf-switch__helper-text {
-  margin-left: 44px;
   @include text-s-14;
   user-select: none;
   color: var(--text-secondary);
   flex: 1 1 100%;
 
   .rf-switch--s & {
-    margin-left: 36px;
     @include caption;
     color: var(--text-secondary);
   }

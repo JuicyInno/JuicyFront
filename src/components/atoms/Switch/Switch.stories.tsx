@@ -8,7 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { MobileView } from './previews/mobile-view';
 
 import { withDesign } from 'storybook-addon-designs';
-/* eslint-disable max-len */
+
 export default {
   title: 'controls/withTest/Switch',
   decorators: [withDesign],
@@ -55,6 +55,7 @@ export const Demo = () => {
           flexDirection: 'column',
           marginRight: 100
         }}>
+          <h3 style={{ marginBottom: '20px' }}>Size m</h3>
           <div style={{ marginBottom: 20 }} >
             <Switch onChange={onChange} label='Text' size='m' />
           </div>
@@ -68,9 +69,10 @@ export const Demo = () => {
         </div>
         <div style={{
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          marginRight: 100
         }}>
-
+          <h3 style={{ marginBottom: '20px' }}>Size s</h3>
           <div style={{ marginBottom: 20 }} >
             <Switch onChange={onChange} label='Text' size='s' />
           </div>
@@ -80,8 +82,43 @@ export const Demo = () => {
           <div style={{ marginBottom: 20 }} >
             <Switch onChange={onChange} label='Text' size='s' />
           </div>
+        </div>
 
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginRight: 100
+        }}>
+          <h3 style={{ marginBottom: '20px' }}>Reverse</h3>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse />
+          </div>
+          <div style={{ marginBottom: 20, }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse />
+          </div>
+        </div>
 
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '200px'
+        }}>
+          <h3 style={{ marginBottom: '20px' }}>Beetween</h3>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse between />
+          </div>
+          <div style={{ marginBottom: 20 }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse between />
+          </div>
+          <div style={{
+            marginBottom: 20,
+            width: '200px'
+          }} >
+            <Switch onChange={onChange} label='Text' size='s' reverse between />
+          </div>
         </div>
       </div>
 
@@ -112,7 +149,6 @@ export const Demo = () => {
         </div>
       </div>
 
-
       <StoryDocsH2>Адаптив (Mobile)</StoryDocsH2>
       <StoryDocsDescription>
         При создании отдельных макетов для мобильных устройств, рекомендуется использовать вариацию комопнента размера
@@ -128,7 +164,7 @@ Demo.parameters = {
   actions: { disabled: true },
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231295'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15744'
   },
   controls: { disabled: true }
 };
@@ -143,10 +179,8 @@ export const Playground = (props: ISwitchProps) => (
 
 
 Playground.parameters = {
-
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/Y86V3oIhkZQ4u27iBuhN0l/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B-%D0%92%D0%A2%D0%91-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9?node-id=18262%3A231295'
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Design-System-for-Story-Book?node-id=4%3A15744'
   },
-
 };
