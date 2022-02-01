@@ -203,6 +203,7 @@ export const validateFile = (file: File, options?: IOptions): IValidationResult 
   let valid = true;
   let error = '';
 
+  // TODO: может использовать sendNotification для отображения ошибок ?
   if (file && options) {
     if (options.maxSize !== undefined && file.size / 1024 > options.maxSize) {
       valid = false;

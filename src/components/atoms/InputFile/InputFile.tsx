@@ -1,13 +1,12 @@
 import React, {
-  ReactNode, useRef, useState
+  ReactNode, useCallback, useRef, useState
 } from 'react';
 import './InputFile.scss';
 import { IFileData } from '../../../types';
 import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
 import { getBase64, validateFile } from './file-utils';
-import { Chip, download } from '../../../index';
-import { IRequestAttachment } from '../../../types/projects.types';
+import Attachment from '../../molecules/Attachment';
 
 /**
  * Файловый инпут для небольших файлов, конвертирует файл в base64.
@@ -134,58 +133,22 @@ const InputFile: React.FC<IFileInputProps> = ({
     }
   };
 
-
   // =======================================================================================================================================
 
-  const downloadFile = (currentFile: IFileData) => {
+  const onRemove = useCallback((index: number) => {
+    const newListFile = file;
+    newListFile.splice(index, 1);
 
-    const file: IRequestAttachment = {
-      id: currentFile.id,
-      fileName: currentFile.file.name,
-      base64: currentFile.base64,
-    };
-
-    download(file);
-  };
-
-  // =======================================================================================================================================
-
-  /** Чип прикрепленного файла */
-  const attachedFileChipTSX = (currentFile: IFileData, index: number, onRemove:()=>void) =>
-    <div className='rf-file-input__chip' key={currentFile.file.name + index}>
-      <Chip
-        onClick={() => downloadFile(currentFile)}
-        size='s'
-        type='outline'
-        maxLength={30}
-        tooltipBackground={'white'}
-        onRemove={showRemoveIcon ? onRemove : undefined}
-      >
-        {currentFile.file.name}
-      </Chip>
-    </div>;
-
-  // =======================================================================================================================================
-  /** Отображение чипов прикрепленных файлов */
-  const fileList = file.map((currentFile: IFileData, index: number) => attachedFileChipTSX(
-    currentFile,
-    index,
-    () => {
-      const newListFile = file;
-      newListFile.splice(index, 1);
-
-      if (!newListFile.length) {
-        uploadFile([]);
-        setFile([]);
-      } else {
-        uploadFile([...newListFile]);
-        setFile([...newListFile]);
-      }
+    if (!newListFile.length) {
+      uploadFile([]);
+      setFile([]);
+    } else {
+      uploadFile([...newListFile]);
+      setFile([...newListFile]);
     }
-  ));
+  }, [file]);
 
   // =======================================================================================================================================
-
 
   return (
     <div className='rf-file-input__wrapper'>
@@ -206,11 +169,13 @@ const InputFile: React.FC<IFileInputProps> = ({
         </Button>
       </label>
 
-      { showChips && file.length > 0 && (
-        <div className='rf-file-input__chip-wrapper'>
-          {fileList}
+      {showChips &&
+        <div className='rf-file-input__attachments'>
+          {file.map((attachment, index) => (
+            <Attachment key={index} attachment={attachment} showRemoveIcon={showRemoveIcon} onRemove={() => onRemove(index)} />
+          ))}
         </div>
-      )}
+      }
     </div>
   );
 };

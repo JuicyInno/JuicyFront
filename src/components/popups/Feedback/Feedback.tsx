@@ -1,13 +1,11 @@
 import React, {
-  FormEvent,
-  MouseEventHandler, ReactNode, useState
+  FormEvent, ReactNode, useCallback, useState
 } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-  Button, Chip, download, FormGroup, InputFile, Textarea, Modal, RatePicker
+  Button, FormGroup, InputFile, Textarea, Modal, RatePicker, Attachment
 } from '../../..';
-import { Close } from '../../../indexIcon';
 import { IFileData } from '../../../types';
 import { IModalProps } from '../../atoms/Modal/Modal';
 
@@ -52,7 +50,7 @@ export const Feedback = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   /** хранит приложенные файлы */
-  const [attachedFile, setAttachedFile] = useState<{ fileName: string; base64: string; }>();
+  const [attachedFile, setAttachedFile] = useState<IFileData>();
 
   /** Изменение состояния комментария */
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -66,19 +64,11 @@ export const Feedback = ({
   };
 
   /** Прикрепление файла */
-  const setFileHandler = (files: IFileData[]) => {
+  const setFileHandler = useCallback((files: IFileData[]) => {
     const lastFile = files[files.length - 1];
 
-    setAttachedFile({
-      fileName: lastFile.file.name,
-      base64: lastFile.base64,
-    });
-  };
-
-  const deleteAttachmentFiles: MouseEventHandler<HTMLDivElement> = (e) => {
-    e.stopPropagation();
-    setAttachedFile(undefined);
-  };
+    setAttachedFile(lastFile);
+  }, []);
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -104,7 +94,6 @@ export const Feedback = ({
       setIsLoading(false);
     }
   };
-
 
   return (
     <Modal custom onClose={onClose} {...props}>
@@ -139,19 +128,12 @@ export const Feedback = ({
             <Textarea onChange={onChange} value={text} placeholder={textareaPlaceholder} />
           </FormGroup>
 
-          {attachedFile && (
-            <div className='feedback-modal__chip'>
-              <Chip onClick={() => download(attachedFile)} size='s' type='outline'>
-                <div className='feedback-modal__chip-text'>
-                  {attachedFile.fileName}
-
-                  <div className='feedback-modal__chip-btn' onClick={deleteAttachmentFiles}>
-                    <Close />
-                  </div>
-                </div>
-              </Chip>
-            </div>
-          )}
+          <Attachment
+            attachment={attachedFile}
+            maxLength={100}
+            className='feedback-modal__attachment'
+            onRemove={() => setAttachedFile(undefined)}
+          />
 
           <div className='feedback-modal__buttons'>
             <div className='feedback-modal__btn-file'>

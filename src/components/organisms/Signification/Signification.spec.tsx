@@ -98,7 +98,7 @@ describe('Test <Signification/> component', () => {
 
       await waitFor(() =>{
        expect(byText('chucknorris.png').get()).toBeTruthy()
-    })
+      })
       expect(byText('Подписать').get().parentElement!.parentElement).not.toBeDisabled()
       expect(byText('Скачайте и подпишите документ. После прикрепите подписанный файл').query()).toBeTruthy()
       userEvent.click(byText('Подписать').get())

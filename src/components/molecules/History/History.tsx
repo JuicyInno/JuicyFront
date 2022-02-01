@@ -1,9 +1,7 @@
-import React, {
-  useCallback, useEffect, useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from '../../atoms/Button';
-import Chip from '../../atoms/Chip';
+import Attachment from '../Attachment';
 import HistoryPathList from '../../atoms/HistoryPathList';
 
 import { IRequestAttachment, IRequestPath } from '../../../types/projects.types';
@@ -31,7 +29,7 @@ export interface IHistory {
 const History: React.FC<IHistory> = ({
   history,
   isUZADO,
-  attachments,
+  attachments = [],
   host = window.location.origin,
 }: IHistory) => {
 
@@ -53,39 +51,25 @@ const History: React.FC<IHistory> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
   /** Секция приложенных документов */
-  /** Обработчик скачивания документа при клике по чипсе */
-  const openDownloadLink = useCallback((id: string | undefined) => {
-    if (id === undefined) {
-      return;
-    }
-
-    if (host.includes('127.0.0')) {
-      host = 'https://sapd-fes-ap01.vtb24.ru:44310';
-    }
-
-    const url = `${host}/sap/opu/odata4/sap/zhrbc/default/sap/zhrbc_0720_react_utils/0001/IAttachmentContent(${id})/content`;
-    window.open(url, '_blank');
-  }, []);
-
-  /** JSX прикреплённые документы */
-  const attachmentElementsJSX = attachments?.map(attachment => (
-    <Chip
-      key={attachment.fileName + attachment.id}
-      type='secondary'
-      size='s'
-      maxLength={30}
-      onClick={() => openDownloadLink(attachment.id)}
-    >
-      {attachment.fileName}
-    </Chip>
-  ));
-
   const attachmentsJSX = (
     <div className='rf-history__attachments'>
       <div className='rf-history__attachments-line' />
       <p className='rf-history__attachments-title'>Приложенные файлы</p>
+
       <div className='rf-history__attachments-container'>
-        {attachmentElementsJSX}
+        {attachments?.map((attachment, index) => (
+          <Attachment
+            key={index}
+            attachment={{
+              id: attachment.id,
+              file: new File([attachment.base64], attachment.fileName),
+              base64: attachment.base64
+            }}
+            type='secondary'
+            showRemoveIcon={false}
+            tooltipBackground='default'
+          />
+        ))}
       </div>
     </div>
   );
@@ -104,6 +88,7 @@ const History: React.FC<IHistory> = ({
           {expanded ? 'Свернуть' : 'Смотреть всё'}
         </Button>
       </div>
+
       {attachments && attachmentsJSX}
     </div>
   );
