@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Employee } from '../../../index';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import { withDesign } from 'storybook-addon-designs';
+import CommentTile from '../../molecules/CommentTile';
 
 export default {
   title: 'pages/withTest/Page With Sections',
@@ -28,6 +29,12 @@ export const pageWithSections = () => {
       id: 'position',
       title: 'Позиция',
       component: <div style={{ height: '300px' }}> <Employee user={usersMocks[usersMocks.length - 1]}/> </div>
+    },
+    {
+      id: 'test2',
+      title: 'Custom comment section title',
+      component: <CommentTile title={'Custom comment'} />,
+      withoutTileWrapper: true
     },
     {
       id: 'org',
