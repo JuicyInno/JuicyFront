@@ -1,7 +1,5 @@
 import { ErrorMessage } from '@hookform/error-message';
-import React, {
-  ReactElement, ReactNode, useMemo
-} from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormGroup } from '../../..';
 import { IFormGroup } from '../../atoms/FormGroup/FormGroup';
@@ -16,7 +14,7 @@ const FormControl = ({ name, children, ...props }: IFormErrorControlProps) => {
     formState: { errors },
   } = useFormContext();
 
-  const invalid = useMemo(() => !!errors[name], [errors, name]);
+  const invalid = !!errors[name];
 
   return (
     <FormGroup
@@ -25,7 +23,7 @@ const FormControl = ({ name, children, ...props }: IFormErrorControlProps) => {
         <ErrorMessage
           errors={errors}
           name={name}
-          render={({ message, ...props }) => message}
+          render={({ message }) => message}
         />
       }
       {...props}
