@@ -15,6 +15,7 @@ import {
 } from '../../../indexIcon';
 import { withDesign } from 'storybook-addon-designs';
 import Search from '../../../assets/icons/24px/Account/Search';
+import Dot from '../../../assets/icons/24px/Arrows/Dot';
 
 export default {
   title: 'forms/withTest/Input',
@@ -77,7 +78,7 @@ export const Demo = () => {
           <Input endAdornment={<Success style={{ color: 'var(--status-success)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Info />} />
+          <Input endAdornment={<Dot />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input startAdornment={<Info />} />

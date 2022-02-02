@@ -244,6 +244,7 @@ import ArrowRight from './assets/icons/24px/Arrows/ArrowRight';
 import ArrowUp from './assets/icons/24px/Arrows/ArrowUp';
 import ChevronUp from './assets/icons/24px/Arrows/ChevronUp';
 import Down from './assets/icons/24px/Arrows/Down';
+import Dot from './assets/icons/24px/Arrows/Dot';
 import InfoStatus from './assets/icons/24px/Arrows/InfoStatus';
 import NewAdd from './assets/icons/24px/Arrows/Add';
 import NewChevronDown from './assets/icons/24px/Arrows/ChevronDown';
@@ -270,6 +271,7 @@ export {
   ArrowUp,
   ChevronUp,
   Down,
+  Dot,
   InfoStatus,
   NewAdd,
   NewChevronDown,
