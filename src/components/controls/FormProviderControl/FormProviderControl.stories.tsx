@@ -7,6 +7,7 @@ import InputNumberControl from '../InputNumberControl';
 import SelectControl from '../SelectControl';
 import StoryContainer from '../../storybook/Story';
 import CommentTileControl from '../CommentTileControl';
+import DatepickerControl from '../DatepickerControl';
 
 import FormProvierControl from '../FormProviderControl';
 import { Button, FormGroup } from '../../..';
@@ -145,6 +146,12 @@ export const ValidationForm: Story = () => {
           <InputNumberControl
             label='Год'
             name='year'
+            rules={{ required: 'Обязательное поле' }}
+          />
+
+          <DatepickerControl
+            label='Дата рождения'
+            name='date-birth'
             rules={{ required: 'Обязательное поле' }}
           />
 
