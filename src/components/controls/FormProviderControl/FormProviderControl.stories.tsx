@@ -3,6 +3,7 @@ import { useCallback, useRef } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import InputControl from '../InputControl';
+import InputNumberControl from '../InputNumberControl';
 import StoryContainer from '../../storybook/Story';
 
 import FormProvierControl from '../FormProviderControl';
@@ -112,6 +113,18 @@ export const ValidationForm: Story = () => {
           />
 
           <InputControl label='Фаилия' name='lastName' rules={{ required: 'Обязательное поле' }} />
+        </div>
+
+        <div style={{
+          display: 'flex',
+          columnGap: '20px',
+          marginBottom: '20px'
+        }}>
+          <InputNumberControl
+            label='Год'
+            name='year'
+            rules={{ required: 'Обязательное поле', }}
+          />
         </div>
 
         <div style={{
