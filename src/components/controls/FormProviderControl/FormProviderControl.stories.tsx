@@ -6,6 +6,7 @@ import InputControl from '../InputControl';
 import InputNumberControl from '../InputNumberControl';
 import SelectControl from '../SelectControl';
 import StoryContainer from '../../storybook/Story';
+import CommentTileControl from '../CommentTileControl';
 
 import FormProvierControl from '../FormProviderControl';
 import { Button, FormGroup } from '../../..';
@@ -172,6 +173,14 @@ export const ValidationForm: Story = () => {
             }}
             type='password'
           />
+        </div>
+
+        <div style={{
+          display: 'flex',
+          columnGap: '20px',
+          marginBottom: '20px'
+        }}>
+          <CommentTileControl name='comment' />
         </div>
 
         <Button type='submit'>Отправить</Button>
