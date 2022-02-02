@@ -1,0 +1,15 @@
+.test1 {
+  background-color: red;
+}
+
+.test1 .test2 {
+  color: blue;
+
+  &:after {
+    margin-right: 1px;
+  }
+}
+
+.test2 {
+  margin-bottom: 2px;
+}

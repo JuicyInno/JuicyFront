@@ -41,12 +41,20 @@ function hashPlugin({ types: t }) {
           return
         }
 
-        path.node.openingElement.attributes.push(
-          t.jsxAttribute(
-            t.jsxIdentifier(`data-v-${hash}`),
-            t.jsxExpressionContainer(t.stringLiteral('')),
-          ),
-        )
+        const attr = path.node.openingElement.attributes;
+
+        attr.forEach((att) => {
+          if (att.name.name === 'className') {
+            att.value.value = att.value.value.split(' ').map((c) => c + '__' + hash).join(' ')
+          }
+        })
+
+        // path.node.openingElement.attributes.push(
+        //   t.jsxAttribute(
+        //     t.jsxIdentifier(`className`),
+        //     t.jsxExpressionContainer(t.stringLiteral(hash)),
+        //   ),
+        // )
       },
     },
   }

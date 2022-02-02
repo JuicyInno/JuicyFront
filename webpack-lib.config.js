@@ -3,7 +3,7 @@ const path = require('path');
 
 // =========================================================================
 module.exports = {
-  entry: {index:'./src/index.ts',indexIcon:'./src/indexIcon.ts'},
+  entry: {index:'./src/index1.ts'},
   output: {
     filename: '[name].js',
     // publicPath: '',
@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.css|\.scss$/,
-        use: ['scoped-css-loader'],
+        use: [path.resolve('./scoped-css-loader.js')],
         exclude: [path.resolve(__dirname, 'node_modules'), /src\/styles\/vendor\/*/]
       },
       {
