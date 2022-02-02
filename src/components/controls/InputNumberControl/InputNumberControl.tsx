@@ -20,9 +20,9 @@ const InputNumberControl = ({ name, rules, defaultValue, shouldUnregister, label
       rules={rules}
       shouldUnregister={shouldUnregister}
       defaultValue={defaultValue}
-      render={({ field: { onChange, ...fieldProps } }) => (
+      render={({ field: { onChange, value, ...fieldProps } }) => (
         <FormControl name={name} label={label} {...fromGroupProps}>
-          <InputNumber {...props} {...fieldProps} onInputChange={value => onChange(+value.replace(/\s/g, ''))} />
+          <InputNumber {...props} {...fieldProps} defaultValue={value} onInputChange={value => onChange(+value.replace(/\s/g, ''))} />
         </FormControl>
       )}
     />

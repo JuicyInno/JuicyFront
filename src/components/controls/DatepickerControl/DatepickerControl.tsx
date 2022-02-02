@@ -22,9 +22,9 @@ const DatepickerControl = ({ name, rules, defaultValue, shouldUnregister, label,
       rules={rules}
       shouldUnregister={shouldUnregister}
       defaultValue={defaultValue}
-      render={({ field: { ref, onChange, ...fieldProps } }) => (
+      render={({ field: { ref, onChange, value, ...fieldProps } }) => (
         <FormControl name={name} label={label} {...fromGroupProps}>
-          <Datepicker {...props} {...fieldProps} onChange={(value) => onChange(value.timestamp.value)} />
+          <Datepicker {...props} {...fieldProps} defaultValue={value} onChange={(value) => onChange(value.timestamp.value)} />
         </FormControl>
       )}
     />
