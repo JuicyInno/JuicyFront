@@ -4,11 +4,13 @@ import { useForm, useWatch } from 'react-hook-form';
 
 import InputControl from '../InputControl';
 import InputNumberControl from '../InputNumberControl';
+import SelectControl from '../SelectControl';
 import StoryContainer from '../../storybook/Story';
 
 import FormProvierControl from '../FormProviderControl';
 import { Button, FormGroup } from '../../..';
 import { StoryDocsH3 } from '../../storybook';
+import { IOption } from '../../../types';
 
 export default {
   title: 'controls/FormProvierControl',
@@ -61,6 +63,25 @@ export const SimpleForm: Story = () => {
     </StoryContainer>
   );
 };
+
+const RATE_OPTIONS: IOption[] = [
+  {
+    value: '3',
+    label: '3 месяца'
+  },
+  {
+    value: '6',
+    label: '6 месяцев'
+  },
+  {
+    value: '12',
+    label: '12 месяцев'
+  },
+  {
+    value: 'other',
+    label: 'Другой период'
+  },
+];
 
 export const ValidationForm: Story = () => {
   const methods = useForm<any>();
@@ -123,7 +144,16 @@ export const ValidationForm: Story = () => {
           <InputNumberControl
             label='Год'
             name='year'
-            rules={{ required: 'Обязательное поле', }}
+            rules={{ required: 'Обязательное поле' }}
+          />
+
+          <SelectControl
+            label='Период'
+            name='rate'
+            readOnly
+            placeholder='Выберите период'
+            options={RATE_OPTIONS}
+            rules={{ required: 'Обязательное поле' }}
           />
         </div>
 

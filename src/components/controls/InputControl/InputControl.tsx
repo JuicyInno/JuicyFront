@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import Input, { IInputProps } from '../../atoms/Input';
 import { IControlProps, IPartialFormGroup } from '../types';
@@ -7,6 +7,7 @@ import FormControl from '../FormControl';
 
 export type IInputControlProps = IInputProps & IControlProps & {
   fromGroupProps?: IPartialFormGroup;
+  label?: ReactNode;
 };
 
 const InputControl = ({ name, rules, defaultValue, shouldUnregister, label, fromGroupProps, ...props }: IInputControlProps) => {
