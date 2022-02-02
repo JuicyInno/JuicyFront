@@ -10,7 +10,9 @@ export type IInputNumberControlProps = IInputNumberProps & IControlProps & {
   label?: ReactNode;
 };
 
-const InputNumberControl = ({ name, rules, defaultValue, shouldUnregister, label, fromGroupProps, ...props }: IInputNumberControlProps) => {
+const InputNumberControl = ({
+  name, rules, defaultValue, shouldUnregister, label, fromGroupProps, ...props
+}: IInputNumberControlProps) => {
   const { control } = useFormContext();
 
   return (

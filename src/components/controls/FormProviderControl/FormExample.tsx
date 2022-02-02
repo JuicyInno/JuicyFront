@@ -3,7 +3,7 @@ import { useWatch } from 'react-hook-form';
 
 import FormProviderControl from '.';
 import { Button } from '../../..';
-import { IOption } from '../../../types';
+import { IFileData, IOption } from '../../../types';
 import CommentTileControl from '../CommentTileControl';
 import DatepickerControl from '../DatepickerControl';
 import InputControl from '../InputControl';
@@ -11,7 +11,7 @@ import InputNumberControl from '../InputNumberControl';
 import SelectControl from '../SelectControl';
 import { IFormProviderControlProps } from './FormProviderControl';
 
-const RATE_OPTIONS: IOption[] = [
+export const RATE_OPTIONS: IOption[] = [
   {
     value: '3',
     label: '3 месяца'
@@ -30,12 +30,30 @@ const RATE_OPTIONS: IOption[] = [
   },
 ];
 
-const FormExample = (props: Omit<IFormProviderControlProps, 'children'>) => {
+export type IFormExampleData = {
+  'email': string;
+  'firstName': string;
+  'lastName': string;
+  'year': number | string;
+  'date-birth': Date | string | number;
+  'rate': IOption[];
+  'password': string;
+  'password-confirm': string;
+  'comment': { debounceString: string, attachedFiles: IFileData[] };
+}
+
+export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
+  withReset?: boolean;
+}
+
+const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
   const password = useRef({});
   password.current = useWatch({
     control: props.formMethods.control,
     name: 'password'
   });
+
+  const onReset = () => props.formMethods.reset();
 
   return <FormProviderControl {...props}>
     <div style={{ marginBottom: '20px' }}>
@@ -125,7 +143,14 @@ const FormExample = (props: Omit<IFormProviderControlProps, 'children'>) => {
       <CommentTileControl name='comment' />
     </div>
 
-    <Button type='submit'>Отправить</Button>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between'
+    }}>
+      <Button onClick={onReset} buttonType='light'>Очистить</Button>
+      <Button type='submit'>Отправить</Button>
+
+    </div>
   </FormProviderControl>;
 };
 
