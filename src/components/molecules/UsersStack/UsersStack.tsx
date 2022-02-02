@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './UsersStack.scss';
 import { IUser } from '../../../types/projects.types';
-import { Avatar } from '../../../index';
+import Avatar from '../../atoms/Avatar';
 import { Size } from '../../../types';
 
 export interface IUsersStackProps {

@@ -4,11 +4,9 @@ import React, {
 import './PageWithSections.scss';
 import { IPageSection } from '../../../types/projects.types';
 import { IButtonGroup, ITab } from '../../../types';
-import {
-  ButtonGroup,
-  Preloader, Tabs
-} from '../../../index';
-
+import ButtonGroup from '../../molecules/ButtonGroup';
+import Preloader from '../../atoms/Preloader';
+import Tabs from '../../atoms/Tabs';
 import { ChevronLeft } from '../../../indexIcon';
 
 import { Link } from 'react-router-dom';

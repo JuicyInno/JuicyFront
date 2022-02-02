@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Chip, Preloader } from '../../..';
+import Chip from '../../atoms/Chip';
+import Preloader from '../../atoms/Preloader';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import { downloadWithLoading } from '../../../utils/download';

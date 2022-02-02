@@ -12,9 +12,13 @@ import Axios, {
   AxiosResponse, AxiosStatic, Canceler
 } from 'axios';
 import { IUser } from '../../../types/projects.types';
-import {
-  Avatar, Button, Preloader, Search, Tabs, Tooltip
-} from '../../../index'; import { Info, } from '../../../indexIcon';
+import Button from '../../atoms/Button';
+import Avatar from '../../atoms/Avatar';
+import Preloader from '../../atoms/Preloader';
+import Search from '../../atoms/Search';
+import Tabs from '../../atoms/Tabs';
+import Tooltip from '../../atoms/Tooltip';
+import { Info } from '../../../indexIcon';
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';

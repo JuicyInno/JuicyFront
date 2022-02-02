@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import './PopupMaker.scss';
 import { BehaviorSubject } from 'rxjs';
-import { Modal } from '../../../index';
+import Modal from '../../atoms/Modal';
 import { IModalProps } from '../../atoms/Modal/Modal';
 
 

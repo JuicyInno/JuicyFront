@@ -2,7 +2,8 @@ import React, {
   ReactNode, useEffect, useMemo, useRef, useState
 } from 'react';
 import './PageWithList.scss';
-import { Preloader } from '../../../index';
+import Preloader from '../../atoms/Preloader';
+
 import { classnames } from '../../../utils/classnames';
 
 export interface IPageWithListProps {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Confirm.scss';
-import { Button, FormGroup } from '../../../index';
+import Button from '../../atoms/Button';
+import FormGroup from '../../atoms/FormGroup';
 import Textarea, { ITextareaProps } from '../../atoms/Textarea';
 
 export interface IConfirmProps extends Omit<ITextareaProps, 'defaultValue' | 'onDebounce' | 'onClear'> {

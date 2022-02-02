@@ -2,9 +2,12 @@ import './FindEntitiesPosition.scss';
 
 import React, { FC, useState } from 'react';
 
-import {
-  Avatar, Checkbox, Structure, Toast, Tooltip
-} from '../../../index';
+import Checkbox from '../../atoms/Checkbox';
+import Avatar from '../../atoms/Avatar';
+import Structure from '../../molecules/Structure';
+import Toast from '../../atoms/Toast';
+import Tooltip from '../../atoms/Tooltip';
+
 import { Copy, Info } from '../../../indexIcon';
 
 import InvestmentProducts from '../../../assets/icons/24px/Specific/InvestmentProducts';
