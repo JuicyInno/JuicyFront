@@ -18,6 +18,7 @@
   &__heading {
     @include h5();
     color: var(--text-primary);
+    text-align: center;
 
     &:not(:last-child) {
       margin-bottom: 8px;
@@ -27,6 +28,7 @@
   &__subheading {
     @include text-m-16();
     color: var(--text-secondary);
+    text-align: center;
 
     &:not(:last-child) {
       margin-bottom: 20px;
