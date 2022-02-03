@@ -157,6 +157,10 @@
   padding-left: 16px;
   padding-right: 48px;
   text-overflow: ellipsis;
+
+  &:read-only {
+    cursor: pointer;
+  }
 }
 
 .rf-select__list {
