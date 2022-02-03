@@ -10,7 +10,7 @@ export interface IFormGroup {
   /** Имя */
   labelSecondary?: React.ReactNode;
   /** Сообщение об ошибке */
-  errorMessage?: string;
+  errorMessage?: React.ReactNode;
   /** Красная подсветка нижнего лейбла*/
   invalid?: boolean;
   /** disabled состояние верхнего лейбла */
