@@ -42,6 +42,10 @@ export const DefaultValuesForm: Story = () => {
       'password': 'password',
       'password-confirm': 'password',
       'comment': { debounceString: 'comment' },
+      'text': 'comment',
+      'vertical-group': '1',
+      'vertical-name': '2',
+      'privacy': true
     }
   });
 
