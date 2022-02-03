@@ -184,6 +184,9 @@ import { useLocation } from './hooks/useLocation';
 import { useUndo } from './hooks/useUndo';
 import useTableOfContents from './hooks/useTableOfContents';
 import useUpdateEffect from './hooks/useUpdateEffect';
+import { useLatest } from './hooks/useLatest';
+import { useDebounce } from './hooks/useDebounce';
+
 import {
   numberWithSpaces, addLeadingZeros, LocalToUTC, UTCToLocal, formatDate, oDataTransform, today
 } from './utils/helpers';
@@ -194,6 +197,9 @@ export {
   useUndo,
   useTableOfContents,
   useUpdateEffect,
+  useLatest,
+  useDebounce,
+
   numberWithSpaces,
   openPopup,
   addLeadingZeros,

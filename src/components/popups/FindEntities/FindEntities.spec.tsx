@@ -89,7 +89,7 @@ describe('Test <FindEntities/> component',  () => {
   it('should render empty state', async () => {
     act(() => {
       const input = screen.getByPlaceholderText('Поиск');
-      fireEvent.keyUp(input, {target: {value: '1234'}});
+      fireEvent.change(input, {target: { value: '1234' }});
     });
 
     await waitForComponentToLoadData();
@@ -101,7 +101,7 @@ describe('Test <FindEntities/> component',  () => {
 
     act(() => {
       const input = screen.getByPlaceholderText('Поиск');
-      fireEvent.keyUp(input, { target: { value: 'Начальник' } });
+      fireEvent.change(input, { target: { value: 'Начальник' } });
     });
 
     await waitForComponentToLoadData();

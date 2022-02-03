@@ -3,11 +3,10 @@ import React, {
 } from 'react';
 import './Input.scss';
 
-import { fromEvent, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { Close } from '../../../indexIcon';
 import { IDebounceResult } from '../../../types/projects.types';
+import { useDebounce } from '../../../hooks/useDebounce';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'ref'> {
   /** Возможность очистки поля по клику */
@@ -91,32 +90,11 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
 
   // ------------------------------------------------------------------------------------------------------------------
 
-  useEffect(() => {
-    /** Подписываемся на ввод текста */
-    let sub: Subscription;
-
-    if (inputRef.current) {
-      sub = fromEvent(inputRef.current, 'keyup')
-        .pipe(
-          debounceTime(debounce),
-          distinctUntilChanged()
-        )
-        .subscribe((e: Event) => {
-          const debounceString = (e.target as HTMLInputElement).value;
-
-          if (onDebounce) {
-            onDebounce({
-              event: e,
-              debounceString
-            });
-          }
-        });
+  useDebounce(internalValue, debounce, (v) => {
+    if (onDebounce) {
+      onDebounce({ debounceString: v.toString() });
     }
-
-    return () => {
-      sub && sub.unsubscribe();
-    };
-  }, [debounce, onDebounce]);
+  });
 
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */

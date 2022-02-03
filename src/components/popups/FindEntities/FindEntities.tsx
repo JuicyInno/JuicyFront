@@ -70,7 +70,7 @@ export interface IFindEntitiesProps<T extends Record<string, any>> {
   pattern?: string;
 }
 
-export const FindEntities = <T,>({
+export const FindEntities = <T, >({
   onClose,
   value = [],
   onChange,
