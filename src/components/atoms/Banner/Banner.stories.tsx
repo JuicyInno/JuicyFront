@@ -74,3 +74,10 @@ export const Demo: Story = ({ icon, ...args }) => {
     </StoryDocs>
   );
 };
+
+Demo.parameters = {
+  design: {
+    type: 'figma',
+    url: 'https://www.figma.com/file/Tl0AmqQJK4qaCl4pLRio7A/Ui-Home-for-Story-Book?node-id=3010%3A41467',
+  },
+};
