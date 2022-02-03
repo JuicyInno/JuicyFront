@@ -1,6 +1,6 @@
 const qs = require('qs')
 
-module.exports = function(source) {
+module.exports = function (source) {
   // @ts-ignore
   const resourceQuery = qs.parse(this.resource.split('?')[1])
   if (resourceQuery.scopeId) {
@@ -14,7 +14,7 @@ module.exports = function(source) {
         continue;
       }
 
-      if (isClassName && (tmp[i] === '{' || tmp[i] === '[' || tmp[i] === ':' || tmp[i] === ' ' || tmp[i] === '.')) {
+      if (isClassName && (tmp[i] === '{' || tmp[i] === '[' || tmp[i] === ':' || tmp[i] === ' ' || tmp[i] === '.' || tmp[i] === '#')) {
         i = i - 1;
         tmp[i] = tmp[i] + '__' + resourceQuery.scopeId;
         isClassName = false;
@@ -26,3 +26,4 @@ module.exports = function(source) {
   }
   return source
 }
+
