@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 import './ContentExpander.scss';
 import Angle from '../../../assets/icons/ChevronDown';
-import { Button } from '../../../index';
+import Button from '../../atoms/Button';
+
 
 export interface IContentExpanderProps {
   /** Заголовок */

@@ -8,7 +8,7 @@ import Textarea, { ITextareaProps } from '../../atoms/Textarea';
 import { IDebounceCommentResult, IRequestAttachment } from '../../../types/projects.types';
 
 import './CommentTile.scss';
-import { InputFile } from '../../../index';
+import InputFile from '../../atoms/InputFile';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 

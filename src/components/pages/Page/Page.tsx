@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react';
 import './Page.scss';
 import { Link } from 'react-router-dom';
 import { ITab } from '../../../types';
-import { Preloader, Tabs } from '../../../index';
+import Preloader from '../../atoms/Preloader';
+import Tabs from '../../atoms/Tabs';
 import { ChevronLeft } from '../../../indexIcon';
 
 

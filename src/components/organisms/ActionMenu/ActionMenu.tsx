@@ -3,9 +3,10 @@ import './ActionMenu.scss';
 import ChevronDown from '../../../assets/icons/ChevronDown';
 import { IOption } from '../../../types';
 import { IActionMenuListConfig } from '../../../types/projects.types';
-import {
-  Button, Input, Menu, Select
-} from '../../../index';
+import Button from '../../atoms/Button';
+import Input from '../../atoms/Input';
+import Menu from '../../atoms/Menu';
+import Select from '../../atoms/Select';
 
 interface IActionMenuProps {
   type?: 'default' | 'list' | 'action';

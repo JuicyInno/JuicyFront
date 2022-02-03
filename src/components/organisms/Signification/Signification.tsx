@@ -4,9 +4,16 @@ import React, {
 
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
-import {
-  Button, CertReader, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile, Attachment
-} from '../../../index';
+import Button from '../../atoms/Button';
+import CertReader from '../../molecules/CertReader';
+import Confirm from '../../popups/Confirm';
+import { download } from '../../../utils/download';
+import Hint from '../../atoms/Hint';
+import InputFile from '../../atoms/InputFile';
+import Modal from '../../atoms/Modal';
+import PDFViewer from '../../molecules/PDFViewer';
+import Tile from '../../atoms/Tile';
+import Attachment from '../../molecules/Attachment';
 
 import {
   CircleConfirm, CircleReject, Close

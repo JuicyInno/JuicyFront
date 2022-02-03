@@ -1,7 +1,7 @@
 import React from 'react';
 import './Banner.scss';
 
-import { Button } from '../../..';
+import Button from '../Button';
 
 export interface IBannerProps {
   /** Иконка/иллюстрация */

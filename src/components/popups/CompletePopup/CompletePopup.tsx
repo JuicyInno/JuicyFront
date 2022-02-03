@@ -1,7 +1,6 @@
 import React, { ReactNode, ReactElement } from 'react';
 import './CompletePopup.scss';
-import { Button } from '../../../index';
-
+import Button from '../../atoms/Button';
 import {
   CircleReject, CircleConfirm, CircleReturn, CircleRefresh, CircleTrash
 } from '../../../indexIcon';

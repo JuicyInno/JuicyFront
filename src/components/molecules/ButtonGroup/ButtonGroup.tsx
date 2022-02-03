@@ -1,8 +1,8 @@
 import React, { ReactNode, useCallback } from 'react';
 import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
-import { Button, Preloader } from '../../../index';
-
+import Preloader from '../../atoms/Preloader';
+import Button from '../../atoms/Button';
 import { ChevronLeft, KebabMenu } from '../../../indexIcon';
 import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';

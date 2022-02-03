@@ -4,9 +4,11 @@ import React, {
   ReactNode, Fragment, useEffect, useRef, useState, useCallback
 } from 'react';
 
-import {
-  Button, Modal, Preloader, Search, Tabs
-} from '../../../index';
+import Button from '../../atoms/Button';
+import Modal from '../../atoms/Modal';
+import Preloader from '../../atoms/Preloader';
+import Search from '../../atoms/Search';
+import Tabs from '../../atoms/Tabs';
 import { IOption } from '../../../types';
 import { IDebounceResult } from '../../../types/projects.types';
 import InfiniteScroll from 'react-infinite-scroll-component';

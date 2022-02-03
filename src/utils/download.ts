@@ -1,5 +1,5 @@
 import { IRequestAttachment } from '../types/projects.types';
-import { sendNotification } from '../index';
+import { sendNotification } from '../components/molecules/Notifications';
 import { IFileData } from '../types';
 
 const defaultID = '00000000-0000-0000-0000-000000000000';

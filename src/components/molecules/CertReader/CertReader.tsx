@@ -4,7 +4,7 @@ import React, {
 import './CertReader.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import Menu, { IListProps } from '../../atoms/Menu';
-import { Button } from '../../../index';
+import Button from '../../atoms/Button';
 import { IListElement } from '../../../types';
 import {
   Certificate, createSignature, getUserCertificates

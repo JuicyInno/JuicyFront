@@ -10,7 +10,7 @@ import PDFJSWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import DownloadIcon from '../../../assets/icons/Download';
 import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
-import { Button } from '../../../index';
+import Button from '../../atoms/Button';
 import { Page, Document } from 'react-pdf';
 // @ts-ignore
 import { PDFPageProxy } from 'pdfjs-dist';

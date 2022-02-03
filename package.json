@@ -62,6 +62,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-react-scoped-css": "^1.1.1",
     "chromatic": "^5.10.2",
+    "circular-dependency-plugin": "^5.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cp-cli": "^2.0.0",
     "css-vars-ponyfill": "^2.4.5",
