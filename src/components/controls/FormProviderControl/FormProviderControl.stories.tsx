@@ -46,7 +46,8 @@ export const DefaultValuesForm: Story = () => {
       'vertical-group': '1',
       'vertical-name': '2',
       'privacy': true,
-      'phone': '+712312345'
+      'phone': '+712312345',
+      'rates': 4
     }
   });
 

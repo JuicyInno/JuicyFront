@@ -15,6 +15,7 @@ import RadioControl from '../RadioControl';
 import TextareaControl from '../TextareaControl';
 import InputFileControl from '../InputFileControl';
 import InputPhoneControl from '../InputPhoneControl';
+import RatepickerControl from '../RatepickerControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -50,6 +51,7 @@ export type IFormExampleData = {
   'vertical-name': string;
   'privacy': boolean;
   'phone': string;
+  'rates': number;
 }
 
 export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
@@ -157,6 +159,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       columnGap: '20px',
       marginBottom: '20px'
     }}>
+      <RatepickerControl label='Рейтинг' name='rates' isStarPicker />
       <TextareaControl name='text' label='Оставьте комментарий' rules={{ required: 'Обязательное поле' }} />
       <InputFileControl name='file' rules={{ required: 'Обязательное поле' }} placeholder='Прикрепить файл' />
     </div>

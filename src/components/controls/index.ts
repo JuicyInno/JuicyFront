@@ -10,4 +10,5 @@ export * from './InputFileControl';
 export * from './TextareaControl';
 export * from './RadioControl';
 export * from './InputPhoneControl';
+export * from './RatepickerControl';
 export * from './types';
