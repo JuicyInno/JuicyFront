@@ -9,56 +9,42 @@ import {
 
 import { Banner, BannerImage } from '.';
 
-import BrokenMagnifier from '../../../assets/illustrations/broken-magnifier.png';
-import CloseEntrance from '../../../assets/illustrations/close-entrance.png';
-import Default from '../../../assets/illustrations/default.png';
-import Donut from '../../../assets/illustrations/donut.png';
-import Donut2 from '../../../assets/illustrations/donut-2.png';
-import Empty from '../../../assets/illustrations/empty.png';
-import Ghost from '../../../assets/illustrations/ghost.png';
-import MagnifierFolder from '../../../assets/illustrations/magnifier-folder.png';
-import MagnifierNotAvailable from '../../../assets/illustrations/magnifier-not-available.png';
-import MagnifierZero from '../../../assets/illustrations/magnifier-zero.png';
-import NotAvailable from '../../../assets/illustrations/not-available.png';
-import Notifications from '../../../assets/illustrations/notifications.png';
-import Settings from '../../../assets/illustrations/settings.png';
-import Work from '../../../assets/illustrations/work.png';
-
-const ICONS = {
-  BrokenMagnifier,
-  CloseEntrance,
-  Default,
-  Donut,
-  Donut2,
-  Empty,
-  Ghost,
-  MagnifierFolder,
-  MagnifierNotAvailable,
-  MagnifierZero,
-  NotAvailable,
-  Notifications,
-  Settings,
-  Work
-};
 
 export default {
   title: 'components/withTest/Banner',
   component: Banner,
   decorators: [withDesign],
   argTypes: {
-    icon: {
-      options: Object.keys(ICONS),
+    variant: {
+      name: 'BannerImage.variant',
+      options: [
+        'broken-magnifier',
+        'close-entrance',
+        'default',
+        'donut',
+        'donut-2',
+        'empty',
+        'ghost',
+        'magnifier-folder',
+        'magnifier-not-available',
+        'magnifier-zero',
+        'not-available',
+        'notifications',
+        'settings',
+        'work'
+      ],
       control: { type: 'select' },
-      defaultValue: 'Default'
+      defaultValue: 'default'
     },
     heading: { defaultValue: 'Заголовок' },
     subheading: { defaultValue: 'Описание' },
     primaryText: { defaultValue: 'Button 40' },
-    secondaryText: { defaultValue: 'Button 40' }
+    secondaryText: { defaultValue: 'Button 40' },
+    icon: { control: false }
   }
 };
 
-export const Demo: Story = ({ icon, ...args }) => {
+export const Demo: Story = ({ variant, ...args }) => {
   return (
     <StoryDocs>
       <StoryDocsH1>Banner</StoryDocsH1>
@@ -69,7 +55,7 @@ export const Demo: Story = ({ icon, ...args }) => {
         display: 'flex',
         justifyContent: 'flex-start'
       }}>
-        <Banner {...args} icon={<BannerImage src={ICONS[icon]} />}/>
+        <Banner {...args} icon={<BannerImage variant={variant} />}/>
       </div>
     </StoryDocs>
   );
