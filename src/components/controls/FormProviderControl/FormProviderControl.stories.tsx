@@ -45,7 +45,8 @@ export const DefaultValuesForm: Story = () => {
       'text': 'comment',
       'vertical-group': '1',
       'vertical-name': '2',
-      'privacy': true
+      'privacy': true,
+      'phone': '+712312345'
     }
   });
 

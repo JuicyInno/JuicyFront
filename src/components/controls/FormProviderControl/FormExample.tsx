@@ -13,6 +13,8 @@ import CheckboxControl from '../CheckboxControl';
 import { IFormProviderControlProps } from './FormProviderControl';
 import RadioControl from '../RadioControl';
 import TextareaControl from '../TextareaControl';
+import InputFileControl from '../InputFileControl';
+import InputPhoneControl from '../InputPhoneControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -33,7 +35,6 @@ export const RATE_OPTIONS: IOption[] = [
   },
 ];
 
-// TOOD: добавить
 export type IFormExampleData = {
   'email': string;
   'firstName': string;
@@ -48,6 +49,7 @@ export type IFormExampleData = {
   'vertical-group': string;
   'vertical-name': string;
   'privacy': boolean;
+  'phone': string;
 }
 
 export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
@@ -64,7 +66,11 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
   const onReset = () => props.formMethods.reset();
 
   return <FormProviderControl {...props}>
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{
+      display: 'flex',
+      columnGap: '20px',
+      marginBottom: '20px'
+    }}>
       <InputControl
         label='Email'
         name='email'
@@ -76,6 +82,8 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
           }
         }}
       />
+
+      <InputPhoneControl label='Телефон' name='phone' rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{
@@ -145,10 +153,12 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
 
     <div style={{
       display: 'flex',
+      flexDirection: 'column',
       columnGap: '20px',
       marginBottom: '20px'
     }}>
       <TextareaControl name='text' label='Оставьте комментарий' rules={{ required: 'Обязательное поле' }} />
+      <InputFileControl name='file' rules={{ required: 'Обязательное поле' }} placeholder='Прикрепить файл' />
     </div>
 
     <div style={{

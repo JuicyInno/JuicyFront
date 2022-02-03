@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, {
+  useEffect, useState, useMemo, useRef
+} from 'react';
 import './InputPhone.scss';
 import InputMask from 'react-input-mask';
 
