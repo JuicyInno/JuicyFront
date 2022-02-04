@@ -8,7 +8,7 @@ import {
 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import { Microphone } from '../../../indexIcon';
+import { AllMicrophone } from '../../../indexNewIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 
 export default {
@@ -55,7 +55,7 @@ export const Demo = () => {
     <StoryDocs>
       <StoryDocsH1>Search</StoryDocsH1>
       <div style={frameStyle}>
-        <Search endAdornment={<Microphone />} />
+        <Search endAdornment={<AllMicrophone />} />
         <Search value='Приве' onChange={onChange} onDebounce={onDebounce} onClear={onClear} />
         <Search onClear={onClear} />
         <StoryDocsH3>Search expandable</StoryDocsH3>

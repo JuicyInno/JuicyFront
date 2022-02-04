@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
-import { Microphone } from '../../../indexIcon';
+import { AllMicrophone } from '../../../indexNewIcon';
 import Search from './Search';
 import { IDebounceResult } from '../../../types/projects.types';
 import { byTestId } from 'testing-library-selector';
@@ -27,7 +27,7 @@ describe('Test <Search/> component', () => {
   });
 
   it('should render component with endAdornment ', () => {
-    const { container } = render(<Search endAdornment={<Microphone className="test-classname" />} />);
+    const { container } = render(<Search endAdornment={<AllMicrophone className="test-classname" />} />);
 
     expect(container.getElementsByClassName('test-classname')).toHaveLength(1);
   });

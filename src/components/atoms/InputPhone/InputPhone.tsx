@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, {
+  useEffect, useState, useMemo, useRef
+} from 'react';
 import './InputPhone.scss';
 import InputMask from 'react-input-mask';
 
 import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
 import { IMenuContext } from '../../../types';
-import ChevronDown from '../../../assets/icons/ChevronDown';
-import FlagRU from '../../../assets/icons/FlagRU';
+import { ArrowsChevronDown } from '../../../indexNewIcon';
+import FlagRU from './FlagRU';
 import { classnames } from '../../../utils/classnames';
 
 export interface IInputPhoneCountry {
@@ -194,7 +196,7 @@ const InputPhone: React.FC<IInputPhoneProps> = ({
                           disabled={disabled}
                           aria-label='Выбрать страну'
                         >
-                          <ChevronDown />
+                          <ArrowsChevronDown />
                         </button>
                       );
                     }}

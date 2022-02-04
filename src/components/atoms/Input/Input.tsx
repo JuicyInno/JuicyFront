@@ -4,7 +4,7 @@ import React, {
 import './Input.scss';
 
 
-import { Close } from '../../../indexIcon';
+import { AllClose } from '../../../indexNewIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 import { useDebounce } from '../../../hooks/useDebounce';
 
@@ -107,7 +107,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   /** Кнопка поиска и сброса */
   const closeButton = onClear && internalValue.length > 0 && (
     <button type='button' className='rf-input__action' onClick={clearInput} aria-label='Сбросить'>
-      <Close />
+      <AllClose />
     </button>
   );
 

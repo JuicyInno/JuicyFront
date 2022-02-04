@@ -3,7 +3,7 @@ import { Story } from '@storybook/react';
 
 import Chip from './Chip';
 import StoryItem from '../../storybook/StoryItem';
-import { Download } from '../../../indexIcon';
+import { AllDownload } from '../../../indexNewIcon';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
@@ -66,16 +66,16 @@ export const Demo = () => {
 
           <div style={frameStyle}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='m' icon={<Download />} iconPosition='left' onClick={onClick}>Size 40</Chip>
+              <Chip type='secondary' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
             </div>
             <div style={elementStyle}>
-              <Chip type='outline' size='m' icon={<Download />} iconPosition='left' onClick={onClick}>Size 40</Chip>
+              <Chip type='outline' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
             </div>
             <div style={{
               ...elementStyle,
               marginBottom: 0
             }}>
-              <Chip type='primary' size='m' icon={<Download />} iconPosition='left' onClick={onClick}>Size 40</Chip>
+              <Chip type='primary' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
             </div>
           </div>
 
@@ -114,16 +114,16 @@ export const Demo = () => {
           </div>
           <div style={frameStyle}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size 32</Chip>
+              <Chip type='secondary' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
             </div>
             <div style={elementStyle}>
-              <Chip type='outline' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size 32</Chip>
+              <Chip type='outline' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
             </div>
             <div style={{
               ...elementStyle,
               marginBottom: 0
             }}>
-              <Chip type='primary' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size 32</Chip>
+              <Chip type='primary' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
             </div>
           </div>
 
@@ -162,16 +162,16 @@ export const Demo = () => {
           </div>
           <div style={frameStyle}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+              <Chip type='secondary' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
             </div>
             <div style={elementStyle}>
-              <Chip type='outline' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+              <Chip type='outline' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
             </div>
             <div style={{
               ...elementStyle,
               marginBottom: 0
             }}>
-              <Chip type='primary' size='xs' icon={<Download />} iconPosition='left' onClick={onClick}>Size 24</Chip>
+              <Chip type='primary' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
             </div>
           </div>
 
@@ -214,7 +214,7 @@ export const Playground: Story = (args) => {
       <StoryRow>
         <ControlGroup>
           <Chip {...args}>Chip</Chip>
-          <Chip iconPosition='left' {...args} icon={<Download />} >Chip wit icon</Chip>
+          <Chip iconPosition='left' {...args} icon={<AllDownload />} >Chip wit icon</Chip>
         </ControlGroup>
       </StoryRow>
     </StoryContainer>

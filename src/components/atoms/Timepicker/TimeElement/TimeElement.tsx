@@ -1,9 +1,11 @@
-import React, { FC, useContext, useEffect, useMemo, useState, useCallback } from 'react';
+import React, {
+  FC, useContext, useEffect, useMemo, useState, useCallback
+} from 'react';
 import './TimeElement.scss';
 import { arrayTimeHours, arrayTimeMinutes } from './timeData';
 import { MenuContext } from '../../Menu/Menu';
 import { classnames } from '../../../../utils/classnames';
-import ChevronLeft from '../../../../assets/icons/ChevronLeft';
+import { ArrowsChevronLeft } from '../../../../indexNewIcon';
 
 export interface ITimepickerProps {
   /** Выбрать часы/время */
@@ -80,7 +82,12 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
 
       return cur >= minStr && cur <= maxStr;
     },
-    [minH, maxH, min, max]
+    [
+      minH,
+      maxH,
+      min,
+      max
+    ]
   );
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -160,7 +167,7 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
           <div className={'rf-time-element__column'}>
             <div className='rf-time-element__header-container'>
               <button className='rf-time-element__name rf-time-element__btn' onClick={() => setTranslate(false)}>
-                <ChevronLeft /> <span>Выберите минуты</span>
+                <ArrowsChevronLeft /> <span>Выберите минуты</span>
               </button>
             </div>
             {itemsMinutes}

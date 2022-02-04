@@ -9,7 +9,7 @@ import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
 import { today } from '../../../index';
 import Chip from '../Chip';
-import { Calendar } from '../../../indexIcon';
+import { AllCalendar } from '../../../indexNewIcon';
 
 export default {
   title: 'forms/withTest/Datepicker',
@@ -61,7 +61,7 @@ export const Demo = () => {
         <StoryRow>
 
           <Datepicker defaultValue={Date.now()} position='top-start'>
-            <Chip onClick={() => { }} isBubble icon={<Calendar />} iconPosition={'left'} type='secondary' size='s'>
+            <Chip onClick={() => { }} isBubble icon={<AllCalendar />} iconPosition={'left'} type='secondary' size='s'>
               Выбрать дату
             </Chip>
           </Datepicker>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ITab } from '../../../types';
 import Preloader from '../../atoms/Preloader';
 import Tabs from '../../atoms/Tabs';
-import { ChevronLeft } from '../../../indexIcon';
+import { ArrowsChevronLeft } from '../../../indexNewIcon';
 
 
 export interface IPageProps {
@@ -43,7 +43,7 @@ const Page: React.FC<IPageProps> = ({
       <header className='rf-page__header'>
         <div className='rf-page__header-wrapper'>
           {backUrl && <Link to={backUrl} onClick={onBackClick} className='rf-page__header-back'>
-            <ChevronLeft />
+            <ArrowsChevronLeft />
           </Link>}
           <h2 className='rf-page__title'>{title}</h2>
         </div>

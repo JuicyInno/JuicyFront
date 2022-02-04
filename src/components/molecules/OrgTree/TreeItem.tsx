@@ -8,7 +8,8 @@ import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
 import HLine from './lines/hline';
 import { Preloader } from '../../../index';
-import { Circle, Up } from '../../../indexIcon';
+import { ArrowsUp } from '../../../indexNewIcon';
+import Circle from './Circle';
 import Checkbox from '../../atoms/Checkbox';
 import { classnames } from '../../../utils/classnames';
 
@@ -140,7 +141,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
         <HLine className='rf-tree__item--h' data-id={ `d-${depth}` }/>
         {
           (item.hasChildren === undefined ? (item.children && item.children.length > 0) : item.hasChildren) ?
-            <Up className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
+            <ArrowsUp className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
         <label className={classnames('rf-tree__item-label-text', (onCheck || onChange) && 'rf-tree__item-label-text--clickable')}>

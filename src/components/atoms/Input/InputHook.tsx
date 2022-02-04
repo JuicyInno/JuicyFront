@@ -6,7 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
-import { Close } from '../../../indexIcon';
+import { AllClose } from '../../../indexNewIcon';
 
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
@@ -89,7 +89,7 @@ const Input = React.forwardRef((props: IInputProps, ref: React.Ref<HTMLInputElem
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
     <button type='button' className='rf-input__action' onClick={ clearInput }>
-      <Close/>
+      <AllClose />
     </button>
   );
 

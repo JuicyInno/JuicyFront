@@ -1,7 +1,6 @@
 import React, { HTMLProps, useState } from 'react';
 import './Pagination.scss';
-import ChevronLeft from '../../../assets/icons/ChevronLeft';
-import ChevronRight from '../../../assets/icons/ChevronRight';
+import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexNewIcon';
 import { classnames } from '../../../utils/classnames';
 import Input from '../Input';
 import { IDebounceResult } from '../../../types/projects.types';
@@ -175,7 +174,7 @@ const Pagination: React.FC<IPaginationProps> = ({
           currentPage === FIRST_PAGE_LABEL && 'rf-pagination__chevron-wrapper--disabled'
         )}
         onClick={handleClickByLeftChevron} >
-        <ChevronLeft />
+        <ArrowsChevronLeft />
       </div>}
       {count <= PAGES_WITHOUT_DOTS ?
         Array.from({ length: count }, (item, index: number) => getPageLabel(index + 1)) :
@@ -195,7 +194,7 @@ const Pagination: React.FC<IPaginationProps> = ({
         )}
         onClick={handleClickByRightChevron}
       >
-        <ChevronRight />
+        <ArrowsChevronRight />
       </div>}
       {count > PAGES_WITHOUT_NUMBER_SELECT &&
         <Input className={'rf-pagination__input'} placeholder='№ страницы' onDebounce={handleInsertPage} />

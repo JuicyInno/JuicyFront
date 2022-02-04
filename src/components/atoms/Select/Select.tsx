@@ -7,7 +7,7 @@ import './Select.scss';
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
 
-import { ChevronDown, Close } from '../../../indexIcon';
+import { ArrowsChevronDown, AllClose } from '../../../indexNewIcon';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
@@ -380,7 +380,7 @@ const Select: FC<ISelectProps> = ({
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
     <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onClear}>
-      <Close />
+      <AllClose />
     </button>
   );
 
@@ -397,7 +397,7 @@ const Select: FC<ISelectProps> = ({
         className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
         onClick={onChevronClick}
       >
-        <ChevronDown />
+        <ArrowsChevronDown />
       </button>
     );
 

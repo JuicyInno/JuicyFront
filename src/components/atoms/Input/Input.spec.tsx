@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input from './Input';
-import { ChevronDown } from '../../../indexIcon';
+import { ArrowsChevronDown } from '../../../indexNewIcon';
 
 describe('Test <Input/> component', () => {
   it('should work as uncontrolled component', () => {
@@ -37,19 +37,19 @@ describe('Test <Input/> component', () => {
   });
 
   it('should be pass icon', () => {
-    const { container } = render(<Input icon={<ChevronDown />} />);
+    const { container } = render(<Input icon={<ArrowsChevronDown />} />);
 
     expect(container.getElementsByClassName('rf-input__action')).toHaveLength(1);
   });
 
   it('should be pass startAdornment', () => {
-    const { container } = render(<Input startAdornment={<ChevronDown />} />);
+    const { container } = render(<Input startAdornment={<ArrowsChevronDown />} />);
 
     expect(container.getElementsByClassName('rf-input__adornment--start')).toHaveLength(1);
   });
 
   it('should be pass endAdornment', () => {
-    const { container } = render(<Input endAdornment={<ChevronDown />} />);
+    const { container } = render(<Input endAdornment={<ArrowsChevronDown />} />);
 
     expect(container.getElementsByClassName('rf-input__adornment--end')).toHaveLength(1);
   });

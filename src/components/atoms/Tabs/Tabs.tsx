@@ -19,7 +19,7 @@ import { ITab, IMenuContext } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import Menu, { MenuContext } from '../Menu';
 import Button from '../Button';
-import { KebabMenu } from '../../../indexIcon';
+import { AllMenuHorizontal } from '../../../indexNewIcon';
 
 export interface ITabsProps {
   /** Список вкладок */
@@ -249,7 +249,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, ch
                 size='l'
                 data-testid='button-menu-group__more'
                 className='rf-tabs__menu__btn'
-                startAdornment={<KebabMenu />}
+                startAdornment={<AllMenuHorizontal />}
               />
             </Menu>
           )}

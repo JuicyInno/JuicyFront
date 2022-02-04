@@ -5,8 +5,7 @@ import './Schedule.scss';
 
 import Button from '../../atoms/Button';
 import CalendarPage, { ICalendarPageMark } from '../../atoms/CalendarPage';
-import ChevronLeft from '../../../assets/icons/ChevronLeft';
-import ChevronRight from '../../../assets/icons/ChevronRight';
+import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexNewIcon';
 
 export interface IScheduleProps {
   /** Отображаемый по умолчанию год. */
@@ -70,7 +69,7 @@ const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, mar
               round
               onClick={onPrevClick}
               aria-label='Назад'
-              startAdornment={<ChevronLeft className='rf-schedule__chevron' />}
+              startAdornment={<ArrowsChevronLeft className='rf-schedule__chevron' />}
             />
             <div className='rf-schedule__date'>
               {monthName} {year}
@@ -91,7 +90,7 @@ const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, mar
               round
               onClick={onNextClick}
               aria-label='Вперед'
-              startAdornment={<ChevronRight className='rf-schedule__chevron' />}
+              startAdornment={<ArrowsChevronRight className='rf-schedule__chevron' />}
             />
           </div>
           <CalendarPage year={nextYear} month={nextMonth} marks={marks} />

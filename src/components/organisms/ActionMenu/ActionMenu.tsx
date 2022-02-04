@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import './ActionMenu.scss';
-import ChevronDown from '../../../assets/icons/ChevronDown';
+import { ArrowsChevronDown } from '../../../indexNewIcon';
 import { IOption } from '../../../types';
 import { IActionMenuListConfig } from '../../../types/projects.types';
 import Button from '../../atoms/Button';
@@ -60,7 +60,7 @@ const ActionMenu: React.FC<IActionMenuProps> = ({
           <Menu list={ listConfig.actionList } position='top-end'>
             <Button>
               <div className='jf-action-menu__button-inner'>
-                { listConfig.actionLabel || 'Создать' } <ChevronDown className='jf-action-menu__list-button-icon'/>
+                { listConfig.actionLabel || 'Создать' } <ArrowsChevronDown className='jf-action-menu__list-button-icon'/>
               </div>
             </Button>
           </Menu>

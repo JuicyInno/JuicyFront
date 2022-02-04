@@ -1,6 +1,6 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react';
 import './Checkbox.scss';
-import { Success, Reduce } from '../../../indexIcon';
+import { AllSuccess, AllReduce } from '../../../indexNewIcon';
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Лейбл */
@@ -82,7 +82,7 @@ const Checkbox = forwardRef<HTMLLabelElement | null, ICheckboxProps>(({
 
       {!!icon && <span className={`rf-checkbox__check ${roundClass}`}>
         <span className='rf-checkbox__mark'>
-          {halfChecked ? <Reduce /> : <Success />}
+          {halfChecked ? <AllReduce /> : <AllSuccess />}
         </span>
       </span>}
 

@@ -7,7 +7,7 @@ import {
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
-import Placeholder16 from '../../../assets/icons/Placeholder16';
+import { AllIconPlace } from '../../../indexNewIcon';
 
 export default {
   title: 'controls/withTest/Tag',
@@ -179,10 +179,10 @@ export const Playground = (args: any) => {
         <Tag {...args}>Вариант</Tag>
       </StoryRow>
       <StoryRow>
-        <Tag {...args} icon={<Placeholder16 />} onRemove={undefined}>Вариант</Tag>
+        <Tag {...args} icon={<AllIconPlace size='xxs' />} onRemove={undefined}>Вариант</Tag>
       </StoryRow>
       <StoryRow>
-        <Tag {...args} icon={<Placeholder16 />}>Вариант</Tag>
+        <Tag {...args} icon={<AllIconPlace size='xxs' />}>Вариант</Tag>
       </StoryRow>
     </StoryContainer>
   );
