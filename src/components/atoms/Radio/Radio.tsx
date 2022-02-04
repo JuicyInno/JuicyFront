@@ -22,7 +22,6 @@ export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
    * @default true
    */
   fullWidth?: boolean;
-
 }
 
 const Radio: FC<IRadioProps> = ({

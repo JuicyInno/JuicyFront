@@ -7,7 +7,6 @@ import './RatePicker.scss';
 
 
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
-
   /**
    *  Величина диапазона
    * */
@@ -19,7 +18,6 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
    * @default true
    * */
   isActive?: boolean
-
   /** Текст контента диапазона*/
   textContent?: string,
   /**
@@ -142,10 +140,6 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
       }
     </div >;
   });
-
-  if (isReverse) {
-    rates.reverse();
-  }
 
   return (
     <div className={classnames('rate-picker', !isActive ? 'disabled' : '')}>

@@ -2,14 +2,22 @@ import React, { useRef } from 'react';
 import { useWatch } from 'react-hook-form';
 
 import FormProviderControl from '.';
-import { Button } from '../../..';
+import { Button, ControlGroup } from '../../..';
 import { IFileData, IOption } from '../../../types';
 import CommentTileControl from '../CommentTileControl';
 import DatepickerControl from '../DatepickerControl';
 import InputControl from '../InputControl';
 import InputNumberControl from '../InputNumberControl';
 import SelectControl from '../SelectControl';
+import CheckboxControl from '../CheckboxControl';
 import { IFormProviderControlProps } from './FormProviderControl';
+import RadioControl from '../RadioControl';
+import TextareaControl from '../TextareaControl';
+import InputFileControl from '../InputFileControl';
+import InputPhoneControl from '../InputPhoneControl';
+import RatepickerControl from '../RatepickerControl';
+import SwitchControl from '../SwitchControl';
+import TimepickerControl from '../TimepickerControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -40,6 +48,14 @@ export type IFormExampleData = {
   'password': string;
   'password-confirm': string;
   'comment': { debounceString: string, attachedFiles: IFileData[] };
+  'text': string;
+  'vertical-group': string;
+  'vertical-name': string;
+  'privacy': boolean;
+  'phone': string;
+  'rates': number;
+  'switch': boolean;
+  'time': number | string;
 }
 
 export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
@@ -56,7 +72,11 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
   const onReset = () => props.formMethods.reset();
 
   return <FormProviderControl {...props}>
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{
+      display: 'flex',
+      columnGap: '20px',
+      marginBottom: '20px'
+    }}>
       <InputControl
         label='Email'
         name='email'
@@ -68,6 +88,8 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
           }
         }}
       />
+
+      <InputPhoneControl label='Телефон' name='phone' rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{
@@ -108,6 +130,8 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         rules={{ required: 'Обязательное поле' }}
       />
 
+      <TimepickerControl label='Время' name='time' rules={{ required: 'Обязательное поле' }} />
+
       <SelectControl
         label='Период'
         name='rate'
@@ -137,6 +161,68 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
 
     <div style={{
       display: 'flex',
+      flexDirection: 'column',
+      columnGap: '20px',
+      marginBottom: '20px'
+    }}>
+      <RatepickerControl label='Рейтинг' name='rates' isStarPicker />
+      <TextareaControl name='text' label='Оставьте комментарий' rules={{ required: 'Обязательное поле' }} />
+      <InputFileControl name='file' rules={{ required: 'Обязательное поле' }} placeholder='Прикрепить файл' />
+    </div>
+
+    <div style={{
+      display: 'flex',
+      columnGap: '20px',
+      marginBottom: '20px'
+    }}>
+      <ControlGroup>
+        <RadioControl
+          name='vertical-group'
+          label='Город 1'
+          value='1'
+        />
+        <RadioControl
+          name='vertical-group'
+          label='Город 1'
+          value='2'
+        />
+        <RadioControl
+          name='vertical-group'
+          label='Город 3'
+          value='3'
+        />
+      </ControlGroup>
+
+      <ControlGroup>
+        <RadioControl
+          name='vertical-name'
+          label='Город 4'
+          value='1'
+        />
+        <RadioControl
+          name='vertical-name'
+          label='Город 6'
+          value='2'
+        />
+        <RadioControl
+          name='vertical-name'
+          label='Город 7'
+          value='3'
+        />
+      </ControlGroup>
+    </div>
+
+    <div style={{
+      display: 'flex',
+      columnGap: '20px',
+      marginBottom: '20px'
+    }}>
+      <CheckboxControl name='privacy' label='Соглашаюсь с правилами' rules={{ required: 'Обязательное поле' }} />
+      <SwitchControl name='switch' label='Переключить' rules={{ required: 'Обязательное поле' }} />
+    </div>
+
+    <div style={{
+      display: 'flex',
       columnGap: '20px',
       marginBottom: '20px'
     }}>
@@ -149,7 +235,6 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
     }}>
       <Button onClick={onReset} buttonType='light'>Очистить</Button>
       <Button type='submit'>Отправить</Button>
-
     </div>
   </FormProviderControl>;
 };
