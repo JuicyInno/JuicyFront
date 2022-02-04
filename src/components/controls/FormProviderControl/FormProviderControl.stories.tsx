@@ -47,7 +47,8 @@ export const DefaultValuesForm: Story = () => {
       'vertical-name': '2',
       'privacy': true,
       'phone': '+712312345',
-      'rates': 4
+      'rates': 4,
+      'switch': true
     }
   });
 

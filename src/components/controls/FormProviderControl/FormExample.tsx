@@ -16,6 +16,7 @@ import TextareaControl from '../TextareaControl';
 import InputFileControl from '../InputFileControl';
 import InputPhoneControl from '../InputPhoneControl';
 import RatepickerControl from '../RatepickerControl';
+import SwitchControl from '../SwitchControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -52,6 +53,7 @@ export type IFormExampleData = {
   'privacy': boolean;
   'phone': string;
   'rates': number;
+  'switch': boolean;
 }
 
 export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
@@ -212,6 +214,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       marginBottom: '20px'
     }}>
       <CheckboxControl name='privacy' label='Соглашаюсь с правилами' rules={{ required: 'Обязательное поле' }} />
+      <SwitchControl name='switch' label='Переключить' rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{
