@@ -3,7 +3,7 @@ import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
-import { Close } from '../../../indexIcon';
+import { AllClose } from '../../../indexNewIcon';
 
 export interface IChipProps {
   /** Текст */
@@ -84,7 +84,7 @@ const Chip: React.FC<IChipProps> = ({
         {overMaxLength ? children.slice(0, maxLength) + '...' : children}
         {onRemove && (
           <div className={classnames('rf-chip__right-icon', 'rf-chip__icon', disabled && 'rf-chip__not-clickable')} onClick={handleRemove}>
-            <Close />
+            <AllClose />
           </div>
         )}
         {icon && iconPosition && iconPosition === 'right' && <div className='rf-chip__right-icon rf-chip__icon'>{icon}</div>}

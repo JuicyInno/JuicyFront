@@ -8,8 +8,7 @@ import { IRequestAttachment, IRequestPath } from '../../../types/projects.types'
 
 import { onPathFilter } from './helpers';
 
-import ChevronDown from '../../../assets/icons/24px/Arrows/ChevronDown';
-import ChevronUp from '../../../assets/icons/24px/Arrows/ChevronUp';
+import { ArrowsChevronDown, ArrowsChevronUp } from '../../../indexNewIcon';
 
 import './History.scss';
 
@@ -83,7 +82,7 @@ const History: React.FC<IHistory> = ({
         <Button
           buttonType='light'
           onClick={handleExpansion}
-          startAdornment={expanded ? <ChevronUp /> : <ChevronDown />}
+          startAdornment={expanded ? <ArrowsChevronUp /> : <ArrowsChevronDown />}
         >
           {expanded ? 'Свернуть' : 'Смотреть всё'}
         </Button>

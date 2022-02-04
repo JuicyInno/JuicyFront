@@ -14,7 +14,7 @@ import Button from '../../atoms/Button';
 import { Page, Document } from 'react-pdf';
 // @ts-ignore
 import { PDFPageProxy } from 'pdfjs-dist';
-import Send from '../../../assets/icons/24px/Account/Send';
+import { AllSend } from '../../../indexNewIcon';
 
 
 export interface IProps {
@@ -91,7 +91,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
                 buttonType='white'
                 size='s'
                 onClick={onClickOpen}
-                endAdornment={<Send className='pdf-document__icon'/>}
+                endAdornment={<AllSend className='pdf-document__icon'/>}
               >
                 Просмотреть
               </Button>

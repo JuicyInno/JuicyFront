@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import AvatarStatus from '../../molecules/AvatarStatus';
-import InformationAlert from '../../../assets/icons/24px/Alerts/InformationAlert';
-import User from '../../../assets/icons/24px/Account/User';
+import { AllUser, InformationAlert } from '../../../indexNewIcon';
 
 import { statusValue } from '../../molecules/History/helpers';
 import { statusType } from './helpers';
@@ -80,7 +79,7 @@ const HistoryPathList: ({ path, isUZADO, isMinimal }: IHistoryStepList) => JSX.E
             /> :
             <AvatarStatus
               size='l'
-              icon={User}
+              icon={AllUser}
               variant={statusValue[pathItem.criticality]}
               type={isMinimal ? statusType[pathItem.criticality] as IconType : undefined}
             />

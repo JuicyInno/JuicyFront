@@ -1,6 +1,6 @@
 import React from 'react';
 import './GhostScreen.scss';
-import GhostImage from '../../../assets/icons/Ghost';
+import GhostImage from '../../../assets/illustrations/Ghost';
 
 export interface IGhostProps {
   text?: string;

@@ -8,7 +8,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
 import FormGroup from '../FormGroup';
-import Placeholder24 from '../../../assets/icons/Placeholder24';
+import { AllIconPlace } from '../../../indexNewIcon';
 import Select from '.';
 import Input from '../Input';
 
@@ -139,10 +139,12 @@ export const Demo = () => {
   const [cities, setCities] = useState<IOption[]>([]);
 
   const onChange1 = (options: IOption[]) => {
+    // @ts-ignore
     setState(options);
   };
 
   const onChange2 = (options: IOption[]) => {
+    // @ts-ignore
     setState1(options);
   };
 
@@ -203,7 +205,7 @@ export const Demo = () => {
               values={state1}
               onChange={onChange2}
               preloader={loading}
-              startAdornment={<Placeholder24 />}
+              startAdornment={<AllIconPlace size='s' />}
             />
           </FormGroup>
         </StoryItem>
@@ -224,6 +226,7 @@ export const Demo = () => {
         <StoryItem description='Изменяемое значение извне'>
           <Button
             onClick={() => {
+              // @ts-ignore
               setState([list[1]]);
             }}
           >

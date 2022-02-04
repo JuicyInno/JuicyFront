@@ -10,9 +10,7 @@ import StoryRow from '../../storybook/StoryRow';
 
 import { variantsClassic } from '../../../types';
 
-import Placeholder20 from '../../../assets/icons/Placeholder20';
-import Placeholder24 from '../../../assets/icons/Placeholder24';
-import Add from '../../../assets/icons/Add';
+import { AllIconPlace, AllAdd } from '../../../indexNewIcon';
 import { withDesign } from 'storybook-addon-designs';
 
 const buttonTypes: ButtonType[] = [
@@ -75,10 +73,10 @@ export const Demo: Story = () => {
   const getIconButtons = (props: IButtonProps) => {
     return (
       <>
-        <Button {...props} size='xl'><Placeholder24 /></Button>
-        <Button {...props} size='l'><Placeholder24 /></Button>
-        <Button {...props} size='m'><Placeholder24 /></Button>
-        <Button {...props} size='s'><Placeholder20 /></Button>
+        <Button {...props} size='xl'><AllIconPlace /></Button>
+        <Button {...props} size='l'><AllIconPlace /></Button>
+        <Button {...props} size='m'><AllIconPlace /></Button>
+        <Button {...props} size='s'><AllIconPlace /></Button>
       </>
     );
   };
@@ -120,24 +118,24 @@ export const Demo: Story = () => {
         justifyItems: 'flex-start',
         width: 'max-content'
       }}>
-        <Button size='xl' startAdornment={<Placeholder24 />}>Button 56</Button>
-        <Button size='l' startAdornment={<Placeholder24 />}>Button 48</Button>
-        <Button size='m' startAdornment={<Placeholder24 />}>Button 40</Button>
-        <Button size='s' startAdornment={<Placeholder20 />}>Button 32</Button>
+        <Button size='xl' startAdornment={<AllIconPlace size='m' />}>Button 56</Button>
+        <Button size='l' startAdornment={<AllIconPlace size='s' />}>Button 48</Button>
+        <Button size='m' startAdornment={<AllIconPlace size='xs' />}>Button 40</Button>
+        <Button size='s' startAdornment={<AllIconPlace size='xxs' />}>Button 32</Button>
 
-        <Button size='xl' endAdornment={<Placeholder24 />}>Button 56</Button>
-        <Button size='l' endAdornment={<Placeholder24 />}>Button 48</Button>
-        <Button size='m' endAdornment={<Placeholder24 />}>Button 40</Button>
-        <Button size='s' endAdornment={<Placeholder20 />}>Button 32</Button>
+        <Button size='xl' endAdornment={<AllIconPlace size='m' />}>Button 56</Button>
+        <Button size='l' endAdornment={<AllIconPlace size='s' />}>Button 48</Button>
+        <Button size='m' endAdornment={<AllIconPlace size='xs' />}>Button 40</Button>
+        <Button size='s' endAdornment={<AllIconPlace size='xxs' />}>Button 32</Button>
 
-        <Button size='xl' startAdornment={<Placeholder24 />}></Button>
-        <Button size='l' startAdornment={<Placeholder24 />}></Button>
-        <Button size='m' startAdornment={<Placeholder24 />}></Button>
-        <Button size='s' startAdornment={<Placeholder20 />}></Button>
+        <Button size='xl' startAdornment={<AllIconPlace size='m' />}></Button>
+        <Button size='l' startAdornment={<AllIconPlace size='s' />}></Button>
+        <Button size='m' startAdornment={<AllIconPlace size='xs' />}></Button>
+        <Button size='s' startAdornment={<AllIconPlace size='xxs' />}></Button>
 
-        <Button size='xl' buttonType='text' startAdornment={<Placeholder24 />}>Text button 56</Button>
+        <Button size='xl' buttonType='text' startAdornment={<AllIconPlace size='m' />}>Text button 56</Button>
         <div /> <div />
-        <Button size='s' buttonType='text' startAdornment={<Placeholder20 />}>Text button 32</Button>
+        <Button size='s' buttonType='text' startAdornment={<AllIconPlace size='xxs' />}>Text button 32</Button>
       </div>
 
       <StoryDocsH2>Основные состояния</StoryDocsH2>
@@ -332,8 +330,8 @@ export const Demo: Story = () => {
         <StoryDocsH3>Text Icon Button</StoryDocsH3>
 
         <StoryDocsLabel>Default</StoryDocsLabel>
-        <Button size='xl' buttonType='text' startAdornment={<Add />}>Text button 56</Button>
-        <Button size='s' buttonType='text' startAdornment={<Add />}>Text button 32</Button>
+        <Button size='xl' buttonType='text' startAdornment={<AllAdd size='s' />}>Text button 56</Button>
+        <Button size='s' buttonType='text' startAdornment={<AllAdd size='xxs' />}>Text button 32</Button>
       </div>
     </StoryDocs>
   );
@@ -350,7 +348,7 @@ Demo.parameters = {
 
 export const Playground: Story = (args: IButtonProps) => {
   const buttonType = args.buttonType === 'icon' || args.buttonType === 'iconFill' ? 'primary' : args.buttonType;
-  const adornment = args.size === 's' ? <Placeholder20 /> : <Placeholder24 />;
+  const adornment = args.size === 's' ? <AllIconPlace size='xxs' /> : <AllIconPlace size='m' />;
 
   return (
     <StoryContainer>

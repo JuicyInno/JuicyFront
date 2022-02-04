@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import AvatarStatus from './AvatarStatus';
-import User from '../../../assets/icons/24px/Account/User';
+import {AllUser} from '../../../indexNewIcon';
 
 describe('Test <AvatarStatus /> component', () => {
   it('should render AvatarStatus', () => {
@@ -67,7 +67,7 @@ describe('Test <AvatarStatus /> component', () => {
   });
 
   it('should render AvatarStatus with icon (when no initials and photo)', () => {
-    const { container } = render(<AvatarStatus variant='green' icon={User} />);
+    const { container } = render(<AvatarStatus variant='green' icon={AllUser} />);
     expect(container.getElementsByClassName('rf-avatar__icon-wrapper')).toHaveLength(1);
   });
 

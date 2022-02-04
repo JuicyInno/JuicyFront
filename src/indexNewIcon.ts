@@ -379,6 +379,9 @@ export { DigitalCardM };
 import Disability from './assets/newIcons/resultDir/Disability';
 export { Disability };
 
+import Dot from './assets/newIcons/resultDir/Dot';
+export { Dot };
+
 import DMS from './assets/newIcons/resultDir/DMS';
 export { DMS };
 
@@ -822,4 +825,3 @@ export { WebsiteCall };
 
 import World from './assets/newIcons/resultDir/World';
 export { World };
-
