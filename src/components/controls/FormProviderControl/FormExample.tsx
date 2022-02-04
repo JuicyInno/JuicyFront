@@ -17,6 +17,7 @@ import InputFileControl from '../InputFileControl';
 import InputPhoneControl from '../InputPhoneControl';
 import RatepickerControl from '../RatepickerControl';
 import SwitchControl from '../SwitchControl';
+import TimepickerControl from '../TimepickerControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -54,6 +55,7 @@ export type IFormExampleData = {
   'phone': string;
   'rates': number;
   'switch': boolean;
+  'time': number | string;
 }
 
 export interface IFormExampleProps extends Omit<IFormProviderControlProps<any>, 'children'> {
@@ -127,6 +129,8 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         name='date-birth'
         rules={{ required: 'Обязательное поле' }}
       />
+
+      <TimepickerControl label='Время' name='time' rules={{ required: 'Обязательное поле' }} />
 
       <SelectControl
         label='Период'

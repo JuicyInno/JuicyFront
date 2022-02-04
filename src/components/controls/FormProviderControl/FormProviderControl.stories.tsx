@@ -48,12 +48,14 @@ export const DefaultValuesForm: Story = () => {
       'privacy': true,
       'phone': '+712312345',
       'rates': 4,
-      'switch': true
+      'switch': true,
+      'time': '16:00'
     }
   });
 
   const onSubmit = useCallback((data: any) => {
-    prompt(JSON.stringify(data, null, 2));
+    alert(JSON.stringify(data, null, 2));
+    console.log('submit form', data);
   }, []);
 
   return (

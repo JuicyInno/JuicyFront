@@ -12,4 +12,5 @@ export * from './RadioControl';
 export * from './InputPhoneControl';
 export * from './RatepickerControl';
 export * from './SwitchControl';
+export * from './TimepickerControl';
 export * from './types';
