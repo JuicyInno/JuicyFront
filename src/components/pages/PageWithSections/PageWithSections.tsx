@@ -7,7 +7,7 @@ import { IButtonGroup, ITab } from '../../../types';
 import ButtonGroup from '../../molecules/ButtonGroup';
 import Preloader from '../../atoms/Preloader';
 import Tabs from '../../atoms/Tabs';
-import { ArrowsChevronLeft } from '../../../indexNewIcon';
+import { ArrowsChevronLeft } from '../../../indexIcon';
 
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';

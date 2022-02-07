@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Hint.scss';
 import { VariantClassic } from '../../../types';
-import { StatusInfoFill } from '../../../indexNewIcon';
+import { StatusInfoFill } from '../../../indexIcon';
 
 export interface IHintProps {
   /** Основное сообщение*/

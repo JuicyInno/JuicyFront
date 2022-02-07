@@ -10,7 +10,7 @@ import Tooltip from '../../atoms/Tooltip';
 
 import {
   AllCopy, StatusInfoFill, AllInvestmentProducts
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 
 import { IStructure } from '../../../types/projects.types';
 

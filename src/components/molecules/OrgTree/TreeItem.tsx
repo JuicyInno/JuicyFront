@@ -8,7 +8,7 @@ import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
 import HLine from './lines/hline';
 import { Preloader } from '../../../index';
-import { ArrowsUp } from '../../../indexNewIcon';
+import { ArrowsUp } from '../../../indexIcon';
 import Circle from './Circle';
 import Checkbox from '../../atoms/Checkbox';
 import { classnames } from '../../../utils/classnames';

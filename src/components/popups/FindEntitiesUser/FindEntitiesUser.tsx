@@ -7,7 +7,7 @@ import Avatar from '../../atoms/Avatar';
 import Structure from '../../molecules/Structure';
 import Toast from '../../atoms/Toast';
 import Tooltip from '../../atoms/Tooltip';
-import { StatusInfoFill, AllCopy } from '../../../indexNewIcon';
+import { StatusInfoFill, AllCopy } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
 

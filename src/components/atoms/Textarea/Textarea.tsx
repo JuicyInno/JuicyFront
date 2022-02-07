@@ -7,7 +7,7 @@ import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
 import { classnames } from '../../../utils/classnames';
-import { AllClose } from '../../../indexNewIcon';
+import { AllClose } from '../../../indexIcon';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */

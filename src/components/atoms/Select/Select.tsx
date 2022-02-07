@@ -7,7 +7,7 @@ import './Select.scss';
 import { DropdownPosition, IOption } from '../../../types';
 import Chip from '../Chip';
 
-import { ArrowsChevronDown, AllClose } from '../../../indexNewIcon';
+import { ArrowsChevronDown, AllClose } from '../../../indexIcon';
 import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';

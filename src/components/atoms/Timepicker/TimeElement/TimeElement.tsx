@@ -5,7 +5,7 @@ import './TimeElement.scss';
 import { arrayTimeHours, arrayTimeMinutes } from './timeData';
 import { MenuContext } from '../../Menu/Menu';
 import { classnames } from '../../../../utils/classnames';
-import { ArrowsChevronLeft } from '../../../../indexNewIcon';
+import { ArrowsChevronLeft } from '../../../../indexIcon';
 
 export interface ITimepickerProps {
   /** Выбрать часы/время */

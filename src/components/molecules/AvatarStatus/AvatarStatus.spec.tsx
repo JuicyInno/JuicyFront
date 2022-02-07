@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import AvatarStatus from './AvatarStatus';
-import {AllUser} from '../../../indexNewIcon';
+import {AllUser} from '../../../indexIcon';
 
 describe('Test <AvatarStatus /> component', () => {
   it('should render AvatarStatus', () => {

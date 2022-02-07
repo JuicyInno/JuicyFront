@@ -6,7 +6,7 @@ import HistoryPathList from '../../atoms/HistoryPathList';
 import Badge from '../../atoms/Badge';
 import {
   ArrowsChevronLeft, ArrowsChevronRight, AllDoc
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 
 import { useSortPaths } from './helpers';
 

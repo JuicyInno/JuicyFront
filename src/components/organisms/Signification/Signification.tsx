@@ -21,7 +21,7 @@ import Document from './Documents';
 import { IBrowserCert, ICertResult } from '../../molecules/CertReader/CertReader';
 import ContentExpander from '../../molecules/ContentExpander';
 import { Certificate } from 'crypto-pro';
-import { AllDownload, AllClose } from '../../../indexNewIcon';
+import { AllDownload, AllClose } from '../../../indexIcon';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import { ITileProps } from '../../atoms/Tile/Tile';

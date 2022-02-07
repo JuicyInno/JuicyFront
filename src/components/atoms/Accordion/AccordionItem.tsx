@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { AllAdd, AllReduce } from '../../../indexNewIcon';
+import { AllAdd, AllReduce } from '../../../indexIcon';
 import './Accordion.scss';
 
 export interface IAccordionItemProps {

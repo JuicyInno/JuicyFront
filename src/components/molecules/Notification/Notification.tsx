@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './Notification.scss';
 import {
   AllClose, StatusInfoFill, StatusRelease
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 import { INotification } from '../Notifications/Notifications';
 
 export interface INotificationProps {

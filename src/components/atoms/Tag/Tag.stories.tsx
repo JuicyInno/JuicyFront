@@ -7,7 +7,7 @@ import {
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
-import { AllIconPlace } from '../../../indexNewIcon';
+import { AllIconPlace } from '../../../indexIcon';
 
 export default {
   title: 'controls/withTest/Tag',

@@ -3,7 +3,7 @@ import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
 import Preloader from '../../atoms/Preloader';
 import Button from '../../atoms/Button';
-import { ArrowsChevronLeft, AllMenuHorizontal } from '../../../indexNewIcon';
+import { ArrowsChevronLeft, AllMenuHorizontal } from '../../../indexIcon';
 import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';

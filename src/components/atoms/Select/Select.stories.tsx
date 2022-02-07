@@ -8,7 +8,7 @@ import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import Button from '../Button';
 import FormGroup from '../FormGroup';
-import { AllIconPlace } from '../../../indexNewIcon';
+import { AllIconPlace } from '../../../indexIcon';
 import Select from '.';
 import Input from '../Input';
 

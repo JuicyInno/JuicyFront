@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Input from './Input';
-import { ArrowsChevronDown } from '../../../indexNewIcon';
+import { ArrowsChevronDown } from '../../../indexIcon';
 
 describe('Test <Input/> component', () => {
   it('should work as uncontrolled component', () => {

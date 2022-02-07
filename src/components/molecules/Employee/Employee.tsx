@@ -6,7 +6,7 @@ import {
 import Avatar from '../../atoms/Avatar';
 import Tile from '../../atoms/Tile';
 import Tooltip from '../../atoms/Tooltip';
-import { StatusInfoFill, AllRefresh } from '../../../indexNewIcon';
+import { StatusInfoFill, AllRefresh } from '../../../indexIcon';
 import Structure from '../Structure';
 import Button from '../../atoms/Button';
 

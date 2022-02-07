@@ -2,7 +2,7 @@ import { IButtonGroup } from '../../../types';
 import { Button } from '../../../index';
 import {
   StatusPending, AllCopy, StatusQuestion
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 import React from 'react';
 
 export const buttonGroupMock: IButtonGroup[] = [

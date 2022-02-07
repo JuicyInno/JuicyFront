@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITab } from '../../../types';
-import { AllIconPlace } from '../../../indexNewIcon';
+import { AllIconPlace } from '../../../indexIcon';
 import Badge from '../Badge';
 
 export const _simpleTabs: ITab[] = [

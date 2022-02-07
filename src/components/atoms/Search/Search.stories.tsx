@@ -8,7 +8,7 @@ import {
 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import { AllMicrophone } from '../../../indexNewIcon';
+import { AllMicrophone } from '../../../indexIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 
 export default {

@@ -4,7 +4,7 @@ import UserPhoto from '../../atoms/UserPhoto';
 import Tooltip from '../../atoms/Tooltip';
 import Toast from '../../atoms/Toast';
 
-import { AllCopy } from '../../../indexNewIcon';
+import { AllCopy } from '../../../indexIcon';
 
 import './EntityCard.scss';
 

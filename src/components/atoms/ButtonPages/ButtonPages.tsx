@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useState
 } from 'react';
 import './ButtonPages.scss';
-import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexNewIcon';
+import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexIcon';
 
 export interface IButtonPagesProps {
   /** Количество страниц */

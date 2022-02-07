@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import './Modal.scss';
 import { createPortal } from 'react-dom';
-import { AllClose } from '../../../indexNewIcon';
+import { AllClose } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import Button from '../Button';
 

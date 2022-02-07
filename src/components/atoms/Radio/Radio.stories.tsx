@@ -5,7 +5,7 @@ import ControlGroup from '../ControlGroup';
 import FormGroup from '../FormGroup';
 import Tooltip from '../Tooltip';
 import Radio from './Radio';
-import { StatusInfoFill } from '../../../indexNewIcon';
+import { StatusInfoFill } from '../../../indexIcon';
 
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';

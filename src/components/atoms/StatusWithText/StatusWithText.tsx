@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './StatusWithText.scss';
 import {
   StatusError, StatusReturn, StatusRelease, StatusReleaseSecondary
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 
 export interface IStatusWithTextProps {
     /** Текст статуса */

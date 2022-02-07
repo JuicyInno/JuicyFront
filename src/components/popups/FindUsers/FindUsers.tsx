@@ -18,7 +18,7 @@ import Preloader from '../../atoms/Preloader';
 import Search from '../../atoms/Search';
 import Tabs from '../../atoms/Tabs';
 import Tooltip from '../../atoms/Tooltip';
-import { StatusInfoFill } from '../../../indexNewIcon';
+import { StatusInfoFill } from '../../../indexIcon';
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';

@@ -8,7 +8,7 @@ import { IRequestAttachment, IRequestPath } from '../../../types/projects.types'
 
 import { onPathFilter } from './helpers';
 
-import { ArrowsChevronDown, ArrowsChevronUp } from '../../../indexNewIcon';
+import { ArrowsChevronDown, ArrowsChevronUp } from '../../../indexIcon';
 
 import './History.scss';
 

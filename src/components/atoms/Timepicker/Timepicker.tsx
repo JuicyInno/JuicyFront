@@ -9,7 +9,7 @@ import Button from '../../atoms/Button';
 import TimeElement, { getTime } from './TimeElement';
 import Menu from '../Menu';
 import { classnames } from '../../../utils/classnames';
-import { StatusPending, AllClose } from '../../../indexNewIcon';
+import { StatusPending, AllClose } from '../../../indexIcon';
 
 export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref'> {
   /** Css класс */

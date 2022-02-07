@@ -7,7 +7,7 @@ import InputMask from 'react-input-mask';
 import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
 import { IMenuContext } from '../../../types';
-import { ArrowsChevronDown } from '../../../indexNewIcon';
+import { ArrowsChevronDown } from '../../../indexIcon';
 import FlagRU from './flagIcons/FlagRU';
 import { classnames } from '../../../utils/classnames';
 

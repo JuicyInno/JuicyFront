@@ -5,7 +5,7 @@ import './Schedule.scss';
 
 import Button from '../../atoms/Button';
 import CalendarPage, { ICalendarPageMark } from '../../atoms/CalendarPage';
-import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexNewIcon';
+import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexIcon';
 
 export interface IScheduleProps {
   /** Отображаемый по умолчанию год. */

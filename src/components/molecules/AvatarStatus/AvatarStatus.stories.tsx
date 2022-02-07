@@ -8,7 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 import { withDesign } from 'storybook-addon-designs';
 import AvatarStatus from './AvatarStatus';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
-import { AllUser } from '../../../indexNewIcon';
+import { AllUser } from '../../../indexIcon';
 
 export default {
   title: 'components/withTest/AvatarStatus',

@@ -9,7 +9,7 @@ import StoryRow from '../../storybook/StoryRow';
 import Button from '../Button';
 import { today } from '../../../index';
 import Chip from '../Chip';
-import { AllCalendar } from '../../../indexNewIcon';
+import { AllCalendar } from '../../../indexIcon';
 
 export default {
   title: 'forms/withTest/Datepicker',

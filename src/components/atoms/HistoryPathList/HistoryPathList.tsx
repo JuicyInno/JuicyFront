@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import AvatarStatus from '../../molecules/AvatarStatus';
-import { AllUser, InformationAlert } from '../../../indexNewIcon';
+import { AllUser, InformationAlert } from '../../../indexIcon';
 
 import { statusValue } from '../../molecules/History/helpers';
 import { statusType } from './helpers';

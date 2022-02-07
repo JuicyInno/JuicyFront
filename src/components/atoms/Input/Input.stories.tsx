@@ -11,7 +11,7 @@ import StoryRow from '../../storybook/StoryRow';
 
 import {
   AllSuccess, AllSearch, AllCalendar, ArrowsChevronDown, StatusInfoFill, Dot
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {

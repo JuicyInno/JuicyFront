@@ -4,7 +4,7 @@ import React, {
 import './Input.scss';
 
 
-import { AllClose } from '../../../indexNewIcon';
+import { AllClose } from '../../../indexIcon';
 import { IDebounceResult } from '../../../types/projects.types';
 import { useDebounce } from '../../../hooks/useDebounce';
 

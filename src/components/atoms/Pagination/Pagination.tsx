@@ -1,6 +1,6 @@
 import React, { HTMLProps, useState } from 'react';
 import './Pagination.scss';
-import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexNewIcon';
+import { ArrowsChevronLeft, ArrowsChevronRight } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import Input from '../Input';
 import { IDebounceResult } from '../../../types/projects.types';

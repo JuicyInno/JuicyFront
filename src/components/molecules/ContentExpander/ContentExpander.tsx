@@ -2,7 +2,7 @@ import React, {
   ReactNode, useEffect, useState
 } from 'react';
 import './ContentExpander.scss';
-import { ArrowsChevronDown } from '../../../indexNewIcon';
+import { ArrowsChevronDown } from '../../../indexIcon';
 import Button from '../../atoms/Button';
 
 

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Tag.scss';
 import { Variant } from '../../../types';
-import { AllClose } from '../../../indexNewIcon';
+import { AllClose } from '../../../indexIcon';
 
 export interface ITagProps {
   /** Цвет тега. */

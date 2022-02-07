@@ -9,7 +9,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import { withDesign } from 'storybook-addon-designs';
-import { AllUser } from '../../../indexNewIcon';
+import { AllUser } from '../../../indexIcon';
 
 export default {
   title: 'components/withTest/Avatar',

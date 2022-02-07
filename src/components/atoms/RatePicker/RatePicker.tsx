@@ -1,7 +1,7 @@
 import React, {
   FC, useState, useEffect, InputHTMLAttributes
 } from 'react';
-import { AllStar } from '../../../indexNewIcon';
+import { AllStar } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 

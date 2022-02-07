@@ -2,7 +2,7 @@ import React, {
   HTMLProps, useEffect, useRef, useState, useMemo, ReactNode
 } from 'react';
 import './Search.scss';
-import { AllClose, AllSearch } from '../../../indexNewIcon';
+import { AllClose, AllSearch } from '../../../indexIcon';
 
 import { IDebounceResult } from '../../../types/projects.types';
 import { classnames } from '../../../utils/classnames';

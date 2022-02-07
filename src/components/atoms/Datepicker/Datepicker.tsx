@@ -10,7 +10,7 @@ import {
 import { Manager, Reference } from 'react-popper';
 import {
   AllCalendar, ArrowsChevronDown, AllClose
-} from '../../../indexNewIcon';
+} from '../../../indexIcon';
 import Input from '../Input';
 import InputMask from 'react-input-mask';
 import { classnames } from '../../../utils/classnames';

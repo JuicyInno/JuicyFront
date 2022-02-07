@@ -7,7 +7,7 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 // @ts-ignore
 import PDFJSWorker from 'pdfjs-dist/build/pdf.worker.entry';
-import { AllSend, AllDownload } from '../../../indexNewIcon';
+import { AllSend, AllDownload } from '../../../indexIcon';
 import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import Button from '../../atoms/Button';

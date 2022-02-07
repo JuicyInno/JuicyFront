@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import './ActionMenu.scss';
-import { ArrowsChevronDown } from '../../../indexNewIcon';
+import { ArrowsChevronDown } from '../../../indexIcon';
 import { IOption } from '../../../types';
 import { IActionMenuListConfig } from '../../../types/projects.types';
 import Button from '../../atoms/Button';

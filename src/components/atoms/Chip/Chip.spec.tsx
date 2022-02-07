@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Chip from './Chip';
-import { AllDownload } from '../../../indexNewIcon';
+import { AllDownload } from '../../../indexIcon';
 
 describe('Test <Chip/> component', () => {
   it('should be primary', () => {

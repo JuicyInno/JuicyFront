@@ -1,7 +1,7 @@
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { noop } from 'rxjs';
-import { AllCalendar, AllClose } from '../../../indexNewIcon';
+import { AllCalendar, AllClose } from '../../../indexIcon';
 import { IOption } from '../../../types';
 import Select from './Select';
 

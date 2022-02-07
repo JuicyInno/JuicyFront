@@ -10,7 +10,7 @@ import StoryRow from '../../storybook/StoryRow';
 
 import { variantsClassic } from '../../../types';
 
-import { AllIconPlace, AllAdd } from '../../../indexNewIcon';
+import { AllIconPlace, AllAdd } from '../../../indexIcon';
 import { withDesign } from 'storybook-addon-designs';
 
 const buttonTypes: ButtonType[] = [

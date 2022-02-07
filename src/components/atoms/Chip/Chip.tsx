@@ -3,7 +3,7 @@ import './Chip.scss';
 import { sizeClass } from '../../../utils/helpers';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
-import { AllClose } from '../../../indexNewIcon';
+import { AllClose } from '../../../indexIcon';
 
 export interface IChipProps {
   /** Текст */

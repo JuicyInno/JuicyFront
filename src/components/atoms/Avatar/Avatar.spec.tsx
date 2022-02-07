@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Avatar from './Avatar';
 
-import {AllUser} from '../../../indexNewIcon';
+import {AllUser} from '../../../indexIcon';
 
 describe('Test <Avatar/> component', () => {
   it('should render Avatar with KM inside', () => {

@@ -7,7 +7,7 @@ import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
-import { ArrowsChevronLeft } from '../../../../indexNewIcon';
+import { ArrowsChevronLeft } from '../../../../indexIcon';
 import Tooltip from '../../Tooltip';
 import {
   compareMonths,

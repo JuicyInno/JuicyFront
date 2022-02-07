@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ITab } from '../../../types';
 import Preloader from '../../atoms/Preloader';
 import Tabs from '../../atoms/Tabs';
-import { ArrowsChevronLeft } from '../../../indexNewIcon';
+import { ArrowsChevronLeft } from '../../../indexIcon';
 
 
 export interface IPageProps {
