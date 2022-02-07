@@ -24,6 +24,11 @@ describe('Test <Button/> component', () => {
     expect(container.getElementsByClassName('rf-button--light')).toHaveLength(1);
   });
 
+  it('should be outline', () => {
+    const { container } = render(<Button buttonType='outline'> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--outline')).toHaveLength(1);
+  });
+
   it('should be ghost', () => {
     const { container } = render(<Button buttonType='ghost'> Button </Button>);
     expect(container.getElementsByClassName('rf-button--ghost')).toHaveLength(1);

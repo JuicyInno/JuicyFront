@@ -17,6 +17,7 @@ const buttonTypes: ButtonType[] = [
   'primary',
   'light',
   'secondary',
+  'outline',
   'ghost',
   'danger',
   'icon',
@@ -225,6 +226,21 @@ export const Demo: Story = () => {
         <StoryDocsLabel>Loading</StoryDocsLabel>
         {getButtons({
           buttonType: 'secondary',
+          preloader: true
+        })}
+
+        <StoryDocsH3>Outline</StoryDocsH3>
+
+        <StoryDocsLabel>Default</StoryDocsLabel>
+        {getButtons({ buttonType: 'outline' })}
+        <StoryDocsLabel>Disabled</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'outline',
+          disabled: true
+        })}
+        <StoryDocsLabel>Loading</StoryDocsLabel>
+        {getButtons({
+          buttonType: 'outline',
           preloader: true
         })}
 
