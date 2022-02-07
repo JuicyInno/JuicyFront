@@ -9,7 +9,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import { withDesign } from 'storybook-addon-designs';
-import User from '../../../assets/icons/24px/Account/User';
+import { AllUser } from '../../../indexIcon';
 
 export default {
   title: 'components/withTest/Avatar',
@@ -93,7 +93,7 @@ export const Demo: Story = () => {
               textAlign: 'center',
               color: '#626F84'
             }}>{size}</div>
-            <div><Avatar fullName='K M' size={size} icon={User} /></div>
+            <div><Avatar fullName='K M' size={size} icon={AllUser} /></div>
           </div>)
         }
       </div>
@@ -101,7 +101,7 @@ export const Demo: Story = () => {
       <StoryDocsDescription>Компоненты, которые переключаются внутри основного компонента</StoryDocsDescription>
       <div style={{ display: 'flex' }}>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' photo={usersMocks[0].photo} /></div>
-        <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' icon={User} /></div>
+        <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' icon={AllUser} /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' backgroundColor='white' /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' /></div>
         <div style={{ marginRight: 8 }}><Avatar fullName='Н M' size='xs' backgroundColor='grey' /></div>
@@ -145,7 +145,7 @@ export const Demo: Story = () => {
       <StoryDocsH2>Hover</StoryDocsH2>
       <StoryDocsDescription>При ховере под аватаром показывается Tooltip с именем пользователя.</StoryDocsDescription>
       <Tooltip position='top'>
-        <Avatar icon={(props) => <User {...props} />} />
+        <Avatar icon={(props) => <AllUser {...props} />} />
         <div>Андрей Борисов</div>
       </Tooltip>
     </StoryDocs>

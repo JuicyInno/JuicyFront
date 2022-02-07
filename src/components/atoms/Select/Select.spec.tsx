@@ -1,7 +1,7 @@
-import { getByText, screen, render, fireEvent, waitFor } from '@testing-library/react';
-import React, { useEffect, useState } from 'react';
+import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import React from 'react';
 import { noop } from 'rxjs';
-import { Calendar, Cross } from '../../../indexIcon';
+import { AllCalendar, AllClose } from '../../../indexIcon';
 import { IOption } from '../../../types';
 import Select from './Select';
 
@@ -216,8 +216,8 @@ describe('Test <Select/> component', () => {
       ]}
       values={[]}
       onChange={noop}
-      startAdornment={<Calendar />}
-      endAdornment={<Cross />}
+      startAdornment={<AllCalendar />}
+      endAdornment={<AllClose />}
     />);
     fireEvent.click(screen.getByTestId('rf-select'));
     expect(document.getElementsByClassName('rf-select__button__icon')).toBeTruthy()

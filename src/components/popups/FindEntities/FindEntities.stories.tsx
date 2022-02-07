@@ -8,7 +8,7 @@ import { positionsMocks, IPosition } from '../FindEntitiesPosition/positions.moc
 import { FindEntitiesUser, createGetUsers } from '../FindEntitiesUser';
 import { usersMocks } from '../FindEntitiesUser/users.mocks';
 import { Button } from '../../../index';
-import { People } from '../../../indexIcon';
+import { AllUser } from '../../../indexIcon';
 import { BrowserRouter } from 'react-router-dom';
 import { IUser } from '../../../types/projects.types';
 
@@ -97,7 +97,7 @@ export const Users = () => {
               onClose={onDialogToggle}
               lazy
               multiple
-              emptyStateIcon={<People />}
+              emptyStateIcon={<AllUser />}
               emptyStateInitialText='Найдите нужных вам сотрудников'
             >
               {({ entity, isSelected, onChange }) => (
@@ -140,7 +140,7 @@ export const Async = () => {
               onClose={onDialogToggle}
               lazy
               multiple
-              emptyStateIcon={<People />}
+              emptyStateIcon={<AllUser />}
               emptyStateInitialText='Найдите нужных вам сотрудников'
             >
               {({ entity, isSelected, onChange }) => (
@@ -196,7 +196,7 @@ export const Positions = () => {
               filters={POSITIONS_FILTERS}
               onChange={onChange}
               onClose={onDialogToggle}
-              emptyStateIcon={<People />}
+              emptyStateIcon={<AllUser />}
               emptyStateInitialText='Найдите нужную вам должность'
             >
               {({ entity, isSelected, onChange }) => (
@@ -241,7 +241,7 @@ export const UsersAPI = () => {
               onChange={onChange}
               onClose={onDialogToggle}
               lazy
-              emptyStateIcon={<People />}
+              emptyStateIcon={<AllUser />}
               emptyStateInitialText='Найдите нужных вам сотрудников'
             >
               {({ entity, isSelected, onChange }) => (

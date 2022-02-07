@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Notification.scss';
 import {
-  Close, Info, StatusSuccess
+  AllClose, StatusInfoFill, StatusRelease
 } from '../../../indexIcon';
 import { INotification } from '../Notifications/Notifications';
 
@@ -18,7 +18,7 @@ const Notification: FC<INotificationProps> = ({ item, remove }: INotificationPro
     item.id && remove && remove(item.id);
   };
 
-  const Icon = item.variant === 'green' ? StatusSuccess : Info;
+  const Icon = item.variant === 'green' ? StatusRelease : StatusInfoFill;
 
   return (
     <div className='rf-notification'>
@@ -29,7 +29,7 @@ const Notification: FC<INotificationProps> = ({ item, remove }: INotificationPro
       </div>
 
       <button className='rf-notification__close' onClick={ removeNotification }>
-        <Close />
+        <AllClose />
       </button>
     </div>
   );

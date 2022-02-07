@@ -7,14 +7,13 @@ import { IRequestAttachment } from '../../../types/projects.types';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 // @ts-ignore
 import PDFJSWorker from 'pdfjs-dist/build/pdf.worker.entry';
-import DownloadIcon from '../../../assets/icons/Download';
+import { AllSend, AllDownload } from '../../../indexIcon';
 import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import Button from '../../atoms/Button';
 import { Page, Document } from 'react-pdf';
 // @ts-ignore
 import { PDFPageProxy } from 'pdfjs-dist';
-import Send from '../../../assets/icons/24px/Account/Send';
 
 
 export interface IProps {
@@ -91,7 +90,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
                 buttonType='white'
                 size='s'
                 onClick={onClickOpen}
-                endAdornment={<Send className='pdf-document__icon'/>}
+                endAdornment={<AllSend className='pdf-document__icon'/>}
               >
                 Просмотреть
               </Button>
@@ -103,7 +102,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
               buttonType='white'
               size='s'
               onClick={onClickDownload}
-              endAdornment={<DownloadIcon className='pdf-document__icon'/>}>
+              endAdornment={<AllDownload className='pdf-document__icon'/>}>
               {url ? '' : 'Скачать'}
             </Button>
           </div>

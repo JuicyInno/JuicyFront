@@ -8,9 +8,9 @@ import Structure from '../../molecules/Structure';
 import Toast from '../../atoms/Toast';
 import Tooltip from '../../atoms/Tooltip';
 
-import { Copy, Info } from '../../../indexIcon';
-
-import InvestmentProducts from '../../../assets/icons/24px/Specific/InvestmentProducts';
+import {
+  AllCopy, StatusInfoFill, AllInvestmentProducts
+} from '../../../indexIcon';
 
 import { IStructure } from '../../../types/projects.types';
 
@@ -49,7 +49,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
         label={
           <div className='rf-find-entities-position__content'>
             <div className='rf-find-entities-position__avatar'>
-              <Avatar icon={InvestmentProducts}/>
+              <Avatar icon={AllInvestmentProducts}/>
             </div>
             <div>
               <div className='rf-find-entities-position__title'>
@@ -60,7 +60,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
                     background={tooltipBackground}
                   >
                     <div className='rf-find-entities-position__info'>
-                      <Info />
+                      <StatusInfoFill />
                     </div>
                     <Structure departmentsPath={position.departmentsPath} />
                   </Tooltip>
@@ -73,7 +73,7 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
                     position='right'
                     background={tooltipBackground}
                   >
-                    <Copy onClick={onCopy} />
+                    <AllCopy onClick={onCopy} />
                     <div>Скопировать ТН</div>
                   </Tooltip>
                   <Toast isVisible={isCopied} setVisibility={setIsCopied}>

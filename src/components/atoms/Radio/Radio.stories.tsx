@@ -5,7 +5,7 @@ import ControlGroup from '../ControlGroup';
 import FormGroup from '../FormGroup';
 import Tooltip from '../Tooltip';
 import Radio from './Radio';
-import Info from '../../../assets/icons/Info';
+import { StatusInfoFill } from '../../../indexIcon';
 
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
@@ -60,7 +60,7 @@ export const Demo = () => {
                   color: 'var(--basic-tertiary)'
                 }}>
                   <Tooltip>
-                    <Info />
+                    <StatusInfoFill />
                     <div>Подсказка</div>
                   </Tooltip>
                 </div>

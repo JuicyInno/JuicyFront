@@ -7,7 +7,7 @@ import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
-import { ChevronLeft } from '../../../../indexIcon';
+import { ArrowsChevronLeft } from '../../../../indexIcon';
 import Tooltip from '../../Tooltip';
 import {
   compareMonths,
@@ -425,7 +425,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
             onClick={() => onPeriodChange(-1)}
           >
             <span className='rf-datepicker__calendar-left'>
-              <ChevronLeft />
+              <ArrowsChevronLeft />
             </span>
           </button>
 
@@ -441,7 +441,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
             onClick={() => onPeriodChange(1)}
           >
             <span className='rf-datepicker__calendar-right'>
-              <ChevronLeft />
+              <ArrowsChevronLeft />
             </span>
           </button>
         </div>

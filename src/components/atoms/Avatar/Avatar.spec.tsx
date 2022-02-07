@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Avatar from './Avatar';
 
-import User from '../../../assets/icons/24px/Account/User';
+import {AllUser} from '../../../indexIcon';
 
 describe('Test <Avatar/> component', () => {
   it('should render Avatar with KM inside', () => {
@@ -86,7 +86,7 @@ describe('Test <Avatar/> component', () => {
   });
 
   it('should be with icon', () => {
-    const { container } = render(<Avatar icon={User} />);
+    const { container } = render(<Avatar icon={AllUser} />);
     expect(container.getElementsByClassName('rf-avatar__icon-wrapper')).toHaveLength(1);
   });
 });

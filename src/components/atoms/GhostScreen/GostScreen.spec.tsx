@@ -1,5 +1,5 @@
 import React from 'react';
-import {getByText, render, screen} from '@testing-library/react';
+import {getByText, render} from '@testing-library/react';
 import GhostScreen from './GhostScreen';
 
 describe('Test <GoastScreen/> component', () => {

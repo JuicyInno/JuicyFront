@@ -18,7 +18,7 @@ import Preloader from '../../atoms/Preloader';
 import Search from '../../atoms/Search';
 import Tabs from '../../atoms/Tabs';
 import Tooltip from '../../atoms/Tooltip';
-import { Info } from '../../../indexIcon';
+import { StatusInfoFill } from '../../../indexIcon';
 import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
@@ -281,7 +281,7 @@ const FindUsers: FC<IProps> = ({
             {item.id && <span className='list-users__user-id'>({item.id})</span>}
             {item.departmentsPath && (
               <Tooltip background={tooltipBackground}>
-                <Info className='list-users__user-info' />
+                <StatusInfoFill className='list-users__user-info' />
                 <Structure departmentsPath={item.departmentsPath} background={tooltipBackground} />
               </Tooltip>
             )}

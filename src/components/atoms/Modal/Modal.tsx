@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import './Modal.scss';
 import { createPortal } from 'react-dom';
-import { Close } from '../../../indexIcon';
+import { AllClose } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import Button from '../Button';
 
@@ -72,7 +72,7 @@ const Modal: FC<IModalProps> = ({
       <div className='rf-modal__bg' onClick={onClose} />
       <div className='rf-modal__container'>
         {onClose && (
-          <Button buttonType='text' startAdornment={<Close />} className='rf-modal__close-button' onClick={onClose} />
+          <Button buttonType='text' startAdornment={<AllClose />} className='rf-modal__close-button' onClick={onClose} />
         )}
 
         {custom ? children : (

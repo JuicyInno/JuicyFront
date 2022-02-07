@@ -3,7 +3,7 @@ import './ButtonGroup.scss';
 import { IButtonGroup } from '../../../types';
 import Preloader from '../../atoms/Preloader';
 import Button from '../../atoms/Button';
-import { ChevronLeft, KebabMenu } from '../../../indexIcon';
+import { ArrowsChevronLeft, AllMenuHorizontal } from '../../../indexIcon';
 import Menu, { MenuContext } from '../../atoms/Menu';
 import { Link } from 'react-router-dom';
 import Tile from '../../atoms/Tile';
@@ -83,7 +83,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
                 <Preloader size='m' />
               </div>
             ) : (
-              <ChevronLeft className='button-group__menu-button-icon' />
+              <ArrowsChevronLeft className='button-group__menu-button-icon' />
             )
           }
         </Link>);
@@ -110,7 +110,7 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
           </MenuContext.Consumer>
         } position='top-start'>
           <Tooltip position='bottom'>
-            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<KebabMenu />}></Button>
+            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<AllMenuHorizontal />}></Button>
             <>Другие действия</>
           </Tooltip>
         </Menu>

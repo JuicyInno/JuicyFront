@@ -2,7 +2,7 @@ import React, {
   HTMLProps, useEffect, useRef, useState, useMemo, ReactNode
 } from 'react';
 import './Search.scss';
-import { Close, SearchIcon } from '../../../indexIcon';
+import { AllClose, AllSearch } from '../../../indexIcon';
 
 import { IDebounceResult } from '../../../types/projects.types';
 import { classnames } from '../../../utils/classnames';
@@ -104,10 +104,10 @@ const Search: React.FC<ISearchProps> = ({
         onChange={onChangeHandler}
         pattern={pattern}
       />
-      <SearchIcon className='rf-search__search-icon' />
+      <AllSearch className='rf-search__search-icon' />
 
       {value.length > 0 && showClear &&
-        <Close data-testid='search-clear-test-id'
+        <AllClose data-testid='search-clear-test-id'
           className={classnames('rf-search__close-icon', !!endAdornment && 'rf-search__close-withEndAdornment')}
           onMouseDown={onClearClickHandler} />}
       {endAdornment && <div className='rf-search__endAdornment'>{endAdornment}</div>}

@@ -6,9 +6,8 @@ import {
 import Avatar from '../../atoms/Avatar';
 import Tile from '../../atoms/Tile';
 import Tooltip from '../../atoms/Tooltip';
-import Info from '../../../assets/icons/Info';
+import { StatusInfoFill, AllRefresh } from '../../../indexIcon';
 import Structure from '../Structure';
-import Refresh from '../../../assets/icons/Refresh';
 import Button from '../../atoms/Button';
 
 export interface IEmployeeProps {
@@ -46,7 +45,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
     className='rf-employee__button'
     buttonType='text'
     onClick={onClick}
-    startAdornment={<Refresh />}
+    startAdornment={<AllRefresh />}
   >
     Выбрать другого сотрудника
   </Button>;
@@ -55,7 +54,7 @@ const Employee: React.FC<IEmployeeProps> = ({ user,
     position={position}
     background={tooltipBackground}
   >
-    <Info data-testid='icon' className='rf-employee__department-icon' />
+    <StatusInfoFill data-testid='icon' className='rf-employee__department-icon' />
     <Structure departmentsPath={departmentsPath} background={tooltipBackground} />
   </Tooltip>;
 

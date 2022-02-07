@@ -2,7 +2,7 @@ import React, {
   ReactNode, useEffect, useState
 } from 'react';
 import './ContentExpander.scss';
-import Angle from '../../../assets/icons/ChevronDown';
+import { ArrowsChevronDown } from '../../../indexIcon';
 import Button from '../../atoms/Button';
 
 
@@ -76,7 +76,7 @@ const ContentExpander: React.FC<IContentExpanderProps> = ({
       <h3 className={`expander__title ${hideTitleClass}`} onClick={onClick} data-expander={true}>
         <Button buttonType='text'>
           <div className='expander__button-wrapper'>
-            <Angle className={`expander__icon ${expanded || innerExpanded ? 'expander__icon--rotate' : ''}`} />
+            <ArrowsChevronDown className={`expander__icon ${expanded || innerExpanded ? 'expander__icon--rotate' : ''}`} />
             <span className='expander__title-text'>{!innerExpanded ? title : titleOpen || title}</span>
           </div>
         </Button>

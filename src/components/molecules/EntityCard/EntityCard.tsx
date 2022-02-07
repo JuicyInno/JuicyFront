@@ -4,7 +4,7 @@ import UserPhoto from '../../atoms/UserPhoto';
 import Tooltip from '../../atoms/Tooltip';
 import Toast from '../../atoms/Toast';
 
-import Copy from '../../../assets/icons/24px/Account/Copy';
+import { AllCopy } from '../../../indexIcon';
 
 import './EntityCard.scss';
 
@@ -66,7 +66,7 @@ const EntityCard: FC<IUserPositions> = ({
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
             {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
               <Tooltip background={tooltipBackground} position='bottom'>
-                <Copy onClick={onCopy} id='copyIcon' />
+                <AllCopy onClick={onCopy} id='copyIcon' />
                 <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
               </Tooltip>
               <Toast isVisible={isCopied} setVisibility={setIsCopied}>

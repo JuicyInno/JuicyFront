@@ -15,16 +15,13 @@ import PDFViewer from '../../molecules/PDFViewer';
 import Tile from '../../atoms/Tile';
 import Attachment from '../../molecules/Attachment';
 
-import {
-  CircleConfirm, CircleReject, Close
-} from '../../../indexIcon';
+import { CircleReject, CircleConfirm } from '../../../assets/legacyIcons';
 
-
-import Document from '../../../assets/icons/Documents';
+import Document from './Documents';
 import { IBrowserCert, ICertResult } from '../../molecules/CertReader/CertReader';
 import ContentExpander from '../../molecules/ContentExpander';
 import { Certificate } from 'crypto-pro';
-import Download from '../../../assets/icons/Download';
+import { AllDownload, AllClose } from '../../../indexIcon';
 import { IFileData } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import { ITileProps } from '../../atoms/Tile/Tile';
@@ -338,7 +335,7 @@ const Signification:FC<IProps> = ({
         <div className='manual__header'>
           <div>Подписать вручную</div>
           <div className='manual__close' onClick={() => setManualPopup(false)}>
-            <Close/>
+            <AllClose />
           </div>
         </div>
         <div className='manual__hint-wrapper'>
@@ -347,7 +344,7 @@ const Signification:FC<IProps> = ({
               <Button
                 onClick={() => download(value)}
                 buttonType='text'
-                startAdornment={<Download/>}
+                startAdornment={<AllDownload />}
               >
                   Скачать
               </Button>
@@ -390,7 +387,7 @@ const Signification:FC<IProps> = ({
            onClick={() => window.open('https://intranet.vtb.com/podrazdeleniya/pik/dppsis/support/Pages/default.aspx')}
            buttonType='text'
            textColor='red'
-           startAdornment={<Download/>}
+           startAdornment={<AllDownload />}
          >
           Инструкция
          </Button>

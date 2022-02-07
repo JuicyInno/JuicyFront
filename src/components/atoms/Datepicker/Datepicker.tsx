@@ -9,7 +9,7 @@ import {
 } from '../../../utils/helpersDatePicker';
 import { Manager, Reference } from 'react-popper';
 import {
-  Calendar, ChevronDown, Cross
+  AllCalendar, ArrowsChevronDown, AllClose
 } from '../../../indexIcon';
 import Input from '../Input';
 import InputMask from 'react-input-mask';
@@ -391,14 +391,14 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                       filled={filled}
                       startAdornment={
                         <button onClick={e => e.stopPropagation()} type='button' className='rf-datepicker__calendar-button'>
-                          <Calendar />
+                          <AllCalendar />
                         </button>
                       }
                       endAdornment={
                         <div className={classnames('rf-datepicker__calendar-chevron', isCrossChevronPicker && 'rf-datepicker__calendar-cross')}>
                           {isCrossChevronPicker ?
-                            <Cross onClick={clearDateRangeHandler} /> :
-                            <ChevronDown onClick={e => e.stopPropagation()} />}
+                            <AllClose onClick={clearDateRangeHandler} /> :
+                            <ArrowsChevronDown onClick={e => e.stopPropagation()} />}
                         </div>
                       }
                     />

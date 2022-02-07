@@ -3,8 +3,7 @@ import './CompletePopup.scss';
 import Button from '../../atoms/Button';
 import {
   CircleReject, CircleConfirm, CircleReturn, CircleRefresh, CircleTrash
-} from '../../../indexIcon';
-
+} from '../../../assets/legacyIcons';
 
 import { classnames } from '../../../utils/classnames';
 import Tile from '../../atoms/Tile';

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Tag.scss';
 import { Variant } from '../../../types';
-import { Close } from '../../../indexIcon';
+import { AllClose } from '../../../indexIcon';
 
 export interface ITagProps {
   /** Цвет тега. */
@@ -50,7 +50,7 @@ const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled,
       )}
       {overMaxLength ? children.slice(0, maxLength) + '...' : children}
       {!!onRemove && <button type='button' className='rf-tag__remove' onClick={handleRemove} disabled={disabled} aria-label='Удалить'>
-        <Close />
+        <AllClose />
       </button>}
     </div>
   );

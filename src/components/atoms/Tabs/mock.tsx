@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITab } from '../../../types';
-import Placeholder24 from '../../../assets/icons/Placeholder24';
+import { AllIconPlace } from '../../../indexIcon';
 import Badge from '../Badge';
 
 export const _simpleTabs: ITab[] = [
@@ -26,19 +26,19 @@ export const _simpleTabs: ITab[] = [
 export const _iconTabs: ITab[] = [
   {
     label: 'Tab 1',
-    icon: <Placeholder24 />,
+    icon: <AllIconPlace size='s' />,
   },
   {
     label: 'Tab 2',
-    icon: <Placeholder24 />,
+    icon: <AllIconPlace size='s' />,
   },
   {
     label: 'Tab 3',
-    icon: <Placeholder24 />,
+    icon: <AllIconPlace size='s' />,
   },
   {
     label: 'Tab 4',
-    icon: <Placeholder24 />,
+    icon: <AllIconPlace size='s' />,
   },
 ];
 

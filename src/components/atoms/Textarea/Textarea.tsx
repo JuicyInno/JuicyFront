@@ -7,7 +7,7 @@ import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
 import { classnames } from '../../../utils/classnames';
-import Close from '../../../assets/icons/Close';
+import { AllClose } from '../../../indexIcon';
 
 export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   /** Автоматическое изменение высоты */
@@ -122,7 +122,7 @@ const Textarea: FC<ITextareaProps> = ({
   /** Кнопка сброса */
   const closeButton = onClear && value.length > 0 && (
     <button type='button' className='rf-textarea__action' onClick={ clearInput } aria-label='Сбросить'>
-      <Close/>
+      <AllClose />
     </button>
   );
 

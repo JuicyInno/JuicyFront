@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import InputPhone, { IInputPhoneCountry } from './InputPhone';
-import FlagGB from '../../../assets/icons/FlagGB';
-import FlagRU from '../../../assets/icons/FlagRU';
+import FlagGB from './flagIcons/FlagGB';
+import FlagRU from './flagIcons/FlagRU';
 
 const COUNTRIES: IInputPhoneCountry[] = [
   {

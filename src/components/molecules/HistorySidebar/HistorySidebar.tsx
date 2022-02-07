@@ -3,10 +3,10 @@ import React, { FC, useState } from 'react';
 import Button from '../../atoms/Button';
 import Attachment from '../Attachment';
 import HistoryPathList from '../../atoms/HistoryPathList';
-import Doc from '../../../assets/icons/40px/Documents/Doc';
 import Badge from '../../atoms/Badge';
-import ChevronLeft from '../../../assets/icons/24px/Arrows/ChevronLeft';
-import ChevronRight from '../../../assets/icons/24px/Arrows/ChevronRight';
+import {
+  ArrowsChevronLeft, ArrowsChevronRight, AllDoc
+} from '../../../indexIcon';
 
 import { useSortPaths } from './helpers';
 
@@ -50,7 +50,7 @@ const HistorySidebar: FC<IHistory> = ({
       ) : (
         <Badge badgeContent={attachments && attachments.length}>
           <div className='rf-history-sidebar__attachments-preview'>
-            <Doc />
+            <AllDoc />
           </div>
         </Badge>
       )}
@@ -69,7 +69,7 @@ const HistorySidebar: FC<IHistory> = ({
           className='rf-history-sidebar__button'
         >
           <div className='rf-history-sidebar__button-icon'>
-            {isOpen ? <ChevronRight /> : <ChevronLeft />}
+            {isOpen ? <ArrowsChevronRight /> : <ArrowsChevronLeft />}
           </div>
         </Button>
       </div>

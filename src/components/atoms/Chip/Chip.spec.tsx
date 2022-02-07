@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Chip from './Chip';
-import Download from '../../../assets/icons/Download';
+import { AllDownload } from '../../../indexIcon';
 
 describe('Test <Chip/> component', () => {
   it('should be primary', () => {
@@ -37,7 +37,7 @@ describe('Test <Chip/> component', () => {
 
   it('should have icon left', () => {
     const { container } = render(
-      <Chip icon={<Download />} iconPosition='left'>
+      <Chip icon={<AllDownload />} iconPosition='left'>
         Button
       </Chip>
     );
@@ -46,7 +46,7 @@ describe('Test <Chip/> component', () => {
 
   it('should have icon right', () => {
     const { container } = render(
-      <Chip icon={<Download />} iconPosition='right'>
+      <Chip icon={<AllDownload />} iconPosition='right'>
         Button
       </Chip>
     );
@@ -54,7 +54,7 @@ describe('Test <Chip/> component', () => {
   });
 
   it('should not have icon', () => {
-    const { container } = render(<Chip icon={<Download />}>Button</Chip>);
+    const { container } = render(<Chip icon={<AllDownload />}>Button</Chip>);
     expect(container.getElementsByClassName('rf-chip__right-icon ')).toHaveLength(0);
     expect(container.getElementsByClassName('rf-chip__left-icon ')).toHaveLength(0);
   });

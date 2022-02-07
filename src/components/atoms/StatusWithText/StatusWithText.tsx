@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import './StatusWithText.scss';
-import Release from '../../../assets/icons/24px/Status/Release';
-import Error from '../../../assets/icons/24px/Status/Error';
-import Return from '../../../assets/icons/24px/Status/Return';
-import ReleaseSecondary from '../../../assets/icons/24px/Status/ReleaseSecondary';
+import {
+  StatusError, StatusReturn, StatusRelease, StatusReleaseSecondary
+} from '../../../indexIcon';
 
 export interface IStatusWithTextProps {
     /** Текст статуса */
@@ -17,19 +16,19 @@ type IStatusColor = { symbol: string, icon: JSX.Element }
 const statusColors: { [key: string]: IStatusColor } = {
   '0': {
     symbol: 'rf-status-with-text__title--default',
-    icon: <ReleaseSecondary />
+    icon: <StatusReleaseSecondary />
   },
   '1': {
     symbol: 'rf-status-with-text__title--error',
-    icon: <Error />
+    icon: <StatusError />
   },
   '2': {
     symbol: 'rf-status-with-text__title--warning',
-    icon: <Return />
+    icon: <StatusReturn />
   },
   '3': {
     symbol: 'rf-status-with-text__title--success',
-    icon: <Release />
+    icon: <StatusRelease />
   }
 };
 

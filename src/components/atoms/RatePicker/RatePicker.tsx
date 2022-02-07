@@ -1,7 +1,7 @@
 import React, {
   FC, useState, useEffect, InputHTMLAttributes
 } from 'react';
-import { Star } from '../../../indexIcon';
+import { AllStar } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
@@ -127,7 +127,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         onMouseLeave={onMoveMouseLeaveHandler}
         onClick={clickRateStarHandler(index + 1)}
         className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
-      ><Star size={isActive ? 'm' : 'xxs'} /></label> :
+      ><AllStar size={isActive ? 'm' : 'xxs'} /></label> :
         <label
           className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
           onClick={isActive ? clickRateHandler : () => { }}

@@ -7,7 +7,7 @@ import Avatar from '../../atoms/Avatar';
 import Structure from '../../molecules/Structure';
 import Toast from '../../atoms/Toast';
 import Tooltip from '../../atoms/Tooltip';
-import { Info, Copy } from '../../../indexIcon';
+import { StatusInfoFill, AllCopy } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
 
@@ -60,7 +60,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
                     background={tooltipBackground}
                   >
                     <div className='rf-find-entities-user__info'>
-                      <Info />
+                      <StatusInfoFill />
                     </div>
                     <Structure departmentsPath={ user.departmentsPath } background={tooltipBackground}/>
                   </Tooltip>
@@ -76,7 +76,7 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
                     position='right'
                     background={tooltipBackground}
                   >
-                    <Copy onClick={onCopy} />
+                    <AllCopy onClick={onCopy} />
                     <div>Скопировать ТН</div>
                   </Tooltip>
                   <Toast isVisible={isCopied} setVisibility={setIsCopied}>

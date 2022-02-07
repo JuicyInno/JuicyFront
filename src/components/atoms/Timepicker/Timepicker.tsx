@@ -8,9 +8,8 @@ import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
 import TimeElement, { getTime } from './TimeElement';
 import Menu from '../Menu';
-import Close from '../../../assets/icons/Close';
 import { classnames } from '../../../utils/classnames';
-import Pending from '../../../assets/icons/24px/Status/Pending';
+import { StatusPending, AllClose } from '../../../indexIcon';
 
 export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref'> {
   /** Css класс */
@@ -109,9 +108,9 @@ const Timepicker: FC<ITimepickerProps> = ({
         {children || <div className='rf-timepicker__menu'>
           <Button buttonType='text' className='rf-timepicker__btn' disabled={disabled}>
             {emptyValue ? (
-              <Pending className='rf-timepicker__icon rf-timepicker__icon-time' />
+              <StatusPending className='rf-timepicker__icon rf-timepicker__icon-time' />
             ) : (
-              <Close className='rf-timepicker__icon rf-timepicker__icon-close' onClick={onClearValue} />
+              <AllClose className='rf-timepicker__icon rf-timepicker__icon-close' onClick={onClearValue} />
             )}
           </Button>
         </div>}
