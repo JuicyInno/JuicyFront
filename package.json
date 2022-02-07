@@ -17,7 +17,7 @@
     "deploy": "yarn build-storybook && firebase deploy",
     "release": "release-it",
     "size": "source-map-explorer dist/index.js --no-border-checks",
-    "make-icons": "ts-node src/assets/newIcons/iconProcessor.ts && eslint --fix --ext .ts,.tsx src/assets/newIcons/resultDir src/components/atoms/Icons/Icons.stories.tsx"
+    "make-icons": "ts-node src/assets/icons/iconProcessor.ts && eslint --fix --ext .ts,.tsx src/assets/icons/resultDir src/components/atoms/Icons/Icons.stories.tsx"
   },
   "repository": {
     "type": "git",

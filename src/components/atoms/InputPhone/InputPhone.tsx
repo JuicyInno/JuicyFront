@@ -8,7 +8,7 @@ import Input, { IInputProps } from '../Input';
 import Menu, { MenuContext } from '../Menu';
 import { IMenuContext } from '../../../types';
 import { ArrowsChevronDown } from '../../../indexNewIcon';
-import FlagRU from './FlagRU';
+import FlagRU from './flagIcons/FlagRU';
 import { classnames } from '../../../utils/classnames';
 
 export interface IInputPhoneCountry {

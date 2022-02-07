@@ -6,8 +6,8 @@ import { FormGroup } from '../../../index';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH4,
 } from '../../storybook';
-import FlagGB from './FlagGB';
-import FlagRU from './FlagRU';
+import FlagGB from './flagIcons/FlagGB';
+import FlagRU from './flagIcons/FlagRU';
 import StoryContainer from '../../storybook/Story';
 
 const COUNTRIES: IInputPhoneCountry[] = [
