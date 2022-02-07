@@ -1,4 +1,4 @@
-@import '../../../styles/mixins';
+@import "../../../styles/mixins";
 
 .rf-checkbox {
   display: inline-flex;
@@ -35,7 +35,7 @@
   height: 20px;
   min-width: 20px;
   min-height: 20px;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: var(--background-primary);
   border: 1px solid var(--basic-tertiary);
   transition: 0.15s ease-in;
