@@ -81,6 +81,7 @@ import { FindEntitiesUser, createGetUsers } from './components/popups/FindEntiti
 import AvatarStack from './components/molecules/AvatarStack';
 import { Banner, BannerImage } from './components/atoms/Banner';
 import Attachment from './components/molecules/Attachment';
+import Shimmer from './components/atoms/Shimmer';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -169,7 +170,8 @@ export {
   FindEntitiesUser,
   createGetUsers,
   Banner,
-  BannerImage
+  BannerImage,
+  Shimmer
 };
 
 

@@ -1,0 +1,93 @@
+$bg-light: linear-gradient(
+  to right,
+  var(--background-secondary) calc(50% - 100px),
+  #fbfbfb 50%,
+  var(--background-secondary) calc(50% + 100px)
+);
+$bg-dark: linear-gradient(
+  to right,
+  var(--background-tertiary) calc(50% - 100px),
+  var(--background-secondary) 50%,
+  var(--background-tertiary) calc(50% + 100px)
+);
+$borderRadius: 56px;
+
+.rf-shimmer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  height: 16px;
+  border-radius: $borderRadius;
+  overflow: hidden;
+
+  .rf-shimmer__wrap {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+
+    &.rf-shimmer__avatar {
+      display: none;
+    }
+  }
+
+  .rf-shimmer__inner {
+    background-image: $bg-light;
+    background-size: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(200% + 200px);
+      bottom: 0;
+      background-image: inherit;
+      animation: move 2s linear infinite;
+    }
+  }
+
+  .rf-shimmer__inner {
+    width: inherit;
+  }
+
+  &.rf-shimmer--dark .rf-shimmer__inner {
+    background-image: $bg-dark;
+  }
+
+  &.rf-shimmer--text {
+    max-width: 60%;
+  }
+
+  &.rf-shimmer--avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  &.rf-shimmer--image {
+    width: 216px;
+    height: 140px;
+    border-radius: 16px;
+  }
+
+  &.rf-shimmer--avatar-title {
+    .rf-shimmer__avatar {
+      display: block;
+      width: 16px;
+      margin-right: 12px;
+    }
+
+    .rf-shimmer__wrap {
+      border-radius: $borderRadius;
+    }
+  }
+}
+
+@keyframes move {
+  to {
+    transform: translateX(calc(50% + 100px));
+  }
+}
