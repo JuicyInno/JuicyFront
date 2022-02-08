@@ -166,10 +166,9 @@ export const Demo = () => {
             <Select
               placeholder='Placeholder'
               options={list}
-              variant='base'
+              variant='menu'
               values={state}
               onChange={onChange2}
-
             />
           </FormGroup>
         </StoryItem>

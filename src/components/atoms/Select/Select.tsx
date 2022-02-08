@@ -60,7 +60,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
    * Вид селекта
    * @default 'base'
    *  */
-  variant?: 'base' | 'tag';
+  variant?: 'base' | 'tag' | 'menu';
   /**
    * Переводит селект в невалидный статус
    * @default false
@@ -104,13 +104,13 @@ const Select: FC<ISelectProps> = ({
   values = [],
   multiselect = false,
   placeholder = '',
+  variant = 'base',
   disabled = false,
-  readOnly = false,
+  readOnly = variant === 'menu',
   maxOptions = undefined,
   preloader = false,
   clearOnSelect = false,
   clearHook,
-  variant = 'base',
   isAsync,
   infinityScrollProps,
   position = 'bottom',
@@ -343,10 +343,12 @@ const Select: FC<ISelectProps> = ({
   const noop = () => { };
 
   const inputElement = <input
+
     autoSave='false'
     autoComplete='off'
     id='rf-select__input'
-    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
+    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
+     ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''}` : ''}`}
     onChange={onSelectSearch}
     value={inputValue}
     disabled={disabled}
@@ -397,7 +399,7 @@ const Select: FC<ISelectProps> = ({
         className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
         onClick={onChevronClick}
       >
-        <ArrowsChevronDown />
+        <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} />
       </button>
     );
 
@@ -434,14 +436,14 @@ const Select: FC<ISelectProps> = ({
         <Reference>
           {(referenceProps) => (
             <div
-
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
                 'rf-select__wrapper',
                 invalid && 'rf-select__wrapper--invalid',
                 openClass,
-                disabled && 'rf-select__wrapper--disabled'
+                disabled && 'rf-select__wrapper--disabled',
+                variant === 'menu' ? 'rf-select__wrapper--menu' : ''
               )}
               onClick={() => onOpen()}
             >

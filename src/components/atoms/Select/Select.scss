@@ -277,3 +277,33 @@
 .rf-select-input__container {
   display: contents;
 }
+.rf-select__menu,
+.rf-select__menu--disabled {
+  background-color: var(--basic-primary);
+  height: 100vh;
+  max-height: 56px;
+  color: #fff;
+  &:focus {
+    background-color: var(--basic-hover);
+  }
+  &:hover {
+    background-color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--basic-press);
+  }
+  &::placeholder {
+    text-align: center;
+    color: #fff;
+  }
+}
+.rf-select__wrapper--menu {
+  box-shadow: none;
+}
+
+.rf-select__menu--disabled {
+  background-color: var(--basic-disable);
+  &::placeholder {
+    color: #fff !important;
+  }
+}
