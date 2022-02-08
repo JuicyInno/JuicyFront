@@ -1,15 +1,15 @@
 import './FindEntitiesUser.scss';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import Checkbox from '../../atoms/Checkbox';
 import Avatar from '../../atoms/Avatar';
 import Structure from '../../molecules/Structure';
-import Toast from '../../atoms/Toast';
 import Tooltip from '../../atoms/Tooltip';
-import { StatusInfoFill, AllCopy } from '../../../indexIcon';
+import { StatusInfoFill } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
+import { Copy } from '../../..';
 
 interface IFindEntitiesUserProps {
   /** Пользователь */
@@ -25,15 +25,6 @@ interface IFindEntitiesUserProps {
 }
 
 export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSelected, onChange, disabled, tooltipBackground }) => {
-  const [isCopied, setIsCopied] = useState(false);
-
-  const onCopy = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-    setIsCopied(true);
-    navigator.clipboard.writeText(user.id);
-  };
-
   const shortPosition = user.department.slice(0, 100);
   const isShorter = user.department.length > shortPosition.length;
 
@@ -72,16 +63,15 @@ export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSel
               <div className='rf-find-entities-user__subtitle'>
                 {user.id}
                 <div className='rf-find-entities-user__copy'>
-                  <Tooltip
-                    position='right'
-                    background={tooltipBackground}
-                  >
-                    <AllCopy onClick={onCopy} />
-                    <div>Скопировать ТН</div>
-                  </Tooltip>
-                  <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                    <p className='rf-find-entities-user__toast'>ТН скопирован</p>
-                  </Toast>
+                  <Copy
+                    tooltipLabel='Скопировать ТН'
+                    copyMessage={user.id}
+                    successCopyMessage='ТН скопирован'
+                    tooltipProps={{
+                      background: tooltipBackground,
+                      position: 'right'
+                    }}
+                  />
                 </div>
               </div>
             </div>

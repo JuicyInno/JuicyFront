@@ -51,11 +51,5 @@
   &__copy {
     display: flex;
     margin-left: 4px;
-    color: var(--basic-tertiary);
-  }
-
-  &__toast {
-    @include text-xs-14();
-    color: var(--text-secondary);
   }
 }
