@@ -1,0 +1,24 @@
+.layout {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+
+  @media (max-width: 1439px) {
+    grid-template-columns: 1fr !important;
+  }
+
+  &--size {
+    &-s {
+      max-width: 880px;
+    }
+
+    &-m {
+      max-width: 1000px;
+    }
+  
+    &-l {
+      max-width: 1300px;
+    }
+  }
+}
