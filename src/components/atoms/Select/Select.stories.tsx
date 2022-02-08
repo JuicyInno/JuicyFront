@@ -166,9 +166,10 @@ export const Demo = () => {
             <Select
               placeholder='Placeholder'
               options={list}
-              variant='menu'
+              variant='base'
               values={state}
               onChange={onChange2}
+
             />
           </FormGroup>
         </StoryItem>
@@ -280,6 +281,35 @@ export const Demo = () => {
           </FormGroup>
           <br />
           <Button onClick={() => setDisabled(!disabled)}>toggle disabled</Button>
+        </StoryItem>
+        <StoryItem description='Select Menu Button'>
+          <FormGroup label={'Default Menu Button'}>
+            <div style={{ width: '168px', }}>
+              <Select
+                placeholder='Placeholder'
+                options={list}
+                variant='menu'
+                values={state}
+                onChange={onChange2}
+                dropdownMaxWidth={'240px'}
+              />
+            </div>
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select Menu Button'>
+          <FormGroup label={'Feedback Menu Button'}>
+            <div style={{ width: '168px', }}>
+              <Select
+                placeholder='Placeholder'
+                options={list}
+                variant='menu'
+                values={state}
+                onChange={onChange2}
+                dropdownMaxWidth={'240px'}
+                menuVariantSize='s'
+              />
+            </div>
+          </FormGroup>
         </StoryItem>
       </form>
     </StoryContainer>

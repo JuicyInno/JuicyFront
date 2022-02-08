@@ -280,8 +280,7 @@
 .rf-select__menu,
 .rf-select__menu--disabled {
   background-color: var(--basic-primary);
-  height: 100vh;
-  max-height: 56px;
+
   color: #fff;
   &:focus {
     background-color: var(--basic-hover);
@@ -297,6 +296,15 @@
     color: #fff;
   }
 }
+
+.rf-select__menu--s {
+  height: 32px;
+  font-size: 14px;
+}
+.rf-select__menu--m {
+  height: 56px;
+  font-size: 16px;
+}
 .rf-select__wrapper--menu {
   box-shadow: none;
 }
@@ -306,4 +314,10 @@
   &::placeholder {
     color: #fff !important;
   }
+}
+.rf-select__list--m > div {
+  font-size: 16px;
+}
+.rf-select__list--s > div {
+  font-size: 14px;
 }

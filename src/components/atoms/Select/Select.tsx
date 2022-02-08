@@ -94,6 +94,11 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
    * @default 'white'
    * */
   backgroundColor?: 'white' | 'gray'
+  /**
+   * Цвет селекта
+   * @default 'm'
+   * */
+  menuVariantSize?: 's' | 'm';
 }
 
 const Select: FC<ISelectProps> = ({
@@ -119,7 +124,8 @@ const Select: FC<ISelectProps> = ({
   onScroll,
   dropdownMaxWidth,
   containerRef,
-  backgroundColor = 'white'
+  backgroundColor = 'white',
+  menuVariantSize = 'm'
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -348,7 +354,7 @@ const Select: FC<ISelectProps> = ({
     autoComplete='off'
     id='rf-select__input'
     className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
-     ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''}` : ''}`}
+     ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''} rf-select__menu--${menuVariantSize}` : ''}`}
     onChange={onSelectSearch}
     value={inputValue}
     disabled={disabled}
@@ -466,17 +472,18 @@ const Select: FC<ISelectProps> = ({
         </Reference>
 
         <Dropdown
+
           show={showDropdown && (!!listJSX.length || preloader)}
           toggleRef={toggleRef}
           containerRef={containerRef}
           onClose={onClose}
-          position={position}
+          position={variant === 'menu' ? 'bottom-end' : position}
           style={{
             maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div data-testid='rf-select-list-scroll' className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
+          <div data-testid='rf-select-list-scroll' className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)} id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
