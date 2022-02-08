@@ -95,7 +95,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
    * */
   backgroundColor?: 'white' | 'gray'
   /**
-   * Цвет селекта
+   * Размер кнопки меню
    * @default 'm'
    * */
   menuVariantSize?: 's' | 'm';
@@ -360,7 +360,7 @@ const Select: FC<ISelectProps> = ({
     disabled={disabled}
     readOnly={readOnly}
     placeholder={
-      multiselect && selectValues.length ? '' : placeholder
+      multiselect && selectValues.length ? '' : options.length ? placeholder : ''
     }
   />;
 
@@ -405,7 +405,7 @@ const Select: FC<ISelectProps> = ({
         className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
         onClick={onChevronClick}
       >
-        <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} />
+        {options.length ? <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} /> : null}
       </button>
     );
 
@@ -471,7 +471,7 @@ const Select: FC<ISelectProps> = ({
           )}
         </Reference>
 
-        <Dropdown
+        {options.length ? <Dropdown
 
           show={showDropdown && (!!listJSX.length || preloader)}
           toggleRef={toggleRef}
@@ -500,7 +500,7 @@ const Select: FC<ISelectProps> = ({
               <>{preloader ? loader : listJSX}</>
             )}
           </div>
-        </Dropdown>
+        </Dropdown> : <Preloader size='m' />}
 
         {/* filteredOptions.length > 0*/}
 

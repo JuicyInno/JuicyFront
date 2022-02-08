@@ -311,6 +311,38 @@ export const Demo = () => {
             </div>
           </FormGroup>
         </StoryItem>
+        <StoryItem description='Select Menu Button'>
+          <FormGroup label={'Select Menu Button disabled'}>
+            <div style={{ width: '168px', }}>
+              <Select
+                placeholder='Placeholder'
+                options={list}
+                variant='menu'
+                disabled
+                values={state}
+                onChange={onChange2}
+                dropdownMaxWidth={'240px'}
+                menuVariantSize='m'
+              />
+            </div>
+          </FormGroup>
+        </StoryItem>
+        <StoryItem description='Select Menu Button'>
+          <FormGroup label={'Select Menu Button preloader'}>
+            <div style={{ width: '168px', }}>
+              <Select
+                placeholder='Placeholder'
+                options={[]}
+                variant='menu'
+                disabled
+                values={state}
+                onChange={onChange2}
+                dropdownMaxWidth={'240px'}
+                menuVariantSize='m'
+              />
+            </div>
+          </FormGroup>
+        </StoryItem>
       </form>
     </StoryContainer>
   );
