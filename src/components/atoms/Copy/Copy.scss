@@ -1,0 +1,14 @@
+.rf-copy {
+  color: var(--basic-tertiary);
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  &.rf-copy--disabled {
+    pointer-events: none;
+    color: var(--basic-disable);
+  }
+
+  &:hover {
+    color: var(--basic-hover);
+  }
+}
