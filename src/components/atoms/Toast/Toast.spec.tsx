@@ -61,4 +61,14 @@ describe('Test <Toast /> component', () => {
     jest.advanceTimersByTime(2000);
     expect(setVisibility).toBeCalled();
   });
+
+  it('should be pass style', () => {
+    render(
+      <Toast isVisible setVisibility={jest.fn} style={{ top: '-10px', left: 'auto' }}>
+        <p>Текст уведомления</p>
+      </Toast>
+    );
+
+    expect(screen.getByTestId('rf-toast')).toHaveStyle({ top: '-10px', left: 'auto' });
+  });
 });

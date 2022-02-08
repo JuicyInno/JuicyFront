@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { AllCopy } from '../../../indexIcon';
 import { IIconProps } from '../../../types';
 import { classnames } from '../../../utils/classnames';
 import Toast from '../Toast';
+import { IToastProps } from '../Toast/Toast';
 import Tooltip from '../Tooltip';
+import { ITooltipProps } from '../Tooltip/Tooltip';
 
 import './Copy.scss';
 
-export interface ICopyProps extends IIconProps {
+export interface ICopyProps extends IIconProps, Pick<IToastProps, 'containerRef'> {
   /** Текст при наведении */
   tooltipLabel: string;
   /** Скопированный текст */
@@ -18,9 +20,12 @@ export interface ICopyProps extends IIconProps {
    * @default faslse
   */
   disabled?: boolean;
+  /** Пропсы компонента Tooltip */
+  tooltipProps?: Omit<ITooltipProps, 'children'>;
 }
 
-const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, ...props }: ICopyProps) => {
+// TODO: заменить в других компонентах
+const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, tooltipProps, containerRef, ...props }: ICopyProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const onCopy = (event: React.MouseEvent) => {
@@ -30,16 +35,15 @@ const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, ...prop
     navigator.clipboard.writeText(copyMessage);
   };
 
+  const toastStyle = useMemo(() => containerRef ? { top: '-50px' } : {}, [containerRef]);
+
   return <div role='button' className={classnames('rf-copy', disabled && 'rf-copy--disabled')}>
-    <Tooltip
-      position='right'
-    >
+    <Tooltip {...tooltipProps}>
       <AllCopy onClick={onCopy} className='rf-copy__icon' {...props} />
       <div>{tooltipLabel}</div>
     </Tooltip>
 
-    {/* TODO: добавить позицию отображения */}
-    <Toast isVisible={isCopied} setVisibility={setIsCopied}>
+    <Toast isVisible={isCopied} setVisibility={setIsCopied} containerRef={containerRef} style={toastStyle}>
       <p className='rf-copy__toast-message'>{successCopyMessage}</p>
     </Toast>
   </div>;
