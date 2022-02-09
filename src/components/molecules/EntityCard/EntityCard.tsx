@@ -1,12 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import UserPhoto from '../../atoms/UserPhoto';
-import Tooltip from '../../atoms/Tooltip';
-import Toast from '../../atoms/Toast';
-
-import { AllCopy } from '../../../indexIcon';
-
 import './EntityCard.scss';
+import { Copy } from '../../..';
 
 export interface IUserPositions {
   /** ФИО */
@@ -39,17 +35,7 @@ const EntityCard: FC<IUserPositions> = ({
   valueBySecondLabel = '',
   canCopy = false,
   tooltipBackground = 'default'
-
 }) => {
-
-  const [isCopied, setIsCopied] = useState(false);
-
-  const onCopy = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    setIsCopied(true);
-    navigator.clipboard.writeText(valueByFirstLabel);
-  };
-
   return <div className='rf-entity-card'>
     <div className='rf-entity-card__wrapper'>
       <div className='rf-entity-card__photo-wrapper'>
@@ -64,15 +50,18 @@ const EntityCard: FC<IUserPositions> = ({
           <p className='rf-entity-card__additional'>{firstLabel}</p>
           <div className='rf-entity-card__row'>
             <p className='rf-entity-card__accent rf-entity-card__accent_number'>{valueByFirstLabel}</p>
-            {!!canCopy && <div className='rf-entity-card__icon-wrapper'>
-              <Tooltip background={tooltipBackground} position='bottom'>
-                <AllCopy onClick={onCopy} id='copyIcon' />
-                <div className='rf-entity-card__tooltip-text'>Скопировать ТН</div>
-              </Tooltip>
-              <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                <p className='rf-entity-card__toast-text'>ТН скопирован</p>
-              </Toast>
-            </div>
+            {!!canCopy &&
+              <div className='rf-entity-card__icon-wrapper'>
+                <Copy
+                  tooltipLabel='Скопировать ТН'
+                  copyMessage={valueByFirstLabel}
+                  successCopyMessage='ТН скопирован'
+                  tooltipProps={{
+                    background: tooltipBackground,
+                    position: 'bottom'
+                  }}
+                />
+              </div>
             }
             {secondLabel && valueBySecondLabel &&
               <>

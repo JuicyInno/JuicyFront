@@ -65,20 +65,10 @@
 }
 
 .rf-entity-card__icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--basic-tertiary);
   margin-right: 16px;
-  cursor: pointer;
 }
 
 .rf-entity-card__tooltip-text {
   display: block;
-  white-space:nowrap;
-}
-
-.rf-entity-card__toast-text {
-  @include text-xs-14();
-  color: var(--text-secondary);
+  white-space: nowrap;
 }

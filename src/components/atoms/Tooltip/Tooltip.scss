@@ -1,7 +1,11 @@
-@import '../../../styles/mixins';
+@import "../../../styles/mixins";
 
 .rf-tooltip {
   position: relative;
+  display: inline-flex;
+}
+
+.rf-tooltip__reference {
   display: inline-flex;
 }
 

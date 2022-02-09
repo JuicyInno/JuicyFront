@@ -1,18 +1,16 @@
 import './FindEntitiesPosition.scss';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import Checkbox from '../../atoms/Checkbox';
 import Avatar from '../../atoms/Avatar';
 import Structure from '../../molecules/Structure';
-import Toast from '../../atoms/Toast';
 import Tooltip from '../../atoms/Tooltip';
 
-import {
-  AllCopy, StatusInfoFill, AllInvestmentProducts
-} from '../../../indexIcon';
+import { StatusInfoFill, AllInvestmentProducts } from '../../../indexIcon';
 
 import { IStructure } from '../../../types/projects.types';
+import { Copy } from '../../..';
 
 interface IFindEntitiesPositionProps {
   /** Должность */
@@ -28,15 +26,6 @@ interface IFindEntitiesPositionProps {
 }
 
 export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, disabled, tooltipBackground }) => {
-  const [isCopied, setIsCopied] = useState(false);
-
-  const onCopy = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-    setIsCopied(true);
-    navigator.clipboard.writeText(position.position);
-  };
-
   return (
     <div className='rf-find-entities-position'>
       <Checkbox
@@ -69,16 +58,15 @@ export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position,
               <div className='rf-find-entities-position__subtitle'>
                 {position.position}
                 <div className='rf-find-entities-position__copy'>
-                  <Tooltip
-                    position='right'
-                    background={tooltipBackground}
-                  >
-                    <AllCopy onClick={onCopy} />
-                    <div>Скопировать ТН</div>
-                  </Tooltip>
-                  <Toast isVisible={isCopied} setVisibility={setIsCopied}>
-                    <p className='rf-find-entities-position__toast'>ТН скопирован</p>
-                  </Toast>
+                  <Copy
+                    tooltipLabel='Скопировать ТН'
+                    copyMessage={position.position}
+                    successCopyMessage='ТН скопирован'
+                    tooltipProps={{
+                      background: tooltipBackground,
+                      position: 'right'
+                    }}
+                  />
                 </div>
               </div>
             </div>
