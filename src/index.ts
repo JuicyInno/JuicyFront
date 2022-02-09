@@ -70,6 +70,7 @@ import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
 import Dropdown from './components/atoms/Dropdown';
+import ImagePreview from './components/atoms/ImagePreview';
 import Schedule, {
   ScheduleLegend,
   ScheduleLegendItem,
@@ -98,6 +99,7 @@ export {
   AvatarStatus,
   AvatarStack,
   Attachment,
+  ImagePreview,
   Badge,
   Button,
   Checkbox,
