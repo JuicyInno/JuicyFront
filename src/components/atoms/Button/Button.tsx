@@ -12,6 +12,7 @@ export type ButtonType =
   | 'primary'
   | 'light'
   | 'secondary'
+  | 'outline'
   | 'ghost'
   | 'danger'
   | 'success'
