@@ -1,7 +1,6 @@
 import React from 'react';
 import { Story } from '@storybook/react';
 import ImagePreview from './ImagePreview';
-import { variantsClassic } from '../../../types';
 import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
@@ -9,35 +8,7 @@ import StoryRow from '../../storybook/StoryRow';
 export default {
   title: 'controls/не проверено/ImagePreview',
   component: ImagePreview,
-  argTypes: {
-    icon: {
-      options: ['info', null],
-      control: { type: 'radio' },
-      defaultValue: 'info'
-    },
-    className: { table: { disable: true } },
-    children: {
-      control: 'text',
-      defaultValue: 'Опишите коротко в чём суть сообщения'
-    },
-    title: {
-      control: 'text',
-      defaultValue: 'Заголовок'
-    },
-    button: {
-      control: 'text',
-      defaultValue: 'Действие'
-    },
-    variant: {
-      options: variantsClassic,
-      control: { type: 'radio' },
-      defaultValue: 'default'
-    },
-    maxWidth: {
-      control: 'text',
-      defaultValue: '648px'
-    },
-  }
+  argTypes: {}
 };
 
 export const Demo: Story = (args: any) => {
@@ -54,12 +25,8 @@ export const Demo: Story = (args: any) => {
   return (
     <StoryDocs >
       <StoryDocsH1>ImagePreview</StoryDocsH1>
-      <div style={{ padding: '42px 0px 0px 72px' }}>
-        <div style={frameStyle}>
-          <div style={{ marginBottom: 16 }}>
-            <ImagePreview />
-          </div>
-        </div>
+      <div>
+        <ImagePreview />
       </div>
     </StoryDocs >
   );
