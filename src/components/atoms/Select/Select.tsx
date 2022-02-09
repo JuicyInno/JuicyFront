@@ -402,7 +402,10 @@ const Select: FC<ISelectProps> = ({
       <button
         type='button'
         data-testid='rf-select__chevron'
-        className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
+        className={classnames(
+          (multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button',
+          showDropdown && 'rf-select__button--rotate', variant === 'menu' ? 'rf-select__button--menu' : ''
+        )}
         onClick={onChevronClick}
       >
         {options.length ? <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} /> : null}
