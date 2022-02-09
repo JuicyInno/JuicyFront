@@ -278,7 +278,7 @@ describe('Test <Select/> component', () => {
       onChange={noop}
     />);
 
-    expect(document.getElementsByClassName('rf-select__wrapper--menu').length).toBe(1)
+    expect(document.getElementsByClassName('rf-select__wrapper--menu')).toHaveLength(1)
   });
   it('should be render as s menu variant size', () => {
     render(<Select
@@ -291,6 +291,6 @@ describe('Test <Select/> component', () => {
       menuVariantSize='s'
     />);
 
-    expect(document.getElementsByClassName('rf-select__menu--s').length).toBe(1)
+    expect(document.getElementsByClassName('rf-select__menu--s')).toHaveLength(1)
   });
 });

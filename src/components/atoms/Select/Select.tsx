@@ -118,7 +118,7 @@ const Select: FC<ISelectProps> = ({
   clearHook,
   isAsync,
   infinityScrollProps,
-  position = 'bottom',
+  position = variant === 'menu' ? 'bottom-end' : 'bottom',
   endAdornment,
   startAdornment,
   onScroll,
@@ -477,7 +477,7 @@ const Select: FC<ISelectProps> = ({
           toggleRef={toggleRef}
           containerRef={containerRef}
           onClose={onClose}
-          position={variant === 'menu' ? 'bottom-end' : position}
+          position={position}
           style={{
             maxWidth: isTagVariant ? 'auto' : getWidthDropdown(),
             width: isTagVariant ? 'auto' : '100%'

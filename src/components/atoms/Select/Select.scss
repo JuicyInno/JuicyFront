@@ -277,13 +277,16 @@
 .rf-select-input__container {
   display: contents;
 }
-.rf-select__menu,
-.rf-select__menu--disabled {
+.rf-select__menu {
+  height: 56px;
   background-color: var(--basic-primary);
-
   color: #fff;
   &:focus {
     background-color: var(--basic-hover);
+    &::placeholder {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   &:hover {
     background-color: var(--basic-hover);
@@ -307,6 +310,9 @@
 }
 .rf-select__wrapper--menu {
   box-shadow: none;
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 .rf-select__menu--disabled {
