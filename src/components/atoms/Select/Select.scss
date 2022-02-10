@@ -327,3 +327,10 @@
 .rf-select__list--s > div {
   font-size: 14px;
 }
+
+.rf-button__hover {
+  background-color: var(--basic-hover);
+  &:active {
+    background-color: var(--basic-hover);
+  }
+}
