@@ -38,3 +38,12 @@
     cursor: pointer;
   }
 }
+
+.avatar-stack__tooltip-name {
+  @include text-s-14
+}
+
+.avatar-stack__tooltip-position {
+  @include text-s-14;
+  color: var(--text-secondary)
+}

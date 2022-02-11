@@ -7,6 +7,7 @@ import { IUser } from '../../../types/projects.types';
 import Avatar from '../../atoms/Avatar/Avatar';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import { Manager, Reference } from 'react-popper';
+import { Tooltip } from '../../../index';
 
 
 export interface IAvatarStackProps {
@@ -25,7 +26,12 @@ export interface IAvatarStackProps {
 }
 
 const AvatarStack: React.FC<IAvatarStackProps> = ({
-  list, size = 'm', maxVisible = 3, position = 'bottom-start', onClick, dropdownMaxWidth
+  list,
+  size = 'm',
+  maxVisible = 3,
+  position = 'bottom-start',
+  onClick,
+  dropdownMaxWidth
 }: IAvatarStackProps) => {
 
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -57,58 +63,65 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
 
   const usersJSX = visibleUsers.map((u: IUser, i: number) => (
     <div
-      className={`avatar-stack__item ${clickableClass}`}
-      key={u.id}
-      onClick={() => handleClick(u)}
-      style={{
+      className={ `avatar-stack__item ${clickableClass}` }
+      key={ u.id }
+      onClick={ () => handleClick(u) }
+      style={ {
         transform: `translateX(-${GAP * i}px)`,
         zIndex: list.length + i
-      }}>
-      <Avatar photo={u.photo} fullName={u.fullName} size={size} />
+      } }>
+      <Tooltip position='bottom' background='white'>
+        <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+        <div>
+          <p className='avatar-stack__tooltip-name'>{ u.fullName }</p>
+          { u.position && <p className='avatar-stack__tooltip-position'>{ u.position }</p> }
+        </div>
+      </Tooltip>
     </div>
   ));
 
   return (
     <Manager>
-      <div className='avatar-stack' ref={toggleRef}>
-        {usersJSX}
-        {maxVisible < list.length && (
+      <div className='avatar-stack' ref={ toggleRef }>
+        { usersJSX }
+        { maxVisible < list.length && (
           <>
             <Reference>
-              {(referenceProps) => (
+              { (referenceProps) => (
                 <div
-                  {...referenceProps}
+                  { ...referenceProps }
                   data-testid='avatar-stack__toggle'
                   className='avatar-stack__item avatar-stack--clickable'
-                  style={{
+                  style={ {
                     transform: `translateX(-${GAP * maxVisible}px)`,
                     zIndex: list.length + maxVisible
-                  }}
-                  onClick={() => setShowDropdown((f: boolean) => !f)}
+                  } }
+                  onClick={ () => setShowDropdown((f: boolean) => !f) }
                 >
-                  <Avatar size={size} fullName={`+${list.length - maxVisible}`} />
+                  <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
                 </div>
-              )}
+              ) }
             </Reference>
 
-            <Dropdown show={showDropdown} toggleRef={toggleRef} onClose={onDropdownClose} position={position}
-              style={{
+            <Dropdown show={ showDropdown } toggleRef={ toggleRef } onClose={ onDropdownClose } position={ position }
+              style={ {
                 maxWidth: dropdownMaxWidth || 'auto',
                 width: dropdownMaxWidth ? '100%' : 'auto'
-              }}>
+              } }>
               <div className='avatar-stack__menu' data-testid='avatar-stack__menu'>
                 {
                   hiddenUsers.map((u: IUser) => (
-                    <div className={`avatar-stack__menu-item ${clickableClass}`} key={u.id} onClick={() => handleClick(u)}>
-                      <Avatar size='xs' photo={u.photo} fullName={u.fullName} />
-                      <span className='avatar-stack__menu-label'>{u.fullName}</span>
+                    <div className={ `avatar-stack__menu-item ${clickableClass}` } key={ u.id }
+                      onClick={ () => handleClick(u) }>
+                      <Avatar size='xs' photo={ u.photo } fullName={ u.fullName }/>
+                      <span className='avatar-stack__menu-label'>{ u.fullName }</span>
                     </div>
                   ))
                 }
               </div>
             </Dropdown>
           </>
-        )}
+        ) }
       </div>
     </Manager>
   );
