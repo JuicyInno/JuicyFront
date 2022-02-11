@@ -133,7 +133,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
         onClick={ handleChange }>
         <HLine className='rf-tree__item--h' data-id={ `d-${depth}` }/>
         {
-          item.children && item.children.length > 0 ?
+          (item.hasChildren === undefined ? (item.children && item.children.length > 0) : item.hasChildren) ?
             <ArrowsUp className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
