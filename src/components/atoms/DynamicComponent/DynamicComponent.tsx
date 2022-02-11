@@ -1,6 +1,7 @@
 import React, { ReactNode, useMemo } from 'react';
 import { loadComponent, useDynamicScript } from '../../../hooks/useDynamicScript';
 import Preloader from '../Preloader';
+import ErrorBoundary from '../ErrorBoundary';
 
 interface IProps {
   url: string;
@@ -8,9 +9,10 @@ interface IProps {
   module: string;
   basename?: string;
   fallback?: ReactNode;
+  error?: ReactNode;
 }
 
-const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '', fallback }: IProps) => {
+const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '', fallback, error = '' }: IProps) => {
   const { ready, failed } = useDynamicScript({ url });
   const Component = useMemo(() => React.lazy(loadComponent(scope, module)), [scope, module]);
 
@@ -23,9 +25,13 @@ const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '',
   }
 
   return (
-    <React.Suspense fallback={ fallback || <Preloader size='l'/> }>
-      { ready ? <Component basename={ basename }/> : <Preloader size='l'/> }
-    </React.Suspense>
+    <ErrorBoundary error={ error }>
+      { failed ? error : (
+        <React.Suspense fallback={ fallback || <Preloader size='l'/> }>
+          { ready ? <Component basename={ basename }/> : <Preloader size='l'/> }
+        </React.Suspense>
+      ) }
+    </ErrorBoundary>
   );
 };
 
