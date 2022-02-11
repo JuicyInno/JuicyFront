@@ -7,6 +7,7 @@ interface IProps {
   scope: string;
   module: string;
   basename?: string;
+  // Fallback for suspense
   fallback?: ReactNode;
 }
 
