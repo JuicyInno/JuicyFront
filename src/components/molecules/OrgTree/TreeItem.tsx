@@ -50,7 +50,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openClass = showFolder && item.children && item.children.length > 0 ? 'rf-tree__item--open' : 'rf-tree__item--close';
   const showFolderClass = showFolder ? '' : 'rf-tree__item-folder--hidden';
-  const rotateIconClass = (item.hasChildren === undefined ? item.children && item.children.length === 0 : item.hasChildren) || !showFolder ? 'rf-tree__item-label-icon--rotate' : '';
+  const rotateIconClass = (item.children && item.children.length === 0 && item.hasChildren === true) || !showFolder ? 'rf-tree__item-label-icon--rotate' : '';
   const itemChildrenClass = item.children && item.children.length > 0 ? '' : 'rf-tree__item--no-children';
   const activeClass = activeItem?.value === item.value ? 'rf-tree__item--active' : '';
   const firstLevelClass = depth === 1 ? 'rf-tree__item--1' : '';
@@ -59,21 +59,14 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openFolder = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-
-    if (item.hasChildren === undefined ? (!item.children || item.children.length === 0) : item.hasChildren) {
-      onChange && onChange(item);
-      toggleFolder(true);
-      return;
-    }
-
     toggleFolder((f: boolean) => !f);
-  }, [onChange, toggleFolder, item]);
+  }, [toggleFolder]);
 
   const handleChange = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onChange && onChange(item);
 
-    if (item.hasChildren === undefined ? item.children : item.hasChildren) {
+    if (item.children || item.hasChildren) {
       toggleFolder(true);
     }
   }, [onChange, toggleFolder, item]);
@@ -140,7 +133,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
         onClick={ handleChange }>
         <HLine className='rf-tree__item--h' data-id={ `d-${depth}` }/>
         {
-          (item.hasChildren === undefined ? (item.children && item.children.length > 0) : item.hasChildren) ?
+          item.children && item.children.length > 0 ?
             <ArrowsUp className={ `rf-tree__item-label-icon ${rotateIconClass}` } onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }

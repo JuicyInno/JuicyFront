@@ -82,6 +82,7 @@ import AvatarStack from './components/molecules/AvatarStack';
 import { Banner, BannerImage } from './components/atoms/Banner';
 import Attachment from './components/molecules/Attachment';
 import Shimmer from './components/atoms/Shimmer';
+import DynamicComponent from './components/atoms/DynamicComponent';
 import Copy from './components/atoms/Copy';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
@@ -173,7 +174,8 @@ export {
   Banner,
   BannerImage,
   Shimmer,
-  Copy
+  Copy,
+  DynamicComponent
 };
 
 
