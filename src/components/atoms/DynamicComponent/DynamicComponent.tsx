@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { loadComponent, useDynamicScript } from '../../../hooks/useDynamicScript';
 import Preloader from '../Preloader';
 
@@ -7,9 +7,10 @@ interface IProps {
   scope: string;
   module: string;
   basename?: string;
+  fallback?: ReactNode;
 }
 
-const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '' }: IProps) => {
+const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '', fallback }: IProps) => {
   const { ready, failed } = useDynamicScript({ url });
   const Component = useMemo(() => React.lazy(loadComponent(scope, module)), [scope, module]);
 
@@ -22,7 +23,7 @@ const DynamicComponent: React.FC<IProps> = ({ url, scope, module, basename = '' 
   }
 
   return (
-    <React.Suspense fallback={ <Preloader size='l'/> }>
+    <React.Suspense fallback={ fallback || <Preloader size='l'/> }>
       { ready ? <Component basename={ basename }/> : <Preloader size='l'/> }
     </React.Suspense>
   );
