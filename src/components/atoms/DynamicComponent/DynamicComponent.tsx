@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import './DynamicComponent.scss';
 import { loadComponent, useDynamicScript } from '../../../hooks/useDynamicScript';
 import Preloader from '../Preloader';
 
