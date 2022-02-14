@@ -9,43 +9,40 @@ import { classnames } from '../../../utils/classnames';
 import './ImagePreview.scss';
 
 
-const mockList = [
-  'https://klike.net/uploads/posts/2019-05/1556708032_1.jpg',
-  'https://bipbap.ru/wp-content/uploads/2017/07/1-campos-amapolas.jpg',
-  'https://24tv.ua/resources/photos/news/1200x675_DIR/202105/1619997.jpg',
-  'https://www.ejin.ru/wp-content/uploads/2017/09/1-931.jpg',
-  'https://oir.mobi/uploads/posts/2021-06/1623810332_31-oir_mobi-p-samie-krasivie-letnie-peizazhi-priroda-kra-31.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFs-VLqsAoid2QHok8-KYgJ-VXX1ufdUD6dCmYP3Cc7zw6MRrGftd3ASrlwQO9oh9AfPo&usqp=CAU',
-  'https://cs8.pikabu.ru/post_img/big/2018/04/20/10/1524246614168232071.jpg',
-  'https://cs9.pikabu.ru/post_img/big/2018/04/20/10/152424661518614873.jpg',
-  'https://oir.mobi/uploads/posts/2021-06/thumbs/1623387620_30-oir_mobi-p-temnii-peizazh-priroda-krasivo-foto-35.jpg',
-  'https://bipbap.ru/wp-content/uploads/2017/09/50dca6763731640fb4fa59a302daf612.jpg',
-  'https://bipbap.ru/wp-content/uploads/2017/07/morskie_peyzagi_krasivie_plyagi_foto_12.jpg'
-];
-
 export interface IImagePreviewProps {
   imageList: string[]
+  onClose: () => void
 }
 
 const ImagePreview: React.FC<IImagePreviewProps> = ({
-  imageList = mockList
+  imageList,
+  onClose
 }: IImagePreviewProps) => {
+
+  console.log(imageList);
 
   const [currentImage, setCurrentImage] = useState(imageList[0]);
   const zoomRef = useRef<HTMLImageElement>(null);
 
+  const visibleValues = useRef({
+    minIndex: 0,
+    maxIndex: 9
+  });
+
   const zoomInHandler = () => {
     zoomRef.current!.width += 10;
-    zoomRef.current!.height += 5;
 
   };
 
   const zoomOutHandler = () => {
     zoomRef.current!.width -= 10;
-    zoomRef.current!.height -= 5;
   };
 
-  const topNavigation = <div className='rf-image-preview__top-navigation'>
+  const closeHandler = () => {
+    onClose();
+  };
+
+  const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
       <div onClick={zoomInHandler} className='top-navigation__button'>
         <AllAdd />
@@ -56,10 +53,10 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     </div>
 
     <div className='top-navigation__button'>
-      <AllClose />
+      <AllClose onClick={closeHandler} />
     </div>
 
-  </div>;
+  </div>, []);
 
   const imageHandler = (src: string) => () => {
     setCurrentImage(src);
@@ -69,23 +66,71 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const prevImageHandler = () => {
     setCurrentImage(imageList[currentIndex - 1]);
+
+    if (visibleValues.current.minIndex >= currentIndex) {
+      visibleValues.current = {
+        minIndex: visibleValues.current.minIndex - 1,
+        maxIndex: visibleValues.current.maxIndex - 1,
+      };
+    }
   };
 
   const nextImageHandler = () => {
     setCurrentImage(imageList[currentIndex + 1]);
+
+    if (visibleValues.current.maxIndex <= currentIndex) {
+      visibleValues.current = {
+        minIndex: visibleValues.current.minIndex + 1,
+        maxIndex: visibleValues.current.maxIndex + 1,
+      };
+    }
   };
 
+  const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__bottom-navigation'>
+    {imageList.length > 10 ? <div onClick={currentIndex ? prevImageHandler : () => { }} className={classnames(
+      'bottom-navigation__left',
+      !currentIndex ?
+        'button__disabled' : ''
+    )}>
+      <ArrowsChevronLeft />
+    </div> : null}
+    {imageList.map((image, index) => {
+      if (visibleValues.current.minIndex <= index && visibleValues.current.maxIndex >= index) {
+        return <div
+          onClick={imageHandler(image)}
+          key={image}
+          className={classnames(
+            'bottom-navigation__item',
+            currentIndex === index ? 'item__active' : ''
+          )}>
+          <img
+            src={image}
+            alt={image}
+          />
+        </div>;
+      }
 
-  const bottomNavigationMenu = imageList.length > 1 ? <div className='rf-image-preview__bottom-navigation'>
-    {mockList.map((image, index) => {
-      return <div onClick={imageHandler(image)} key={image} className={classnames('bottom-navigation__item', currentIndex === index ? 'item__active' : '')}>
-        <img src={image} alt={image} />
-      </div>;
+      return null;
+
     })}
-  </div> : null;
+    {imageList.length > 10 ? <div
+      onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : () => { }} className={classnames(
+        'bottom-navigation__right',
+        currentIndex + 1 === imageList.length ?
+          'button__disabled' : ''
+      )}>
+      <ArrowsChevronRight />
+    </div> : null}
+
+  </div> : null, [currentIndex, imageList]);
 
 
-  const navigationControl = imageList.length > 1 ? <div className='rf-image-preview__navigation-control'>
+  const labelCountComponent = useMemo(() => imageList.length > 10 ? < div className='rf-label-count__component'>
+    <label>{currentIndex + 1 + ' / ' + imageList.length}</label>
+  </ div> : null, [currentIndex, imageList.length]);
+
+
+  const navigationControl = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__navigation-control'>
     <div onClick={currentIndex ? prevImageHandler : () => { }} className={classnames(
       'navigation-control__left',
       !currentIndex ?
@@ -101,17 +146,20 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       <ArrowsChevronRight />
     </div>
 
-  </div> : null;
+  </div> : null, [imageList, currentIndex]);
 
-  const imageContent = <div className='rf-image-preview__full-image'>
+  const imageContent = useMemo(() => <div className='rf-image-preview__full-image'>
     <img ref={zoomRef} src={currentImage} alt={currentImage} />
-  </div>;
+  </div>, [currentImage]);
 
 
   const preview = <div className='rf-image-preview'>
     {topNavigation}
     {imageContent}
-    {bottomNavigationMenu}
+    <div className='rf-naviation-bottom__container'>
+      {labelCountComponent}
+      {bottomNavigationMenu}
+    </div>
     {navigationControl}
   </div>;
 
