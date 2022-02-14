@@ -59,11 +59,11 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
     }
   };
 
-  const clickableClass = onClick ? 'avatar-stack--clickable' : '';
+  const clickableClass = onClick ? 'rf-avatar-stack--clickable' : '';
 
   const usersJSX = visibleUsers.map((u: IUser, i: number) => (
     <div
-      className={ `avatar-stack__item ${clickableClass}` }
+      className={ `rf-avatar-stack__item ${clickableClass}` }
       key={ u.id }
       onClick={ () => handleClick(u) }
       style={ {
@@ -72,9 +72,14 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
       } }>
       <Tooltip position='bottom' background='white'>
         <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
-        <div>
-          <p className='avatar-stack__tooltip-name'>{ u.fullName }</p>
-          { u.position && <p className='avatar-stack__tooltip-position'>{ u.position }</p> }
+        <div className='rf-avatar-stack__tooltip-content-wrapper'>
+          <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
+            <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+          </div>
+          <div className='rf-avatar-stack__tooltip-info-column'>
+            <p className='rf-avatar-stack__tooltip-name'>{ u.fullName }</p>
+            { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
+          </div>
         </div>
       </Tooltip>
     </div>
@@ -82,7 +87,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
 
   return (
     <Manager>
-      <div className='avatar-stack' ref={ toggleRef }>
+      <div className='rf-avatar-stack' ref={ toggleRef }>
         { usersJSX }
         { maxVisible < list.length && (
           <>
@@ -90,15 +95,37 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
               { (referenceProps) => (
                 <div
                   { ...referenceProps }
-                  data-testid='avatar-stack__toggle'
-                  className='avatar-stack__item avatar-stack--clickable'
+                  data-testid='rf-avatar-stack__toggle'
+                  className='rf-avatar-stack__item avatar-stack--clickable'
                   style={ {
                     transform: `translateX(-${GAP * maxVisible}px)`,
                     zIndex: list.length + maxVisible
                   } }
                   onClick={ () => setShowDropdown((f: boolean) => !f) }
                 >
-                  <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
+                  <Tooltip position='bottom' background='white'>
+                    <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
+                    <div className='rf-avatar-stack__collective-tooltip-wrapper'>
+                      {hiddenUsers.map(u => (
+                        <div className='rf-avatar-stack__tooltip-content-container'>
+                          <div className='rf-avatar-stack__tooltip-content-wrapper'>
+                            <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
+                              <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+                            </div>
+                            <div className='rf-avatar-stack__tooltip-info-column'>
+                              <p
+                                className={`${u.fullName !== 'Вы' ?
+                                  'rf-avatar-stack__tooltip-name--you' :
+                                  'rf-avatar-stack__tooltip-name'}`}>
+                                { u.fullName }
+                              </p>
+                              { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Tooltip>
                 </div>
               ) }
             </Reference>
@@ -108,13 +135,13 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                 maxWidth: dropdownMaxWidth || 'auto',
                 width: dropdownMaxWidth ? '100%' : 'auto'
               } }>
-              <div className='avatar-stack__menu' data-testid='avatar-stack__menu'>
+              <div className='rf-avatar-stack__menu' data-testid='avatar-stack__menu'>
                 {
                   hiddenUsers.map((u: IUser) => (
-                    <div className={ `avatar-stack__menu-item ${clickableClass}` } key={ u.id }
+                    <div className={ `rf-avatar-stack__menu-item ${clickableClass}` } key={ u.id }
                       onClick={ () => handleClick(u) }>
                       <Avatar size='xs' photo={ u.photo } fullName={ u.fullName }/>
-                      <span className='avatar-stack__menu-label'>{ u.fullName }</span>
+                      <span className='rf-avatar-stack__menu-label'>{ u.fullName }</span>
                     </div>
                   ))
                 }
