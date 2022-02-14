@@ -96,7 +96,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                 <div
                   { ...referenceProps }
                   data-testid='rf-avatar-stack__toggle'
-                  className='rf-avatar-stack__item avatar-stack--clickable'
+                  className='rf-avatar-stack__item rf-avatar-stack--clickable'
                   style={ {
                     transform: `translateX(-${GAP * maxVisible}px)`,
                     zIndex: list.length + maxVisible
@@ -107,7 +107,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                     <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
                     <div className='rf-avatar-stack__collective-tooltip-wrapper'>
                       {hiddenUsers.map(u => (
-                        <div className='rf-avatar-stack__tooltip-content-container'>
+                        <div className='rf-avatar-stack__tooltip-content-container' key={u.id}>
                           <div className='rf-avatar-stack__tooltip-content-wrapper'>
                             <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
                               <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
@@ -135,7 +135,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                 maxWidth: dropdownMaxWidth || 'auto',
                 width: dropdownMaxWidth ? '100%' : 'auto'
               } }>
-              <div className='rf-avatar-stack__menu' data-testid='avatar-stack__menu'>
+              <div className='rf-avatar-stack__menu' data-testid='rf-avatar-stack__menu'>
                 {
                   hiddenUsers.map((u: IUser) => (
                     <div className={ `rf-avatar-stack__menu-item ${clickableClass}` } key={ u.id }
