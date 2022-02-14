@@ -11,6 +11,7 @@
   border: 2px solid var(--background-primary);
   border-radius: 100%;
   user-select: none;
+  cursor: pointer;
 }
 
 .rf-avatar-stack__menu {
@@ -63,7 +64,7 @@
   @include text-s-14();
 }
 
-.rf-avatar-stack__tooltip-name {
+.rf-avatar-stack__tooltip-name--you {
   @include text-s-14();
   color: var(--basic-primary);
 }

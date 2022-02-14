@@ -114,7 +114,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                             </div>
                             <div className='rf-avatar-stack__tooltip-info-column'>
                               <p
-                                className={`${u.fullName !== 'Вы' ?
+                                className={`${u.fullName === 'Вы' ?
                                   'rf-avatar-stack__tooltip-name--you' :
                                   'rf-avatar-stack__tooltip-name'}`}>
                                 { u.fullName }
