@@ -277,3 +277,60 @@
 .rf-select-input__container {
   display: contents;
 }
+.rf-select__menu {
+  height: 56px;
+  background-color: var(--basic-primary);
+  color: #fff;
+  &:focus {
+    background-color: var(--basic-hover);
+    &::placeholder {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  &:hover {
+    background-color: var(--basic-hover);
+  }
+  &:active {
+    background-color: var(--basic-press);
+  }
+  &::placeholder {
+    text-align: center;
+    color: #fff;
+  }
+}
+
+.rf-select__menu--s {
+  height: 32px;
+  font-size: 14px;
+}
+.rf-select__menu--m {
+  height: 56px;
+  font-size: 16px;
+}
+.rf-select__wrapper--menu {
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.rf-select__menu--disabled {
+  background-color: var(--basic-disable);
+  &::placeholder {
+    color: #fff !important;
+  }
+}
+.rf-select__list--m > div {
+  font-size: 16px;
+}
+.rf-select__list--s > div {
+  font-size: 14px;
+}
+
+.rf-button__hover {
+  background-color: var(--basic-hover);
+  &:active {
+    background-color: var(--basic-hover);
+  }
+}

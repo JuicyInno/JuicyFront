@@ -49,9 +49,7 @@ function common({
 
     devServer: isDev ? {
       port,
-      client: false,
-      webSocketServer: false,
-      historyApiFallback: true,
+      hot: true
     } : {},
 
     module: {

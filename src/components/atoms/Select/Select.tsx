@@ -60,7 +60,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
    * Вид селекта
    * @default 'base'
    *  */
-  variant?: 'base' | 'tag';
+  variant?: 'base' | 'tag' | 'menu';
   /**
    * Переводит селект в невалидный статус
    * @default false
@@ -94,6 +94,11 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
    * @default 'white'
    * */
   backgroundColor?: 'white' | 'gray'
+  /**
+   * Размер кнопки меню
+   * @default 'm'
+   * */
+  menuVariantSize?: 's' | 'm';
 }
 
 const Select: FC<ISelectProps> = ({
@@ -104,25 +109,28 @@ const Select: FC<ISelectProps> = ({
   values = [],
   multiselect = false,
   placeholder = '',
+  variant = 'base',
   disabled = false,
-  readOnly = false,
+  readOnly = variant === 'menu',
   maxOptions = undefined,
   preloader = false,
   clearOnSelect = false,
   clearHook,
-  variant = 'base',
   isAsync,
   infinityScrollProps,
-  position = 'bottom',
+  position = variant === 'menu' ? 'bottom-end' : 'bottom',
   endAdornment,
   startAdornment,
   onScroll,
   dropdownMaxWidth,
   containerRef,
-  backgroundColor = 'white'
+  backgroundColor = 'white',
+  menuVariantSize = 'm'
 }: ISelectProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
+  const [isOnMove, setIsonMove] = useState<boolean>(false);
+  const [isOnActive, setIsonActive] = useState<boolean>(false);
   const firstElementPosition = useRef<number>(0);
 
   const onClose = useCallback(() => {
@@ -338,21 +346,29 @@ const Select: FC<ISelectProps> = ({
     );
   });
 
+  const inputClickHandler = (e: React.MouseEvent) => {
+    console.log('clicked');
+
+  };
+
   // -------------------------------------------------------------------------------------------------------------------
 
   const noop = () => { };
 
   const inputElement = <input
+
     autoSave='false'
     autoComplete='off'
     id='rf-select__input'
-    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}`}
+    onClick={inputClickHandler}
+    className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
+     ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''} rf-select__menu--${menuVariantSize}` : ''} ${isOnMove && variant === 'menu' ? 'rf-button__hover' : ''}`}
     onChange={onSelectSearch}
     value={inputValue}
     disabled={disabled}
     readOnly={readOnly}
     placeholder={
-      multiselect && selectValues.length ? '' : placeholder
+      multiselect && selectValues.length ? '' : options.length ? placeholder : ''
     }
   />;
 
@@ -389,15 +405,31 @@ const Select: FC<ISelectProps> = ({
     setShowDropdown((state: boolean) => !state);
   };
 
+  const onMouseMoveHandler = (e: React.MouseEvent) => {
+    setIsonMove(true);
+  };
+
+  const onMouseLeaveHandler = (e: React.MouseEvent) => {
+    console.log(e);
+
+    setIsonMove(false);
+  };
+
+
   const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) &&
     (
       <button
         type='button'
         data-testid='rf-select__chevron'
-        className={classnames((multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button', showDropdown && 'rf-select__button--rotate')}
+        className={classnames(
+          (multiselect && selectValues.length) ? 'rf-select__button-multiselect-chevron' : 'rf-select__button',
+          showDropdown && 'rf-select__button--rotate', variant === 'menu' ? 'rf-select__button--menu' : '', isOnMove && variant === 'menu' ? 'rf-button__hover' : ''
+        )}
         onClick={onChevronClick}
+        onMouseMove={onMouseMoveHandler}
+
       >
-        <ArrowsChevronDown />
+        {options.length ? <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} /> : null}
       </button>
     );
 
@@ -434,14 +466,16 @@ const Select: FC<ISelectProps> = ({
         <Reference>
           {(referenceProps) => (
             <div
-
+              onMouseLeave={onMouseLeaveHandler}
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
                 'rf-select__wrapper',
                 invalid && 'rf-select__wrapper--invalid',
                 openClass,
-                disabled && 'rf-select__wrapper--disabled'
+                disabled && 'rf-select__wrapper--disabled',
+                variant === 'menu' ? 'rf-select__wrapper--menu' : '',
+
               )}
               onClick={() => onOpen()}
             >
@@ -463,7 +497,8 @@ const Select: FC<ISelectProps> = ({
           )}
         </Reference>
 
-        <Dropdown
+        {options.length ? <Dropdown
+
           show={showDropdown && (!!listJSX.length || preloader)}
           toggleRef={toggleRef}
           containerRef={containerRef}
@@ -474,7 +509,7 @@ const Select: FC<ISelectProps> = ({
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div data-testid='rf-select-list-scroll' className='rf-select__list' id='rf-select-list-scroll' onScroll={onScroll}>
+          <div data-testid='rf-select-list-scroll' className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)} id='rf-select-list-scroll' onScroll={onScroll}>
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
@@ -491,7 +526,7 @@ const Select: FC<ISelectProps> = ({
               <>{preloader ? loader : listJSX}</>
             )}
           </div>
-        </Dropdown>
+        </Dropdown> : <Preloader size='m' />}
 
         {/* filteredOptions.length > 0*/}
 

@@ -268,4 +268,29 @@ describe('Test <Select/> component', () => {
 
     expect(document.getElementsByClassName('rf-select__background-gray').length).toBe(1)
   });
+  it('should be render as menu variant', () => {
+    render(<Select
+      options={[
+        { value: '1', label: 'label1' },
+      ]}
+      variant='menu'
+      values={[]}
+      onChange={noop}
+    />);
+
+    expect(document.getElementsByClassName('rf-select__wrapper--menu')).toHaveLength(1)
+  });
+  it('should be render as s menu variant size', () => {
+    render(<Select
+      options={[
+        { value: '1', label: 'label1' },
+      ]}
+      variant='menu'
+      values={[]}
+      onChange={noop}
+      menuVariantSize='s'
+    />);
+
+    expect(document.getElementsByClassName('rf-select__menu--s')).toHaveLength(1)
+  });
 });
