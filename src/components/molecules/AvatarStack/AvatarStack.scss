@@ -1,37 +1,38 @@
 @import "src/styles/mixins";
 
-.avatar-stack {
+.rf-avatar-stack {
   display: flex;
   align-items: center;
   cursor: default;
 }
 
-.avatar-stack__item {
+.rf-avatar-stack__item {
   position: relative;
   border: 2px solid var(--background-primary);
   border-radius: 100%;
   user-select: none;
+  cursor: pointer;
 }
 
-.avatar-stack__menu {
+.rf-avatar-stack__menu {
   padding: 8px 0;
   max-height: 200px;
   overflow-y: auto;
 }
 
-.avatar-stack__menu-item {
+.rf-avatar-stack__menu-item {
   cursor: default;
   display: flex;
   align-items: center;
   padding: 8px 16px;
 }
 
-.avatar-stack__menu-label{
+.rf-avatar-stack__menu-label{
   @include text-l-16;
   margin-left: 8px;
 }
 
-.avatar-stack--clickable {
+.rf-avatar-stack--clickable {
   cursor: pointer;
 
   .rf-avatar {
@@ -39,11 +40,41 @@
   }
 }
 
-.avatar-stack__tooltip-name {
-  @include text-s-14
+.rf-avatar-stack__tooltip-content-wrapper {
+  display: flex;
 }
 
-.avatar-stack__tooltip-position {
+.rf-avatar-stack__tooltip-info-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.rf-avatar-stack__tooltip-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.rf-avatar-stack__tooltip-content-container {
+  margin-bottom: 16px;
+}
+
+.rf-avatar-stack__tooltip-name {
+  @include text-s-14();
+}
+
+.rf-avatar-stack__tooltip-name--you {
+  @include text-s-14();
+  color: var(--basic-primary);
+}
+
+.rf-avatar-stack__tooltip-position {
   @include text-s-14;
   color: var(--text-secondary)
+}
+
+.rf-avatar-stack__collective-tooltip-wrapper {
+  display: flex;
+  flex-direction: column;
 }
