@@ -4,6 +4,10 @@
   border-radius: 20px;
 }
 
+.rf-tile--none {
+  box-shadow: none;
+}
+
 .rf-tile--default {
   box-shadow: var(--shadow-clickable-active);
 }
