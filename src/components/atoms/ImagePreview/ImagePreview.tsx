@@ -155,7 +155,6 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
             currentIndex === index ? 'item__active' : ''
           )}>
           <img
-            draggable={false}
             src={image}
             alt={image}
           />
