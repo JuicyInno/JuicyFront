@@ -19,7 +19,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   onClose
 }: IImagePreviewProps) => {
 
-  const initMatrix = 'matrix(1.1,0,0,1.1,0,0)';
+  const initMatrix = 'matrix(1,0,0,1,0,0)';
 
   const [currentImage, setCurrentImage] = useState(imageList[0]);
   const zoomRef = useRef<HTMLImageElement>(null);
@@ -81,12 +81,22 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </div>, []);
 
   const imageHandler = (src: string) => () => {
+    setInit();
     setCurrentImage(src);
   };
 
   const currentIndex = useMemo(() => imageList.findIndex((image) => image === currentImage), [currentImage]);
 
+  const setInit = () => {
+    deltaRef.current = 1;
+    deltaYRef.current = 0;
+    deltaXRef.current = 0;
+    zoomRef.current!.style.transform = initMatrix;
+    zoomRef.current!.classList.remove('move');
+  };
+
   const prevImageHandler = () => {
+    setInit();
     setCurrentImage(imageList[currentIndex - 1]);
 
     if (visibleValues.current.minIndex >= currentIndex) {
@@ -98,6 +108,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   };
 
   const nextImageHandler = () => {
+    setInit();
     setCurrentImage(imageList[currentIndex + 1]);
 
     if (visibleValues.current.maxIndex <= currentIndex) {
