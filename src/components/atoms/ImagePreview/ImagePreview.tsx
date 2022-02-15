@@ -19,10 +19,13 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   onClose
 }: IImagePreviewProps) => {
 
-  console.log(imageList);
+  const initMatrix = 'matrix(1.1,0,0,1.1,0,0)';
 
   const [currentImage, setCurrentImage] = useState(imageList[0]);
   const zoomRef = useRef<HTMLImageElement>(null);
+  const deltaRef = useRef<number>(1);
+  const deltaXRef = useRef<number>(0);
+  const deltaYRef = useRef<number>(0);
 
   const visibleValues = useRef({
     minIndex: 0,
@@ -30,16 +33,35 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   });
 
   const zoomInHandler = () => {
-    zoomRef.current!.width += 10;
+    deltaRef.current += 0.05;
+    zoomRef.current!.classList.remove('move');
+    zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
 
   };
 
   const zoomOutHandler = () => {
-    zoomRef.current!.width -= 10;
+    deltaRef.current -= 0.05;
+    zoomRef.current!.classList.remove('move');
+    zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
   };
 
   const closeHandler = () => {
+    zoomRef.current!.style.transform = initMatrix;
     onClose();
+  };
+
+  const onMoveHandler: React.MouseEventHandler<HTMLElement> = (e) => {
+    zoomRef.current!.classList.add('move');
+  };
+
+  const onMouseMoveHandler: React.MouseEventHandler<HTMLElement> = (e) => {
+    if (zoomRef.current!.classList[0] === 'move') {
+      zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current += e.movementX},${deltaYRef.current += e.movementY})`;
+    }
+  };
+
+  const onMoveEndHandler = () => {
+    zoomRef.current!.classList.remove('move');
   };
 
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
@@ -149,7 +171,14 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </div> : null, [imageList, currentIndex]);
 
   const imageContent = useMemo(() => <div className='rf-image-preview__full-image'>
-    <img ref={zoomRef} src={currentImage} alt={currentImage} />
+    <img
+      draggable={false}
+      onMouseUpCapture={onMoveEndHandler}
+      onMouseDown={onMoveHandler}
+      onMouseMove={onMouseMoveHandler}
+      ref={zoomRef}
+      src={currentImage}
+      alt={currentImage} />
   </div>, [currentImage]);
 
 

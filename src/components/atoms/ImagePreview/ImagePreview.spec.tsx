@@ -7,4 +7,7 @@ describe('Test <ImagePreview/> component', () => {
     const { container } = render(<ImagePreview imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
     expect(document.getElementsByClassName('rf-image-preview')).toHaveLength(1)
   });
+
+
+
 });

@@ -22,6 +22,7 @@
     object-position: center;
     border-radius: 12px;
     height: 544px;
+    cursor: grab;
   }
 }
 .rf-image-preview__bottom-navigation {
@@ -103,6 +104,12 @@
   width: 196px;
   justify-content: space-between;
   cursor: pointer;
+  -drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .top-navigation__zoom {
@@ -180,4 +187,8 @@
   &:active {
     color: var(--background-shadow);
   }
+}
+
+.move {
+  cursor: move !important;
 }
