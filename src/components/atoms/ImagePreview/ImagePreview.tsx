@@ -26,6 +26,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const deltaRef = useRef<number>(1);
   const deltaXRef = useRef<number>(0);
   const deltaYRef = useRef<number>(0);
+  const screenRef = useRef<HTMLDivElement>(null);
 
   const visibleValues = useRef({
     minIndex: 0,
@@ -33,14 +34,20 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   });
 
   const zoomInHandler = () => {
-    deltaRef.current += 0.05;
+    deltaRef.current += 0.5;
     zoomRef.current!.classList.remove('move');
     zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
-
   };
 
   const zoomOutHandler = () => {
-    deltaRef.current -= 0.05;
+
+
+    deltaRef.current -= 0.5;
+
+    if (deltaRef.current === 1) {
+      setInit();
+    }
+
     zoomRef.current!.classList.remove('move');
     zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
   };
@@ -51,12 +58,18 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   };
 
   const onMoveHandler: React.MouseEventHandler<HTMLElement> = (e) => {
-    zoomRef.current!.classList.add('move');
+    if (deltaRef.current > 1) {
+      zoomRef.current!.classList.add('move');
+    }
+
   };
 
   const onMouseMoveHandler: React.MouseEventHandler<HTMLElement> = (e) => {
     if (zoomRef.current!.classList[0] === 'move') {
-      zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current += e.movementX},${deltaYRef.current += e.movementY})`;
+      console.log(e);
+
+      zoomRef.current!.style.transform =
+        `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current += e.movementX},${deltaYRef.current += e.movementY})`;
     }
   };
 
@@ -66,11 +79,12 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
-      <div onClick={zoomInHandler} className='top-navigation__button'>
-        <AllAdd />
-      </div>
+
       <div onClick={zoomOutHandler} className='top-navigation__button'>
         <AllReduce />
+      </div>
+      <div onClick={zoomInHandler} className='top-navigation__button'>
+        <AllAdd />
       </div>
     </div>
 
@@ -84,6 +98,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     setInit();
     setCurrentImage(src);
   };
+
 
   const currentIndex = useMemo(() => imageList.findIndex((image) => image === currentImage), [currentImage]);
 
@@ -119,7 +134,9 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     }
   };
 
-  const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__bottom-navigation'>
+  const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
+    data-testid='bottom-chevron-left'
+    className='rf-image-preview__bottom-navigation'>
     {imageList.length > 10 ? <div onClick={currentIndex ? prevImageHandler : () => { }} className={classnames(
       'bottom-navigation__left',
       !currentIndex ?
@@ -130,6 +147,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     {imageList.map((image, index) => {
       if (visibleValues.current.minIndex <= index && visibleValues.current.maxIndex >= index) {
         return <div
+          data-testid={`bottom__image--${index}`}
           onClick={imageHandler(image)}
           key={image}
           className={classnames(
@@ -137,6 +155,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
             currentIndex === index ? 'item__active' : ''
           )}>
           <img
+            draggable={false}
             src={image}
             alt={image}
           />
@@ -147,6 +166,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
     })}
     {imageList.length > 10 ? <div
+      data-testid='bottom-chevron-right'
       onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : () => { }} className={classnames(
         'bottom-navigation__right',
         currentIndex + 1 === imageList.length ?
@@ -159,7 +179,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
 
   const labelCountComponent = useMemo(() => imageList.length > 10 ? < div className='rf-label-count__component'>
-    <label>{currentIndex + 1 + ' / ' + imageList.length}</label>
+    <label data-testid='label-count-test'>{currentIndex + 1 + ' / ' + imageList.length}</label>
   </ div> : null, [currentIndex, imageList.length]);
 
 
@@ -193,7 +213,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </div>, [currentImage]);
 
 
-  const preview = <div className='rf-image-preview'>
+  const preview = <div ref={screenRef} className='rf-image-preview'>
     {topNavigation}
     {imageContent}
     <div className='rf-naviation-bottom__container'>
