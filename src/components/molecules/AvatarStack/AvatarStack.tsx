@@ -58,7 +58,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
         <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
         <div className='rf-avatar-stack__tooltip-content-wrapper'>
           <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
-            <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+            <Avatar photo={ u.photo } fullName={ u.fullName } size='m' />
           </div>
           <div className='rf-avatar-stack__tooltip-info-column'>
             <p className='rf-avatar-stack__tooltip-name'>{ u.fullName }</p>
@@ -88,7 +88,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                 <div className='rf-avatar-stack__tooltip-content-container' key={u.id}>
                   <div className='rf-avatar-stack__tooltip-content-wrapper'>
                     <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
-                      <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
+                      <Avatar photo={ u.photo } fullName={ u.fullName } size='m' />
                     </div>
                     <div className='rf-avatar-stack__tooltip-info-column'>
                       <p
