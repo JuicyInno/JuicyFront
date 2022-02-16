@@ -497,7 +497,7 @@ const Select: FC<ISelectProps> = ({
           )}
         </Reference>
 
-        {options.length ? <Dropdown
+        <Dropdown
 
           show={showDropdown && (!!listJSX.length || preloader)}
           toggleRef={toggleRef}
@@ -526,7 +526,7 @@ const Select: FC<ISelectProps> = ({
               <>{preloader ? loader : listJSX}</>
             )}
           </div>
-        </Dropdown> : <Preloader size='m' />}
+        </Dropdown>
 
         {/* filteredOptions.length > 0*/}
 
