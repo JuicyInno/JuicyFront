@@ -34,12 +34,6 @@ describe('Test <ImagePreview/> component', () => {
     expect(screen.getByTestId('label-count-test').textContent!.split(' / ')[0]).toBe('5');
   });
 
-  it('should change label after bottom click', () => {
-    render(<ImagePreview imageList={mockList} onClose={() => { }} />);
-    const right = screen.getByTestId('bottom-chevron-right');
-    fireEvent.click(right);
-    expect(screen.getByTestId('label-count-test').textContent!.split(' / ')[0]).toBe('2');
-  });
 
   it('should have max 10 bottom image items', () => {
     render(<ImagePreview imageList={mockList} onClose={() => { }} />);
