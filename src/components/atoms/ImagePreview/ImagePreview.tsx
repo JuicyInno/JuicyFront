@@ -88,8 +88,8 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       </div>
     </div>
 
-    <div className='top-navigation__button'>
-      <AllClose onClick={closeHandler} />
+    <div onClick={closeHandler} className='top-navigation__button'>
+      <AllClose />
     </div>
 
   </div>, []);
