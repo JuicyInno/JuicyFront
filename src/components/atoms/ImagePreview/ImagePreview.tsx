@@ -157,6 +157,8 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     setPreviewIndex(previewIndex + 1);
   };
 
+  const noop = useMemo(() => () => { }, []);
+
 
   console.log(unFlatArray(imageList, 10));
 
@@ -164,10 +166,10 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
     className='rf-image-preview__bottom-navigation'>
-    {imageList.length > 10 ? <div onClick={bottomPrevHandler} className={classnames(
+    {imageList.length > 10 ? <div onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
       'bottom-navigation__left',
-      !currentIndex ?
-        'button__disabled' : ''
+      previewIndex > 0 ?
+        '' : 'button__disabled'
     )}>
       <ArrowsChevronLeft />
     </div> : null}
@@ -196,10 +198,10 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     })}
     {imageList.length > 10 ? <div
       data-testid='bottom-chevron-right'
-      onClick={bottomNextHandler} className={classnames(
+      onClick={previewArray.length - 1 > previewIndex ? bottomNextHandler : noop} className={classnames(
         'bottom-navigation__right',
-        currentIndex + 1 === imageList.length ?
-          'button__disabled' : ''
+        previewArray.length - 1 > previewIndex ?
+          '' : 'button__disabled'
       )}>
       <ArrowsChevronRight />
     </div> : null}
@@ -213,14 +215,14 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
 
   const navigationControl = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__navigation-control'>
-    <div onClick={currentIndex ? prevImageHandler : () => { }} className={classnames(
+    <div onClick={currentIndex ? prevImageHandler : noop} className={classnames(
       'navigation-control__left',
       !currentIndex ?
         'button__disabled' : ''
     )}>
       <ArrowsChevronLeft />
     </div>
-    <div onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : () => { }} className={classnames(
+    <div onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : noop} className={classnames(
       'navigation-control__right',
       currentIndex + 1 === imageList.length ?
         'button__disabled' : ''

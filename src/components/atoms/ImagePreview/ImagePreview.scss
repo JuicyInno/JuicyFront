@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   height: 88px;
+  width: 812px;
   position: relative;
   z-index: 0;
   .bottom-navigation__item {
@@ -184,6 +185,8 @@
 .bottom-navigation__right {
   margin-right: 16px;
   margin-left: 8px;
+  right: 0px;
+  position: absolute;
 }
 .button__disabled {
   color: var(--background-shadow);
