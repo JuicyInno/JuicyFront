@@ -14,24 +14,6 @@
   cursor: pointer;
 }
 
-.rf-avatar-stack__menu {
-  padding: 8px 0;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.rf-avatar-stack__menu-item {
-  cursor: default;
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
-}
-
-.rf-avatar-stack__menu-label{
-  @include text-l-16;
-  margin-left: 8px;
-}
-
 .rf-avatar-stack--clickable {
   cursor: pointer;
 
@@ -81,6 +63,8 @@
 .rf-avatar-stack__collective-tooltip-wrapper {
   display: flex;
   flex-direction: column;
+  max-height: 359px;
+  overflow-y: scroll;
 }
 
 .rf-avatar-stack__collective-avatar {

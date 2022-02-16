@@ -41,7 +41,7 @@ export const Demo: Story = () => {
         При необходимости компоненты можно группировать. В этом случае они выстраиваются по горизонтали с отрицательным
         отступом -2px и внешней обводкой 2px в цвет фона страницы. При группировке статусы не отображаются.
       </StoryDocsDescription>
-      <AvatarStack list={usersMocks} />
+      <AvatarStack list={usersMocks} size='xxs' />
     </StoryDocs>
   );
 };
