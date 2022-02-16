@@ -165,7 +165,7 @@ export const Demo = () => {
           <FormGroup label={'Label'}>
             <Select
               placeholder='Placeholder'
-              options={list}
+              options={[]}
               variant='base'
               values={state}
               onChange={onChange2}
@@ -218,7 +218,7 @@ export const Demo = () => {
             onChange={onChangeMultiselect}
             onSearch={onSearch}
             multiselect
-            maxOptions={2}
+            maxOptions={5}
             preloader={loading}
           />
         </StoryItem>
