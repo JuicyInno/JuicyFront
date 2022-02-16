@@ -50,7 +50,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openClass = showFolder && item.children && item.children.length > 0 ? 'rf-tree__item--open' : 'rf-tree__item--close';
   const showFolderClass = showFolder ? '' : 'rf-tree__item-folder--hidden';
-  const rotateIconClass = (item.children && item.children.length === 0 && item.hasChildren === true) || !showFolder ? 'rf-tree__item-label-icon--rotate' : '';
+  const rotateIconClass = (item.hasChildren === undefined ? item.children && item.children.length === 0 : item.hasChildren && !item.children?.length) || !showFolder ? 'rf-tree__item-label-icon--rotate' : '';
   const itemChildrenClass = item.children && item.children.length > 0 ? '' : 'rf-tree__item--no-children';
   const activeClass = activeItem?.value === item.value ? 'rf-tree__item--active' : '';
   const firstLevelClass = depth === 1 ? 'rf-tree__item--1' : '';
@@ -59,14 +59,21 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const openFolder = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+
+    if (item.hasChildren === undefined ? (!item.children || item.children.length === 0) : item.hasChildren && !item.children?.length) {
+      onChange && onChange(item);
+      toggleFolder(true);
+      return;
+    }
+
     toggleFolder((f: boolean) => !f);
-  }, [toggleFolder]);
+  }, [onChange, toggleFolder, item]);
 
   const handleChange = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onChange && onChange(item);
 
-    if (item.children || item.hasChildren) {
+    if (item.hasChildren === undefined ? item.children : item.hasChildren) {
       toggleFolder(true);
     }
   }, [onChange, toggleFolder, item]);
