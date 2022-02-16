@@ -75,7 +75,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
       { maxVisible < list.length && (
         <div
           data-testid='rf-avatar-stack__toggle'
-          className='rf-avatar-stack__item rf-avatar-stack__collective-avatar'
+          className='rf-avatar-stack__item rf-avatar-stack__collective-avatar rf-avatar-stack--clickable'
           style={ {
             transform: `translateX(-${GAP * maxVisible}px)`,
             zIndex: list.length + maxVisible
