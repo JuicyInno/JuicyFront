@@ -58,23 +58,33 @@
 
 .rf-avatar-stack__tooltip-content-container {
   margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .rf-avatar-stack__tooltip-name {
-  @include text-s-14();
+  @include text-m-16();
 }
 
 .rf-avatar-stack__tooltip-name--you {
-  @include text-s-14();
+  @include text-m-16();
   color: var(--basic-primary);
 }
 
 .rf-avatar-stack__tooltip-position {
-  @include text-s-14;
+  @include text-s-14();
   color: var(--text-secondary)
 }
 
 .rf-avatar-stack__collective-tooltip-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.rf-avatar-stack__collective-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
 }
