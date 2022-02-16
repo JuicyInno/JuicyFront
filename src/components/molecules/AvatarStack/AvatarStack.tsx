@@ -84,7 +84,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
           <Tooltip position='bottom' background='white'>
             <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
             <div className='rf-avatar-stack__collective-tooltip-wrapper'>
-              <div className='rf-avatar-stack--inner-container'>
+              <div className='rf-avatar-stack--inner-tooltip-container'>
                 {hiddenUsers.map(u => (
                   <div className='rf-avatar-stack__tooltip-content-container' key={u.id}>
                     <div className='rf-avatar-stack__tooltip-content-wrapper'>
