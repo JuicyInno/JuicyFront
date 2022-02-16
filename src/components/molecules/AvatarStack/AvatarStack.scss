@@ -62,11 +62,16 @@
 
 .rf-avatar-stack__collective-tooltip-wrapper {
   display: flex;
-  flex-direction: column;
   max-height: 359px;
   min-width: 250px;
   max-width: 360px;
   overflow-y: scroll;
+}
+
+.rf-avatar-stack--inner-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
 }
 
 .rf-avatar-stack__collective-avatar {

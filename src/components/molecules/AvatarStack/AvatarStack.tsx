@@ -84,24 +84,26 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
           <Tooltip position='bottom' background='white'>
             <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
             <div className='rf-avatar-stack__collective-tooltip-wrapper'>
-              {hiddenUsers.map(u => (
-                <div className='rf-avatar-stack__tooltip-content-container' key={u.id}>
-                  <div className='rf-avatar-stack__tooltip-content-wrapper'>
-                    <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
-                      <Avatar photo={ u.photo } fullName={ u.fullName } size='m' />
-                    </div>
-                    <div className='rf-avatar-stack__tooltip-info-column'>
-                      <p
-                        className={`${u.fullName === 'Вы' ?
-                          'rf-avatar-stack__tooltip-name--you' :
-                          'rf-avatar-stack__tooltip-name'}`}>
-                        { u.fullName }
-                      </p>
-                      { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
+              <div className='rf-avatar-stack--inner-container'>
+                {hiddenUsers.map(u => (
+                  <div className='rf-avatar-stack__tooltip-content-container' key={u.id}>
+                    <div className='rf-avatar-stack__tooltip-content-wrapper'>
+                      <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
+                        <Avatar photo={ u.photo } fullName={ u.fullName } size='m' />
+                      </div>
+                      <div className='rf-avatar-stack__tooltip-info-column'>
+                        <p
+                          className={`${u.fullName === 'Вы' ?
+                            'rf-avatar-stack__tooltip-name--you' :
+                            'rf-avatar-stack__tooltip-name'}`}>
+                          { u.fullName }
+                        </p>
+                        { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </Tooltip>
         </div>
