@@ -11,7 +11,7 @@ import './ImagePreview.scss';
 
 export interface IImagePreviewProps {
   imageList: string[]
-  onClose: () => void
+  onClose: () => void,
 }
 
 const ImagePreview: React.FC<IImagePreviewProps> = ({
@@ -27,6 +27,21 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const deltaXRef = useRef<number>(0);
   const deltaYRef = useRef<number>(0);
   const screenRef = useRef<HTMLDivElement>(null);
+  const [previewIndex, setPreviewIndex] = useState(0);
+
+
+  const unFlatArray = (arr: string[], sliceNumber: number) => {
+    const result = [];
+
+    for (let s = 0, e = sliceNumber; s < arr.length; s += sliceNumber, e += sliceNumber) {
+      result.push(arr.slice(s, e));
+    }
+
+    return result;
+  };
+
+  const previewArray = useMemo(() => unFlatArray(imageList, 10), [imageList]);
+
 
   const visibleValues = useRef({
     minIndex: 0,
@@ -134,17 +149,32 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     }
   };
 
+  const bottomPrevHandler = () => {
+    setPreviewIndex(previewIndex - 1);
+  };
+
+  const bottomNextHandler = () => {
+    setPreviewIndex(previewIndex + 1);
+  };
+
+
+  console.log(unFlatArray(imageList, 10));
+
+
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
     className='rf-image-preview__bottom-navigation'>
-    {imageList.length > 10 ? <div onClick={currentIndex ? prevImageHandler : () => { }} className={classnames(
+    {imageList.length > 10 ? <div onClick={bottomPrevHandler} className={classnames(
       'bottom-navigation__left',
       !currentIndex ?
         'button__disabled' : ''
     )}>
       <ArrowsChevronLeft />
     </div> : null}
-    {imageList.map((image, index) => {
+    {previewArray[previewIndex].map((image, index) => {
+
+      const realIndex = index + (10 * previewIndex);
+
       if (visibleValues.current.minIndex <= index && visibleValues.current.maxIndex >= index) {
         return <div
           data-testid={`bottom__image--${index}`}
@@ -152,7 +182,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
           key={image}
           className={classnames(
             'bottom-navigation__item',
-            currentIndex === index ? 'item__active' : ''
+            currentIndex === realIndex ? 'item__active' : ''
           )}>
           <img
             src={image}
@@ -166,7 +196,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     })}
     {imageList.length > 10 ? <div
       data-testid='bottom-chevron-right'
-      onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : () => { }} className={classnames(
+      onClick={bottomNextHandler} className={classnames(
         'bottom-navigation__right',
         currentIndex + 1 === imageList.length ?
           'button__disabled' : ''
@@ -174,7 +204,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       <ArrowsChevronRight />
     </div> : null}
 
-  </div> : null, [currentIndex, imageList]);
+  </div> : null, [currentIndex, previewIndex]);
 
 
   const labelCountComponent = useMemo(() => imageList.length > 10 ? < div className='rf-label-count__component'>
@@ -200,7 +230,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   </div> : null, [imageList, currentIndex]);
 
-  const imageContent = useMemo(() => <div className='rf-image-preview__full-image'>
+  const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length === 1 ? 'single__full-image' : ''}`}>
     <img
       draggable={false}
       onMouseUpCapture={onMoveEndHandler}
@@ -215,12 +245,13 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const preview = <div ref={screenRef} className='rf-image-preview'>
     {topNavigation}
     {imageContent}
-    <div className='rf-naviation-bottom__container'>
+
+    {imageList.length > 1 ? <div className='rf-naviation-bottom__container'>
       {labelCountComponent}
       {bottomNavigationMenu}
-    </div>
+    </div> : null}
     {navigationControl}
-  </div>;
+  </div >;
 
 
   return (createPortal(preview, document.body));

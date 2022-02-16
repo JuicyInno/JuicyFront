@@ -195,6 +195,15 @@
     color: var(--background-shadow);
   }
 }
+.single__full-image {
+  height: 630px;
+  display: flex;
+  align-items: center;
+  margin-top: inherit;
+  img {
+    height: 100%;
+  }
+}
 
 .move {
   cursor: move !important;
