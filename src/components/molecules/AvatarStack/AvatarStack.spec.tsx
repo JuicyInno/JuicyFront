@@ -13,13 +13,6 @@ describe('Test <AvatarStack/> component', () => {
   it('should render with 3 visible avatars and 1 hidden avatar', async () => {
     const { container } = render(<AvatarStack list={usersMocks.slice(0, 4)} />);
     expect(container.getElementsByClassName('rf-avatar-stack__item')).toHaveLength(4);
-    expect(screen.queryByTestId('rf-avatar-stack__menu')).not.toBeInTheDocument();
-  
-    fireEvent.click(screen.getByTestId('rf-avatar-stack__toggle'));
-    
-    await waitFor(() => {
-      expect(screen.queryByTestId('rf-avatar-stack__menu')).toBeInTheDocument();
-    });
   });
   
   it('should render with XXL size', () => {
@@ -57,19 +50,6 @@ describe('Test <AvatarStack/> component', () => {
         fail();
       }
       expect(currentUser.id).toBe(mocks[0].id);
-    });
-  });
-  
-  it('should have dropdown width of 600px', async () => {
-    render(<AvatarStack list={usersMocks} dropdownMaxWidth={600} />);
-  
-    fireEvent.click(screen.getByTestId('rf-avatar-stack__toggle'));
-    
-    await waitFor(() => {
-      const dropdown = screen.getByTestId('rf-dropdown');
-      const styleAttribute = dropdown.getAttribute('style');
-      const hasProperWidth = styleAttribute ? styleAttribute.includes('max-width: 600px') : false;
-      expect(hasProperWidth).toBeTruthy();
     });
   });
   

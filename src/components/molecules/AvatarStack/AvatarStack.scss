@@ -14,24 +14,6 @@
   cursor: pointer;
 }
 
-.rf-avatar-stack__menu {
-  padding: 8px 0;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.rf-avatar-stack__menu-item {
-  cursor: default;
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
-}
-
-.rf-avatar-stack__menu-label{
-  @include text-l-16;
-  margin-left: 8px;
-}
-
 .rf-avatar-stack--clickable {
   cursor: pointer;
 
@@ -58,23 +40,41 @@
 
 .rf-avatar-stack__tooltip-content-container {
   margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .rf-avatar-stack__tooltip-name {
-  @include text-s-14();
+  @include text-m-16();
 }
 
 .rf-avatar-stack__tooltip-name--you {
-  @include text-s-14();
+  @include text-m-16();
   color: var(--basic-primary);
 }
 
 .rf-avatar-stack__tooltip-position {
-  @include text-s-14;
+  @include text-s-14();
   color: var(--text-secondary)
 }
 
 .rf-avatar-stack__collective-tooltip-wrapper {
   display: flex;
+  max-height: 335px;
+  width: 328px;
+  overflow-y: scroll;
+  padding: 8px 0px 8px 4px;
+}
+
+.rf-avatar-stack--inner-tooltip-container {
+  display: flex;
   flex-direction: column;
+}
+
+.rf-avatar-stack__collective-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
 }
