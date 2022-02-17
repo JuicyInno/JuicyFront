@@ -20,6 +20,8 @@ export interface IHintProps {
   className?: string;
 }
 
+
+// FIXME: Elements must have sufficient color contrast
 const Hint: React.FC<IHintProps> = ({
   children,
   button,

@@ -25,6 +25,7 @@ export interface IHistory {
   host?: string;
 }
 
+// FIXME: Elements must have sufficient color contrast
 const History: React.FC<IHistory> = ({
   history,
   isUZADO,

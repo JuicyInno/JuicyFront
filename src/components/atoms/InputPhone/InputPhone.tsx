@@ -49,6 +49,8 @@ const DEFAULT_COUNTRIES: IInputPhoneCountry[] = [
   },
 ];
 
+
+// FIXME: id attribute value must be unique
 const InputPhone: React.FC<IInputPhoneProps> = ({
   defaultValue,
   countries = DEFAULT_COUNTRIES,

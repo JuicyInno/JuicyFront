@@ -50,6 +50,9 @@ export interface IPageWithSectionsProps {
   parentScroll?: HTMLElement;
 }
 
+// FIXME: Elements must have sufficient color contrast
+// FIXME: Ensures landmarks are unique
+// FIXME: Links must have discernible text
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   title,
   backUrl,

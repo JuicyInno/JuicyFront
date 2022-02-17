@@ -102,6 +102,10 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   menuVariantSize?: 's' | 'm';
 }
 
+
+// FIXME: Buttons must have discernible text
+// FIXME: IDs of active elements must be unique
+// FIXME: Form elements must have labels
 const Select: FC<ISelectProps> = ({
   options,
   onChange,

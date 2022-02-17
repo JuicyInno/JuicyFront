@@ -79,6 +79,9 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
   confirmContent?: (cert: IBrowserCert, file: IRequestAttachment, onConfirm: () => void, onCancel: () => void) => React.ReactNode;
 }
 
+
+// FIXME: Buttons must have discernible text
+// FIXME: Elements must have sufficient color contrast
 const Signification:FC<IProps> = ({
   data,
   pdfUrl,

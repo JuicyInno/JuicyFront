@@ -17,6 +17,7 @@ interface IOrgTreeProps {
   activeOption?: ITreeOption;
 }
 
+// FIXME: Elements must have sufficient color contrast
 const OrgTree: React.FC<IOrgTreeProps> = ({ id = 'rf-org-tree', list, open, onChange, onCheck, activeOption }: IOrgTreeProps) => {
 
   return (

@@ -34,7 +34,7 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   getRate?: (value: string) => number | void
 }
 
-
+// FIXME: IDs used in ARIA and labels must be unique
 const RatePicker: FC<IPickerProps> = ({ isActive = true,
   isStarPicker = false,
   defaultPickedValue = 0,

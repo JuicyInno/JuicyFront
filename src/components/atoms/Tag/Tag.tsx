@@ -18,6 +18,7 @@ export interface ITagProps {
   maxLength?: number;
 }
 
+// FIXME: Elements must have sufficient color contrast
 const Tag: React.FC<ITagProps> = ({ children, icon, onClick, onRemove, disabled, variant = 'default', maxLength = 32 }) => {
 
   const handleClick = (e: React.MouseEvent) => {

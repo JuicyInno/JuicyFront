@@ -24,6 +24,7 @@ export interface ICopyProps extends IIconProps, Pick<IToastProps, 'containerRef'
   tooltipProps?: Omit<ITooltipProps, 'children'>;
 }
 
+// FIXME: ARIA commands must have an accessible name
 // TODO: заменить в других компонентах
 const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, tooltipProps, containerRef, ...props }: ICopyProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);

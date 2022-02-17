@@ -20,6 +20,8 @@ export interface IButtonGroupProps {
   closeAfterClick?: boolean;
 }
 
+// FIXME: Buttons must have discernible text
+// FIXME: Elements must have sufficient color contrast
 const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterClick = false }: IButtonGroupProps) => {
   // -------------------------------------------------------------------------------------------------------------------
   /** Видимые кнопки */

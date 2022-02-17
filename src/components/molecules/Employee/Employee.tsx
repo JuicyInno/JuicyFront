@@ -27,6 +27,7 @@ export interface IEmployeeProps {
   tooltipBackground?: 'white' | 'default'
 }
 
+// FIXME: Elements must have sufficient color contrast
 const Employee: React.FC<IEmployeeProps> = ({ user,
   position = 'right',
   title = '',

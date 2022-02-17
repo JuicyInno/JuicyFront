@@ -51,6 +51,8 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   endAdornment?: ReactNode;
 }
 
+// FIXME: DEMO | Buttons must have discernible text
+// FIXME: Elements must have sufficient color contrast
 const Button: FC<IButtonProps> = ({
   type = 'button',
   size = 'm',

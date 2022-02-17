@@ -46,6 +46,8 @@ export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref
 
 }
 
+// FIXME: Buttons must have discernible text
+// FIXME: Elements must have sufficient color contrast
 const Timepicker: FC<ITimepickerProps> = ({
   className,
   initialValue = '',

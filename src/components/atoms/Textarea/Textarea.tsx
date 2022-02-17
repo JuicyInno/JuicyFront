@@ -26,6 +26,8 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   onClear?: () => void;
 }
 
+
+// FIXME: Form elements must have labels
 const Textarea: FC<ITextareaProps> = ({
   className = '',
   autoResize = false,

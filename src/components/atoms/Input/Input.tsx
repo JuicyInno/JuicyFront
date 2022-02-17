@@ -43,6 +43,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   pattern?: string;
 }
 
+// FIXME: Form elements must have labels
 const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   className,
   onClear,

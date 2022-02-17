@@ -18,7 +18,7 @@ type StatusLabelType = {
   name: string
 }
 
-
+// FIXME: IDs used in ARIA and labels must be unique
 const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
   , pickedValues
   , position,

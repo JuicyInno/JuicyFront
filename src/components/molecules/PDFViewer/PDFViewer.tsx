@@ -27,6 +27,7 @@ export interface IProps {
   url?: string;
 }
 
+// FIXME: Buttons must have discernible text
 const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   /** Всего страниц в документе */
   const [numPages, setNumPages] = useState(1);

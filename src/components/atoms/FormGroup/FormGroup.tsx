@@ -23,6 +23,7 @@ export interface IFormGroup {
   required?: boolean;
 }
 
+// FIXME: Buttons must have discernible text
 const FormGroup: FC<IFormGroup> = ({
   label,
   labelSecondary,

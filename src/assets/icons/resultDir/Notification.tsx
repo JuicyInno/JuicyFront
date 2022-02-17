@@ -3,6 +3,7 @@ import { IIconProps } from '../../../types';
 import { iconSize } from '../../../utils/helpers';
 /* eslint-disable max-len */
 
+// FIXME: Buttons must have discernible text
 export default ({ size = 'xs', ...props }: IIconProps) => {
   return (
     <svg

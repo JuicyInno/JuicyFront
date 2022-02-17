@@ -18,6 +18,9 @@ export interface IPageProps {
   preloader?: boolean;
 }
 
+
+// FIXME: Ensures landmarks are unique
+// FIXME: Links must have discernible text
 const Page: React.FC<IPageProps> = ({
   title,
   className = '',

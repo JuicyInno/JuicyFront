@@ -13,6 +13,7 @@ export interface IButtonPagesProps {
   page?: number;
 }
 
+// FIXME: Buttons must have discernible text
 const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: IButtonPagesProps) => {
 
   const [p, setP] = useState(1);
