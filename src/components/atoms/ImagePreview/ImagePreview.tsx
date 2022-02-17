@@ -137,25 +137,39 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const prevImageHandler = () => {
     setInit();
     setCurrentImage(imageList[currentIndex - 1]);
+    setPreviewIndex(Math.floor(currentIndex / 10));
 
-    if (visibleValues.current.minIndex >= currentIndex) {
-      visibleValues.current = {
-        minIndex: visibleValues.current.minIndex - 1,
-        maxIndex: visibleValues.current.maxIndex - 1,
-      };
+    if ((currentIndex) % 10 === 0) {
+      setPreviewIndex(previewIndex - 1);
+    } else {
+      if (visibleValues.current.minIndex > previewIndex) {
+        visibleValues.current = {
+          minIndex: visibleValues.current.minIndex - 1,
+          maxIndex: visibleValues.current.maxIndex - 1,
+        };
+      }
     }
+
+
   };
 
   const nextImageHandler = () => {
     setInit();
     setCurrentImage(imageList[currentIndex + 1]);
+    setPreviewIndex(Math.floor(currentIndex / 10));
 
-    if (visibleValues.current.maxIndex <= currentIndex) {
-      visibleValues.current = {
-        minIndex: visibleValues.current.minIndex + 1,
-        maxIndex: visibleValues.current.maxIndex + 1,
-      };
+    if ((currentIndex + 1) % 10 === 0) {
+      setPreviewIndex(previewIndex + 1);
+    } else {
+      if (visibleValues.current.maxIndex <= previewIndex) {
+        visibleValues.current = {
+          minIndex: visibleValues.current.minIndex + 1,
+          maxIndex: visibleValues.current.maxIndex + 1,
+        };
+      }
     }
+
+
   };
 
   const bottomPrevHandler = () => {
@@ -170,7 +184,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
-    className='rf-image-preview__bottom-navigation'>
+    className={classnames('rf-image-preview__bottom-navigation', isDisabled ? '' : 'bottom-navigation--disabled')}>
     {imageList.length > 10 ? <div onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
       'bottom-navigation__left',
       previewIndex > 0 ?
@@ -211,7 +225,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       <ArrowsChevronRight />
     </div> : null}
 
-  </div> : null, [currentIndex, previewIndex]);
+  </div> : null, [currentIndex, previewIndex, isDisabled]);
 
 
   const labelCountComponent = useMemo(() => imageList.length > 10 ? < div className='rf-label-count__component'>
