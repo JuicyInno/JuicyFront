@@ -11,6 +11,8 @@ export interface IAvatarStackProps {
   list: IUser[];
   /** Размер аватаров */
   size?: Size;
+  /** Id авторизированного юзера */
+  currentUserId?: string;
   /** Количество видимых аватаров */
   maxVisible?: number;
   /** Расположение выпадающего списка */
@@ -24,6 +26,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
   size = 'm',
   maxVisible = 3,
   onClick,
+  currentUserId,
 }: IAvatarStackProps) => {
 
   const toggleRef = useRef<HTMLDivElement>(null);
@@ -93,7 +96,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                       </div>
                       <div className='rf-avatar-stack__tooltip-info-column'>
                         <p
-                          className={`${u.fullName === 'Вы' ?
+                          className={`${u.id === currentUserId ?
                             'rf-avatar-stack__tooltip-name--you' :
                             'rf-avatar-stack__tooltip-name'}`}>
                           { u.fullName }

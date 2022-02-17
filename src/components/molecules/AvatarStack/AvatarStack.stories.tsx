@@ -59,7 +59,7 @@ export const Playground: Story = (args: any) => {
   return (
     <StoryContainer>
       <StoryRow>
-        <AvatarStack { ...args } list={usersMocks}>
+        <AvatarStack { ...args } list={usersMocks} currentUserId={'#100500'}>
         </AvatarStack>
       </StoryRow>
     </StoryContainer>
