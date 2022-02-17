@@ -114,13 +114,13 @@
   z-index: 10000;
   top: 20px;
   right: 20px;
-  width: 196px;
+  width: 256px;
   justify-content: space-between;
   cursor: pointer;
 }
 
 .top-navigation__zoom {
-  width: 108px;
+  width: 168px;
   display: flex;
   justify-content: space-between;
 }
@@ -210,4 +210,14 @@
 
 .move {
   cursor: move !important;
+}
+.top-navigation__button--disabled {
+  color: var(--background-shadow);
+  &:hover {
+    color: var(--background-shadow);
+  }
+  &:active {
+    color: var(--background-shadow);
+  }
+  cursor: initial;
 }

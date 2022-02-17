@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  AllAdd, AllClose, AllReduce, ArrowsChevronLeft, ArrowsChevronRight
+  AllAdd, AllClose, AllReduce, ArrowsChevronLeft, ArrowsChevronRight, ArrowsRenew
 } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import './ImagePreview.scss';
@@ -28,6 +28,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const deltaYRef = useRef<number>(0);
   const screenRef = useRef<HTMLDivElement>(null);
   const [previewIndex, setPreviewIndex] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
 
 
   const unFlatArray = (arr: string[], sliceNumber: number) => {
@@ -50,21 +51,28 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const zoomInHandler = () => {
     deltaRef.current += 0.5;
+    setIsDisabled(false);
     zoomRef.current!.classList.remove('move');
     zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
   };
 
   const zoomOutHandler = () => {
-
-
-    deltaRef.current -= 0.5;
+    if (deltaRef.current !== 1) {
+      deltaRef.current -= 0.5;
+    }
 
     if (deltaRef.current === 1) {
+      setIsDisabled(true);
       setInit();
     }
 
     zoomRef.current!.classList.remove('move');
     zoomRef.current!.style.transform = `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current},${deltaYRef.current})`;
+  };
+
+  const zoomInitHandler = () => {
+    setIsDisabled(true);
+    setInit();
   };
 
   const closeHandler = () => {
@@ -81,8 +89,6 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const onMouseMoveHandler: React.MouseEventHandler<HTMLElement> = (e) => {
     if (zoomRef.current!.classList[0] === 'move') {
-      console.log(e);
-
       zoomRef.current!.style.transform =
         `matrix(${deltaRef.current},0,0,${deltaRef.current},${deltaXRef.current += e.movementX},${deltaYRef.current += e.movementY})`;
     }
@@ -94,8 +100,10 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
-
-      <div onClick={zoomOutHandler} className='top-navigation__button'>
+      <div onClick={zoomInitHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
+        <ArrowsRenew />
+      </div>
+      <div onClick={zoomOutHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
         <AllReduce />
       </div>
       <div onClick={zoomInHandler} className='top-navigation__button'>
@@ -107,7 +115,8 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       <AllClose />
     </div>
 
-  </div>, []);
+  </div>, [isDisabled]);
+
 
   const imageHandler = (src: string) => () => {
     setInit();
@@ -158,10 +167,6 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   };
 
   const noop = useMemo(() => () => { }, []);
-
-
-  console.log(unFlatArray(imageList, 10));
-
 
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
