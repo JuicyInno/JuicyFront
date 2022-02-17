@@ -242,7 +242,7 @@ export const usersMocks: IUser[] = [
     firstName: 'Illidan',
     lastName: 'Stormrage',
     middleName: '',
-    fullName: 'Вы',
+    fullName: 'Illidan Stormrage',
     position: 'Engineer',
     positionId: 'FE 1',
     department: 'The Betrayer',

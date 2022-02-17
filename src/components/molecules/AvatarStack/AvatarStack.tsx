@@ -65,7 +65,9 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
             <Avatar photo={ u.photo } fullName={ u.fullName } size='m' />
           </div>
           <div className='rf-avatar-stack__tooltip-info-column'>
-            <p className='rf-avatar-stack__tooltip-name'>{ u.fullName }</p>
+            <p className={`${u.id === currentUserId ?
+              'rf-avatar-stack__tooltip-name--you' :
+              'rf-avatar-stack__tooltip-name'}`}>{ u.id === currentUserId ? 'Вы' : u.fullName }</p>
             { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
           </div>
         </div>
@@ -100,7 +102,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
                           className={`${u.id === currentUserId ?
                             'rf-avatar-stack__tooltip-name--you' :
                             'rf-avatar-stack__tooltip-name'}`}>
-                          { u.fullName }
+                          { u.id === currentUserId ? 'Вы' : u.fullName }
                         </p>
                         { u.position && <p className='rf-avatar-stack__tooltip-position'>{ u.position }</p> }
                       </div>
