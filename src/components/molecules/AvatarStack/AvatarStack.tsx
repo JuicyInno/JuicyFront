@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { DropdownPosition, Size } from '../../../types';
-import { IUser } from '../../../types/projects.types';
+import { Size } from '../../../types';
+import { IUser, TooltipPosition } from '../../../types/projects.types';
 import Avatar from '../../atoms/Avatar/Avatar';
 import { Tooltip } from '../../../index';
 
@@ -16,7 +16,7 @@ export interface IAvatarStackProps {
   /** Количество видимых аватаров */
   maxVisible?: number;
   /** Расположение выпадающего списка */
-  position?: DropdownPosition;
+  position?: TooltipPosition;
   /** Обработка клика по аватару */
   onClick?: (user: IUser) => void;
 }
@@ -26,6 +26,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
   size = 'm',
   maxVisible = 3,
   onClick,
+  position = 'bottom',
   currentUserId,
 }: IAvatarStackProps) => {
 
@@ -57,7 +58,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
         transform: `translateX(-${GAP * i}px)`,
         zIndex: list.length + i
       } }>
-      <Tooltip position='bottom' background='white'>
+      <Tooltip position={position} background='white'>
         <Avatar photo={ u.photo } fullName={ u.fullName } size={ size }/>
         <div className='rf-avatar-stack__tooltip-content-wrapper'>
           <div className='rf-avatar-stack__tooltip-avatar-wrapper'>
@@ -84,7 +85,7 @@ const AvatarStack: React.FC<IAvatarStackProps> = ({
             zIndex: list.length + maxVisible
           } }
         >
-          <Tooltip position='bottom' background='white'>
+          <Tooltip position={position} background='white'>
             <Avatar size={ size } fullName={ `+${list.length - maxVisible}` }/>
             <div className='rf-avatar-stack__collective-tooltip-wrapper'>
               <div className='rf-avatar-stack--inner-tooltip-container'>
