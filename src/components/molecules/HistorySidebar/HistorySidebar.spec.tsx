@@ -3,13 +3,13 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import HistorySidebar from "../HistorySidebar";
 
 import { history } from './mock';
-import {attachments} from '../History/mock';
+import { attachments } from '../History/mock';
 
 describe('Test <HistorySidebar /> component', () => {
   it('should render HistorySidebar', () => {
     const { container } = render(<HistorySidebar history={history} />);
 
-    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(3);
+    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(4);
   });
 
   it('should be defaultOpened', () => {
@@ -37,7 +37,7 @@ describe('Test <HistorySidebar /> component', () => {
     fireEvent.click(btn);
 
     expect(container.getElementsByClassName('rf-history-sidebar__item-info-icon')).toHaveLength(2);
-    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(5);
+    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(6);
     expect(container.getElementsByClassName('rf-history-sidebar--opened')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-history-sidebar__title')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-history-sidebar__attachments-title')).toHaveLength(1);
@@ -66,7 +66,7 @@ describe('Test <HistorySidebar /> component', () => {
   });
 
   it('should be pass userId', () => {
-    const { container, rerender } = render(<HistorySidebar history={history} userId="1" />);
+    const { container } = render(<HistorySidebar history={history} userId="1" />);
 
     expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(4);
     const btn = container.getElementsByClassName('rf-history-sidebar__btn').item(0);
@@ -82,9 +82,9 @@ describe('Test <HistorySidebar /> component', () => {
     expect(screen.getByText('Отклонено')).toBeInTheDocument();
     expect(screen.getByText('Подписано ЭП')).toBeInTheDocument();
     expect(container.getElementsByClassName('rf-history-sidebar__item-me')).toHaveLength(1);
-    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(5);
+    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(6);
     expect(container.getElementsByClassName('rf-history-sidebar__item--green')).toHaveLength(1);
-    expect(container.getElementsByClassName('rf-history-sidebar__item--blue')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-history-sidebar__item--yellow')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-history-sidebar__item--red')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-history-sidebar__item-comment')).toHaveLength(1);
   });

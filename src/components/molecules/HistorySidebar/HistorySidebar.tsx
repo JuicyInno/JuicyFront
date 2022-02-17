@@ -35,7 +35,7 @@ export interface IHistory {
   name: string;
   comment?: string;
   status?: string;
-  statusType: TypeStatus;
+  statusType?: TypeStatus;
 }
 
 export interface IHistorySidebar {
@@ -57,19 +57,19 @@ export interface IHistorySidebar {
 
 const statusByType: Record<TypeStatus, IconType | undefined> = {
   'POSITIVE': 'icon',
-  'NEUTRAL': undefined,
+  'NEUTRAL': 'load',
   'NEGATIVE': 'decline'
 };
 
 const variantByType: Record<TypeStatus, VariantClassic> = {
   'POSITIVE': 'green',
-  'NEUTRAL': 'default',
+  'NEUTRAL': 'yellow',
   'NEGATIVE': 'red'
 };
 
 const criticalityByType: Record<TypeStatus, string> = {
   'POSITIVE': '3',
-  'NEUTRAL': '0',
+  'NEUTRAL': '2',
   'NEGATIVE': '1'
 };
 
@@ -129,8 +129,10 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
   const getAvatarVariant = useCallback((item: IHistory, index: number): VariantClassic => {
     const activeIndex = getActiveIndex(list);
 
-    return activeIndex === index ? 'blue' : variantByType[item.statusType];
-  }, [getActiveIndex]);
+    console.log('activeIndex', activeIndex, index, item.statusType);
+
+    return activeIndex === index ? 'blue' : item.statusType ? variantByType[item.statusType] : 'default';
+  }, [getActiveIndex, list]);
 
   const styles = useMemo(() => opened ? {
     ...style,
@@ -144,7 +146,7 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
       className={classnames('rf-history-sidebar', opened && 'rf-history-sidebar--opened')}
       style={styles}
     >
-      <Tile variant={opened ? 'non-clickable' : 'none'}>
+      <Tile variant={opened ? 'non-clickable' : 'none'} className='rf-history-sidebar__tile'>
         <Button
           onClick={() => setOpened(!opened)}
           size='m'
@@ -180,7 +182,7 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
                   <AvatarStatus
                     size='l'
                     variant={variant}
-                    type={opened ? undefined : statusByType[item.statusType]}
+                    type={opened ? undefined : item.statusType && statusByType[item.statusType]}
                     {...item.approvers[0]}
                   />
 
@@ -221,7 +223,7 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
                       {item.approveDateTime &&
                         <p className='rf-history-sidebar__item-text'>{getOffsetDateStirng(item.approveDateTime)}</p>
                       }
-                      {item.status && <div className='rf-history-sidebar__item-status'>
+                      {item.status && item.statusType && <div className='rf-history-sidebar__item-status'>
                         <StatusWithText statusText={item.status} criticality={criticalityByType[item.statusType]} />
                       </div>}
                       {item.comment && <div className='rf-history-sidebar__item-comment'>{item.comment}</div>}

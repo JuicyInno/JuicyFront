@@ -41,6 +41,10 @@
     }
   }
 
+  .rf-history-sidebar__tile {
+    height: 100%;
+  }
+
   .rf-history-sidebar__title {
     @include h6();
     line-height: 24px;
@@ -58,7 +62,9 @@
     @include text-l-16;
     margin-bottom: 32px;
 
-    &.rf-history-sidebar__item--green::before {
+    &.rf-history-sidebar__item--green::before,
+    &.rf-history-sidebar__item--yellow::before,
+    &.rf-history-sidebar__item--red::before {
       border-left: 2px solid var(--background-tertiary);
     }
 

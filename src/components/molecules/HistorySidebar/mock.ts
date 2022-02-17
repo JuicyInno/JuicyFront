@@ -33,7 +33,7 @@ export const history: IHistory[] = [
   {
     ..._item,
     approverName: 'Бусыгина Александра Анатольевна',
-    approveDateTime: undefined,
+    approveDateTime: '2022-02-15T09:03:37.612Z',
     name: 'Согласование заявки',
     comment: undefined,
     status: 'Подписано ЭП',
@@ -43,7 +43,7 @@ export const history: IHistory[] = [
     ..._item,
     approvers: [getUser({ id: '1' }), getUser({ id: '2' })],
     approverName: 'Бусыгина Александра',
-    approveDateTime: undefined,
+    approveDateTime: '2022-02-15T09:03:37.612Z',
     name: 'Согласование заявки',
     comment: undefined,
     status: 'Отклонено',
@@ -57,7 +57,7 @@ export const history: IHistory[] = [
     name: 'Согласование заявки',
     comment: undefined,
     status: undefined,
-    statusType: 'NEUTRAL'
+    statusType: undefined
   },
   {
     ..._item,
@@ -67,6 +67,16 @@ export const history: IHistory[] = [
     name: 'Согласование заявки',
     comment: undefined,
     status: undefined,
-    statusType: 'NEUTRAL'
+    statusType: undefined
+  },
+  {
+    ..._item,
+    approvers: [getUser({ id: '8' })],
+    approverName: 'Аня петровна',
+    approveDateTime: undefined,
+    name: 'Согласование заявки 2',
+    comment: undefined,
+    status: undefined,
+    statusType: undefined
   },
 ];
