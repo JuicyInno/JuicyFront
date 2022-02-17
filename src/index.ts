@@ -5,6 +5,7 @@ import Accordion from './components/atoms/Accordion';
 import Avatar from './components/atoms/Avatar';
 import AvatarStatus from './components/molecules/AvatarStatus';
 import Badge from './components/atoms/Badge';
+import Feedback from './components/popups/Feedback';
 import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
 import CalendarPage from './components/atoms/CalendarPage';
@@ -175,7 +176,8 @@ export {
   BannerImage,
   Shimmer,
   Copy,
-  DynamicComponent
+  DynamicComponent,
+  Feedback
 };
 
 
