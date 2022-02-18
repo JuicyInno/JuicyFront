@@ -12,6 +12,13 @@
   border-radius: 100%;
   user-select: none;
   cursor: pointer;
+
+  & > div:first-of-type {
+    display: block;
+    & > div:first-of-type {
+      display: block;
+    }
+  }
 }
 
 .rf-avatar-stack--clickable {
@@ -76,5 +83,4 @@
 .rf-avatar-stack__collective-avatar {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
 }
