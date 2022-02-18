@@ -19,8 +19,6 @@ export default {
   argTypes: {
     history: { control: null },
     attachments: { control: null },
-    isUZADO: { type: 'boolean' },
-    host: { type: 'string' }
   }
 };
 
@@ -36,7 +34,7 @@ export const Demo: Story = () => {
         height: 'auto',
         justifyContent: 'flex-end'
       }}>
-        <HistorySidebar history={history} attachments={[]} userId='1' />
+        <HistorySidebar history={history} attachments={[]} userId='1' useHeightOffsetTop />
       </div>
 
       <h3 style={{
