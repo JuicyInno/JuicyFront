@@ -98,6 +98,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     zoomRef.current!.classList.remove('move');
   };
 
+
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
       <div onClick={zoomInitHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
@@ -184,7 +185,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
-    className={classnames('rf-image-preview__bottom-navigation', isDisabled ? '' : 'bottom-navigation--disabled')}>
+    className={classnames('rf-image-preview__bottom-navigation', imageList.length > 10 ? 'rf-image-preview__bottom-navigation--big' : '', isDisabled ? '' : 'bottom-navigation--disabled')}>
     {imageList.length > 10 ? <div onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
       'bottom-navigation__left',
       previewIndex > 0 ?
@@ -228,9 +229,9 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </div> : null, [currentIndex, previewIndex, isDisabled]);
 
 
-  const labelCountComponent = useMemo(() => imageList.length > 10 ? < div className='rf-label-count__component'>
-    <label data-testid='label-count-test'>{currentIndex + 1 + ' / ' + imageList.length}</label>
-  </ div> : null, [currentIndex, imageList.length]);
+  const labelCountComponent = useMemo(() => imageList.length > 10 ? isDisabled ? <div className='rf-label-count__component'>
+    <label data-testid='label-count-test' > {currentIndex + 1 + ' / ' + imageList.length}</label>
+  </ div > : null : null, [currentIndex, imageList.length, isDisabled]);
 
 
   const navigationControl = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__navigation-control'>
@@ -254,9 +255,10 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length === 1 ? 'single__full-image' : ''}`}>
     <img
       draggable={false}
-      onMouseUpCapture={onMoveEndHandler}
+      onMouseUp={onMoveEndHandler}
       onMouseDown={onMoveHandler}
       onMouseMove={onMouseMoveHandler}
+      onMouseOut={onMoveEndHandler}
       ref={zoomRef}
       src={currentImage}
       alt={currentImage} />

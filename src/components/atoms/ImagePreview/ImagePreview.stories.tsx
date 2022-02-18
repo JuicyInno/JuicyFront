@@ -35,6 +35,9 @@ export const Demo: Story = (args: any) => {
 
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
+  const [toggle3, setToggle3] = useState(false);
+  const mockList2 = [...mockList];
+  mockList2.length = 5;
 
 
   return (
@@ -52,6 +55,14 @@ export const Demo: Story = (args: any) => {
           Картинка
         </Chip>
         {toggle2 && < ImagePreview onClose={() => setToggle2(false)} imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} />}
+      </div>
+      <StoryDocsH2>Image Preview less than 10 Images</StoryDocsH2>
+
+      <div>
+        <Chip onClick={() => setToggle3(!toggle3)}>
+          Картинка
+        </Chip>
+        {toggle3 && < ImagePreview onClose={() => setToggle3(false)} imageList={mockList2} />}
       </div>
     </StoryDocs >
   );
