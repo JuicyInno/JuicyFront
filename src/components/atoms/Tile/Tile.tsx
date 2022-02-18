@@ -26,7 +26,7 @@ export interface ITileProps {
   /** Типы теней/бордер
    * @default default
    */
-  variant?: 'default' | 'clickable-default' | 'non-clickable' | 'clickable-hover' | 'border';
+  variant?: 'default' | 'clickable-default' | 'non-clickable' | 'clickable-hover' | 'border' | 'none';
 }
 
 const Tile: React.FC<ITileProps> = ({
