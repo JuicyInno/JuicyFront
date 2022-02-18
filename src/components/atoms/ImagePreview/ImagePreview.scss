@@ -1,5 +1,7 @@
 @import '../../../styles/mixins';
+
 .rf-image-preview {
+  user-select: none;
   position: fixed;
   left: 0;
   right: 0;
@@ -16,6 +18,9 @@
 .rf-image-preview__full-image {
   position: relative;
   margin-top: 44px;
+
+  outline: none;
+
   img {
     position: relative;
     z-index: 100;
@@ -41,6 +46,7 @@
     margin: 18px 8px;
     cursor: pointer;
     img {
+      outline: none;
       border-radius: 8px;
       width: inherit;
       height: inherit;
@@ -199,6 +205,7 @@
   align-items: center;
   margin-top: inherit;
   img {
+    pointer-events: none;
     height: 100%;
   }
 }
