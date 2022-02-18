@@ -20,7 +20,7 @@ const AvatarStatus: FC<IAvatarStatus> = ({
   ...props
 }) => {
   return (
-    <div className={`rf-avatar-status ${sizeClass[size]}`}>
+    <div className={`rf-avatar-status ${sizeClass[size]}`} title={props.fullName}>
       <Avatar {...props} size={size} />
       {variant && <div className={`rf-avatar-status__border ${sizeClass[size]} ${variant}`}/>}
       {type && (size !== 'xxxs' && size !== 'xxs' && size !== 'xs') && variant !== 'default' && (

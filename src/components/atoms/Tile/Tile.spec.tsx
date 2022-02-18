@@ -72,6 +72,13 @@ describe('Test <Tile/> component', () => {
     expect(container.getElementsByClassName('rf-tile--default')).toHaveLength(1);
   });
 
+
+  it('should be variant none', () => {
+    const { container } = render(<Tile variant='none'>Content</Tile>);
+
+    expect(container.getElementsByClassName('rf-tile--none')).toHaveLength(1);
+  });
+
   it('should be variant clickable-default', () => {
     const { container } = render(<Tile variant='clickable-default'>Content</Tile>);
 
