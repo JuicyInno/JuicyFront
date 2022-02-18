@@ -31,7 +31,7 @@ describe('Test <ImagePreview/> component', () => {
     render(<ImagePreview imageList={mockList} onClose={() => { }} />);
     const label = screen.getByTestId('bottom__image--4');
     fireEvent.click(label);
-    expect(screen.getByTestId('label-count-test').textContent!.split(' / ')[0]).toBe('5');
+    expect(screen.getByTestId('label-count-test').textContent!.split(' / ')[0].trim()).toBe('5');
   });
 
 
