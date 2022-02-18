@@ -18,17 +18,11 @@
   margin-top: 44px;
   img {
     position: relative;
-    z-index: 99999;
+    z-index: 100;
     /* max-width: 940px; */
     object-position: center;
     border-radius: 12px;
     height: 544px;
-    -drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
   }
 }
 .rf-image-preview__bottom-navigation {
@@ -47,12 +41,6 @@
     margin: 18px 8px;
     cursor: pointer;
     img {
-      -drag: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-drag: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
       border-radius: 8px;
       width: inherit;
       height: inherit;
@@ -72,41 +60,43 @@
   width: 812px;
 }
 
-.rf-image-preview__navigation-control {
-  position: fixed;
+.navigation-control__left,
+.navigation-control__right {
+  position: absolute;
+  z-index: 101;
   display: flex;
+
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 66px;
-  width: calc(100vw - 40px);
+  justify-content: center;
+  width: 48px;
   height: 48px;
-  .navigation-control__left,
-  .navigation-control__right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 48px;
-    background-color: var(--basic-secondary);
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-      color: var(--background-tertiary);
-    }
-    &:active {
-      color: var(--background-tertiary-hover);
-    }
+  border-radius: 48px;
+  background-color: var(--basic-secondary);
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    color: var(--background-tertiary);
   }
-  .button__disabled {
+  &:active {
+    color: var(--background-tertiary-hover);
+  }
+}
+.navigation-control__left {
+  align-self: flex-start;
+  left: 20px;
+}
+.navigation-control__right {
+  align-self: flex-end;
+  right: 20px;
+}
+.button__disabled {
+  color: var(--background-shadow);
+  cursor: initial;
+  &:hover {
     color: var(--background-shadow);
-    cursor: initial;
-    &:hover {
-      color: var(--background-shadow);
-    }
-    &:active {
-      color: var(--background-shadow);
-    }
+  }
+  &:active {
+    color: var(--background-shadow);
   }
 }
 

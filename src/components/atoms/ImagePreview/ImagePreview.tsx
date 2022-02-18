@@ -137,6 +137,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const prevImageHandler = () => {
     setInit();
+    setIsDisabled(true);
     setCurrentImage(imageList[currentIndex - 1]);
     setPreviewIndex(Math.floor(currentIndex / 10));
 
@@ -155,6 +156,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   };
 
   const nextImageHandler = () => {
+    setIsDisabled(true);
     setInit();
     setCurrentImage(imageList[currentIndex + 1]);
     setPreviewIndex(Math.floor(currentIndex / 10));
@@ -175,17 +177,20 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const bottomPrevHandler = () => {
     setPreviewIndex(previewIndex - 1);
+
   };
 
   const bottomNextHandler = () => {
     setPreviewIndex(previewIndex + 1);
+
   };
 
   const noop = useMemo(() => () => { }, []);
 
   const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
     data-testid='bottom-chevron-left'
-    className={classnames('rf-image-preview__bottom-navigation', imageList.length > 10 ? 'rf-image-preview__bottom-navigation--big' : '', isDisabled ? '' : 'bottom-navigation--disabled')}>
+    className={classnames('rf-image-preview__bottom-navigation', imageList.length > 10 ?
+      'rf-image-preview__bottom-navigation--big' : '', isDisabled ? '' : 'bottom-navigation--disabled')}>
     {imageList.length > 10 ? <div onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
       'bottom-navigation__left',
       previewIndex > 0 ?
@@ -234,7 +239,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </ div > : null : null, [currentIndex, imageList.length, isDisabled]);
 
 
-  const navigationControl = useMemo(() => imageList.length > 1 ? <div className='rf-image-preview__navigation-control'>
+  const navigationControl = useMemo(() => imageList.length > 1 ? <>
     <div onClick={currentIndex ? prevImageHandler : noop} className={classnames(
       'navigation-control__left',
       !currentIndex ?
@@ -250,7 +255,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       <ArrowsChevronRight />
     </div>
 
-  </div> : null, [imageList, currentIndex]);
+  </> : null, [imageList, currentIndex]);
 
   const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length === 1 ? 'single__full-image' : ''}`}>
     <img
