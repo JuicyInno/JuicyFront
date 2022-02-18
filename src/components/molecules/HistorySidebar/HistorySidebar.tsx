@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useCallback, CSSProperties, useMemo
+  useState, useEffect, useCallback, CSSProperties, useMemo, useRef, useLayoutEffect
 } from 'react';
 import {
   Avatar, Button, Tile
@@ -53,6 +53,10 @@ export interface IHistorySidebar {
   activeStyle?: CSSProperties;
   /** Стили сайдбара */
   style?: CSSProperties;
+  /** Устанавливает высоту от верхней границы
+   * @default false
+   */
+  useHeightOffsetTop?: boolean;
 }
 
 const statusByType: Record<TypeStatus, IconType | undefined> = {
@@ -73,7 +77,17 @@ const criticalityByType: Record<TypeStatus, string> = {
   'NEGATIVE': '1'
 };
 
-const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: currentUserId, activeStyle, style }: IHistorySidebar) => {
+const HistorySidebar = ({
+  history,
+  attachments,
+  defaultOpened = false,
+  useHeightOffsetTop = false,
+  userId: currentUserId,
+  activeStyle,
+  style,
+}: IHistorySidebar) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const getActiveIndex = useCallback((list: IHistory[]): number => list.findIndex((item) => !item.approveDateTime), []);
   const getIndexByUserId = useCallback((list: IHistory[]): number =>
     list.findIndex((item) => !!item.approvers.find((approver) => approver.id === currentUserId)), [currentUserId]);
@@ -89,7 +103,8 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
     }
 
     const indexByUserId = getIndexByUserId(history);
-    const activeIndex = indexByUserId !== -1 ? indexByUserId : getActiveIndex(history);
+    const indexByApproveDate = getActiveIndex(history) !== -1 ? getActiveIndex(history) : history.length - 1;
+    const activeIndex = indexByUserId !== -1 ? indexByUserId : indexByApproveDate;
 
     return history.reduce((acc: IHistory[], curr: IHistory, index: number) => {
       const diffIndex = index - activeIndex;
@@ -129,8 +144,6 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
   const getAvatarVariant = useCallback((item: IHistory, index: number): VariantClassic => {
     const activeIndex = getActiveIndex(list);
 
-    console.log('activeIndex', activeIndex, index, item.statusType);
-
     return activeIndex === index ? 'blue' : item.statusType ? variantByType[item.statusType] : 'default';
   }, [getActiveIndex, list]);
 
@@ -139,12 +152,30 @@ const HistorySidebar = ({ history, attachments, defaultOpened = false, userId: c
     ...activeStyle
   } : style, [style, activeStyle, opened]);
 
+  /**
+   * Если установлено useHeightOffsetTop, тогда определяем выосту компонента от верхней границы экрана
+   * только в открытом состоянии
+   */
+  useLayoutEffect(() => {
+    if (containerRef.current && useHeightOffsetTop) {
+      const topToHeight = containerRef.current?.getBoundingClientRect().top;
+
+      containerRef.current.style.height = opened ? `calc(100vh - ${topToHeight}px - 20px` : 'auto';
+    }
+
+  }, [opened, history, useHeightOffsetTop]);
+
   const isCurrentUser = (userId: string) => userId === currentUserId;
 
   return (
     <div
-      className={classnames('rf-history-sidebar', opened && 'rf-history-sidebar--opened')}
+      className={classnames(
+        'rf-history-sidebar',
+        opened && 'rf-history-sidebar--opened',
+        !useHeightOffsetTop && 'rf-history-sidebar--default'
+      )}
       style={styles}
+      ref={containerRef}
     >
       <Tile variant={opened ? 'non-clickable' : 'none'} className='rf-history-sidebar__tile'>
         <Button

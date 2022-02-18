@@ -43,6 +43,13 @@ describe('Test <HistorySidebar /> component', () => {
     expect(container.getElementsByClassName('rf-history-sidebar__attachments-title')).toHaveLength(1);
   });
 
+
+  it('should be useHeightOffsetTop', () => {
+    const { container } = render(<HistorySidebar history={history} useHeightOffsetTop />);
+
+    expect(container.getElementsByClassName('rf-history-sidebar--default')).toHaveLength(0);
+  });
+
   it('should be pass style', () => {
     const { container } = render(<HistorySidebar history={history} style={{ marginTop: '10px' }} />);
 
@@ -82,6 +89,30 @@ describe('Test <HistorySidebar /> component', () => {
     expect(screen.getByText('Отклонено')).toBeInTheDocument();
     expect(screen.getByText('Подписано ЭП')).toBeInTheDocument();
     expect(container.getElementsByClassName('rf-history-sidebar__item-me')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(6);
+    expect(container.getElementsByClassName('rf-history-sidebar__item--green')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-history-sidebar__item--yellow')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-history-sidebar__item--red')).toHaveLength(1);
+    expect(container.getElementsByClassName('rf-history-sidebar__item-comment')).toHaveLength(1);
+  });
+
+  it('should be all approveDateTime are filled', () => {
+    const { container } = render(
+      <HistorySidebar history={history.map((h) => ({ ...h, approveDateTime: '+48629-10-11T19:06:41.000+0000' }))} />
+    );
+
+    expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(3);
+    const btn = container.getElementsByClassName('rf-history-sidebar__btn').item(0);
+
+    if (!btn) {
+      fail('Нет элемента');
+    }
+
+    fireEvent.click(btn);
+
+    expect(screen.getByText('Согласовано')).toBeInTheDocument();
+    expect(screen.getByText('Отклонено')).toBeInTheDocument();
+    expect(screen.getByText('Подписано ЭП')).toBeInTheDocument();
     expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(6);
     expect(container.getElementsByClassName('rf-history-sidebar__item--green')).toHaveLength(1);
     expect(container.getElementsByClassName('rf-history-sidebar__item--yellow')).toHaveLength(1);
