@@ -23,7 +23,6 @@ export interface IBannerProps {
 }
 
 // FIXME: Elements must have sufficient color contrast
-// FIXME: Images must have alternate text
 /**
  * @example
  * import illustration form 'juicyfront/assets/illustrations/default.png'

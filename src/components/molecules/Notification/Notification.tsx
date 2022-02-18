@@ -28,7 +28,7 @@ const Notification: FC<INotificationProps> = ({ item, remove }: INotificationPro
         <p className='rf-notification__message'>{ item.message }</p>
       </div>
 
-      <button className='rf-notification__close' onClick={ removeNotification }>
+      <button className='rf-notification__close' onClick={ removeNotification } aria-label='Скрыть'>
         <AllClose />
       </button>
     </div>

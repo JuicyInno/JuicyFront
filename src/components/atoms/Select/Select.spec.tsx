@@ -102,7 +102,7 @@ describe('Test <Select/> component', () => {
       onChange={noop}
       placeholder='TEST'
     />);
-    expect(document.getElementById('rf-select__input')!.getAttribute('placeholder')).toBe('TEST')
+    expect(screen.getByTestId('rf-select__input').getAttribute('placeholder')).toBe('TEST')
 
   })
   it('should be readOnly ', () => {
@@ -113,7 +113,7 @@ describe('Test <Select/> component', () => {
       placeholder='TEST'
       readOnly
     />);
-    expect(document.getElementById('rf-select__input')!.hasAttribute('readonly')).toBeTruthy()
+    expect(screen.getByTestId('rf-select__input').hasAttribute('readonly')).toBeTruthy()
   })
 
   it('should be render with 2 max selected options', () => {
@@ -169,7 +169,7 @@ describe('Test <Select/> component', () => {
     />);
     fireEvent.click(screen.getByTestId('rf-select'));
     fireEvent.click(screen.getByLabelText('label1'));
-    expect(document.getElementById('rf-select__input')!.getAttribute('value')).toBeFalsy()
+    expect(screen.getByTestId('rf-select__input').getAttribute('value')).toBeFalsy()
   })
   it('should be invalid', () => {
     render(<Select
@@ -308,10 +308,10 @@ describe('Test <Select/> component', () => {
 
       />
     </FormGroup>);
-    fireEvent.change(document.getElementById('rf-select__input') as HTMLInputElement, { target: { value: 'test' } })
-    expect((document.getElementById('rf-select__input') as HTMLInputElement).value).toBe('test');
+    fireEvent.change(screen.getByTestId('rf-select__input') as HTMLInputElement, { target: { value: 'test' } })
+    expect((screen.getByTestId('rf-select__input') as HTMLInputElement).value).toBe('test');
     fireEvent.click(document.getElementsByClassName('rf-form-group__label')[0]!)
-    setTimeout(() => expect((document.getElementById('rf-select__input') as HTMLInputElement).value).toBe(''), 0)
+    setTimeout(() => expect((screen.getByTestId('rf-select__input') as HTMLInputElement).value).toBe(''), 0)
 
   });
 });

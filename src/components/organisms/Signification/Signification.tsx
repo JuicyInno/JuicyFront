@@ -80,7 +80,6 @@ export interface IProps extends Pick<ITileProps, 'variant'> {
 }
 
 
-// FIXME: Buttons must have discernible text
 // FIXME: Elements must have sufficient color contrast
 const Signification:FC<IProps> = ({
   data,

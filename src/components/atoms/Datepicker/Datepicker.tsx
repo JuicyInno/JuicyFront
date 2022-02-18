@@ -78,6 +78,8 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   isFocusBorder?: boolean
 }
 
+
+// FIXME: Добавить управление с клавиатуры
 const Datepicker: React.FC<IDatepickerProps> = ({
   name = 'datepicker',
   locale = 'ru',
@@ -400,9 +402,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                       invalid={invalid}
                       filled={filled}
                       startAdornment={
-                        <button onClick={e => e.stopPropagation()} type='button' className='rf-datepicker__calendar-button'>
+                        <div onClick={e => e.stopPropagation()} className='rf-datepicker__calendar-button'>
                           <AllCalendar />
-                        </button>
+                        </div>
                       }
                       endAdornment={
                         <div className={classnames('rf-datepicker__calendar-chevron', isCrossChevronPicker && 'rf-datepicker__calendar-cross')}>

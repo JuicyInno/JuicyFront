@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import React, { FC, ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, RefObject, useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
 import { Manager, Reference } from 'react-popper';
 import './Select.scss';
@@ -102,11 +102,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   menuVariantSize?: 's' | 'm';
 }
 
-
-// FIXME: Buttons must have discernible text
-// FIXME: IDs of active elements must be unique
-// FIXME: Form elements must have labels
-const Select: FC<ISelectProps> = ({
+const Select: FC<ISelectProps> & { id: number } = ({
   options,
   onChange,
   invalid = false,
@@ -132,6 +128,10 @@ const Select: FC<ISelectProps> = ({
   backgroundColor = 'white',
   menuVariantSize = 'm'
 }: ISelectProps) => {
+  const id = useMemo(() => {
+    return Select.id++;
+  }, []);
+
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
   const [isOnMove, setIsonMove] = useState<boolean>(false);
@@ -364,10 +364,9 @@ const Select: FC<ISelectProps> = ({
   const noop = () => { };
 
   const inputElement = <input
-
     autoSave='false'
     autoComplete='off'
-    id='rf-select__input'
+    data-testid='rf-select__input'
     className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
      ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''} rf-select__menu--${menuVariantSize}` : ''} ${isOnMove && variant === 'menu' ? 'rf-button__hover' : ''}`}
     onChange={onSelectSearch}
@@ -402,7 +401,12 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onReset}>
+    <button
+      type='button'
+      className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`}
+      onClick={onReset}
+      aria-label='Сбросить'
+    >
       <AllClose />
     </button>
   );
@@ -441,7 +445,7 @@ const Select: FC<ISelectProps> = ({
         )}
         onClick={onChevronClick}
         onMouseMove={onMouseMoveHandler}
-
+        aria-label={showDropdown ? 'Скрыть меню' : 'Раскрыть меню'}
       >
         {options.length ? <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} /> : null}
       </button>
@@ -525,7 +529,12 @@ const Select: FC<ISelectProps> = ({
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div data-testid='rf-select-list-scroll' className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)} id='rf-select-list-scroll' onScroll={onScroll}>
+          <div
+            data-testid='rf-select-list-scroll'
+            className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)}
+            id={`Select-${id}-list-scroll`}
+            onScroll={onScroll}
+          >
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
@@ -533,7 +542,7 @@ const Select: FC<ISelectProps> = ({
                 {...infinityScrollProps}
                 next={makeLazyFetch()}
                 loader={loader}
-                scrollableTarget='rf-select-list-scroll'
+                scrollableTarget={`Select-${id}-list-scroll`}
                 className='rf-select__infinity-list'
               >
                 {listJSX}
@@ -550,4 +559,7 @@ const Select: FC<ISelectProps> = ({
     </Manager>
   );
 };
+
+Select.id = 0;
+
 export default Select;

@@ -46,7 +46,6 @@ export interface IHistoryCardFilterProps {
   pattern?: string;
 }
 
-// FIXME: Buttons must have discernible text
 const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowDatePicker = true,
   isShowStatusFilter = true,

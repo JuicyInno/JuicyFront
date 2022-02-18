@@ -30,6 +30,7 @@ export interface IAccordionProps {
   expanded?: boolean;
 }
 
+// TODO: Проверить правильность использования role='treeitem'
 const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false }: IAccordionProps) => {
   const getDefaultOpenedIndexes = useCallback(() => data.reduce((acc: number[], curr: IAccordion, index: number) => {
     if (curr.defaultOpened) {
@@ -63,7 +64,7 @@ const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false }: I
   }, [isOpened, expanded]);
 
   return (
-    <div className='rf-accordion'>
+    <div className='rf-accordion' role='tree'>
       {data.map((item: IAccordion, index: number) => {
         const opened = isOpened(index);
 

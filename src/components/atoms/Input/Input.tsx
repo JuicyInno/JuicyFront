@@ -30,7 +30,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   /** обработка нажатий с эффектом debounce */
   onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
-  ref?: Ref<HTMLLabelElement>;
+  ref?: Ref<HTMLDivElement>;
   /**
    * Добавить рамку
    * @default true
@@ -43,8 +43,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   pattern?: string;
 }
 
-// FIXME: Form elements must have labels
-const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
+const Input = forwardRef<HTMLDivElement | null, IInputProps>(({
   className,
   onClear,
   debounce = 300,
@@ -153,7 +152,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
   return (
-    <label
+    <div
       ref={ref}
       className={`
         rf-input 
@@ -183,7 +182,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
       />
       {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
       {icon ? <button type='button' className='rf-input__action'>{icon}</button> : closeButton}
-    </label>
+    </div>
   );
 });
 

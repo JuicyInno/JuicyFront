@@ -46,7 +46,7 @@ export interface ITimepickerProps extends Omit<HTMLProps<HTMLInputElement>, 'ref
 
 }
 
-// FIXME: Buttons must have discernible text
+// FIXME: Form elements must have labels
 // FIXME: Elements must have sufficient color contrast
 const Timepicker: FC<ITimepickerProps> = ({
   className,
@@ -108,7 +108,12 @@ const Timepicker: FC<ITimepickerProps> = ({
         </InputMask>}
 
         {children || <div className='rf-timepicker__menu'>
-          <Button buttonType='text' className='rf-timepicker__btn' disabled={disabled}>
+          <Button
+            buttonType='text'
+            className='rf-timepicker__btn'
+            disabled={disabled}
+            aria-label={emptyValue ? 'Выбрать время' : 'Сбросить'}
+          >
             {emptyValue ? (
               <StatusPending className='rf-timepicker__icon rf-timepicker__icon-time' />
             ) : (

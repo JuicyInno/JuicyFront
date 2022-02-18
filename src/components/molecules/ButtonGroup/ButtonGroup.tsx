@@ -20,7 +20,6 @@ export interface IButtonGroupProps {
   closeAfterClick?: boolean;
 }
 
-// FIXME: Buttons must have discernible text
 // FIXME: Elements must have sufficient color contrast
 const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterClick = false }: IButtonGroupProps) => {
   // -------------------------------------------------------------------------------------------------------------------
@@ -112,7 +111,13 @@ const ButtonGroup: React.FC<IButtonGroupProps> = ({ list, max = 2, closeAfterCli
           </MenuContext.Consumer>
         } position='top-start'>
           <Tooltip position='bottom'>
-            <Button buttonType='light' size='l' data-testid='button-group__more' startAdornment={<AllMenuHorizontal />}></Button>
+            <Button
+              buttonType='light'
+              size='l'
+              data-testid='button-group__more'
+              startAdornment={<AllMenuHorizontal />}
+              aria-label='Другие действия'
+            />
             <>Другие действия</>
           </Tooltip>
         </Menu>

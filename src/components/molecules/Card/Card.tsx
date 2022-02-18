@@ -11,7 +11,6 @@ import { IUser } from '../../../types/projects.types';
 import './Card.scss';
 import EntityCard from '../EntityCard/EntityCard';
 
-// FIXME: ARIA commands must have an accessible name
 // FIXME: Elements must have sufficient color contrast
 export interface ICard {
   /** id заявки */

@@ -27,7 +27,6 @@ export interface IProps {
   url?: string;
 }
 
-// FIXME: Buttons must have discernible text
 const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   /** Всего страниц в документе */
   const [numPages, setNumPages] = useState(1);
@@ -103,7 +102,9 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
               buttonType='white'
               size='s'
               onClick={onClickDownload}
-              endAdornment={<AllDownload className='pdf-document__icon'/>}>
+              endAdornment={<AllDownload className='pdf-document__icon'/>}
+              aria-label='Скачать'
+            >
               {url ? '' : 'Скачать'}
             </Button>
           </div>
