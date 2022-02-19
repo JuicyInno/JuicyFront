@@ -257,7 +257,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   </> : null, [imageList, currentIndex]);
 
-  const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length === 1 ? 'single__full-image' : ''}`}>
+  const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length < 10 ? 'single__full-image' : ''}`}>
     <img
       draggable={false}
       onMouseUp={onMoveEndHandler}
