@@ -1,5 +1,5 @@
 import React, {
-  ReactNode, RefObject, useEffect, useRef, useState
+  ReactNode, RefObject, useEffect, useImperativeHandle, useRef, useState
 } from 'react';
 import './Datepicker.scss';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
@@ -16,6 +16,10 @@ import InputMask from 'react-input-mask';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import DatepickerCalendar from './DatepickerCalendar';
+
+export interface IDatePickerRefActions {
+  reset: () => void,
+}
 
 export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   /** Имя поля */
@@ -65,6 +69,8 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   tooltipBackground?: 'default' | 'white';
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
+  /** Реф для пробрасывания действий по кастомным кнопкам */
+  controlRef?: RefObject<IDatePickerRefActions | null>;
   /**
    *  Добавлять фокус при выборе дат
    * @default false
@@ -92,6 +98,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   children,
   tooltipBackground = 'default',
   containerRef,
+  controlRef,
   isFocusBorder = false
 }: IDatepickerProps) => {
   const separator = format[2];
@@ -108,6 +115,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   useEffect(() => {
     setMaxDate(max ? parseToFormat(format, max).date : undefined);
   }, [max]);
+
+
+  useImperativeHandle(controlRef, () => ({ reset: () => clearDateRangeHandler(), }));
 
   // -------------------------------------------------------------------------------------------------------------------
 
