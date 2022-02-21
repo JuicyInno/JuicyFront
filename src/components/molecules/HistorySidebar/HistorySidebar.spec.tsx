@@ -73,7 +73,7 @@ describe('Test <HistorySidebar /> component', () => {
   });
 
   it('should be pass userId', () => {
-    const { container } = render(<HistorySidebar history={history} userId="1" />);
+    const { container } = render(<HistorySidebar history={history} userId="4" />);
 
     expect(container.getElementsByClassName('rf-history-sidebar__item')).toHaveLength(4);
     const btn = container.getElementsByClassName('rf-history-sidebar__btn').item(0);
