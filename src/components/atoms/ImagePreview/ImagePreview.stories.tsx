@@ -9,7 +9,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
 export default {
-  title: 'controls/не проверено/ImagePreview',
+  title: 'controls/withTest/ImagePreview',
   component: ImagePreview,
   argTypes: {}
 };
