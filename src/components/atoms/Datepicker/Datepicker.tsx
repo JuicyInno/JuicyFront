@@ -69,7 +69,7 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   tooltipBackground?: 'default' | 'white';
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
-  /** Сыылка на контейнер портала */
+  /** Реф для пробрасывания действий по кастомным кнопкам */
   controlRef?: RefObject<IDatePickerRefActions | null>;
   /**
    *  Добавлять фокус при выборе дат
