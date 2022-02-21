@@ -19,8 +19,8 @@ const getUser = (user: Partial<IUser> = {}) => ({
 });
 
 const _item: IHistory = {
-  approvers: [getUser()],
-  approverName: 'Линейный руководитель',
+  approvers: [getUser({ id: '0' })],
+  approverName: 'Линейный руководитель Name',
   approveDateTime: '2022-02-15T09:03:37.612Z',
   name: 'Согласование линейным руководителем',
   comment: 'согласовано делегатом',
@@ -32,7 +32,7 @@ export const history: IHistory[] = [
   _item,
   {
     ..._item,
-    approverName: 'Бусыгина Александра Анатольевна',
+    approverName: 'Бусыгина Александра Анатольевна Name',
     approveDateTime: '2022-02-15T09:03:37.612Z',
     name: 'Согласование заявки',
     comment: undefined,
@@ -42,7 +42,7 @@ export const history: IHistory[] = [
   {
     ..._item,
     approvers: [getUser({ id: '1' }), getUser({ id: '2' })],
-    approverName: 'Бусыгина Александра',
+    approverName: 'Бусыгина Александра Name',
     approveDateTime: '2022-02-15T09:03:37.612Z',
     name: 'Согласование заявки',
     comment: undefined,
@@ -52,7 +52,7 @@ export const history: IHistory[] = [
   {
     ..._item,
     approvers: [getUser({ id: '4' })],
-    approverName: 'Петров Александр Палович',
+    approverName: 'Петров Александр Палович Name',
     approveDateTime: undefined,
     name: 'Согласование заявки',
     comment: undefined,
@@ -62,7 +62,7 @@ export const history: IHistory[] = [
   {
     ..._item,
     approvers: [getUser({ id: '5' }), getUser({ id: '6' }), getUser({ id: '7' })],
-    approverName: 'Никита Другой',
+    approverName: 'Никита Другой Name',
     approveDateTime: undefined,
     name: 'Согласование заявки',
     comment: undefined,
@@ -71,8 +71,13 @@ export const history: IHistory[] = [
   },
   {
     ..._item,
-    approvers: [getUser({ id: '8' })],
-    approverName: 'Аня петровна',
+    approvers: [
+      getUser({
+        id: '8',
+        fullName: 'Аня петровна'
+      })
+    ],
+    approverName: 'Аня петровна Name',
     approveDateTime: undefined,
     name: 'Согласование заявки 2',
     comment: undefined,

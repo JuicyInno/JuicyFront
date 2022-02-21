@@ -5,7 +5,7 @@ import {
   Avatar, Button, Tile
 } from '../../..';
 import {
-  AllDoc, StatusInformation, ArrowsChevronLeft
+  AllDoc, StatusInformation, ArrowsChevronLeft, OtherPeople
 } from '../../../indexIcon';
 import { IUser, IRequestAttachment } from '../../../types/projects.types';
 import { IconType } from '../../atoms/Status/icons/types';
@@ -201,6 +201,7 @@ const HistorySidebar = ({
             list.map((item, index) => {
               const variant = getAvatarVariant(item, index);
               const isMe = isCurrentUser(item.approvers[0].id);
+              const isMultiApprovers = item.approvers.length > 1;
 
               return (
                 <div
@@ -214,16 +215,17 @@ const HistorySidebar = ({
                     size='l'
                     variant={variant}
                     type={opened ? undefined : item.statusType && statusByType[item.statusType]}
-                    {...item.approvers[0]}
+                    {...(!isMultiApprovers && item.approvers[0])}
+                    {...(isMultiApprovers && { icon: () => <OtherPeople size='m' /> })}
                   />
 
                   {
                     opened && <div className='rf-history-sidebar__item-content'>
                       <h4 className='rf-history-sidebar__item-name'>
                         {
-                          isMe ?
+                          isMe && !isMultiApprovers ?
                             <span className='rf-history-sidebar__item-me'>Вы</span> :
-                            <span>{item.approverName}</span>
+                            <span>{isMultiApprovers ? item.approverName : item.approvers[0].fullName}</span>
                         }
 
                         {item.approvers.length > 1 &&
@@ -236,12 +238,16 @@ const HistorySidebar = ({
                                 <div key={index} className='rf-history-sidebar__approvers-item'>
                                   <Avatar {...approver} />
                                   <div className='rf-history-sidebar__approvers-item__content'>
-                                    <h5 className='rf-history-sidebar__approvers-item__name'>{
-                                      isCurrentUser(approver.id) ?
-                                        <span className='rf-history-sidebar__item-me'>Вы</span> :
-                                        <span>{approver.fullName}</span>
-                                    }</h5>
-                                    <p className='rf-history-sidebar__approvers-item__position'>{approver.position}</p>
+                                    <h5 className='rf-history-sidebar__approvers-item__name'>
+                                      {
+                                        isCurrentUser(approver.id) ?
+                                          <span className='rf-history-sidebar__item-me'>Вы</span> :
+                                          <span>{approver.fullName}</span>
+                                      }
+                                    </h5>
+                                    {approver.position &&
+                                      <p className='rf-history-sidebar__approvers-item__position'>{approver.position}</p>
+                                    }
                                   </div>
                                 </div>
                               ))}
