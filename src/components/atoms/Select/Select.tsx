@@ -12,6 +12,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import Preloader from '../Preloader';
+import usePrevious from '../../../hooks/usePrevious';
 
 export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   /** Варианты выбора */
@@ -21,7 +22,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   /** Значение */
   values: IOption[];
   /** Поиск внутри селекта
-   * @param query - страка поиска
+   * @param query - строка поиска
    * @param isPagination - указывает что изменилась пагинация
    */
   onSearch?: (query: string, isPagination?: boolean) => void;
@@ -132,6 +133,20 @@ const Select: FC<ISelectProps> = ({
   const [isOnMove, setIsonMove] = useState<boolean>(false);
   const [isOnActive, setIsonActive] = useState<boolean>(false);
   const firstElementPosition = useRef<number>(0);
+  const prevShowDropDown = usePrevious(showDropdown) || false;
+
+  const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
+
+  /** Очистка селекта */
+  const onClear = () => {
+    setInputValue('');
+
+    if (!multiselect) {
+      setSelectValues([]);
+    }
+
+    onSearch && onSearch('');
+  };
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
@@ -141,31 +156,25 @@ const Select: FC<ISelectProps> = ({
     if (!disabled) {
       setShowDropdown(true);
     }
-
   }, [disabled]);
+
+  const onReset = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClear();
+    onOpen();
+  };
 
 
   // -------------------------------------------------------------------------------------------------------------------
-
-  const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
-
   useEffect(() => {
-
     setInputValue(values.length > 0 && !multiselect ? values[0].label : '');
   }, [values]);
 
-  /** Очистка селекта */
-  const onClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setInputValue('');
-    onOpen();
-
-    if (!multiselect) {
-      setSelectValues([]);
-    }
-
-    onSearch && onSearch('');
-  };
+  /*   useEffect(() => {
+    const onClick = (e: React.MouseEvent) => clickRef.current!.contains(e.target as Node) || console.log('клик вне компонента');
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []); */
 
   /** Очистка при изменении извне через clearHook */
   useEffect(() => {
@@ -346,11 +355,6 @@ const Select: FC<ISelectProps> = ({
     );
   });
 
-  const inputClickHandler = (e: React.MouseEvent) => {
-    console.log('clicked');
-
-  };
-
   // -------------------------------------------------------------------------------------------------------------------
 
   const noop = () => { };
@@ -360,7 +364,6 @@ const Select: FC<ISelectProps> = ({
     autoSave='false'
     autoComplete='off'
     id='rf-select__input'
-    onClick={inputClickHandler}
     className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
      ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''} rf-select__menu--${menuVariantSize}` : ''} ${isOnMove && variant === 'menu' ? 'rf-button__hover' : ''}`}
     onChange={onSelectSearch}
@@ -395,7 +398,7 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onClear}>
+    <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onReset}>
       <AllClose />
     </button>
   );
@@ -410,11 +413,18 @@ const Select: FC<ISelectProps> = ({
   };
 
   const onMouseLeaveHandler = (e: React.MouseEvent) => {
-    console.log(e);
-
     setIsonMove(false);
   };
 
+
+  useEffect(() => {
+
+    if (!showDropdown && showDropdown !== prevShowDropDown) {
+      if (!listJSX.length || !options.find(opt => opt.label === inputValue)) {
+        onClear();
+      }
+    }
+  }, [prevShowDropDown, listJSX, options]);
 
   const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) &&
     (
@@ -460,13 +470,15 @@ const Select: FC<ISelectProps> = ({
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
 
+
   return (
-    <Manager>
+    <Manager >
       <div className={classnames('rf-select', tagClass, backgroundColor === 'gray' && 'rf-select__background-gray')} ref={toggleRef}>
         <Reference>
           {(referenceProps) => (
             <div
               onMouseLeave={onMouseLeaveHandler}
+              /* onBlur={onBlurHandler} */
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
