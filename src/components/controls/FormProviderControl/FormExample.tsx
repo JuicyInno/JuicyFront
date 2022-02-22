@@ -2,22 +2,25 @@ import React, { useRef } from 'react';
 import { useWatch } from 'react-hook-form';
 
 import FormProviderControl from '.';
-import { Button, ControlGroup } from '../../..';
+import {
+  Button,
+  ControlGroup,
+  InputControl,
+  CommentTileControl,
+  DatepickerControl,
+  InputNumberControl,
+  SelectControl,
+  CheckboxControl,
+  RadioControl,
+  TextareaControl,
+  InputFileControl,
+  InputPhoneControl,
+  RatepickerControl,
+  SwitchControl,
+  TimepickerControl
+} from '../../..';
 import { IFileData, IOption } from '../../../types';
-import CommentTileControl from '../CommentTileControl';
-import DatepickerControl from '../DatepickerControl';
-import InputControl from '../InputControl';
-import InputNumberControl from '../InputNumberControl';
-import SelectControl from '../SelectControl';
-import CheckboxControl from '../CheckboxControl';
 import { IFormProviderControlProps } from './FormProviderControl';
-import RadioControl from '../RadioControl';
-import TextareaControl from '../TextareaControl';
-import InputFileControl from '../InputFileControl';
-import InputPhoneControl from '../InputPhoneControl';
-import RatepickerControl from '../RatepickerControl';
-import SwitchControl from '../SwitchControl';
-import TimepickerControl from '../TimepickerControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
