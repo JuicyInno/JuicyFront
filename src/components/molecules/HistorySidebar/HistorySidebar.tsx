@@ -245,9 +245,7 @@ const HistorySidebar = ({
                                           <span>{approver.fullName}</span>
                                       }
                                     </h5>
-                                    {approver.position &&
-                                      <p className='rf-history-sidebar__approvers-item__position'>{approver.position}</p>
-                                    }
+                                    <p className='rf-history-sidebar__approvers-item__TN'>ТН: {approver.id}</p>
                                   </div>
                                 </div>
                               ))}
