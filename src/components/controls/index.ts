@@ -1,16 +1,33 @@
-export * from './FormControl';
-export * from './FormProviderControl';
-export * from './InputControl';
-export * from './CommentTileControl';
-export * from './DatepickerControl';
-export * from './SelectControl';
-export * from './InputNumberControl';
-export * from './CheckboxControl';
-export * from './InputFileControl';
-export * from './TextareaControl';
-export * from './RadioControl';
-export * from './InputPhoneControl';
-export * from './RatepickerControl';
-export * from './SwitchControl';
-export * from './TimepickerControl';
-export * from './types';
+import FormControl from './FormControl';
+import FormProviderControl from './FormProviderControl';
+import InputControl from './InputControl';
+import CommentTileControl from './CommentTileControl';
+import DatepickerControl from './DatepickerControl';
+import SelectControl from './SelectControl';
+import InputNumberControl from './InputNumberControl';
+import CheckboxControl from './CheckboxControl';
+import InputFileControl from './InputFileControl';
+import TextareaControl from './TextareaControl';
+import RadioControl from './RadioControl';
+import InputPhoneControl from './InputPhoneControl';
+import RatepickerControl from './RatepickerControl';
+import SwitchControl from './SwitchControl';
+import TimepickerControl from './TimepickerControl';
+
+export {
+  FormControl,
+  FormProviderControl,
+  InputControl,
+  CommentTileControl,
+  DatepickerControl,
+  SelectControl,
+  InputNumberControl,
+  CheckboxControl,
+  InputFileControl,
+  TextareaControl,
+  RadioControl,
+  InputPhoneControl,
+  RatepickerControl,
+  SwitchControl,
+  TimepickerControl
+};
