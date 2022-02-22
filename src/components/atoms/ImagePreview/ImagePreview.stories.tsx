@@ -47,14 +47,14 @@ export const Demo: Story = (args: any) => {
         <Chip onClick={() => setToggle(!toggle)}>
           Список картинок
         </Chip>
-        {toggle && < ImagePreview onClose={() => setToggle(false)} imageList={mockList} />}
+        {toggle && < ImagePreview onClose={() => setToggle(false)} images={mockList} />}
       </div>
       <StoryDocsH2>Image Preview Single Pictures</StoryDocsH2>
       <div>
         <Chip onClick={() => setToggle2(!toggle2)}>
           Картинка
         </Chip>
-        {toggle2 && < ImagePreview onClose={() => setToggle2(false)} imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} />}
+        {toggle2 && < ImagePreview onClose={() => setToggle2(false)} images={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} />}
       </div>
       <StoryDocsH2>Image Preview less than 10 Images</StoryDocsH2>
 
@@ -62,7 +62,7 @@ export const Demo: Story = (args: any) => {
         <Chip onClick={() => setToggle3(!toggle3)}>
           Картинка
         </Chip>
-        {toggle3 && < ImagePreview onClose={() => setToggle3(false)} imageList={mockList2} />}
+        {toggle3 && < ImagePreview onClose={() => setToggle3(false)} images={mockList2} />}
       </div>
     </StoryDocs >
   );
@@ -78,7 +78,7 @@ export const Playground: Story = (args: any) => {
         <Chip onClick={() => setToggle2(!toggle2)}>
           Картинка
         </Chip>
-        {toggle2 && < ImagePreview onClose={() => setToggle2(false)} imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} />}
+        {toggle2 && < ImagePreview onClose={() => setToggle2(false)} images={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} />}
       </StoryRow>
     </StoryContainer>
   );

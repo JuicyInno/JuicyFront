@@ -23,12 +23,12 @@ const mockList = [
 
 describe('Test <ImagePreview/> component', () => {
   it('should work as uncontrolled component', () => {
-    const { container } = render(<ImagePreview imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
+    const { container } = render(<ImagePreview images={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
     expect(document.getElementsByClassName('rf-image-preview')).toHaveLength(1)
   });
 
   it('should change label after click', () => {
-    render(<ImagePreview imageList={mockList} onClose={() => { }} />);
+    render(<ImagePreview images={mockList} onClose={() => { }} />);
     const label = screen.getByTestId('bottom__image--4');
     fireEvent.click(label);
     expect(screen.getByTestId('label-count-test').textContent!.split(' / ')[0].trim()).toBe('5');
@@ -36,22 +36,22 @@ describe('Test <ImagePreview/> component', () => {
 
 
   it('should have max 10 bottom image items', () => {
-    render(<ImagePreview imageList={mockList} onClose={() => { }} />);
+    render(<ImagePreview images={mockList} onClose={() => { }} />);
     expect(document.getElementsByClassName('bottom-navigation__item')).toHaveLength(10)
   });
 
   it('shouldnt have count component', () => {
-    render(<ImagePreview imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
+    render(<ImagePreview images={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
     expect(document.getElementsByClassName('rf-label-count__component')).toHaveLength(0)
   });
 
   it('shouldnt have bottom navigation component', () => {
-    render(<ImagePreview imageList={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
+    render(<ImagePreview images={['https://uprostim.com/wp-content/uploads/2021/01/image165-15.jpg']} onClose={() => { }} />);
     expect(document.getElementsByClassName('rf-image-preview__bottom-navigation')).toHaveLength(0)
   });
 
   it('should have count component if list length over than 10', () => {
-    render(<ImagePreview imageList={new Array(11).fill('')} onClose={() => { }} />);
+    render(<ImagePreview images={new Array(11).fill('')} onClose={() => { }} />);
     expect(document.getElementsByClassName('rf-label-count__component')).toHaveLength(1)
   });
 

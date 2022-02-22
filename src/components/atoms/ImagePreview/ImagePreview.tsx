@@ -10,18 +10,20 @@ import './ImagePreview.scss';
 
 
 export interface IImagePreviewProps {
-  imageList: string[]
+  /** Массив изображений*/
+  images: string[]
+  /** Функция закрытия */
   onClose: () => void,
 }
 
 const ImagePreview: React.FC<IImagePreviewProps> = ({
-  imageList,
+  images,
   onClose
 }: IImagePreviewProps) => {
 
   const initMatrix = 'matrix(1,0,0,1,0,0)';
 
-  const [currentImage, setCurrentImage] = useState(imageList[0]);
+  const [currentImage, setCurrentImage] = useState(images[0]);
   const zoomRef = useRef<HTMLImageElement>(null);
   const deltaRef = useRef<number>(1);
   const deltaXRef = useRef<number>(0);
@@ -41,7 +43,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     return result;
   };
 
-  const previewArray = useMemo(() => unFlatArray(imageList, 10), [imageList]);
+  const previewArray = useMemo(() => unFlatArray(images, 10), [images]);
 
 
   const visibleValues = useRef({
@@ -101,18 +103,19 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
-      <div onClick={zoomInitHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
+      <div aria-label='button'
+        onClick={zoomInitHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
         <ArrowsRenew />
       </div>
-      <div onClick={zoomOutHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
+      <div aria-label='button' onClick={zoomOutHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
         <AllReduce />
       </div>
-      <div onClick={zoomInHandler} className='top-navigation__button'>
+      <div aria-label='button' onClick={zoomInHandler} className='top-navigation__button'>
         <AllAdd />
       </div>
     </div>
 
-    <div onClick={closeHandler} className='top-navigation__button'>
+    <div aria-label='button' onClick={closeHandler} className='top-navigation__button'>
       <AllClose />
     </div>
 
@@ -125,7 +128,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   };
 
 
-  const currentIndex = useMemo(() => imageList.findIndex((image) => image === currentImage), [currentImage]);
+  const currentIndex = useMemo(() => images.findIndex((image) => image === currentImage), [currentImage]);
 
   const setInit = () => {
     deltaRef.current = 1;
@@ -138,7 +141,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const prevImageHandler = () => {
     setInit();
     setIsDisabled(true);
-    setCurrentImage(imageList[currentIndex - 1]);
+    setCurrentImage(images[currentIndex - 1]);
     setPreviewIndex(Math.floor(currentIndex / 10));
 
     if ((currentIndex) % 10 === 0) {
@@ -158,7 +161,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   const nextImageHandler = () => {
     setIsDisabled(true);
     setInit();
-    setCurrentImage(imageList[currentIndex + 1]);
+    setCurrentImage(images[currentIndex + 1]);
     setPreviewIndex(Math.floor(currentIndex / 10));
 
     if ((currentIndex + 1) % 10 === 0) {
@@ -187,11 +190,11 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const noop = useMemo(() => () => { }, []);
 
-  const bottomNavigationMenu = useMemo(() => imageList.length > 1 ? <div
+  const bottomNavigationMenu = useMemo(() => images.length > 1 ? <div
     data-testid='bottom-chevron-left'
-    className={classnames('rf-image-preview__bottom-navigation', imageList.length > 10 ?
+    className={classnames('rf-image-preview__bottom-navigation', images.length > 10 ?
       'rf-image-preview__bottom-navigation--big' : '', isDisabled ? '' : 'bottom-navigation--disabled')}>
-    {imageList.length > 10 ? <div onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
+    {images.length > 10 ? <div aria-label='Предыдущая страница' onClick={previewIndex > 0 ? bottomPrevHandler : noop} className={classnames(
       'bottom-navigation__left',
       previewIndex > 0 ?
         '' : 'button__disabled'
@@ -204,6 +207,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
       if (visibleValues.current.minIndex <= index && visibleValues.current.maxIndex >= index) {
         return <div
+          role={`presentation-image--${index}`}
           data-testid={`bottom__image--${index}`}
           onClick={imageHandler(image)}
           key={image}
@@ -221,8 +225,9 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
       return null;
 
     })}
-    {imageList.length > 10 ? <div
+    {images.length > 10 ? <div
       data-testid='bottom-chevron-right'
+      aria-label='Следующая страница'
       onClick={previewArray.length - 1 > previewIndex ? bottomNextHandler : noop} className={classnames(
         'bottom-navigation__right',
         previewArray.length - 1 > previewIndex ?
@@ -234,31 +239,34 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
   </div> : null, [currentIndex, previewIndex, isDisabled]);
 
 
-  const labelCountComponent = useMemo(() => imageList.length > 10 ? isDisabled ? <div className='rf-label-count__component'>
-    <label data-testid='label-count-test' > {currentIndex + 1 + ' / ' + imageList.length}</label>
-  </ div > : null : null, [currentIndex, imageList.length, isDisabled]);
+  const labelCountComponent = useMemo(() => images.length > 10 ? isDisabled ? <div className='rf-label-count__component'>
+    <label data-testid='label-count-test' > {currentIndex + 1 + ' / ' + images.length}</label>
+  </ div > : null : null, [currentIndex, images.length, isDisabled]);
 
 
-  const navigationControl = useMemo(() => imageList.length > 1 ? <>
-    <div onClick={currentIndex ? prevImageHandler : noop} className={classnames(
-      'navigation-control__left',
-      !currentIndex ?
-        'button__disabled' : ''
-    )}>
+  const navigationControl = useMemo(() => images.length > 1 ? <>
+    <div
+      aria-label='Предыдущая картинка'
+      onClick={currentIndex ? prevImageHandler : noop} className={classnames(
+        'navigation-control__left',
+        !currentIndex ?
+          'button__disabled' : ''
+      )}>
       <ArrowsChevronLeft />
     </div>
-    <div onClick={currentIndex + 1 !== imageList.length ? nextImageHandler : noop} className={classnames(
+    <div aria-label='Слудующая картинка' onClick={currentIndex + 1 !== images.length ? nextImageHandler : noop} className={classnames(
       'navigation-control__right',
-      currentIndex + 1 === imageList.length ?
+      currentIndex + 1 === images.length ?
         'button__disabled' : ''
     )}>
       <ArrowsChevronRight />
     </div>
 
-  </> : null, [imageList, currentIndex]);
+  </> : null, [images, currentIndex]);
 
-  const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${imageList.length < 10 ? 'single__full-image' : ''}`}>
+  const imageContent = useMemo(() => <div className={`rf-image-preview__full-image ${images.length < 10 ? 'single__full-image' : ''}`}>
     <img
+      role='presentation-image'
       draggable={false}
       onMouseUp={onMoveEndHandler}
       onMouseDown={onMoveHandler}
@@ -274,7 +282,7 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
     {topNavigation}
     {imageContent}
 
-    {imageList.length > 1 ? <div className='rf-naviation-bottom__container'>
+    {images.length > 1 ? <div className='rf-naviation-bottom__container'>
       {labelCountComponent}
       {bottomNavigationMenu}
     </div> : null}
