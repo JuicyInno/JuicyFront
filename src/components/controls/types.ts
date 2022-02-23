@@ -3,7 +3,7 @@ import { IFormGroup } from '../atoms/FormGroup/FormGroup';
 import { IFormErrorControlProps } from './FormControl/FormControl';
 
 export type IControlProps = Omit<UseControllerProps, 'control'> & Pick<IFormErrorControlProps, 'formState'> & {
-  control?: Control<Record<string, any>>;
+  control?: Control<Record<string, any>> | Control<any>;
 };
 
 export type IPartialFormGroup =
