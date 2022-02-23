@@ -9,6 +9,7 @@ import { Button } from '../../..';
 import axios from 'axios';
 
 import createPostFeedback from './createPostFeedback';
+import { globalHandlers } from '../../../testing/handlers';
 
 export default {
   title: 'popovers/withTest/Feedback',
@@ -55,7 +56,7 @@ export const Demo = () => {
     </BrowserRouter>
   );
 };
-
+Demo.parameters = { msw: { handlers: globalHandlers } };
 export const Playground: Story = (args) => {
   return (
     <BrowserRouter>

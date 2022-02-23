@@ -2,6 +2,11 @@ import '../src/styles/index.scss';
 import '../src/styles/fonts.css';
 import cssVars from 'css-vars-ponyfill';
 import variables from '../src/styles/variables.json';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+// Initialize MSW
+
+initialize()
 
 cssVars({
   watch: true,
@@ -56,3 +61,4 @@ export const parameters = {
   },
 }
 
+export const decorators = [mswDecorator];
