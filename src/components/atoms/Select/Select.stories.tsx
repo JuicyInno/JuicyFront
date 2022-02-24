@@ -169,7 +169,6 @@ export const Demo = () => {
               variant='base'
               values={state}
               onChange={onChange2}
-
             />
           </FormGroup>
         </StoryItem>

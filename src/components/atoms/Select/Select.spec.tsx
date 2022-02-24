@@ -1,8 +1,9 @@
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
-import { noop } from 'rxjs';
+import { async, noop } from 'rxjs';
 import { AllCalendar, AllClose } from '../../../indexIcon';
 import { IOption } from '../../../types';
+import FormGroup from '../FormGroup';
 import Select from './Select';
 
 describe('Test <Select/> component', () => {
@@ -292,5 +293,25 @@ describe('Test <Select/> component', () => {
     />);
 
     expect(document.getElementsByClassName('rf-select__menu--s')).toHaveLength(1)
+  });
+
+  it('should be clear input if you clicked outside input ', () => {
+    render(<FormGroup label={'Label'}>
+      <Select
+        placeholder='Placeholder'
+        options={[
+          { value: '1', label: 'label1' },
+        ]}
+        variant='base'
+        values={[]}
+        onChange={noop}
+
+      />
+    </FormGroup>);
+    fireEvent.change(document.getElementById('rf-select__input') as HTMLInputElement, { target: { value: 'test' } })
+    expect((document.getElementById('rf-select__input') as HTMLInputElement).value).toBe('test');
+    fireEvent.click(document.getElementsByClassName('rf-form-group__label')[0]!)
+    setTimeout(() => expect((document.getElementById('rf-select__input') as HTMLInputElement).value).toBe(''), 0)
+
   });
 });
