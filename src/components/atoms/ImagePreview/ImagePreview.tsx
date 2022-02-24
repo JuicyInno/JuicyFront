@@ -103,19 +103,19 @@ const ImagePreview: React.FC<IImagePreviewProps> = ({
 
   const topNavigation = useMemo(() => <div className='rf-image-preview__top-navigation'>
     <div className='top-navigation__zoom'>
-      <div aria-label='button'
+      <div aria-label='Сбросить'
         onClick={zoomInitHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
         <ArrowsRenew />
       </div>
-      <div aria-label='button' onClick={zoomOutHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
+      <div aria-label='Отдалить' onClick={zoomOutHandler} className={classnames('top-navigation__button', isDisabled ? 'top-navigation__button--disabled' : '')}>
         <AllReduce />
       </div>
-      <div aria-label='button' onClick={zoomInHandler} className='top-navigation__button'>
+      <div aria-label='Приблизить' onClick={zoomInHandler} className='top-navigation__button'>
         <AllAdd />
       </div>
     </div>
 
-    <div aria-label='button' onClick={closeHandler} className='top-navigation__button'>
+    <div aria-label='Закрыть' onClick={closeHandler} className='top-navigation__button'>
       <AllClose />
     </div>
 
