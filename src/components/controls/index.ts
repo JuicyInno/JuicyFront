@@ -13,8 +13,10 @@ import InputPhoneControl from './InputPhoneControl';
 import RatepickerControl from './RatepickerControl';
 import SwitchControl from './SwitchControl';
 import TimepickerControl from './TimepickerControl';
+import HookFormProvider, { useHookFormController } from './HookFormProvider';
 
 export {
+  HookFormProvider,
   FormControl,
   FormProviderControl,
   InputControl,
@@ -29,5 +31,6 @@ export {
   InputPhoneControl,
   RatepickerControl,
   SwitchControl,
-  TimepickerControl
+  TimepickerControl,
+  useHookFormController
 };
