@@ -46,7 +46,6 @@ export interface IHistoryCardFilterProps {
   pattern?: string;
 }
 
-
 const HistoryCardFilter: FC<IHistoryCardFilterProps> = ({
   isShowDatePicker = true,
   isShowStatusFilter = true,

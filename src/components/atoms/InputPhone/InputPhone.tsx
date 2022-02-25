@@ -65,7 +65,7 @@ const InputPhone: React.FC<IInputPhoneProps> = ({
 
   const [dropdownWidth, setDropdownWidth] = useState<number | undefined>();
 
-  const toggleRef = useRef<HTMLLabelElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(event.target.value);

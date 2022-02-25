@@ -14,7 +14,7 @@ export interface IInputNumberProps extends IInputProps {
   onInputChange?: (value: string) => void;
 }
 
-const InputNumber = forwardRef<HTMLLabelElement | null, IInputNumberProps>(({
+const InputNumber = forwardRef<HTMLDivElement | null, IInputNumberProps>(({
   max,
   defaultValue = '',
   separator = ' ',

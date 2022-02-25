@@ -5,10 +5,11 @@ module.exports = {
     "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
-   '@storybook/preset-scss',
+    '@storybook/preset-scss',
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-      "storybook-addon-designs"
+    "@storybook/addon-a11y",
+    "storybook-addon-designs"
   ]
 
 }

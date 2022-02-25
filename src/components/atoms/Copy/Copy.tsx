@@ -24,6 +24,7 @@ export interface ICopyProps extends IIconProps, Pick<IToastProps, 'containerRef'
   tooltipProps?: Omit<ITooltipProps, 'children'>;
 }
 
+// FIXME: Использовать button для возможности использования компонента с клавиатуры
 // TODO: заменить в других компонентах
 const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, tooltipProps, containerRef, ...props }: ICopyProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
@@ -39,7 +40,7 @@ const Copy = ({ tooltipLabel, copyMessage, successCopyMessage, disabled, tooltip
 
   return <div role='button' className={classnames('rf-copy', disabled && 'rf-copy--disabled')}>
     <Tooltip {...tooltipProps}>
-      <AllCopy onClick={onCopy} className='rf-copy__icon' {...props} />
+      <AllCopy onClick={onCopy} className='rf-copy__icon' aria-label='Копировать' {...props} />
       <div>{tooltipLabel}</div>
     </Tooltip>
 

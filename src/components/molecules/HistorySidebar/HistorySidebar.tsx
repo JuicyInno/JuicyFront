@@ -183,6 +183,7 @@ const HistorySidebar = ({
           size='m'
           buttonType='icon-round'
           className='rf-history-sidebar__btn'
+          aria-label={opened ? 'Свернуть' : 'Развернуть'}
         >
           <div className='rf-history-sidebar__btn-icon'>
             <ArrowsChevronLeft />

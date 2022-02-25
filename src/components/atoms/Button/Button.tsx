@@ -51,6 +51,7 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   endAdornment?: ReactNode;
 }
 
+// FIXME: Elements must have sufficient color contrast
 const Button: FC<IButtonProps> = ({
   type = 'button',
   size = 'm',
