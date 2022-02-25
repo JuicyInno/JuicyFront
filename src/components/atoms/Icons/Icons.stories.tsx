@@ -30,6 +30,7 @@ import AllDialog from '../../../assets/icons/resultDir/AllDialog';
 import AllDigitalCard from '../../../assets/icons/resultDir/AllDigitalCard';
 import AllDoc from '../../../assets/icons/resultDir/AllDoc';
 import AllDocuments from '../../../assets/icons/resultDir/AllDocuments';
+import AllDot from '../../../assets/icons/resultDir/AllDot';
 import AllDownload from '../../../assets/icons/resultDir/AllDownload';
 import AllEdit from '../../../assets/icons/resultDir/AllEdit';
 import AllEnvelope from '../../../assets/icons/resultDir/AllEnvelope';
@@ -42,6 +43,7 @@ import AllIconPlace from '../../../assets/icons/resultDir/AllIconPlace';
 import AllInfoStatus from '../../../assets/icons/resultDir/AllInfoStatus';
 import AllInternetShops from '../../../assets/icons/resultDir/AllInternetShops';
 import AllInvestmentProducts from '../../../assets/icons/resultDir/AllInvestmentProducts';
+import AllInvestmentSmall from '../../../assets/icons/resultDir/AllInvestmentSmall';
 import AllLightBulb from '../../../assets/icons/resultDir/AllLightBulb';
 import AllLightModeFill from '../../../assets/icons/resultDir/AllLightModeFill';
 import AllLightModeStroke from '../../../assets/icons/resultDir/AllLightModeStroke';
@@ -55,6 +57,7 @@ import AllMicrophone from '../../../assets/icons/resultDir/AllMicrophone';
 import AllNotification from '../../../assets/icons/resultDir/AllNotification';
 import AllOnCard from '../../../assets/icons/resultDir/AllOnCard';
 import AllOnPhone from '../../../assets/icons/resultDir/AllOnPhone';
+import AllOtherPeople from '../../../assets/icons/resultDir/AllOtherPeople';
 import AllPhone from '../../../assets/icons/resultDir/AllPhone';
 import AllPoint from '../../../assets/icons/resultDir/AllPoint';
 import AllPrinter from '../../../assets/icons/resultDir/AllPrinter';
@@ -130,15 +133,16 @@ import Death from '../../../assets/icons/resultDir/Death';
 import Deposit from '../../../assets/icons/resultDir/Deposit';
 import Dialog from '../../../assets/icons/resultDir/Dialog';
 import DigitalCardM from '../../../assets/icons/resultDir/DigitalCardM';
+import Directory from '../../../assets/icons/resultDir/Directory';
 import Disability from '../../../assets/icons/resultDir/Disability';
 import DMS from '../../../assets/icons/resultDir/DMS';
 import Doc from '../../../assets/icons/resultDir/Doc';
-import Dot from '../../../assets/icons/resultDir/Dot';
 import Drink from '../../../assets/icons/resultDir/Drink';
 import DriverLicense from '../../../assets/icons/resultDir/DriverLicense';
 import Education from '../../../assets/icons/resultDir/Education';
 import Elections from '../../../assets/icons/resultDir/Elections';
 import ElectronicMoney from '../../../assets/icons/resultDir/ElectronicMoney';
+import Employees from '../../../assets/icons/resultDir/Employees';
 import Envelope from '../../../assets/icons/resultDir/Envelope';
 import Exit from '../../../assets/icons/resultDir/Exit';
 import ExtractAndReferences from '../../../assets/icons/resultDir/ExtractAndReferences';
@@ -158,6 +162,7 @@ import HomeLarge from '../../../assets/icons/resultDir/HomeLarge';
 import Hospital from '../../../assets/icons/resultDir/Hospital';
 import IIS2 from '../../../assets/icons/resultDir/IIS2';
 import IJS from '../../../assets/icons/resultDir/IJS';
+import Inbox from '../../../assets/icons/resultDir/Inbox';
 import InformationAlert from '../../../assets/icons/resultDir/InformationAlert';
 import Injury from '../../../assets/icons/resultDir/Injury';
 import InjuryFall from '../../../assets/icons/resultDir/InjuryFall';
@@ -279,6 +284,7 @@ import VisualImpairment from '../../../assets/icons/resultDir/VisualImpairment';
 import VolumeOfTheMargin from '../../../assets/icons/resultDir/VolumeOfTheMargin';
 import VTBMobile from '../../../assets/icons/resultDir/VTBMobile';
 import WebsiteCall from '../../../assets/icons/resultDir/WebsiteCall';
+import Work from '../../../assets/icons/resultDir/Work';
 import World from '../../../assets/icons/resultDir/World';
 export default {
   title: 'icons,illustrations/Icons',
@@ -607,6 +613,18 @@ export const Demo: Story = () => {
             <AllCopy />
           </div>
         </div>
+        <div key='AllDot' className='container'>
+          <div className='iconContainer'><AllDot /></div>
+          <div className='titleWrapper'>
+              AllDot
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'AllDot')}
+          >
+            <AllCopy />
+          </div>
+        </div>
         <div key='AllDownload' className='container'>
           <div className='iconContainer'><AllDownload /></div>
           <div className='titleWrapper'>
@@ -747,6 +765,18 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'AllInvestmentProducts')}
+          >
+            <AllCopy />
+          </div>
+        </div>
+        <div key='AllInvestmentSmall' className='container'>
+          <div className='iconContainer'><AllInvestmentSmall /></div>
+          <div className='titleWrapper'>
+              AllInvestmentSmall
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'AllInvestmentSmall')}
           >
             <AllCopy />
           </div>
@@ -903,6 +933,18 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'AllOnPhone')}
+          >
+            <AllCopy />
+          </div>
+        </div>
+        <div key='AllOtherPeople' className='container'>
+          <div className='iconContainer'><AllOtherPeople /></div>
+          <div className='titleWrapper'>
+              AllOtherPeople
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'AllOtherPeople')}
           >
             <AllCopy />
           </div>
@@ -1807,6 +1849,18 @@ export const Demo: Story = () => {
             <AllCopy />
           </div>
         </div>
+        <div key='Directory' className='container'>
+          <div className='iconContainer'><Directory /></div>
+          <div className='titleWrapper'>
+              Directory
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'Directory')}
+          >
+            <AllCopy />
+          </div>
+        </div>
         <div key='Disability' className='container'>
           <div className='iconContainer'><Disability /></div>
           <div className='titleWrapper'>
@@ -1839,18 +1893,6 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'Doc')}
-          >
-            <AllCopy />
-          </div>
-        </div>
-        <div key='Dot' className='container'>
-          <div className='iconContainer'><Dot /></div>
-          <div className='titleWrapper'>
-              Dot
-          </div>
-          <div
-            className='copyStyle'
-            onClick={(event) => onCopy(event, 'Dot')}
           >
             <AllCopy />
           </div>
@@ -1911,6 +1953,18 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'ElectronicMoney')}
+          >
+            <AllCopy />
+          </div>
+        </div>
+        <div key='Employees' className='container'>
+          <div className='iconContainer'><Employees /></div>
+          <div className='titleWrapper'>
+              Employees
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'Employees')}
           >
             <AllCopy />
           </div>
@@ -2139,6 +2193,18 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'IJS')}
+          >
+            <AllCopy />
+          </div>
+        </div>
+        <div key='Inbox' className='container'>
+          <div className='iconContainer'><Inbox /></div>
+          <div className='titleWrapper'>
+              Inbox
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'Inbox')}
           >
             <AllCopy />
           </div>
@@ -3591,6 +3657,18 @@ export const Demo: Story = () => {
           <div
             className='copyStyle'
             onClick={(event) => onCopy(event, 'WebsiteCall')}
+          >
+            <AllCopy />
+          </div>
+        </div>
+        <div key='Work' className='container'>
+          <div className='iconContainer'><Work /></div>
+          <div className='titleWrapper'>
+              Work
+          </div>
+          <div
+            className='copyStyle'
+            onClick={(event) => onCopy(event, 'Work')}
           >
             <AllCopy />
           </div>
