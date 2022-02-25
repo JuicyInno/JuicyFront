@@ -91,6 +91,7 @@
     "scoped-css-loader": "^1.0.0",
     "shx": "^0.3.3",
     "storybook-addon-designs": "^6.2.1",
+    "storybook-dark-mode": "^1.0.9",
     "swiper": "^6.8.2",
     "testing-library-selector": "^0.2.1",
     "ts-jest": "^27.0.3",

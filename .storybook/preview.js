@@ -1,13 +1,5 @@
-import '../src/styles/index.scss';
+// import '../src/styles/index.scss';
 import '../src/styles/fonts.css';
-import cssVars from 'css-vars-ponyfill';
-import variables from '../src/styles/variables.json';
-
-cssVars({
-  watch: true,
-  include: 'style,link[rel="stylesheet"]:not([href*="//"])',
-  variables
-});
 
 // In config.js
 // The order for the headers
@@ -54,5 +46,8 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  darkMode: {
+    stylePreview: true
+  }
 }
 

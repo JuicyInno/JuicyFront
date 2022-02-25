@@ -8,7 +8,8 @@ module.exports = {
    '@storybook/preset-scss',
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-      "storybook-addon-designs"
+    "storybook-addon-designs",
+    "storybook-dark-mode"
   ]
 
 }
