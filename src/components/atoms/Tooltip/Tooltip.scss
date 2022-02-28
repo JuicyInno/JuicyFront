@@ -30,63 +30,22 @@ $radius: 8px;
   border-radius: $radius;
   box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4),
     0px -2px 4px rgba(138, 150, 168, 0.08);
-
-  .rf-tooltip__content-union {
-    width: 30px;
-    height: 13px;
-  }
-
-  .rf-tooltip__content-union--bottom {
-    bottom: calc(100%);
-
-    svg {
-      transform: rotate(-180deg);
-    }
-  }
-
-  .rf-tooltip__content-union--top {
-    top: calc(100%);
-  }
-
-  .rf-tooltip__content-union--left {
-    left: calc(100% - 9px);
-
-    svg {
-      transform: rotate(-90deg);
-    }
-  }
-
-  .rf-tooltip__content-union--right {
-    right: calc(100% - 9px);
-
-    svg {
-      transform: rotate(90deg);
-    }
-  }
 }
 
-.rf-tooltip__content--default .rf-tooltip__inner,
-.rf-tooltip--default .rf-tooltip__inner {
-  background: var(--basic-tertiary);
+.rf-tooltip__content--black .rf-tooltip__inner,
+.rf-tooltip--black .rf-tooltip__inner {
+  background: var(--basic-secondary);
   color: var(--text-static-white);
 }
 
-.rf-tooltip__content--default .rf-tooltip__inner {
-  background: var(--basic-tertiary);
+.rf-tooltip__content--black .rf-tooltip__inner {
+  background: var(--basic-secondary);
   color: var(--text-static-white);
-
-  .rf-tooltip__content-union {
-    color: var(--basic-tertiary);
-  }
 }
 
 .rf-tooltip__content--white .rf-tooltip__inner {
   background: var(--background-primary);
   color: var(--text-primary);
-
-  .rf-tooltip__content-union {
-    color: var(--background-primary);
-  }
 }
 
 .rf-tooltip__content--white .rf-tooltip__inner::after,

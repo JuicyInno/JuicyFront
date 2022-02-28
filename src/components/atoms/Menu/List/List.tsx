@@ -7,15 +7,16 @@ import { IListElement } from '../../../../types';
 import { MenuContext } from '../Menu';
 import { classnames } from '../../../../utils/classnames';
 import Tooltip from '../../Tooltip';
+import { ITooltipProps } from '../../Tooltip/Tooltip';
 
 interface IListProps {
   /** Элементы меню */
   list: IListElement[];
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default'
+  tooltipBackground?: ITooltipProps['background'];
 }
 
-const List: React.FC<IListProps> = ({ list, tooltipBackground = 'default' }: IListProps) => {
+const List: React.FC<IListProps> = ({ list, tooltipBackground = 'white' }: IListProps) => {
   /** Ссылки на элементы списка */
   const refs = useRef<RefObject<HTMLDivElement | HTMLAnchorElement>[]>([]);
 

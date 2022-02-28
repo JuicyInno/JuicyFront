@@ -9,6 +9,7 @@ import Tooltip from '../../atoms/Tooltip';
 import { StatusInfoFill, AllRefresh } from '../../../indexIcon';
 import Structure from '../Structure';
 import Button from '../../atoms/Button';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 export interface IEmployeeProps {
   /** Пользователь */
@@ -24,17 +25,19 @@ export interface IEmployeeProps {
   /** Показывать тень */
   showBoxShadow?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default'
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 // FIXME: Elements must have sufficient color contrast
-const Employee: React.FC<IEmployeeProps> = ({ user,
+const Employee: React.FC<IEmployeeProps> = ({
+  user,
   position = 'right',
   title = '',
   showBoxShadow = true,
   onClick = () => { },
   showActionButton = false,
-  tooltipBackground = 'default' }: IEmployeeProps) => {
+  tooltipBackground
+}: IEmployeeProps) => {
 
   // -------------------------------------------------------------------------------------------------------------------
 

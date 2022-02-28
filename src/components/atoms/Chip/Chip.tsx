@@ -4,6 +4,7 @@ import { sizeClass } from '../../../utils/helpers';
 import { classnames } from '../../../utils/classnames';
 import Tooltip from '../Tooltip';
 import { AllClose } from '../../../indexIcon';
+import { ITooltipProps } from '../Tooltip/Tooltip';
 
 export interface IChipProps {
   /** Текст */
@@ -30,9 +31,9 @@ export interface IChipProps {
   maxLength?: number;
   /**
    * Цвет tooltip
-   * @default 'default'
+   * @default 'white'
    */
-  tooltipBackground?: 'default' | 'white';
+  tooltipBackground?: ITooltipProps['background'];
   /**
    * Цвет tooltip
    * @default false
@@ -50,7 +51,7 @@ const Chip: React.FC<IChipProps> = ({
   iconPosition,
   disabled,
   maxLength = 32,
-  tooltipBackground = 'default',
+  tooltipBackground = 'white',
   isBubble = false
 }: IChipProps) => {
   const handleClick = (e: React.MouseEvent) => {

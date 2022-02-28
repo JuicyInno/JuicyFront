@@ -16,9 +16,9 @@ export default {
   decorators: [withDesign],
   argTypes: {
     background: {
-      options: ['default', 'white'],
+      options: ['black', 'white'],
       control: { type: 'select' },
-      defaultValue: 'default'
+      defaultValue: 'white'
     },
     position: {
       options: [

@@ -23,6 +23,7 @@ import Structure from '../../molecules/Structure';
 import { ITab } from '../../../types';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
 import { debounce } from '../../../utils/helpers';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 // SwiperCore.use([Navigation]);
 
@@ -49,7 +50,7 @@ export interface IProps {
   /** Исключить из поиска */
   searchOption?: number[];
   /** Фон тултипа */
-  tooltipBackground?: 'default' | 'white';
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 /**
@@ -67,7 +68,7 @@ const FindUsers: FC<IProps> = ({
   AxiosInstance,
   showAll = true,
   searchOption = [],
-  tooltipBackground = 'default'
+  tooltipBackground = 'white'
 }: IProps) => {
 
   const inputRef = useRef<HTMLDivElement>(null);

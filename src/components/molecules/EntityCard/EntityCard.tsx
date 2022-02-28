@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import UserPhoto from '../../atoms/UserPhoto';
 import './EntityCard.scss';
 import { Copy } from '../../..';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 export interface IUserPositions {
   /** ФИО */
@@ -22,7 +23,7 @@ export interface IUserPositions {
   /** Значение второго лейбла */
   valueBySecondLabel?: string;
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default'
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 const EntityCard: FC<IUserPositions> = ({
@@ -34,7 +35,7 @@ const EntityCard: FC<IUserPositions> = ({
   secondLabel = '',
   valueBySecondLabel = '',
   canCopy = false,
-  tooltipBackground = 'default'
+  tooltipBackground = 'white'
 }) => {
   return <div className='rf-entity-card'>
     <div className='rf-entity-card__wrapper'>

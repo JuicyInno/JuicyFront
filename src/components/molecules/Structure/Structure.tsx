@@ -1,15 +1,15 @@
 import React from 'react';
 import './Structure.scss';
 import { IStructure } from '../../../types/projects.types';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
-interface IProps {
+interface IProps extends Pick<ITooltipProps, 'background'>{
     departmentsPath: IStructure[];
-    background?: 'default' | 'white';
 }
 
-const Structure: React.FC<IProps> = ({ departmentsPath = [], background = 'default' }: IProps) => {
+const Structure: React.FC<IProps> = ({ departmentsPath = [], background = 'white' }: IProps) => {
 
-  const textColor = background === 'default' ? 'light-text' : 'dark-text';
+  const textColor = background !== 'white' ? 'light-text' : 'dark-text';
 
   const departmentsPathJSX = departmentsPath.map((item: IStructure) => (
     <div key={item.id} className='structure__item'>
