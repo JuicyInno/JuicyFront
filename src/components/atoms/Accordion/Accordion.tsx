@@ -1,10 +1,10 @@
+import './Accordion.scss';
+
 import React, {
   ReactNode, useCallback, useState
 } from 'react';
 import { classnames } from '../../../utils/classnames';
 import AccordionItem from './AccordionItem';
-
-import './Accordion.scss';
 
 export type IAccordion = {
   /** Заголовок */
@@ -28,10 +28,14 @@ export interface IAccordionProps {
    * @default false
    */
   expanded?: boolean;
+  /** Эффект наведения на элемент
+   * @default true
+   */
+  hoverable?: boolean;
 }
 
 // TODO: Проверить правильность использования role='treeitem'
-const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false }: IAccordionProps) => {
+const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false, hoverable = true }: IAccordionProps) => {
   const getDefaultOpenedIndexes = useCallback(() => data.reduce((acc: number[], curr: IAccordion, index: number) => {
     if (curr.defaultOpened) {
       if (expanded || !acc.length) {
@@ -74,6 +78,7 @@ const Accordion: React.FC<IAccordionProps> = ({ data = [], expanded = false }: I
             className={classnames(
               'rf-accordion__item-wrap',
               opened && 'rf-accordion__item-wrap--opened',
+              hoverable && 'rf-accordion__item-wrap--hoverable',
               item.disabled && 'rf-accordion__item-wrap--disabled'
             )}
           >
