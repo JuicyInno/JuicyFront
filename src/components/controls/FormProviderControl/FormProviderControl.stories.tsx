@@ -24,9 +24,19 @@ export const ValidationForm: Story = () => {
   return (
     <StoryContainer>
       <StoryDocsH3>Форма с валидацией</StoryDocsH3>
+
       <StoryDocsDescription>
-        Поля формы должны принимать поле <strong>fromState</strong> для того чтобы работало отображение ошибок при валидации.<br/>
+        Для работы с эелментами формы и <strong>ReactHookForm</strong> был создан компонент <strong>HookFormProvider</strong>. <br />
+        Он используется для прокидывания Controller из ReactHookForm во все элементы формы с помощью Context.
+      </StoryDocsDescription>
+      <StoryDocsDescription>
+        Поля формы должны принимать поле <strong>fromState</strong> для того чтобы работало отображение ошибок при валидации. <br/>
         Не допускается использовать хуки в контролах формы, так как будут конфликты контекстов
+      </StoryDocsDescription>
+      <StoryDocsDescription>
+        Преимущества данного подхода в том, что компоненты не зависят напрямую от версии либы ReactHookForm.
+        Благодаря чему не будет конфликтов версий. <br />
+        Сама библиотека компонентов не использует зависимость ReactHookForm. <br />
       </StoryDocsDescription>
 
       <FormExample formMethods={methods} onSubmit={onSubmit} />
