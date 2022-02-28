@@ -6,6 +6,8 @@ import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
 
+export type IRateSize = 'xs' | 's' | 'm';
+
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   /**
    *  Величина диапазона
@@ -30,8 +32,10 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
    * @default false
    * */
   isStarPicker?: boolean
+  /** Размер звезды*/
+  variant?: IRateSize,
   /** Получить значение оценки*/
-  getRate?: (value: string) => number | void
+  getRate?: (value: string) => number | void;
 }
 
 
@@ -42,6 +46,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
   sizePicker = 5,
   textContent = '',
   isReverse = false,
+  variant = 'm',
   ...props }: IPickerProps) => {
 
   const [rating, setRating] = useState(defaultPickedValue);
@@ -127,7 +132,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
         onMouseLeave={onMoveMouseLeaveHandler}
         onClick={clickRateStarHandler(index + 1)}
         className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
-      ><AllStar size={isActive ? 'm' : 'xxs'} /></label> :
+      ><AllStar size={isActive ? variant : 'xxs'} /></label> :
         <label
           className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
           onClick={isActive ? clickRateHandler : () => { }}
