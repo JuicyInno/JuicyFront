@@ -86,6 +86,7 @@ import Attachment from './components/molecules/Attachment';
 import Shimmer from './components/atoms/Shimmer';
 import DynamicComponent from './components/atoms/DynamicComponent';
 import Copy from './components/atoms/Copy';
+import Unread from './components/atoms/Unread';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -179,7 +180,8 @@ export {
   Shimmer,
   Copy,
   DynamicComponent,
-  Feedback
+  Feedback,
+  Unread
 };
 
 

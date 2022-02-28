@@ -11,7 +11,7 @@ import {
 import Tabs from './Tabs';
 
 import {
-  _simpleTabs, _iconTabs, _badgeTabs
+  _simpleTabs, _iconTabs, _badgeTabs, _unreadTabs
 } from './mock';
 
 export default {
@@ -53,6 +53,7 @@ export const Demo = () => {
           <Tabs list={_simpleTabs} showLine={false} />
           <Tabs list={_iconTabs} />
           <Tabs list={_badgeTabs} />
+          <Tabs list={_unreadTabs} />
 
           <div style={{ maxWidth: 400 }}>
             <Tabs list={_simpleTabs} />
