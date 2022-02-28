@@ -6,6 +6,8 @@ import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
 
+export type IRateSize = 'xs' | 's' | 'm';
+
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   /**
    *  Величина диапазона
@@ -30,8 +32,10 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
    * @default false
    * */
   isStarPicker?: boolean
+  /** Размер звезды*/
+  variant?: IRateSize,
   /** Получить значение оценки*/
-  getRate?: (value: string) => number | void
+  getRate?: (value: string) => number | void;
 }
 
 // FIXME: Добавить управление с клавиатуры
@@ -42,6 +46,7 @@ const RatePicker: FC<IPickerProps> & { id: number } = ({ isActive = true,
   sizePicker = 5,
   textContent = '',
   isReverse = false,
+  variant = 'm',
   ...props }: IPickerProps) => {
   const id = useMemo(() => {
     return RatePicker.id++;
@@ -132,7 +137,7 @@ const RatePicker: FC<IPickerProps> & { id: number } = ({ isActive = true,
           onClick={clickRateStarHandler(index + 1)}
           className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
         >
-          <AllStar size={isActive ? 'm' : 'xxs'} />
+          <AllStar size={isActive ? variant : 'xxs'} />
         </label>
       ) : (
         <label
