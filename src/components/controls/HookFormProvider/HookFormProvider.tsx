@@ -1,14 +1,16 @@
 import React, {
-  createContext, ReactNode, useContext
+  createContext, ReactElement, ReactNode, useContext
 } from 'react';
-import { Controller } from 'react-hook-form';
+import { ControllerProps } from 'react-hook-form';
+
+type ControllerType = (props: ControllerProps) => ReactElement;
 
 export interface IHookFormProviderProps {
   children: ReactNode;
-  controller: typeof Controller;
+  controller: ControllerType;
 }
 
-export const HookFormContext = createContext<{ controller?: typeof Controller }>({ controller: undefined });
+export const HookFormContext = createContext<{ controller?: ControllerType }>({ controller: undefined });
 
 export const useHookFormController = () => {
   const { controller } = useContext(HookFormContext);
