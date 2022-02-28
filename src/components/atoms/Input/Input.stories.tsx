@@ -10,7 +10,7 @@ import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
 import {
-  AllSuccess, AllSearch, AllCalendar, ArrowsChevronDown, StatusInfoFill, Dot
+  AllSuccess, AllSearch, AllCalendar, ArrowsChevronDown, StatusInfoFill, AllDot
 } from '../../../indexIcon';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -44,8 +44,17 @@ export const Demo = () => {
         <FormGroup label={LABEL}>
           <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => { }} />
         </FormGroup>
-        <FormGroup label='disabled'>
+        <FormGroup label='Disabled'>
           <Input placeholder='Введите тип обращения' disabled />
+        </FormGroup>
+        <FormGroup label='Disabled'>
+          <Input defaultValue='Тип обращения' disabled />
+        </FormGroup>
+        <FormGroup label='Read only'>
+          <Input placeholder='Введите тип обращения' readOnly />
+        </FormGroup>
+        <FormGroup label='Read only'>
+          <Input defaultValue='Тип обращения' readOnly />
         </FormGroup>
         <FormGroup label={LABEL} errorMessage='Additional text'>
           <Input invalid />
@@ -75,7 +84,7 @@ export const Demo = () => {
           <Input endAdornment={<AllSuccess style={{ color: 'var(--status-success)' }} />} />
         </FormGroup>
         <FormGroup label={LABEL}>
-          <Input endAdornment={<Dot />} />
+          <Input endAdornment={<AllDot />} />
         </FormGroup>
         <FormGroup label={LABEL}>
           <Input startAdornment={<StatusInfoFill />} />

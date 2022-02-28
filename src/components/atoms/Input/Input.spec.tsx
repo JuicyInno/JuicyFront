@@ -61,6 +61,12 @@ describe('Test <Input/> component', () => {
     expect(container.getElementsByClassName('rf-input--disabled')).toHaveLength(1);
   });
 
+  it('should be readOnly', () => {
+    const { container } = render(<Input readOnly />);
+
+    expect(container.getElementsByClassName('rf-input--readonly')).toHaveLength(1);
+  });
+
   it('should be pass variant', () => {
     const { container, rerender } = render(<Input />);
 

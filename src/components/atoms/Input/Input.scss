@@ -56,6 +56,15 @@
     }
   }
 
+  &--readonly {
+    background-color: var(--background-tertiary);
+
+    &,
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
   &__adornment {
     display: flex;
     align-items: center;
@@ -98,10 +107,18 @@
     color: var(--text-secondary);
   }
 
+  &:read-only {
+    color: var(--text-secondary);
+  }
+
   &.disabled,
   &:disabled {
     cursor: default;
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
   }
 
   &.rf-input__field--file {

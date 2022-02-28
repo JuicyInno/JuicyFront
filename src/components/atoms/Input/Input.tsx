@@ -52,6 +52,7 @@ const Input = forwardRef<HTMLDivElement | null, IInputProps>(({
   startAdornment,
   endAdornment,
   disabled,
+  readOnly,
   invalid,
   filled = true,
   onFocus,
@@ -158,6 +159,7 @@ const Input = forwardRef<HTMLDivElement | null, IInputProps>(({
         rf-input 
         ${variant === 'inline' ? 'rf-input--inline' : ''} 
         ${disabled ? 'rf-input--disabled' : ''} 
+        ${readOnly ? 'rf-input--readonly' : ''} 
         ${isFocused ? 'rf-input--focused' : ''} 
         ${isInvalid ? 'rf-input--invalid' : ''} 
         ${filled ? 'rf-input--filled' : ''}
@@ -175,6 +177,7 @@ const Input = forwardRef<HTMLDivElement | null, IInputProps>(({
         autoComplete='off'
         type={props.type || 'text'}
         disabled={disabled}
+        readOnly={readOnly}
         onChange={onInputChange}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
