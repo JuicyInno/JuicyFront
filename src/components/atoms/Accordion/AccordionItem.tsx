@@ -19,8 +19,9 @@ export interface IAccordionItemProps {
 const AccordionItem: React.FC<IAccordionItemProps> = ({ children, opened, disabled, onClick }: IAccordionItemProps) => (
   <div
     className='rf-accordion__item'
-    aria-expanded='true'
     onClick={!disabled ? onClick : () => { }}
+    role='treeitem'
+    aria-expanded={opened}
   >
     <div className='rf-accordion__item-inner'>
       {children}

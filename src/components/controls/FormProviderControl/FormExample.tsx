@@ -2,22 +2,25 @@ import React, { useRef } from 'react';
 import { useWatch } from 'react-hook-form';
 
 import FormProviderControl from '.';
-import { Button, ControlGroup } from '../../..';
+import {
+  Button,
+  ControlGroup,
+  InputControl,
+  CommentTileControl,
+  DatepickerControl,
+  InputNumberControl,
+  SelectControl,
+  CheckboxControl,
+  RadioControl,
+  TextareaControl,
+  InputFileControl,
+  InputPhoneControl,
+  RatepickerControl,
+  SwitchControl,
+  TimepickerControl
+} from '../../..';
 import { IFileData, IOption } from '../../../types';
-import CommentTileControl from '../CommentTileControl';
-import DatepickerControl from '../DatepickerControl';
-import InputControl from '../InputControl';
-import InputNumberControl from '../InputNumberControl';
-import SelectControl from '../SelectControl';
-import CheckboxControl from '../CheckboxControl';
 import { IFormProviderControlProps } from './FormProviderControl';
-import RadioControl from '../RadioControl';
-import TextareaControl from '../TextareaControl';
-import InputFileControl from '../InputFileControl';
-import InputPhoneControl from '../InputPhoneControl';
-import RatepickerControl from '../RatepickerControl';
-import SwitchControl from '../SwitchControl';
-import TimepickerControl from '../TimepickerControl';
 
 export const RATE_OPTIONS: IOption[] = [
   {
@@ -80,6 +83,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       <InputControl
         label='Email'
         name='email'
+        formState={props.formMethods.formState}
         rules={{
           required: 'Обязательное поле',
           pattern: {
@@ -89,7 +93,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         }}
       />
 
-      <InputPhoneControl label='Телефон' name='phone' rules={{ required: 'Обязательное поле' }} />
+      <InputPhoneControl label='Телефон' name='phone' formState={props.formMethods.formState} rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{
@@ -101,6 +105,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         label='Имя'
         name='firstName'
         defaultValue='value'
+        formState={props.formMethods.formState}
         rules={{
           required: 'Обязательное поле',
           minLength: {
@@ -110,7 +115,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         }}
       />
 
-      <InputControl label='Фаилия' name='lastName' rules={{ required: 'Обязательное поле' }} />
+      <InputControl label='Фаилия' name='lastName' formState={props.formMethods.formState} rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{
@@ -121,16 +126,18 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       <InputNumberControl
         label='Год'
         name='year'
+        formState={props.formMethods.formState}
         rules={{ required: 'Обязательное поле' }}
       />
 
       <DatepickerControl
         label='Дата рождения'
         name='date-birth'
+        formState={props.formMethods.formState}
         rules={{ required: 'Обязательное поле' }}
       />
 
-      <TimepickerControl label='Время' name='time' rules={{ required: 'Обязательное поле' }} />
+      <TimepickerControl label='Время' name='time' formState={props.formMethods.formState} rules={{ required: 'Обязательное поле' }} />
 
       <SelectControl
         label='Период'
@@ -138,6 +145,7 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
         readOnly
         placeholder='Выберите период'
         options={RATE_OPTIONS}
+        formState={props.formMethods.formState}
         rules={{ required: 'Обязательное поле' }}
       />
     </div>
@@ -147,10 +155,16 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       columnGap: '20px',
       marginBottom: '20px'
     }}>
-      <InputControl label='Пароль' name='password' rules={{ required: 'Обязательное поле' }} type='password' />
+      <InputControl
+        label='Пароль'
+        name='password'
+        formState={props.formMethods.formState}
+        rules={{ required: 'Обязательное поле' }} type='password'
+      />
       <InputControl
         label='Подтверждение пароля'
         name='password-confirm'
+        formState={props.formMethods.formState}
         rules={{
           required: 'Обязательное поле',
           validate: (value) => value === password.current || 'Пароль не совпадает'
@@ -166,8 +180,18 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       marginBottom: '20px'
     }}>
       <RatepickerControl label='Рейтинг' name='rates' isStarPicker />
-      <TextareaControl name='text' label='Оставьте комментарий' rules={{ required: 'Обязательное поле' }} />
-      <InputFileControl name='file' rules={{ required: 'Обязательное поле' }} placeholder='Прикрепить файл' />
+      <TextareaControl
+        name='text'
+        label='Оставьте комментарий'
+        formState={props.formMethods.formState}
+        rules={{ required: 'Обязательное поле' }}
+      />
+      <InputFileControl
+        name='file'
+        rules={{ required: 'Обязательное поле' }}
+        formState={props.formMethods.formState}
+        placeholder='Прикрепить файл'
+      />
     </div>
 
     <div style={{
@@ -217,8 +241,13 @@ const FormExample = ({ withReset = true, ...props }: IFormExampleProps) => {
       columnGap: '20px',
       marginBottom: '20px'
     }}>
-      <CheckboxControl name='privacy' label='Соглашаюсь с правилами' rules={{ required: 'Обязательное поле' }} />
-      <SwitchControl name='switch' label='Переключить' rules={{ required: 'Обязательное поле' }} />
+      <CheckboxControl
+        name='privacy'
+        label='Соглашаюсь с правилами'
+        formState={props.formMethods.formState}
+        rules={{ required: 'Обязательное поле' }}
+      />
+      <SwitchControl name='switch' label='Переключить' formState={props.formMethods.formState} rules={{ required: 'Обязательное поле' }} />
     </div>
 
     <div style={{

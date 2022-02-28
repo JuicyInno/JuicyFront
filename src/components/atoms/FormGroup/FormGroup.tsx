@@ -36,7 +36,7 @@ const FormGroup: FC<IFormGroup> = ({
 }: IFormGroup) => {
   return (
     <div className={`rf-form-group ${className} `}>
-      <div className='rf-form-group__inner'>
+      <label className='rf-form-group__inner'>
         {label && (
           <p
             className={classnames(
@@ -59,7 +59,7 @@ const FormGroup: FC<IFormGroup> = ({
           </p>
         )}
         {children}
-      </div>
+      </label>
       {errorMessage && <p
         className={classnames(
           'rf-form-group__message',

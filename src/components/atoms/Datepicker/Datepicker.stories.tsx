@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Datepicker from './Datepicker';
+import React, { useRef, useState } from 'react';
+import Datepicker, { IDatePickerRefActions } from './Datepicker';
 import StoryItem from '../../storybook/StoryItem';
 import StoryContainer from '../../storybook/Story';
 import { IDateVariants } from './DatepickerCalendar/datepicker.types';
@@ -21,6 +21,7 @@ const log = (res: IDateVariants) => {
 };
 
 export const Demo = () => {
+  const controlRef = useRef<IDatePickerRefActions | null>(null);
   return <StoryDocs >
     <StoryDocsH1>Date Picker</StoryDocsH1>
     <StoryContainer width={600}>
@@ -57,11 +58,21 @@ export const Demo = () => {
         </StoryRow>
       </StoryItem>
       <StoryItem subtitle='Bubbling'>
-
         <StoryRow>
-
-          <Datepicker defaultValue={Date.now()} position='top-start'>
-            <Chip onClick={() => { }} isBubble icon={<AllCalendar />} iconPosition={'left'} type='secondary' size='s'>
+          <Datepicker
+            range
+            position='top-start'
+            onChange={log}
+            controlRef={controlRef}
+          >
+            <Chip
+              isBubble
+              icon={<AllCalendar/>}
+              iconPosition={'left'}
+              type={'primary'}
+              size='s'
+              onRemove={() => controlRef.current?.reset()}
+            >
               Выбрать дату
             </Chip>
           </Datepicker>

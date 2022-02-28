@@ -2,12 +2,12 @@ import * as React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import StatusPicker, { IPickerProps } from './StatusPicker'
 
-describe('Test <RatePicker/> component', () => {
-  it('should be render RatePicker component', () => {
+describe('Test <StatusPicker/> component', () => {
+  it('should render component', () => {
     render(<StatusPicker position={0} pickedValues={[["", "", ""], ["", "", ""], ["", "", ""]]} />)
   })
 
-  it('should be render RatePicker component', () => {
+  it('should change value', () => {
     const pv = [["", "", ""], ["", "", ""], ["", "", ""]]
     let pickedStatus = 0;
     let pickedPosition = 0;

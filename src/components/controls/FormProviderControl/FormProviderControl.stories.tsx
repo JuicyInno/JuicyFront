@@ -6,7 +6,7 @@ import StoryContainer from '../../storybook/Story';
 import FormExample, { IFormExampleData, RATE_OPTIONS } from './FormExample';
 
 import FormProvierControl from '../FormProviderControl';
-import { StoryDocsH3 } from '../../storybook';
+import { StoryDocsH3, StoryDocsDescription } from '../../storybook';
 
 export default {
   title: 'controls/FormProvierControl',
@@ -24,6 +24,10 @@ export const ValidationForm: Story = () => {
   return (
     <StoryContainer>
       <StoryDocsH3>Форма с валидацией</StoryDocsH3>
+      <StoryDocsDescription>
+        Поля формы должны принимать поле <strong>fromState</strong> для того чтобы работало отображение ошибок при валидации.<br/>
+        Не допускается использовать хуки в контролах формы, так как будут конфликты контекстов
+      </StoryDocsDescription>
 
       <FormExample formMethods={methods} onSubmit={onSubmit} />
     </StoryContainer>

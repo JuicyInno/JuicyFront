@@ -58,6 +58,6 @@ export const BannerImage = ({ variant, src, ...props }: BannerImageProps) => {
   const source = variant ? BannerImageMap[variant] : src;
 
   return (
-    <img className='banner-image' src={source} {...props} />
+    <img className='banner-image' src={source} role='presentation' {...props} />
   );
 };

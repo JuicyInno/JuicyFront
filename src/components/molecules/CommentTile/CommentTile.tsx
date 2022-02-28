@@ -39,6 +39,7 @@ export interface ICommentTileProps extends Omit<ITextareaProps, 'onDebounce' | '
   maxSize?: number
 }
 
+// FIXME: Elements must have sufficient color contrast
 const CommentTile: FC<ICommentTileProps> = ({
   comment = '',
   title = 'Комментарии и файлы',

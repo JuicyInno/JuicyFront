@@ -16,6 +16,7 @@ export interface IScheduleProps {
   marks?: ICalendarPageMark[];
 }
 
+// FIXME: Elements must have sufficient color contrast
 const Schedule: FC<IScheduleProps> = ({ children, defaultYear, defaultMonth, marks = [] }) => {
   const [year, setYear] = useState(defaultYear);
   const [month, setMonth] = useState(defaultMonth);
