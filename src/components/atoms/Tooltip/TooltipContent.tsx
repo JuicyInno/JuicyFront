@@ -37,7 +37,7 @@ const getOffsetPadding = (offset: number, placement: TooltipPosition): CSSProper
 };
 
 const TooltipContent: FC<ITooltipContentProps> = ({
-  children, position = 'right', className = '', background = 'white', offset = 8
+  children, position = 'top', className = '', background = 'white', offset = 8
 }: ITooltipContentProps) => createPortal(
   <Popper
     placement={position}

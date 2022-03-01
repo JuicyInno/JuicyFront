@@ -28,7 +28,7 @@ export default {
         'left'
       ],
       control: { type: 'select' },
-      defaultValue: 'right'
+      defaultValue: 'top'
     }
   }
 };
