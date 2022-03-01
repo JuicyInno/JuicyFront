@@ -163,7 +163,9 @@ const Select: FC<ISelectProps> & { id: number } = ({
   }, [disabled]);
 
   const onReset = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    /*   console.log(e);
+
+      e.stopPropagation(); */
     onClear();
     onOpen();
   };
@@ -218,6 +220,8 @@ const Select: FC<ISelectProps> & { id: number } = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
+
+  console.log(selectValues);
 
   useEffect(() => {
 
@@ -412,6 +416,8 @@ const Select: FC<ISelectProps> & { id: number } = ({
   );
 
   const onChevronClick = (e: React.MouseEvent) => {
+    console.log(selectValues);
+
     e.stopPropagation();
     setShowDropdown((state: boolean) => !state);
   };
