@@ -5,7 +5,7 @@ import { AllClose } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import Button from '../Button';
 
-export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type ModalSize = 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl';
 
 export interface IModalProps {
   /** Контент модалки */
