@@ -17,6 +17,7 @@ import {
   isCurrentMonth, months,
   stringToDate, weekDays
 } from '../../../../utils/helpersDatePicker';
+import { ITooltipProps } from '../../Tooltip/Tooltip';
 
 
 interface IDatepickerCalendarProps {
@@ -47,7 +48,7 @@ interface IDatepickerCalendarProps {
   /** Массив неактиыных дней */
   disableWeekDays?: number[];
   /** Цвет тултипа */
-  tooltipBackground?: 'white' | 'default';
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
@@ -61,7 +62,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   format = 'dd.mm.yyyy',
   separator = '-',
   disableWeekDays = [],
-  tooltipBackground = 'default'
+  tooltipBackground = 'white'
 }: IDatepickerCalendarProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 

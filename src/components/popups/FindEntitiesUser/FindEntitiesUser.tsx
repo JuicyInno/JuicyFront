@@ -10,6 +10,7 @@ import { StatusInfoFill } from '../../../indexIcon';
 
 import { IUser } from '../../../types/projects.types';
 import { Copy } from '../../..';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 interface IFindEntitiesUserProps {
   /** Пользователь */
@@ -21,7 +22,7 @@ interface IFindEntitiesUserProps {
   /** Дизейбл чекбокса */
   disabled?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default';
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 export const FindEntitiesUser: React.FC<IFindEntitiesUserProps> = ({ user, isSelected, onChange, disabled, tooltipBackground }) => {

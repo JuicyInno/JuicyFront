@@ -67,7 +67,7 @@ const History: React.FC<IHistory> = ({
             }}
             type='secondary'
             showRemoveIcon={false}
-            tooltipBackground='default'
+            tooltipBackground='white'
           />
         ))}
       </div>

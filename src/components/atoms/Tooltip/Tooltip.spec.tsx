@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Tooltip from './Tooltip';
+import Employee from "../../molecules/Employee";
 
 
 describe('Test <Tooltip/> component', () => {
@@ -17,7 +18,7 @@ describe('Test <Tooltip/> component', () => {
     fireEvent.mouseOver(screen.getByText('Button'));
 
     await waitFor(() => screen.getByTestId('tooltip-content'))
-    expect(screen.getByText('Tooltip')).toBeInTheDocument()
+    expect(screen.getByText('Tooltip')).toBeInTheDocument();
   });
 
 
@@ -30,11 +31,11 @@ describe('Test <Tooltip/> component', () => {
           <p>Tooltip</p>
         </div>
       </Tooltip>
-    )
+    );
 
     fireEvent.mouseOver(screen.getByText('Button'));
 
-    await waitFor(() => screen.getByTestId('Button'))
+    await waitFor(() => screen.getByTestId('Button'));
     expect(screen.queryByTestId('tooltip')).toBeNull();
   });
 
@@ -42,24 +43,38 @@ describe('Test <Tooltip/> component', () => {
     const { container } = render(
       <Tooltip background='white'>
         <div>Button</div>
-        <div>
-          <p>Tooltip</p>
-        </div>
+        <p>Tooltip</p>
       </Tooltip>
-    )
-    expect(container.getElementsByClassName('rf-tooltip--white').length).toBe(1)
+    );
+
+    expect(container.getElementsByClassName('rf-tooltip--white')).toHaveLength(1);
+  });
+
+  it('should render Tooltip component with background=default', () => {
+    const { container } = render(
+      <Tooltip background='white'>
+        <div>Button</div>
+        <p>Tooltip</p>
+      </Tooltip>
+    );
+
+    expect(container.getElementsByClassName('rf-tooltip--white')).toHaveLength(1);
+  });
+
+  it('should be show tooltip with delay', async () => {
+    const closeDelay = 150;
+    render(
+      <Tooltip background='white' closeDelay={closeDelay}>
+        <div>Button</div>
+        <p>Tooltip</p>
+      </Tooltip>
+    );
+
+    fireEvent.mouseEnter(screen.getByTestId('rf-tooltip'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Tooltip')).toBeInTheDocument();
+    }, {timeout: closeDelay});
   });
 })
-
-it('should render Tooltip component with background=default', () => {
-  const { container } = render(
-    <Tooltip background='default'>
-      <div>Button</div>
-      <div>
-        <p>Tooltip</p>
-      </div>
-    </Tooltip>
-  )
-  expect(container.getElementsByClassName('rf-tooltip--default').length).toBe(1)
-});
 

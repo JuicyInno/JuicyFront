@@ -289,7 +289,7 @@ const HistorySidebar = ({
                         }}
                         type='secondary'
                         showRemoveIcon={false}
-                        tooltipBackground='default'
+                        tooltipBackground='white'
                       />
                     ))}
                   </div>

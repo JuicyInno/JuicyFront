@@ -1,5 +1,5 @@
 import React, {
-  FC, ReactNode, useMemo, useState
+  FC, ReactNode, useMemo, useRef, useState
 } from 'react';
 import { Manager, Reference } from 'react-popper';
 import './Tooltip.scss';
@@ -14,16 +14,22 @@ export interface ITooltipProps extends Omit<ITooltipContentProps, 'children'> {
    * @default true
    */
   isVisible?: boolean;
+  /** Задержка перед открытием тултипа
+   * @default 0
+   */
+  closeDelay?: number;
 }
 
 const Tooltip: FC<ITooltipProps> = ({
   children,
   isVisible = true,
-  background = 'default',
+  background = 'white',
+  closeDelay = 0,
   ...props
 }: ITooltipProps) => {
   const [content, contentTooltip] = children;
   const [visible, setVisible] = useState<boolean>(false);
+  const timeoutId = useRef<ReturnType<typeof setTimeout>>();
 
   const text: string = useMemo(() => {
     try {
@@ -34,13 +40,25 @@ const Tooltip: FC<ITooltipProps> = ({
     }
   }, [contentTooltip]);
 
+  const onMouseEnter = () => {
+    clearTimeout(timeoutId.current!);
+    timeoutId.current = setTimeout(() => {
+      setVisible(true);
+    }, closeDelay);
+  };
+
+  const onMouseLeave = () => {
+    clearTimeout(timeoutId.current!);
+    setVisible(false);
+  };
+
   return (
     <Manager>
       <div
         data-testid='rf-tooltip'
         className={`rf-tooltip rf-tooltip--${background}`}
-        onMouseEnter={() => setVisible(true)}
-        onMouseLeave={() => setVisible(false)}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         <Reference>
           {(referenceProps) => <div className='rf-tooltip__reference' {...referenceProps}>{content}</div>}

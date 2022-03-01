@@ -10,6 +10,7 @@ import { IUser } from '../../../types/projects.types';
 
 import './Card.scss';
 import EntityCard from '../EntityCard/EntityCard';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 // FIXME: Elements must have sufficient color contrast
 export interface ICard {
@@ -34,7 +35,7 @@ export interface ICard {
   /** Пользователи */
   users?: IUser[];
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default'
+  tooltipBackground?: ITooltipProps['background'];
 
 }
 
@@ -48,7 +49,7 @@ const Card: FC<ICard> = ({
   statusColor = 'default',
   users = [],
   showActionButton = false,
-  tooltipBackground = 'default',
+  tooltipBackground = 'white',
   onClick = () => { },
 }) => {
 
