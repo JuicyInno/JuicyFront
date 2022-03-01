@@ -6,8 +6,10 @@ import { Story } from '@storybook/react';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
-import { IOption } from '../../../types';
-import { _segmentList, _segmentList2 } from './mock';
+import { ISegment } from '../../../types';
+import {
+  _segmentList, _segmentList2, _segmentList3
+} from './mock';
 
 export default {
   title: 'navigations/withTest/Segment',
@@ -20,7 +22,7 @@ export default {
 
 export const Demo = () => {
 
-  const onChange = (option: IOption) => {
+  const onChange = (option: ISegment) => {
     console.log(option);
   };
 
@@ -36,6 +38,9 @@ export const Demo = () => {
         </StoryRow>
         <StoryRow>
           <Segment list={_segmentList2} value={_segmentList2[0]} onChange={onChange} />
+        </StoryRow>
+        <StoryRow>
+          <Segment list={_segmentList3} value={_segmentList3[0]} onChange={onChange} />
         </StoryRow>
       </StoryItem>
     </StoryContainer>

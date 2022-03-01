@@ -1,6 +1,10 @@
-import { IOption } from '../../../types';
+import React from 'react';
+import { ISegment } from '../../../types';
 
-export const _segmentList: IOption[] = [
+import Badge from '../Badge';
+import { AllIconPlace } from '../../../indexIcon';
+
+export const _segmentList: ISegment[] = [
   {
     value: '1',
     label: 'Линейная',
@@ -11,7 +15,7 @@ export const _segmentList: IOption[] = [
   }
 ];
 
-export const _segmentList2: IOption[] = [
+export const _segmentList2: ISegment[] = [
   {
     value: '1',
     label: 'Enabled',
@@ -20,5 +24,21 @@ export const _segmentList2: IOption[] = [
     value: '2',
     label: 'Disabled',
     disabled: true
+  }
+];
+
+export const _segmentList3: ISegment[] = [
+  {
+    value: '1',
+    label: <Badge badgeContent='2' placeNear>Линейная</Badge>,
+  },
+  {
+    value: '2',
+    label: 'Функциональная'
+  },
+  {
+    value: '3',
+    label: 'Все',
+    icon: <AllIconPlace />
   }
 ];
