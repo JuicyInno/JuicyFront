@@ -34,11 +34,16 @@ export interface ITabsProps {
    * @default true
   */
   showMenu?: boolean;
+  /**
+   * Размер табов
+   * @default 'md'
+   */
+  size?: 'md' | 'sm'
   /** Если во вкладках есть url, то через children пробрасывается <Router/> */
   children?: ReactNode | ReactNode[];
 }
 
-const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, children }: ITabsProps) => {
+const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, size = 'md', children }: ITabsProps) => {
   const history = useHistory();
   const { pathname } = useLocation();
   /** Ссылки на вкладки */
@@ -175,7 +180,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, ch
       <div key={i} className={classnames('rf-tabs__link', i > lastVisibleInexRef.current && 'rf-tabs__link--hidden')} ref={refs.current[i]}>
         <button
           type='button'
-          className={classnames('rf-tabs__button', i === active && 'rf-tabs__button--active')}
+          className={classnames('rf-tabs__button', i === active && 'rf-tabs__button--active', `rf-tabs__button--${size}`)}
           disabled={t.disabled}
           onClick={onMenuClickHandler}
         >
