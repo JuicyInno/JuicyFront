@@ -59,7 +59,7 @@ const TooltipContent: FC<ITooltipContentProps> = ({
       }
     ]}
   >
-    {({ ref, style: dropdownStyle, placement, arrowProps }) => (
+    {({ ref, style: dropdownStyle, placement }) => (
       <div
         ref={ref}
         className='rf-tooltip__content-wrapper'

@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import AvatarStack from './AvatarStack';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
-import { IUser } from '../../../types/projects.types';
 
 describe('Test <AvatarStack /> component', () => {
   it('should render with 3 visible avatars', () => {
@@ -25,32 +24,18 @@ describe('Test <AvatarStack /> component', () => {
     expect(container.getElementsByClassName('rf-avatar-stack__item')).toHaveLength(5);
   });
   
-  it('should save user to variable on click', async () => {
-    const mocks = usersMocks;
-    
-    let currentUser: IUser | null = null;
-    const onClick = (user: IUser) => {
-      currentUser = user;
+  it('should be call onClick', async () => {
+    const onClick = jest.fn();
+
+    const { container } = render(<AvatarStack list={usersMocks} onClick={onClick} />);
+    const item = container.getElementsByClassName('rf-avatar-stack__item').item(0);
+
+    if (!item) {
+      fail('Нет элемента')
     }
-    
-    const { container } = render(<AvatarStack list={mocks} onClick={onClick} />);
-    const nodeList = container.getElementsByClassName('rf-avatar-stack__item');
-    
-    if (!nodeList || nodeList.length === 0) {
-      fail();
-    }
-    
-    const firstUser = nodeList[0];
-  
-    expect(currentUser).toBe(null);
-    fireEvent.click(firstUser);
-  
-    await waitFor(() => {
-      if (!currentUser) {
-        fail();
-      }
-      expect(currentUser.id).toBe(mocks[0].id);
-    });
+
+    fireEvent.click(item);
+    expect(onClick).toBeCalled();
   });
   
   it('should have clickable class', () => {
