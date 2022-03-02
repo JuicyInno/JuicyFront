@@ -4,7 +4,7 @@ import AvatarStack from './AvatarStack';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
 import { IUser } from '../../../types/projects.types';
 
-describe('Test <AvatarStack/> component', () => {
+describe('Test <AvatarStack /> component', () => {
   it('should render with 3 visible avatars', () => {
     const { container } = render(<AvatarStack list={usersMocks.slice(0, 3)} />);
     expect(container.getElementsByClassName('rf-avatar-stack__item')).toHaveLength(3);

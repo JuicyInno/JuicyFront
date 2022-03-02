@@ -18,6 +18,8 @@ export interface ITooltipProps extends Omit<ITooltipContentProps, 'children'> {
    * @default 0
    */
   closeDelay?: number;
+  /** Класс */
+  className?: string;
 }
 
 const Tooltip: FC<ITooltipProps> = ({
@@ -25,6 +27,7 @@ const Tooltip: FC<ITooltipProps> = ({
   isVisible = true,
   background = 'white',
   closeDelay = 0,
+  className = '',
   ...props
 }: ITooltipProps) => {
   const [content, contentTooltip] = children;
@@ -56,7 +59,7 @@ const Tooltip: FC<ITooltipProps> = ({
     <Manager>
       <div
         data-testid='rf-tooltip'
-        className={`rf-tooltip rf-tooltip--${background}`}
+        className={`rf-tooltip rf-tooltip--${background} ${className}`}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
