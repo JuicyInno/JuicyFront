@@ -145,6 +145,8 @@ export const Demo = () => {
 
   const onChange2 = (options: IOption[]) => {
     // @ts-ignore
+    console.log(options);
+
     setState1(options);
   };
 
