@@ -6,6 +6,8 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import { variantsClassic } from '../../../types';
 import StoryContainer from '../../storybook/Story';
 
+import Button from '../../atoms/Button';
+
 export default {
   title: 'components/withTest/Notification',
   component: Notification,
@@ -29,67 +31,73 @@ export default {
 };
 
 export const Demo: Story = () => {
-  const frameStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'fit-content',
-    border: '1px dashed #7B61FF',
-    borderRadius: 5,
-    padding: 32,
-  };
 
   return (
     <StoryDocs>
       <StoryDocsH1>Notification</StoryDocsH1>
-      <div style={frameStyle}>
-        <StoryRow >
-          <Notification item={{
-            title: 'Заголовок уведомления',
-            variant: 'default'
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
-            title: 'Заголовок уведомления',
+      <StoryRow >
+        <Notification
+          item={{
             variant: 'default',
-            message: 'Краткое описание уведомления'
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
             title: 'Заголовок уведомления',
+            message: 'Краткое описание уведомления',
+          }}
+          remove={() => {}}
+        />
+      </StoryRow>
+      <StoryRow >
+        <Notification
+          item={{
             variant: 'default',
+            title: 'Заголовок уведомления',
             message: 'Длинное описание очень длинное описание уведомления. Длинное описание очень длинное описание уведомления'
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
-            title: 'Ошибка',
-            variant: 'red',
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
-            title: 'Ошибка',
-            variant: 'red',
-            message: 'Описание ошибки'
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
-            title: 'ТН скопирован',
-            variant: 'green',
-          }} />
-        </StoryRow>
-        <StoryRow >
-          <Notification item={{
-            title: 'ТН скопирован',
-            variant: 'green',
-            message: 'Описание'
-          }} />
-        </StoryRow>
-      </div>
+          }}
+          remove={() => {}}
+        />
+      </StoryRow>
+      <StoryRow >
+        <Notification item={{
+          variant: 'blue',
+          title: 'Заголовок уведомления',
+          message: 'Краткое описание уведомления'
+        }} />
+      </StoryRow>
+      <StoryRow >
+        <Notification item={{
+          variant: 'yellow',
+          title: 'Заголовок уведомления',
+          message: 'Краткое описание уведомления'
+        }} />
+      </StoryRow>
+      <StoryRow >
+        <Notification item={{
+          variant: 'red',
+          title: 'Заголовок уведомления',
+          message: 'Краткое описание уведомления'
+        }} />
+      </StoryRow>
+      <StoryRow >
+        <Notification item={{
+          variant: 'red',
+          title: 'Заголовок уведомления',
+          message: 'Краткое описание уведомления',
+          button: <Button buttonType='text' textColor='red' size='s'>Действие</Button>
+        }} />
+      </StoryRow>
 
+      <StoryRow >
+        <Notification item={{
+          title: 'ТН скопирован',
+          variant: 'green',
+        }} />
+      </StoryRow>
+      <StoryRow >
+        <Notification item={{
+          title: 'ТН скопирован',
+          variant: 'green',
+          message: 'Описание'
+        }} />
+      </StoryRow>
     </StoryDocs>
   );
 };

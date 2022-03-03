@@ -1,79 +1,112 @@
-@import 'src/styles/mixins';
+@import '../../../styles/mixins';
 
 .rf-notification {
+  border-radius: 12px;
+  padding: 14px 16px;
   margin-top: 16px;
-  position: relative;
-  width: 440px;
-  padding: 20px;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
-  cursor: default;
-  overflow: hidden;
   background-color: var(--background-primary);
   box-shadow: var(--shadow-non-clickable);
-  border-radius: 16px;
-}
 
-.rf-notification::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 8px;
-  background-color: transparent;
-}
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    margin-right: 12px;
+    position: relative;
+    top: -2px;
+  }
 
-.rf-notification__icon {
-  flex-shrink: 0;
-}
+  &__close {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 12px;
+    margin-right: -4px;
+    color: var(--basic-tertiary);
+  }
 
-.rf-notification--default {
-  color: var(--basic-primary);
-}
+  &__body {
+    margin-right: auto;
+  }
 
-.rf-notification--blue {
-  color: var(--basic-primary);
-}
+  &__title {
+    @include text-s-14-bold();
+    color: var(--text-primary);
+  }
 
-.rf-notification--green {
-  color: var(--status-success);
-}
+  &__message {
+    @include text-s-14;
+    color: var(--text-primary);
+  }
 
-.rf-notification--yellow {
-  color: var(--special-yellow);
-}
+  &__title,
+  &__message {
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
 
-.rf-notification--red {
-  color: var(--status-danger);
-}
+  &__button {
+    display: inline-flex;
+  }
 
-.rf-notification__wrap {
-  margin-left: 12px;
-}
-
-.rf-notification__title {
-  width: 100%;
-  @include text-l-16-bold;
-  white-space: normal;
-}
-
-.rf-notification__message {
-  width: 100%;
-  @include text-s-14;
-  white-space: normal;
-  color: var(--text-secondary);
-}
-
-.rf-notification__close {
-  flex-grow: 0;
-  margin-left: auto;
-  width: 24px;
-  height: 24px;
-  min-width: 32px;
-  background-color: transparent;
-  border: 0;
-  outline: none;
-  color: var(--text-tertiary);
+  &--default {  
+    .rf-notification__icon {
+      color: var(--basic-primary);
+    }
+  
+    .rf-notification__button {
+      color: var(--basic-primary);
+    }
+  }
+  
+  &--default {
+    .rf-notification__icon {
+      color: var(--background-shadow);
+    }
+  
+    .rf-notification__button {
+      color: var(--text-secondary);
+    }
+  }
+  
+  &--blue {  
+    .rf-notification__icon {
+      color: var(--basic-primary);
+    }
+  
+    .rf-notification__button {
+      color: var(--basic-primary);
+    }
+  }
+  
+  &--green {  
+    .rf-notification__icon {
+      color: var(--status-success);
+    }
+  
+    .rf-notification__button {
+      color: var(--status-success);
+    }
+  }
+  
+  &--yellow {  
+    .rf-notification__icon {
+      color: var(--status-warn);
+    }
+  
+    .rf-notification__button {
+      color: var(--status-warn);
+    }
+  }
+  
+  &--red {  
+    .rf-notification__icon {
+      color: var(--status-danger);
+    }
+  
+    .rf-notification__button {
+      color: var(--status-danger);
+    }
+  }
 }

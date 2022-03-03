@@ -62,7 +62,11 @@ export interface INotification {
   /** ID сообщения */
   id?: number;
   /** Тип сообщения */
-  variant?: VariantClassic;
+  variant?: Exclude<VariantClassic, 'white'>;
+  /** Использовать собственную иконку. Если передать `false` то иконка скроется. */
+  icon?: React.ReactNode;
+  /** Кнопка */
+  button?: React.ReactNode;
 }
 
 const Notifications = () => {
