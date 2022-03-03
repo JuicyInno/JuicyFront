@@ -87,6 +87,7 @@ const HistorySidebar = ({
   style,
 }: IHistorySidebar) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [prevCount, setPrevCount] = useState<number>(0);
 
   const getActiveIndex = useCallback((list: IHistory[]): number => list.findIndex((item) => !item.approveDateTime), []);
   const getIndexByUserId = useCallback((list: IHistory[]): number =>
@@ -105,6 +106,10 @@ const HistorySidebar = ({
     const indexByUserId = getIndexByUserId(history);
     const indexByApproveDate = getActiveIndex(history) !== -1 ? getActiveIndex(history) : history.length - 1;
     const activeIndex = indexByUserId !== -1 ? indexByUserId : indexByApproveDate;
+
+    if (activeIndex > 2) {
+      setPrevCount(activeIndex - 2);
+    }
 
     return history.reduce((acc: IHistory[], curr: IHistory, index: number) => {
       const diffIndex = index - activeIndex;
@@ -178,26 +183,43 @@ const HistorySidebar = ({
       ref={containerRef}
     >
       <Tile variant={opened ? 'non-clickable' : 'none'} className='rf-history-sidebar__tile'>
-        <Button
-          onClick={() => setOpened(!opened)}
-          size='m'
-          buttonType='icon-round'
-          className='rf-history-sidebar__btn'
-          aria-label={opened ? 'Свернуть' : 'Развернуть'}
-        >
-          <div className='rf-history-sidebar__btn-icon'>
-            <ArrowsChevronLeft />
-          </div>
-        </Button>
+        <div className='rf-history-sidebar__head'>
+          <Button
+            onClick={() => setOpened(!opened)}
+            size='m'
+            buttonType='icon-round'
+            className='rf-history-sidebar__btn'
+            aria-label={opened ? 'Свернуть' : 'Развернуть'}
+          >
+            <div className='rf-history-sidebar__btn-icon'>
+              <ArrowsChevronLeft />
+            </div>
+          </Button>
 
-        {
-          opened &&
-            <h3 className='rf-history-sidebar__title'>
-              История согласования
-            </h3>
-        }
+          {
+            opened &&
+              <h3 className='rf-history-sidebar__title'>
+                История согласования
+              </h3>
+          }
+        </div>
 
         <div className='rf-history-sidebar__list'>
+          {
+            !!prevCount && !opened &&
+            <div
+              className={classnames(
+                'rf-history-sidebar__item',
+                'rf-history-sidebar__item--prev-count'
+              )}
+            >
+              <AvatarStatus
+                size='l'
+                variant='default'
+                fullName={`+${prevCount}`}
+              />
+            </div>
+          }
           {
             list.map((item, index) => {
               const variant = getAvatarVariant(item, index);
