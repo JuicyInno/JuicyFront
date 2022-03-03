@@ -28,8 +28,7 @@ $radius: 8px;
   font-size: 14px;
   line-height: 16px;
   border-radius: $radius;
-  box-shadow: 0px 4px 8px rgba(138, 150, 168, 0.4),
-    0px -2px 4px rgba(138, 150, 168, 0.08);
+  box-shadow: var(--shadow-clickable-default);
 }
 
 .rf-tooltip__content--black .rf-tooltip__inner,
