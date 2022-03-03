@@ -88,6 +88,7 @@ const HistorySidebar = ({
 }: IHistorySidebar) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [prevCount, setPrevCount] = useState<number>(0);
+  const refs = useRef<HTMLDivElement[]>([]);
 
   const getActiveIndex = useCallback((list: IHistory[]): number => list.findIndex((item) => !item.approveDateTime), []);
   const getIndexByUserId = useCallback((list: IHistory[]): number =>
@@ -131,6 +132,17 @@ const HistorySidebar = ({
   useEffect(() => {
     setList(getActiveHistory());
   }, [opened, history, currentUserId]);
+
+  useEffect(() => {
+    if (opened) {
+      setTimeout(() => {
+        refs.current[prevCount]?.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        });
+      }, 0);
+    }
+  }, [opened, prevCount]);
 
   const getOffsetDateStirng = useCallback((approveDateTime: string) => {
     const currentDate = new Date(approveDateTime);
@@ -233,6 +245,7 @@ const HistorySidebar = ({
                     'rf-history-sidebar__item',
                     item.statusType && `rf-history-sidebar__item--${variant}`
                   )}
+                  ref={el => refs.current[index] = el as HTMLDivElement}
                 >
                   <AvatarStatus
                     size='l'
