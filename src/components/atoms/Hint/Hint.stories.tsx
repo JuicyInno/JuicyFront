@@ -6,15 +6,14 @@ import { StoryDocs, StoryDocsH1 } from '../../storybook';
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 
+import Button from '../Button';
+import { StatusInfoFill } from '../../../indexIcon';
+
 export default {
   title: 'controls/withTest/Hint',
   component: Hint,
   argTypes: {
-    icon: {
-      options: ['info', null],
-      control: { type: 'radio' },
-      defaultValue: 'info'
-    },
+    icon: { control: { disable: true } },
     className: { table: { disable: true } },
     children: {
       control: 'text',
@@ -24,10 +23,7 @@ export default {
       control: 'text',
       defaultValue: 'Заголовок'
     },
-    button: {
-      control: 'text',
-      defaultValue: 'Действие'
-    },
+    button: { control: { disable: true } },
     variant: {
       options: variantsClassic,
       control: { type: 'radio' },
@@ -41,129 +37,114 @@ export default {
 };
 
 export const Demo: Story = (args: IHintProps) => {
-
-  const frameStyle: any = {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 680,
-    border: '1px dashed #7B61FF',
-    borderRadius: 5,
-    padding: 16,
-  };
-
   return (
     <StoryDocs >
       <StoryDocsH1>Hint</StoryDocsH1>
-      <div style={{ padding: '42px 0px 0px 72px' }}>
-        <div style={frameStyle}>
-          <div style={{ marginBottom: 16 }}>
-            <Hint
-              variant='blue'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint
+          variant='blue'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          button={<Button buttonType='text' size='s' textColor='blue'>Действие</Button>}
+          onClose={args.onClose}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint
-              variant={args.variant}
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint
+          variant={args.variant}
+          maxWidth={args.maxWidth}
+          title={args.title}
+          button={<Button buttonType='text' size='s' textColor='default'>Действие</Button>}
+          onClose={args.onClose}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='yellow'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='yellow'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          button={<Button buttonType='text' size='s' textColor='yellow'>Действие</Button>}
+          onClose={args.onClose}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='green'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='green'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          button={<Button buttonType='text' size='s' textColor='green'>Действие</Button>}
+          onClose={args.onClose}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='red'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='red'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          button={<Button buttonType='text' size='s' textColor='red'>Действие</Button>}
+          onClose={args.onClose}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='blue'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='blue'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          icon={false}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint
-              maxWidth={args.maxWidth}
-              title={args.title}
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint
+          maxWidth={args.maxWidth}
+          title={args.title}
+          icon={false}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='yellow'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='yellow'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          icon={false}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='green'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='green'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          icon={false}
+        >
+          {args.children}
+        </Hint>
+      </div>
 
-          <div style={{ marginBottom: 16 }}>
-            <Hint variant='red'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              button={args.button}>
-              {args.children}
-            </Hint>
-          </div>
-
-
-          <div>
-            <Hint
-              variant='blue'
-              maxWidth={args.maxWidth}
-              title={args.title}
-              icon='info'
-              button={undefined}>
-            </Hint>
-          </div>
-        </div>
+      <div style={{ marginBottom: 16 }}>
+        <Hint variant='red'
+          maxWidth={args.maxWidth}
+          title={args.title}
+          icon={false}
+        >
+          {args.children}
+        </Hint>
       </div>
     </StoryDocs >
   );
@@ -179,12 +160,14 @@ Demo.parameters = {
 };
 
 export const Playground: Story = (args: IHintProps) => {
-
-
   return (
     <StoryContainer>
       <StoryRow>
-        <Hint {...args} />
+        <Hint
+          {...args}
+          icon={<StatusInfoFill />}
+          button={<Button buttonType='text' size='s' textColor={args.variant}>Действие</Button>}
+        />
       </StoryRow>
     </StoryContainer>
   );
