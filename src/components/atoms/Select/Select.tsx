@@ -153,8 +153,6 @@ const Select: FC<ISelectProps> & { id: number } = ({
   };
 
   const onClearSelectedValues = () => {
-    console.log('clear');
-
     onChange([{
       label: '',
       value: ''
