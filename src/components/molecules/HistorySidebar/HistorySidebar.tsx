@@ -89,6 +89,7 @@ const HistorySidebar = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [prevCount, setPrevCount] = useState<number>(0);
   const refs = useRef<HTMLDivElement[]>([]);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const getActiveIndex = useCallback((list: IHistory[]): number => list.findIndex((item) => !item.approveDateTime), []);
   const getIndexByUserId = useCallback((list: IHistory[]): number =>
@@ -133,16 +134,28 @@ const HistorySidebar = ({
     setList(getActiveHistory());
   }, [opened, history, currentUserId]);
 
-  useEffect(() => {
+  const getHeightByIndex = useCallback(() => {
+    let height = 0;
+    const MARGIN_BOTTOM = 32;
+
+    for (let i = 0; i < prevCount; i++) {
+      height += refs.current[i].getBoundingClientRect().height + MARGIN_BOTTOM;
+    }
+
+    return height;
+  }, [prevCount]);
+
+  useLayoutEffect(() => {
     if (opened) {
       setTimeout(() => {
-        refs.current[prevCount]?.scrollIntoView({
-          block: 'start',
+        const scrollTop = getHeightByIndex();
+        listRef.current?.scrollTo({
+          top: scrollTop,
           behavior: 'smooth'
         });
       }, 0);
     }
-  }, [opened, prevCount]);
+  }, [opened, getHeightByIndex]);
 
   const getOffsetDateStirng = useCallback((approveDateTime: string) => {
     const currentDate = new Date(approveDateTime);
@@ -216,7 +229,7 @@ const HistorySidebar = ({
           }
         </div>
 
-        <div className='rf-history-sidebar__list'>
+        <div className='rf-history-sidebar__list' ref={listRef}>
           {
             !!prevCount && !opened &&
             <div
