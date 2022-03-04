@@ -140,7 +140,7 @@ const Select: FC<ISelectProps> & { id: number } = ({
   const prevShowDropDown = usePrevious(showDropdown) || false;
 
   const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
-
+  const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
   /** Очистка селекта */
   const onClear = () => {
     setInputValue('');
@@ -151,6 +151,13 @@ const Select: FC<ISelectProps> & { id: number } = ({
 
     onSearch && onSearch('');
   };
+
+  const onClearSelectedValues = () => {
+    onChange([{
+      label: '',
+      value: ''
+    }])
+  }
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
@@ -163,10 +170,9 @@ const Select: FC<ISelectProps> & { id: number } = ({
   }, [disabled]);
 
   const onReset = (e: React.MouseEvent) => {
-    /*   console.log(e);
-
-      e.stopPropagation(); */
+    e.stopPropagation();
     onClear();
+    onClearSelectedValues();
     onOpen();
   };
 
@@ -219,9 +225,9 @@ const Select: FC<ISelectProps> & { id: number } = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
 
-  console.log(selectValues);
+
+
 
   useEffect(() => {
 
