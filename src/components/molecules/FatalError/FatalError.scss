@@ -4,7 +4,7 @@
 .fatal-error {
   background-color: transparent;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,25 +12,20 @@
 }
 
 .fatal-error__label {
+  @include h5;
   display: inline-block;
   text-align: center;
   width: 480px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 36px;
   margin-top: 20px;
   margin-bottom: 16px;
 }
 
 .fatal-error__message {
+  @include text-xs-18;
   display: inline-block;
   width: 480px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
   text-align: center;
+  color: var(--text-secondary);
 }
 
 
