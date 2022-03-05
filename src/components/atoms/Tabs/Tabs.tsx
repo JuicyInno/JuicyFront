@@ -157,7 +157,7 @@ const Tabs: React.FC<ITabsProps> = ({ list, showLine = true, showMenu = true, si
   const onClick = (e: MouseEvent, i: number, element: HTMLDivElement | null) => {
     element && setLinePosition(element);
 
-    if (isRouting && list[i].url) {
+    if (isRouting && list[i].url && active !== i) {
       history.push(list[i].url as string);
     }
 
