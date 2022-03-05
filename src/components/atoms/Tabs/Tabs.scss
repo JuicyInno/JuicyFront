@@ -47,7 +47,6 @@ $lineWidth: 2px;
 }
 
 .rf-tabs__button {
-  @include text-l-16;
   display: flex;
   align-items: center;
   height: auto;
@@ -63,6 +62,16 @@ $lineWidth: 2px;
       color: var(--text-text-secondary);
     }
   }
+}
+
+.rf-tabs__button--md {
+  @include text-l-16;
+  padding: 12px 16px;
+}
+
+.rf-tabs__button--sm {
+  @include text-s-14;
+  padding: 10px 12px;
 }
 
 .rf-tabs__button--active {

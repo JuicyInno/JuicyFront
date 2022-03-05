@@ -50,6 +50,8 @@ export const Demo = () => {
           }}
         >
           <Tabs list={_simpleTabs} />
+          <Tabs list={_simpleTabs} size='sm' />
+
           <Tabs list={_simpleTabs} showLine={false} />
           <Tabs list={_iconTabs} />
           <Tabs list={_badgeTabs} />
