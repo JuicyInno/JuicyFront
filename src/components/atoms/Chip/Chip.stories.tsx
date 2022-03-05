@@ -1,13 +1,16 @@
 import React from 'react';
+
 import { Story } from '@storybook/react';
+import { withDesign } from 'storybook-addon-designs';
+
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import StoryRow from '../../storybook/StoryRow';
+import StoryItem from '../../storybook/StoryItem';
+import StoryContainer from '../../storybook/Story';
+
+import { AllDownload } from '../../../indexIcon';
 
 import Chip from './Chip';
-import StoryItem from '../../storybook/StoryItem';
-import { AllDownload } from '../../../indexIcon';
-import StoryContainer from '../../storybook/Story';
-import StoryRow from '../../storybook/StoryRow';
-import { StoryDocs, StoryDocsH1 } from '../../storybook';
-import { withDesign } from 'storybook-addon-designs';
 import ControlGroup from '../ControlGroup';
 
 
@@ -17,7 +20,8 @@ export default {
   component: Chip,
   argTypes: {
     icon: { control: null },
-    children: { control: null }
+    children: { control: null },
+    badge: { control: null }
   }
 };
 
@@ -31,177 +35,94 @@ export const Demo = () => {
     console.log('on click');
   };
 
-  const frameStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'auto',
-    border: '2px dashed lightblue',
-    borderRadius: 5,
-    padding: 16,
-    marginRight: 16
-  };
+  const getChips = (size: 's' | 'xs') => (
+    <>
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '16px'
+      }}>
+        <Chip type='outline' size={size} onRemove={onRemove}>Size 32</Chip>
+        <Chip type='primary' size={size} onRemove={onRemove}>Size 32</Chip>
+        <Chip type='secondary' size={size} onRemove={onRemove}>Size 32</Chip>
+        <Chip type='fill' size={size} onRemove={onRemove}>Size 32</Chip>
+      </div>
 
-  const elementStyle = { marginBottom: 16 };
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '16px'
+      }}>
+        <Chip type='outline' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} onClick={onClick}>Size 32</Chip>
+        <Chip type='primary' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} onClick={onClick}>Size 32</Chip>
+        <Chip type='secondary' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} onClick={onClick}>Size 32</Chip>
+        <Chip type='fill' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} onClick={onClick}>Size 32</Chip>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '16px'
+      }}>
+        <Chip type='outline' size={size} onClick={onClick}>Tag text</Chip>
+        <Chip type='primary' size={size} onClick={onClick}>Tag text</Chip>
+        <Chip type='secondary' size={size} onClick={onClick}>Text 32</Chip>
+        <Chip type='fill' size={size} onClick={onClick}>Text 32</Chip>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '16px'
+      }}>
+        <Chip type='outline' size={size} onClick={onClick} badge='5'>Tag text</Chip>
+        <Chip type='primary' size={size} onClick={onClick} badge='5'>Tag text</Chip>
+        <Chip type='secondary' size={size} onClick={onClick} badge='5'>Text 32</Chip>
+        <Chip type='fill' size={size} onClick={onClick} badge='5'>Text 32</Chip>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '8px',
+        marginBottom: '16px'
+      }}>
+        <Chip type='outline' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} disabled>Size 32</Chip>
+        <Chip type='primary' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} disabled>Size 32</Chip>
+        <Chip type='secondary' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} disabled>Size 32</Chip>
+        <Chip type='fill' size={size} icon={<AllDownload size={size === 's' ? 'xxs' : 'xxxs'} />} disabled>Size 32</Chip>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        gap: '8px'
+      }}>
+        <Chip type='outline' size={size} badge='5' disabled>Size 32</Chip>
+        <Chip type='primary' size={size} badge='5' disabled>Size 32</Chip>
+        <Chip type='secondary' size={size} badge='5' disabled>Size 32</Chip>
+        <Chip type='fill' size={size} badge='5' disabled>Size 32</Chip>
+      </div>
+    </>
+  );
 
   return (
     <StoryDocs>
       <StoryDocsH1>Chips</StoryDocsH1>
 
-      <StoryItem subtitle='Chips 40'>
-        <div style={{ display: 'flex' }}>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip disabled size='m' onRemove={onRemove}>Size 40</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='m' onRemove={onRemove}>Size 40</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='m' onRemove={onRemove}>Size 40</Chip>
-            </div>
-          </div>
-
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='m' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-          </div>
-
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='m' iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='m' iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='m' iconPosition='left' onClick={onClick}>Size 40</Chip>
-            </div>
-          </div>
-        </div>
-      </StoryItem>
-
       <StoryItem subtitle='Chips 32'>
-        <div style={{ display: 'flex' }}>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='s' onRemove={onRemove}>Size 32</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='s' onRemove={onRemove}>Size 32</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='s' onRemove={onRemove}>Size 32</Chip>
-            </div>
-          </div>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='s' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 32</Chip>
-            </div>
-          </div>
-
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='s' onClick={onClick}>Text 32</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='s' onClick={onClick}>Tag text</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='s' onClick={onClick}>Tag text</Chip>
-            </div>
-          </div>
-        </div>
+        {getChips('s')}
       </StoryItem>
 
       <StoryItem subtitle='Chips 24'>
-        <div style={{ display: 'flex' }}>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='xs' onRemove={onRemove}>Size 24</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='xs' onRemove={onRemove}>Size 24</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='xs' onRemove={onRemove}>Size 24</Chip>
-            </div>
-          </div>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='xs' icon={<AllDownload />} iconPosition='left' onClick={onClick}>Size 24</Chip>
-            </div>
-          </div>
-
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='xs' onClick={onClick}>Text 24</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='xs' onClick={onClick}>Tag text</Chip>
-            </div>
-            <div style={{
-              ...elementStyle,
-              marginBottom: 0
-            }}>
-              <Chip type='primary' size='xs' onClick={onClick}>Tag text</Chip>
-            </div>
-          </div>
-        </div>
+        {getChips('xs')}
       </StoryItem>
 
       <StoryItem subtitle='Chips max length'>
-        <div style={{ display: 'flex' }}>
-          <div style={frameStyle}>
-            <div style={elementStyle}>
-              <Chip type='secondary' size='s' onRemove={onRemove}>The size of the line is greater than 32</Chip>
-            </div>
-            <div style={elementStyle}>
-              <Chip type='outline' size='s' onRemove={onRemove}>The size of the line equals 30</Chip>
-            </div>
-          </div>
+        <div style={{
+          display: 'flex',
+          gap: '8px'
+        }}>
+          <Chip type='secondary' size='s' onRemove={onRemove}>The size of the line is greater than 32</Chip>
+          <Chip type='outline' size='s' onRemove={onRemove}>The size of the line equals 30</Chip>
         </div>
       </StoryItem>
     </StoryDocs>
@@ -214,7 +135,8 @@ export const Playground: Story = (args) => {
       <StoryRow>
         <ControlGroup>
           <Chip {...args}>Chip</Chip>
-          <Chip iconPosition='left' {...args} icon={<AllDownload />} >Chip wit icon</Chip>
+          <Chip iconPosition='left' {...args} icon={<AllDownload size={args.size === 'xs' ? 'xxxs' : 'xxs'}/>} >Chip with icon</Chip>
+          <Chip {...args} badge='42' onRemove={undefined}>Chip with badge</Chip>
         </ControlGroup>
       </StoryRow>
     </StoryContainer>

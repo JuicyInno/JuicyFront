@@ -67,7 +67,7 @@ export const Demo = () => {
           >
             <Chip
               isBubble
-              icon={<AllCalendar/>}
+              icon={<AllCalendar size='xxs' />}
               iconPosition={'left'}
               type={'primary'}
               size='s'
