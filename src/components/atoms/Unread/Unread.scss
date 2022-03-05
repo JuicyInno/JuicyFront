@@ -1,0 +1,23 @@
+.unread {
+  display: inline-flex;
+  position: relative;
+
+  &__badge {
+    position: absolute;
+    left: calc(100% + 4px);
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--special-softBlue);
+    border-radius: 50%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      display: block;
+      border-radius: 50%;
+      background-color: var(--basic-primary);
+    }
+  }
+}
