@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { AllAdd, AllReduce } from '../../../indexIcon';
+import { ArrowsChevronDown, ArrowsChevronUp } from '../../../indexIcon';
 import './Accordion.scss';
 
 export interface IAccordionItemProps {
@@ -26,7 +26,9 @@ const AccordionItem: React.FC<IAccordionItemProps> = ({ children, opened, disabl
     <div className='rf-accordion__item-inner'>
       {children}
 
-      {opened ? <AllReduce className='rf-accordion__item-icon' /> : <AllAdd className='rf-accordion__item-icon' />}
+      <div className='rf-accordion__item-icon'>
+        {opened ? <ArrowsChevronUp /> : <ArrowsChevronDown />}
+      </div>
     </div>
   </div>
 );
