@@ -86,6 +86,7 @@ import Attachment from './components/molecules/Attachment';
 import Shimmer from './components/atoms/Shimmer';
 import DynamicComponent from './components/atoms/DynamicComponent';
 import Copy from './components/atoms/Copy';
+import TextCollapse from './components/molecules/TextCollapse';
 import Unread from './components/atoms/Unread';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
@@ -181,6 +182,7 @@ export {
   Copy,
   DynamicComponent,
   Feedback,
+  TextCollapse,
   Unread
 };
 

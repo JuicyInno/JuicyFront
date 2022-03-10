@@ -19,6 +19,7 @@ import Badge from '../../atoms/Badge';
 import Tooltip from '../../atoms/Tooltip';
 
 import './HistorySidebar.scss';
+import TextCollapse from '../TextCollapse';
 
 export enum Statuses {
   POSITIVE = 'POSITIVE',
@@ -310,7 +311,12 @@ const HistorySidebar = ({
                       {item.status && item.statusType && <div className='rf-history-sidebar__item-status'>
                         <StatusWithText statusText={item.status} criticality={criticalityByType[item.statusType]} />
                       </div>}
-                      {item.comment && <div className='rf-history-sidebar__item-comment'>{item.comment}</div>}
+                      {item.comment &&
+                      <div className='rf-history-sidebar__item-comment'>
+                        <TextCollapse lineHeight='24px'>
+                          {item.comment}
+                        </TextCollapse>
+                      </div>}
                     </div>
                   }
                 </div>
