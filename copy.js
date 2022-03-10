@@ -45,7 +45,7 @@ Object.entries(styles).forEach(([from, destination]) => {
   });
 });
 
-exec("yarn exec shx mkdir dist/assets/illustrations && shx cp src/assets/illustrations/* dist/assets/illustrations", (error, stdout, stderr) => {
+exec("yarn exec shx cp src/assets/illustrations/* dist/assets/illustrations", (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;

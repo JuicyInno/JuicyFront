@@ -16,6 +16,7 @@ import Notifications from '!url-loader!../../../../assets/illustrations/notifica
 import Settings from '!url-loader!../../../../assets/illustrations/settings.png';
 import Work from '!url-loader!../../../../assets/illustrations/work.png';
 
+
 export type BannerImageVariant =
   'broken-magnifier' |
   'close-entrance' |

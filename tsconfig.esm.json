@@ -15,12 +15,6 @@
     "jsx": "preserve",
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "tags": ["css", ".css", "styled", "styles"]
-      }
-    ],
   },
   "files": ["custom.d.ts"],
   "include": ["src/**/*"],

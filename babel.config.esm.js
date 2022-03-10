@@ -51,7 +51,9 @@ function hashPlugin({ types: t }) {
 }
 
 module.exports = {
-  "presets": ["@babel/preset-react", "@babel/preset-typescript"],
+  "presets": [[
+    "@babel/preset-env", { modules: false }
+  ],"@babel/preset-react", "@babel/preset-typescript"],
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-nullish-coalescing-operator",
