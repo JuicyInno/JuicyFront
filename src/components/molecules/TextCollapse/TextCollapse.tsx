@@ -60,7 +60,7 @@ const TextCollapse = ({ children, lineHeight = '21px', row = 3 }: ITextCollapseP
       {showExpander &&
         <Button buttonType='text' onClick={makeHandleExpand()}>
           <div className='rf-text-collapse__btn'>
-            <ArrowsChevronDown className={`rf-text-collapse__icon ${opened ? 'rf-text-collapse__icon--rotate' : ''}`} />
+            <ArrowsChevronDown className={`rf-text-collapse__icon ${opened ? 'rf-text-collapse__icon--rotate' : ''}`} size='xxs' />
             <span className='rf-text-collapse__btn-text'>{opened ? 'Скрыть' : 'Раскрыть' }</span>
           </div>
         </Button>}

@@ -6,10 +6,13 @@
   .rf-text-collapse__btn {
     display: flex;
     align-items: center;
+    margin-top: 4px;
   }
 
   .rf-text-collapse__btn-text {
     margin-left: 8px;
+    font-size: 14px;
+    font-weight: 500;
   }
 
   .rf-text-collapse__icon {
