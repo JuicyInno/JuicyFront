@@ -313,7 +313,7 @@ const HistorySidebar = ({
                       </div>}
                       {item.comment &&
                       <div className='rf-history-sidebar__item-comment'>
-                        <TextCollapse lineHeight='24px'>
+                        <TextCollapse lineHeight='20px'>
                           {item.comment}
                         </TextCollapse>
                       </div>}
