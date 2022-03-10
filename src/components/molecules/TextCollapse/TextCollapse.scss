@@ -1,0 +1,22 @@
+.rf-text-collapse {
+  .rf-text-collapse__text {
+    overflow: hidden;
+  }
+
+  .rf-text-collapse__btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .rf-text-collapse__btn-text {
+    margin-left: 8px;
+  }
+
+  .rf-text-collapse__icon {
+    transition: 0.2s ease-in-out;
+
+    &.rf-text-collapse__icon--rotate {
+      transform: rotate(180deg);
+    }
+  }
+}
