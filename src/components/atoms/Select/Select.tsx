@@ -153,11 +153,13 @@ const Select: FC<ISelectProps> & { id: number } = ({
   };
 
   const onClearSelectedValues = () => {
-    onChange([{
-      label: '',
-      value: ''
-    }])
-  }
+    onChange([
+      {
+        label: '',
+        value: ''
+      }
+    ]);
+  };
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
@@ -224,9 +226,6 @@ const Select: FC<ISelectProps> & { id: number } = ({
   }, [inputValue]);
 
   // -------------------------------------------------------------------------------------------------------------------
-
-
-
 
 
   useEffect(() => {
