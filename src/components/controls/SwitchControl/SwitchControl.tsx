@@ -3,7 +3,7 @@ import React from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
 import Switch, { ISwitchProps } from '../../atoms/Switch/Switch';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ISwitchControlProps = ISwitchProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

@@ -2,9 +2,9 @@
 import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { InputFile } from '../../..';
+import InputFile from '../../atoms/InputFile';
 import { IFileInputProps } from '../../atoms/InputFile/InputFile';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IInputFileControlProps = Omit<IFileInputProps, 'setFile'> & IControlProps & {
   formGroupProps?: IPartialFormGroup;

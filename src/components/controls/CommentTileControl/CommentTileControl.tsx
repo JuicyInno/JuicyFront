@@ -4,7 +4,7 @@ import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
 import CommentTile, { ICommentTileProps } from '../../molecules/CommentTile/CommentTile';
 import { IRequestAttachment } from '../../../types/projects.types';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ICommentTileControlProps = Omit<ICommentTileProps, 'defaultValue'> & IControlProps & {
   formGroupProps?: IPartialFormGroup;

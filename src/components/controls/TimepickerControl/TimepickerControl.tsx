@@ -2,9 +2,9 @@
 import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { Timepicker } from '../../..';
+import Timepicker from '../../atoms/Timepicker';
 import { ITimepickerProps } from '../../atoms/Timepicker/Timepicker';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ITimepcikerControlProps = ITimepickerProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

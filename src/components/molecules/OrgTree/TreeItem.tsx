@@ -7,7 +7,7 @@ import './TreeItem.scss';
 import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
 import HLine from './lines/hline';
-import { Preloader } from '../../../index';
+import Preloader from '../../atoms/Preloader';
 import { ArrowsUp } from '../../../indexIcon';
 import Circle from './Circle';
 import Checkbox from '../../atoms/Checkbox';

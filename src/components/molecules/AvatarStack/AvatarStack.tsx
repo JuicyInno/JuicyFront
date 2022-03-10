@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import { Size } from '../../../types';
 import { IUser, TooltipPosition } from '../../../types/projects.types';
 import Avatar from '../../atoms/Avatar/Avatar';
-import { Tooltip } from '../../../index';
+import Tooltip from '../../atoms/Tooltip';
 
 import './AvatarStack.scss';
 

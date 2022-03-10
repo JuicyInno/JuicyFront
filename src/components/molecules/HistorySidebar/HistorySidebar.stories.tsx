@@ -7,8 +7,7 @@ import {
 import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import HistorySidebar from './HistorySidebar';
-import { Tile } from '../../..';
-
+import Tile from '../../atoms/Tile';
 import { attachments } from '../History/mock';
 import { history } from './mock';
 

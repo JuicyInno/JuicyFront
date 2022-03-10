@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
 import InputNumber, { IInputNumberProps } from '../../atoms/InputNumber/InputNumber';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IInputNumberControlProps = IInputNumberProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

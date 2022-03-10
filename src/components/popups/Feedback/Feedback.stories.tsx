@@ -5,7 +5,8 @@ import StoryRow from '../../storybook/StoryRow';
 import Feedback, { FeedbackData } from './Feedback';
 import StoryContainer from '../../storybook/Story';
 import { BrowserRouter } from 'react-router-dom';
-import { Button } from '../../..';
+import Button from '../../atoms/Button';
+
 import axios from 'axios';
 
 import createPostFeedback from './createPostFeedback';

@@ -3,9 +3,13 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  Button, FormGroup, InputFile, Textarea, Modal, RatePicker, Attachment
-} from '../../..';
+import Button from '../../atoms/Button';
+import FormGroup from '../../atoms/FormGroup';
+import InputFile from '../../atoms/InputFile';
+import Textarea from '../../atoms/Textarea';
+import Modal from '../../atoms/Modal';
+import RatePicker from '../../atoms/RatePicker';
+import Attachment from '../../molecules/Attachment';
 import { IFileData } from '../../../types';
 import { IModalProps } from '../../atoms/Modal/Modal';
 

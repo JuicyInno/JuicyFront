@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
 import Textarea, { ITextareaProps } from '../../atoms/Textarea';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ITextareaControlProps = ITextareaProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

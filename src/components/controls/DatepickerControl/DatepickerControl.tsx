@@ -5,7 +5,7 @@ import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
 import Datepicker from '../../atoms/Datepicker';
 import { IDatepickerProps } from '../../atoms/Datepicker/Datepicker';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IInputControlProps = IDatepickerProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

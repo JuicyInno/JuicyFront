@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import React, { ReactElement, ReactNode } from 'react';
 import { FieldValues, FormState } from 'react-hook-form';
-import { FormGroup } from '../../..';
+import FormGroup from '../../atoms/FormGroup';
 import { IFormGroup } from '../../atoms/FormGroup/FormGroup';
 
 export interface IFormErrorControlProps extends Omit<IFormGroup, 'invalid' | 'errorMessage'> {

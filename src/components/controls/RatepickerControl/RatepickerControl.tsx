@@ -2,9 +2,9 @@
 import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { RatePicker } from '../../..';
+import RatePicker from '../../atoms/RatePicker';
 import { IPickerProps } from '../../atoms/RatePicker/RatePicker';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IInputControlProps = IPickerProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

@@ -2,9 +2,8 @@
 import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { InputPhone } from '../../..';
-import { IInputPhoneProps } from '../../atoms/InputPhone';
-import { useHookFormController } from '..';
+import InputPhone, { IInputPhoneProps } from '../../atoms/InputPhone';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IInputNumberControlProps = IInputPhoneProps & IControlProps & {
   formGroupProps?: IPartialFormGroup;

@@ -2,9 +2,9 @@
 import React from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { Radio } from '../../..';
+import Radio from '../../atoms/Radio';
 import { IRadioProps } from '../../atoms/Radio/Radio';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type IRadioControlProps = IRadioProps & Omit<IControlProps, 'defaultValue'> & {
   formGroupProps?: IPartialFormGroup;

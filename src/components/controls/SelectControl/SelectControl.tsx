@@ -2,9 +2,9 @@
 import React, { ReactNode } from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { Select } from '../../..';
+import Select from '../../atoms/Select';
 import { ISelectProps } from '../../atoms/Select/Select';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ISelectControlProps = Omit<ISelectProps, 'onChange' | 'values'> & IControlProps & {
   formGroupProps?: IPartialFormGroup;

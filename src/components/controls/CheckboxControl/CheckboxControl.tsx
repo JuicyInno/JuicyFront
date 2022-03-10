@@ -1,9 +1,9 @@
 import React from 'react';
 import { IControlProps, IPartialFormGroup } from '../types';
 import FormControl from '../FormControl';
-import { Checkbox } from '../../..';
+import Checkbox from '../../atoms/Checkbox';
 import { ICheckboxProps } from '../../atoms/Checkbox/Checkbox';
-import { useHookFormController } from '..';
+import { useHookFormController } from '../HookFormProvider';
 
 export type ICheckboxControlProps = ICheckboxProps & Omit<IControlProps, 'defaultValue'> & {
   formGroupProps?: IPartialFormGroup;

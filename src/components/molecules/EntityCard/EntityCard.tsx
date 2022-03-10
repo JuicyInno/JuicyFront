@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import UserPhoto from '../../atoms/UserPhoto';
 import './EntityCard.scss';
-import { Copy } from '../../..';
+import Copy from '../../atoms/Copy';
 import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 export interface IUserPositions {

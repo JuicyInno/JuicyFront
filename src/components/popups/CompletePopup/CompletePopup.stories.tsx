@@ -8,7 +8,7 @@ import CompletePopup from './CompletePopup';
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2
 } from '../../storybook';
-import { Button } from '../../..';
+import Button from '../../atoms/Button';
 
 export default {
   title: 'popovers/withTest/CompletePopup',

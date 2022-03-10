@@ -1,9 +1,9 @@
 import React, {
   useState, useEffect, useCallback, CSSProperties, useMemo, useRef, useLayoutEffect
 } from 'react';
-import {
-  Avatar, Button, Tile
-} from '../../..';
+import Avatar from '../../atoms/Avatar';
+import Button from '../../atoms/Button';
+import Tile from '../../atoms/Tile';
 import {
   AllDoc, StatusInformation, ArrowsChevronLeft, OtherPeople
 } from '../../../indexIcon';

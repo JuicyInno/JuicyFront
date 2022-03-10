@@ -10,7 +10,7 @@ import Tooltip from '../../atoms/Tooltip';
 import { StatusInfoFill, AllInvestmentProducts } from '../../../indexIcon';
 
 import { IStructure } from '../../../types/projects.types';
-import { Copy } from '../../..';
+import Copy from '../../atoms/Copy';
 import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 interface IFindEntitiesPositionProps {

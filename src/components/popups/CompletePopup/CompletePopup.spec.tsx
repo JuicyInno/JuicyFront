@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import CompletePopup from './CompletePopup';
-import { Button } from '../../..';
+import Button from '../../atoms/Button';
 
 describe('Test <CompletePopup /> component', () => {
   it('should have label and description', () => {
