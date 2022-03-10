@@ -89,6 +89,11 @@
   color: var(--basic-secondary);
 }
 
+.rf-history-path-list__fullName--delegate {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
 .rf-history-path-list__icon-wrapper {
   display: flex;
   align-items: center;
