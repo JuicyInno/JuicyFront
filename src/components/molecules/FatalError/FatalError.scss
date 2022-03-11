@@ -18,14 +18,16 @@
   width: 480px;
   margin-top: 20px;
   margin-bottom: 16px;
+  white-space: pre-wrap;
 }
 
 .fatal-error__message {
-  @include text-xs-18;
+  @include text-m-16;
   display: inline-block;
   width: 480px;
   text-align: center;
   color: var(--text-secondary);
+  white-space: pre-wrap;
 }
 
 
