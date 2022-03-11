@@ -1,71 +1,58 @@
 @import 'src/styles/mixins';
 
-.rf-segment__container {
-  cursor: pointer;
-  height: 40px;
+.rf-segment {
   width: 100%;
-}
 
-.rf-segment__list {
-  position: relative;
-  display: inline-grid;
-  grid-auto-columns: 1fr;
-  height: 100%;
-  background-color: var(--background-secondary);
-  border-radius: 10px;
-  transition: 0.2s ease-in-out;
-
-  &--full {
-    width: 100%;
+  &__list {
+    background-color: var(--background-secondary);
+    border-radius: 20px;
+    display: inline-grid;
+    gap: 8px;
+    grid-auto-flow: column;
+    padding: 4px;
+    position: relative;
+  
+    &--full {
+      width: 100%;
+    }
   }
-
-  & :not(.disabled):hover {
-    background-color: var(--background-tertiary);
-  }
-}
-
-.rf-segment__list-item {
-  position: relative;
-  height: 100%;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 10px;
-  transition: all 0.2s ease-in-out;
-  @include text-s-14;
-
-  &:first-of-type {
-    border-radius: 10px 0 0 10px;
-  }
-
-  &:last-of-type {
-    border-radius: 0 10px 10px 0;
-  }
-
-  &.active {
-    border-radius: 10px;
-    background-color: var(--background-primary);
-    @include text-s-14-bold;
-  }
-
-  &.disabled {
+  
+  &__item {
+    @include button-m-16;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 22px;
     color: var(--text-secondary);
-  }
-}
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 4px 16px;
+    position: relative;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
 
-.rf-segment__slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  border: 2px solid var(--basic-primary);
-  transition: 0.175s;
-  z-index: 10;
-  box-sizing: border-box;
+    &:not(&--active):not(:disabled) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--background-tertiary);
+      }
+    }
+  
+    &--active {
+      background-color: var(--background-primary);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-clickable-active);
+    }
+  
+    &:disabled {
+      color: var(--text-tertiary);
+      cursor: default;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    margin-right: 8px;
+  }
 }

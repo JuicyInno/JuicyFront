@@ -2,18 +2,16 @@ import React, {
   useEffect, useRef, useState
 } from 'react';
 import './Segment.scss';
-import { IOption } from '../../../types';
+import { ISegment } from '../../../types';
 import { classnames } from '../../../utils/classnames';
-
-export type SegmentSliderPosition = 'start' | 'middle' | 'end';
 
 export interface ISegmentProps {
   /** Список значений */
-  list: IOption[];
+  list: ISegment[];
   /** Изменение значения */
-  onChange: (option: IOption) => void;
+  onChange: (option: ISegment) => void;
   /** Значение */
-  value?: IOption;
+  value?: ISegment;
   /** На всю ширину
    * @default false
   */
@@ -35,7 +33,7 @@ const Segment: React.FC<ISegmentProps> = ({ list, fullWidth = false, value, onCh
       return;
     }
 
-    const index = list.findIndex((o: IOption) => o.value === value.value);
+    const index = list.findIndex((o: ISegment) => o.value === value.value);
     setActiveIndex(index < 0 ? 0 : index);
   }, [value]);
 
@@ -56,21 +54,22 @@ const Segment: React.FC<ISegmentProps> = ({ list, fullWidth = false, value, onCh
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const radioButtons = list.map((o: IOption, i: number) => {
-    const className = classnames('rf-segment__list-item', activeIndex === i && 'active', o.disabled && 'disabled');
-
-    return (
-      <div className={className} key={o.value} onClick={() => handleChange(i)}>
-        {o.label}
-      </div>
-    );
-  });
-
   return (
-    <div className='rf-segment__container'>
+    <div className='rf-segment'>
       <div className={classnames('rf-segment__list', fullWidth && 'rf-segment__list--full')}>
-        {radioButtons}
-        <div className='rf-segment__slider' style={{ width: `calc(100% / ${list.length})` }} ref={slider} />
+        {list.map((o, i) =>
+          <button
+            key={o.value}
+            className={classnames(
+              'rf-segment__item',
+              activeIndex === i && 'rf-segment__item--active'
+            )}
+            disabled={o.disabled}
+            onClick={() => handleChange(i)}
+          >
+            {!!o.icon && <div className='rf-segment__icon'>{o.icon}</div>}
+            {o.label}
+          </button>)}
       </div>
     </div>
   );
