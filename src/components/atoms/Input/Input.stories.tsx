@@ -20,6 +20,7 @@ export default {
   component: Input,
   argTypes: {
     disabled: { type: 'boolean' },
+    readOnly: { type: 'boolean' },
     icon: { control: null },
     startAdornment: { control: null },
     endAdornment: { control: null },
