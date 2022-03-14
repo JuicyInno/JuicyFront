@@ -49,7 +49,7 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification, } from './components/molecules/Notifications';
+import Notifications, { sendNotification, removeNotification } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
@@ -147,6 +147,7 @@ export {
   Notification,
   Notifications,
   sendNotification,
+  removeNotification,
   Employee,
   Confirm,
   Tile,
