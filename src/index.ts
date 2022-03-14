@@ -88,6 +88,9 @@ import DynamicComponent from './components/atoms/DynamicComponent';
 import Copy from './components/atoms/Copy';
 import TextCollapse from './components/molecules/TextCollapse';
 import Unread from './components/atoms/Unread';
+import {
+  Layout, LayoutColumn, LayoutContext, useLayoutContext
+} from './components/molecules/Layout';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -184,7 +187,8 @@ export {
   DynamicComponent,
   Feedback,
   TextCollapse,
-  Unread
+  Unread,
+  Layout, LayoutColumn, LayoutContext, useLayoutContext
 };
 
 
