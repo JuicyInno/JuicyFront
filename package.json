@@ -75,6 +75,8 @@
     "eslint-plugin-storybook": "^0.5.4",
     "eslint-plugin-unused-imports": "^1.1.2",
     "file-loader": "^6.2.0",
+    "msw": "^0.39.2",
+
     "fs": "^0.0.1-security",
     "husky": "^7.0.1",
     "identity-obj-proxy": "^3.0.0",
