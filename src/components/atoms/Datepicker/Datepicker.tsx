@@ -16,6 +16,7 @@ import InputMask from 'react-input-mask';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import DatepickerCalendar from './DatepickerCalendar';
+import { ITooltipProps } from '../Tooltip/Tooltip';
 
 export interface IDatePickerRefActions {
   reset: () => void,
@@ -66,7 +67,7 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
    */
   filled?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'default' | 'white';
+  tooltipBackground?: ITooltipProps['background'];
   /** Сыылка на контейнер портала */
   containerRef?: RefObject<T>;
   /** Реф для пробрасывания действий по кастомным кнопкам */
@@ -78,6 +79,8 @@ export interface IDatepickerProps<T extends HTMLElement = HTMLDivElement> {
   isFocusBorder?: boolean
 }
 
+
+// FIXME: Добавить управление с клавиатуры
 const Datepicker: React.FC<IDatepickerProps> = ({
   name = 'datepicker',
   locale = 'ru',
@@ -96,7 +99,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   format = 'dd.mm.yyyy',
   disableWeekDays = [0, 6],
   children,
-  tooltipBackground = 'default',
+  tooltipBackground = 'white',
   containerRef,
   controlRef,
   isFocusBorder = false
@@ -400,9 +403,9 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                       invalid={invalid}
                       filled={filled}
                       startAdornment={
-                        <button onClick={e => e.stopPropagation()} type='button' className='rf-datepicker__calendar-button'>
+                        <div onClick={e => e.stopPropagation()} className='rf-datepicker__calendar-button'>
                           <AllCalendar />
-                        </button>
+                        </div>
                       }
                       endAdornment={
                         <div className={classnames('rf-datepicker__calendar-chevron', isCrossChevronPicker && 'rf-datepicker__calendar-cross')}>

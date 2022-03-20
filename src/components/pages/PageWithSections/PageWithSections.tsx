@@ -50,6 +50,7 @@ export interface IPageWithSectionsProps {
   parentScroll?: HTMLElement;
 }
 
+// FIXME: Elements must have sufficient color contrast
 const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   title,
   backUrl,
@@ -137,7 +138,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
   const asideBlock = showNavigation && showAside && (
     <aside className='rf-page__content-aside' style={styleAsideBlock}>
       <div className='rf-page__aside-inner'>
-        <nav className='rf-page__aside-nav'>
+        <nav className='rf-page__aside-nav' aria-label='Секции'>
           { asideJSX }
         </nav>
       </div>
@@ -159,7 +160,7 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
     <div className='rf-sections-page'>
       <header className={`rf-page__sections-header ${showHeader ? '' : 'rf-page__sections-header--hidden'}`} ref={ pageHeaderRef }>
         { backUrl && (
-          <Link to={ backUrl } onClick={ onBackClick } className='rf-page__sections-header-back'>
+          <Link to={ backUrl } onClick={ onBackClick } className='rf-page__sections-header-back' aria-label='Назад'>
             <ArrowsChevronLeft />
           </Link>
         ) }

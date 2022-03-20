@@ -145,6 +145,8 @@ export const Demo = () => {
 
   const onChange2 = (options: IOption[]) => {
     // @ts-ignore
+    console.log(options);
+
     setState1(options);
   };
 
@@ -169,7 +171,6 @@ export const Demo = () => {
               variant='base'
               values={state}
               onChange={onChange2}
-
             />
           </FormGroup>
         </StoryItem>

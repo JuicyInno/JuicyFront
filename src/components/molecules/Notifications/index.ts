@@ -1,3 +1,3 @@
-import Notifications, { sendNotification } from './Notifications';
-export { sendNotification };
+import Notifications, { sendNotification, removeNotification } from './Notifications';
+export { sendNotification, removeNotification };
 export default Notifications;

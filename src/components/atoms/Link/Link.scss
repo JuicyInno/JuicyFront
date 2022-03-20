@@ -1,0 +1,48 @@
+@import '../../../styles/mixins';
+
+.rf-link {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover, &:focus-visible {
+    color: var(--basic-hover);
+  }
+
+  &:active {
+    color: var(--basic-press);
+  }
+
+  &:disabled {
+    color: var(--text-tertiary);
+    cursor: default;
+  }
+
+  &--md {
+    @include text-l-16;
+  }
+
+  &--sm {
+    @include text-s-14;
+  }
+
+  &--primary {
+    color: var(--basic-primary);
+  }
+
+  &--secondary {
+    color: var(--text-primary);
+  }
+
+  &__adornment {
+    display: flex;
+    
+    &--start {
+      margin-right: 8px;
+    }
+
+    &--end {
+      margin-left: 8px;
+    }
+  }
+}

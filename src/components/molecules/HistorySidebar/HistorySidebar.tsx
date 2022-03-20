@@ -19,6 +19,7 @@ import Badge from '../../atoms/Badge';
 import Tooltip from '../../atoms/Tooltip';
 
 import './HistorySidebar.scss';
+import TextCollapse from '../TextCollapse';
 
 export enum Statuses {
   POSITIVE = 'POSITIVE',
@@ -87,6 +88,9 @@ const HistorySidebar = ({
   style,
 }: IHistorySidebar) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [prevCount, setPrevCount] = useState<number>(0);
+  const refs = useRef<HTMLDivElement[]>([]);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const getActiveIndex = useCallback((list: IHistory[]): number => list.findIndex((item) => !item.approveDateTime), []);
   const getIndexByUserId = useCallback((list: IHistory[]): number =>
@@ -105,6 +109,10 @@ const HistorySidebar = ({
     const indexByUserId = getIndexByUserId(history);
     const indexByApproveDate = getActiveIndex(history) !== -1 ? getActiveIndex(history) : history.length - 1;
     const activeIndex = indexByUserId !== -1 ? indexByUserId : indexByApproveDate;
+
+    if (activeIndex > 2) {
+      setPrevCount(activeIndex - 2);
+    }
 
     return history.reduce((acc: IHistory[], curr: IHistory, index: number) => {
       const diffIndex = index - activeIndex;
@@ -126,6 +134,29 @@ const HistorySidebar = ({
   useEffect(() => {
     setList(getActiveHistory());
   }, [opened, history, currentUserId]);
+
+  const getHeightByIndex = useCallback(() => {
+    let height = 0;
+    const MARGIN_BOTTOM = 32;
+
+    for (let i = 0; i < prevCount; i++) {
+      height += refs.current[i].getBoundingClientRect().height + MARGIN_BOTTOM;
+    }
+
+    return height;
+  }, [prevCount]);
+
+  useLayoutEffect(() => {
+    if (opened) {
+      setTimeout(() => {
+        const scrollTop = getHeightByIndex();
+        listRef.current?.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+      }, 0);
+    }
+  }, [opened, getHeightByIndex]);
 
   const getOffsetDateStirng = useCallback((approveDateTime: string) => {
     const currentDate = new Date(approveDateTime);
@@ -178,25 +209,43 @@ const HistorySidebar = ({
       ref={containerRef}
     >
       <Tile variant={opened ? 'non-clickable' : 'none'} className='rf-history-sidebar__tile'>
-        <Button
-          onClick={() => setOpened(!opened)}
-          size='m'
-          buttonType='icon-round'
-          className='rf-history-sidebar__btn'
-        >
-          <div className='rf-history-sidebar__btn-icon'>
-            <ArrowsChevronLeft />
-          </div>
-        </Button>
+        <div className='rf-history-sidebar__head'>
+          <Button
+            onClick={() => setOpened(!opened)}
+            size='m'
+            buttonType='icon-round'
+            className='rf-history-sidebar__btn'
+            aria-label={opened ? 'Свернуть' : 'Развернуть'}
+          >
+            <div className='rf-history-sidebar__btn-icon'>
+              <ArrowsChevronLeft />
+            </div>
+          </Button>
 
-        {
-          opened &&
-            <h3 className='rf-history-sidebar__title'>
-              История согласования
-            </h3>
-        }
+          {
+            opened &&
+              <h3 className='rf-history-sidebar__title'>
+                История согласования
+              </h3>
+          }
+        </div>
 
-        <div className='rf-history-sidebar__list'>
+        <div className='rf-history-sidebar__list' ref={listRef}>
+          {
+            !!prevCount && !opened &&
+            <div
+              className={classnames(
+                'rf-history-sidebar__item',
+                'rf-history-sidebar__item--prev-count'
+              )}
+            >
+              <AvatarStatus
+                size='l'
+                variant='default'
+                fullName={`+${prevCount}`}
+              />
+            </div>
+          }
           {
             list.map((item, index) => {
               const variant = getAvatarVariant(item, index);
@@ -210,6 +259,7 @@ const HistorySidebar = ({
                     'rf-history-sidebar__item',
                     item.statusType && `rf-history-sidebar__item--${variant}`
                   )}
+                  ref={el => refs.current[index] = el as HTMLDivElement}
                 >
                   <AvatarStatus
                     size='l'
@@ -261,7 +311,12 @@ const HistorySidebar = ({
                       {item.status && item.statusType && <div className='rf-history-sidebar__item-status'>
                         <StatusWithText statusText={item.status} criticality={criticalityByType[item.statusType]} />
                       </div>}
-                      {item.comment && <div className='rf-history-sidebar__item-comment'>{item.comment}</div>}
+                      {item.comment &&
+                      <div className='rf-history-sidebar__item-comment'>
+                        <TextCollapse lineHeight='20px'>
+                          {item.comment}
+                        </TextCollapse>
+                      </div>}
                     </div>
                   }
                 </div>
@@ -288,7 +343,7 @@ const HistorySidebar = ({
                         }}
                         type='secondary'
                         showRemoveIcon={false}
-                        tooltipBackground='default'
+                        tooltipBackground='white'
                       />
                     ))}
                   </div>

@@ -48,6 +48,8 @@ const iconTypes = {
   decree: Decree
 };
 
+
+// FIXME: Elements must have sufficient color contrast
 const Status: FC<IStatus> = ({ type = 'online', size = 'm' }) => {
   const TargetIconTag = iconTypes[type];
   return (

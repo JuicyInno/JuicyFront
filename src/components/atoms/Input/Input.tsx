@@ -30,7 +30,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   /** обработка нажатий с эффектом debounce */
   onDebounce?: (result: IDebounceResult) => void;
   /** ref контейнера инпута */
-  ref?: Ref<HTMLLabelElement>;
+  ref?: Ref<HTMLDivElement>;
   /**
    * Добавить рамку
    * @default true
@@ -43,7 +43,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 
   pattern?: string;
 }
 
-const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
+const Input = forwardRef<HTMLDivElement | null, IInputProps>(({
   className,
   onClear,
   debounce = 300,
@@ -52,6 +52,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   startAdornment,
   endAdornment,
   disabled,
+  readOnly,
   invalid,
   filled = true,
   onFocus,
@@ -152,12 +153,13 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
   const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
   return (
-    <label
+    <div
       ref={ref}
       className={`
         rf-input 
         ${variant === 'inline' ? 'rf-input--inline' : ''} 
         ${disabled ? 'rf-input--disabled' : ''} 
+        ${readOnly ? 'rf-input--readonly' : ''} 
         ${isFocused ? 'rf-input--focused' : ''} 
         ${isInvalid ? 'rf-input--invalid' : ''} 
         ${filled ? 'rf-input--filled' : ''}
@@ -175,6 +177,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         autoComplete='off'
         type={props.type || 'text'}
         disabled={disabled}
+        readOnly={readOnly}
         onChange={onInputChange}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
@@ -182,7 +185,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
       />
       {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
       {icon ? <button type='button' className='rf-input__action'>{icon}</button> : closeButton}
-    </label>
+    </div>
   );
 });
 

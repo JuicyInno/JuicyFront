@@ -42,7 +42,7 @@ const Page: React.FC<IPageProps> = ({
     <div className={`rf-page ${className}`}>
       <header className='rf-page__header'>
         <div className='rf-page__header-wrapper'>
-          {backUrl && <Link to={backUrl} onClick={onBackClick} className='rf-page__header-back'>
+          {backUrl && <Link to={backUrl} onClick={onBackClick} className='rf-page__header-back' aria-label='Назад'>
             <ArrowsChevronLeft />
           </Link>}
           <h2 className='rf-page__title'>{title}</h2>

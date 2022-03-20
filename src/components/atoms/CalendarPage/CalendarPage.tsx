@@ -29,6 +29,7 @@ const SUNDAY = 0;
 // Воскресенье при начале недели с понедельника
 const END_OF_WEEK_SUNDAY = 7;
 
+// FIXME: Elements must have sufficient color contrast
 const CalendarPage: FC<ICalendarPageProps> = ({ year, month, marks = [] }) => {
   const content = useMemo(() => {
 

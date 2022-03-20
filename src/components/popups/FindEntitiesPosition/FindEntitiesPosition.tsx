@@ -11,6 +11,7 @@ import { StatusInfoFill, AllInvestmentProducts } from '../../../indexIcon';
 
 import { IStructure } from '../../../types/projects.types';
 import { Copy } from '../../..';
+import { ITooltipProps } from '../../atoms/Tooltip/Tooltip';
 
 interface IFindEntitiesPositionProps {
   /** Должность */
@@ -22,7 +23,7 @@ interface IFindEntitiesPositionProps {
   /** Дизейбл чекбокса */
   disabled?: boolean;
   /** Цвет tooltip */
-  tooltipBackground?: 'white' | 'default';
+  tooltipBackground?: ITooltipProps['background'];
 }
 
 export const FindEntitiesPosition: FC<IFindEntitiesPositionProps> = ({ position, isSelected, onChange, disabled, tooltipBackground }) => {

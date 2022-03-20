@@ -22,6 +22,7 @@ export interface IBannerProps {
   onSecondaryClick?: () => void;
 }
 
+// FIXME: Elements must have sufficient color contrast
 /**
  * @example
  * import illustration form 'juicyfront/assets/illustrations/default.png'

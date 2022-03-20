@@ -36,11 +36,16 @@
     }
   }
 
+  .rf-history-sidebar__head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
   .rf-history-sidebar__btn {
     background: var(--background-primary);
     box-shadow: 0 4px 8px rgba(138, 150, 168, 0.4),
       0px -2px 4px rgba(138, 150, 168, 0.08);
-    margin-bottom: 20px;
     flex-shrink: 0;
 
     .rf-history-sidebar__btn-icon {
@@ -58,10 +63,11 @@
   .rf-history-sidebar__title {
     @include h6();
     line-height: 24px;
-    margin-bottom: 20px;
+    margin-left: 24px;
   }
 
   .rf-history-sidebar__list {
+    padding-top: 10px;
     overflow: inherit;
   }
 
@@ -71,6 +77,11 @@
     @include text-l-16;
     margin-bottom: 32px;
 
+    &.rf-history-sidebar__item--prev-count {
+      font-size: 16px;
+    }
+
+    &.rf-history-sidebar__item--prev-count::before,
     &.rf-history-sidebar__item--green::before,
     &.rf-history-sidebar__item--yellow::before,
     &.rf-history-sidebar__item--red::before {
@@ -125,6 +136,7 @@
     }
 
     .rf-history-sidebar__item-comment {
+      line-height: 20px;
       padding: 12px;
       background: var(--background-secondary);
       border-radius: 4px 22px 22px 22px;

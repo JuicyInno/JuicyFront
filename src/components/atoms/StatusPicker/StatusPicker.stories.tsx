@@ -8,7 +8,7 @@ import StatusPicker, { IPickerProps } from './StatusPicker';
 
 
 export default {
-  title: 'forms/withTests/Status Picker',
+  title: 'forms/withTest/Status Picker',
   component: StatusPicker,
 };
 

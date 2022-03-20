@@ -1,135 +1,119 @@
 @import '../../../styles/mixins';
 
-.rf-hint__wrapper {
-  background: var(--background-secondary);
-  border-radius: var(--12);
-  padding: var(--16);
+.rf-hint {
+  border-radius: 12px;
+  padding: 14px 16px;
   display: flex;
-  position: relative;
+  align-items: flex-start;
 
-  .rf-hint__button {
-    display: inline-flex;
-    margin-top: 8px;
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+    margin-right: 12px;
+    position: relative;
+    top: -2px;
+  }
 
-    .rf-button {
-      border: 0px;
+  &__close {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 12px;
+    margin-right: -4px;
+    color: var(--basic-tertiary);
+  }
+
+  &__body {
+    margin-right: auto;
+  }
+
+  &__title {
+    @include text-s-14-bold();
+    color: var(--text-primary);
+  }
+
+  &__message {
+    @include text-s-14;
+    color: var(--text-primary);
+  }
+
+  &__title,
+  &__message {
+    &:not(:last-child) {
+      margin-bottom: 4px;
     }
   }
-}
 
-.rf-hint__title-text {
-  @include text-l-16-bold();
-}
-
-.rf-hint__message {
-  @include text-m-16;
-  color: var(--text-secondary);
-}
-
-.rf-hint__body {
-  margin-left: 4px;
-}
-
-.rf-hint__icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  margin-right: 4px;
-}
-
-.rf-hint__default {
-  background-color: var(--background-secondary);
-
-  .rf-hint__icon {
-    color: var(--basic-primary);
+  &__button {
+    display: inline-flex;
   }
 
-  .rf-hint__button {
-    color: var(--basic-primary);
-    cursor: pointer;
+  &--default {
+    background-color: var(--background-secondary);
+  
+    .rf-hint__icon {
+      color: var(--basic-primary);
+    }
+  
+    .rf-hint__button {
+      color: var(--basic-primary);
+    }
   }
-
-  &:before {
-    background-color: var(--basic-primary);
+  
+  &--default {
+    .rf-hint__icon {
+      color: var(--background-shadow);
+    }
+  
+    .rf-hint__button {
+      color: var(--text-secondary);
+    }
   }
-}
-
-.rf-hint__default {
-  .rf-hint__icon {
-    color: var(--background-shadow);
+  
+  &--blue {
+    background-color: var(--background-secondary);
+  
+    .rf-hint__icon {
+      color: var(--basic-primary);
+    }
+  
+    .rf-hint__button {
+      color: var(--basic-primary);
+    }
   }
-
-  .rf-hint__button {
-    @include button-m-16;
-    color: var(--text-secondary);
-    cursor: pointer;
+  
+  &--green {
+    background-color: var(--background-success);
+  
+    .rf-hint__icon {
+      color: var(--status-success);
+    }
+  
+    .rf-hint__button {
+      color: var(--status-success);
+    }
   }
-}
-
-.rf-hint__blue {
-  background-color: var(--background-secondary);
-
-  .rf-hint__icon {
-    color: var(--basic-primary);
+  
+  &--yellow {
+    background-color: var(--background-warn);
+  
+    .rf-hint__icon {
+      color: var(--status-warn);
+    }
+  
+    .rf-hint__button {
+      color: var(--status-warn);
+    }
   }
-
-  .rf-hint__button {
-    color: var(--basic-primary);
-    cursor: pointer;
-  }
-
-  &:before {
-    background-color: var(--basic-primary);
-  }
-}
-
-.rf-hint__green {
-  background-color: var(--background-success);
-
-  .rf-hint__icon {
-    color: var(--status-success);
-  }
-
-  .rf-hint__button {
-    color: var(--status-success);
-    cursor: pointer;
-  }
-
-  &:before {
-    background-color: var(--status-success);
-  }
-}
-
-.rf-hint__yellow {
-  background-color: var(--background-warn);
-
-  .rf-hint__icon {
-    color: var(--status-warn);
-  }
-
-  .rf-hint__button {
-    color: var(--status-warn);
-    cursor: pointer;
-  }
-
-  &:before {
-    background-color: var(--status-warn);
-  }
-}
-
-.rf-hint__red {
-  background-color: var(--background-danger);
-
-  .rf-hint__icon {
-    color: var(--status-danger);
-  }
-
-  .rf-hint__button {
-    color: var(--status-danger);
-    cursor: pointer;
-  }
-
-  &:before {
-    background-color: var(--status-danger);
+  
+  &--red {
+    background-color: var(--background-danger);
+  
+    .rf-hint__icon {
+      color: var(--status-danger);
+    }
+  
+    .rf-hint__button {
+      color: var(--status-danger);
+    }
   }
 }

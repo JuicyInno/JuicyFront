@@ -102,7 +102,9 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
               buttonType='white'
               size='s'
               onClick={onClickDownload}
-              endAdornment={<AllDownload className='pdf-document__icon'/>}>
+              endAdornment={<AllDownload className='pdf-document__icon'/>}
+              aria-label='Скачать'
+            >
               {url ? '' : 'Скачать'}
             </Button>
           </div>

@@ -140,6 +140,8 @@ export interface IRequestPath {
   agentName: string;
   /** Фактический исполнитель*/
   user: IUser[];
+  /** Исполнитель, кому делегировали задачу */
+  delegate?: IUser[];
   /** Статус (ид)*/
   statusId: string;
   /** Статус (текст)*/

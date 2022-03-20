@@ -1,10 +1,12 @@
 import React, {
-  FC, useState, useEffect, InputHTMLAttributes
+  FC, useState, useEffect, useMemo, InputHTMLAttributes
 } from 'react';
 import { AllStar } from '../../../indexIcon';
 import { classnames } from '../../../utils/classnames';
 import './RatePicker.scss';
 
+
+export type IRateSize = 'xs' | 's' | 'm';
 
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   /**
@@ -30,19 +32,25 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
    * @default false
    * */
   isStarPicker?: boolean
+  /** Размер звезды*/
+  variant?: IRateSize,
   /** Получить значение оценки*/
-  getRate?: (value: string) => number | void
+  getRate?: (value: string) => number | void;
 }
 
-
-const RatePicker: FC<IPickerProps> = ({ isActive = true,
+// FIXME: Добавить управление с клавиатуры
+const RatePicker: FC<IPickerProps> & { id: number } = ({ isActive = true,
   isStarPicker = false,
   defaultPickedValue = 0,
   getRate = () => { },
   sizePicker = 5,
   textContent = '',
   isReverse = false,
+  variant = 'm',
   ...props }: IPickerProps) => {
+  const id = useMemo(() => {
+    return RatePicker.id++;
+  }, []);
 
   const [rating, setRating] = useState(defaultPickedValue);
 
@@ -120,23 +128,29 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
       className={classnames(containerClassName)} >
       <input
         type='radio'
-        id={`input-${item}`}
+        id={`RatePicker-${id}-${item}`}
         value={item} />
-      {isStarPicker ? <label
-        onMouseMove={onMoveMouseHandler(item)}
-        onMouseLeave={onMoveMouseLeaveHandler}
-        onClick={clickRateStarHandler(index + 1)}
-        className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
-      ><AllStar size={isActive ? 'm' : 'xxs'} /></label> :
+      {isStarPicker ? (
+        <label
+          onMouseMove={onMoveMouseHandler(item)}
+          onMouseLeave={onMoveMouseLeaveHandler}
+          onClick={clickRateStarHandler(index + 1)}
+          className={classnames(labelClassName, 'star-picker', isActive && hover >= item && hover > 0 ? 'star-hover' : '', !isActive && 'disabled-star', rating === index + 1 && 'picked')}
+        >
+          <AllStar size={isActive ? variant : 'xxs'} />
+        </label>
+      ) : (
         <label
           className={classnames(labelClassName, 'rate-picker__label', isActive && hover >= item && hover > 0 ? 'rate-hover' : '', !isActive && 'disabled-picker')}
           onClick={isActive ? clickRateHandler : () => { }}
           onMouseMove={onMoveMouseHandler(item)}
           onMouseLeave={onMoveMouseLeaveHandler}
-          htmlFor={`input-${item}`}
-          {...props}>
+          htmlFor={`RatePicker-${id}-${item}`}
+          {...props}
+        >
           {item}
         </label>
+      )
       }
     </div >;
   });
@@ -151,4 +165,7 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     </div>
   );
 };
+
+RatePicker.id = 0;
+
 export default RatePicker;

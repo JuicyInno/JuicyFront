@@ -49,7 +49,7 @@ import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
-import Notifications, { sendNotification, } from './components/molecules/Notifications';
+import Notifications, { sendNotification, removeNotification } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
 import EntityCard from './components/molecules/EntityCard';
 import Toast from './components/atoms/Toast';
@@ -71,6 +71,7 @@ import InputPhone from './components/atoms/InputPhone';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 import GhostScreen from './components/atoms/GhostScreen';
 import Dropdown from './components/atoms/Dropdown';
+import ImagePreview from './components/atoms/ImagePreview';
 import Schedule, {
   ScheduleLegend,
   ScheduleLegendItem,
@@ -85,6 +86,11 @@ import Attachment from './components/molecules/Attachment';
 import Shimmer from './components/atoms/Shimmer';
 import DynamicComponent from './components/atoms/DynamicComponent';
 import Copy from './components/atoms/Copy';
+import TextCollapse from './components/molecules/TextCollapse';
+import Unread from './components/atoms/Unread';
+import {
+  Layout, LayoutColumn, LayoutContext, useLayoutContext
+} from './components/molecules/Layout';
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
@@ -100,6 +106,7 @@ export {
   AvatarStatus,
   AvatarStack,
   Attachment,
+  ImagePreview,
   Badge,
   Button,
   Checkbox,
@@ -143,6 +150,7 @@ export {
   Notification,
   Notifications,
   sendNotification,
+  removeNotification,
   Employee,
   Confirm,
   Tile,
@@ -177,7 +185,10 @@ export {
   Shimmer,
   Copy,
   DynamicComponent,
-  Feedback
+  Feedback,
+  TextCollapse,
+  Unread,
+  Layout, LayoutColumn, LayoutContext, useLayoutContext
 };
 
 

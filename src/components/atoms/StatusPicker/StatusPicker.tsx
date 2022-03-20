@@ -1,5 +1,5 @@
 import React, {
-  FC, InputHTMLAttributes, useRef
+  FC, InputHTMLAttributes, useRef, useMemo
 } from 'react';
 import './StatusPicker.scss';
 
@@ -18,19 +18,22 @@ type StatusLabelType = {
   name: string
 }
 
-
-const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
+// FIXME: Добавить управление с клавиатуры
+const StatusPicker: FC<IPickerProps> & { id: number } = ({ getRate = () => { }
   , pickedValues
   , position,
   ...props }:
   IPickerProps) => {
+  const id = useMemo(() => {
+    return StatusPicker.id++;
+  }, []);
 
   const statusColors = ['low', 'medium', 'high'];
   const prevCurrentIndex = useRef(-1);
 
   const clickStatusHandler = (selectIndex: number /* row*/, currentIndex: number /* col*/) => (e: React.MouseEvent<HTMLLabelElement>) => {
-    const { htmlFor } = e.target as HTMLLabelElement;
-    const res = +htmlFor;
+    const target = e.target as HTMLLabelElement;
+    const res = +target.dataset.value!;
 
 
     if (pickedValues[position][currentIndex] === '') {
@@ -104,13 +107,14 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
     >
       <input
         type='radio'
-        id={item.value.toString()}
+        id={`StatusPicker-${id}-${item.value.toString()}`}
         value={item.value} />
       <label
         data-testid={`${(position + 1).toString() + index}`}
+        data-value={item.value.toString()}
         className={statusComponentLabelClass}
         onClick={clickStatusHandler(position, index)}
-        htmlFor={item.value.toString()}
+        htmlFor={`StatusPicker-${id}-${item.value.toString()}`}
         {...props}>
         {item.name}
       </label>
@@ -126,4 +130,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
     </div >
   );
 };
+
+StatusPicker.id = 0;
+
 export default StatusPicker;

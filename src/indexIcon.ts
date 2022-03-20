@@ -76,6 +76,9 @@ export { AllDoc };
 import AllDocuments from './assets/icons/resultDir/AllDocuments';
 export { AllDocuments };
 
+import AllDot from './assets/icons/resultDir/AllDot';
+export { AllDot };
+
 import AllDownload from './assets/icons/resultDir/AllDownload';
 export { AllDownload };
 
@@ -111,6 +114,9 @@ export { AllInternetShops };
 
 import AllInvestmentProducts from './assets/icons/resultDir/AllInvestmentProducts';
 export { AllInvestmentProducts };
+
+import AllInvestmentSmall from './assets/icons/resultDir/AllInvestmentSmall';
+export { AllInvestmentSmall };
 
 import AllLightBulb from './assets/icons/resultDir/AllLightBulb';
 export { AllLightBulb };
@@ -150,6 +156,9 @@ export { AllOnCard };
 
 import AllOnPhone from './assets/icons/resultDir/AllOnPhone';
 export { AllOnPhone };
+
+import AllOtherPeople from './assets/icons/resultDir/AllOtherPeople';
+export { AllOtherPeople };
 
 import AllPhone from './assets/icons/resultDir/AllPhone';
 export { AllPhone };
@@ -376,6 +385,9 @@ export { Dialog };
 import DigitalCardM from './assets/icons/resultDir/DigitalCardM';
 export { DigitalCardM };
 
+import Directory from './assets/icons/resultDir/Directory';
+export { Directory };
+
 import Disability from './assets/icons/resultDir/Disability';
 export { Disability };
 
@@ -384,9 +396,6 @@ export { DMS };
 
 import Doc from './assets/icons/resultDir/Doc';
 export { Doc };
-
-import Dot from './assets/icons/resultDir/Dot';
-export { Dot };
 
 import Drink from './assets/icons/resultDir/Drink';
 export { Drink };
@@ -402,6 +411,9 @@ export { Elections };
 
 import ElectronicMoney from './assets/icons/resultDir/ElectronicMoney';
 export { ElectronicMoney };
+
+import Employees from './assets/icons/resultDir/Employees';
+export { Employees };
 
 import Envelope from './assets/icons/resultDir/Envelope';
 export { Envelope };
@@ -459,6 +471,9 @@ export { IIS2 };
 
 import IJS from './assets/icons/resultDir/IJS';
 export { IJS };
+
+import Inbox from './assets/icons/resultDir/Inbox';
+export { Inbox };
 
 import InformationAlert from './assets/icons/resultDir/InformationAlert';
 export { InformationAlert };
@@ -822,6 +837,9 @@ export { VTBMobile };
 
 import WebsiteCall from './assets/icons/resultDir/WebsiteCall';
 export { WebsiteCall };
+
+import Work from './assets/icons/resultDir/Work';
+export { Work };
 
 import World from './assets/icons/resultDir/World';
 export { World };

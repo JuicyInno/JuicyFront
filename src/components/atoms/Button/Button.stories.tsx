@@ -63,10 +63,10 @@ export const Demo: Story = () => {
   const getButtons = (props: IButtonProps) => {
     return (
       <>
-        <Button {...props} size='xl'>Button 56</Button>
-        <Button {...props} size='l'>Button 48</Button>
-        <Button {...props} size='m'>Button 40</Button>
-        <Button {...props} size='s'>Button 32</Button>
+        <Button {...props} size='xl' aria-label={props.preloader ? 'Button 56' : undefined}>Button 56</Button>
+        <Button {...props} size='l' aria-label={props.preloader ? 'Button 48' : undefined}>Button 48</Button>
+        <Button {...props} size='m' aria-label={props.preloader ? 'Button 40' : undefined}>Button 40</Button>
+        <Button {...props} size='s' aria-label={props.preloader ? 'Button 32' : undefined}>Button 32</Button>
       </>
     );
   };
@@ -74,10 +74,10 @@ export const Demo: Story = () => {
   const getIconButtons = (props: IButtonProps) => {
     return (
       <>
-        <Button {...props} size='xl'><AllIconPlace /></Button>
-        <Button {...props} size='l'><AllIconPlace /></Button>
-        <Button {...props} size='m'><AllIconPlace /></Button>
-        <Button {...props} size='s'><AllIconPlace size='xxs' /></Button>
+        <Button {...props} size='xl' aria-label='Button 56'><AllIconPlace /></Button>
+        <Button {...props} size='l' aria-label='Button 48'><AllIconPlace /></Button>
+        <Button {...props} size='m' aria-label='Button 40'><AllIconPlace /></Button>
+        <Button {...props} size='s' aria-label='Button 32'><AllIconPlace size='xxs' /></Button>
       </>
     );
   };
@@ -129,10 +129,10 @@ export const Demo: Story = () => {
         <Button size='m' endAdornment={<AllIconPlace size='xs' />}>Button 40</Button>
         <Button size='s' endAdornment={<AllIconPlace size='xxs' />}>Button 32</Button>
 
-        <Button size='xl' startAdornment={<AllIconPlace size='xs' />}></Button>
-        <Button size='l' startAdornment={<AllIconPlace size='xs' />}></Button>
-        <Button size='m' startAdornment={<AllIconPlace size='xs' />}></Button>
-        <Button size='s' startAdornment={<AllIconPlace size='xxs' />}></Button>
+        <Button size='xl' startAdornment={<AllIconPlace size='xs' />} aria-label='Button 56' />
+        <Button size='l' startAdornment={<AllIconPlace size='xs' />} aria-label='Button 48' />
+        <Button size='m' startAdornment={<AllIconPlace size='xs' />} aria-label='Button 40' />
+        <Button size='s' startAdornment={<AllIconPlace size='xxs' />} aria-label='Button 32' />
 
         <Button size='xl' buttonType='text' startAdornment={<AllIconPlace size='xs' />}>Text button 56</Button>
         <div /> <div />
@@ -340,8 +340,8 @@ export const Demo: Story = () => {
         <Button buttonType={'text'} disabled size='xl'>Button 56</Button>
         <Button buttonType={'text'} disabled size='s'>Button 32</Button>
         <StoryDocsLabel>Loading</StoryDocsLabel>
-        <Button buttonType={'text'} preloader size='xl'>Button 56</Button>
-        <Button buttonType={'text'} preloader size='s'>Button 32</Button>
+        <Button buttonType={'text'} preloader size='xl' aria-label='Button 56'>Button 56</Button>
+        <Button buttonType={'text'} preloader size='s' aria-label='Button 32'>Button 32</Button>
 
         <StoryDocsH3>Text Icon Button</StoryDocsH3>
 
@@ -389,7 +389,7 @@ export const Playground: Story = (args: IButtonProps) => {
         </Button>
       </StoryRow>
       <StoryRow>
-        <Button { ...args } buttonType={buttonType} startAdornment={adornment} />
+        <Button { ...args } buttonType={buttonType} startAdornment={adornment} aria-label='Button' />
       </StoryRow>
     </StoryContainer>
   );

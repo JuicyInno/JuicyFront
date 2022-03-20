@@ -13,6 +13,7 @@ export interface IButtonPagesProps {
   page?: number;
 }
 
+// FIXME: Добавить кнопкам состояния фокуса
 const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: IButtonPagesProps) => {
 
   const [p, setP] = useState(1);
@@ -31,7 +32,13 @@ const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: I
 
   return (
     <div className='rf-button-pages'>
-      <button type='button' className='rf-button-pages__button' disabled={p === 1} onClick={() => onPageChange(-1)}>
+      <button
+        type='button'
+        className='rf-button-pages__button'
+        disabled={p === 1}
+        onClick={() => onPageChange(-1)}
+        aria-label='Предыдущая страница'
+      >
         <ArrowsChevronLeft size={'xxs'} />
       </button>
 
@@ -39,10 +46,15 @@ const ButtonPages: React.FC<IButtonPagesProps> = ({ page = 1, max, onChange }: I
         {p} / {max}
       </div>
 
-      <button type='button' className='rf-button-pages__button' disabled={p === max} onClick={() => onPageChange(1)}>
+      <button
+        type='button'
+        className='rf-button-pages__button'
+        disabled={p === max}
+        onClick={() => onPageChange(1)}
+        aria-label='Следующая страница'
+      >
         <ArrowsChevronRight size={'xxs'} />
       </button>
-
     </div>
   );
 };

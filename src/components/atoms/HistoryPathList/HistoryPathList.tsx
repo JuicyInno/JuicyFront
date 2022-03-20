@@ -101,6 +101,9 @@ const HistoryPathList: ({ path, isUZADO, isMinimal }: IHistoryStepList) => JSX.E
                  */}
               <h4 className='rf-history-path-list__fullName'>
                 {(pathItem.user && pathItem.user.length === 1 && pathItem.user[0].fullName) || pathItem.agentName}
+                {pathItem.delegate && pathItem.delegate.length === 1 && (
+                  <span className='rf-history-path-list__fullName--delegate'> / от имени {pathItem.delegate[0].fullName}</span>
+                )}
               </h4>
               {/** Подсказка не используется в проекте ЮЗАДО */}
               {!(pathItem.user && pathItem.user.length < 2) && !isUZADO && (

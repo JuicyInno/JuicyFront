@@ -195,10 +195,10 @@ export const Playground: Story = (args) => {
   return (
     <StoryContainer>
       <StoryItem description='Модальное окно открывается поверх страницы.'>
-        <Button onClick={ () => toggle(true) }>Открыть</Button>
+        <Button onClick={() => toggle(true)}>Открыть</Button>
 
         {show && (
-          <Modal {...args} header='Header' footer={ <ModalFooter toggle={toggle} /> } onClose={ () => toggle(false) }>
+          <Modal {...args} header='Header' footer={<ModalFooter toggle={toggle} />} onClose={() => toggle(false)} >
             <div>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur ea laudantium nihil nisi quos
               soluta

@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import React, { FC, ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, RefObject, useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import InfiniteScroll, { Props as IInfiniteScrollProps } from 'react-infinite-scroll-component';
 import { Manager, Reference } from 'react-popper';
 import './Select.scss';
@@ -12,6 +12,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import { classnames } from '../../../utils/classnames';
 import Dropdown from '../Dropdown';
 import Preloader from '../Preloader';
+import usePrevious from '../../../hooks/usePrevious';
 
 export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   /** Варианты выбора */
@@ -21,7 +22,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   /** Значение */
   values: IOption[];
   /** Поиск внутри селекта
-   * @param query - страка поиска
+   * @param query - строка поиска
    * @param isPagination - указывает что изменилась пагинация
    */
   onSearch?: (query: string, isPagination?: boolean) => void;
@@ -101,7 +102,7 @@ export interface ISelectProps<T extends HTMLElement = HTMLDivElement> {
   menuVariantSize?: 's' | 'm';
 }
 
-const Select: FC<ISelectProps> = ({
+const Select: FC<ISelectProps> & { id: number } = ({
   options,
   onChange,
   invalid = false,
@@ -127,11 +128,38 @@ const Select: FC<ISelectProps> = ({
   backgroundColor = 'white',
   menuVariantSize = 'm'
 }: ISelectProps) => {
+  const id = useMemo(() => {
+    return Select.id++;
+  }, []);
+
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleRef = useRef<HTMLDivElement>(null);
   const [isOnMove, setIsonMove] = useState<boolean>(false);
   const [isOnActive, setIsonActive] = useState<boolean>(false);
   const firstElementPosition = useRef<number>(0);
+  const prevShowDropDown = usePrevious(showDropdown) || false;
+
+  const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
+  const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
+  /** Очистка селекта */
+  const onClear = () => {
+    setInputValue('');
+
+    if (!multiselect) {
+      setSelectValues([]);
+    }
+
+    onSearch && onSearch('');
+  };
+
+  const onClearSelectedValues = () => {
+    onChange([
+      {
+        label: '',
+        value: ''
+      }
+    ]);
+  };
 
   const onClose = useCallback(() => {
     setShowDropdown(false);
@@ -141,31 +169,26 @@ const Select: FC<ISelectProps> = ({
     if (!disabled) {
       setShowDropdown(true);
     }
-
   }, [disabled]);
+
+  const onReset = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClear();
+    onClearSelectedValues();
+    onOpen();
+  };
 
 
   // -------------------------------------------------------------------------------------------------------------------
-
-  const [inputValue, setInputValue] = useState<string>(() => (values.length > 0 && !multiselect ? values[0].label : ''));
-
   useEffect(() => {
-
     setInputValue(values.length > 0 && !multiselect ? values[0].label : '');
   }, [values]);
 
-  /** Очистка селекта */
-  const onClear = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setInputValue('');
-    onOpen();
-
-    if (!multiselect) {
-      setSelectValues([]);
-    }
-
-    onSearch && onSearch('');
-  };
+  /*   useEffect(() => {
+    const onClick = (e: React.MouseEvent) => clickRef.current!.contains(e.target as Node) || console.log('клик вне компонента');
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []); */
 
   /** Очистка при изменении извне через clearHook */
   useEffect(() => {
@@ -204,7 +227,6 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
 
   useEffect(() => {
 
@@ -346,21 +368,14 @@ const Select: FC<ISelectProps> = ({
     );
   });
 
-  const inputClickHandler = (e: React.MouseEvent) => {
-    console.log('clicked');
-
-  };
-
   // -------------------------------------------------------------------------------------------------------------------
 
   const noop = () => { };
 
   const inputElement = <input
-
     autoSave='false'
     autoComplete='off'
-    id='rf-select__input'
-    onClick={inputClickHandler}
+    data-testid='rf-select__input'
     className={`rf-select__input ${multiselect && selectValues.length ? 'rf-select__input--multiselect' : ''}
      ${variant === 'menu' ? `rf-select__menu${disabled ? '--disabled' : ''} rf-select__menu--${menuVariantSize}` : ''} ${isOnMove && variant === 'menu' ? 'rf-button__hover' : ''}`}
     onChange={onSelectSearch}
@@ -395,12 +410,19 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button type='button' className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`} onClick={onClear}>
+    <button
+      type='button'
+      className={`rf-select__button${multiselect && selectValues.length ? '--multiselect' : ''}`}
+      onClick={onReset}
+      aria-label='Сбросить'
+    >
       <AllClose />
     </button>
   );
 
   const onChevronClick = (e: React.MouseEvent) => {
+    console.log(selectValues);
+
     e.stopPropagation();
     setShowDropdown((state: boolean) => !state);
   };
@@ -410,11 +432,18 @@ const Select: FC<ISelectProps> = ({
   };
 
   const onMouseLeaveHandler = (e: React.MouseEvent) => {
-    console.log(e);
-
     setIsonMove(false);
   };
 
+
+  useEffect(() => {
+
+    if (!showDropdown && showDropdown !== prevShowDropDown) {
+      if (!listJSX.length || !options.find(opt => opt.label === inputValue)) {
+        onClear();
+      }
+    }
+  }, [prevShowDropDown, listJSX, options]);
 
   const chevronButton = (multiselect ? readOnly || inputValue.length === 0 || inputValue.length > 0 : readOnly || inputValue.length === 0) &&
     (
@@ -427,7 +456,7 @@ const Select: FC<ISelectProps> = ({
         )}
         onClick={onChevronClick}
         onMouseMove={onMouseMoveHandler}
-
+        aria-label={showDropdown ? 'Скрыть меню' : 'Раскрыть меню'}
       >
         {options.length ? <ArrowsChevronDown color={variant === 'menu' ? '#fff' : ''} /> : null}
       </button>
@@ -460,13 +489,15 @@ const Select: FC<ISelectProps> = ({
     return dropdownMaxWidth || toggleRef.current?.getBoundingClientRect().width;
   }, [dropdownMaxWidth]);
 
+
   return (
-    <Manager>
+    <Manager >
       <div className={classnames('rf-select', tagClass, backgroundColor === 'gray' && 'rf-select__background-gray')} ref={toggleRef}>
         <Reference>
           {(referenceProps) => (
             <div
               onMouseLeave={onMouseLeaveHandler}
+              /* onBlur={onBlurHandler} */
               {...referenceProps}
               data-testid='rf-select'
               className={classnames(
@@ -509,7 +540,12 @@ const Select: FC<ISelectProps> = ({
             width: isTagVariant ? 'auto' : '100%'
           }}
         >
-          <div data-testid='rf-select-list-scroll' className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)} id='rf-select-list-scroll' onScroll={onScroll}>
+          <div
+            data-testid='rf-select-list-scroll'
+            className={classnames('rf-select__list', `rf-select__list--${menuVariantSize}`)}
+            id={`Select-${id}-list-scroll`}
+            onScroll={onScroll}
+          >
             {hasInfinityScroll ? (
               <InfiniteScroll
                 dataLength={0}
@@ -517,7 +553,7 @@ const Select: FC<ISelectProps> = ({
                 {...infinityScrollProps}
                 next={makeLazyFetch()}
                 loader={loader}
-                scrollableTarget='rf-select-list-scroll'
+                scrollableTarget={`Select-${id}-list-scroll`}
                 className='rf-select__infinity-list'
               >
                 {listJSX}
@@ -534,4 +570,7 @@ const Select: FC<ISelectProps> = ({
     </Manager>
   );
 };
+
+Select.id = 0;
+
 export default Select;

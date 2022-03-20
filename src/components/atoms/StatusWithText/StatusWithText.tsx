@@ -32,6 +32,8 @@ const statusColors: { [key: string]: IStatusColor } = {
   }
 };
 
+
+// FIXME: Elements must have sufficient color contrast
 const StatusWithText: FC<IStatusWithTextProps> = ({ statusText = '', criticality = '0' }) => {
   return (
     <div className='rf-status-with-text'>

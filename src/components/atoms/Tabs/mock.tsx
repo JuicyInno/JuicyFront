@@ -2,6 +2,7 @@ import React from 'react';
 import { ITab } from '../../../types';
 import { AllIconPlace } from '../../../indexIcon';
 import Badge from '../Badge';
+import Unread from '../Unread';
 
 export const _simpleTabs: ITab[] = [
   {
@@ -69,6 +70,32 @@ export const _badgeTabs: ITab[] = [
       <Badge badgeContent={10} placeNear>
         Ситуации
       </Badge>
+    ),
+    disabled: true,
+  },
+];
+
+export const _unreadTabs: ITab[] = [
+  {
+    label: (
+      <Unread>
+        Заявки
+      </Unread>
+    ),
+  },
+  {
+    label: (
+      <Unread>
+        Запросы
+      </Unread>
+    ),
+  },
+  { label: 'Вопросы и ответы', },
+  {
+    label: (
+      <Unread>
+        Ситуации
+      </Unread>
     ),
     disabled: true,
   },

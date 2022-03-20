@@ -47,6 +47,15 @@ export interface ITab {
   handler?: (element?: HTMLElement) => void;
 }
 
+/** Таб */
+export interface ISegment {
+  label: ReactNode;
+  value: string;
+  disabled?: boolean;
+  /** Иконка */
+  icon?: ReactNode;
+}
+
 /** Элемент выпадающего списка */
 export interface IListElement {
   /** Компонент элемента */
