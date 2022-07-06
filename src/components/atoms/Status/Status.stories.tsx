@@ -23,7 +23,8 @@ const iconTypes: IconType[] = [
   'businessTrip',
   'remoteWork',
   'decree',
-  'boss'
+  'boss',
+  'edit'
 ];
 
 const demoIcons = [

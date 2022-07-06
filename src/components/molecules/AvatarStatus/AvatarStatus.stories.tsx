@@ -68,7 +68,8 @@ export default {
         'businessTrip',
         'remoteWork',
         'decree',
-        'boss'
+        'boss',
+        'edit'
       ],
       control: { type: 'select' },
       defaultValue: 'online'

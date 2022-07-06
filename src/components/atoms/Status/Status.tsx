@@ -18,6 +18,7 @@ import {
 import { IconType, StatusIconSize } from './icons/types';
 
 import './Status.scss';
+import Edit from './icons/Edit';
 
 export interface IStatus {
   /** Тип иконки
@@ -45,7 +46,8 @@ const iconTypes = {
   businessTrip: BusinessTrip,
   remoteWork: RemoteWork,
   boss: Boss,
-  decree: Decree
+  decree: Decree,
+  edit: Edit
 };
 
 

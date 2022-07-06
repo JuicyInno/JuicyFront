@@ -1,7 +1,7 @@
 import { SVGProps } from 'react';
 
 export type IconType = 'online' | 'icon' | 'decline' | 'load' | 'in' | 'out' | 'vacation' |
-    'birthday' | 'disease' | 'businessTrip' | 'remoteWork' | 'boss' | 'decree' | 'withdrawStaff';
+    'birthday' | 'disease' | 'businessTrip' | 'remoteWork' | 'boss' | 'decree' | 'withdrawStaff' | 'edit';
 
 export type StatusIconSize = 's' | 'm' | 'l';
 
